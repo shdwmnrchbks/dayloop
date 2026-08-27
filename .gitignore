@@ -1,0 +1,35 @@
+# Gradle
+.gradle/
+build/
+*/build/
+!**/src/**/build/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local config (contains SDK paths / signing keys — never commit)
+local.properties
+keystore.properties
+*.jks
+*.keystore
+
+# Secrets / overrides
+secrets.properties
+google-services.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tooling outputs
+tools/build/
+packlint-report.json
+
+# Logs
+*.log
