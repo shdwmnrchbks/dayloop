@@ -1,0 +1,34 @@
+{
+  "month": "2017-02",
+  "days": [
+    {
+      "date": "2017-02-01",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched", "activityRef": "p5r.activity.movie.the-goodfather", "statGains": { "kindness": 2 } },
+        { "label": "Optional: fuse every confidant's ultimate Persona for easy NG+ access", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2017-02-02",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Answer the phone message and hang out with Sumire — her awakening", "spoiler": true },
+        { "label": "Refuse Maruki's deal when he stops by LeBlanc", "spoiler": true },
+        { "label": "Answer Akechi: 'We're stopping Maruki' — his awakening", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2017-02-03",
+      "weekday": "fri",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Final battle phase 1: Maruki and Azathoth — clear the tentacles and baton pass into Maruki", "spoiler": true },
+        { "label": "Phase 2: Adam Kadmon — burst him down fast; Revitalize Soul and Grand Palm punish a slow fight", "spoiler": true },
+        { "label": "Phase 3: scripted survival — heal, guard, and debuff until the ending", "spoiler": true }
+      ]
+    }
+  ]
+}

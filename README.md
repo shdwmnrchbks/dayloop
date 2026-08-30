@@ -41,8 +41,8 @@ See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 Phase 0–3 done: pack schema + `packlint` + `packgen`, a validated Apr–Jun P5R walkthrough, the read-only app rendering all three packs from bundled assets with a pack switcher — P5R (Apr–Jun authored), P3R (real curated April 2009 mini-pack), and Metaphor (`dayCounter` fit-check mini-pack with synthetic data; see docs/authoring-guide.md) — and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
-Next: Phase 4 — July–February P5R authoring via `packgen` + curation.
+🚧 Phase 0–4 done: pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+Next: Phase 5 — routes/profiles polish, Glance widget, search, icon.
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

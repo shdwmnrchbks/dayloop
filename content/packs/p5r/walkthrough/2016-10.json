@@ -1,0 +1,329 @@
+{
+  "month": "2016-10",
+  "days": [
+    {
+      "date": "2016-10-01",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy a Black Kogatana at the second-hand shop (monthly)" },
+        { "label": "Hang out with Shinya — Tower reaches rank 4 (give the first answer wrong on purpose)", "statGains": { "kindness": 2 } },
+        { "label": "Buy all the new books in Jinbocho and on Central Street" },
+        { "label": "Ask Chihaya for a luck reading about Proficiency" },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 2", "statGains": { "proficiency": 2 } }
+      ]
+    },
+    {
+      "date": "2016-10-02",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy items from the Kanda priest" },
+        { "label": "Buy a Calling Postcard at the Discount Store Rocinante" },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 1 } },
+        { "label": "Hang out with Makoto — Priestess reaches rank 7" },
+        { "label": "TV Shopping Program: Pumpkin Ghost and Haunted Repel sets" },
+        { "label": "Give the Calling Postcard to the Kichijoji alley man — Strawberry Daifuku x2 (9/16)" },
+        { "label": "Browse the Kichijoji second-hand shop's point exchange" },
+        { "label": "Watch 'Back to the Ninja' with Futaba", "activityRef": "p5r.activity.movie.back-to-the-ninja", "statGains": { "knowledge": 3 } },
+        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
+      ]
+    },
+    {
+      "date": "2016-10-03",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Answer the class question: 'Stars'", "statGains": { "knowledge": 1 } },
+        { "label": "Enter the unknown palace and defeat the guardian (exploit bless with Yoshizawa)", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2016-10-04",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy SP-recovery drinks from the vending machines" },
+        { "label": "Ask Chihaya for a money reading" },
+        { "label": "Second spaceport infiltration — capture the Koh-i-Noor and grab all three Will Seeds", "spoiler": true },
+        { "label": "Fuse Hecatoncheires (Lilim + Anzu, pass on Masakunda)", "spoiler": true },
+        { "label": "Twins ritual — Strength reaches rank 8", "spoiler": true },
+        { "label": "Call Kawakami for the special massage" },
+        { "label": "Ask Chihaya for a luck reading about Proficiency" },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 3", "statGains": { "proficiency": 2 } }
+      ]
+    },
+    {
+      "date": "2016-10-05",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Read 'The Art of Automata' during class", "activityRef": "p5r.activity.book.art-of-automata" },
+        { "label": "Borrow 'Woman in the Dark' from the school library" },
+        { "label": "Send the Calling Card", "spoiler": true },
+        { "label": "Watch 'Mouse M.D.' (10/12)", "activityRef": "p5r.activity.dvd.mouse-md", "statGains": { "kindness": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-06",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Read 'The Art of Automata' on the metro — Proficiency reaches rank 5", "activityRef": "p5r.activity.book.art-of-automata", "statGains": { "proficiency": 3 } },
+        { "label": "Answer the class question: 'Joseph-Ignace Guillotin'", "statGains": { "knowledge": 1 } },
+        { "label": "Heist: steal Okumura's Treasure — beat the 10-minute reach timer, then wear the robots down with AoE and Baton Passes; guard the Big Bang", "spoiler": true },
+        { "label": "Magician reaches rank 9", "spoiler": true },
+        { "label": "Hierophant reaches rank 6", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2016-10-07",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Rent '31'" },
+        { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
+        { "label": "Hang out with Maruki — Councilor reaches rank 9 (third-semester gate cleared)" },
+        { "label": "Hang out with Mishima in Akihabara — Moon reaches rank 6" }
+      ]
+    },
+    {
+      "date": "2016-10-08",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hang out with Shinya (no rank-up; first requirement for his room decoration)" },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 4", "statGains": { "proficiency": 2 } }
+      ]
+    },
+    {
+      "date": "2016-10-09",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Accept Futaba's invitation" },
+        { "label": "Buy items from the Kanda priest" },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 1 } },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 5", "statGains": { "proficiency": 2 } },
+        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
+      ]
+    },
+    {
+      "date": "2016-10-10",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Shinya — Tower reaches rank 5", "statGains": { "kindness": 2 } },
+        { "label": "Solve the LeBlanc crossword: 'Halloween'", "statGains": { "knowledge": 1 } },
+        { "label": "Ask Chihaya for an affinity reading for Hifumi" },
+        { "label": "Hang out with Hifumi — Star reaches rank 10" }
+      ]
+    },
+    {
+      "date": "2016-10-11",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question: 'Bouba'", "statGains": { "knowledge": 1 } },
+        { "label": "Fool reaches rank 9", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2016-10-12",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Judgement reaches rank 5", "spoiler": true },
+        { "label": "Watch '31'", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-13",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Watch '31' (11/12)", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 3 } },
+        { "label": "Guts reaches rank 5" }
+      ]
+    },
+    {
+      "date": "2016-10-14",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Receive the request 'The Killer Who Cleans Up Trash'", "spoiler": true },
+        { "label": "Buy SP-recovery drinks from the vending machines" },
+        { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
+        { "label": "Rent 'Tee' — the last DVD rental of the game" },
+        { "label": "Win the Wanna-kun Doll at the Akihabara arcade (3/8)" },
+        { "label": "Play billiards (Technical) for rank 4" },
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
+        { "label": "Hang out with Sojiro — Hierophant reaches rank 7", "statGains": { "kindness": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-15",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Last chalk throw of the game — no need to dodge" },
+        { "label": "Hang out with Shinya — Tower reaches rank 6 (answer wrong on purpose)", "statGains": { "kindness": 2 } },
+        { "label": "Hang out with Iwai — Swan Boat (room decoration 3/20)" }
+      ]
+    },
+    {
+      "date": "2016-10-16",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 1 } },
+        { "label": "Buy items from the Kanda priest" },
+        { "label": "Play the Akihabara capsule machines until you win the Gear Girimehkala" },
+        { "label": "Hang out with Futaba — Hermit reaches rank 6" },
+        { "label": "Give the Gear Girimehkala to the Kichijoji alley man — Hot Blooded Sword (10/16)" },
+        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
+        { "label": "Meet the Twins on Central Street (9/13)" }
+      ]
+    },
+    {
+      "date": "2016-10-17",
+      "weekday": "mon",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exams day 1 — answers: 32 surfaces; It used to be one color; Black and white pictures" }
+      ]
+    },
+    {
+      "date": "2016-10-18",
+      "weekday": "tue",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exams day 2 — answers: Charles-Henri Sanson; It is a hereditary profession" }
+      ]
+    },
+    {
+      "date": "2016-10-19",
+      "weekday": "wed",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exams day 3 — answers: Slave labor; 3 bees in all of Europe" }
+      ]
+    },
+    {
+      "date": "2016-10-20",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch 'Tee'", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-21",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Watch 'Tee' (12/12)", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-22",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Answer the class question: '15'", "statGains": { "knowledge": 1 } },
+        { "label": "Watch 'Duhvengers' at the Shinjuku movie theater", "activityRef": "p5r.activity.movie.duhvengers", "statGains": { "kindness": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-23",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 1 } },
+        { "label": "Return your DVDs — no more rentals from here on" },
+        { "label": "Meet the Twins on Shibuya Central Street (10/13)" },
+        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
+      ]
+    },
+    {
+      "date": "2016-10-24",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question: 'Memory bias'", "statGains": { "knowledge": 1 } },
+        { "label": "Exam results", "statGains": { "charm": 3 } },
+        { "label": "Receive the LeBlanc Charm from Sojiro (exam reward)" },
+        { "label": "Hang out with Mishima (no rank-up today)" }
+      ]
+    },
+    {
+      "date": "2016-10-25",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 2 } }
+      ]
+    },
+    {
+      "date": "2016-10-26",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Story events only — no free time today", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2016-10-27",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 2 } }
+      ]
+    },
+    {
+      "date": "2016-10-28",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Judgement reaches rank 6", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2016-10-29",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "First infiltration of the casino — take the guided path", "spoiler": true },
+        { "label": "Read 'Woman in the Dark'", "activityRef": "p5r.activity.book.woman-in-the-dark", "statGains": { "proficiency": 3 } }
+      ]
+    },
+    {
+      "date": "2016-10-30",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy SP-recovery drinks from the vending machines" },
+        { "label": "Buy items from the Kanda priest" },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 1 } },
+        { "label": "Buy a Mystery Stew from an Akihabara vending machine" },
+        { "label": "Hang out with Shinya — Balloons (room decoration 4/20)", "statGains": { "kindness": 3 } },
+        { "label": "Use the Mega Fertilizer on the plant" },
+        { "label": "Give the Mystery Stew to the Kichijoji alley man — Angel Badge (11/16)" },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 6" }
+      ]
+    },
+    {
+      "date": "2016-10-31",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Read 'Heroic Revelations' during class", "activityRef": "p5r.activity.book.heroic-revelations" },
+        { "label": "Draw the Phantom Thieves logo on the blackboard", "statGains": { "guts": 1 } },
+        { "label": "Borrow 'The Hero with a Bow' from the school library" },
+        { "label": "Hang out with Haru on the school rooftop — Empress reaches rank 1" },
+        { "label": "Solve the LeBlanc crossword: 'Stalls'", "statGains": { "knowledge": 1 } },
+        { "label": "Save your game, then play darts with Akechi at the Penguin Sniper Lounge — Baton Pass reaches rank 2", "statGains": { "proficiency": 2 } }
+      ]
+    }
+  ]
+}

@@ -164,6 +164,370 @@
       "kind": "drink",
       "location": "Shibuya Underground Walkway",
       "notes": "Sundays only; the stat it raises changes with each purchase."
+    },
+    {
+      "id": "p5r.activity.book.speed-reader",
+      "label": "Read 'Speed Reader'",
+      "kind": "book",
+      "location": "School library / class",
+      "notes": "Halves the time needed to finish other books."
+    },
+    {
+      "id": "p5r.activity.book.abc-of-crafting",
+      "label": "Read 'ABC of Crafting'",
+      "kind": "book",
+      "location": "Metro",
+      "notes": "Lets you craft more infiltration tools per session."
+    },
+    {
+      "id": "p5r.activity.book.illusory-popess",
+      "label": "Read 'The Illusory Popess'",
+      "kind": "book",
+      "statGains": { "kindness": 3 },
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.ghost-encounters",
+      "label": "Read 'Ghost Encounters'",
+      "kind": "book",
+      "statGains": { "guts": 3 },
+      "location": "Central Street bookstore / class"
+    },
+    {
+      "id": "p5r.activity.book.tidying-the-heart",
+      "label": "Read 'Tidying the Heart'",
+      "kind": "book",
+      "statGains": { "proficiency": 3 },
+      "location": "Metro"
+    },
+    {
+      "id": "p5r.activity.book.flowerpedia",
+      "label": "Read 'Flowerpedia'",
+      "kind": "book",
+      "location": "Shinjuku bookstore / supermarket",
+      "notes": "Plant-care knowledge; no direct stat gain."
+    },
+    {
+      "id": "p5r.activity.book.learn-pro-darts",
+      "label": "Read 'Learn Pro Darts'",
+      "kind": "book",
+      "location": "Shinjuku bookstore",
+      "notes": "Makes the darts minigame easier."
+    },
+    {
+      "id": "p5r.activity.book.expert-billiards",
+      "label": "Read 'Expert Billiards'",
+      "kind": "book",
+      "location": "Underground Mall sports store",
+      "notes": "Billiards practice; no direct stat gains listed."
+    },
+    {
+      "id": "p5r.activity.book.billiards-magician",
+      "label": "Read 'Billiards Magician'",
+      "kind": "book",
+      "location": "Won at the billiards hall / class"
+    },
+    {
+      "id": "p5r.activity.book.batting-science",
+      "label": "Read 'Batting Science'",
+      "kind": "book",
+      "location": "Shinjuku bookstore / metro",
+      "notes": "Batting-cage technique; no direct stat gains listed."
+    },
+    {
+      "id": "p5r.activity.book.master-swordsman",
+      "label": "Read 'Master Swordsman'",
+      "kind": "book",
+      "statGains": { "guts": 3 },
+      "location": "Jinbocho bookstore / metro"
+    },
+    {
+      "id": "p5r.activity.book.cry-of-cthulhu",
+      "label": "Read 'Cry of Cthulhu'",
+      "kind": "book",
+      "statGains": { "guts": 3 },
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.art-of-automata",
+      "label": "Read 'The Art of Automata'",
+      "kind": "book",
+      "statGains": { "proficiency": 3 },
+      "location": "Jinbocho bookstore / class"
+    },
+    {
+      "id": "p5r.activity.book.woman-in-the-dark",
+      "label": "Read 'Woman in the Dark'",
+      "kind": "book",
+      "statGains": { "proficiency": 3 },
+      "location": "School library"
+    },
+    {
+      "id": "p5r.activity.book.heroic-revelations",
+      "label": "Read 'Heroic Revelations'",
+      "kind": "book",
+      "statGains": { "knowledge": 3 },
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.hero-with-a-bow",
+      "label": "Read 'The Hero with a Bow'",
+      "kind": "book",
+      "statGains": { "guts": 3 },
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.dressed-in-ashes",
+      "label": "Read 'Dressed in Ashes'",
+      "kind": "book",
+      "statGains": { "charm": 3 },
+      "location": "School library / class"
+    },
+    {
+      "id": "p5r.activity.book.call-me-chief",
+      "label": "Read 'Call Me Chief'",
+      "kind": "book",
+      "statGains": { "kindness": 3 },
+      "location": "Metro / class"
+    },
+    {
+      "id": "p5r.activity.book.reckless-casanova",
+      "label": "Read 'Reckless Casanova'",
+      "kind": "book",
+      "statGains": { "charm": 3 },
+      "location": "Metro / class"
+    },
+    {
+      "id": "p5r.activity.book.knowing-the-heart",
+      "label": "Read 'Knowing the Heart'",
+      "kind": "book",
+      "location": "Jinbocho bookstore / metro",
+      "notes": "Also used as a hang-out gift."
+    },
+    {
+      "id": "p5r.activity.book.essence-of-fishing",
+      "label": "Read 'Essence of Fishing'",
+      "kind": "book",
+      "location": "Shinjuku bookstore / metro",
+      "notes": "Lets Third Eye spot Prize Tag fish at the fishing pond."
+    },
+    {
+      "id": "p5r.activity.book.chinese-sweets",
+      "label": "Read 'Chinese Sweets'",
+      "kind": "book",
+      "location": "Jinbocho bookstore / class",
+      "notes": "Final book; unlocks the Chinatown hangout spot."
+    },
+    {
+      "id": "p5r.activity.book.factorization-guide",
+      "label": "Read 'Factorization Guide'",
+      "kind": "book",
+      "location": "Kichijoji alley trade / class"
+    },
+    {
+      "id": "p5r.activity.movie.over-the-pigeons-nest",
+      "label": "Watch 'Over the Pigeon's Nest'",
+      "kind": "other",
+      "statGains": { "kindness": 3 },
+      "location": "Central Street movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.clean-hard",
+      "label": "Watch 'Clean Hard'",
+      "kind": "other",
+      "statGains": { "kindness": 3 },
+      "location": "Central Street movie theater"
+    },
+    {
+      "id": "p5r.activity.dvd.d-housewives",
+      "label": "Watch 'D.Housewives'",
+      "kind": "dvd",
+      "statGains": { "charm": 3 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.mouse-md",
+      "label": "Watch 'Mouse M.D.'",
+      "kind": "dvd",
+      "statGains": { "kindness": 3 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.31",
+      "label": "Watch '31'",
+      "kind": "dvd",
+      "statGains": { "guts": 3 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.tee",
+      "label": "Watch 'Tee'",
+      "kind": "dvd",
+      "statGains": { "proficiency": 3 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.movie.love-possibly",
+      "label": "Watch 'Love Possibly'",
+      "kind": "other",
+      "statGains": { "charm": 3 },
+      "location": "Central Street movie theater",
+      "notes": "Invited via text message; also grants Lovers points."
+    },
+    {
+      "id": "p5r.activity.movie.like-a-dragon",
+      "label": "Watch 'Like a Dragon'",
+      "kind": "other",
+      "statGains": { "guts": 3 },
+      "location": "Central Street movie theater",
+      "notes": "Invited via text message; also grants Priestess points."
+    },
+    {
+      "id": "p5r.activity.movie.saraemon",
+      "label": "Watch 'Saraemon'",
+      "kind": "other",
+      "statGains": { "knowledge": 3 },
+      "location": "Shinjuku movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.le-miserable",
+      "label": "Watch 'Le Misérables'",
+      "kind": "other",
+      "statGains": { "kindness": 3 },
+      "location": "Central Street movie theater",
+      "notes": "Invited via text message; also grants Emperor points."
+    },
+    {
+      "id": "p5r.activity.movie.showtime-redemption",
+      "label": "Watch 'Showtime Redemption'",
+      "kind": "other",
+      "statGains": { "charm": 3 },
+      "location": "Yongen-Jaya movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.back-to-the-ninja",
+      "label": "Watch 'Back to the Ninja'",
+      "kind": "other",
+      "statGains": { "knowledge": 3 },
+      "location": "Central Street movie theater",
+      "notes": "Invited via text message; also grants Hermit points."
+    },
+    {
+      "id": "p5r.activity.movie.duhvengers",
+      "label": "Watch 'Duhvengers'",
+      "kind": "other",
+      "statGains": { "kindness": 3 },
+      "location": "Shinjuku movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.admission-impossible",
+      "label": "Watch 'Admission Impossible'",
+      "kind": "other",
+      "statGains": { "proficiency": 3 },
+      "location": "Central Street movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.pach-saw",
+      "label": "Watch 'Pach Saw'",
+      "kind": "other",
+      "statGains": { "guts": 3 },
+      "location": "Central Street movie theater",
+      "notes": "Invited via text message; also grants Empress points."
+    },
+    {
+      "id": "p5r.activity.movie.merry-christmess",
+      "label": "Watch 'Merry Christmess'",
+      "kind": "other",
+      "statGains": { "guts": 3 },
+      "location": "Yongen-Jaya movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.march-of-the-lambs",
+      "label": "Watch 'March of the Lambs'",
+      "kind": "other",
+      "statGains": { "proficiency": 3 },
+      "location": "Yongen-Jaya movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.bite-club",
+      "label": "Watch 'Bite Club'",
+      "kind": "other",
+      "statGains": { "guts": 3 },
+      "location": "Shinjuku movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.finding-beemo",
+      "label": "Watch 'Finding Beemo'",
+      "kind": "other",
+      "statGains": { "charm": 3 },
+      "location": "Central Street movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.the-goodfather",
+      "label": "Watch 'The Goodfather'",
+      "kind": "other",
+      "statGains": { "kindness": 2 },
+      "location": "Yongen-Jaya movie theater"
+    },
+    {
+      "id": "p5r.activity.videoGame.star-forneus",
+      "label": "Play 'Star Forneus'",
+      "kind": "videoGame",
+      "statGains": { "guts": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' from 'Game Secrets' guarantees a win — reload if lost."
+    },
+    {
+      "id": "p5r.activity.videoGame.gambla-goemon",
+      "label": "Play 'Gambla Goemon'",
+      "kind": "videoGame",
+      "statGains": { "charm": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+    },
+    {
+      "id": "p5r.activity.videoGame.punch-ouch",
+      "label": "Play 'Punch Ouch'",
+      "kind": "videoGame",
+      "statGains": { "charm": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+    },
+    {
+      "id": "p5r.activity.videoGame.featherman-seeker",
+      "label": "Play 'Featherman Seeker'",
+      "kind": "videoGame",
+      "statGains": { "knowledge": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+    },
+    {
+      "id": "p5r.activity.videoGame.train-of-life",
+      "label": "Play 'Train of Life'",
+      "kind": "videoGame",
+      "statGains": { "kindness": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+    },
+    {
+      "id": "p5r.activity.videoGame.power-intuition",
+      "label": "Play 'Power Intuition'",
+      "kind": "videoGame",
+      "statGains": { "guts": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+    },
+    {
+      "id": "p5r.activity.videoGame.golfer-sarutahiko",
+      "label": "Play 'Golfer Sarutahiko'",
+      "kind": "videoGame",
+      "statGains": { "proficiency": 2 },
+      "location": "Attic TV",
+      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
     }
   ]
 }

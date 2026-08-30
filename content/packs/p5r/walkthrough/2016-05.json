@@ -98,7 +98,7 @@
       "steps": [
         { "label": "Answer the class question: 'The Heian Period'", "statGains": { "knowledge": 1 } },
         { "label": "Have 3 Tin Clasps and 3 Silk Yarn ready for crafting" },
-        { "label": "Hang out with Ann — Lovers reaches rank 4" },
+        { "label": "Hang out with Ann — Lovers reaches rank 2" },
         { "label": "Evening: study with Ryuji", "statGains": { "knowledge": 3 } }
       ]
     },
@@ -203,7 +203,7 @@
         { "label": "Read 'The Art of Charm' on the train", "activityRef": "p5r.activity.book.art-of-charm" },
         { "label": "Answer the class question: '1:1,414'", "statGains": { "knowledge": 1 } },
         { "label": "Borrow 'The Gallant Rogue' from the school library", "activityRef": "p5r.activity.book.gallant-rogue" },
-        { "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 5" },
+        { "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 3" },
         { "label": "Work at the Beef Bowl Shop (get every order right)" }
       ]
     },
@@ -259,7 +259,7 @@
       "steps": [
         { "label": "Answer the class question: 'Arthur Conan Doyle'", "statGains": { "knowledge": 1 } },
         { "label": "Receive the request 'If Cats Disappeared from the City'", "spoiler": true },
-        { "label": "Hang out with Ann" },
+        { "label": "Hang out with Ann — Lovers reaches rank 4" },
         { "label": "Answer the TV game show: '\"Queen\" of evidence'", "statGains": { "knowledge": 1 } },
         { "label": "Solve the LeBlanc crossword: 'Pollenosis'", "statGains": { "knowledge": 1 } },
         { "label": "Talk to the politician, then hang out with Yoshida — Sun reaches rank 1" }
@@ -282,7 +282,7 @@
       "steps": [
         { "label": "Talk to Kawakami at the Faculty Office" },
         { "label": "Listen to the woman and girl near Sojiro's house" },
-        { "label": "Hang out with Ann — Lovers reaches rank 6" },
+        { "label": "Hang out with Ann — Lovers reaches rank 5" },
         { "label": "Call Kawakami from the yellow phone — Temperance reaches rank 1" }
       ]
     },
@@ -312,7 +312,7 @@
       "steps": [
         { "label": "Answer the class question: 'John Silver'", "statGains": { "knowledge": 1 } },
         { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Hang out with Ann" },
+        { "label": "Hang out with Ann — Lovers reaches rank 6" },
         { "label": "Take the Big Bang Burger challenge (1 of 3)", "statGains": { "knowledge": 1, "guts": 1, "proficiency": 1, "charm": 1 } }
       ]
     }
