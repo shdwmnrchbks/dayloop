@@ -1,0 +1,22 @@
+{
+  "bonds": [
+    {
+      "id": "p5r.bond.fool",
+      "label": "Fool",
+      "characterLabel": "The Walrus",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-04-09", "notes": "Unlocked by the story at the start of the game." },
+        { "rank": 2, "availableFrom": "2016-04-24", "notes": "Advances on its own during the first heist window." }
+      ]
+    },
+    {
+      "id": "p5r.bond.death",
+      "label": "Death",
+      "characterLabel": "The Clinic Doctor",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-04-18", "location": "Yongen-Jaya clinic", "notes": "First hang-out; no matching Arcana Persona needed for this rank." },
+        { "rank": 2, "availableFrom": "2016-04-23", "location": "Yongen-Jaya clinic", "notes": "Second hang-out; still no Arcana Persona needed." }
+      ]
+    }
+  ]
+}

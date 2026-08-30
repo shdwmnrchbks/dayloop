@@ -22,7 +22,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build and test
-        run: ./gradlew assembleDebug test
+        run: ./gradlew assembleDebug :tools:pack:test
 
-      # packlint leg lands with tools/pack (Phase 1):
-      # run: ./gradlew :tools:pack:packlint
+      - name: Validate content packs (packlint)
+        run: ./gradlew packlint

@@ -1,0 +1,103 @@
+{
+  "month": "2016-04",
+  "days": [
+    {
+      "date": "2016-04-09",
+      "weekday": "sat",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Ride the metro into the Backstreets" },
+        { "label": "Examine the doorbell at Sojiro's house" },
+        { "label": "Enter Café LeBlanc" },
+        { "label": "Clean your room, then go to sleep" }
+      ]
+    },
+    {
+      "date": "2016-04-10",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Answer the pay phone downstairs" },
+        { "label": "Step outside, then flip the door sign to CLOSED" }
+      ]
+    },
+    {
+      "date": "2016-04-11",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Talk to Sojiro, then head to Yongen-Jaya Station" },
+        { "label": "Take the train to Shibuya and enter the Ginza Line gate" },
+        { "label": "First infiltration of the castle — just follow the tutorials" },
+        { "label": "Stop by the faculty office on the second floor" },
+        { "label": "Meet the group on the rooftop" }
+      ]
+    },
+    {
+      "date": "2016-04-12",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question: 'Villains'", "statGains": { "knowledge": 1 } },
+        { "label": "Second infiltration — push to the first mini-boss", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2016-04-18",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Borrow 'The Great Thief' from the school library", "activityRef": "p5r.activity.book.great-thief" },
+        { "label": "Stock up on SP-recovery drinks from the vending machines" },
+        { "label": "Buy a Bio Nutrient at the Underground Mall flower shop" },
+        { "label": "Buy Silk Yarn and Tin Clasp at the Second-hand Shop" },
+        { "label": "First Takemi hang-out — answer 'Please go easy on me'", "statGains": { "guts": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Semesters'", "statGains": { "knowledge": 1 } },
+        { "label": "Clean the attic floor — recovers two books and a CRT TV" }
+      ]
+    },
+    {
+      "date": "2016-04-19",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question: 'They're the same'", "statGains": { "knowledge": 1 } },
+        { "label": "Study in a library booth", "statGains": { "knowledge": 1, "guts": 1 } },
+        { "label": "Use the Bio Nutrient on the plant in your room", "statGains": { "kindness": 2 } },
+        { "label": "Chat with the café customers, then read 'The Great Thief'", "activityRef": "p5r.activity.book.great-thief" }
+      ]
+    },
+    {
+      "date": "2016-04-21",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Buy the DVD player at the Second-hand Shop" },
+        { "label": "Rent 'The X-Folders' from the rental shop", "activityRef": "p5r.activity.dvd.x-folders" },
+        { "label": "Study in the school library (rainy-day bonus)", "statGains": { "knowledge": 3 } },
+        { "label": "Watch 'The X-Folders' part 1", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 2 } }
+      ]
+    },
+    {
+      "date": "2016-04-22",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Grab a Yakisoba Pan at the school store" },
+        { "label": "Study in the school library", "statGains": { "knowledge": 1, "guts": 1 } },
+        { "label": "Watch 'The X-Folders' — Guts reaches rank 2", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 2 } }
+      ]
+    },
+    {
+      "date": "2016-04-23",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question: 'All of them'", "statGains": { "knowledge": 1 } },
+        { "label": "Rent 'Wraith' from the rental shop" },
+        { "label": "Hang out with Takemi — Death reaches rank 2", "statGains": { "guts": 1 } },
+        { "label": "Craft infiltration tools at the attic table (reload trick for a bonus item)", "statGains": { "proficiency": 3 }, "spoiler": true }
+      ]
+    }
+  ]
+}

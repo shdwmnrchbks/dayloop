@@ -41,7 +41,7 @@ See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 In planning / pre-scaffold.
+🚧 Phase 0 done (skeleton, catalog, CI). Phase 1 in progress: pack schema + `packlint` landed, seed P5R pack validating; `packgen` extraction next.
 
 ## License
 

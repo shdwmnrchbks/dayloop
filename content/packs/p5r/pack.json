@@ -1,0 +1,29 @@
+{
+  "packId": "p5r",
+  "title": "Persona 5 Royal",
+  "contentVersion": 1,
+  "timeModel": "weekdayGrid",
+  "calendar": {
+    "startDate": "2016-04-09",
+    "endDate": "2017-02-03"
+  },
+  "slots": [
+    { "id": "afternoon", "label": "Afternoon" },
+    { "id": "evening", "label": "Evening" }
+  ],
+  "stats": [
+    { "id": "knowledge", "label": "Knowledge" },
+    { "id": "guts", "label": "Guts" },
+    { "id": "proficiency", "label": "Proficiency" },
+    { "id": "kindness", "label": "Kindness" },
+    { "id": "charm", "label": "Charm" }
+  ],
+  "capabilities": {
+    "exams": true,
+    "weather": false
+  },
+  "labels": {
+    "bond": "Confidant",
+    "stat": "Social Stat"
+  }
+}

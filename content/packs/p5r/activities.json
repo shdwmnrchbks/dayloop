@@ -1,0 +1,18 @@
+{
+  "activities": [
+    {
+      "id": "p5r.activity.book.great-thief",
+      "label": "Read 'The Great Thief'",
+      "kind": "book",
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.dvd.x-folders",
+      "label": "Watch 'The X-Folders'",
+      "kind": "dvd",
+      "statGains": { "guts": 2 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "deadlines": [
+    {
+      "id": "p5r.deadline.palace1",
+      "label": "First palace must be finished (one-day heist)",
+      "kind": "palace",
+      "date": "2016-04-24"
+    }
+  ]
+}
