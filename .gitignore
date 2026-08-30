@@ -1,3 +1,7 @@
+# Third-party source archive (all-rights-reserved content — facts extracted
+# into /content via tools/packgen; the archive itself must never be committed)
+P5R_100p_Guide_AI_Package/
+
 # Gradle
 .gradle/
 build/

@@ -1,0 +1,24 @@
+# Normalize line endings: LF in the repo, native in working copies.
+* text=auto
+
+# Shell scripts must stay LF (CI runs on Linux)
+gradlew text eol=lf
+*.sh text eol=lf
+
+# Windows batch files must stay CRLF
+*.bat text eol=crlf
+
+# Kotlin/XML/JSON/Markdown/YAML as text
+*.kt text
+*.kts text
+*.xml text
+*.json text
+*.md text
+*.yml text
+*.toml text
+
+# Binaries
+*.jar binary
+*.png binary
+*.jpg binary
+*.apk binary
