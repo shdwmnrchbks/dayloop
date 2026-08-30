@@ -41,7 +41,7 @@ See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 Phase 0 done (skeleton, catalog, CI). Phase 1 in progress: pack schema + `packlint` landed, seed P5R pack validating; `packgen` extraction next.
+🚧 Phase 0 + Phase 1 (P5R scope) done: pack schema, `packlint`, `packgen` extractor, and a validated Apr–May P5R walkthrough. Next: June–February authoring via `packgen` + curation, then read-only app screens.
 
 ## License
 
