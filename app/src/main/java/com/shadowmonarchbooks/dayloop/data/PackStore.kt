@@ -37,15 +37,16 @@ data class LoadedPack(
 data class PacksState(
     val packs: List<LoadedPack> = emptyList(),
     val selectedSlug: String? = null,
-    /** In-memory in-game "today" — read-only phase; persistence arrives in Phase 3. */
-    val currentDate: String? = null,
+    // The in-game clock moved to the persisted profile in Phase 3; this state
+    // stays a read-only registry of loaded packs + selection.
 ) {
     val selected: LoadedPack? get() = packs.firstOrNull { it.slug == selectedSlug }
 }
 
 /**
- * Loads every bundled pack from assets and exposes selection + the read-only
- * in-game clock. Asset layout: content/packs/<slug>/... (see app build.gradle).
+ * Loads every bundled pack from assets and exposes pack selection. Asset
+ * layout: content/packs/<slug>/... (see app build.gradle). Progress lives in
+ * data/progress (Room + DataStore).
  */
 @Singleton
 class PackStore @Inject constructor(@ApplicationContext context: Context) {
@@ -59,7 +60,6 @@ class PackStore @Inject constructor(@ApplicationContext context: Context) {
         _state.value = PacksState(
             packs = packs,
             selectedSlug = first?.slug,
-            currentDate = first?.sortedDates?.firstOrNull(),
         )
     }
 
@@ -108,17 +108,7 @@ class PackStore @Inject constructor(@ApplicationContext context: Context) {
     fun select(slug: String) {
         val s = _state.value
         if (s.selectedSlug == slug) return
-        val pack = s.packs.firstOrNull { it.slug == slug }
-        _state.value = s.copy(selectedSlug = slug, currentDate = pack?.sortedDates?.firstOrNull())
-    }
-
-    /** Read-only day browsing; the End-Day clock persists in Phase 3. */
-    fun moveCurrent(delta: Int) {
-        val s = _state.value
-        val dates = s.selected?.sortedDates ?: return
-        val idx = dates.indexOf(s.currentDate)
-        if (idx == -1) return
-        _state.value = s.copy(currentDate = dates[(idx + delta).coerceIn(dates.indices)])
+        _state.value = s.copy(selectedSlug = slug)
     }
 }
 

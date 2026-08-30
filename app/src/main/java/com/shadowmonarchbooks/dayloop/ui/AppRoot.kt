@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -38,6 +39,7 @@ import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
 import com.shadowmonarchbooks.dayloop.ui.day.DayScreen
 import com.shadowmonarchbooks.dayloop.ui.deadlines.DeadlinesScreen
 import com.shadowmonarchbooks.dayloop.ui.month.MonthScreen
+import com.shadowmonarchbooks.dayloop.ui.settings.SettingsScreen
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
 private val TopLevelRoutes = setOf("today", "calendar", "bonds", "deadlines")
@@ -59,6 +61,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 onSelect = vm::selectPack,
                 canGoBack = route != null && route !in TopLevelRoutes,
                 onBack = { nav.popBackStack() },
+                onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
             )
         },
         bottomBar = {
@@ -102,12 +105,20 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     vm = vm,
                     onOpenDay = { date -> nav.navigate("day/$date") },
                     onOpenCalendar = { nav.navigate("calendar") { launchSingleTop = true } },
+                    onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
                 )
             }
             composable("day/{date}") { entry ->
                 DayScreen(
                     date = entry.arguments?.getString("date").orEmpty(),
                     vm = vm,
+                    onOpenDay = { next ->
+                        // Browse authored days in place: replace the current
+                        // day entry so Back returns to the originating tab.
+                        nav.navigate("day/$next") {
+                            popUpTo("day/{date}") { inclusive = true }
+                        }
+                    },
                 )
             }
             composable("calendar") {
@@ -128,6 +139,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             composable("deadlines") {
                 DeadlinesScreen(vm = vm)
             }
+            composable("settings") {
+                SettingsScreen(vm = vm)
+            }
         }
     }
 }
@@ -141,6 +155,7 @@ private fun DayloopTopBar(
     onSelect: (String) -> Unit,
     canGoBack: Boolean,
     onBack: () -> Unit,
+    onOpenSettings: () -> Unit,
 ) {
     var menuOpen by remember { mutableStateOf(false) }
     TopAppBar(
@@ -172,6 +187,11 @@ private fun DayloopTopBar(
                 }
             } else {
                 Text(title, style = MaterialTheme.typography.titleMedium)
+            }
+        },
+        actions = {
+            IconButton(onClick = onOpenSettings) {
+                Icon(Icons.Filled.Settings, contentDescription = "Settings")
             }
         },
     )

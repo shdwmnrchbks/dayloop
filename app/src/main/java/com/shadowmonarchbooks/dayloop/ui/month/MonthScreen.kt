@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.month
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
@@ -87,12 +89,17 @@ fun MonthScreen(
             }
         }
 
-        CalendarGrid(pack = pack, month = month, onOpenDay = onOpenDay)
+        CalendarGrid(pack = pack, month = month, clockDate = state.currentDate, onOpenDay = onOpenDay)
     }
 }
 
 @Composable
-private fun CalendarGrid(pack: LoadedPack, month: String, onOpenDay: (String) -> Unit) {
+private fun CalendarGrid(
+    pack: LoadedPack,
+    month: String,
+    clockDate: String?,
+    onOpenDay: (String) -> Unit,
+) {
     val first = parseDateOrNull("$month-01") ?: return
     val daysInMonth = first.lengthOfMonth()
     val leadDays = (first.dayOfWeek.value + 6) % 7 // Monday-first grid
@@ -126,6 +133,7 @@ private fun CalendarGrid(pack: LoadedPack, month: String, onOpenDay: (String) ->
                                 dayNumber = dayNumber,
                                 pack = pack,
                                 hasDeadline = iso in deadlineDates,
+                                isClockDate = iso == clockDate,
                                 onOpenDay = onOpenDay,
                                 modifier = Modifier.fillMaxSize(),
                             )
@@ -143,6 +151,7 @@ private fun DayCell(
     dayNumber: Int,
     pack: LoadedPack,
     hasDeadline: Boolean,
+    isClockDate: Boolean,
     onOpenDay: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -161,6 +170,7 @@ private fun DayCell(
             shape = RoundedCornerShape(10.dp),
             color = container ?: MaterialTheme.colorScheme.surface,
             tonalElevation = if (container == null) 0.dp else 2.dp,
+            border = if (isClockDate) BorderStroke(2.dp, MaterialTheme.colorScheme.primary) else null,
             modifier = Modifier
                 .fillMaxSize()
                 .then(
@@ -175,6 +185,7 @@ private fun DayCell(
                 Text(
                     text = dayNumber.toString(),
                     style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = if (isClockDate) FontWeight.SemiBold else null,
                     color = if (day == null) {
                         MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
                     } else {

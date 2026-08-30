@@ -41,8 +41,8 @@ See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 Phase 0–2 done: pack schema + `packlint` + `packgen`, a validated Apr–Jun P5R walkthrough, and the read-only app rendering all three packs from bundled assets with a pack switcher — P5R (Apr–Jun authored), P3R (real curated April 2009 mini-pack), and Metaphor (`dayCounter` fit-check mini-pack with synthetic data; see docs/authoring-guide.md).
-Next: July–February P5R authoring via `packgen` + curation, then the Phase 3 progress layer (checkboxes, End-Day, profiles).
+🚧 Phase 0–3 done: pack schema + `packlint` + `packgen`, a validated Apr–Jun P5R walkthrough, the read-only app rendering all three packs from bundled assets with a pack switcher — P5R (Apr–Jun authored), P3R (real curated April 2009 mini-pack), and Metaphor (`dayCounter` fit-check mini-pack with synthetic data; see docs/authoring-guide.md) — and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+Next: Phase 4 — July–February P5R authoring via `packgen` + curation.
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

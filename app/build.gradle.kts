@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":core:pack"))
+    implementation(project(":core:progress"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
@@ -54,4 +55,16 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.material3)
+
+    // Progress layer (docs/PLAN.md Phase 3): Room for mutable progress,
+    // DataStore for settings (active profile per pack).
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.datastore.preferences)
+}
+
+// Export Room schemas so future progress migrations are reviewable in-repo.
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }

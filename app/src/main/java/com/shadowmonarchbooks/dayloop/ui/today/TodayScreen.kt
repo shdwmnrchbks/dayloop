@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -24,21 +25,26 @@ import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.statLabels
+import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
+import com.shadowmonarchbooks.dayloop.ui.components.CarriedOverCard
+import com.shadowmonarchbooks.dayloop.ui.components.CarriedStep
 import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
+import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.StepsList
 
 /**
- * Read-only hero screen: current in-game day, its steps, and the next deadline.
- * The End-Day clock arrives in Phase 3; browsing moves the in-memory date.
+ * Hero screen: the persisted in-game clock (End-Day), today's checkbox steps,
+ * the carried-over queue, and the next deadline (docs/PLAN.md §5/§6).
  */
 @Composable
 fun TodayScreen(
     vm: DayloopViewModel,
     onOpenDay: (String) -> Unit,
     onOpenCalendar: () -> Unit,
+    onOpenSettings: () -> Unit,
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected
@@ -50,6 +56,11 @@ fun TodayScreen(
 
     val day = pack.day(date)
     val upcoming = nextDeadline(pack.deadlines, date)
+    val carried = ProgressLogic.carriedOver(state.marks, date).mapNotNull { key ->
+        pack.day(key.date)?.steps?.getOrNull(key.index)?.let { step ->
+            CarriedStep(key = key, label = step.label)
+        }
+    }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(14.dp),
@@ -58,9 +69,17 @@ fun TodayScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
+        state.activeProfile?.let { profile ->
+            Text(
+                text = profile.name,
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.secondary,
+            )
+        }
+
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(formatDate(date), style = MaterialTheme.typography.headlineSmall)
-            DayKindChip(day?.dayKind ?: "free")
+            DayKindChip(day?.dayKind ?: "rest")
         }
 
         day?.notes?.let { notes ->
@@ -75,31 +94,89 @@ fun TodayScreen(
             DeadlineBanner(deadline = deadline, daysLeft = days)
         }
 
-        Text("Steps", style = MaterialTheme.typography.titleMedium)
-        StepsList(
-            steps = day?.steps.orEmpty(),
-            statLabels = pack.pack.statLabels(),
-            activityLabels = pack.activities.mapValues { it.value.label },
-        )
+        if (state.orphans.isNotEmpty()) {
+            OrphanBanner(count = state.orphans.size, onReview = onOpenSettings)
+        }
+
+        if (day != null) {
+            DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+            Text("Steps", style = MaterialTheme.typography.titleMedium)
+            StepsList(
+                steps = day.steps,
+                markAt = { index -> state.markAt(date, index) },
+                onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
+                statLabels = pack.pack.statLabels(),
+                activityLabels = pack.activities.mapValues { it.value.label },
+            )
+        } else {
+            Text(
+                text = "No authored content for this date yet — coverage grows month by month. The clock still advances.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+
+        if (carried.isNotEmpty()) {
+            CarriedOverCard(
+                items = carried,
+                onToggleMark = { carriedDate, index, mark -> vm.toggleMark(carriedDate, index, mark) },
+                formatDate = ::formatDate,
+            )
+        }
 
         Spacer(Modifier.height(4.dp))
         Row(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxWidth(),
         ) {
-            OutlinedButton(onClick = { vm.moveCurrent(-1) }, enabled = date != pack.sortedDates.first()) {
-                Text("‹ Earlier")
+            Button(
+                onClick = vm::endDay,
+                enabled = state.hasNextDay(),
+                modifier = Modifier.weight(1f),
+            ) {
+                Text("End day ›")
             }
-            OutlinedButton(onClick = { vm.moveCurrent(1) }, enabled = date != pack.sortedDates.last()) {
-                Text("Later ›")
+            OutlinedButton(
+                onClick = vm::rerollDay,
+                enabled = state.hasPreviousDay(),
+            ) {
+                Text("‹ Undo day")
             }
+        }
+        if (!state.hasNextDay()) {
+            Text(
+                text = "End of this pack's calendar.",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             TextButton(onClick = onOpenCalendar) {
                 Text("Calendar")
             }
+            TextButton(onClick = { onOpenDay(date) }) {
+                Text("Open full day page")
+            }
         }
+    }
+}
 
-        TextButton(onClick = { onOpenDay(date) }) {
-            Text("Open full day page")
+@Composable
+private fun OrphanBanner(count: Int, onReview: () -> Unit, modifier: Modifier = Modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Text(
+            text = "$count saved mark(s) point at content that changed.",
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.weight(1f),
+        )
+        TextButton(onClick = onReview) {
+            Text("Review")
         }
     }
 }
