@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">dayloop</string>
+    <string name="widget_description">In-game clock, today\'s progress, and the next deadline.</string>
+    <string name="widget_loading">dayloop — loading…</string>
 </resources>

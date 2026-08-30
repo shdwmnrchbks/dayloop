@@ -28,15 +28,15 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 - Progress saved locally
 
 ### Later scope
-- Multiple routes per pack (100% vs casual)
-- Home-screen widget (Glance)
-- Exam/test answer sheets
+- Multiple routes per pack — schema, profiles, and UI shipped in Phase 5; per-pack route authoring is content work
+- Home-screen widget (Glance) — shipped in Phase 5
+- Exam/test answer sheets — shipped in Phase 5 (`answers.json` + Answers tab)
 - Requests list
 - Additional packs: P3R and Metaphor: ReFantazio next; P4G and further titles stay drop-in candidates via schema (deferred)
 
 ## 2. Key design decision: model entities, not paragraphs
 
-- **Pack format** `/content/packs/p5r/`: title-agnostic JSON bundle — `pack.json` (calendar range incl. Third Semester, time slots, currencies), `confidants.json`, `activities.json`, `deadlines.json`, `walkthrough/{month}.json`.
+- **Pack format** `/content/packs/p5r/`: title-agnostic JSON bundle — `pack.json` (calendar range incl. Third Semester, time slots, currencies, declared routes), `confidants.json`, `activities.json`, `deadlines.json`, `answers.json` (exam/class-question answer sheets, optional), `walkthrough/{month}.json` (+ per-route subdirectories for additional routes).
 - **Template + override days:** most school days share a weekly template; special days (exams, plot events, confidant opportunities) are diffs/overrides. Cuts authoring effort roughly in half while keeping every day renderable.
 - **Confidants as objects:** each rank step carries gates (availability window, stat requirement, location, prerequisites) so the UI can show *why* something isn't available today, and validators can catch contradictions.
 - **Pack validation script** (`tools/packlint`): every deadline exists on the real calendar, every rank step precedes its date, no double-booked evening slot. Content edits become tested changes instead of silent breakage.

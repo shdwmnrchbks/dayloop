@@ -2,9 +2,11 @@ package com.shadowmonarchbooks.dayloop.pack
 
 import kotlinx.serialization.json.Json
 import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile
 import java.nio.file.Files
 import java.nio.file.Path
@@ -19,13 +21,27 @@ data class LintIssue(val severity: Severity, val location: String, val message: 
     enum class Severity { ERROR, WARN }
 }
 
+/**
+ * One walkthrough month file: which route it belongs to, and where it lives.
+ * The default route's files sit at the top level of the walkthrough folder;
+ * additional routes get a subdirectory each, walkthrough/<routeId>/<month>.json.
+ */
+data class LoadedWalkthrough(
+    val routeId: String,
+    val month: String,
+    /** Location label for lint output, relative to the pack dir. */
+    val location: String,
+    val file: WalkthroughFile,
+)
+
 class PackLoadResult(
     val pack: Pack?,
     val bonds: BondsFile?,
     val activities: ActivitiesFile?,
     val deadlines: DeadlinesFile?,
-    /** month (e.g. "2016-04") -> parsed walkthrough file. */
-    val walkthroughs: Map<String, WalkthroughFile>,
+    /** Parsed walkthrough month files across all routes (docs/PLAN.md Phase 5). */
+    val walkthroughs: List<LoadedWalkthrough>,
+    val answers: AnswersFile?,
     val parseIssues: List<LintIssue>,
 )
 
@@ -56,6 +72,9 @@ object PackLoader {
 
     fun decodeDeadlines(jsonText: String): DeadlinesFile? =
         runCatching { json.decodeFromString(DeadlinesFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeAnswers(jsonText: String): AnswersFile? =
+        runCatching { json.decodeFromString(AnswersFile.serializer(), jsonText) }.getOrNull()
 
     fun decodeWalkthrough(jsonText: String): WalkthroughFile? =
         runCatching { json.decodeFromString(WalkthroughFile.serializer(), jsonText) }.getOrNull()
@@ -117,20 +136,43 @@ object PackLoader {
         issues += deadlinesJson.second
         val deadlines = parse(deadlinesJson.first, deadlinesFile, "deadlines.json", DeadlinesFile.serializer())
 
-        val walkthroughs = mutableMapOf<String, WalkthroughFile>()
+        val answersFile = packDir.resolve("answers.json")
+        val answersJson = decode(answersFile, "answers.json")
+        issues += answersJson.second
+        val answers = parse(answersJson.first, answersFile, "answers.json", AnswersFile.serializer())
+
+        val walkthroughs = mutableListOf<LoadedWalkthrough>()
+        fun parseWalkthrough(file: Path, routeId: String, monthKey: String, location: String) {
+            val j = decode(file, location)
+            issues += j.second
+            val parsed = parse(j.first, file, location, WalkthroughFile.serializer())
+            if (parsed != null) walkthroughs += LoadedWalkthrough(routeId, monthKey, location, parsed)
+        }
+
         val wtDir = packDir.resolve("walkthrough")
         if (wtDir.isDirectory()) {
-            Files.list(wtDir).use { stream ->
-                stream.filter { it.isRegularFile() && it.extension == "json" }.sorted().forEach { file ->
-                    val monthKey = file.name.removeSuffix(".json")
-                    val j = decode(file, "walkthrough/$monthKey.json")
-                    issues += j.second
-                    val parsed = parse(j.first, file, "walkthrough/$monthKey.json", WalkthroughFile.serializer())
-                    if (parsed != null) walkthroughs[monthKey] = parsed
+            Files.list(wtDir).use { top ->
+                top.sorted().forEach { entry ->
+                    when {
+                        entry.isRegularFile() && entry.extension == "json" -> {
+                            val monthKey = entry.name.removeSuffix(".json")
+                            parseWalkthrough(entry, Routes.DEFAULT, monthKey, "walkthrough/$monthKey.json")
+                        }
+                        // Additional routes live one level deep: walkthrough/<routeId>/<month>.json
+                        entry.isDirectory() -> {
+                            val routeId = entry.name
+                            Files.list(entry).use { inner ->
+                                inner.filter { it.isRegularFile() && it.extension == "json" }.sorted().forEach { file ->
+                                    val monthKey = file.name.removeSuffix(".json")
+                                    parseWalkthrough(file, routeId, monthKey, "walkthrough/$routeId/$monthKey.json")
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        return PackLoadResult(pack, bonds, activities, deadlines, walkthroughs, issues)
+        return PackLoadResult(pack, bonds, activities, deadlines, walkthroughs, answers, issues)
     }
 }

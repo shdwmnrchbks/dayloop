@@ -1,0 +1,626 @@
+{
+  "answers": [
+    {
+      "id": "p5r.answers.class.2016-04-12",
+      "date": "2016-04-12",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Villains"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-04-19",
+      "date": "2016-04-19",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "They're the same"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-04-23",
+      "date": "2016-04-23",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "All of them"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-04-27",
+      "date": "2016-04-27",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Four Color Theorem"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-05-07",
+      "date": "2016-05-07",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Fatal woman"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-05-10",
+      "date": "2016-05-10",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "The Heian Period"
+      ]
+    },
+    {
+      "id": "p5r.answers.exam.2016-05-11",
+      "date": "2016-05-11",
+      "kind": "exam",
+      "label": "May midterms — day 1",
+      "answers": [
+        "Minamoto no Yoshitsune",
+        "Minamoto no Yoritomo",
+        "Yoritomo won",
+        "The weak"
+      ],
+      "deadlineRef": "p5r.deadline.exams.may-midterms"
+    },
+    {
+      "id": "p5r.answers.exam.2016-05-12",
+      "date": "2016-05-12",
+      "kind": "exam",
+      "label": "May midterms — day 2",
+      "answers": [
+        "Cognition",
+        "Both"
+      ],
+      "deadlineRef": "p5r.deadline.exams.may-midterms"
+    },
+    {
+      "id": "p5r.answers.exam.2016-05-13",
+      "date": "2016-05-13",
+      "kind": "exam",
+      "label": "May midterms — day 3",
+      "answers": [
+        "The Devil's Dictionary",
+        "Femme Fatale"
+      ],
+      "deadlineRef": "p5r.deadline.exams.may-midterms"
+    },
+    {
+      "id": "p5r.answers.class.2016-05-16",
+      "date": "2016-05-16",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "The placebo effect"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-05-19",
+      "date": "2016-05-19",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Hokusai Katsushika"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-05-21",
+      "date": "2016-05-21",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1:1,414"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-05-26",
+      "date": "2016-05-26",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Arthur Conan Doyle"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-05-31",
+      "date": "2016-05-31",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "John Silver"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-04",
+      "date": "2016-06-04",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "The halo effect"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-07",
+      "date": "2016-06-07",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "The number of legs"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-08",
+      "date": "2016-06-08",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Controlling public thought"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-13",
+      "date": "2016-06-13",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Green"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-15",
+      "date": "2016-06-15",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Coins"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-20",
+      "date": "2016-06-20",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Smartphone"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-23",
+      "date": "2016-06-23",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "A pope"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-27",
+      "date": "2016-06-27",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Dogs"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-06-29",
+      "date": "2016-06-29",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Gold"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-07-01",
+      "date": "2016-07-01",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Barbarian's Head"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-07-04",
+      "date": "2016-07-04",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Julius and Augustus"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-07-07",
+      "date": "2016-07-07",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "The Milky Way",
+        "Shounen Noodles"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-07-09",
+      "date": "2016-07-09",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "A Triangle"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-07-11",
+      "date": "2016-07-11",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Infinity"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-07-12",
+      "date": "2016-07-12",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Thievery"
+      ]
+    },
+    {
+      "id": "p5r.answers.exam.2016-07-13",
+      "date": "2016-07-13",
+      "kind": "exam",
+      "label": "July finals — day 1",
+      "answers": [
+        "64 degrees",
+        "Zhuge Liang",
+        "Barbarian's Head",
+        "To offer them instead of heads"
+      ],
+      "deadlineRef": "p5r.deadline.exams.july-finals"
+    },
+    {
+      "id": "p5r.answers.exam.2016-07-14",
+      "date": "2016-07-14",
+      "kind": "exam",
+      "label": "July finals — day 2",
+      "answers": [
+        "Red King Crab (Paralithodes)",
+        "It caused confusion in the economy"
+      ],
+      "deadlineRef": "p5r.deadline.exams.july-finals"
+    },
+    {
+      "id": "p5r.answers.exam.2016-07-15",
+      "date": "2016-07-15",
+      "kind": "exam",
+      "label": "July finals — day 3",
+      "answers": [
+        "Raining cats and dogs",
+        "Demon guts"
+      ],
+      "deadlineRef": "p5r.deadline.exams.july-finals"
+    },
+    {
+      "id": "p5r.answers.class.2016-09-03",
+      "date": "2016-09-03",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Prosperity"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-06",
+      "date": "2016-09-06",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Chronostasis"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-14",
+      "date": "2016-09-14",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Money loans for collateral"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-17",
+      "date": "2016-09-17",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Cats eating human tongues"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-21",
+      "date": "2016-09-21",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Central Europe"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-24",
+      "date": "2016-09-24",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "20 white, 12 black"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-28",
+      "date": "2016-09-28",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Phantom",
+        "Vibration",
+        "Syndrome"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-09-29",
+      "date": "2016-09-29",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Imperial Household Agency"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-10-03",
+      "date": "2016-10-03",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Stars"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-10-06",
+      "date": "2016-10-06",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Joseph-Ignace Guillotin"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-10-11",
+      "date": "2016-10-11",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Bouba"
+      ]
+    },
+    {
+      "id": "p5r.answers.exam.2016-10-17",
+      "date": "2016-10-17",
+      "kind": "exam",
+      "label": "October midterms — day 1",
+      "answers": [
+        "32 surfaces",
+        "It used to be one color",
+        "Black and white pictures"
+      ],
+      "deadlineRef": "p5r.deadline.exams.october-midterms"
+    },
+    {
+      "id": "p5r.answers.exam.2016-10-18",
+      "date": "2016-10-18",
+      "kind": "exam",
+      "label": "October midterms — day 2",
+      "answers": [
+        "Charles-Henri Sanson",
+        "It is a hereditary profession"
+      ],
+      "deadlineRef": "p5r.deadline.exams.october-midterms"
+    },
+    {
+      "id": "p5r.answers.exam.2016-10-19",
+      "date": "2016-10-19",
+      "kind": "exam",
+      "label": "October midterms — day 3",
+      "answers": [
+        "Slave labor",
+        "3 bees in all of Europe"
+      ],
+      "deadlineRef": "p5r.deadline.exams.october-midterms"
+    },
+    {
+      "id": "p5r.answers.class.2016-10-22",
+      "date": "2016-10-22",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "15"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-10-24",
+      "date": "2016-10-24",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Memory bias"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-02",
+      "date": "2016-11-02",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "A share of stolen goods"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-04",
+      "date": "2016-11-04",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "A sword"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-08",
+      "date": "2016-11-08",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Any age"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-10",
+      "date": "2016-11-10",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Hard-to-see crow eyes"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-12",
+      "date": "2016-11-12",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "The voice is synthetic"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-14",
+      "date": "2016-11-14",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "High altitude"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-15",
+      "date": "2016-11-15",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "His head was put on display"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2016-11-17",
+      "date": "2016-11-17",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Cochleoid"
+      ]
+    },
+    {
+      "id": "p5r.answers.exam.2016-12-20",
+      "date": "2016-12-20",
+      "kind": "exam",
+      "label": "December finals — day 1",
+      "answers": [
+        "D",
+        "Over one billion yen",
+        "Having his head displayed",
+        "Public performance"
+      ],
+      "deadlineRef": "p5r.deadline.exams.december-finals"
+    },
+    {
+      "id": "p5r.answers.exam.2016-12-21",
+      "date": "2016-12-21",
+      "kind": "exam",
+      "label": "December finals — day 2",
+      "answers": [
+        "Hearts",
+        "Attend"
+      ],
+      "deadlineRef": "p5r.deadline.exams.december-finals"
+    },
+    {
+      "id": "p5r.answers.exam.2016-12-22",
+      "date": "2016-12-22",
+      "kind": "exam",
+      "label": "December finals — day 3",
+      "answers": [
+        "Japan",
+        "Dreadnought"
+      ],
+      "deadlineRef": "p5r.deadline.exams.december-finals"
+    },
+    {
+      "id": "p5r.answers.class.2017-01-11",
+      "date": "2017-01-11",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "How numerous they are",
+        "The Eight Million Gods"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2017-01-14",
+      "date": "2017-01-14",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Iwate"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2017-01-18",
+      "date": "2017-01-18",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Impressive"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2017-01-21",
+      "date": "2017-01-21",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "A snake"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2017-01-24",
+      "date": "2017-01-24",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Kind-hearted",
+        "Negative",
+        "Resentful"
+      ]
+    },
+    {
+      "id": "p5r.answers.class.2017-01-27",
+      "date": "2017-01-27",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "Friends of friends of friends"
+      ]
+    }
+  ]
+}

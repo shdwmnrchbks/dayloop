@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.withTransaction
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.progress.CalendarSpan
 import com.shadowmonarchbooks.dayloop.progress.Clock
 import com.shadowmonarchbooks.dayloop.progress.StepKey
@@ -26,6 +27,8 @@ data class PackSeed(
     val packId: String,
     val contentVersion: Int,
     val span: CalendarSpan,
+    /** Walkthrough route new profiles follow (docs/PLAN.md Phase 5). */
+    val routeId: String = Routes.DEFAULT,
 )
 
 /**
@@ -170,6 +173,7 @@ class ProgressRepository @Inject constructor(
             ProfileEntity(
                 packId = pack.packId,
                 name = name,
+                routeId = pack.routeId,
                 clockDate = Clock.start(pack.span),
                 contentVersion = pack.contentVersion,
                 createdAt = System.currentTimeMillis(),

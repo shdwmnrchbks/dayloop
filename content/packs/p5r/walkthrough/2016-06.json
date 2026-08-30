@@ -47,7 +47,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question: 'The halo effect'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Ryuji — Chariot reaches rank 5" },
         { "label": "Call Kawakami — Temperance reaches rank 3 (coffee-brewing and laundry perks unlock)" }
       ]
@@ -84,7 +84,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'The number of legs'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Save first, then play darts at the Penguin Sniper Lounge: invite Ann ('Just play like normal') or Yusuke ('Pretend like you are painting') — never Morgana" },
         { "label": "Get two teammates to Baton Pass rank 3 (bull's-eyes add Proficiency)", "statGains": { "proficiency": 2 } },
         { "label": "Solve the LeBlanc crossword: 'Conference'", "statGains": { "knowledge": 1 } },
@@ -96,7 +96,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Controlling public thought'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Fuse Hua Po + Jack-o'-Lantern into Yaksini, then Yaksini + Makami into Phoenix (pass on Counter)", "spoiler": true },
         { "label": "Talk to the Twins — Strength reaches rank 4 (re-summon a Temperance Persona if Makami was used)", "spoiler": true },
         { "label": "Buy Black Rocks at the Kichijoji crystal shop (skippable if money is tight)" },
@@ -149,7 +149,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Green' — Knowledge reaches rank 4", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question — Knowledge reaches rank 4", "statGains": { "knowledge": 1 } },
         { "label": "Visit the Student Council Room on the third floor, by the library" },
         { "label": "Hang out with Akechi in Kichijoji (bring a Justice Persona) — Justice reaches rank 2" }
       ]
@@ -168,7 +168,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'Wise Men's Words' on the metro", "activityRef": "p5r.activity.book.wise-mens-words" },
-        { "label": "Answer the class question: 'Coins'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Receive the request 'Part-time Job, Full-time Hell'" },
         { "label": "Classroom chain: listen to Ann, talk to Mishima outside, find Nishiyama in the library, then report back to Ann" },
         { "label": "Call Kawakami — Temperance reaches rank 5" }
@@ -226,7 +226,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Smartphone' — Ann is present (Lovers +2)", "statGains": { "charm": 1 } },
+        { "label": "Answer the class question — Ann is present (Lovers +2)", "statGains": { "charm": 1 } },
         { "label": "Second bank infiltration — keep Ann for Dormina; Makoto joins mid-run (the boss resists physical and uses ice)", "spoiler": true },
         { "label": "Save after the palace, then beat Star Forneus on the attic TV — reload until you win", "statGains": { "guts": 2 } },
         { "label": "Magician reaches rank 4 (story)", "spoiler": true }
@@ -264,7 +264,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'The Craft of Cinema' on the metro — movies and DVDs now grant bonus stats", "activityRef": "p5r.activity.book.craft-of-cinema" },
-        { "label": "Answer the class question: 'A pope'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Yusuke (bring an Emperor Persona) — Emperor reaches rank 2" },
         { "label": "Answer the TV game show: 'Ordering food without money'", "statGains": { "knowledge": 1 } },
         { "label": "Speak with Chihaya in Shinjuku and buy her 100,000-yen stone" }
@@ -313,7 +313,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Dogs'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Buy SP-recovery drinks and the weekly summer items" },
         { "label": "Buy healing items at Takemi's clinic" },
         { "label": "Send the Calling Card", "spoiler": true },
@@ -335,7 +335,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Gold'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Rent 'Jail Break'" },
         { "label": "Carry Faith, Temperance, Emperor, Lovers, and Chariot Personas for hang-outs" },
         { "label": "Hang out with Kasumi — Faith reaches rank 3" },

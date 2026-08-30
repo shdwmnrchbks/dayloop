@@ -20,6 +20,10 @@
     { "id": "consideration", "label": "Consideration" },
     { "id": "insight", "label": "Insight" }
   ],
+  "routes": [
+    { "id": "standard", "label": "Balanced", "description": "Fit-check route with two steps per day." },
+    { "id": "casual", "label": "Casual", "description": "Fit-check route with one lighter step per day." }
+  ],
   "capabilities": {
     "exams": false,
     "weather": false

@@ -1,0 +1,31 @@
+{
+  "answers": [
+    {
+      "id": "p3r.answers.class.2009-04-08",
+      "date": "2009-04-08",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-04-18",
+      "date": "2009-04-18",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-04-27",
+      "date": "2009-04-27",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    }
+  ]
+}

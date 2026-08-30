@@ -4,6 +4,7 @@ import com.shadowmonarchbooks.dayloop.pack.Cal
 import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.pack.schema.StatGte
 import com.shadowmonarchbooks.dayloop.pack.schema.Weekdays
 import com.shadowmonarchbooks.dayloop.pack.walkConditions
@@ -16,7 +17,13 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 
 @Serializable
-data class IdBaseline(val bonds: List<String>, val activities: List<String>, val deadlines: List<String>)
+data class IdBaseline(
+    val bonds: List<String>,
+    val activities: List<String>,
+    val deadlines: List<String>,
+    // Older baselines predate answer sheets; treat them as empty (additions only).
+    val answers: List<String> = emptyList(),
+)
 
 /**
  * Structural validation of a pack directory.
@@ -25,9 +32,12 @@ data class IdBaseline(val bonds: List<String>, val activities: List<String>, val
  *  - calendar validity: every walkthrough day exists on the real calendar and
  *    its declared weekday matches reality (weekdayGrid packs)
  *  - no duplicate/out-of-range days; walkthrough month matches file name
+ *  - routes: declared ids are slugs, walkthrough subdirectories match
+ *    declarations, duplicate days are scoped per route
  *  - cross-references resolve: stats, slots, activity refs, bond refs
  *  - bonds: ranks strictly increasing, availability windows valid
  *  - deadlines: date or window present, inside the pack calendar
+ *  - answer sheets: dates/kinds align with authored days (docs/PLAN.md Phase 5)
  *  - ID immutability: any ID present in pack-ids.baseline.json must still exist
  *    (deletions/renames fail lint; additions are fine)
  */
@@ -37,6 +47,7 @@ object PackLint {
     private val DEADLINE_KINDS = setOf("palace", "exam", "missable", "request", "other")
     private val DAY_KINDS = setOf("free", "school", "story", "exam", "forced")
     private val TIME_MODELS = setOf("weekdayGrid", "dayCounter")
+    private val ANSWER_KINDS = setOf("exam", "classQuestion")
 
     fun run(packDir: Path, writeBaseline: Boolean): List<LintIssue> {
         val issues = mutableListOf<LintIssue>()
@@ -83,6 +94,20 @@ object PackLint {
         if (pack.stats.isEmpty()) issues += err("pack.json", "stats must not be empty")
         statIds.groupingBy { it }.eachCount().filterValues { it > 1 }.forEach { (id, n) ->
             issues += err("pack.json", "stat id '$id' declared $n times")
+        }
+
+        // Routes (docs/PLAN.md Phase 5)
+        val declaredRouteIds = pack.routes.map { it.id }
+        declaredRouteIds.groupingBy { it }.eachCount().filterValues { it > 1 }.forEach { (id, n) ->
+            issues += err("pack.json", "route id '$id' declared $n times")
+        }
+        pack.routes.forEach { route ->
+            if (!Regex("^[a-z0-9]+(-[a-z0-9]+)*$").matches(route.id)) {
+                issues += err("pack.json", "route id '${route.id}' is not a lowercase slug")
+            }
+            if (route.label.isBlank()) {
+                issues += err("pack.json", "route '${route.id}' needs a display label")
+            }
         }
 
         // Activities
@@ -157,17 +182,21 @@ object PackLint {
             }
         }
 
-        // Walkthrough
-        val seenDates = mutableMapOf<String, String>()
-        loaded.walkthroughs.forEach { (month, wt) ->
-            if (!Regex("^\\d{4}-\\d{2}$").matches(month)) {
-                issues += err("walkthrough/$month.json", "file name must be YYYY-MM")
+        // Walkthrough — validated per route; day uniqueness is scoped to a route
+        val seenDatesByRoute = mutableMapOf<String, MutableSet<String>>()
+        val routeDirsSeen = mutableSetOf<String>()
+        val dayKindsByDate = mutableMapOf<String, MutableSet<String>>()
+        loaded.walkthroughs.forEach { wt ->
+            val loc = wt.location
+            if (wt.routeId != Routes.DEFAULT) routeDirsSeen += wt.routeId
+            if (!Regex("^\\d{4}-\\d{2}$").matches(wt.month)) {
+                issues += err(loc, "file name must be YYYY-MM")
             }
-            if (wt.month != month) {
-                issues += err("walkthrough/$month.json", "month field '${wt.month}' does not match file name")
+            if (wt.file.month != wt.month) {
+                issues += err(loc, "month field '${wt.file.month}' does not match file name")
             }
-            wt.days.forEach { day ->
-                val loc = "walkthrough/$month.json"
+            val seen = seenDatesByRoute.getOrPut(wt.routeId) { mutableSetOf() }
+            wt.file.days.forEach { day ->
                 val parsed = Cal.parseDate(day.date)
                 if (parsed == null) {
                     issues += err(loc, "day '${day.date}' is not an ISO date")
@@ -181,16 +210,17 @@ object PackLint {
                         issues += err(loc, "day '${day.date}' claims weekday '${day.weekday}' but the real calendar says '$real'")
                     }
                 }
-                if (Regex("^\\d{4}-\\d{2}$").matches(month) && !day.date.startsWith("$month-")) {
-                    issues += err(loc, "day '${day.date}' does not belong in month file $month")
+                if (Regex("^\\d{4}-\\d{2}$").matches(wt.month) && !day.date.startsWith("${wt.month}-")) {
+                    issues += err(loc, "day '${day.date}' does not belong in month file ${wt.month}")
                 }
                 if (start != null && end != null && (parsed < start || parsed > end)) {
                     issues += err(loc, "day '${day.date}' is outside the pack calendar range")
                 }
-                seenDates[day.date]?.let { other ->
-                    issues += err(loc, "day '${day.date}' is also defined in $other")
-                } ?: run { seenDates[day.date] = "walkthrough/$month.json" }
+                if (!seen.add(day.date)) {
+                    issues += err(loc, "day '${day.date}' is defined twice in route '${wt.routeId}'")
+                }
                 if (day.dayKind !in DAY_KINDS) issues += err(loc, "day '${day.date}' has unknown dayKind '${day.dayKind}'")
+                dayKindsByDate.getOrPut(day.date) { mutableSetOf() }.add(day.dayKind)
                 day.steps.forEachIndexed { i, step ->
                     if (step.slot != null && step.slot !in slotIds) {
                         issues += err(loc, "day '${day.date}' step $i references unknown slot '${step.slot}'")
@@ -205,25 +235,81 @@ object PackLint {
             }
         }
 
-        // Coverage (warn — packs grow incrementally)
+        // Route directory ↔ declaration consistency
+        routeDirsSeen.forEach { dir ->
+            if (dir == Routes.DEFAULT) {
+                issues += err("walkthrough/${Routes.DEFAULT}", "default route files live at walkthrough/ top level; the '$dir' subdirectory is reserved")
+            } else if (dir !in declaredRouteIds) {
+                issues += err("walkthrough/$dir", "walkthrough subdirectory '$dir' is not a declared route in pack.json")
+            }
+        }
+        declaredRouteIds.forEach { id ->
+            if (id != Routes.DEFAULT && id !in routeDirsSeen) {
+                issues += err("pack.json", "route '$id' is declared but has no walkthrough/$id/ files")
+            }
+        }
+
+        // Answer sheets (docs/PLAN.md Phase 5)
+        val answerIds = mutableSetOf<String>()
+        loaded.answers?.answers?.forEach { sheet ->
+            if (!answerIds.add(sheet.id)) issues += err("answers.json", "duplicate answer sheet id '${sheet.id}'")
+            if (!sheet.id.startsWith("$packId.answers.")) {
+                issues += err("answers.json", "answer sheet id '${sheet.id}' must be prefixed '$packId.answers.'")
+            }
+            if (sheet.kind !in ANSWER_KINDS) {
+                issues += err("answers.json", "answer sheet '${sheet.id}' has unknown kind '${sheet.kind}'")
+            }
+            if (sheet.answers.isEmpty()) {
+                issues += err("answers.json", "answer sheet '${sheet.id}' has no answers")
+            }
+            val parsed = Cal.parseDate(sheet.date)
+            when {
+                parsed == null -> issues += err("answers.json", "answer sheet '${sheet.id}' has non-ISO date '${sheet.date}'")
+                start != null && end != null && (parsed < start || parsed > end) ->
+                    issues += err("answers.json", "answer sheet '${sheet.id}' date '${sheet.date}' is outside the calendar range")
+                sheet.date !in dayKindsByDate ->
+                    issues += err("answers.json", "answer sheet '${sheet.id}' date '${sheet.date}' has no authored day")
+                // Exams are always authored as exam days; class questions may also
+                // land on days tagged free (e.g. Saturday-class weeks), so only
+                // the exam kind is cross-checked.
+                sheet.kind == "exam" && "exam" !in dayKindsByDate[sheet.date].orEmpty() ->
+                    issues += err("answers.json", "answer sheet '${sheet.id}' is an exam sheet but ${sheet.date} is not an authored exam day")
+            }
+            sheet.deadlineRef?.let { ref ->
+                if (ref !in deadlineIds) {
+                    issues += err("answers.json", "answer sheet '${sheet.id}' references unknown deadline '$ref'")
+                }
+            }
+        }
+
+        // Coverage (warn — packs grow incrementally), computed per route
         if (start != null && end != null) {
             val expected = Cal.datesBetween(pack.calendar.startDate, pack.calendar.endDate).map { it.toString() } - nonPlayable
-            val missing = expected.filter { it !in seenDates }
-            missing.groupBy { it.substring(0, 7) }.toSortedMap().forEach { (m, dates) ->
-                issues += LintIssue(
-                    LintIssue.Severity.WARN,
-                    "coverage",
-                    "month $m: ${dates.size} day(s) not yet authored (first: ${dates.take(3).joinToString()})"
-                )
+            Routes.effective(pack).forEach { route ->
+                val seen = seenDatesByRoute[route.id].orEmpty()
+                val missing = expected.filter { it !in seen }
+                val tag = if (pack.routes.isEmpty()) "" else "[route ${route.id}] "
+                missing.groupBy { it.substring(0, 7) }.toSortedMap().forEach { (m, dates) ->
+                    issues += LintIssue(
+                        LintIssue.Severity.WARN,
+                        "coverage",
+                        "${tag}month $m: ${dates.size} day(s) not yet authored (first: ${dates.take(3).joinToString()})"
+                    )
+                }
             }
         }
 
         // ID immutability baseline
         val baselineFile = packDir.resolve("pack-ids.baseline.json")
-        val current = IdBaseline(bondIds.toList().sorted(), activityIds.toList().sorted(), deadlineIds.toList().sorted())
+        val current = IdBaseline(
+            bonds = bondIds.toList().sorted(),
+            activities = activityIds.toList().sorted(),
+            deadlines = deadlineIds.toList().sorted(),
+            answers = answerIds.toList().sorted(),
+        )
         if (writeBaseline) {
             baselineFile.writeText(PackLoader.json.encodeToString(current))
-            issues += LintIssue(LintIssue.Severity.WARN, "baseline", "wrote ${baselineFile.fileName} (${current.bonds.size} bonds, ${current.activities.size} activities, ${current.deadlines.size} deadlines)")
+            issues += LintIssue(LintIssue.Severity.WARN, "baseline", "wrote ${baselineFile.fileName} (${current.bonds.size} bonds, ${current.activities.size} activities, ${current.deadlines.size} deadlines, ${current.answers.size} answer sheets)")
         } else if (baselineFile.isRegularFile()) {
             val baseline = try {
                 PackLoader.json.decodeFromString(IdBaseline.serializer(), baselineFile.readText())
@@ -240,6 +326,9 @@ object PackLint {
                 }
                 b.deadlines.filter { it !in deadlineIds }.forEach {
                     issues += err("pack-ids.baseline.json", "deadline id '$it' present in baseline is gone (deletion/rename forbidden)")
+                }
+                b.answers.filter { it !in answerIds }.forEach {
+                    issues += err("pack-ids.baseline.json", "answer sheet id '$it' present in baseline is gone (deletion/rename forbidden)")
                 }
             }
         }

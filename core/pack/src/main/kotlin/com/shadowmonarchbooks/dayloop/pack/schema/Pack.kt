@@ -20,10 +20,39 @@ data class Pack(
     val slots: List<Slot>,
     /** Social stats, engine-neutral ids with pack-supplied labels. */
     val stats: List<StatDef>,
+    /**
+     * Authored walkthrough routes (docs/PLAN.md Phase 5 "routes"): e.g. a
+     * completion route and a casual one. Empty means the pack ships a single
+     * implicit default route ("standard") at walkthrough/ top level.
+     */
+    val routes: List<RouteDef> = emptyList(),
     val capabilities: Capabilities = Capabilities(),
     /** Pack-supplied display vocabulary for engine terms (docs/PLAN.md §3.1). */
     val labels: Labels = Labels(),
 )
+
+@Serializable
+data class RouteDef(
+    /** Immutable route id, e.g. "standard". Profiles pin one (docs/PLAN.md §3.7). */
+    val id: String,
+    /** Pack-supplied display label, e.g. "Completion" / "Casual". */
+    val label: String,
+    val description: String? = null,
+)
+
+/** Route identity helpers shared by the loader, lint, and the app. */
+object Routes {
+    /** The implicit route every pack has, even when none are declared. */
+    const val DEFAULT = "standard"
+
+    /** Declared routes, or the single implicit default when none are declared. */
+    fun effective(pack: Pack): List<RouteDef> =
+        pack.routes.ifEmpty { listOf(RouteDef(DEFAULT, "Standard")) }
+
+    /** The id a profile should fall back to for [pack]. */
+    fun defaultId(pack: Pack): String =
+        pack.routes.firstOrNull()?.id ?: DEFAULT
+}
 
 @Serializable
 data class CalendarRange(

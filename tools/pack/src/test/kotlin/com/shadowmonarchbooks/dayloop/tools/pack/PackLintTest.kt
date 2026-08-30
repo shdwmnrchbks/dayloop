@@ -5,12 +5,15 @@ import kotlin.io.path.writeText
 import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
 import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
+import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.RankStep
+import com.shadowmonarchbooks.dayloop.pack.schema.RouteDef
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -47,8 +50,84 @@ class PackLintTest {
         val dup = Fixture.validWalkthroughApril().copy(month = "2016-05", days = listOf(Day("2016-04-09", "sat", "story")))
         Fixture.writeWalkthroughFile(dir, "2016-05.json", dup)
         val errors = PackLint.runOn(dir).errorsIn("walkthrough")
-        assertTrue(errors.any { "also defined" in it.message }, errors.toString())
+        assertTrue(errors.any { "defined twice in route 'standard'" in it.message }, errors.toString())
         assertTrue(errors.any { "does not belong in month file 2016-05" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `duplicate days are scoped per route`() {
+        val dir = tempDir()
+        val routes = listOf(RouteDef("standard", "Standard"), RouteDef("casual", "Casual"))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(routes = routes))
+        Fixture.writeRouteWalkthrough(dir, "casual", Fixture.validWalkthroughApril())
+        val issues = PackLint.runOn(dir)
+        assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    @Test
+    fun `walkthrough subdirectory must be a declared route`() {
+        val dir = tempDir()
+        Fixture.writePack(dir)
+        Fixture.writeRouteWalkthrough(dir, "casual", Fixture.validWalkthroughApril())
+        val errors = PackLint.runOn(dir).errorsIn("walkthrough/casual")
+        assertTrue(errors.any { "not a declared route" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `declared route without walkthrough files fails`() {
+        val dir = tempDir()
+        val routes = listOf(RouteDef("standard", "Standard"), RouteDef("casual", "Casual"))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(routes = routes))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "route 'casual' is declared but has no walkthrough" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `answer sheets aligned with authored days pass`() {
+        val dir = tempDir()
+        // Make 2016-04-11 an exam day so both sheet kinds have a home.
+        val wt = Fixture.validWalkthroughApril().copy(
+            days = Fixture.validWalkthroughApril().days.map {
+                if (it.date == "2016-04-11") it.copy(dayKind = "exam") else it
+            }
+        )
+        Fixture.writePack(dir, walkthroughs = listOf(wt))
+        Fixture.writeDeadlines(
+            dir,
+            DeadlinesFile(deadlines = listOf(Deadline("t1.deadline.exam", "Exams", "exam", date = "2016-04-12"))),
+        )
+        Fixture.writeAnswers(
+            dir,
+            AnswersFile(
+                answers = listOf(
+                    AnswerSheet("t1.answers.class.2016-04-12", "2016-04-12", "classQuestion", "Class question", listOf("Four")),
+                    AnswerSheet("t1.answers.exam.2016-04-11", "2016-04-11", "exam", "Exams", listOf("a"), deadlineRef = "t1.deadline.exam"),
+                ),
+            ),
+        )
+        val issues = PackLint.runOn(dir)
+        assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    @Test
+    fun `misaligned answer sheets fail`() {
+        val dir = tempDir()
+        Fixture.writePack(dir)
+        Fixture.writeAnswers(
+            dir,
+            AnswersFile(
+                answers = listOf(
+                    // 2016-04-10 is a free day: fine for a class question, but not
+                    // for an exam sheet, and the deadline ref does not exist.
+                    AnswerSheet("t1.answers.class.2016-04-10", "2016-04-10", "classQuestion", "Class question", listOf("x")),
+                    AnswerSheet("t1.answers.exam.2016-04-10", "2016-04-10", "exam", "Exams", listOf("y"), deadlineRef = "t1.deadline.missing"),
+                ),
+            ),
+        )
+        val errors = PackLint.runOn(dir).errorsIn("answers.json")
+        assertTrue(errors.none { "2016-04-10' has no authored day" in it.message }, errors.toString())
+        assertTrue(errors.any { "not an authored exam day" in it.message }, errors.toString())
+        assertTrue(errors.any { "references unknown deadline 't1.deadline.missing'" in it.message }, errors.toString())
     }
 
     @Test

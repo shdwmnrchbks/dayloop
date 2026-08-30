@@ -34,7 +34,7 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Answer the class question: 'Stars'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Enter the unknown palace and defeat the guardian (exploit bless with Yoshizawa)", "spoiler": true }
       ]
     },
@@ -70,7 +70,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Read 'The Art of Automata' on the metro — Proficiency reaches rank 5", "activityRef": "p5r.activity.book.art-of-automata", "statGains": { "proficiency": 3 } },
-        { "label": "Answer the class question: 'Joseph-Ignace Guillotin'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Heist: steal Okumura's Treasure — beat the 10-minute reach timer, then wear the robots down with AoE and Baton Passes; guard the Big Bang", "spoiler": true },
         { "label": "Magician reaches rank 9", "spoiler": true },
         { "label": "Hierophant reaches rank 6", "spoiler": true }
@@ -124,7 +124,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Bouba'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Fool reaches rank 9", "spoiler": true }
       ]
     },
@@ -190,7 +190,7 @@
       "weekday": "mon",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 1 — answers: 32 surfaces; It used to be one color; Black and white pictures" }
+        { "label": "Exams day 1" }
       ]
     },
     {
@@ -198,7 +198,7 @@
       "weekday": "tue",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 2 — answers: Charles-Henri Sanson; It is a hereditary profession" }
+        { "label": "Exams day 2" }
       ]
     },
     {
@@ -206,7 +206,7 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 3 — answers: Slave labor; 3 bees in all of Europe" }
+        { "label": "Exams day 3" }
       ]
     },
     {
@@ -230,7 +230,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question: '15'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Watch 'Duhvengers' at the Shinjuku movie theater", "activityRef": "p5r.activity.movie.duhvengers", "statGains": { "kindness": 3 } }
       ]
     },
@@ -250,7 +250,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Memory bias'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Exam results", "statGains": { "charm": 3 } },
         { "label": "Receive the LeBlanc Charm from Sojiro (exam reward)" },
         { "label": "Hang out with Mishima (no rank-up today)" }

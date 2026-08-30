@@ -39,7 +39,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Villains'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Second infiltration — follow tutorials up to the first mini-boss" },
         { "label": "Reach the Treasure security level needed, then leave", "spoiler": true },
         { "label": "Check the LeBlanc storage box for DLC items, then sleep" }
@@ -109,7 +109,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'They're the same'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Study in a library booth", "statGains": { "knowledge": 1, "guts": 1 } },
         { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 2 } },
         { "label": "Chat with the café customers, then read 'The Great Thief'", "activityRef": "p5r.activity.book.great-thief" }
@@ -152,7 +152,7 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'All of them'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Rent 'Wraith'", "activityRef": "p5r.activity.dvd.wraith" },
         { "label": "Hang out with Takemi — Death reaches rank 2", "statGains": { "guts": 1 } },
         { "label": "Craft lock picks at the attic table (reload trick for a bonus item)", "statGains": { "proficiency": 3 } }
@@ -200,7 +200,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Four Color Theorem'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Carry Death, Hierophant, Lovers, and Chariot Personas today" },
         { "label": "Hang out with Takemi — Death reaches rank 3", "statGains": { "guts": 1 } },
         { "label": "Solve the LeBlanc crossword: 'Blossom'", "statGains": { "knowledge": 1 } },

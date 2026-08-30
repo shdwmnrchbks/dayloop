@@ -7,7 +7,9 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.DropdownMenu
@@ -34,15 +36,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.shadowmonarchbooks.dayloop.ui.answers.AnswersScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
 import com.shadowmonarchbooks.dayloop.ui.day.DayScreen
 import com.shadowmonarchbooks.dayloop.ui.deadlines.DeadlinesScreen
 import com.shadowmonarchbooks.dayloop.ui.month.MonthScreen
+import com.shadowmonarchbooks.dayloop.ui.search.SearchScreen
 import com.shadowmonarchbooks.dayloop.ui.settings.SettingsScreen
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
-private val TopLevelRoutes = setOf("today", "calendar", "bonds", "deadlines")
+private val TopLevelRoutes = setOf("today", "calendar", "bonds", "deadlines", "answers")
 
 @Composable
 fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
@@ -61,6 +65,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 onSelect = vm::selectPack,
                 canGoBack = route != null && route !in TopLevelRoutes,
                 onBack = { nav.popBackStack() },
+                onOpenSearch = { nav.navigate("search") { launchSingleTop = true } },
                 onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
             )
         },
@@ -91,6 +96,12 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         icon = { Icon(Icons.Filled.Warning, contentDescription = null) },
                         label = { Text("Deadlines") },
                     )
+                    NavigationBarItem(
+                        selected = route == "answers",
+                        onClick = { nav.navigate("answers") { launchSingleTop = true } },
+                        icon = { Icon(Icons.Filled.Info, contentDescription = null) },
+                        label = { Text("Answers") },
+                    )
                 }
             }
         },
@@ -119,6 +130,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                             popUpTo("day/{date}") { inclusive = true }
                         }
                     },
+                    onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
                 )
             }
             composable("calendar") {
@@ -139,6 +151,16 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             composable("deadlines") {
                 DeadlinesScreen(vm = vm)
             }
+            composable("answers") {
+                AnswersScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
+            }
+            composable("search") {
+                SearchScreen(
+                    vm = vm,
+                    onOpenDay = { date -> nav.navigate("day/$date") },
+                    onOpenBond = { id -> nav.navigate("bond/$id") },
+                )
+            }
             composable("settings") {
                 SettingsScreen(vm = vm)
             }
@@ -155,6 +177,7 @@ private fun DayloopTopBar(
     onSelect: (String) -> Unit,
     canGoBack: Boolean,
     onBack: () -> Unit,
+    onOpenSearch: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
     var menuOpen by remember { mutableStateOf(false) }
@@ -190,6 +213,9 @@ private fun DayloopTopBar(
             }
         },
         actions = {
+            IconButton(onClick = onOpenSearch) {
+                Icon(Icons.Filled.Search, contentDescription = "Search")
+            }
             IconButton(onClick = onOpenSettings) {
                 Icon(Icons.Filled.Settings, contentDescription = "Settings")
             }

@@ -7,7 +7,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'ABC of Crafting' on the metro", "activityRef": "p5r.activity.book.abc-of-crafting" },
-        { "label": "Answer the class question: 'Barbarian's Head'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Borrow 'Speed Reader' from the school library" },
         { "label": "Grab a Yakisoba Pan at the school store" },
         { "label": "Hang out with Ann — Lovers reaches rank 10" },
@@ -45,7 +45,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'The Illusory Popess' on the metro", "activityRef": "p5r.activity.book.illusory-popess", "statGains": { "kindness": 3 } },
-        { "label": "Answer the class question: 'Julius and Augustus'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Buy SP-recovery drinks and the summer-only items" },
         { "label": "Explore Mementos — all 7 pending requests; leave locked chests alone", "spoiler": true },
         { "label": "Fuse Suzaku, then Setanta; talk to the Twins — Strength reaches rank 5", "spoiler": true },
@@ -81,7 +81,7 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'The Milky Way', 'Shounen Noodles'", "statGains": { "charm": 1 } },
+        { "label": "Answer the class question", "statGains": { "charm": 1 } },
         { "label": "Buy Black Rocks at the Kichijoji crystal shop" },
         { "label": "Hang out with Kasumi — Faith reaches rank 4" },
         { "label": "Solve the LeBlanc crossword: 'Narcotics'", "statGains": { "knowledge": 1 } },
@@ -107,7 +107,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question: 'A Triangle'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Akechi — Justice reaches rank 3" },
         { "label": "Judgement reaches rank 1", "spoiler": true }
       ]
@@ -127,7 +127,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Infinity'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Dodge the chalk throw — reload if you are hit" },
         { "label": "Meet the shogi student in Kanda — Star reaches rank 1", "statGains": { "knowledge": 1 } },
         { "label": "Browse the Kanda priest's healing items (Sundays)" }
@@ -138,7 +138,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Thievery'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Buy SP-recovery drinks and the summer-only items" },
         { "label": "Hang out with Yusuke — Emperor reaches rank 4" },
         { "label": "Solve the LeBlanc crossword: 'Vacation'", "statGains": { "knowledge": 1 } },
@@ -151,7 +151,7 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 1 — answers: 64 degrees; Zhuge Liang; Barbarian's Head; To offer them instead of heads" }
+        { "label": "Exams day 1" }
       ]
     },
     {
@@ -159,7 +159,7 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 2 — answers: Red King Crab (Paralithodes); It caused confusion in the economy" }
+        { "label": "Exams day 2" }
       ]
     },
     {
@@ -167,7 +167,7 @@
       "weekday": "fri",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 3 — answers: Raining cats and dogs; Demon guts" }
+        { "label": "Exams day 3" }
       ]
     },
     {

@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.res.AssetManager
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
+import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
-import com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile
+import com.shadowmonarchbooks.dayloop.pack.schema.RouteDef
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,22 +18,34 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-/** One pack loaded from assets/<slug>/ — engine-neutral, fully label-driven. */
+/**
+ * One pack loaded from assets/<slug>/ — engine-neutral, fully label-driven.
+ * Walkthrough days are keyed per route (docs/PLAN.md Phase 5): the pack's
+ * declared routes, or the single implicit default route.
+ */
 data class LoadedPack(
     val slug: String,
     val pack: Pack,
     val bonds: List<Bond> = emptyList(),
     val deadlines: List<Deadline> = emptyList(),
     val activities: Map<String, Activity> = emptyMap(),
-    val walkthroughs: Map<String, WalkthroughFile> = emptyMap(),
+    val answersByDate: Map<String, AnswerSheet> = emptyMap(),
+    /** routeId -> (ISO date -> authored day). */
+    val daysByRoute: Map<String, Map<String, Day>> = emptyMap(),
 ) {
-    val daysByDate: Map<String, Day> by lazy {
-        walkthroughs.values.flatMap { it.days }.associateBy { it.date }
-    }
-    val sortedDates: List<String> by lazy { daysByDate.keys.sorted() }
-    val authoredMonths: List<String> by lazy { walkthroughs.keys.sorted() }
+    /** Routes available for this pack, declared or implicit default. */
+    val routes: List<RouteDef> by lazy { Routes.effective(pack) }
 
-    fun day(date: String): Day? = daysByDate[date]
+    fun day(routeId: String, date: String): Day? = daysByRoute[routeId]?.get(date)
+
+    fun sortedDates(routeId: String): List<String> =
+        daysByRoute[routeId]?.keys?.sorted().orEmpty()
+
+    fun authoredMonths(routeId: String): List<String> =
+        daysByRoute[routeId]?.keys?.map { it.take(7) }?.distinct()?.sorted().orEmpty()
+
+    fun routeLabel(routeId: String): String =
+        routes.firstOrNull { it.id == routeId }?.label ?: routeId
 }
 
 data class PacksState(
@@ -87,16 +101,34 @@ class PackStore @Inject constructor(@ApplicationContext context: Context) {
                 } else {
                     emptyMap()
                 }
-                val walkthroughs = buildMap {
-                    if ("walkthrough" in files) {
-                        for (name in assets.list("$slug/walkthrough").orEmpty().sorted()) {
+                val answers = if ("answers.json" in files) {
+                    PackLoader.decodeAnswers(readAsset(assets, "$slug/answers.json"))
+                        ?.answers?.associateBy { it.date } ?: emptyMap()
+                } else {
+                    emptyMap()
+                }
+                // walkthrough/*.json is the default route; walkthrough/<routeId>/*.json
+                // are additional declared routes (docs/PLAN.md Phase 5).
+                val daysByRoute = mutableMapOf<String, Map<String, Day>>()
+                if ("walkthrough" in files) {
+                    fun daysOf(routePath: String): Map<String, Day> = buildMap {
+                        for (name in assets.list(routePath).orEmpty().sorted()) {
                             if (!name.endsWith(".json")) continue
-                            val wt = PackLoader.decodeWalkthrough(readAsset(assets, "$slug/walkthrough/$name"))
-                            if (wt != null) put(wt.month, wt)
+                            val wt = PackLoader.decodeWalkthrough(readAsset(assets, "$routePath/$name"))
+                            if (wt != null) {
+                                for (day in wt.days) put(day.date, day)
+                            }
+                        }
+                    }
+                    daysByRoute[Routes.DEFAULT] = daysOf("$slug/walkthrough")
+                    for (name in assets.list("$slug/walkthrough").orEmpty().sorted()) {
+                        val inner = assets.list("$slug/walkthrough/$name").orEmpty()
+                        if (inner.isNotEmpty()) {
+                            daysByRoute[name] = daysOf("$slug/walkthrough/$name")
                         }
                     }
                 }
-                result += LoadedPack(slug, pack, bonds, deadlines, activities, walkthroughs)
+                result += LoadedPack(slug, pack, bonds, deadlines, activities, answers, daysByRoute)
             } catch (_: Exception) {
                 // A broken pack must never take the app down; lint guards content quality.
                 continue

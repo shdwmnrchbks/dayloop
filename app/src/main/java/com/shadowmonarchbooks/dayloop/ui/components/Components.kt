@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.progress.DayProgress
@@ -317,6 +318,64 @@ fun DeadlineBanner(deadline: Deadline, daysLeft: Long, modifier: Modifier = Modi
                     MaterialTheme.colorScheme.onSurface
                 },
             )
+        }
+    }
+}
+
+/** Kind chip for answer sheets — "Exam" or "Class question". */
+@Composable
+fun AnswerKindChip(kind: String, modifier: Modifier = Modifier) {
+    val colors = when (kind) {
+        "exam" -> MaterialTheme.colorScheme.errorContainer to MaterialTheme.colorScheme.onErrorContainer
+        else -> MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer
+    }
+    Surface(shape = RoundedCornerShape(50), color = colors.first, modifier = modifier) {
+        Text(
+            text = when (kind) {
+                "exam" -> "Exam"
+                "classQuestion" -> "Class question"
+                else -> kind.replaceFirstChar { it.uppercase() }
+            },
+            style = MaterialTheme.typography.labelMedium,
+            color = colors.second,
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
+        )
+    }
+}
+
+/**
+ * One structured answer sheet (docs/PLAN.md Phase 5): the accepted answers
+ * for an exam day or a class question. Answers are facts — always visible.
+ */
+@Composable
+fun AnswerSheetCard(
+    sheet: AnswerSheet,
+    modifier: Modifier = Modifier,
+    onOpenAnswers: (() -> Unit)? = null,
+) {
+    Surface(
+        onClick = { onOpenAnswers?.invoke() },
+        enabled = onOpenAnswers != null,
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                AnswerKindChip(sheet.kind)
+                Text(
+                    text = sheet.label,
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+            sheet.answers.forEachIndexed { i, answer ->
+                Text(
+                    text = "${i + 1}. $answer",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
         }
     }
 }

@@ -27,6 +27,7 @@ import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
+import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
@@ -42,18 +43,19 @@ fun DayScreen(
     date: String,
     vm: DayloopViewModel = hiltViewModel(),
     onOpenDay: (String) -> Unit = {},
+    onOpenAnswers: () -> Unit = {},
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected ?: run {
         EmptyState("No pack selected.")
         return
     }
-    val day = pack.day(date) ?: run {
+    val day = state.day(date) ?: run {
         EmptyState("No authored content for $date.")
         return
     }
 
-    val dates = pack.sortedDates
+    val dates = state.days.keys.sorted()
     val idx = dates.indexOf(date)
     val prevDate = if (idx > 0) dates[idx - 1] else null
     val nextDate = if (idx in 0 until dates.lastIndex) dates[idx + 1] else null
@@ -91,6 +93,10 @@ fun DayScreen(
             nextDeadline(pack.deadlines, current)?.let { (deadline, days) ->
                 DeadlineBanner(deadline = deadline, daysLeft = days)
             }
+        }
+
+        pack.answersByDate[date]?.let { sheet ->
+            AnswerSheetCard(sheet = sheet, onOpenAnswers = onOpenAnswers)
         }
 
         DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))

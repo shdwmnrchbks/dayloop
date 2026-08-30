@@ -54,10 +54,10 @@ fun TodayScreen(
         return
     }
 
-    val day = pack.day(date)
+    val day = state.day(date)
     val upcoming = nextDeadline(pack.deadlines, date)
     val carried = ProgressLogic.carriedOver(state.marks, date).mapNotNull { key ->
-        pack.day(key.date)?.steps?.getOrNull(key.index)?.let { step ->
+        state.day(key.date)?.steps?.getOrNull(key.index)?.let { step ->
             CarriedStep(key = key, label = step.label)
         }
     }
@@ -70,8 +70,9 @@ fun TodayScreen(
             .padding(16.dp),
     ) {
         state.activeProfile?.let { profile ->
+            val routeSuffix = if (pack.routes.size > 1) " · ${pack.routeLabel(state.activeRouteId)}" else ""
             Text(
-                text = profile.name,
+                text = profile.name + routeSuffix,
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.secondary,
             )

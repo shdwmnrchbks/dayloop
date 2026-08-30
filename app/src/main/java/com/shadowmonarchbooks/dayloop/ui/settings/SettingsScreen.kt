@@ -56,6 +56,7 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
     var deleteTarget by remember { mutableStateOf<ProfileUi?>(null) }
     var renameTarget by remember { mutableStateOf<ProfileUi?>(null) }
     var createOpen by remember { mutableStateOf(false) }
+    val hasMultipleRoutes = pack.routes.size > 1
 
     Column(
         verticalArrangement = Arrangement.spacedBy(18.dp),
@@ -107,8 +108,9 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
                         RadioButton(selected = active, onClick = { vm.switchProfile(profile.id) })
                         Column(modifier = Modifier.weight(1f)) {
                             Text(profile.name, style = MaterialTheme.typography.bodyLarge, fontWeight = if (active) FontWeight.SemiBold else null)
+                            val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
                             Text(
-                                text = "Day ${formatDate(profile.clockDate)}",
+                                text = "Day ${formatDate(profile.clockDate)}$routeSuffix",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -209,17 +211,68 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
     }
 
     if (createOpen) {
-        NameDialog(
-            title = "New profile",
-            initial = "Profile ${state.profiles.size + 1}",
-            confirmLabel = "Create",
-            onConfirm = { name ->
-                vm.createProfile(name)
+        CreateProfileDialog(
+            defaultName = "Profile ${state.profiles.size + 1}",
+            routes = pack.routes.takeIf { hasMultipleRoutes },
+            onConfirm = { name, routeId ->
+                vm.createProfile(name, routeId)
                 createOpen = false
             },
             onDismiss = { createOpen = false },
         )
     }
+}
+
+@Composable
+private fun CreateProfileDialog(
+    defaultName: String,
+    routes: List<com.shadowmonarchbooks.dayloop.pack.schema.RouteDef>?,
+    onConfirm: (String, String) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var name by remember { mutableStateOf(defaultName) }
+    var routeId by remember { mutableStateOf(routes?.firstOrNull()?.id ?: "") }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("New profile") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    singleLine = true,
+                    label = { Text("Name") },
+                )
+                if (routes != null && routes.size > 1) {
+                    Text("Route", style = MaterialTheme.typography.labelLarge)
+                    routes.forEach { route ->
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            RadioButton(
+                                selected = routeId == route.id,
+                                onClick = { routeId = route.id },
+                            )
+                            Column {
+                                Text(route.label, style = MaterialTheme.typography.bodyMedium)
+                                route.description?.let {
+                                    Text(
+                                        text = it,
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm(name.trim(), routeId) }) { Text("Create") }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Cancel") }
+        },
+    )
 }
 
 @Composable

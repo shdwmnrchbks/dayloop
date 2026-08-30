@@ -33,7 +33,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
-import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.formatMonth
 import com.shadowmonarchbooks.dayloop.data.parseDateOrNull
@@ -54,7 +53,7 @@ fun MonthScreen(
         EmptyState("No pack selected.")
         return
     }
-    val months = pack.authoredMonths
+    val months = state.authoredMonths
     if (months.isEmpty()) {
         EmptyState("No authored months in this pack yet.")
         return
@@ -89,13 +88,14 @@ fun MonthScreen(
             }
         }
 
-        CalendarGrid(pack = pack, month = month, clockDate = state.currentDate, onOpenDay = onOpenDay)
+        CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, onOpenDay = onOpenDay)
     }
 }
 
 @Composable
 private fun CalendarGrid(
-    pack: LoadedPack,
+    days: Map<String, com.shadowmonarchbooks.dayloop.pack.schema.Day>,
+    deadlines: List<com.shadowmonarchbooks.dayloop.pack.schema.Deadline>,
     month: String,
     clockDate: String?,
     onOpenDay: (String) -> Unit,
@@ -103,7 +103,7 @@ private fun CalendarGrid(
     val first = parseDateOrNull("$month-01") ?: return
     val daysInMonth = first.lengthOfMonth()
     val leadDays = (first.dayOfWeek.value + 6) % 7 // Monday-first grid
-    val deadlineDates = pack.deadlines.mapNotNull { deadlineStart(it) }.toSet()
+    val deadlineDates = deadlines.mapNotNull { deadlineStart(it) }.toSet()
 
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -131,7 +131,7 @@ private fun CalendarGrid(
                             DayCell(
                                 iso = iso,
                                 dayNumber = dayNumber,
-                                pack = pack,
+                                day = days[iso],
                                 hasDeadline = iso in deadlineDates,
                                 isClockDate = iso == clockDate,
                                 onOpenDay = onOpenDay,
@@ -149,13 +149,12 @@ private fun CalendarGrid(
 private fun DayCell(
     iso: String,
     dayNumber: Int,
-    pack: LoadedPack,
+    day: com.shadowmonarchbooks.dayloop.pack.schema.Day?,
     hasDeadline: Boolean,
     isClockDate: Boolean,
     onOpenDay: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val day = pack.day(iso)
     val container = when (day?.dayKind) {
         "school" -> MaterialTheme.colorScheme.surfaceVariant
         "story" -> MaterialTheme.colorScheme.primaryContainer

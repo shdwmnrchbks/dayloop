@@ -6,7 +6,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: '3'", "statGains": { "charm": 2 } }
+        { "label": "Answer the class question", "statGains": { "charm": 2 } }
       ]
     },
     {
@@ -79,7 +79,7 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: '2'", "statGains": { "charm": 2 } },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Fool reaches rank 1 (story)", "spoiler": true }
       ]
     },
@@ -173,7 +173,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: '1'", "statGains": { "charm": 2 } },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Sign your papers at the Faculty Office (1F Faculty Office Hallway) — Emperor reaches rank 1" },
         { "label": "Evening: play High School of Youth at Game Parade", "statGains": { "charm": 4 } }
       ]

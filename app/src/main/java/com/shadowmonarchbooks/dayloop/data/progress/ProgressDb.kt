@@ -12,6 +12,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Update
 import androidx.room.Upsert
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,6 +36,8 @@ data class ProfileEntity(
     /** Profiles belong to packs (docs/PLAN.md §3.7). */
     val packId: String,
     val name: String,
+    /** Walkthrough route this profile follows (docs/PLAN.md Phase 5). */
+    val routeId: String,
     /** In-game clock position (ISO date) — the End-Day state. */
     val clockDate: String,
     /** pack.json contentVersion this save was created against. */
@@ -97,10 +102,24 @@ interface StepStateDao {
     suspend fun deleteForProfile(profileId: Long)
 }
 
-@Database(entities = [ProfileEntity::class, StepStateEntity::class], version = 1, exportSchema = true)
+@Database(entities = [ProfileEntity::class, StepStateEntity::class], version = 2, exportSchema = true)
 abstract class ProgressDb : RoomDatabase() {
     abstract fun profileDao(): ProfileDao
     abstract fun stepStateDao(): StepStateDao
+
+    companion object {
+        /**
+         * v1 → v2 (docs/PLAN.md Phase 5 routes): profiles pin a walkthrough
+         * route; existing saves keep playing on the implicit default route.
+         */
+        val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "ALTER TABLE profiles ADD COLUMN routeId TEXT NOT NULL DEFAULT '${Routes.DEFAULT}'",
+                )
+            }
+        }
+    }
 }
 
 @Module
@@ -110,5 +129,7 @@ object ProgressDbModule {
     @Provides
     @Singleton
     fun provideDb(@ApplicationContext context: Context): ProgressDb =
-        Room.databaseBuilder(context, ProgressDb::class.java, "dayloop.db").build()
+        Room.databaseBuilder(context, ProgressDb::class.java, "dayloop.db")
+            .addMigrations(ProgressDb.MIGRATION_1_2)
+            .build()
 }

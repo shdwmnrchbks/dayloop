@@ -209,7 +209,7 @@
       "weekday": "tue",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 1 — answers: D; Over one billion yen; Having his head displayed; Public performance" }
+        { "label": "Exams day 1" }
       ]
     },
     {
@@ -217,7 +217,7 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 2 — answers: Hearts; Attend" }
+        { "label": "Exams day 2" }
       ]
     },
     {
@@ -225,7 +225,7 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 3 — answers: Japan; Dreadnought" },
+        { "label": "Exams day 3" },
         { "label": "Buy the Castella at the Underground Mall supermarket" },
         { "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)" },
         { "label": "Receive the Boss Undies from Sojiro (exam reward)" },

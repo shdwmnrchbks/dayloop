@@ -88,7 +88,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'How numerous they are' / 'The Eight Million Gods'", "statGains": { "charm": 1 } }
+        { "label": "Answer the class question", "statGains": { "charm": 1 } }
       ]
     },
     {
@@ -119,7 +119,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question: 'Iwate'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Ryuji — his awakening", "spoiler": true },
         { "label": "Receive the request 'O My Younger Sister, I Cry For You'", "spoiler": true },
         { "label": "Solve the LeBlanc crossword: 'Resolution'", "statGains": { "knowledge": 1 } },
@@ -163,7 +163,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Impressive'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Haru — her awakening", "spoiler": true },
         { "label": "Buy a Black Kogatana at the Yongen-Jaya second-hand shop" },
         { "label": "Watch 'Bite Club' in Shinjuku", "activityRef": "p5r.activity.movie.bite-club", "statGains": { "guts": 3 } }
@@ -200,7 +200,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question: 'A snake'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Sumire — Faith reaches rank 7" },
         { "label": "Beat 'Train of Life' (5/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 2 } }
       ]
@@ -238,7 +238,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Kind-hearted', 'Negative', 'Resentful'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Haru in Tsukishima — Giant Spatula (room decoration 19/20)" },
         { "label": "Save first, then beat 'Power Intuition' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.power-intuition", "statGains": { "guts": 2 } }
       ]
@@ -270,7 +270,7 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Friends of friends of friends'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Receive the request 'Fake-Man Show'", "spoiler": true },
         { "label": "Listen to the two Kichijoji natives near the Velvet Room" },
         { "label": "Listen to the two students next to the incense shop" },

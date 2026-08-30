@@ -62,6 +62,20 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.datastore.preferences)
+
+    // Home-screen widget (docs/PLAN.md Phase 5).
+    implementation(libs.androidx.glance.appwidget)
+
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:${libs.versions.kotlin.get()}")
+    testRuntimeOnly(libs.junit.jupiter.engine)
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+    testLogging {
+        events("failed", "skipped")
+        showStackTraces = true
+    }
 }
 
 // Export Room schemas so future progress migrations are reviewable in-repo.

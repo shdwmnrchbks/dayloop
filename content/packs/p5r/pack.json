@@ -18,6 +18,9 @@
     { "id": "kindness", "label": "Kindness" },
     { "id": "charm", "label": "Charm" }
   ],
+  "routes": [
+    { "id": "standard", "label": "Completion", "description": "Full-coverage route tracking every confidant rank, deadline, and missable." }
+  ],
   "capabilities": {
     "exams": true,
     "weather": false

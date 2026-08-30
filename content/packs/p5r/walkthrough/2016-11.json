@@ -19,7 +19,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'The Hero with a Bow' on the metro", "activityRef": "p5r.activity.book.hero-with-a-bow", "statGains": { "guts": 3 } },
-        { "label": "Answer the class question: 'A share of stolen goods'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Borrow 'Dressed in Ashes' from the school library" },
         { "label": "Hang out with Futaba — Hermit reaches rank 7" },
         { "label": "Receive the request 'Daughter's Just a Meal Ticket'", "spoiler": true },
@@ -41,7 +41,7 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'A sword'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
         { "label": "Ask Chihaya for a money reading" },
         { "label": "Second casino infiltration — buy the High Limit Card, leave with a Justice Persona", "spoiler": true },
@@ -96,7 +96,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'Any age'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Makoto — Priestess reaches rank 8" },
         { "label": "Save first, then play darts with Akechi — Baton Pass reaches rank 3", "statGains": { "proficiency": 2 } }
       ]
@@ -121,7 +121,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'Call Me Chief' on the metro", "activityRef": "p5r.activity.book.call-me-chief" },
-        { "label": "Answer the class question: 'Hard-to-see crow eyes'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Futaba — Hermit reaches rank 8" },
         { "label": "Answer the TV game show: 'Me in front of the TV'", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Sojiro — Hierophant reaches rank 8" },
@@ -144,7 +144,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question: 'The voice is synthetic'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Futaba — Hermit reaches rank 9 (romance choice available)" },
         { "label": "Buy the Book Cover at the Underground Mall sundries shop" },
         { "label": "Hang out with Hifumi — King Piece (room decoration 7/20)" }
@@ -170,7 +170,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'Reckless Casanova' on the metro", "activityRef": "p5r.activity.book.reckless-casanova" },
-        { "label": "Answer the class question: 'High altitude'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Haru (check the rooftop vegetables first) — Empress reaches rank 2" },
         { "label": "Solve the LeBlanc crossword: 'Bashing'", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Sojiro — Hierophant reaches rank 10" }
@@ -181,7 +181,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question: 'His head was put on display'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Hang out with Makoto — Priestess reaches rank 9 (romance choice available)" },
         { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
         { "label": "Hang out with Chihaya — Fortune reaches rank 8" }
@@ -206,7 +206,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'Knowing the Heart' on the metro", "activityRef": "p5r.activity.book.knowing-the-heart" },
-        { "label": "Answer the class question: 'Cochleoid'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
         { "label": "Receive the request 'Man of Many Faces and Debts'", "spoiler": true },
         { "label": "Hang out with Makoto — Priestess reaches rank 10" },
         { "label": "Hang out with Chihaya — Fortune reaches rank 9 (romance choice available)" }

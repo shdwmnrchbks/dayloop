@@ -41,8 +41,16 @@ See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 Phase 0–4 done: pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
-Next: Phase 5 — routes/profiles polish, Glance widget, search, icon.
+🚧 **Phase 0–5 done.** Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+
+Phase 5 added:
+- **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
+- **Exam answers** — structured answer sheets (`answers.json`) for all 12 P5R exam days and 53 class questions, surfaced in a new Answers tab and on day pages.
+- **Search** — top-bar search across steps, bonds, activities, deadlines, and answers for the selected pack/route.
+- **Home-screen widget (Glance)** — in-game date, today's done-count, and the next deadline, always visible; refreshes with app state and re-reads progress on its own.
+- **Launcher icon** — original adaptive artwork (sun + day-loop arrow), no game assets.
+
+Next: Phase 6 — second complete pack (P3R or Metaphor) proving the drop-in claim, then the third to complete the first-release trio.
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

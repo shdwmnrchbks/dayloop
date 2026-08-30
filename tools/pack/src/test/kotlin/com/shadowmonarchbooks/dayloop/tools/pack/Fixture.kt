@@ -6,6 +6,7 @@ import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
 import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.CalendarRange
@@ -60,6 +61,17 @@ object Fixture {
         val wt = dir.resolve("walkthrough")
         Files.createDirectories(wt)
         wt.resolve(fileName).writeText(PackLoader.json.encodeToString(file))
+    }
+
+    /** Writes a walkthrough month file under a route subdirectory (docs/PLAN.md Phase 5). */
+    fun writeRouteWalkthrough(dir: Path, routeId: String, file: WalkthroughFile) {
+        val route = dir.resolve("walkthrough").resolve(routeId)
+        Files.createDirectories(route)
+        route.resolve("${file.month}.json").writeText(PackLoader.json.encodeToString(file))
+    }
+
+    fun writeAnswers(dir: Path, answers: AnswersFile) {
+        dir.resolve("answers.json").writeText(PackLoader.json.encodeToString(answers))
     }
 
     fun writeBonds(dir: Path, bonds: BondsFile) {

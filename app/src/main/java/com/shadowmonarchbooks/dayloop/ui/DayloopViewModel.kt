@@ -8,11 +8,14 @@ import com.shadowmonarchbooks.dayloop.data.progress.PackSeed
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
 import com.shadowmonarchbooks.dayloop.data.progress.ProfileEntity
 import com.shadowmonarchbooks.dayloop.data.progress.StepStateEntity
+import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.progress.CalendarSpan
 import com.shadowmonarchbooks.dayloop.progress.Clock
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.widget.WidgetUpdater
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,6 +33,7 @@ data class ProfileUi(
     val id: Long,
     val packId: String,
     val name: String,
+    val routeId: String,
     val clockDate: String,
     val contentVersion: Int,
 )
@@ -37,13 +41,19 @@ data class ProfileUi(
 /**
  * Everything the screens render: the pack registry merged with the active
  * profile's progress. `currentDate` is the persisted in-game clock (End-Day),
- * falling back to the first authored day until a profile exists.
+ * falling back to the active route's first authored day until a profile
+ * exists. `days` are the walkthrough days of the profile's route
+ * (docs/PLAN.md Phase 5).
  */
 data class DayloopUiState(
     val packs: List<LoadedPack> = emptyList(),
     val selectedSlug: String? = null,
     val profiles: List<ProfileUi> = emptyList(),
     val activeProfile: ProfileUi? = null,
+    val activeRouteId: String = Routes.DEFAULT,
+    val routeLabel: String? = null,
+    /** Authored days for the active route, keyed by ISO date. */
+    val days: Map<String, Day> = emptyMap(),
     val marks: Map<StepKey, StepMark> = emptyMap(),
     /** Saved marks whose (date, index) no longer resolves in current content. */
     val orphans: Set<StepKey> = emptySet(),
@@ -51,7 +61,8 @@ data class DayloopUiState(
     val selected: LoadedPack? get() = packs.firstOrNull { it.slug == selectedSlug }
 
     val currentDate: String?
-        get() = activeProfile?.clockDate ?: selected?.sortedDates?.firstOrNull()
+        get() = activeProfile?.clockDate
+            ?: selected?.sortedDates(activeRouteId)?.firstOrNull()
 
     val calendarSpan: CalendarSpan?
         get() = selected?.pack?.calendar?.let {
@@ -71,20 +82,26 @@ data class DayloopUiState(
     }
 
     fun markAt(date: String, index: Int): StepMark? = marks[StepKey(date, index)]
+
+    fun day(date: String): Day? = days[date]
+
+    val authoredMonths: List<String>
+        get() = days.keys.map { it.take(7) }.distinct().sorted()
 }
 
-private fun ProfileEntity.toUi() = ProfileUi(id, packId, name, clockDate, contentVersion)
+private fun ProfileEntity.toUi() = ProfileUi(id, packId, name, routeId, clockDate, contentVersion)
 
 /**
  * Merges the read-only pack registry (PackStore) with persisted progress
  * (ProgressRepository) into one StateFlow; all mutations go through the
- * repository.
+ * repository. Every state change also nudges the home-screen widget.
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class DayloopViewModel @Inject constructor(
     private val store: PackStore,
     private val repo: ProgressRepository,
+    private val widgetUpdater: WidgetUpdater,
 ) : ViewModel() {
 
     val state: StateFlow<DayloopUiState> = store.state
@@ -116,9 +133,18 @@ class DayloopViewModel @Inject constructor(
         viewModelScope.launch {
             repo.ensureProfiles(
                 store.state.value.packs.map { loaded ->
-                    PackSeed(loaded.slug, loaded.pack.contentVersion, spanOf(loaded))
+                    PackSeed(
+                        packId = loaded.slug,
+                        contentVersion = loaded.pack.contentVersion,
+                        span = spanOf(loaded),
+                        routeId = Routes.defaultId(loaded.pack),
+                    )
                 },
             )
+        }
+        // Keep the widget in sync with any state change (clock, marks, profiles).
+        viewModelScope.launch {
+            state.collect { widgetUpdater.requestPush() }
         }
     }
 
@@ -146,8 +172,8 @@ class DayloopViewModel @Inject constructor(
 
     // ---- Profiles ----
 
-    fun createProfile(name: String) = withSelectedSeed { seed ->
-        repo.createProfile(seed, name.ifBlank { "Profile" })
+    fun createProfile(name: String, routeId: String = Routes.DEFAULT) = withSelectedSeed { seed ->
+        repo.createProfile(seed.copy(routeId = routeId), name.ifBlank { "Profile" })
     }
 
     fun renameProfile(id: Long, name: String) = viewModelScope.launch {
@@ -179,12 +205,21 @@ class DayloopViewModel @Inject constructor(
             StepMark.entries.firstOrNull { it.name == row.mark }
                 ?.let { StepKey(row.date, row.stepIndex) to it }
         }.toMap()
-        val stepCounts = pack.daysByDate.mapValues { (_, day) -> day.steps.size }
+        // A profile's route may have vanished from content; fall back to the
+        // pack's default route — orphan review surfaces the affected marks.
+        val routeId = active?.routeId
+            ?.takeIf { pack.daysByRoute.containsKey(it) }
+            ?: Routes.defaultId(pack.pack)
+        val days = pack.daysByRoute[routeId].orEmpty()
+        val stepCounts = days.mapValues { (_, day) -> day.steps.size }
         return DayloopUiState(
             packs = packs,
             selectedSlug = slug,
             profiles = profiles.map { it.toUi() },
             activeProfile = active?.toUi(),
+            activeRouteId = routeId,
+            routeLabel = pack.routeLabel(routeId),
+            days = days,
             marks = marks,
             orphans = if (active != null) ProgressLogic.orphans(marks, stepCounts) else emptySet(),
         )
@@ -196,7 +231,16 @@ class DayloopViewModel @Inject constructor(
 
     private fun withSelectedSeed(block: suspend (PackSeed) -> Unit) {
         val pack = state.value.selected ?: return
-        viewModelScope.launch { block(PackSeed(pack.slug, pack.pack.contentVersion, spanOf(pack))) }
+        viewModelScope.launch {
+            block(
+                PackSeed(
+                    packId = pack.slug,
+                    contentVersion = pack.pack.contentVersion,
+                    span = spanOf(pack),
+                    routeId = Routes.defaultId(pack.pack),
+                ),
+            )
+        }
     }
 
     private fun withActiveProfile(block: suspend (Long) -> Unit) {
@@ -207,7 +251,12 @@ class DayloopViewModel @Inject constructor(
     private fun withActivePack(block: suspend (Long, PackSeed) -> Unit) {
         val pack = state.value.selected ?: return
         val profile = state.value.activeProfile ?: return
-        val seed = PackSeed(pack.slug, pack.pack.contentVersion, spanOf(pack))
+        val seed = PackSeed(
+            packId = pack.slug,
+            contentVersion = pack.pack.contentVersion,
+            span = spanOf(pack),
+            routeId = profile.routeId,
+        )
         viewModelScope.launch { block(profile.id, seed) }
     }
 }

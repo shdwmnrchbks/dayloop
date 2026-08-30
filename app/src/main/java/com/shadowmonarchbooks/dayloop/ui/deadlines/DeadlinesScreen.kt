@@ -41,7 +41,7 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
         EmptyState("No deadlines authored in this pack yet.")
         return
     }
-    val current = state.currentDate ?: pack.sortedDates.firstOrNull()
+    val current = state.currentDate ?: state.days.keys.sorted().firstOrNull()
 
     val sorted = pack.deadlines.sortedWith(
         compareBy({ deadlineStart(it) ?: "9999-12-31" }, { it.id }),
