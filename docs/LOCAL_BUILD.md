@@ -20,6 +20,7 @@ Set at **user level** (effective in newly opened terminals):
 
 - `JAVA_HOME = C:\Users\airenz1202\.dsh-tools\jdk-17`
 - `ANDROID_HOME = C:\Users\airenz1202\AppData\Local\Android\Sdk`
+- `PATH` += `%USERPROFILE%\.dsh-tools\mingit\cmd` (for `git`)
 - `PATH` += `%LOCALAPPDATA%\Android\Sdk\platform-tools` (for `adb`)
 
 `local.properties` in the repo root pins `sdk.dir` for Gradle (gitignored).
