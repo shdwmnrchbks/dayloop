@@ -93,6 +93,65 @@
       "location": "Central Street movie theater"
     },
     {
+      "id": "p5r.activity.book.buchikos-story",
+      "label": "Read 'Buchiko's Story'",
+      "kind": "book",
+      "statGains": { "kindness": 3 },
+      "location": "Metro / class"
+    },
+    {
+      "id": "p5r.activity.book.wise-mens-words",
+      "label": "Read 'Wise Men's Words'",
+      "kind": "book",
+      "statGains": { "knowledge": 3 },
+      "location": "Metro / class"
+    },
+    {
+      "id": "p5r.activity.book.craft-of-cinema",
+      "label": "Read 'The Craft of Cinema'",
+      "kind": "book",
+      "location": "Shinjuku bookstore / metro",
+      "notes": "Reading it makes movies and DVDs grant bonus stats."
+    },
+    {
+      "id": "p5r.activity.book.game-secrets",
+      "label": "Read 'Game Secrets'",
+      "kind": "book",
+      "location": "Shinjuku bookstore / class",
+      "notes": "Reading it unlocks 'the technique' for retro games."
+    },
+    {
+      "id": "p5r.activity.dvd.not-so-hot-betsy",
+      "label": "Watch 'Not-so-hot Betsy'",
+      "kind": "dvd",
+      "statGains": { "charm": 2 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.the-running-dead",
+      "label": "Watch 'The Running Dead'",
+      "kind": "dvd",
+      "statGains": { "guts": 2 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.icu",
+      "label": "Watch 'ICU'",
+      "kind": "dvd",
+      "statGains": { "kindness": 3 },
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.jail-break",
+      "label": "Watch 'Jail Break'",
+      "kind": "dvd",
+      "location": "Attic TV",
+      "notes": "12-part rental series; needs the DVD player. Rented 06/29; watch from July."
+    },
+    {
       "id": "p5r.activity.movie.cake-knight-rises",
       "label": "Watch 'The Cake Knight Rises'",
       "kind": "other",

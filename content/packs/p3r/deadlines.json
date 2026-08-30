@@ -1,0 +1,22 @@
+{
+  "deadlines": [
+    {
+      "id": "p3r.deadline.fullmoon.april",
+      "label": "April full moon — mandatory evening story event",
+      "kind": "other",
+      "date": "2009-04-09"
+    },
+    {
+      "id": "p3r.deadline.tartarus.first-cycle",
+      "label": "First Tartarus cycle — Thebel exploration evenings",
+      "kind": "other",
+      "window": { "start": "2009-04-20", "end": "2009-04-26" }
+    },
+    {
+      "id": "p3r.deadline.aohige-sale.muscle-drink",
+      "label": "Aohige Pharmacy one-day sale — buy a Muscle Drink (Elizabeth request prep)",
+      "kind": "missable",
+      "date": "2009-04-25"
+    }
+  ]
+}

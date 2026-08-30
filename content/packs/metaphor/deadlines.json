@@ -1,0 +1,16 @@
+{
+  "deadlines": [
+    {
+      "id": "metaphor.deadline.petition",
+      "label": "Deliver the village petition to the magistrate",
+      "kind": "missable",
+      "window": { "start": "2100-06-12", "end": "2100-06-16" }
+    },
+    {
+      "id": "metaphor.deadline.trial",
+      "label": "Face the trial guardian before the coronation bell",
+      "kind": "other",
+      "date": "2100-06-28"
+    }
+  ]
+}

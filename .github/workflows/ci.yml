@@ -22,7 +22,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build and test
-        run: ./gradlew assembleDebug :tools:pack:test
+        run: ./gradlew assembleDebug :core:pack:test :tools:pack:test
 
       - name: Validate content packs (packlint)
-        run: ./gradlew packlint
+        run: |
+          ./gradlew packlint
+          ./gradlew packlint "-Ppack=content/packs/p3r"
+          ./gradlew packlint "-Ppack=content/packs/metaphor"

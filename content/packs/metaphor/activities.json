@@ -1,0 +1,17 @@
+{
+  "activities": [
+    {
+      "id": "metaphor.activity.book.merchant-travels",
+      "label": "Read 'Travels of a Merchant'",
+      "kind": "book",
+      "statGains": { "eloquence": 3 },
+      "location": "Coach / camp"
+    },
+    {
+      "id": "metaphor.activity.bounty-board",
+      "label": "Check the bounty board",
+      "kind": "other",
+      "location": "Town square"
+    }
+  ]
+}

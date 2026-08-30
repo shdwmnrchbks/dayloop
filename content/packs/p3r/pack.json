@@ -1,0 +1,28 @@
+{
+  "packId": "p3r",
+  "title": "Persona 3 Reload",
+  "contentVersion": 1,
+  "timeModel": "weekdayGrid",
+  "calendar": {
+    "startDate": "2009-04-08",
+    "endDate": "2009-04-30"
+  },
+  "slots": [
+    { "id": "day", "label": "Day" },
+    { "id": "afternoon", "label": "After School" },
+    { "id": "evening", "label": "Evening" }
+  ],
+  "stats": [
+    { "id": "academics", "label": "Academics" },
+    { "id": "charm", "label": "Charm" },
+    { "id": "courage", "label": "Courage" }
+  ],
+  "capabilities": {
+    "exams": true,
+    "weather": false
+  },
+  "labels": {
+    "bond": "Social Link",
+    "stat": "Social Stat"
+  }
+}

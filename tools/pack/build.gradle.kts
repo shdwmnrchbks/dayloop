@@ -1,12 +1,12 @@
-// Pack schema + packlint: the content-pack contract and its validator.
-// Game data lives in /content/packs/<slug>/; Kotlin UI code never knows
-// game-specific terms (docs/PLAN.md §3).
+// packlint: the content-pack validator. The schema/loader it validates live in
+// :core:pack so the app shares the exact same contract (docs/PLAN.md §3).
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
 }
 
 dependencies {
+    api(project(":core:pack"))
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:${libs.versions.kotlin.get()}")

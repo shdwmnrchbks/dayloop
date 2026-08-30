@@ -1,0 +1,31 @@
+{
+  "packId": "metaphor",
+  "title": "Metaphor: ReFantazio",
+  "contentVersion": 1,
+  "timeModel": "dayCounter",
+  "calendar": {
+    "startDate": "2100-06-01",
+    "endDate": "2100-06-30",
+    "nonPlayableDates": ["2100-06-14", "2100-06-15"]
+  },
+  "slots": [
+    { "id": "day", "label": "Day" },
+    { "id": "afternoon", "label": "Afternoon" },
+    { "id": "evening", "label": "Evening" }
+  ],
+  "stats": [
+    { "id": "courage", "label": "Courage" },
+    { "id": "imagery", "label": "Imagery" },
+    { "id": "eloquence", "label": "Eloquence" },
+    { "id": "consideration", "label": "Consideration" },
+    { "id": "insight", "label": "Insight" }
+  ],
+  "capabilities": {
+    "exams": false,
+    "weather": false
+  },
+  "labels": {
+    "bond": "Follower",
+    "stat": "Royal Virtue"
+  }
+}

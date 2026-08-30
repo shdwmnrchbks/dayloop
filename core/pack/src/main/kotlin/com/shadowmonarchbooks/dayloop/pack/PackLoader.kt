@@ -1,11 +1,11 @@
-package com.shadowmonarchbooks.dayloop.tools.pack
+package com.shadowmonarchbooks.dayloop.pack
 
 import kotlinx.serialization.json.Json
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.ActivitiesFile
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.BondsFile
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.DeadlinesFile
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Pack
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.WalkthroughFile
+import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
+import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.Pack
+import com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.io.path.extension
@@ -29,13 +29,49 @@ class PackLoadResult(
     val parseIssues: List<LintIssue>,
 )
 
-/** Loads and JSON-decodes a pack directory; structural rules live in PackLint. */
+/**
+ * Loads and JSON-decodes a pack directory; structural rules live in PackLint.
+ *
+ * Two entry points share one JSON configuration:
+ *  - [load] reads a filesystem directory (lint tooling).
+ *  - [decodeX] functions parse pre-read text (Android assets).
+ */
 object PackLoader {
 
     val json = Json {
         ignoreUnknownKeys = true
         encodeDefaults = false
     }
+
+    // --- String-based decoding (e.g. Android assets read the text, then call these) ---
+
+    fun decodePack(jsonText: String): Pack? =
+        runCatching { json.decodeFromString(Pack.serializer(), jsonText) }.getOrNull()
+
+    fun decodeBonds(jsonText: String): BondsFile? =
+        runCatching { json.decodeFromString(BondsFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeActivities(jsonText: String): ActivitiesFile? =
+        runCatching { json.decodeFromString(ActivitiesFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeDeadlines(jsonText: String): DeadlinesFile? =
+        runCatching { json.decodeFromString(DeadlinesFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeWalkthrough(jsonText: String): WalkthroughFile? =
+        runCatching { json.decodeFromString(WalkthroughFile.serializer(), jsonText) }.getOrNull()
+
+    /** Returns the first-line error message if [jsonText] fails to decode as [what]; null when valid. */
+    fun <T> decodeError(jsonText: String, what: String, deserializer: kotlinx.serialization.DeserializationStrategy<T>): String? =
+        try {
+            json.decodeFromString(deserializer, jsonText)
+            null
+        } catch (e: SerializationException) {
+            "invalid JSON structure in $what: ${e.message?.lineSequence()?.firstOrNull()}"
+        } catch (e: IllegalArgumentException) {
+            "invalid JSON in $what: ${e.message?.lineSequence()?.firstOrNull()}"
+        }
+
+    // --- Filesystem-based loading (lint tooling) ---
 
     fun load(packDir: Path): PackLoadResult {
         val issues = mutableListOf<LintIssue>()
@@ -53,15 +89,12 @@ object PackLoader {
 
         fun <T> parse(jsonText: String?, file: Path?, what: String, deserializer: kotlinx.serialization.DeserializationStrategy<T>): T? {
             if (jsonText == null || file == null) return null
-            return try {
-                json.decodeFromString(deserializer, jsonText)
-            } catch (e: SerializationException) {
-                issues += LintIssue(LintIssue.Severity.ERROR, what, "invalid JSON structure in ${file.fileName}: ${e.message?.lineSequence()?.firstOrNull()}")
-                null
-            } catch (e: IllegalArgumentException) {
-                issues += LintIssue(LintIssue.Severity.ERROR, what, "invalid JSON in ${file.fileName}: ${e.message?.lineSequence()?.firstOrNull()}")
-                null
+            val error = decodeError(jsonText, what, deserializer)
+            if (error != null) {
+                issues += LintIssue(LintIssue.Severity.ERROR, what, error)
+                return null
             }
+            return json.decodeFromString(deserializer, jsonText)
         }
 
         val packFile = packDir.resolve("pack.json")

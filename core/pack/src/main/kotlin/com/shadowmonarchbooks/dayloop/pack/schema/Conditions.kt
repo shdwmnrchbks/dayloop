@@ -1,4 +1,4 @@
-package com.shadowmonarchbooks.dayloop.tools.pack.schema
+package com.shadowmonarchbooks.dayloop.pack.schema
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,7 +25,7 @@ data class AnyOf(val anyOf: List<Condition>) : Condition
 @SerialName("weekdays")
 data class Weekdays(val value: List<String>) : Condition
 
-/** True when the pack's weather system reports the given state (P4G-style). */
+/** True when the pack's weather system reports the given state (optional capability; unused by the first three packs). */
 @Serializable
 @SerialName("weather")
 data class Weather(val equals: String) : Condition

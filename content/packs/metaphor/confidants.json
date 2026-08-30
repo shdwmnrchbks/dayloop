@@ -1,0 +1,23 @@
+{
+  "bonds": [
+    {
+      "id": "metaphor.bond.mage",
+      "label": "Mage",
+      "characterLabel": "Gallica",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-02", "location": "Tavern", "notes": "Fit-check rank: no gate." },
+        { "rank": 2, "availableFrom": "2100-06-17", "gates": { "type": "statGte", "stat": "insight", "rank": 2 }, "notes": "Fit-check rank: exercises a Royal Virtue gate." }
+      ]
+    },
+    {
+      "id": "metaphor.bond.warrior",
+      "label": "Warrior",
+      "characterLabel": "Strohl",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-03", "location": "Barracks" },
+        { "rank": 2, "availableFrom": "2100-06-10", "gates": { "type": "statGte", "stat": "courage", "rank": 2 } },
+        { "rank": 3, "availableFrom": "2100-06-24" }
+      ]
+    }
+  ]
+}

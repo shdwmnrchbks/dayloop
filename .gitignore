@@ -1,6 +1,8 @@
-# Third-party source archive (all-rights-reserved content — facts extracted
-# into /content via tools/packgen; the archive itself must never be committed)
+# Third-party source archives (all-rights-reserved content — facts extracted
+# into /content via tools/packgen; the archives themselves must never be committed)
 P5R_100p_Guide_AI_Package/
+P3R_100p_Guide_AI_Package/
+Metaphor_ReFantazio_Guide_AI_Package/
 
 # Gradle
 .gradle/

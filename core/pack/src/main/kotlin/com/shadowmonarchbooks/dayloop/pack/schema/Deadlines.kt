@@ -1,4 +1,4 @@
-package com.shadowmonarchbooks.dayloop.tools.pack.schema
+package com.shadowmonarchbooks.dayloop.pack.schema
 
 import kotlinx.serialization.Serializable
 

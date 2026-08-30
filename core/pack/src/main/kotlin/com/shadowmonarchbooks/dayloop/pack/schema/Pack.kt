@@ -1,4 +1,4 @@
-package com.shadowmonarchbooks.dayloop.tools.pack.schema
+package com.shadowmonarchbooks.dayloop.pack.schema
 
 import kotlinx.serialization.Serializable
 
@@ -13,7 +13,7 @@ data class Pack(
     val title: String,
     /** Bumped on every content change; saves stamp packId @ contentVersion. */
     val contentVersion: Int,
-    /** "weekdayGrid" (P3R/P4G/P5R) or "dayCounter" (Metaphor). */
+    /** "weekdayGrid" (P3R/P5R) or "dayCounter" (Metaphor). */
     val timeModel: String,
     val calendar: CalendarRange,
     /** Time slots the engine advances through, e.g. afternoon/evening. */

@@ -1,6 +1,6 @@
 # dayloop
 
-**Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — Persona 3 Reload, Persona 4 Golden, Persona 5 Royal, Metaphor: ReFantazio.
+**Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — launching with Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio. The engine stays pack-generic; further ATLUS titles can drop in later.
 
 > *This is a fan-made tool. It is not affiliated with or endorsed by ATLUS/SEGA. No game assets are bundled.*
 
@@ -30,18 +30,21 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 | Phase | Deliverable |
 |---|---|
 | 0 | Repo skeleton, Gradle version catalog, CI (build + test + packlint) |
-| 1 | Pack schema + `packlint` validator + cross-game fit checks (mini-packs: Metaphor `dayCounter` model, P4G weather model) |
+| 1 | Pack schema + `packlint` validator + cross-game fit checks (mini-packs: Metaphor `dayCounter` model, P3R `weekdayGrid` model) |
 | 2 | Read-only app: renders seeded P5R April–May days, calendar, confidant screens |
 | 3 | Progress layer: checkboxes, End-Day advancement, profiles/reset |
 | 4 | Full P5R pack authoring (template + override days) |
 | 5 | Polish: routes/profiles, Glance widget, exam answers, search, icon |
-| 6 | Second complete pack (Metaphor or P4G) proving drop-in claim |
+| 6 | Second complete pack (P3R or Metaphor) proving drop-in claim, then the third to complete the first-release trio |
 
 See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 Phase 0 + Phase 1 (P5R scope) done: pack schema, `packlint`, `packgen` extractor, and a validated Apr–May P5R walkthrough. Next: June–February authoring via `packgen` + curation, then read-only app screens.
+🚧 Phase 0–2 done: pack schema + `packlint` + `packgen`, a validated Apr–Jun P5R walkthrough, and the read-only app rendering all three packs from bundled assets with a pack switcher — P5R (Apr–Jun authored), P3R (real curated April 2009 mini-pack), and Metaphor (`dayCounter` fit-check mini-pack with synthetic data; see docs/authoring-guide.md).
+Next: July–February P5R authoring via `packgen` + curation, then the Phase 3 progress layer (checkboxes, End-Day, profiles).
+
+Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 
 ## License
 

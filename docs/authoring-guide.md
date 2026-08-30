@@ -44,3 +44,15 @@ content/packs/p5r/
 - `spoiler: true` hides story context behind a tap (docs/PLAN.md §6).
 - Coverage warnings are expected while a pack grows; aim to retire them one
   month at a time.
+
+## Mini-packs (schema fit-checks)
+
+- `content/packs/metaphor/` is a **synthetic fit-check, not game content**:
+  it exercises the schema's `dayCounter` side (Royal Virtue stat gates,
+  non-playable dates, deadline windows) and renders through the same engine
+  unmodified. Never treat its labels as game facts.
+- `content/packs/p3r/` is real curated data (April 2009 slice from the
+  HayateButler guide, docs/sources.md) and will grow into the full pack —
+  its IDs are already immutable via its baseline.
+- Both packs must keep passing `packlint "-Ppack=content/packs/<slug>"` (CI
+  enforces this).

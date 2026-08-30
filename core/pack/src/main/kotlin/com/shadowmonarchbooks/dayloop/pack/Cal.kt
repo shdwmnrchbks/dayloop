@@ -1,13 +1,13 @@
-package com.shadowmonarchbooks.dayloop.tools.pack
+package com.shadowmonarchbooks.dayloop.pack
 
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.AllOf
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.AnyOf
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.BondRankGte
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Condition
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.StatGte
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.StoryFlag
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Weather
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Weekdays
+import com.shadowmonarchbooks.dayloop.pack.schema.AllOf
+import com.shadowmonarchbooks.dayloop.pack.schema.AnyOf
+import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
+import com.shadowmonarchbooks.dayloop.pack.schema.Condition
+import com.shadowmonarchbooks.dayloop.pack.schema.StatGte
+import com.shadowmonarchbooks.dayloop.pack.schema.StoryFlag
+import com.shadowmonarchbooks.dayloop.pack.schema.Weather
+import com.shadowmonarchbooks.dayloop.pack.schema.Weekdays
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeParseException

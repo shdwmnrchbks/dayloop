@@ -1,0 +1,118 @@
+{
+  "bonds": [
+    {
+      "id": "p3r.bond.fool",
+      "label": "Fool",
+      "characterLabel": "S.E.E.S.",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-18",
+          "notes": "Unlocked automatically by the story; it advances on its own and never spends a time slot."
+        },
+        {
+          "rank": 2,
+          "availableFrom": "2009-04-20",
+          "notes": "Judgment call: pinned to the first Tartarus visit — the guide only confirms rank 2 is reached by the end of April."
+        }
+      ]
+    },
+    {
+      "id": "p3r.bond.magician",
+      "label": "Magician",
+      "characterLabel": "Junpei",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-22",
+          "location": "Classroom 2-F",
+          "notes": "Daytime availability: Tue, Thu, Fri."
+        },
+        {
+          "rank": 2,
+          "availableFrom": "2009-04-28",
+          "location": "Classroom 2-F"
+        },
+        {
+          "rank": 3,
+          "availableFrom": "2009-04-30",
+          "location": "Classroom 2-F"
+        }
+      ]
+    },
+    {
+      "id": "p3r.bond.chariot",
+      "label": "Chariot",
+      "characterLabel": "Kazushi",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-23",
+          "location": "Practice Field (Gym Hallway)",
+          "notes": "Starts by joining the track team. Daytime availability: Mon, Tue, Thu, Fri."
+        },
+        {
+          "rank": 2,
+          "availableFrom": "2009-04-24",
+          "location": "Practice Field (Gym Hallway)"
+        }
+      ]
+    },
+    {
+      "id": "p3r.bond.strength",
+      "label": "Strength",
+      "characterLabel": "Yuko",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-24",
+          "location": "2F Classroom Hallway",
+          "notes": "Greet Yuko and offer to walk home with her first. Daytime availability: Wed, Sat."
+        },
+        {
+          "rank": 2,
+          "availableFrom": "2009-04-25",
+          "location": "2F Classroom Hallway"
+        }
+      ]
+    },
+    {
+      "id": "p3r.bond.hierophant",
+      "label": "Hierophant",
+      "characterLabel": "Bunkichi & Mitsuko",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-26",
+          "location": "Bookworms (Iwatodai Strip Mall 1F)",
+          "notes": "Flag: visit the store once, then fetch the persimmon leaf from the school's Young Tree. Daytime availability: Tue–Sun."
+        }
+      ]
+    },
+    {
+      "id": "p3r.bond.emperor",
+      "label": "Emperor",
+      "characterLabel": "Hidetoshi",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-27",
+          "location": "Faculty Office (1F Faculty Office Hallway)",
+          "notes": "Starts by signing the student council papers. Daytime availability: Mon, Wed, Fri at the Student Council Room (2F Classroom Hallway)."
+        }
+      ]
+    },
+    {
+      "id": "p3r.bond.hermit",
+      "label": "Hermit",
+      "ranks": [
+        {
+          "rank": 1,
+          "availableFrom": "2009-04-29",
+          "location": "Desk in your room",
+          "notes": "Play the MMORPG on the shared computer. Daytime availability: Sundays and certain holidays."
+        }
+      ]
+    }
+  ]
+}

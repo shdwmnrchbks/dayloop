@@ -1,9 +1,10 @@
 # dayloop — Architecture & Build Plan
 
-Working plan v1 (updated after multi-game amendment). Decisions locked during planning:
+Working plan v1.1 (updated after the multi-game amendment and the P4G descope). Decisions locked during planning:
 
 - **Stack:** Kotlin + Jetpack Compose (native Android first)
 - **First complete pack:** Persona 5 Royal
+- **Title focus (v1.1):** the first three packs are **Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio**. Persona 4 Golden is deferred — no roadmap work targets it for now, and the schema keeps it (and any future title) drop-in.
 - **Content:** authored + bundled JSON, validated by tooling; never scraped prose
 - **Distribution:** private GitHub repo now, personal use first, designed so going public later is cheap
 - **Long-term:** upgradeable engine supporting other ATLUS calendar games via data packs
@@ -31,7 +32,7 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 - Home-screen widget (Glance)
 - Exam/test answer sheets
 - Requests list
-- Additional packs: Metaphor: ReFantazio, P3R, P4G (drop-in via schema)
+- Additional packs: P3R and Metaphor: ReFantazio next; P4G and further titles stay drop-in candidates via schema (deferred)
 
 ## 2. Key design decision: model entities, not paragraphs
 
@@ -46,12 +47,12 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 
 ### 3.1 Generic vocabulary, pack-supplied labels
 Engine terms: `CalendarDate`, `TimeSlot`, `Activity`, `Stat`, `Bond`, `Deadline`, `MissableWindow`.
-Packs map display names: Bond → Confidant (P5R) / Social Link (P3/P4) / Follower (Metaphor); Stat → Charm/Kindness/…/Royal Virtues. UI layer hardcodes no English game terms.
+Packs map display names: Bond → Confidant (P5R) / Social Link (P3R) / Follower (Metaphor); Stat → Charm/Kindness/…/Royal Virtues. UI layer hardcodes no English game terms.
 
 ### 3.2 Capability manifest (in `pack.json`)
-- `timeModel`: `"weekdayGrid"` (P3R/P4G/P5R) vs `"dayCounter"` (Metaphor travel calendar)
+- `timeModel`: `"weekdayGrid"` (P3R/P5R) vs `"dayCounter"` (Metaphor travel calendar)
 - `slots`: e.g. P5R `[Afternoon, Evening]`; count/names come from data
-- Optional subsystem flags: exams, weather (true for P4G), stat system flavor, fusion extras (parked)
+- Optional subsystem flags: exams, weather (kept as an optional flag; unused by the first three packs), stat system flavor, fusion extras (parked)
 
 ### 3.3 Typed condition DSL for availability
 Structured predicates instead of free text, combinable via `allOf`/`anyOf`:
@@ -82,7 +83,7 @@ Game-switcher lists installed packs (bundled now, imported later); separate prof
 
 ## 4. Process guardrails
 
-- **Design for three, build one.** Before mass-authoring P5R, throwaway mini-packs exercise the schema: one Metaphor month (`dayCounter`, virtue gates, remaining-day counters) and one P4G month (weather gating, fog deadlines). Both must render through the same engine unmodified before Phase 4 authoring begins.
+- **Design for three, build one.** Before mass-authoring P5R, throwaway mini-packs exercise the schema: one Metaphor month (`dayCounter`, virtue gates, remaining-day counters) and one P3R month (same `weekdayGrid` model as P5R, but a different stat set and different gate shapes, e.g. full-moon-operation-style deadlines). Both must render through the same engine unmodified before Phase 4 authoring begins.
 - **Facts vs prose.** Schedules, thresholds, dates, exam answers = facts (safe to structure). Guide sentences = rewritten in our own words.
 - **No game assets ever bundled.** Original typography/shapes only; unofficial-fan-tool naming ready for public flip.
 
@@ -116,7 +117,7 @@ Today (hero: current slot, next action, deadline bar) → Day detail (slot-by-sl
 | 3 | Progress layer (checkboxes, End-Day, profiles/reset) | Medium |
 | 4 | Full P5R pack authoring (**long pole**) | Large |
 | 5 | Routes/profiles polish, widget, exam answers, search, icon | Flexible |
-| 6 | Second complete pack (Metaphor or P4G) end-to-end | Large |
+| 6 | Second complete pack (P3R or Metaphor) end-to-end; the third completes the first-release trio | Large |
 
 ## 8. Repo layout
 

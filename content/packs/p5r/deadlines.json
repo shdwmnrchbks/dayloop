@@ -17,6 +17,12 @@
       "label": "Second palace heist — steal the Treasure",
       "kind": "palace",
       "date": "2016-05-25"
+    },
+    {
+      "id": "p5r.deadline.palace3",
+      "label": "Third palace heist — steal the Treasure",
+      "kind": "palace",
+      "date": "2016-06-28"
     }
   ]
 }

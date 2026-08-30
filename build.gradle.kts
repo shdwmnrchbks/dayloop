@@ -1,5 +1,15 @@
 // Root build configuration. Module-specific logic lives in app/build.gradle.kts
 // and tools/pack/build.gradle.kts.
+
+// javapoet 1.13.0 (pulled by AGP) removed ClassName.canonicalName(), which the
+// Hilt Gradle plugin's aggregation worker still calls. Pinning the last version
+// that has it first on the build classpath fixes :app:hiltAggregateDeps*.
+buildscript {
+    dependencies {
+        classpath("com.squareup:javapoet:1.12.1")
+    }
+}
+
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false

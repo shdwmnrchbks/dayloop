@@ -2,15 +2,16 @@ package com.shadowmonarchbooks.dayloop.tools.pack
 
 import java.nio.file.Files
 import kotlin.io.path.writeText
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Activity
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.ActivitiesFile
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Bond
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.BondsFile
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Deadline
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.DeadlinesFile
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Day
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.RankStep
-import com.shadowmonarchbooks.dayloop.tools.pack.schema.Step
+import com.shadowmonarchbooks.dayloop.pack.LintIssue
+import com.shadowmonarchbooks.dayloop.pack.schema.Activity
+import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.Bond
+import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
+import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
+import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.RankStep
+import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -109,9 +110,9 @@ class PackLintTest {
                         id = "t1.bond.fool",
                         label = "Fool",
                         ranks = listOf(
-                            com.shadowmonarchbooks.dayloop.tools.pack.schema.RankStep(rank = 1),
-                            com.shadowmonarchbooks.dayloop.tools.pack.schema.RankStep(rank = 3),
-                            com.shadowmonarchbooks.dayloop.tools.pack.schema.RankStep(rank = 2),
+                            RankStep(rank = 1),
+                            RankStep(rank = 3),
+                            RankStep(rank = 2),
                         ),
                     )
                 )
