@@ -73,7 +73,7 @@ fun AnswersScreen(
                             modifier = Modifier.weight(1f),
                         )
                         Text(
-                            text = formatDate(sheet.date),
+                            text = formatDate(sheet.date, pack.calendar),
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )

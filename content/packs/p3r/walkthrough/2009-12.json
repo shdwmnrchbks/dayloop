@@ -1,0 +1,303 @@
+{
+  "month": "2009-12",
+  "days": [
+    {
+      "date": "2009-12-01",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Watch Ryoji's Link Episode" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-12-02",
+      "weekday": "wed",
+      "dayKind": "school",
+      "notes": "Full moon — the story scenes play out tonight; the evening slot itself stays free.",
+      "steps": [
+        { "label": "Hang out with the exchange student — Temperance reaches rank 10 (MAX)" },
+        { "label": "Evening: play Edgar's House of Fortunes at Game Parade" }
+      ]
+    },
+    {
+      "date": "2009-12-03",
+      "weekday": "thu",
+      "dayKind": "school",
+      "notes": "From now on, evening events that are not Link Episodes, dorm hangouts, or dating site notes are optional — they're worth watching for the full story.",
+      "steps": [
+        { "label": "Evening: read the Dating Site Note (Track Team) on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-04",
+      "weekday": "fri",
+      "dayKind": "school",
+      "notes": "Request #97's reward is useful for the Secret Super Boss.",
+      "steps": [
+        { "label": "New Elizabeth's requests are available" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 4 (best answers: 2 > 1 > A)" },
+        { "label": "Evening: play Real Wheel Racer at Game Parade" }
+      ]
+    },
+    {
+      "date": "2009-12-05",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 9 (best answer: 1)" },
+        { "label": "Evening: spend time at Be Blue V" }
+      ]
+    },
+    {
+      "date": "2009-12-06",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥14,800 — 3 Hogyoku Apple & 2 Hiranya Mandarin)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 8" },
+        { "label": "Evening: run the Image Muscle Trainer on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-07",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 5 (best answers: 2 > 1 > 2)" },
+        { "label": "Evening: run the Mental Instructor on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-08",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with the old couple — Hierophant reaches rank 9 (best answers: A > A)" },
+        { "label": "Evening: walk Koromaru (with Chihiro)" }
+      ]
+    },
+    {
+      "date": "2009-12-09",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 6 (best answers: 1/2 > A > 2 > 3)" },
+        { "label": "Evening: study with Ken and Koromaru" }
+      ]
+    },
+    {
+      "date": "2009-12-10",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Mitsuru — Empress reaches rank 7 (best answer: 1)" },
+        { "label": "Evening: brush Koromaru (Koromaru hangout)" }
+      ]
+    },
+    {
+      "date": "2009-12-11",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with the rival athlete — Star reaches rank 5 (best answers: 2 > 2)" },
+        { "label": "Evening: study with Mitsuru and Akihiko" }
+      ]
+    },
+    {
+      "date": "2009-12-12",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Sleep in class — your Social Stats are maxed" },
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 10 (MAX)" },
+        { "label": "Evening: study with Yukari, Junpei, and Fuuka" }
+      ]
+    },
+    {
+      "date": "2009-12-13",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥29,800 — Victory Headband & 10 Mind Supplement)" },
+        { "label": "Hang out with the rival athlete — Star reaches rank 6 (best answers: A > A > A > 2)" },
+        { "label": "Evening: study with everyone" }
+      ]
+    },
+    {
+      "date": "2009-12-14",
+      "weekday": "mon",
+      "dayKind": "exam",
+      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 6 with all answers correct.",
+      "steps": [
+        { "label": "Exam day — answer everything you can" }
+      ]
+    },
+    {
+      "date": "2009-12-15",
+      "weekday": "tue",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-12-16",
+      "weekday": "wed",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-12-17",
+      "weekday": "thu",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-12-18",
+      "weekday": "fri",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-12-19",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Watch Junpei's Link Episode" },
+        { "label": "Evening: watch Akihiko's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-12-20",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥49,800 — Pink Duffle Coat & 3 Luxe Shiruko Can)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 9" },
+        { "label": "Evening: read the Dating Site Note (Old Couple) on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-21",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Exam results" },
+        { "label": "Talk to Mitsuru for the exam reward" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 8 (romance: A > A > 1 > 2 > 1 / platonic: A > A > 2 > 2 > 1 > A)" },
+        { "label": "Evening: walk Koromaru (with Fuuka)" }
+      ]
+    },
+    {
+      "date": "2009-12-22",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 9 (romance: 3 > A > 1 / platonic: A > 1)" },
+        { "label": "Evening: walk Koromaru (with Mitsuru)" }
+      ]
+    },
+    {
+      "date": "2009-12-23",
+      "weekday": "wed",
+      "dayKind": "school",
+      "notes": "Save here to watch all the different Christmas Eve events tomorrow.",
+      "steps": [
+        { "label": "Hang out with the old couple — Hierophant reaches rank 10 (MAX)" },
+        { "label": "Chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: walk Koromaru (with Yukari)" }
+      ]
+    },
+    {
+      "date": "2009-12-24",
+      "weekday": "thu",
+      "dayKind": "school",
+      "notes": "Christmas Eve — choose who you wish to spend it with (or no one, for a free evening).",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Spend Christmas Eve with whoever you choose" }
+      ]
+    },
+    {
+      "date": "2009-12-25",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Kazushi — Chariot reaches rank 9 (best answer: 1)" },
+        { "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Ken" },
+        { "label": "Evening: watch Ken's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-12-26",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Hang out with Kenji — Moon reaches rank 10 (MAX)" },
+        { "label": "Evening: run the Muscle Boot Camp on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-27",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥99,000 — 2 Ruby & 5 Opal)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 10 (MAX)" },
+        { "label": "Evening: walk Koromaru (with Junpei)" }
+      ]
+    },
+    {
+      "date": "2009-12-28",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Pray at Naganaki Shrine's Monetary Offering" },
+        { "label": "Evening: run the Mindful Boot Camp on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-29",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Work part-time at Be Blue V (should unlock 'The Grindset Mindset')" },
+        { "label": "Evening: run the Veggie Farmer Sim on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-12-30",
+      "weekday": "wed",
+      "dayKind": "free",
+      "notes": "Carry the Star Arcana out of Tartarus until January 10.",
+      "steps": [
+        { "label": "Hang out with the rival athlete — Star reaches rank 7 (best answers: 2 > A > A > 2)" },
+        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
+        { "label": "Evening: Tartarus", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-12-31",
+      "weekday": "thu",
+      "dayKind": "story",
+      "notes": "Important story decision tonight.",
+      "steps": [
+        { "label": "Daytime: work part-time at Screen Shot" },
+        { "label": "Evening: watch Ryoji's Link Episode — an important story decision", "spoiler": true },
+        { "label": "Judgment reaches rank 1 (story)", "spoiler": true }
+      ]
+    }
+  ]
+}

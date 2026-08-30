@@ -1,0 +1,317 @@
+{
+  "month": "2009-10",
+  "days": [
+    {
+      "date": "2009-10-01",
+      "weekday": "thu",
+      "dayKind": "school",
+      "notes": "Carry Priestess, Hierophant, Lovers, Star, and Moon Arcanas out of Tartarus until the next visit (November 2). You should have earned 'The Strength of Our Hearts' by now — if not, use everyone's Theurgy at least once.",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Join the art club — Fortune reaches rank 6 (best answers: A > 2)" },
+        { "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade" },
+        { "label": "Evening: Tartarus", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-10-02",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Refuse the medicine at the school Nurse's Office" },
+        { "label": "Draw a relationship fortune for Fuuka at Naganaki Shrine" },
+        { "label": "Evening: join Yukari's cooking hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-10-03",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Hang out with Fuuka — Priestess reaches rank 10 (MAX)" },
+        { "label": "Evening: join Junpei's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-10-04",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-10-05",
+      "weekday": "mon",
+      "dayKind": "free",
+      "notes": "The skill card you receive depends on Shinjiro's level.",
+      "steps": [
+        { "label": "Enter Shinjiro's room and open the desk drawer — Shinjiro Link Episode 5" },
+        { "label": "Walk Koromaru (with Aigis)" }
+      ]
+    },
+    {
+      "date": "2009-10-06",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "New Elizabeth's requests are available" },
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Watch Koromaru's Link Episode" },
+        { "label": "Evening: new software and notes are available" },
+        { "label": "Buy the Part-Time Master at MangaStar Net Café (Strip Mall 3F)" },
+        { "label": "Evening: run the Part-Time Master on the dorm's shared computer (increases part-time job income)" }
+      ]
+    },
+    {
+      "date": "2009-10-07",
+      "weekday": "wed",
+      "dayKind": "school",
+      "notes": "Social stat recovery point — if your Academics rank-ups don't match the guide, replace future part-time jobs and dorm hangouts with arcade or Wakatsu visits so the Empress link unlocks on time.",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Hang out with the rival athlete — Star reaches rank 3 (best answers: A > A)" },
+        { "label": "Talk to Ikutsuki for the Glasses Wipe (Request #76)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-10-08",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Hang out with Kenji — Moon reaches rank 8 (best answer: 2)" },
+        { "label": "Evening: study with Mitsuru and Akihiko" }
+      ]
+    },
+    {
+      "date": "2009-10-09",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Hang out with the rival athlete — Star reaches rank 4 (best answers: A > 1 > 2)" },
+        { "label": "Evening: study with Yukari, Junpei, and Fuuka" }
+      ]
+    },
+    {
+      "date": "2009-10-10",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Hang out with Kenji — Moon reaches rank 9 (best answer: A)" },
+        { "label": "Evening: walk Koromaru (with Ken)" }
+      ]
+    },
+    {
+      "date": "2009-10-11",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥19,800 — Paring Knife & 2 Candy Hosui Pear)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 2" },
+        { "label": "Evening: study with Aigis, Ken, and Koromaru" }
+      ]
+    },
+    {
+      "date": "2009-10-12",
+      "weekday": "mon",
+      "dayKind": "free",
+      "notes": "Public holiday — Sports Day.",
+      "steps": [
+        { "label": "Play the MMORPG at your desk — Hermit reaches rank 10 (MAX)" },
+        { "label": "Evening: study with everyone" }
+      ]
+    },
+    {
+      "date": "2009-10-13",
+      "weekday": "tue",
+      "dayKind": "exam",
+      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 6.",
+      "steps": [
+        { "label": "Exam day — answer everything you can" }
+      ]
+    },
+    {
+      "date": "2009-10-14",
+      "weekday": "wed",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-10-15",
+      "weekday": "thu",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-10-16",
+      "weekday": "fri",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-10-17",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Hang out with the old couple — Hierophant reaches rank 6 (best answers: 2 > A)" },
+        { "label": "Evening: join Junpei's gardening hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-10-18",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥4,980 — Instant Curry & 10 Instant Ramen)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 3" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: join Ken's coffee hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-10-19",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Exam results" },
+        { "label": "Answer the class question" },
+        { "label": "Talk to Mitsuru for the exam reward" },
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Hang out with Hidetoshi — Emperor reaches rank 9 (best answer: A)" },
+        { "label": "Evening: watch Akihiko's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-10-20",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Join the art club — Fortune reaches rank 7 (best answer: 1)" },
+        { "label": "Evening: join Aigis's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-10-21",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with the exchange student — Temperance reaches rank 9 (best answer: 2)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-10-22",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with Junpei — Magician reaches rank 9 (best answer: 2)" },
+        { "label": "Evening: brush Koromaru (Koromaru hangout)" }
+      ]
+    },
+    {
+      "date": "2009-10-23",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Hang out with Junpei — Magician reaches rank 10 (MAX)" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 10 (MAX)" }
+      ]
+    },
+    {
+      "date": "2009-10-24",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with the old couple — Hierophant reaches rank 7 (best answers: 1 > 2 > A)" },
+        { "label": "Evening: join Akihiko's DVD hangout" }
+      ]
+    },
+    {
+      "date": "2009-10-25",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥24,800 — Pumpkin Mask & 50 Halloween Candy)" },
+        { "label": "Accept Yukari's phone invitation (best answer: 2)" },
+        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: join Aigis's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-10-26",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with Yukari — Lovers reaches rank 4 (best answer: 3)" },
+        { "label": "Check the dorm fridge for a Doctor in Jelly and a note from Junpei" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-10-27",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Join the art club — Fortune reaches rank 8 (best answers: 1 > A > A)" },
+        { "label": "Evening: join Fuuka's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-10-28",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Yukari — Lovers reaches rank 5 (romance: A > A > A > 1 > 1 / platonic: A > A > A > 2/3 > 1)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-10-29",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class — Academics reaches rank 6", "statGains": { "academics": 2 } },
+        { "label": "Hang out with Yukari — Lovers reaches rank 6 (romance: 2 > 1 / platonic: 2 > 2)" },
+        { "label": "Evening: brush Koromaru (Koromaru hangout)" }
+      ]
+    },
+    {
+      "date": "2009-10-30",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with Hidetoshi — Emperor reaches rank 10 (MAX)" },
+        { "label": "Evening: join Ken's DVD hangout" }
+      ]
+    },
+    {
+      "date": "2009-10-31",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Yukari — Lovers reaches rank 7 (romance answer: 3 / platonic answer: 1)" },
+        { "label": "Evening: walk Koromaru (with Ken)" }
+      ]
+    }
+  ]
+}

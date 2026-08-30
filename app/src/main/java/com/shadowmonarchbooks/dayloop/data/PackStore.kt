@@ -2,6 +2,8 @@ package com.shadowmonarchbooks.dayloop.data
 
 import android.content.Context
 import android.content.res.AssetManager
+import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
+import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
@@ -14,9 +16,13 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 /**
  * One pack loaded from assets/<slug>/ — engine-neutral, fully label-driven.
@@ -33,6 +39,9 @@ data class LoadedPack(
     /** routeId -> (ISO date -> authored day). */
     val daysByRoute: Map<String, Map<String, Day>> = emptyMap(),
 ) {
+    /** The pack's game calendar (cycle/weekday lookups, deadline day math). */
+    val calendar: GameCalendar? by lazy { GameCalendar.of(pack.calendar) }
+
     /** Routes available for this pack, declared or implicit default. */
     val routes: List<RouteDef> by lazy { Routes.effective(pack) }
 
@@ -63,18 +72,36 @@ data class PacksState(
  * data/progress (Room + DataStore).
  */
 @Singleton
-class PackStore @Inject constructor(@ApplicationContext context: Context) {
+class PackStore @Inject constructor(
+    @ApplicationContext context: Context,
+    private val repo: ProgressRepository,
+) {
+
+    /** App-lifetime scope: the store is a singleton, nothing to cancel. */
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     private val _state = MutableStateFlow(PacksState())
     val state: StateFlow<PacksState> = _state.asStateFlow()
 
     init {
         val packs = loadAll(context)
-        val first = packs.firstOrNull { it.slug == "p5r" } ?: packs.firstOrNull()
+        // Default: the most complete pack (most authored default-route days),
+        // so placeholder/fit-check packs never hijack first launch. Ties fall
+        // back to the sorted asset order.
+        val first = packs.maxByOrNull { it.daysByRoute[Routes.DEFAULT].orEmpty().size }
         _state.value = PacksState(
             packs = packs,
             selectedSlug = first?.slug,
         )
+        // Reopen on the pack the user last selected (docs/PLAN.md §3.7: the
+        // engine never names a specific pack).
+        scope.launch {
+            repo.selectedPack().collect { persisted ->
+                if (persisted != null && packs.any { it.slug == persisted }) {
+                    _state.value = _state.value.copy(selectedSlug = persisted)
+                }
+            }
+        }
     }
 
     private fun loadAll(context: Context): List<LoadedPack> {
@@ -141,6 +168,7 @@ class PackStore @Inject constructor(@ApplicationContext context: Context) {
         val s = _state.value
         if (s.selectedSlug == slug) return
         _state.value = s.copy(selectedSlug = slug)
+        scope.launch { repo.selectPack(slug) }
     }
 }
 

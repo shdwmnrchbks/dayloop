@@ -17,6 +17,78 @@
       "label": "Aohige Pharmacy one-day sale — buy a Muscle Drink (Elizabeth request prep)",
       "kind": "missable",
       "date": "2009-04-25"
+    },
+    {
+      "id": "p3r.deadline.fullmoon.may",
+      "label": "May full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-05-09"
+    },
+    {
+      "id": "p3r.deadline.exams.may",
+      "label": "First school exams — top of the class needs Academics rank 4+ (or rank 3 with all answers correct)",
+      "kind": "exam",
+      "window": { "start": "2009-05-18", "end": "2009-05-22" }
+    },
+    {
+      "id": "p3r.deadline.fullmoon.june",
+      "label": "June full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-06-08"
+    },
+    {
+      "id": "p3r.deadline.fullmoon.july",
+      "label": "July full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-07-07"
+    },
+    {
+      "id": "p3r.deadline.exams.july",
+      "label": "Second school exams — top of the class needs Academics rank 5+ (or rank 4 with all answers correct)",
+      "kind": "exam",
+      "window": { "start": "2009-07-14", "end": "2009-07-17" }
+    },
+    {
+      "id": "p3r.deadline.fullmoon.august",
+      "label": "August full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-08-06"
+    },
+    {
+      "id": "p3r.deadline.fullmoon.september",
+      "label": "September full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-09-05"
+    },
+    {
+      "id": "p3r.deadline.fullmoon.october",
+      "label": "October full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-10-04"
+    },
+    {
+      "id": "p3r.deadline.exams.october",
+      "label": "Third school exams — top of the class needs Academics rank 6",
+      "kind": "exam",
+      "window": { "start": "2009-10-13", "end": "2009-10-16" }
+    },
+    {
+      "id": "p3r.deadline.fullmoon.november",
+      "label": "November full moon — mandatory Shadow operation, no free time",
+      "kind": "other",
+      "date": "2009-11-03"
+    },
+    {
+      "id": "p3r.deadline.fullmoon.december",
+      "label": "December full moon — story night; the evening slot itself stays free",
+      "kind": "other",
+      "date": "2009-12-02"
+    },
+    {
+      "id": "p3r.deadline.exams.december",
+      "label": "Fourth school exams — top of the class needs Academics rank 6 with all answers correct",
+      "kind": "exam",
+      "window": { "start": "2009-12-14", "end": "2009-12-18" }
     }
   ]
 }

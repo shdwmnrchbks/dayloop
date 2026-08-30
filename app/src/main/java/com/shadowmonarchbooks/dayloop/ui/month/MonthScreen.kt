@@ -88,7 +88,7 @@ fun MonthScreen(
             }
         }
 
-        CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, onOpenDay = onOpenDay)
+        CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay)
     }
 }
 
@@ -98,12 +98,75 @@ private fun CalendarGrid(
     deadlines: List<com.shadowmonarchbooks.dayloop.pack.schema.Deadline>,
     month: String,
     clockDate: String?,
+    calendar: com.shadowmonarchbooks.dayloop.pack.GameCalendar?,
+    onOpenDay: (String) -> Unit,
+) {
+    val deadlineDates = deadlines.mapNotNull { deadlineStart(it) }.toSet()
+
+    // Cycle-aware grid: dayCounter packs may declare an in-game week of any
+    // length; the columns follow the pack's cycle order. weekdayGrid packs
+    // (no cycle) keep the real 7-column Monday-first grid.
+    val cycle = calendar?.cycleTokens.orEmpty()
+    if (cycle.isEmpty() || calendar == null) {
+        RealMonthGrid(days, deadlineDates, month, clockDate, onOpenDay)
+        return
+    }
+    val dates = calendar.datesInMonth(month)
+    val lead = dates.firstOrNull()?.let { calendar.cyclePosition(it) } ?: 0
+    val columns = cycle.size
+
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            cycle.forEach { token ->
+                Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                    Text(
+                        text = token.replaceFirstChar { it.uppercase() }.take(1),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        }
+
+        val totalCells = lead + dates.size
+        val rows = (totalCells + columns - 1) / columns
+        for (row in 0 until rows) {
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                for (col in 0 until columns) {
+                    val cell = row * columns + col
+                    val dayIndex = cell - lead
+                    Box(modifier = Modifier.weight(1f).aspectRatio(1f)) {
+                        if (dayIndex in dates.indices) {
+                            val iso = dates[dayIndex]
+                            DayCell(
+                                iso = iso,
+                                dayNumber = iso.takeLast(2).toInt(),
+                                day = days[iso],
+                                hasDeadline = iso in deadlineDates,
+                                isClockDate = iso == clockDate,
+                                onOpenDay = onOpenDay,
+                                modifier = Modifier.fillMaxSize(),
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** Real-calendar 7-column Monday-first grid (weekdayGrid packs). */
+@Composable
+private fun RealMonthGrid(
+    days: Map<String, com.shadowmonarchbooks.dayloop.pack.schema.Day>,
+    deadlineDates: Set<String>,
+    month: String,
+    clockDate: String?,
     onOpenDay: (String) -> Unit,
 ) {
     val first = parseDateOrNull("$month-01") ?: return
     val daysInMonth = first.lengthOfMonth()
     val leadDays = (first.dayOfWeek.value + 6) % 7 // Monday-first grid
-    val deadlineDates = deadlines.mapNotNull { deadlineStart(it) }.toSet()
 
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {

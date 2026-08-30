@@ -1,0 +1,299 @@
+{
+  "month": "2009-09",
+  "days": [
+    {
+      "date": "2009-09-01",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Take the supplementary lesson at the school Nurse's Office" },
+        { "label": "Hang out with Chihiro — Justice reaches rank 9 (romance: 1 > A > A > 1 > 1 > A / platonic: 1 > A > A > 1)" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 10 (MAX)" }
+      ]
+    },
+    {
+      "date": "2009-09-02",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Evening: join Aigis's reading hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-03",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Take the supplementary lesson at the school Nurse's Office" },
+        { "label": "Hang out with Chihiro — Justice reaches rank 10 (MAX)" },
+        { "label": "Evening: join Junpei's reading hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-09-04",
+      "weekday": "fri",
+      "dayKind": "school",
+      "notes": "Carry Priestess, Lovers, Strength, Temperance, and Tower Arcanas out of Tartarus until the next visit (October 1). Bonus: a Platinum Brooch (¥16,000) from the Club Escapade Luxury Shop can be gifted to Elizabeth for a Master Incense.",
+      "steps": [
+        { "label": "Take the supplementary lesson at the school Nurse's Office" },
+        { "label": "Talk to Mitsuru to receive the Reinstatement Form, then watch Shinjiro's Link Episode" },
+        { "label": "Optional: buy the Platinum Brooch at Club Escapade and gift it to Elizabeth for a Master Incense" },
+        { "label": "Optional: purchase any fortune from the Fortune Teller at Club Escapade" },
+        { "label": "Evening: Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-09-05",
+      "weekday": "sat",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-09-06",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥9,800 — Brand Purse & Brand Wallet)" },
+        { "label": "Talk to the thin young man at Naganaki Shrine, then retrieve his Red Fountain Pen from Koromaru — Sun reaches rank 1" },
+        { "label": "Evening: new software is available at MangaStar Net Café" },
+        { "label": "Evening: join Ken's coffee hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-07",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Yukari — Lovers reaches rank 2 (best answers: 1 > 1)" },
+        { "label": "Evening: join Shinjiro's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-08",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Watch Koromaru's Link Episode" },
+        { "label": "Evening: watch Ken's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-09-09",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Yuko — Strength reaches rank 9 (romance: A > 2 > A > 1 > 1 / platonic: A > 2 > A > 1)" },
+        { "label": "Evening: join Aigis's reading hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-10",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "New Elizabeth's requests are available" },
+        { "label": "Answer the class question" },
+        { "label": "Hang out with Yukari — Lovers reaches rank 3 (best answer: A)" },
+        { "label": "Evening: join Shinjiro's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-11",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with the exchange student — Temperance reaches rank 6 (best answers: 2 > A > 1)" },
+        { "label": "Evening: join Yukari's cooking hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-12",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Buy 6 Lukewarm Taiyaki from the School Store (Main Lobby)" },
+        { "label": "Hang out with Yuko — Strength reaches rank 10 (MAX)" },
+        { "label": "Evening: join Shinjiro's cooking hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-13",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥24,800 — Emergency Vest & 5 First Aid Kit M)" },
+        { "label": "Watch Shinjiro's Link Episode" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: join Ken's coffee hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-14",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with Fuuka — Priestess reaches rank 8 (romance: A > A / platonic: 3 > A > A)" },
+        { "label": "Check the dorm fridge for Mega Protein and a note from Akihiko" },
+        { "label": "Evening: join Shinjiro's gardening hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-09-15",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Join the art club — Fortune reaches rank 2 (best answers: A > A)" },
+        { "label": "Evening: join Fuuka's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-16",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with the exchange student — Temperance reaches rank 7 (best answer: 2)" },
+        { "label": "Evening: walk Koromaru (with Shinjiro)" }
+      ]
+    },
+    {
+      "date": "2009-09-17",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Join the art club — Fortune reaches rank 3 (best answers: 1 > A)" },
+        { "label": "Visit the monk at Club Escapade — Tower reaches rank 8 (best answers: 1 > 1/3 > A > 2)" }
+      ]
+    },
+    {
+      "date": "2009-09-18",
+      "weekday": "fri",
+      "dayKind": "school",
+      "notes": "New special fusions have been added.",
+      "steps": [
+        { "label": "Watch Takaya's Link Episode after school" }
+      ]
+    },
+    {
+      "date": "2009-09-19",
+      "weekday": "sat",
+      "dayKind": "story",
+      "notes": "Typhoon and sickness — no free time.",
+      "steps": []
+    },
+    {
+      "date": "2009-09-20",
+      "weekday": "sun",
+      "dayKind": "story",
+      "notes": "Typhoon and sickness — no free time.",
+      "steps": []
+    },
+    {
+      "date": "2009-09-21",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch Shinjiro's Link Episode" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: join Mitsuru's tea-time hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-22",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch Koromaru's Link Episode" },
+        { "label": "Evening: watch Ken's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-09-23",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch the Film Festival with Shinjiro" },
+        { "label": "Evening: walk Koromaru (with Shinjiro)" }
+      ]
+    },
+    {
+      "date": "2009-09-24",
+      "weekday": "thu",
+      "dayKind": "school",
+      "notes": "If you romanced Yuko and/or Chihiro, you can play along with Kenji's stand-up routine for an event; rejecting him changes nothing in the cleanup scene.",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Talk to Mitsuru and take the Extension Form back — hold onto it, don't return it to Shinjiro yet (Shinjiro Link Episode 3.5)" },
+        { "label": "Join the art club — Fortune reaches rank 4 (best answers: A > 1)" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 9 (best answers: A > A > A)" }
+      ]
+    },
+    {
+      "date": "2009-09-25",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with the exchange student — Temperance reaches rank 8 (best answer: 2)" },
+        { "label": "Evening: join Yukari's cooking hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-26",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Spend time with Fuuka (Priestess)" },
+        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: join Shinjiro's cooking hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-27",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥19,800 — R/C Geta & Hyper-Metal Robot)" },
+        { "label": "Watch Shinjiro's Link Episode" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: check the dorm fridge for a Chilled Taiyaki and a note from Shinjiro" },
+        { "label": "Evening: walk Koromaru (with Akihiko)" }
+      ]
+    },
+    {
+      "date": "2009-09-28",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Hang out with Fuuka — Priestess reaches rank 9 (romance: A > A > 1 > A / platonic: A > 1 > 1)" },
+        { "label": "Evening: new notes are available from the Suspicious Man at Club Escapade" },
+        { "label": "Evening: join Mitsuru's tea-time hangout" }
+      ]
+    },
+    {
+      "date": "2009-09-29",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Join the art club — Fortune reaches rank 5 (best answer: A)" },
+        { "label": "Evening: join Shinjiro's cooking hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-09-30",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Hidetoshi — Emperor reaches rank 8 (best answers: A > 1)" },
+        { "label": "Evening: join Aigis's reading hangout — Combat Characteristic unlocked" }
+      ]
+    }
+  ]
+}

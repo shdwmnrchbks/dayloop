@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.tools.pack
 
 import com.shadowmonarchbooks.dayloop.pack.Cal
+import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
@@ -66,19 +67,58 @@ object PackLint {
         if (pack.timeModel !in TIME_MODELS) issues += err("pack.json", "unknown timeModel '${pack.timeModel}'")
 
         // Calendar
-        val start = Cal.parseDate(pack.calendar.startDate)
-        val end = Cal.parseDate(pack.calendar.endDate)
-        if (start == null) issues += err("pack.json", "calendar.startDate is not ISO: '${pack.calendar.startDate}'")
-        if (end == null) issues += err("pack.json", "calendar.endDate is not ISO: '${pack.calendar.endDate}'")
-        if (start != null && end != null && end < start) {
-            issues += err("pack.json", "calendar.endDate precedes startDate")
+        val range = pack.calendar
+        if (pack.timeModel == "weekdayGrid" && (range.monthLengths.isNotEmpty() || range.weekdayCycle.isNotEmpty())) {
+            issues += err("pack.json", "weekdayGrid packs must not declare game-month lengths or a weekday cycle")
+        }
+        range.monthLengths.forEachIndexed { i, len ->
+            if (len < 1) issues += err("pack.json", "calendar.monthLengths[$i] must be >= 1 (found $len)")
+        }
+        val cycle = range.weekdayCycle
+        if (cycle.isNotEmpty()) {
+            cycle.forEach { token ->
+                if (!Regex("^[a-z][a-z0-9-]*$").matches(token)) {
+                    issues += err("pack.json", "calendar.weekdayCycle token '$token' is not a lowercase slug")
+                }
+            }
+            if (cycle.size != cycle.distinct().size) {
+                issues += err("pack.json", "calendar.weekdayCycle has duplicate tokens")
+            }
+            val anchor = range.weekdayAnchor
+            if (anchor == null) {
+                issues += err("pack.json", "calendar.weekdayCycle requires a weekdayAnchor")
+            } else {
+                if (anchor.weekday !in cycle) {
+                    issues += err("pack.json", "calendar.weekdayAnchor.weekday '${anchor.weekday}' is not part of the declared cycle")
+                }
+                if (!Regex("""^\d{4}-\d{2}-\d{2}$""").matches(anchor.date)) {
+                    issues += err("pack.json", "calendar.weekdayAnchor.date is not an ISO date: '${anchor.date}'")
+                }
+            }
+        }
+        if (pack.timeModel == "weekdayGrid") {
+            listOf(range.startDate, range.endDate).forEach { iso ->
+                if (Cal.parseDate(iso) == null) {
+                    issues += err("pack.json", "calendar bound is not a real ISO date: '$iso'")
+                }
+            }
+        }
+        val cal = GameCalendar.of(range)
+        if (cal == null) {
+            issues += err("pack.json", "calendar range is not a constructable game calendar (bad bounds or end day beyond its game month)")
+            return issues
+        }
+        if (pack.timeModel == "dayCounter" && range.monthLengths.isNotEmpty() && range.monthLengths.size < cal.monthKeys.size) {
+            issues += LintIssue(
+                LintIssue.Severity.WARN,
+                "pack.json",
+                "calendar.monthLengths covers ${range.monthLengths.size} month(s) but the range spans ${cal.monthKeys.size}; later months fall back to real month lengths",
+            )
         }
         val nonPlayable = mutableSetOf<String>()
         pack.calendar.nonPlayableDates.forEach { d ->
-            val parsed = Cal.parseDate(d)
-            if (parsed == null) issues += err("pack.json", "nonPlayableDates entry is not ISO: '$d'")
-            else if (start != null && end != null && (parsed < start || parsed > end)) {
-                issues += err("pack.json", "nonPlayableDates entry '$d' is outside the calendar range")
+            if (d !in cal) {
+                issues += err("pack.json", "nonPlayableDates entry '$d' is not a date in this pack's calendar")
             } else if (!nonPlayable.add(d)) {
                 issues += err("pack.json", "nonPlayableDates entry '$d' duplicated")
             }
@@ -133,14 +173,12 @@ object PackLint {
                 }
                 previous = step.rank
                 listOfNotNull(step.availableFrom, step.availableUntil).forEach { d ->
-                    val parsed = Cal.parseDate(d)
-                    if (parsed == null) issues += err("confidants.json", "bond '${b.id}' rank ${step.rank} has non-ISO availability '$d'")
-                    else if (start != null && end != null && (parsed < start || parsed > end)) {
-                        issues += err("confidants.json", "bond '${b.id}' rank ${step.rank} availability '$d' is outside the calendar range")
+                    if (d !in cal) {
+                        issues += err("confidants.json", "bond '${b.id}' rank ${step.rank} availability '$d' is not a date in this pack's calendar")
                     }
                 }
-                val from = step.availableFrom?.let { Cal.parseDate(it) }
-                val until = step.availableUntil?.let { Cal.parseDate(it) }
+                val from = step.availableFrom
+                val until = step.availableUntil
                 if (from != null && until != null && until < from) {
                     issues += err("confidants.json", "bond '${b.id}' rank ${step.rank} availability window ends before it starts")
                 }
@@ -169,14 +207,12 @@ object PackLint {
                 issues += err("deadlines.json", "deadline '${d.id}' needs a date or a window")
             }
             listOfNotNull(d.date, d.window?.start, d.window?.end).forEach { iso ->
-                val parsed = Cal.parseDate(iso)
-                if (parsed == null) issues += err("deadlines.json", "deadline '${d.id}' has non-ISO date '$iso'")
-                else if (start != null && end != null && (parsed < start || parsed > end)) {
-                    issues += err("deadlines.json", "deadline '${d.id}' date '$iso' is outside the calendar range")
+                if (iso !in cal) {
+                    issues += err("deadlines.json", "deadline '${d.id}' date '$iso' is not a date in this pack's calendar")
                 }
             }
-            val ws = d.window?.start?.let { Cal.parseDate(it) }
-            val we = d.window?.end?.let { Cal.parseDate(it) }
+            val ws = d.window?.start
+            val we = d.window?.end
             if (ws != null && we != null && we < ws) {
                 issues += err("deadlines.json", "deadline '${d.id}' window ends before it starts")
             }
@@ -197,13 +233,18 @@ object PackLint {
             }
             val seen = seenDatesByRoute.getOrPut(wt.routeId) { mutableSetOf() }
             wt.file.days.forEach { day ->
-                val parsed = Cal.parseDate(day.date)
-                if (parsed == null) {
-                    issues += err(loc, "day '${day.date}' is not an ISO date")
+                if (day.date !in cal) {
+                    issues += err(loc, "day '${day.date}' is not a date in this pack's calendar")
                     return@forEach
                 }
-                if (day.weekday !in Cal.WEEKDAYS) {
+                val allowedWeekdays = if (cycle.isNotEmpty()) cycle.toSet() else Cal.WEEKDAYS
+                if (day.weekday !in allowedWeekdays) {
                     issues += err(loc, "day '${day.date}' has invalid weekday '${day.weekday}'")
+                } else if (cycle.isNotEmpty()) {
+                    val expected = cal.weekdayOf(day.date)
+                    if (expected != null && expected != day.weekday) {
+                        issues += err(loc, "day '${day.date}' claims weekday '${day.weekday}' but the pack's weekday cycle says '$expected'")
+                    }
                 } else if (pack.timeModel == "weekdayGrid") {
                     val real = Cal.weekdayOf(day.date)
                     if (real != null && real != day.weekday) {
@@ -212,9 +253,6 @@ object PackLint {
                 }
                 if (Regex("^\\d{4}-\\d{2}$").matches(wt.month) && !day.date.startsWith("${wt.month}-")) {
                     issues += err(loc, "day '${day.date}' does not belong in month file ${wt.month}")
-                }
-                if (start != null && end != null && (parsed < start || parsed > end)) {
-                    issues += err(loc, "day '${day.date}' is outside the pack calendar range")
                 }
                 if (!seen.add(day.date)) {
                     issues += err(loc, "day '${day.date}' is defined twice in route '${wt.routeId}'")
@@ -262,11 +300,9 @@ object PackLint {
             if (sheet.answers.isEmpty()) {
                 issues += err("answers.json", "answer sheet '${sheet.id}' has no answers")
             }
-            val parsed = Cal.parseDate(sheet.date)
             when {
-                parsed == null -> issues += err("answers.json", "answer sheet '${sheet.id}' has non-ISO date '${sheet.date}'")
-                start != null && end != null && (parsed < start || parsed > end) ->
-                    issues += err("answers.json", "answer sheet '${sheet.id}' date '${sheet.date}' is outside the calendar range")
+                sheet.date !in cal ->
+                    issues += err("answers.json", "answer sheet '${sheet.id}' date '${sheet.date}' is not a date in this pack's calendar")
                 sheet.date !in dayKindsByDate ->
                     issues += err("answers.json", "answer sheet '${sheet.id}' date '${sheet.date}' has no authored day")
                 // Exams are always authored as exam days; class questions may also
@@ -283,8 +319,8 @@ object PackLint {
         }
 
         // Coverage (warn — packs grow incrementally), computed per route
-        if (start != null && end != null) {
-            val expected = Cal.datesBetween(pack.calendar.startDate, pack.calendar.endDate).map { it.toString() } - nonPlayable
+        run {
+            val expected = cal.dates - nonPlayable
             Routes.effective(pack).forEach { route ->
                 val seen = seenDatesByRoute[route.id].orEmpty()
                 val missing = expected.filter { it !in seen }

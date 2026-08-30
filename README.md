@@ -41,7 +41,7 @@ See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 **Phase 0–5 done.** Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+🚧 **Phase 0–5 done. Phase 6 in progress.** Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
@@ -50,7 +50,14 @@ Phase 5 added:
 - **Home-screen widget (Glance)** — in-game date, today's done-count, and the next deadline, always visible; refreshes with app state and re-reads progress on its own.
 - **Launcher icon** — original adaptive artwork (sun + day-loop arrow), no game assets.
 
-Next: Phase 6 — second complete pack (P3R or Metaphor) proving the drop-in claim, then the third to complete the first-release trio.
+Phase 6 (in progress):
+- **Default-pack selection is now pack-agnostic** — the last engine hardcode (`PackStore` defaulting to P5R) is gone: the app opens on the most complete installed pack and persists the user's choice in DataStore.
+- **Complete P3R pack** — every playable calendar day 2009-04-08 → 2010-03-05 authored and packlint-clean (0 errors, 0 warnings; story-skipped February 2010 and March 1–3 are non-playable), with 301 walkthrough days across 11 months, all 22 Social Links full-ladder (203 rank entries), Link Episodes woven into the walkthrough days, 15 deadlines (full-moon operations + all 4 exam windows + one-day sales), and 53 answer sheets (17 exam days, 36 class questions).
+- **`dayCounter` time model** — the engine now supports pack-declared game calendars (`monthLengths`, `weekdayCycle`, `weekdayAnchor`): `GameCalendar` in core/pack, lint cross-checks for cycle weekdays and game-month coverage, progress-clock stepping, and cycle-aware date formatting, day arithmetic, and month grids throughout the app (today/deadlines/bonds/answers/search/settings/widget/month views).
+
+- **Complete Metaphor: ReFantazio pack** — the first-release trio is complete: every playable in-game day 2100-06-02 → 2100-10-26 authored and packlint-clean (0 errors; 140 walkthrough days across five 30-day game months; June 3–9's story-only dates non-playable), all 14 Follower bonds full-ladder (109 dated rank entries), 11 deadlines (nine story missions including the Charadrius window and the story-locked 10/26 final battle, plus missable inn-cooking and book windows), and 16 activities (7 books, ranked league + gauntlet challenge, inn/runner cooking, fishing, Gold Beetles, Akademeia study, podium debates, bounty requests). Facts curated from the HayateButler Metaphor guide (docs/sources.md).
+
+Next: release hardening (docs/PLAN.md Phase 7).
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

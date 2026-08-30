@@ -1,0 +1,294 @@
+{
+  "month": "2009-08",
+  "days": [
+    {
+      "date": "2009-08-01",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: join Mitsuru's reading hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-08-02",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: track team tournament" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+      ]
+    },
+    {
+      "date": "2009-08-03",
+      "weekday": "mon",
+      "dayKind": "free",
+      "notes": "Carry Priestess, Strength, Justice, Tower, Star, and Moon Arcanas out of Tartarus until the next visit (September 4). Reaching ~30% Persona Compendium completion around now unlocks the Protagonist's Combat Characteristic.",
+      "steps": [
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 7 (best answers: A > A)" },
+        { "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade" },
+        { "label": "Evening: Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-08-04",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hang out with Kenji — Moon reaches rank 5 (best answer: 1)" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 6" }
+      ]
+    },
+    {
+      "date": "2009-08-05",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Meet the rival athlete — Star reaches rank 1" },
+        { "label": "Evening: play You're the Answer at Game Parade" }
+      ]
+    },
+    {
+      "date": "2009-08-06",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-08-07",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hang out with the rival athlete — Star reaches rank 2 (best answers: 2 > 2)" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 5 (best answers: 1 > 2)" }
+      ]
+    },
+    {
+      "date": "2009-08-08",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "New Elizabeth's requests are available" },
+        { "label": "Soul Spinach Sprout is now stocked at Rafflesia (Port Island Station)" },
+        { "label": "Pray at Naganaki Shrine's Monetary Offering (Request #54)" },
+        { "label": "Hang out with Kenji — Moon reaches rank 6 (best answer: 3)" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 7" }
+      ]
+    },
+    {
+      "date": "2009-08-09",
+      "weekday": "sun",
+      "dayKind": "free",
+      "notes": "'Walk Koromaru' events are not mandatory for 100% achievements — treat them as free time if you are behind on stats or links.",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥3,980 — 10 Isotope Soda & 20 Mad Bull)" },
+        { "label": "Pray at Naganaki Shrine (Request #54)" },
+        { "label": "Watch Junpei's Link Episode" },
+        { "label": "Evening: free time — walk Koromaru (with Kenji)" }
+      ]
+    },
+    {
+      "date": "2009-08-10",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Summer class" }
+      ]
+    },
+    {
+      "date": "2009-08-11",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Summer class" }
+      ]
+    },
+    {
+      "date": "2009-08-12",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Summer class" }
+      ]
+    },
+    {
+      "date": "2009-08-13",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Summer class" }
+      ]
+    },
+    {
+      "date": "2009-08-14",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Summer class" },
+        { "label": "Watch Takaya's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-08-15",
+      "weekday": "sat",
+      "dayKind": "school",
+      "notes": "Save here to watch all the different Summer Festival events tomorrow.",
+      "steps": [
+        { "label": "Daytime: summer classes" },
+        { "label": "Evening: walk Koromaru (with Aigis)" }
+      ]
+    },
+    {
+      "date": "2009-08-16",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Summer festival — choose who you wish to attend with" }
+      ]
+    },
+    {
+      "date": "2009-08-17",
+      "weekday": "mon",
+      "dayKind": "free",
+      "notes": "'Film Festival' events are not mandatory for 100% achievements, but skipping them all requires making up at least +8 Academics points elsewhere.",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥3,980 — 3 Curse Paper & 2 Vanish Ball)" },
+        { "label": "Watch the Film Festival with Kenji" },
+        { "label": "Evening: join Koromaru's TV hangout" }
+      ]
+    },
+    {
+      "date": "2009-08-18",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch the Film Festival with the exchange student — Academics reaches rank 5" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 8" }
+      ]
+    },
+    {
+      "date": "2009-08-19",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch the Film Festival with Keisuke" },
+        { "label": "Evening: join Yukari's DVD hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-08-20",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Pray at Naganaki Shrine (Request #54)" },
+        { "label": "Hang out with Kenji — Moon reaches rank 7 (best answers: 3 > A)" },
+        { "label": "Evening: watch Takaya's Link Episode" },
+        { "label": "Evening: join Fuuka's reading hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-08-21",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch the Film Festival with Yuko" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 6 (best answers: 2 > 2)" }
+      ]
+    },
+    {
+      "date": "2009-08-22",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch the Film Festival with Kazushi" },
+        { "label": "Evening: walk Koromaru (with Bunkichi)" }
+      ]
+    },
+    {
+      "date": "2009-08-23",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥2,980 — 2 Soul Spinach Sprout & 3 Buff Potato Sprout)" },
+        { "label": "Watch the Film Festival with Chihiro" },
+        { "label": "Evening: walk Koromaru (with Akihiko)" }
+      ]
+    },
+    {
+      "date": "2009-08-24",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Yukari from the Dorm 1F Lounge and watch the Film Festival with her" },
+        { "label": "Evening: join Koromaru's TV hangout" }
+      ]
+    },
+    {
+      "date": "2009-08-25",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Akihiko from the Dorm 1F Lounge and watch the Film Festival with him" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 9" }
+      ]
+    },
+    {
+      "date": "2009-08-26",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Koromaru from the Dorm 1F Lounge and watch the Film Festival together" },
+        { "label": "Evening: play You're the Answer at Game Parade" }
+      ]
+    },
+    {
+      "date": "2009-08-27",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Junpei from the Dorm 1F Lounge and watch the Film Festival with him" },
+        { "label": "Evening: walk Koromaru (with Junpei)" }
+      ]
+    },
+    {
+      "date": "2009-08-28",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Aigis from the Dorm 1F Lounge and watch the Film Festival with her" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 7 (best answer: 2)" }
+      ]
+    },
+    {
+      "date": "2009-08-29",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Fuuka from the Dorm 1F Lounge and watch the Film Festival with her" },
+        { "label": "Evening: walk Koromaru (with Fuuka)" }
+      ]
+    },
+    {
+      "date": "2009-08-30",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥9,800 — 3 Fierce Sutra & 3 Depleting Sutra)" },
+        { "label": "Invite Mitsuru from the Dorm 1F Lounge and watch the Film Festival with her" },
+        { "label": "Evening: walk Koromaru (with Mitsuru)" }
+      ]
+    },
+    {
+      "date": "2009-08-31",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Invite Ken from the Dorm 1F Lounge and watch the Film Festival with him" },
+        { "label": "Evening: join Koromaru's TV hangout — Combat Characteristic unlocked" }
+      ]
+    }
+  ]
+}

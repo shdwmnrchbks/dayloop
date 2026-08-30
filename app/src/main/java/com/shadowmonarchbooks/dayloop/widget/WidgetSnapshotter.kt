@@ -54,12 +54,12 @@ class WidgetSnapshotter @Inject constructor(
         for (row in rows) {
             if (row.date == date && row.mark == StepMark.DONE.name) done++
         }
-        val upcoming = date?.let { nextDeadline(pack.deadlines, it) }
+        val upcoming = date?.let { nextDeadline(pack.deadlines, it, pack.calendar) }
         return WidgetSnapshot(
             packTitle = pack.pack.title,
             profileName = profile?.name,
             routeLabel = if (pack.routes.size > 1) pack.routeLabel(routeId) else null,
-            dateLabel = date?.let { formatDate(it) },
+            dateLabel = date?.let { formatDate(it, pack.calendar) },
             doneCount = done,
             totalCount = total,
             deadlineLabel = upcoming?.first?.label,

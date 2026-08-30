@@ -1,4 +1,4 @@
-# Pack authoring guide (stub)
+# Pack authoring guide
 
 A pack is a directory under `/content/packs/<slug>/`:
 
@@ -41,6 +41,29 @@ content/packs/p5r/
   Keep walkthrough step labels free of the answers themselves — the sheet is
   the single source of truth.
 
+## Time models: `weekdayGrid` vs `dayCounter`
+
+- **`weekdayGrid`** (p5r, p3r): the pack omits game-month data and days are
+  checked against the **real calendar** — `2016-04-11` must be a Monday.
+- **`dayCounter`** (metaphor): the pack declares a game-shaped calendar in
+  `pack.json`:
+  - `monthLengths`: game-day counts per month (e.g. Metaphor's five 30-day
+    months); dates beyond 31 stay valid (`2100-12-35` is representable).
+  - `weekdayCycle`: a lowercase-slug in-game weekday list (unique,
+    `^[a-z][a-z0-9-]*$`), e.g. Metaphor's 5-day
+    `metalsday → idlesday → flamesday → watersday → arboursday` cycle.
+  - `weekdayAnchor`: `{ "date": "...", "weekday": "..." }` — one true
+    (date, weekday) pair; every other weekday resolves by floorMod from it.
+  - `weekdayGrid` and `monthLengths`/`weekdayCycle` are mutually exclusive;
+    a cycle without a valid anchor fails lint.
+- The engine (`GameCalendar` in `core/pack`) handles both: `next/previous/
+  diffDays/indexOf` walk the declared game months, and `weekdayOf` consults
+  the cycle (falling back to the real weekday only for grid packs).
+- Walkthrough days in a `dayCounter` pack must carry one of the cycle's
+  weekday tokens **at the right cycle position** (lint cross-checks).
+- Non-playable dates (`calendar.nonPlayableDates`) are excluded from coverage
+  and skipped by the progress clock in both models.
+
 ## Rules enforced by packlint
 
 - Every walkthrough day must exist on the real calendar **with the correct
@@ -75,14 +98,19 @@ content/packs/p5r/
 - Coverage warnings are expected while a pack grows; aim to retire them one
   month at a time.
 
-## Mini-packs (schema fit-checks)
+## Pack status
 
-- `content/packs/metaphor/` is a **synthetic fit-check, not game content**:
-  it exercises the schema's `dayCounter` side (Royal Virtue stat gates,
-  non-playable dates, deadline windows) and renders through the same engine
-  unmodified. Never treat its labels as game facts.
+- `content/packs/p5r/` is real curated data (full route from the Alyookid
+  guide, docs/sources.md).
 - `content/packs/p3r/` is real curated data (April 2009 slice from the
   HayateButler guide, docs/sources.md) and will grow into the full pack —
   its IDs are already immutable via its baseline.
-- Both packs must keep passing `packlint "-Ppack=content/packs/<slug>"` (CI
+- `content/packs/metaphor/` is real curated data (full 2100-06-02 → 2100-10-26
+  route from the HayateButler Metaphor guide, docs/sources.md): 14 follower
+  bonds, Royal Virtue stat gains, deadlines (missions + missable windows),
+  activities (books, coliseum, cooking, fishing, debates, beetles), and every
+  playable day authored. Metaphor's in-game year is not displayed by the game;
+  2100 is the pack's synthetic year. The game's "December 35" epilogue date is
+  a cutscene note — the route ends October 26.
+- Every pack must keep passing `packlint "-Ppack=content/packs/<slug>"` (CI
   enforces this).

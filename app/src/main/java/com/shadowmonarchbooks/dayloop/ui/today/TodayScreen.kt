@@ -55,7 +55,7 @@ fun TodayScreen(
     }
 
     val day = state.day(date)
-    val upcoming = nextDeadline(pack.deadlines, date)
+    val upcoming = nextDeadline(pack.deadlines, date, pack.calendar)
     val carried = ProgressLogic.carriedOver(state.marks, date).mapNotNull { key ->
         state.day(key.date)?.steps?.getOrNull(key.index)?.let { step ->
             CarriedStep(key = key, label = step.label)
@@ -79,7 +79,7 @@ fun TodayScreen(
         }
 
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(formatDate(date), style = MaterialTheme.typography.headlineSmall)
+            Text(formatDate(date, pack.calendar), style = MaterialTheme.typography.headlineSmall)
             DayKindChip(day?.dayKind ?: "rest")
         }
 
@@ -121,7 +121,7 @@ fun TodayScreen(
             CarriedOverCard(
                 items = carried,
                 onToggleMark = { carriedDate, index, mark -> vm.toggleMark(carriedDate, index, mark) },
-                formatDate = ::formatDate,
+                formatDate = { formatDate(it, pack.calendar) },
             )
         }
 

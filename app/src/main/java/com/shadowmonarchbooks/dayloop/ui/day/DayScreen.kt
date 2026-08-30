@@ -68,7 +68,7 @@ fun DayScreen(
             .padding(16.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(formatDate(date), style = MaterialTheme.typography.headlineSmall)
+            Text(formatDate(date, pack.calendar), style = MaterialTheme.typography.headlineSmall)
             DayKindChip(day.dayKind)
         }
 
@@ -90,7 +90,7 @@ fun DayScreen(
         }
 
         state.currentDate?.let { current ->
-            nextDeadline(pack.deadlines, current)?.let { (deadline, days) ->
+            nextDeadline(pack.deadlines, current, pack.calendar)?.let { (deadline, days) ->
                 DeadlineBanner(deadline = deadline, daysLeft = days)
             }
         }

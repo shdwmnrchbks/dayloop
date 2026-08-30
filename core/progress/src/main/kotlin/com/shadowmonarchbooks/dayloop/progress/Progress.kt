@@ -1,7 +1,5 @@
 package com.shadowmonarchbooks.dayloop.progress
 
-import java.time.LocalDate
-
 /**
  * Engine-neutral progress semantics (docs/PLAN.md Phase 3): tri-state step
  * marks, the End-Day in-game clock, and orphan detection. No game vocabulary
@@ -42,8 +40,50 @@ data class CalendarSpan(
     val endDate: String,
     /** Dates inside the span the player cannot act on (story-only, travel). */
     val nonPlayableDates: Set<String> = emptySet(),
+    /**
+     * Game-days per month starting at [startDate]'s month, for game calendars
+     * whose months differ from the real calendar (docs/PLAN.md §3.2
+     * `dayCounter` packs). Empty = real month lengths.
+     */
+    val monthLengths: List<Int> = emptyList(),
 ) {
-    fun playable(iso: String): Boolean = iso !in nonPlayableDates
+    fun playable(iso: String): Boolean = iso in dates && iso !in nonPlayableDates
+
+    /**
+     * Every game date in the span, in order (built once per [span] instance
+     * use; spans are small data classes so this is cheap enough for the UI
+     * layer, which steps one day at a time).
+     */
+    val dates: List<String> by lazy {
+        val shape = Regex("""^(\d{4})-(\d{2})-(\d{2})$""")
+        val start = shape.matchEntire(startDate) ?: return@lazy emptyList()
+        val end = shape.matchEntire(endDate) ?: return@lazy emptyList()
+        val (sy, sm, sd) = start.destructured
+        val (ey, em, ed) = end.destructured
+        val startYear = sy.toInt(); val startMonth = sm.toInt(); val startDay = sd.toInt()
+        val endYear = ey.toInt(); val endMonth = em.toInt(); val endDay = ed.toInt()
+        if (startDay < 1 || endDay < 1) return@lazy emptyList()
+        if (startYear > endYear || (startYear == endYear && startMonth > endMonth)) return@lazy emptyList()
+
+        val out = mutableListOf<String>()
+        var cy = startYear
+        var cm = startMonth
+        var monthIndex = 0
+        while (true) {
+            val length = monthLengths.getOrNull(monthIndex)
+                ?: java.time.YearMonth.of(cy, cm).lengthOfMonth()
+            if (length < 1) return@lazy emptyList()
+            val firstDay = if (cy == startYear && cm == startMonth) startDay else 1
+            val lastDay = if (cy == endYear && cm == endMonth) endDay else length
+            if (lastDay > length || firstDay > lastDay) return@lazy emptyList()
+            for (d in firstDay..lastDay) out += "%04d-%02d-%02d".format(cy, cm, d)
+            if (cy == endYear && cm == endMonth) break
+            if (cm == 12) { cy += 1; cm = 1 } else cm += 1
+            monthIndex += 1
+            if (monthIndex > 1200) return@lazy emptyList() // absurd range guard
+        }
+        out
+    }
 }
 
 /**
@@ -52,8 +92,6 @@ data class CalendarSpan(
  * the calendar bounds; a null result means "no further day in this pack".
  */
 object Clock {
-
-    fun parseOrNull(iso: String): LocalDate? = runCatching { LocalDate.parse(iso) }.getOrNull()
 
     /** Next playable date strictly after [iso], or null when none remains. */
     fun next(span: CalendarSpan, iso: String): String? = step(span, iso, forward = true)
@@ -65,15 +103,15 @@ object Clock {
     fun start(span: CalendarSpan): String = span.startDate
 
     private fun step(span: CalendarSpan, iso: String, forward: Boolean): String? {
-        val start = parseOrNull(span.startDate) ?: return null
-        val end = parseOrNull(span.endDate) ?: return null
-        var current = parseOrNull(iso) ?: return null
+        val dates = span.dates
+        if (dates.isEmpty()) return null
+        var i = dates.indexOf(iso)
+        if (i < 0) return null
         while (true) {
-            current = if (forward) current.plusDays(1) else current.minusDays(1)
-            if (forward && current > end) return null
-            if (!forward && current < start) return null
-            val candidate = current.toString()
-            if (span.playable(candidate)) return candidate
+            i = if (forward) i + 1 else i - 1
+            if (i < 0 || i >= dates.size) return null
+            val candidate = dates[i]
+            if (candidate !in span.nonPlayableDates) return candidate
         }
     }
 }

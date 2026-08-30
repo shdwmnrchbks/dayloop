@@ -3,6 +3,7 @@ package com.shadowmonarchbooks.dayloop.data.progress
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.withTransaction
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
@@ -53,6 +54,15 @@ class ProgressRepository @Inject constructor(
     /** Active profile id for [packId]; null until one is chosen or created. */
     fun activeProfileId(packId: String): Flow<Long?> =
         settings.data.map { it[longPreferencesKey("activeProfile.$packId")] }
+
+    /** Last pack the user opened (DataStore); null on a fresh install. */
+    fun selectedPack(): Flow<String?> =
+        settings.data.map { it[stringPreferencesKey("selectedPack")] }
+
+    /** Persist the user's pack choice so the app reopens on the same game. */
+    suspend fun selectPack(slug: String) {
+        settings.edit { it[stringPreferencesKey("selectedPack")] = slug }
+    }
 
     /**
      * First-run bootstrap: every installed pack gets one profile so the app

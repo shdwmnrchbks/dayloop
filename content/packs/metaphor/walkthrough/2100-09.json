@@ -1,0 +1,283 @@
+{
+  "month": "2100-09",
+  "days": [
+    {
+      "date": "2100-09-01",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Check on Maria after a month away (Follower rank 7).", "slot": "afternoon" },
+        { "label": "Enter the Varmareno Coliseum's Ranked League and win Bronze II.", "slot": "night", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } }
+      ]
+    },
+    {
+      "date": "2100-09-02",
+      "weekday": "watersday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Accompany Eupha to the church for Ovi's mother (Follower rank 4).", "slot": "afternoon" },
+        { "label": "Join Junah at the Brilehaven tailor (Follower rank 4).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-03",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Answer Maria's summons at the inn (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Take the cooking lesson with Maria and Fabienne — follow each dish's cue.", "slot": "night", "activityRef": "metaphor.activity.cooking.inn" }
+      ]
+    },
+    {
+      "date": "2100-09-04",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Check on Ovi and the others with Eupha (Follower rank 5).", "slot": "afternoon" },
+        { "label": "Keep Junah positive before the festival (Follower rank 5).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-05",
+      "weekday": "idlesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "The lance must be in hand today — wrap up the Drakodios trail.", "slot": "afternoon" },
+        { "label": "Warp to Martira and slay the human greatworm with Strohl's General buffs (Follower rank 7 for Bardon).", "slot": "afternoon", "statGains": { "courage": 10 } }
+      ]
+    },
+    {
+      "date": "2100-09-06",
+      "weekday": "flamesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Dragon Festival: invite a companion to the flames and grant their wish for a unique weapon of their Archetype.", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-07",
+      "weekday": "watersday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Depart for Altabury Heights.", "slot": "afternoon" },
+        { "label": "Use the last Tail Bait on the deck's fishing rod before arrival.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+      ]
+    },
+    {
+      "date": "2100-09-08",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Continue 'How to Walk Outside the Island' (Eupha's book).", "slot": "afternoon", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 13 } },
+        { "label": "Stop by Colerodio Cliff.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Reflect on the past with Eupha in the lounge.", "slot": "night", "statGains": { "imagination": 13 } }
+      ]
+    },
+    {
+      "date": "2100-09-09",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Finish 'How to Walk Outside the Island'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 26 } },
+        { "label": "Tolerance reaches rank 5 (Saviour).", "slot": "afternoon" },
+        { "label": "Pass the Murky Graveyard.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Two Gold Beetles along the Lunlumo Approach.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
+      ]
+    },
+    {
+      "date": "2100-09-10",
+      "weekday": "idlesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Gold Beetle in the Skyward Tavern corner; take 'Village Trading: Altabury Heights' from the Informant.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Dia Franco Street shopping: Brocaded Koi from the Dedicated Butcher and the frayed goods for trading.", "slot": "afternoon" },
+        { "label": "Attend the Opera House — the production turns into a duel to the death.", "slot": "afternoon", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2100-09-11",
+      "weekday": "flamesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "See how the town reacts to the Opera House news, then rest.", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-12",
+      "weekday": "watersday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Clear the Royal Academy Ruins — break Rella's Quartz Wall every turn and guard Sogne's fire.", "slot": "afternoon", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2100-09-13",
+      "weekday": "arboursday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Ten days remain before the duel in Grand Trad — plan the candidate runner hunts.", "slot": "afternoon" },
+        { "label": "Tell Loveless where you'll settle it; take 'Warmth in Winter' from the Portly Man.", "slot": "afternoon" },
+        { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-14",
+      "weekday": "metalsday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Cook Amber Stew, then set off for Malva.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Junah shows you something in the lounge (Follower rank 6).", "slot": "afternoon" },
+        { "label": "Loveless boards the runner — an easy fight after the Opera House.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-15",
+      "weekday": "idlesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Cook Enchanted Pottage with the flour from Malva, then hunt Milo's runner.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Basilio introduces himself in the Engine Room Corridor (Follower rank 1).", "slot": "afternoon", "spoiler": true },
+        { "label": "Milo's duel: mirror his Mage Mirror turns and burst him down.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-16",
+      "weekday": "flamesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Cook Adamantine Honey Cake, then run down Rudolf's runner.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Start the 'Literacy Workbook' Basilio added (Follower rank 7 for Junah).", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } },
+        { "label": "Rudolf's duel: his team is physical-focused — raise defense and counter.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-17",
+      "weekday": "watersday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Check on Basilio's shopping (Follower rank 2).", "slot": "afternoon" },
+        { "label": "Meet Catherina at Lower Blue Sky Bridge (Follower rank 7).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-18",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Cook Cursed Loved Ballad (or pack Hex cleansers) and fly to Mt. Vulkano for Eupha's request.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Continue the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } }
+      ]
+    },
+    {
+      "date": "2100-09-19",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Fly to Everfrost Forest; cook Indestructible Honey Cake (save one for a request).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "All 20 recipes cooked — 'Sublime Spoonful' unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Chat with Basilio (Follower rank 3).", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-20",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Report the Icebeast hunt at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Head for Scoundrel's Hold; train with Basilio on deck for bonus max HP (Follower rank 5 for Neuras).", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-21",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Finish the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 26 } },
+        { "label": "Clear Scoundrel's Hold — lost relic and Gold Beetle inside; the mobs are small fries.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+      ]
+    },
+    {
+      "date": "2100-09-22",
+      "weekday": "watersday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Report the Scoundrel's Hold quest — last day for the inn cooking evenings.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.inn", "statGains": { "courage": 10 } },
+        { "label": "Help Basilio look for Vinca (Follower rank 4).", "slot": "afternoon" },
+        { "label": "Visit Myrtus with Junah (Follower rank 8).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-23",
+      "weekday": "arboursday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Depart for the Royal Capital — the duel with Louis is now.", "slot": "afternoon" },
+        { "label": "Gallica reaches Follower rank 7; talk with your allies before bed.", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-24",
+      "weekday": "metalsday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Browse the upgraded Sunshade Row stock and grab a Soothing Sweetbun.", "slot": "afternoon" },
+        { "label": "Take the stage at Regalith Grand Cathedral — Louis at full power reads your turns, so play around his predictions.", "slot": "afternoon", "spoiler": true },
+        { "label": "Gallica reaches Follower rank 8.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-25",
+      "weekday": "idlesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Return to Grand Trad; More's deciphered scrolls unlock the Royal Archetypes at Akademeia.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-26",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hand over the Rusty Greatsword for 'The Edge of Glory' — thirty days remain until the crowning.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Basilio's next step (Follower rank 5); catch up with Brigitta (Follower rank 8).", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-09-27",
+      "weekday": "watersday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Visit the recovered Bardon (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Hear Catherina's announcement to her paripus mates (Follower rank 8).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-28",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Convince Basilio to act and find Vinca together (Follower rank 6).", "slot": "afternoon" },
+        { "label": "Show Neuras another lost relic (Follower rank 6); only 'A Dream's Origin' remains.", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-29",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Rest at the Lycaon Magic Association bench.", "slot": "afternoon", "statGains": { "wisdom": 13 } },
+        { "label": "Deliver the final lost relic to Neuras (Follower rank 7); 'Petty Thief' arrives to recover the stolen ones.", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-09-30",
+      "weekday": "idlesday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Depart for the Disgraced Ruins; cook the final recipe, Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Plant seeds in the Plant Culture Chamber.", "slot": "afternoon" },
+        { "label": "More completes the Mystical Scrolls (Follower rank 8).", "slot": "night", "spoiler": true }
+      ]
+    }
+  ]
+}

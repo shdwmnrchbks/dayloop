@@ -1,0 +1,290 @@
+{
+  "month": "2009-07",
+  "days": [
+    {
+      "date": "2009-07-01",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Hidetoshi — Emperor reaches rank 7 (best answer: 2)" },
+        { "label": "Check the dorm fridge for a Chilled Taiyaki (save it for Request #38)" },
+        { "label": "Evening: join Akihiko's cooking hangout — Combat Characteristic unlocked" }
+      ]
+    },
+    {
+      "date": "2009-07-02",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Junpei — Magician reaches rank 7 (best answers: 1 > 3 > 1)" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+      ]
+    },
+    {
+      "date": "2009-07-03",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Hang out with Fuuka — Priestess reaches rank 5 (best answers: 2 > A > 3)" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+      ]
+    },
+    {
+      "date": "2009-07-04",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Fuuka — Priestess reaches rank 6 (best answers: 1 > 1)" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 2" }
+      ]
+    },
+    {
+      "date": "2009-07-05",
+      "weekday": "sun",
+      "dayKind": "free",
+      "notes": "Social stat recovery point — if your Charm rank-ups don't match the guide, replace future part-time jobs and dorm hangouts with arcade or Hagakure visits so the Lovers link unlocks on time (the schedule carries +2 excess Charm leeway).",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥3,980 — 3 YABA Chocolate & 3 Doctor in Jelly)" },
+        { "label": "Play the MMORPG at your desk — Hermit reaches rank 6 (best answer: 2)" },
+        { "label": "Evening: join Mitsuru's reading hangout" }
+      ]
+    },
+    {
+      "date": "2009-07-06",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Fuuka — Priestess reaches rank 7 (romance: A > A > 3 > 1 / platonic: A > A > 3 > 2)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-07-07",
+      "weekday": "tue",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-07-08",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 4 (best answer: 1/2)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-07-09",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42)" },
+        { "label": "Hang out with Kenji — Moon reaches rank 3 (best answer: 2)" },
+        { "label": "Evening: study with Mitsuru and Akihiko" }
+      ]
+    },
+    {
+      "date": "2009-07-10",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Feed the weak cat again (Request #42)" },
+        { "label": "Hang out with Kenji — Moon reaches rank 4 (best answer: 2)" },
+        { "label": "Evening: study with Yukari and Fuuka" }
+      ]
+    },
+    {
+      "date": "2009-07-11",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Feed the weak cat a third time (Request #42)" },
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 5 (best answers: 1 > 2)" },
+        { "label": "Buy the Security Site Note from the Suspicious Man at Club Escapade" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 3" }
+      ]
+    },
+    {
+      "date": "2009-07-12",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Buy the Max Safety Shoes via TV Shopping (¥9,800 — Max Safety Shoes & 2 Instant Curry) — required for Request #40" },
+        { "label": "Play the MMORPG at your desk — Hermit reaches rank 7 (best answers: 3 > A)" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+      ]
+    },
+    {
+      "date": "2009-07-13",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Feed the weak cat a final time (Request #42)" },
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 6 (best answers: 2/3 > 1)" },
+        { "label": "Evening: study with everyone — Academics reaches rank 4" }
+      ]
+    },
+    {
+      "date": "2009-07-14",
+      "weekday": "tue",
+      "dayKind": "exam",
+      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 5+ (or rank 4 with all answers correct).",
+      "steps": [
+        { "label": "Exam day — answer everything you can" }
+      ]
+    },
+    {
+      "date": "2009-07-15",
+      "weekday": "wed",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-07-16",
+      "weekday": "thu",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-07-17",
+      "weekday": "fri",
+      "dayKind": "exam",
+      "steps": [
+        { "label": "Exam day — see the Answers tab for today's sheet" }
+      ]
+    },
+    {
+      "date": "2009-07-18",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Evening: Mayoido Antiques unlocks — join Junpei's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2009-07-19",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥14,800 — 3 Tetracone & 3 Makaracone)" },
+        { "label": "Play the MMORPG at your desk — Hermit reaches rank 8 (best answers: 2 > 1)" },
+        { "label": "Evening: read the Security Site Note on the dorm's shared computer (unlocks ambushing in Tartarus)" }
+      ]
+    },
+    {
+      "date": "2009-07-20",
+      "weekday": "mon",
+      "dayKind": "story",
+      "notes": "Yakushima vacation (July 20–22) — collect items from the beach for Request #44.",
+      "steps": [
+        { "label": "Yakushima vacation with the team" },
+        { "label": "Collect items from the beach for Request #44" }
+      ]
+    },
+    {
+      "date": "2009-07-21",
+      "weekday": "tue",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Yakushima vacation with the team" },
+        { "label": "Collect items from the beach for Request #44" }
+      ]
+    },
+    {
+      "date": "2009-07-22",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Yakushima vacation — return home" }
+      ]
+    },
+    {
+      "date": "2009-07-23",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+      ]
+    },
+    {
+      "date": "2009-07-24",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Exam results — Charm reaches rank 6", "statGains": { "charm": 2 } },
+        { "label": "Talk to Mitsuru for the exam reward" },
+        { "label": "Hang out with Junpei — Magician reaches rank 8 (best answers: 2 > 1/2)" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: watch Akihiko's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-07-25",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Hang out with Yukari — Lovers reaches rank 1" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 4" }
+      ]
+    },
+    {
+      "date": "2009-07-26",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥6,980 — Brand Wallet & Perfume)" },
+        { "label": "Play the MMORPG at your desk — Hermit reaches rank 9 (best answers: 2 > A > 1)" },
+        { "label": "Evening: join Mitsuru's reading hangout" }
+      ]
+    },
+    {
+      "date": "2009-07-27",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: track team training" }
+      ]
+    },
+    {
+      "date": "2009-07-28",
+      "weekday": "tue",
+      "dayKind": "free",
+      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
+      "steps": []
+    },
+    {
+      "date": "2009-07-29",
+      "weekday": "wed",
+      "dayKind": "free",
+      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
+      "steps": []
+    },
+    {
+      "date": "2009-07-30",
+      "weekday": "thu",
+      "dayKind": "free",
+      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
+      "steps": []
+    },
+    {
+      "date": "2009-07-31",
+      "weekday": "fri",
+      "dayKind": "free",
+      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
+      "steps": []
+    }
+  ]
+}

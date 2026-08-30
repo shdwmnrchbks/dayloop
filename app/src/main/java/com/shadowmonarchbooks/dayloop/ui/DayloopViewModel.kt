@@ -66,7 +66,7 @@ data class DayloopUiState(
 
     val calendarSpan: CalendarSpan?
         get() = selected?.pack?.calendar?.let {
-            CalendarSpan(it.startDate, it.endDate, it.nonPlayableDates.toSet())
+            CalendarSpan(it.startDate, it.endDate, it.nonPlayableDates.toSet(), it.monthLengths)
         }
 
     /** End-Day availability: false at the end of the pack's calendar. */
@@ -226,7 +226,7 @@ class DayloopViewModel @Inject constructor(
     }
 
     private fun spanOf(pack: LoadedPack): CalendarSpan = with(pack.pack.calendar) {
-        CalendarSpan(startDate, endDate, nonPlayableDates.toSet())
+        CalendarSpan(startDate, endDate, nonPlayableDates.toSet(), monthLengths)
     }
 
     private fun withSelectedSeed(block: suspend (PackSeed) -> Unit) {

@@ -1,0 +1,296 @@
+{
+  "month": "2009-11",
+  "days": [
+    {
+      "date": "2009-11-01",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥39,800 — Myohou Muramasa & Samurai Haori)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 4" },
+        { "label": "Evening: walk Koromaru (with Yukari)" }
+      ]
+    },
+    {
+      "date": "2009-11-02",
+      "weekday": "mon",
+      "dayKind": "school",
+      "notes": "Carry Hierophant, Lovers, and Chariot Arcanas out of Tartarus until the next visit (November 29). Reaching ~60% Persona Compendium completion around now enhances the Protagonist's Combat Characteristic.",
+      "steps": [
+        { "label": "Hang out with Yukari — Lovers reaches rank 8 (best answers: 1 > A)" },
+        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
+        { "label": "Evening: Tartarus", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-11-03",
+      "weekday": "tue",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-11-04",
+      "weekday": "wed",
+      "dayKind": "story",
+      "notes": "Celebration and aftermath — no player actions.",
+      "steps": []
+    },
+    {
+      "date": "2009-11-05",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Evening: a new note is available from the Suspicious Man at Club Escapade" },
+        { "label": "Evening: read the Assassin Site Note on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-11-06",
+      "weekday": "fri",
+      "dayKind": "school",
+      "notes": "Request #81 should be available if you completed all of Elizabeth's available requests in a timely fashion.",
+      "steps": [
+        { "label": "Invite Elizabeth to your room (Request #81)" },
+        { "label": "Hang out with Kazushi — Chariot reaches rank 5 (best answers: 1 > 1)" },
+        { "label": "Evening: read the History Website Note on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-11-07",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Watch Junpei's Link Episode — encourage him to see Chidori" },
+        { "label": "Evening: walk Koromaru (with Hayase)" }
+      ]
+    },
+    {
+      "date": "2009-11-08",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥9,800 — Japanese Doll & Homunculus)" },
+        { "label": "Buy the White Flower at Rafflesia (Port Island Station)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 5" },
+        { "label": "Evening: watch Junpei's Link Episode — hand over the White Flower" },
+        { "label": "Evening: walk Koromaru (with Yuko)" }
+      ]
+    },
+    {
+      "date": "2009-11-09",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Watch Ryoji's Link Episode" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-11-10",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Kazushi — Chariot reaches rank 6 (best answers: 2 > 2 > 2)" },
+        { "label": "Evening: watch Ken's Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-11-11",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Yukari — Lovers reaches rank 9 (romance: 2 > 1 / platonic: 2 > A > A)" },
+        { "label": "Evening: buy 5 Dating Site Notes from the Suspicious Man at Club Escapade" },
+        { "label": "Evening: read the Dating Site Note (Yukari Takeba) on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-11-12",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Hang out with Yukari — Lovers reaches rank 10 (MAX)" },
+        { "label": "Evening: brush Koromaru (Koromaru hangout) — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-11-13",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Hang out with Kazushi — Chariot reaches rank 7 (best answers: 1 > 1)" },
+        { "label": "Evening: join Ken's DVD hangout" }
+      ]
+    },
+    {
+      "date": "2009-11-14",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Watch Ryoji's Link Episode" },
+        { "label": "Evening: join Akihiko's DVD hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-11-15",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥39,800 — Sid's Jacket & 8 Mega Protein)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 6" },
+        { "label": "Evening: check the Command Room's new dorm recording" },
+        { "label": "Evening: join Aigis's gardening hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-11-16",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
+        { "label": "Hang out with Kazushi — Chariot reaches rank 8 (best answer: 2)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-11-17",
+      "weekday": "tue",
+      "dayKind": "story",
+      "notes": "Kyoto school trip (November 17–19). Buy Ken a gift (he likes Nama Yatsuhashi) if you wish. Request #96: buy all 3 Kyoto-exclusive drinks from a vending machine.",
+      "steps": [
+        { "label": "Kyoto school trip" },
+        { "label": "Buy all 3 Kyoto-exclusive drinks from a vending machine (Request #96)" }
+      ]
+    },
+    {
+      "date": "2009-11-18",
+      "weekday": "wed",
+      "dayKind": "story",
+      "notes": "Hot Spring Event escape route: 1 > 1 > 2 (requires Courage rank 4, Academics rank 5, Charm rank 6).",
+      "steps": [
+        { "label": "Kyoto school trip" },
+        { "label": "Accept Ryoji's invitation — watch his Link Episode" }
+      ]
+    },
+    {
+      "date": "2009-11-19",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Kyoto school trip — return home" }
+      ]
+    },
+    {
+      "date": "2009-11-20",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Evening: optionally gift Ken something you bought in Kyoto" },
+        { "label": "Evening: walk Koromaru (with Ken)" }
+      ]
+    },
+    {
+      "date": "2009-11-21",
+      "weekday": "sat",
+      "dayKind": "school",
+      "notes": "Past this date, class-time actions (awake/asleep and answers) no longer affect your maxed Social Stats.",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Talk to Mitsuru at the Faculty Office — Empress reaches rank 1" },
+        { "label": "Evening: join Fuuka's gardening hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2009-11-22",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥49,800 — 3 Garnet & 2 Opal)" },
+        { "label": "Visit the dying young man at the shrine — Sun reaches rank 7" },
+        { "label": "Evening: read the Dating Site Note (Girl at the Shrine) on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-11-23",
+      "weekday": "mon",
+      "dayKind": "free",
+      "notes": "Public holiday — Labor Thanksgiving Day.",
+      "steps": [
+        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 8 (best answers: 1 > 1 > 1)" },
+        { "label": "Evening: work part-time at Chagall Café" }
+      ]
+    },
+    {
+      "date": "2009-11-24",
+      "weekday": "tue",
+      "dayKind": "story",
+      "notes": "Career Experience (November 24–26).",
+      "steps": [
+        { "label": "Career Experience" }
+      ]
+    },
+    {
+      "date": "2009-11-25",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Career Experience" }
+      ]
+    },
+    {
+      "date": "2009-11-26",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Career Experience" }
+      ]
+    },
+    {
+      "date": "2009-11-27",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Career Experience (after school)" },
+        { "label": "Evening: read the Dating Site Note (Gourmet King) on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-11-28",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Buy Oden Juice from the friendly student at the School Corridor (Request #96)" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 2 (best answer: A)" },
+        { "label": "Evening: read the Ninja Fansite Note on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2009-11-29",
+      "weekday": "sun",
+      "dayKind": "free",
+      "notes": "Carry Hierophant, Chariot, Hanged-Man, and Star Arcanas out of Tartarus until the next visit (December 30). The TV Shopping equipment is useful for the Secret Super Boss.",
+      "steps": [
+        { "label": "Optional: TV Shopping (¥39,800 — Shoes of Bane & Infrared Goggles)" },
+        { "label": "Hang out with the old couple — Hierophant reaches rank 8 (best answers: A > A > A)" },
+        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
+        { "label": "Evening: Tartarus", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2009-11-30",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Talk to Mitsuru — Empress reaches rank 3 (best answers: 2 > 2 > A > 2)" },
+        { "label": "Evening: join Mitsuru's tea-time hangout — Combat Characteristic enhanced" }
+      ]
+    }
+  ]
+}

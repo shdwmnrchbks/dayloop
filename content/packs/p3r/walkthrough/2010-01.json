@@ -1,0 +1,304 @@
+{
+  "month": "2010-01",
+  "days": [
+    {
+      "date": "2010-01-01",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: New Year's event" },
+        { "label": "Evening: new Elizabeth's requests are available" },
+        { "label": "Evening: the Believer's Blog Note is now available from the Suspicious Man at Club Escapade" },
+        { "label": "Evening: join Ken's DVD hangout — Combat Characteristic enhanced" }
+      ]
+    },
+    {
+      "date": "2010-01-02",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: take a nap" },
+        { "label": "Evening: walk Koromaru (with Yuko)" }
+      ]
+    },
+    {
+      "date": "2010-01-03",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hang out with the rival athlete — Star reaches rank 8 (best answers: 1 > A)" },
+        { "label": "Evening: read the Believer's Blog Note on the dorm's shared computer" }
+      ]
+    },
+    {
+      "date": "2010-01-04",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Accept Mitsuru's phone invitation (romance answer: 2 / platonic answer: 3)" },
+        { "label": "Evening: watch Akihiko's Link Episode" }
+      ]
+    },
+    {
+      "date": "2010-01-05",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch Koromaru's Link Episode" },
+        { "label": "Evening: join Yukari's DVD hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-06",
+      "weekday": "wed",
+      "dayKind": "free",
+      "notes": "Alternative: choose Star rank 9 today instead, then meet Keisuke during the January 10 Koromaru walk if Star maxes that day.",
+      "steps": [
+        { "label": "Accept Kazushi's phone invitation (best answer: 3)" },
+        { "label": "Evening: join Aigis's reading hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-07",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: study at your desk" },
+        { "label": "Evening: walk Koromaru (with Aigis)" }
+      ]
+    },
+    {
+      "date": "2010-01-08",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Talk to Aigis — Aeon reaches rank 1" },
+        { "label": "Evening: join Yukari's cooking hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-09",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Mitsuru — Empress reaches rank 10 (MAX)" },
+        { "label": "Chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: walk Koromaru (with Chihiro)" }
+      ]
+    },
+    {
+      "date": "2010-01-10",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hang out with the rival athlete — Star reaches rank 9 (best answers: 1 > 2 > A > 1)" },
+        { "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Mitsuru" },
+        { "label": "Evening: walk Koromaru (with Hayase)" }
+      ]
+    },
+    {
+      "date": "2010-01-11",
+      "weekday": "mon",
+      "dayKind": "free",
+      "notes": "Public holiday — Coming of Age Day.",
+      "steps": [
+        { "label": "Accept Keisuke's phone invitation (best answer: 3)" },
+        { "label": "Evening: join Mitsuru's tea-time hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-12",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Hang out with Kazushi — Chariot reaches rank 10 (MAX)" },
+        { "label": "Evening: join Fuuka's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-13",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Aigis — Aeon reaches rank 2 (best answer: 1)" },
+        { "label": "Evening: talk to the suspicious-looking man at Club Escapade and agree to meet their Messiah — Takaya's Link Episode", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2010-01-14",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Join the art club — Fortune reaches rank 9 (best answers: 1 > A > A > A > A)" },
+        { "label": "Evening: join Fuuka's reading hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-15",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Talk to Aigis — Aeon reaches rank 3 (best answers: A > 2)" },
+        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
+        { "label": "Evening: Tartarus", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2010-01-16",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Aigis — Aeon reaches rank 4 (best answers: 1 > A > 1)" },
+        { "label": "Evening: walk Koromaru (with Mitsuru)" }
+      ]
+    },
+    {
+      "date": "2010-01-17",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hang out with the rival athlete — Star reaches rank 10 (MAX)" },
+        { "label": "Evening: check the Command Room's final dorm recording" },
+        { "label": "Evening: walk Koromaru (with Yuko)" }
+      ]
+    },
+    {
+      "date": "2010-01-18",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Answer the class question" },
+        { "label": "Watch Junpei's Link Episode" },
+        { "label": "Evening: join Junpei's reading hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-19",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Study at the school library (after school)" },
+        { "label": "Evening: watch Ken's Link Episode" }
+      ]
+    },
+    {
+      "date": "2010-01-20",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Aigis — Aeon reaches rank 5 (best answer: 1)" },
+        { "label": "Evening: go to bed" }
+      ]
+    },
+    {
+      "date": "2010-01-21",
+      "weekday": "thu",
+      "dayKind": "school",
+      "notes": "Good day for Reaper and Secret Super Boss preparations.",
+      "steps": [
+        { "label": "Revival Event (after school)" },
+        { "label": "Evening: Tartarus — Reaper and Secret Super Boss preparations", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2010-01-22",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Talk to Aigis — Aeon reaches rank 6 (best answer: 2/3)" },
+        { "label": "Chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: join Ken's DVD hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-23",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Aigis — Aeon reaches rank 7 (best answers: A > A > A)" },
+        { "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Fuuka" },
+        { "label": "Evening: walk Koromaru (with Chihiro)" }
+      ]
+    },
+    {
+      "date": "2010-01-24",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Daytime: drink coffee at Chagall Café" },
+        { "label": "Evening: walk Koromaru (with Kenji)" }
+      ]
+    },
+    {
+      "date": "2010-01-25",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Watch Koromaru's Link Episode" },
+        { "label": "Evening: join Koromaru's TV hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-26",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Join the art club — Fortune reaches rank 10 (MAX)" },
+        { "label": "Evening: join Fuuka's gardening hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-27",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Talk to Aigis — Aeon reaches rank 8 (romance: 2 > A > 1 / platonic: 2 > A > 2)" },
+        { "label": "Evening: join Akihiko's cooking hangout" }
+      ]
+    },
+    {
+      "date": "2010-01-28",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        { "label": "Stay awake in class" },
+        { "label": "Talk to Aigis — Aeon reaches rank 9 (romance: 1 > 1 / platonic: 1 > A)" },
+        { "label": "Evening: play Punch Boxer at Game Parade" }
+      ]
+    },
+    {
+      "date": "2010-01-29",
+      "weekday": "fri",
+      "dayKind": "school",
+      "notes": "All Social Links should now be MAX.",
+      "steps": [
+        { "label": "Talk to Aigis — Aeon reaches rank 10 (MAX)" },
+        { "label": "Evening: walk Koromaru (with the whole team)" }
+      ]
+    },
+    {
+      "date": "2010-01-30",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Spend time with your romance Social Link (or Hierophant)" },
+        { "label": "Evening: Tartarus — final preparations", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2010-01-31",
+      "weekday": "sun",
+      "dayKind": "story",
+      "notes": "Final free time — talk to Elizabeth if you need HP & SP recovery. The Reaper falls easily to Armageddon Theurgy (Helel + Satan); Messiah is fused from Orpheus + Thanatos (Lv 91, or 86 with the Sun Major Arcana).",
+      "steps": [
+        { "label": "Roam the city and talk to everyone — final free time activity" },
+        { "label": "Evening: Tartarus — The Promised Day", "spoiler": true }
+      ]
+    }
+  ]
+}

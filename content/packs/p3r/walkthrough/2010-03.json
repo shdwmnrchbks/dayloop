@@ -1,0 +1,24 @@
+{
+  "month": "2010-03",
+  "days": [
+    {
+      "date": "2010-03-04",
+      "weekday": "thu",
+      "dayKind": "school",
+      "notes": "Talk to everyone (sometimes up to 3 times to hear all voiced dialogue) and interact with everything. Checking the shelf in your room shows who you went to the Summer Festival with and who you spent Christmas Eve with.",
+      "steps": [
+        { "label": "Explore the school and city, then return to the Iwatodai dorm" },
+        { "label": "Evening: explore the dorm, talk to Yukari and interact with everything" },
+        { "label": "Check the shelf in your room, then go to bed" }
+      ]
+    },
+    {
+      "date": "2010-03-05",
+      "weekday": "fri",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Graduation Day — the journey ends", "spoiler": true }
+      ]
+    }
+  ]
+}

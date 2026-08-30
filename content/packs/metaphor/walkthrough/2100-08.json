@@ -1,0 +1,288 @@
+{
+  "month": "2100-08",
+  "days": [
+    {
+      "date": "2100-08-01",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Cook Magical Bread from the campfire moth (or a fallback dish).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Continue 'The Future of Magic' (answer: immediately is too rash).", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
+        { "label": "Run through Gracia Forest — the mobs are low level; sweep it fully.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-08-02",
+      "weekday": "watersday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Head for the Forsaken Tower; cook Redgrass-Roasted Bidou on the way.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Finish 'The Future of Magic' (answer: we have to live and fight on).", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 20 } },
+        { "label": "Lina drops out of the tournament after her defeat.", "slot": "afternoon", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2100-08-03",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Hone your weapons with Strohl.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Courage reaches rank 3 (Fearless).", "slot": "afternoon" },
+        { "label": "Catherina attacks once more — win it (Follower rank 4).", "slot": "afternoon" },
+        { "label": "Climb the Forsaken Tower's eight floors; grab the Gold Beetle on the north side.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+      ]
+    },
+    {
+      "date": "2100-08-04",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Brilehaven turn-in spree: Dragonthistle Berries, Toothbrush of Hygienia (pays a Gold Beetle), Ebony Horn, Fatolich report, Chalice of Legends, and the tower deed.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "courage": 20 } },
+        { "label": "Accompany Strohl to negotiate with Lord Hydran (Follower rank 7).", "slot": "afternoon" },
+        { "label": "Help Heismay search the eugief village for his son's urn (Follower rank 6).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-05",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Tell Maria about the sights and help with Fabienne's sign (Follower rank 6).", "slot": "afternoon" },
+        { "label": "Answer Brigitta's summons in Grand Trad (Follower rank 5).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-06",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Check on Bardon (Follower rank 5).", "slot": "afternoon" },
+        { "label": "See how Alonzo is settling in at Brilehaven (Follower rank 2).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-07",
+      "weekday": "watersday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Join Strohl visiting his parents at Merchants' Bazaar (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Speak with the Watchman for Brigitta (Follower rank 6).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-08",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Watch Martira's governor vote with Bardon (Follower rank 6); take 'The Right to Rule' (level-60 boss — park it for now).", "slot": "afternoon" },
+        { "label": "Tour Alonzo's home village (Follower rank 3).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-09",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Final bungee challenge with the super-fine rope — reset until the plunge lands.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Take in the view from the Watchtower above Angler's Inn Square.", "slot": "night", "statGains": { "wisdom": 10 } }
+      ]
+    },
+    {
+      "date": "2100-08-10",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Take the ferry tour around the bay.", "slot": "afternoon", "statGains": { "wisdom": 11 } },
+        { "label": "Alonzo pulls you deeper into his scheme (Follower rank 4).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-11",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Milk the cow for six Mellow Milk at Cattleracket Road.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
+        { "label": "Hear the Masked Woman who only appears at night.", "slot": "night", "statGains": { "tolerance": 8 } }
+      ]
+    },
+    {
+      "date": "2100-08-12",
+      "weekday": "watersday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Donate to the Earnest Youth for the Rainbow Roquefort recipe.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
+        { "label": "Alonzo's next move (Follower rank 5).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-13",
+      "weekday": "arboursday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Attend the soiree, then sneak into Louis' quarters for the magic formula.", "slot": "night", "spoiler": true },
+        { "label": "Gallica reaches Follower rank 5; daily Pantry & Washroom visit, then bed.", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-14",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Drakodios inquiry chain: The Greatest Catch notes, then the merchant, then the colony scout.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-08-15",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Cook Steadfast Stew, then read 'Top Secret Poetry! Do Not Read!'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 11 } },
+        { "label": "Visit the Towering Seawall.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Wisdom reaches rank 4 (Erudite).", "slot": "afternoon" },
+        { "label": "The storm breaks — a tentacled horror attacks the fleet; bring Electric and AoE, take the legs first.", "slot": "night", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2100-08-16",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Cook Stale Blackbread from the pantry leftovers.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Hear out each companion's worries aboard the runner — Gallica's talk aids your magic.", "slot": "afternoon", "statGains": { "imagination": 13 } }
+      ]
+    },
+    {
+      "date": "2100-08-17",
+      "weekday": "watersday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "The lance must be in hand by September 5 — plan the Virga Island push.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-08-18",
+      "weekday": "arboursday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Land on Virga Island; collect the three Gold Beetles around the Village of Pagan before the Dragon Table.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Rescue Eupha from the Pagan loyalists.", "slot": "afternoon", "spoiler": true }
+      ]
+    },
+    {
+      "date": "2100-08-19",
+      "weekday": "metalsday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Take 'Obtaining Drakodios' plus the village requests, then work the Dragon Temple trial to its guardian.", "slot": "afternoon" },
+        { "label": "Level the General Archetype to 15 for More's request before the boss; the human-possessed dragon god falls at the altar.", "slot": "afternoon", "spoiler": true },
+        { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
+      ]
+    },
+    {
+      "date": "2100-08-20",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Eht Ria: fisher-crone's Polar Stones, Edeni's 'Trial of Malnova', and the Clumsy Boy's plea.", "slot": "afternoon" },
+        { "label": "Sit with Eupha at the village shrine.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-08-21",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Alonzo's thread continues (Follower rank 6).", "slot": "afternoon" },
+        { "label": "Heismay's vigil at the eugief village (Follower rank 7).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-22",
+      "weekday": "watersday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Persuade Edeni to change the weather rite, then depart for the Land of Ceremony.", "slot": "afternoon" },
+        { "label": "Cook Almighty Golden Stew; Hulkenberg's resolve (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Watch the Prismatic Sea at night.", "slot": "night", "statGains": { "wisdom": 10 } }
+      ]
+    },
+    {
+      "date": "2100-08-23",
+      "weekday": "arboursday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Cook Holistic Whitefish Platter; sit with Heismay (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Clear the Land of Ceremony — sweep every trance crystal; Eupha's Summon Dragon God synthesis makes the boss simple (Follower rank 1).", "slot": "afternoon", "statGains": { "wisdom": 10 } }
+      ]
+    },
+    {
+      "date": "2100-08-24",
+      "weekday": "metalsday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Depart for Orbwise Path; cook Sweeter than Poison and meditate with Eupha.", "slot": "afternoon", "statGains": { "imagination": 13 } },
+        { "label": "Orbwise Path: two Gold Beetles and the Heartwarmers from the Anxious Soldier.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Junah shows herself after the boss (Follower rank 1).", "slot": "afternoon", "spoiler": true },
+        { "label": "Show Neuras the lost relic (Follower rank 4).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-25",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Fish with the Tail Bait for the Lord of the Lake.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+      ]
+    },
+    {
+      "date": "2100-08-26",
+      "weekday": "flamesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Cook Secretest of Secrets; tidy the storage room for extra bait.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Sporico Cave run.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Keep the night watch with Heismay.", "slot": "night", "statGains": { "tolerance": 8 } }
+      ]
+    },
+    {
+      "date": "2100-08-27",
+      "weekday": "watersday",
+      "dayKind": "story",
+      "steps": [
+        { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
+        { "label": "Climb the Spire of Blind Faith — permanent storm weather; the Stormy Sea Ring cuts the damage.", "slot": "afternoon" }
+      ]
+    },
+    {
+      "date": "2100-08-28",
+      "weekday": "arboursday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Report to the Dejected Man that his sister is safe.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Courage reaches rank 4 (Dauntless).", "slot": "afternoon" },
+        { "label": "Explore Brilehaven with Eupha (Follower rank 2); collect the gamble winnings.", "slot": "afternoon" },
+        { "label": "Shop with Junah (Follower rank 2).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-29",
+      "weekday": "metalsday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "End-of-month weapon & armour sale — stock up.", "slot": "afternoon" },
+        { "label": "Hear the Village Cleric's mustari history lesson.", "slot": "afternoon", "statGains": { "tolerance": 11 } },
+        { "label": "Tolerance reaches rank 4 (Benevolent).", "slot": "afternoon" },
+        { "label": "Answer Brigitta's summons (Follower rank 7).", "slot": "night" }
+      ]
+    },
+    {
+      "date": "2100-08-30",
+      "weekday": "idlesday",
+      "dayKind": "free",
+      "steps": [
+        { "label": "Visit the Sanctor with Eupha (Follower rank 3).", "slot": "afternoon" },
+        { "label": "Help Junah rehearse for the festival (Follower rank 3).", "slot": "night" }
+      ]
+    }
+  ]
+}

@@ -52,7 +52,7 @@ fun BondsScreen(
                     Text(
                         buildString {
                             append("${bond.ranks.size} rank(s)")
-                            if (lastFrom != null) append(" · latest from ${formatDate(lastFrom)}")
+                            if (lastFrom != null) append(" · latest from ${formatDate(lastFrom, pack.calendar)}")
                         },
                     )
                 },
@@ -119,7 +119,7 @@ fun BondDetailScreen(
                 Column {
                     step.availableFrom?.let {
                         Text(
-                            text = "From ${formatDate(it)}",
+                            text = "From ${formatDate(it, pack.calendar)}",
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }

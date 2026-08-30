@@ -61,6 +61,29 @@ data class CalendarRange(
     val endDate: String,
     /** Days inside the range the player cannot act on (story-only, travel). */
     val nonPlayableDates: List<String> = emptyList(),
+    /**
+     * Game-days per month for `dayCounter` packs whose months differ from the
+     * real calendar, starting at [startDate]'s month. A day-of-month above 31
+     * is representable as long as it is declared here. Empty = real month
+     * lengths; `weekdayGrid` packs must leave this empty.
+     */
+    val monthLengths: List<Int> = emptyList(),
+    /**
+     * In-game weekday cycle for `dayCounter` packs whose week differs from the
+     * real 7-day week — engine-neutral lowercase tokens, e.g. a 5-day week.
+     * Empty = mon..sun; `weekdayGrid` packs must leave this empty.
+     */
+    val weekdayCycle: List<String> = emptyList(),
+    /** The date + cycle token [weekdayCycle] is anchored to; required when the cycle is declared. */
+    val weekdayAnchor: WeekdayAnchor? = null,
+)
+
+@Serializable
+data class WeekdayAnchor(
+    /** ISO date inside the calendar the anchor applies to. */
+    val date: String,
+    /** One of [CalendarRange.weekdayCycle]'s tokens. */
+    val weekday: String,
 )
 
 @Serializable

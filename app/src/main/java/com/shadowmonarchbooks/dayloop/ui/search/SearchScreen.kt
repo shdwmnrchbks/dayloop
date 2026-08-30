@@ -83,7 +83,7 @@ fun SearchScreen(
                 item { SectionHeader("Days") }
                 items(hits.days, key = { "day-" + it.date }) { hit ->
                     ResultRow(
-                        title = formatDate(hit.date),
+                        title = formatDate(hit.date, pack.calendar),
                         snippet = hit.snippet,
                         onClick = { onOpenDay(hit.date) },
                     )
@@ -115,7 +115,7 @@ fun SearchScreen(
                 item { SectionHeader("Answers") }
                 items(hits.answers, key = { "ans-" + it.date }) { hit ->
                     ResultRow(
-                        title = "${hit.label} · ${formatDate(hit.date)}",
+                        title = "${hit.label} · ${formatDate(hit.date, pack.calendar)}",
                         snippet = hit.snippet,
                         onClick = { onOpenDay(hit.date) },
                     )

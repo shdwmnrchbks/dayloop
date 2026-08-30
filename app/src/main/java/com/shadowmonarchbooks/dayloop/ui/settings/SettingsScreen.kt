@@ -73,7 +73,7 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
                     Text(profile.name, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)
                 }
                 Text(
-                    text = state.currentDate?.let { formatDate(it) } ?: "—",
+                    text = state.currentDate?.let { formatDate(it, pack.calendar) } ?: "—",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.SemiBold,
                 )
@@ -110,7 +110,7 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
                             Text(profile.name, style = MaterialTheme.typography.bodyLarge, fontWeight = if (active) FontWeight.SemiBold else null)
                             val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
                             Text(
-                                text = "Day ${formatDate(profile.clockDate)}$routeSuffix",
+                                text = "Day ${formatDate(profile.clockDate, pack.calendar)}$routeSuffix",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -138,13 +138,13 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
             Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.errorContainer, modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack — content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
+                        text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack ” content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onErrorContainer,
                     )
                     state.orphans.sortedWith(compareBy({ it.date }, { it.index })).take(8).forEach { key ->
                         Text(
-                            text = "${formatDate(key.date)} · step ${key.index + 1}",
+                            text = "${formatDate(key.date, pack.calendar)} · step ${key.index + 1}",
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onErrorContainer,
                         )

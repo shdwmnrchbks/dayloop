@@ -1,17 +1,113 @@
 {
   "activities": [
     {
-      "id": "metaphor.activity.book.merchant-travels",
-      "label": "Read 'Travels of a Merchant'",
+      "id": "metaphor.activity.book.new-world-travel-diary",
+      "label": "Read 'New World Travel Diary'",
       "kind": "book",
-      "statGains": { "eloquence": 3 },
-      "location": "Coach / camp"
+      "statGains": { "imagination": 10 },
+      "location": "Gauntlet Runner lounge"
     },
     {
-      "id": "metaphor.activity.bounty-board",
-      "label": "Check the bounty board",
+      "id": "metaphor.activity.book.pride-and-persuasion",
+      "label": "Read 'Pride and Persuasion'",
+      "kind": "book",
+      "location": "Gauntlet Runner lounge"
+    },
+    {
+      "id": "metaphor.activity.book.bygone-days",
+      "label": "Read 'Bygone Days'",
+      "kind": "book",
+      "statGains": { "tolerance": 10 },
+      "location": "Gauntlet Runner lounge"
+    },
+    {
+      "id": "metaphor.activity.book.the-future-of-magic",
+      "label": "Read 'The Future of Magic'",
+      "kind": "book",
+      "statGains": { "wisdom": 10 },
+      "location": "Gauntlet Runner lounge",
+      "notes": "Missable: received from Julian at Brilehaven on 07/23 only."
+    },
+    {
+      "id": "metaphor.activity.book.top-secret-poetry",
+      "label": "Read 'Top Secret Poetry! Do Not Read!'",
+      "kind": "book",
+      "statGains": { "courage": 11 },
+      "location": "Gauntlet Runner lounge"
+    },
+    {
+      "id": "metaphor.activity.book.how-to-walk-outside-the-island",
+      "label": "Read 'How to Walk Outside the Island'",
+      "kind": "book",
+      "statGains": { "tolerance": 13 },
+      "location": "Gauntlet Runner lounge"
+    },
+    {
+      "id": "metaphor.activity.book.literacy-workbook",
+      "label": "Read 'Literacy Workbook'",
+      "kind": "book",
+      "statGains": { "imagination": 13 },
+      "location": "Gauntlet Runner lounge"
+    },
+    {
+      "id": "metaphor.activity.coliseum.ranked-league",
+      "label": "Varmareno Coliseum — Ranked League",
       "kind": "other",
-      "location": "Town square"
+      "statGains": { "courage": 10 },
+      "location": "Brilehaven",
+      "notes": "Rank battles pay Courage coins; blocked on Blight-weather days."
+    },
+    {
+      "id": "metaphor.activity.coliseum.gauntlet-challenge",
+      "label": "Varmareno Coliseum — Gauntlet Challenge (30 rounds)",
+      "kind": "other",
+      "statGains": { "courage": 10 },
+      "location": "Brilehaven"
+    },
+    {
+      "id": "metaphor.activity.cooking.inn",
+      "label": "Help cook at the inn",
+      "kind": "other",
+      "location": "Hushed Honeybee Inn, Grand Trad",
+      "notes": "Evenings only; window closes 09/22 (Chef in Training achievement)."
+    },
+    {
+      "id": "metaphor.activity.cooking.runner",
+      "label": "Cook at the Gauntlet Runner kitchen",
+      "kind": "other",
+      "location": "Gauntlet Runner",
+      "notes": "Pantry restocks daily; Gauntlet Shrooms only come from here."
+    },
+    {
+      "id": "metaphor.activity.fishing",
+      "label": "Go fishing",
+      "kind": "other",
+      "notes": "Tail Bait targets the Lord of the Lake; Queen's Honey Jar is a cooking prize."
+    },
+    {
+      "id": "metaphor.activity.gold-beetles",
+      "label": "Collect Gold Beetles",
+      "kind": "other",
+      "notes": "50 in the world; 46 needed for every exchange (All That Glitters)."
+    },
+    {
+      "id": "metaphor.activity.akademeia-study",
+      "label": "Study at Akademeia",
+      "kind": "other",
+      "location": "Akademeia",
+      "notes": "Progresses More's Tasks and the More follower bond."
+    },
+    {
+      "id": "metaphor.activity.podium-debates",
+      "label": "Win a podium debate",
+      "kind": "other",
+      "notes": "8 candidate debates across Martira, Brilehaven, and Altabury Heights."
+    },
+    {
+      "id": "metaphor.activity.bounty-requests",
+      "label": "Take bounties from the Recruitment Centre",
+      "kind": "other",
+      "location": "Recruitment Centre"
     }
   ]
 }

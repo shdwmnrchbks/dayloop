@@ -1,22 +1,199 @@
 {
   "bonds": [
     {
-      "id": "metaphor.bond.mage",
-      "label": "Mage",
-      "characterLabel": "Gallica",
+      "id": "metaphor.bond.gallica",
+      "label": "Gallica",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-02", "location": "Tavern", "notes": "Fit-check rank: no gate." },
-        { "rank": 2, "availableFrom": "2100-06-17", "gates": { "type": "statGte", "stat": "insight", "rank": 2 }, "notes": "Fit-check rank: exercises a Royal Virtue gate." }
+        { "rank": 1, "availableFrom": "2100-06-06", "notes": "Joins during the Nord Mines trek." },
+        { "rank": 2, "availableFrom": "2100-06-11" },
+        { "rank": 3, "availableFrom": "2100-07-05" },
+        { "rank": 4, "availableFrom": "2100-07-25" },
+        { "rank": 5, "availableFrom": "2100-08-13" },
+        { "rank": 6, "availableFrom": "2100-08-19" },
+        { "rank": 7, "availableFrom": "2100-09-23" },
+        { "rank": 8, "availableFrom": "2100-09-24" }
       ]
     },
     {
-      "id": "metaphor.bond.warrior",
-      "label": "Warrior",
-      "characterLabel": "Strohl",
+      "id": "metaphor.bond.strohl",
+      "label": "Strohl",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-03", "location": "Barracks" },
-        { "rank": 2, "availableFrom": "2100-06-10", "gates": { "type": "statGte", "stat": "courage", "rank": 2 } },
-        { "rank": 3, "availableFrom": "2100-06-24" }
+        { "rank": 1, "availableFrom": "2100-06-06", "notes": "Bond forms during the fort assault." },
+        { "rank": 2, "availableFrom": "2100-06-13" },
+        { "rank": 3, "availableFrom": "2100-06-16" },
+        { "rank": 4, "availableFrom": "2100-07-09" },
+        { "rank": 5, "availableFrom": "2100-07-12" },
+        { "rank": 6, "availableFrom": "2100-07-27" },
+        { "rank": 7, "availableFrom": "2100-08-04" },
+        { "rank": 8, "availableFrom": "2100-08-07" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.hulkenberg",
+      "label": "Hulkenberg",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-11" },
+        { "rank": 2, "availableFrom": "2100-06-14" },
+        { "rank": 3, "availableFrom": "2100-06-29" },
+        { "rank": 4, "availableFrom": "2100-07-01" },
+        { "rank": 5, "availableFrom": "2100-07-09" },
+        { "rank": 6, "availableFrom": "2100-07-29" },
+        { "rank": 7, "availableFrom": "2100-08-20" },
+        { "rank": 8, "availableFrom": "2100-08-22" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.heismay",
+      "label": "Heismay",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-07-04" },
+        { "rank": 2, "availableFrom": "2100-07-13" },
+        { "rank": 3, "availableFrom": "2100-07-16" },
+        { "rank": 4, "availableFrom": "2100-07-24" },
+        { "rank": 5, "availableFrom": "2100-07-29" },
+        { "rank": 6, "availableFrom": "2100-08-04" },
+        { "rank": 7, "availableFrom": "2100-08-21" },
+        { "rank": 8, "availableFrom": "2100-08-23" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.junah",
+      "label": "Junah",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-08-24" },
+        { "rank": 2, "availableFrom": "2100-08-28" },
+        { "rank": 3, "availableFrom": "2100-08-30" },
+        { "rank": 4, "availableFrom": "2100-09-02" },
+        { "rank": 5, "availableFrom": "2100-09-04" },
+        { "rank": 6, "availableFrom": "2100-09-14" },
+        { "rank": 7, "availableFrom": "2100-09-16" },
+        { "rank": 8, "availableFrom": "2100-09-22" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.eupha",
+      "label": "Eupha",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-08-23" },
+        { "rank": 2, "availableFrom": "2100-08-28" },
+        { "rank": 3, "availableFrom": "2100-08-30" },
+        { "rank": 4, "availableFrom": "2100-09-02" },
+        { "rank": 5, "availableFrom": "2100-09-04" },
+        { "rank": 6, "availableFrom": "2100-09-13" },
+        { "rank": 7, "availableFrom": "2100-10-01" },
+        { "rank": 8, "availableFrom": "2100-10-03" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.basilio",
+      "label": "Basilio",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-09-15" },
+        { "rank": 2, "availableFrom": "2100-09-17" },
+        { "rank": 3, "availableFrom": "2100-09-19" },
+        { "rank": 4, "availableFrom": "2100-09-22" },
+        { "rank": 5, "availableFrom": "2100-09-26" },
+        { "rank": 6, "availableFrom": "2100-09-28" },
+        { "rank": 7, "availableFrom": "2100-10-02" },
+        { "rank": 8, "availableFrom": "2100-10-04" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.neuras",
+      "label": "Neuras",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-07-07" },
+        { "rank": 2, "availableFrom": "2100-07-08" },
+        { "rank": 3, "availableFrom": "2100-07-30" },
+        { "rank": 4, "availableFrom": "2100-08-24" },
+        { "rank": 5, "availableFrom": "2100-09-20" },
+        { "rank": 6, "availableFrom": "2100-09-28" },
+        { "rank": 7, "availableFrom": "2100-09-29" },
+        { "rank": 8, "availableFrom": "2100-10-05" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.maria",
+      "label": "Maria",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-10", "notes": "First free evening in the capital." },
+        { "rank": 2, "availableFrom": "2100-06-30" },
+        { "rank": 3, "availableFrom": "2100-07-08" },
+        { "rank": 4, "availableFrom": "2100-07-11" },
+        { "rank": 5, "availableFrom": "2100-07-13" },
+        { "rank": 6, "availableFrom": "2100-08-05" },
+        { "rank": 7, "availableFrom": "2100-09-01" },
+        { "rank": 8, "availableFrom": "2100-09-03" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.catherina",
+      "label": "Catherina",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-12" },
+        { "rank": 2, "availableFrom": "2100-07-02" },
+        { "rank": 3, "availableFrom": "2100-07-19" },
+        { "rank": 4, "availableFrom": "2100-08-03" },
+        { "rank": 5, "availableFrom": "2100-09-13" },
+        { "rank": 6, "availableFrom": "2100-09-15" },
+        { "rank": 7, "availableFrom": "2100-09-17" },
+        { "rank": 8, "availableFrom": "2100-09-27" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.alonzo",
+      "label": "Alonzo",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-07-11" },
+        { "rank": 2, "availableFrom": "2100-08-06" },
+        { "rank": 3, "availableFrom": "2100-08-08" },
+        { "rank": 4, "availableFrom": "2100-08-10" },
+        { "rank": 5, "availableFrom": "2100-08-12" },
+        { "rank": 6, "availableFrom": "2100-08-21" },
+        { "rank": 7, "availableFrom": "2100-10-01" },
+        { "rank": 8, "availableFrom": "2100-10-04" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.bardon",
+      "label": "Bardon",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-07-06" },
+        { "rank": 2, "availableFrom": "2100-07-21" },
+        { "rank": 3, "availableFrom": "2100-07-26" },
+        { "rank": 4, "availableFrom": "2100-07-28" },
+        { "rank": 5, "availableFrom": "2100-08-06" },
+        { "rank": 6, "availableFrom": "2100-08-08" },
+        { "rank": 7, "availableFrom": "2100-09-05" },
+        { "rank": 8, "availableFrom": "2100-09-27" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.brigitta",
+      "label": "Brigitta",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-16" },
+        { "rank": 2, "availableFrom": "2100-06-18" },
+        { "rank": 3, "availableFrom": "2100-06-20" },
+        { "rank": 4, "availableFrom": "2100-06-30" },
+        { "rank": 5, "availableFrom": "2100-08-05" },
+        { "rank": 6, "availableFrom": "2100-08-07" },
+        { "rank": 7, "availableFrom": "2100-08-29" },
+        { "rank": 8, "availableFrom": "2100-09-26" }
+      ]
+    },
+    {
+      "id": "metaphor.bond.more",
+      "label": "More",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2100-06-05", "notes": "Met at Akademeia during the opening arc." },
+        { "rank": 2, "notes": "Not dated by the guide; advances with More's Task study between ranks 1 and 3." },
+        { "rank": 3, "availableFrom": "2100-07-07" },
+        { "rank": 4, "availableFrom": "2100-07-07" },
+        { "rank": 5, "availableFrom": "2100-07-25" },
+        { "rank": 6, "availableFrom": "2100-08-19" },
+        { "rank": 7, "availableFrom": "2100-08-27" },
+        { "rank": 8, "availableFrom": "2100-09-30" }
       ]
     }
   ]

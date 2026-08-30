@@ -23,6 +23,31 @@ class PackLintTest {
 
     private fun tempDir() = Files.createTempDirectory("packlint-test")
 
+    /** A minimal dayCounter pack with a foreign in-game weekday cycle. */
+    private fun dayCounterPack() = Fixture.validPack().copy(
+        timeModel = "dayCounter",
+        calendar = com.shadowmonarchbooks.dayloop.pack.schema.CalendarRange(
+            startDate = "2100-06-02",
+            endDate = "2100-06-30",
+            monthLengths = listOf(30),
+            weekdayCycle = listOf("metalsday", "idlesday", "flamesday", "watersday", "arboursday"),
+            weekdayAnchor = com.shadowmonarchbooks.dayloop.pack.schema.WeekdayAnchor("2100-06-02", "watersday"),
+        ),
+    )
+
+    private fun dayCounterWalkthrough(): com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile {
+        val cycle = listOf("metalsday", "idlesday", "flamesday", "watersday", "arboursday")
+        // Cycle position of day d: June 2 = watersday (index 3).
+        fun weekdayOf(d: Int): String {
+            val anchor = 3
+            return cycle[(anchor + (d - 2) % 5 + 5) % 5]
+        }
+        return com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile(
+            month = "2100-06",
+            days = (2..30).map { d -> Day("2100-06-%02d".format(d), weekdayOf(d), "free") },
+        )
+    }
+
     @Test
     fun `valid seed pack produces no errors`() {
         val dir = tempDir()
@@ -40,6 +65,36 @@ class PackLintTest {
         Fixture.writePack(dir, walkthroughs = listOf(wt))
         val errors = PackLint.runOn(dir).errorsIn("walkthrough")
         assertTrue(errors.any { "real calendar says 'mon'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `dayCounter pack with consistent cycle weekdays passes`() {
+        val dir = tempDir()
+        Fixture.writePack(dir, pack = dayCounterPack(), walkthroughs = listOf(dayCounterWalkthrough()))
+        val issues = PackLint.runOn(dir)
+        assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    @Test
+    fun `dayCounter day whose weekday breaks the cycle fails`() {
+        val dir = tempDir()
+        val wt = dayCounterWalkthrough().copy(
+            days = dayCounterWalkthrough().days.map { if (it.date == "2100-06-03") it.copy(weekday = "metalsday") else it }
+        )
+        Fixture.writePack(dir, pack = dayCounterPack(), walkthroughs = listOf(wt))
+        val errors = PackLint.runOn(dir).errorsIn("walkthrough")
+        assertTrue(errors.any { "weekday cycle says 'arboursday'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `monthLengths on a weekdayGrid pack fails`() {
+        val dir = tempDir()
+        val pack = Fixture.validPack().copy(
+            calendar = Fixture.validPack().calendar.copy(monthLengths = listOf(30)),
+        )
+        Fixture.writePack(dir, pack = pack)
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "must not declare game-month lengths" in it.message }, errors.toString())
     }
 
     @Test
@@ -138,7 +193,7 @@ class PackLintTest {
         )
         Fixture.writePack(dir, walkthroughs = listOf(wt))
         val errors = PackLint.runOn(dir).errorsIn("walkthrough")
-        assertTrue(errors.any { "outside the pack calendar range" in it.message }, errors.toString())
+        assertTrue(errors.any { "not a date in this pack's calendar" in it.message }, errors.toString())
     }
 
     @Test
@@ -223,7 +278,7 @@ class PackLintTest {
             DeadlinesFile(deadlines = listOf(Deadline("t1.deadline.exam", "Exams", "exam", date = "2017-01-01")))
         )
         val errors = PackLint.runOn(dir).errorsIn("deadlines.json")
-        assertTrue(errors.any { "outside the calendar range" in it.message }, errors.toString())
+        assertTrue(errors.any { "not a date in this pack's calendar" in it.message }, errors.toString())
     }
 
     @Test

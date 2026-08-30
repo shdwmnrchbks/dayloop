@@ -1,29 +1,34 @@
 {
   "packId": "metaphor",
   "title": "Metaphor: ReFantazio",
-  "contentVersion": 1,
+  "contentVersion": 2,
   "timeModel": "dayCounter",
   "calendar": {
-    "startDate": "2100-06-01",
-    "endDate": "2100-06-30",
-    "nonPlayableDates": ["2100-06-14", "2100-06-15"]
+    "startDate": "2100-06-02",
+    "endDate": "2100-10-26",
+    "nonPlayableDates": [
+      "2100-06-03",
+      "2100-06-04",
+      "2100-06-07",
+      "2100-06-08",
+      "2100-06-09"
+    ],
+    "monthLengths": [30, 30, 30, 30, 30],
+    "weekdayCycle": ["metalsday", "idlesday", "flamesday", "watersday", "arboursday"],
+    "weekdayAnchor": { "date": "2100-06-02", "weekday": "watersday" }
   },
   "slots": [
-    { "id": "day", "label": "Day" },
     { "id": "afternoon", "label": "Afternoon" },
-    { "id": "evening", "label": "Evening" }
+    { "id": "night", "label": "Night" }
   ],
   "stats": [
     { "id": "courage", "label": "Courage" },
-    { "id": "imagery", "label": "Imagery" },
+    { "id": "wisdom", "label": "Wisdom" },
+    { "id": "tolerance", "label": "Tolerance" },
     { "id": "eloquence", "label": "Eloquence" },
-    { "id": "consideration", "label": "Consideration" },
-    { "id": "insight", "label": "Insight" }
+    { "id": "imagination", "label": "Imagination" }
   ],
-  "routes": [
-    { "id": "standard", "label": "Balanced", "description": "Fit-check route with two steps per day." },
-    { "id": "casual", "label": "Casual", "description": "Fit-check route with one lighter step per day." }
-  ],
+  "routes": [],
   "capabilities": {
     "exams": false,
     "weather": false

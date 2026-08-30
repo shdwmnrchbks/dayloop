@@ -26,6 +26,456 @@
       "answers": [
         "1"
       ]
+    },
+    {
+      "id": "p3r.answers.class.2009-05-06",
+      "date": "2009-05-06",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-05-13",
+      "date": "2009-05-13",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-05-15",
+      "date": "2009-05-15",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-05-19",
+      "date": "2009-05-19",
+      "kind": "exam",
+      "label": "School exams — day 2",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-05-20",
+      "date": "2009-05-20",
+      "kind": "exam",
+      "label": "School exams — day 3",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-05-21",
+      "date": "2009-05-21",
+      "kind": "exam",
+      "label": "School exams — day 4",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-05-22",
+      "date": "2009-05-22",
+      "kind": "exam",
+      "label": "School exams — day 5",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-06-15",
+      "date": "2009-06-15",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-06-17",
+      "date": "2009-06-17",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-06-22",
+      "date": "2009-06-22",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-06-25",
+      "date": "2009-06-25",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-06-29",
+      "date": "2009-06-29",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-07-03",
+      "date": "2009-07-03",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-07-08",
+      "date": "2009-07-08",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-07-09",
+      "date": "2009-07-09",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-07-10",
+      "date": "2009-07-10",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-07-11",
+      "date": "2009-07-11",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-07-14",
+      "date": "2009-07-14",
+      "kind": "exam",
+      "label": "School exams — day 1",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-07-15",
+      "date": "2009-07-15",
+      "kind": "exam",
+      "label": "School exams — day 2",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-07-16",
+      "date": "2009-07-16",
+      "kind": "exam",
+      "label": "School exams — day 3",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-07-17",
+      "date": "2009-07-17",
+      "kind": "exam",
+      "label": "School exams — day 4",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-09-01",
+      "date": "2009-09-01",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-09-10",
+      "date": "2009-09-10",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-09-11",
+      "date": "2009-09-11",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-09-14",
+      "date": "2009-09-14",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-09-26",
+      "date": "2009-09-26",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-10-07",
+      "date": "2009-10-07",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-10-10",
+      "date": "2009-10-10",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-10-19",
+      "date": "2009-10-19",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-10-22",
+      "date": "2009-10-22",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-10-26",
+      "date": "2009-10-26",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-10-30",
+      "date": "2009-10-30",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-10-13",
+      "date": "2009-10-13",
+      "kind": "exam",
+      "label": "School exams — day 1",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-10-14",
+      "date": "2009-10-14",
+      "kind": "exam",
+      "label": "School exams — day 2",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-10-15",
+      "date": "2009-10-15",
+      "kind": "exam",
+      "label": "School exams — day 3",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-10-16",
+      "date": "2009-10-16",
+      "kind": "exam",
+      "label": "School exams — day 4",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-11-07",
+      "date": "2009-11-07",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-11-12",
+      "date": "2009-11-12",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-11-30",
+      "date": "2009-11-30",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-12-07",
+      "date": "2009-12-07",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-12-09",
+      "date": "2009-12-09",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-12-11",
+      "date": "2009-12-11",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2009-12-22",
+      "date": "2009-12-22",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-12-14",
+      "date": "2009-12-14",
+      "kind": "exam",
+      "label": "School exams — day 1",
+      "answers": [
+        "1"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-12-15",
+      "date": "2009-12-15",
+      "kind": "exam",
+      "label": "School exams — day 2",
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-12-16",
+      "date": "2009-12-16",
+      "kind": "exam",
+      "label": "School exams — day 3",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-12-17",
+      "date": "2009-12-17",
+      "kind": "exam",
+      "label": "School exams — day 4",
+      "answers": [
+        "4"
+      ]
+    },
+    {
+      "id": "p3r.answers.exam.2009-12-18",
+      "date": "2009-12-18",
+      "kind": "exam",
+      "label": "School exams — day 5",
+      "answers": [
+        "4"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2010-01-08",
+      "date": "2010-01-08",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "3"
+      ]
+    },
+    {
+      "id": "p3r.answers.class.2010-01-18",
+      "date": "2010-01-18",
+      "kind": "classQuestion",
+      "label": "Class question",
+      "answers": [
+        "2"
+      ]
     }
   ]
 }

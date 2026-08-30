@@ -72,8 +72,8 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                         Text(
                             text = when {
                                 start != null && end != null && end != start ->
-                                    "Window ${formatDate(start)} – ${formatDate(end)}"
-                                start != null -> "Due ${formatDate(start)}"
+                                    "Window ${formatDate(start, pack.calendar)} – ${formatDate(end, pack.calendar)}"
+                                start != null -> "Due ${formatDate(start, pack.calendar)}"
                                 else -> "Unscheduled"
                             },
                             style = MaterialTheme.typography.bodyMedium,
@@ -81,7 +81,7 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                         )
                     }
                     current?.let {
-                        val days = daysUntil(it, deadline)
+                        val days = daysUntil(it, deadline, pack.calendar)
                         if (days != null) {
                             Text(
                                 text = when {
