@@ -2,9 +2,21 @@
   "deadlines": [
     {
       "id": "p5r.deadline.palace1",
-      "label": "First palace must be finished (one-day heist)",
+      "label": "First palace heist — steal the Treasure",
       "kind": "palace",
-      "date": "2016-04-24"
+      "date": "2016-04-26"
+    },
+    {
+      "id": "p5r.deadline.exams.may-midterms",
+      "label": "May midterms",
+      "kind": "exam",
+      "window": { "start": "2016-05-11", "end": "2016-05-13" }
+    },
+    {
+      "id": "p5r.deadline.palace2",
+      "label": "Second palace heist — steal the Treasure",
+      "kind": "palace",
+      "date": "2016-05-25"
     }
   ]
 }

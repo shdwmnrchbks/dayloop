@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "dayloop"
 include(":app")
 include(":tools:pack")
+include(":tools:packgen")

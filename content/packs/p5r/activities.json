@@ -4,7 +4,57 @@
       "id": "p5r.activity.book.great-thief",
       "label": "Read 'The Great Thief'",
       "kind": "book",
+      "statGains": { "knowledge": 3 },
       "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.pirate-legend",
+      "label": "Read 'Pirate Legend'",
+      "kind": "book",
+      "statGains": { "guts": 3 },
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.medjed-menace",
+      "label": "Read 'Medjed Menace'",
+      "kind": "book",
+      "statGains": { "knowledge": 3 },
+      "location": "Central Street bookstore / home"
+    },
+    {
+      "id": "p5r.activity.book.alluring-dancer",
+      "label": "Read 'The Alluring Dancer'",
+      "kind": "book",
+      "statGains": { "charm": 3 },
+      "location": "School library / home"
+    },
+    {
+      "id": "p5r.activity.book.art-of-charm",
+      "label": "Read 'The Art of Charm'",
+      "kind": "book",
+      "statGains": { "charm": 3 },
+      "location": "Metro"
+    },
+    {
+      "id": "p5r.activity.book.gallant-rogue",
+      "label": "Read 'The Gallant Rogue'",
+      "kind": "book",
+      "statGains": { "guts": 3 },
+      "location": "School library / metro"
+    },
+    {
+      "id": "p5r.activity.book.zorro",
+      "label": "Read 'Zorro the Outlaw'",
+      "kind": "book",
+      "statGains": { "kindness": 3 },
+      "location": "School library"
+    },
+    {
+      "id": "p5r.activity.book.social-thought",
+      "label": "Read 'Social Thought'",
+      "kind": "book",
+      "statGains": { "knowledge": 3 },
+      "location": "Attic / metro"
     },
     {
       "id": "p5r.activity.dvd.x-folders",
@@ -13,6 +63,48 @@
       "statGains": { "guts": 2 },
       "location": "Attic TV",
       "notes": "12-part rental series; needs the DVD player."
+    },
+    {
+      "id": "p5r.activity.dvd.wraith",
+      "label": "Watch 'Wraith'",
+      "kind": "dvd",
+      "statGains": { "kindness": 2 },
+      "location": "Attic TV"
+    },
+    {
+      "id": "p5r.activity.dvd.guy-mcver",
+      "label": "Watch 'Guy McVer'",
+      "kind": "dvd",
+      "statGains": { "proficiency": 2 },
+      "location": "Attic TV"
+    },
+    {
+      "id": "p5r.activity.dvd.bubbly-hills",
+      "label": "Watch 'Bubbly Hills, 90210'",
+      "kind": "dvd",
+      "statGains": { "charm": 2 },
+      "location": "Attic TV"
+    },
+    {
+      "id": "p5r.activity.movie.tanktop-millionaire",
+      "label": "Watch 'Tanktop Millionaire'",
+      "kind": "other",
+      "statGains": { "guts": 3 },
+      "location": "Central Street movie theater"
+    },
+    {
+      "id": "p5r.activity.movie.cake-knight-rises",
+      "label": "Watch 'The Cake Knight Rises'",
+      "kind": "other",
+      "statGains": { "kindness": 3 },
+      "location": "Central Street movie theater"
+    },
+    {
+      "id": "p5r.activity.drink.fruit-drink",
+      "label": "Buy the Sunday fruit drink",
+      "kind": "drink",
+      "location": "Shibuya Underground Walkway",
+      "notes": "Sundays only; the stat it raises changes with each purchase."
     }
   ]
 }

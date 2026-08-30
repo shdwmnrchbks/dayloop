@@ -21,3 +21,20 @@ tasks.register<JavaExec>("packlint") {
             (findProperty("packlintExtra")?.toString()?.split(" ")?.filter { it.isNotBlank() } ?: emptyList()),
     )
 }
+
+// Extract schedule facts from a local guide archive into candidate JSON
+// (build/packgen — never committed; docs/sources.md).
+tasks.register<JavaExec>("packgen") {
+    group = "content"
+    description = "Extract day-schedule facts from a local guide archive (not in git) into candidates."
+    classpath = project(":tools:packgen").extensions
+        .getByType(org.gradle.api.plugins.JavaPluginExtension::class.java)
+        .sourceSets["main"].runtimeClasspath
+    mainClass = "com.shadowmonarchbooks.dayloop.tools.packgen.PackGenKt"
+    args(
+        "--archive",
+        (findProperty("archive") ?: "P5R_100p_Guide_AI_Package").toString(),
+        "--out",
+        (findProperty("out") ?: "build/packgen").toString(),
+    )
+}

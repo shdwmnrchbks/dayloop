@@ -6,16 +6,115 @@
       "characterLabel": "The Walrus",
       "ranks": [
         { "rank": 1, "availableFrom": "2016-04-09", "notes": "Unlocked by the story at the start of the game." },
-        { "rank": 2, "availableFrom": "2016-04-24", "notes": "Advances on its own during the first heist window." }
+        { "rank": 2, "availableFrom": "2016-04-24", "notes": "Advances on its own during the first heist window." },
+        { "rank": 3, "availableFrom": "2016-05-05", "notes": "Story-forced." },
+        { "rank": 4, "availableFrom": "2016-05-25", "notes": "Story-forced after the second heist." }
+      ]
+    },
+    {
+      "id": "p5r.bond.chariot",
+      "label": "Chariot",
+      "characterLabel": "Ryuji",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-04-12", "notes": "Unlocked by the story." },
+        { "rank": 2, "availableFrom": "2016-05-01" },
+        { "rank": 3, "availableFrom": "2016-05-22" }
+      ]
+    },
+    {
+      "id": "p5r.bond.magician",
+      "label": "Magician",
+      "characterLabel": "Morgana",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-04-15", "notes": "Unlocked by the story." },
+        { "rank": 2, "availableFrom": "2016-04-26", "notes": "Story-forced after the first heist." },
+        { "rank": 3, "availableFrom": "2016-05-25", "notes": "Story-forced after the second heist." }
+      ]
+    },
+    {
+      "id": "p5r.bond.lovers",
+      "label": "Lovers",
+      "characterLabel": "Ann",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-04-15", "notes": "Unlocked by the story." },
+        { "rank": 2, "availableFrom": "2016-04-25", "notes": "Story-forced on calling-card day." },
+        { "rank": 3, "availableFrom": "2016-05-21" },
+        { "rank": 4, "availableFrom": "2016-05-26", "notes": "Judgment call: the 05/26 hang-out carries the point haul for this rank-up; verify in-game." },
+        { "rank": 5, "availableFrom": "2016-05-28" },
+        { "rank": 6, "availableFrom": "2016-05-31" }
       ]
     },
     {
       "id": "p5r.bond.death",
       "label": "Death",
-      "characterLabel": "The Clinic Doctor",
+      "characterLabel": "Takemi",
       "ranks": [
         { "rank": 1, "availableFrom": "2016-04-18", "location": "Yongen-Jaya clinic", "notes": "First hang-out; no matching Arcana Persona needed for this rank." },
-        { "rank": 2, "availableFrom": "2016-04-23", "location": "Yongen-Jaya clinic", "notes": "Second hang-out; still no Arcana Persona needed." }
+        { "rank": 2, "availableFrom": "2016-04-23", "location": "Yongen-Jaya clinic" },
+        { "rank": 3, "availableFrom": "2016-04-27", "location": "Yongen-Jaya clinic" },
+        { "rank": 4, "availableFrom": "2016-04-30", "location": "Yongen-Jaya clinic" },
+        { "rank": 5, "availableFrom": "2016-05-06", "location": "Yongen-Jaya clinic" },
+        { "rank": 6, "availableFrom": "2016-05-09", "location": "Yongen-Jaya clinic" },
+        { "rank": 7, "availableFrom": "2016-05-18", "location": "Yongen-Jaya clinic" }
+      ]
+    },
+    {
+      "id": "p5r.bond.hierophant",
+      "label": "Hierophant",
+      "characterLabel": "Sojiro",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-04-24", "location": "Café LeBlanc" },
+        { "rank": 2, "availableFrom": "2016-05-08", "location": "Café LeBlanc" }
+      ]
+    },
+    {
+      "id": "p5r.bond.moon",
+      "label": "Moon",
+      "characterLabel": "Mishima",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-05-06", "notes": "No matching Arcana Persona needed for any rank." },
+        { "rank": 2, "availableFrom": "2016-05-08", "notes": "Automatic hang-out." }
+      ]
+    },
+    {
+      "id": "p5r.bond.councilor",
+      "label": "Councilor",
+      "characterLabel": "Maruki",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-05-13", "notes": "Story-forced during exams." },
+        { "rank": 2, "availableFrom": "2016-05-13", "notes": "Story-forced, same day." }
+      ]
+    },
+    {
+      "id": "p5r.bond.strength",
+      "label": "Strength",
+      "characterLabel": "The Twins",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-05-19", "notes": "Velvet Room ritual (fusion request)." },
+        { "rank": 2, "availableFrom": "2016-05-23", "notes": "Velvet Room ritual (fusion request)." }
+      ]
+    },
+    {
+      "id": "p5r.bond.sun",
+      "label": "Sun",
+      "characterLabel": "Yoshida",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-05-26", "notes": "No matching Arcana Persona needed for any rank." }
+      ]
+    },
+    {
+      "id": "p5r.bond.temperance",
+      "label": "Temperance",
+      "characterLabel": "Kawakami",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-05-28", "location": "Café LeBlanc (phone)" }
+      ]
+    },
+    {
+      "id": "p5r.bond.faith",
+      "label": "Faith",
+      "ranks": [
+        { "rank": 1, "availableFrom": "2016-05-30", "notes": "Unlocked automatically by the story." }
       ]
     }
   ]
