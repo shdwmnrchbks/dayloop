@@ -16,10 +16,15 @@ import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
+import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
+import com.shadowmonarchbooks.dayloop.pack.schema.SkinFont
+import com.shadowmonarchbooks.dayloop.pack.schema.SkinShapes
+import com.shadowmonarchbooks.dayloop.pack.schema.SkinTypography
 import com.shadowmonarchbooks.dayloop.pack.schema.Slot
 import com.shadowmonarchbooks.dayloop.pack.schema.StatDef
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile
+import kotlin.io.path.writeBytes
 import kotlin.io.path.writeText
 import kotlinx.serialization.encodeToString
 
@@ -84,6 +89,59 @@ object Fixture {
 
     fun writeDeadlines(dir: Path, deadlines: DeadlinesFile) {
         dir.resolve("deadlines.json").writeText(PackLoader.json.encodeToString(deadlines))
+    }
+
+    // ---- Skin DSL fixture (docs/ROADMAP-v3.md Phase 12) ----
+
+    /** 1×1 transparent PNG — a real decodable image for decor/art slots. */
+    private const val ONE_PX_PNG_B64 =
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+
+    /**
+     * A pack declaring every skin token: all four shape slots, all three font
+     * roles, all three decor slots, a motion token, and a motif family.
+     */
+    fun skinPack() = validPack().copy(
+        theme = PackTheme(
+            accent = "#A61E22",
+            accentDark = "#D9433C",
+            style = "vibrant",
+            motif = "masks",
+            art = mapOf(
+                "icon" to "art/icon.png",
+                "card" to "art/card.png",
+            ),
+            shapes = SkinShapes(card = "jagged", chip = "slash", header = "ribbon", frame = "cut"),
+            typography = SkinTypography(
+                display = SkinFont(file = "art/fonts/display.ttf", case = "upper", italic = true, tracking = -0.02),
+                title = SkinFont(file = "art/fonts/title.ttf"),
+                body = null,
+            ),
+            decor = mapOf(
+                "header" to "art/decor-header.png",
+                "panel" to "art/decor-panel.png",
+                "divider" to "art/decor-divider.png",
+            ),
+            motion = "slash",
+        ),
+    )
+
+    /** Writes every art/font file the skin pack's theme references. */
+    fun writeSkinArt(dir: Path, theme: PackTheme = skinPack().theme!!) {
+        val png = java.util.Base64.getDecoder().decode(ONE_PX_PNG_B64)
+        val fakeFont = "FAKE-TTF-FOR-LINT-FIXTURE".encodeToByteArray()
+        (theme.art.values + theme.decor.values).forEach { rel ->
+            val target = dir.resolve(rel)
+            Files.createDirectories(target.parent)
+            target.writeBytes(png)
+        }
+        theme.typography?.let { typography ->
+            listOfNotNull(typography.display, typography.title, typography.body).forEach { font ->
+                val target = dir.resolve(font.file)
+                Files.createDirectories(target.parent)
+                target.writeBytes(fakeFont)
+            }
+        }
     }
 }
 

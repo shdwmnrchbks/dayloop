@@ -18,12 +18,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            // The active pack's `theme` recolors the whole app (ROADMAP-v2
-            // Phase 10): switching packs in Settings re-skins in place, no
-            // restart. Packs without a theme get the engine skin.
+            // The active pack's `theme` recolors and skins the whole app
+            // (ROADMAP-v2 Phase 10, ROADMAP-v3 Phase 12): switching packs in
+            // Settings re-skins in place, no restart. Packs without a theme
+            // get the engine look.
             val vm: DayloopViewModel = hiltViewModel()
             val state by vm.state.collectAsState()
-            DayloopTheme(theme = state.selected?.pack?.theme) {
+            DayloopTheme(pack = state.selected) {
                 AppRoot(vm = vm)
             }
         }

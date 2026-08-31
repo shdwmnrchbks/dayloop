@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.tools.pack
 
 import java.nio.file.Files
+import kotlin.io.path.writeBytes
 import kotlin.io.path.writeText
 import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
@@ -14,6 +15,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
+import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.RankStep
 import com.shadowmonarchbooks.dayloop.pack.schema.RouteDef
@@ -57,6 +59,109 @@ class PackLintTest {
         Fixture.writePack(dir)
         val issues = PackLint.runOn(dir)
         assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    // ---- Skin DSL (docs/ROADMAP-v3.md Phase 12) ----
+
+    private fun skinTheme() = Fixture.skinPack().theme!!
+
+    private fun writeSkin(pack: Pack): java.nio.file.Path {
+        val dir = tempDir()
+        Fixture.writePack(dir, pack = pack)
+        pack.theme?.let { Fixture.writeSkinArt(dir, it) }
+        return dir
+    }
+
+    @Test
+    fun `skin pack declaring every token lints clean`() {
+        val dir = writeSkin(Fixture.skinPack())
+        val issues = PackLint.runOn(dir)
+        assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    @Test
+    fun `unknown shape token fails`() {
+        val theme = skinTheme().copy(shapes = skinTheme().shapes?.copy(card = "spiky"))
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.shapes token 'spiky'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `unknown motion token fails`() {
+        val theme = skinTheme().copy(motion = "wiggle")
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.motion 'wiggle'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `unknown motif token fails closed-set promotion`() {
+        val theme = skinTheme().copy(motif = "zigzag")
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.motif 'zigzag'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `missing font file fails`() {
+        val dir = writeSkin(Fixture.skinPack())
+        // Delete one declared font after writing everything.
+        Files.delete(dir.resolve("art/fonts/display.ttf"))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.typography.display.file not found" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `oversized font file fails`() {
+        val dir = writeSkin(Fixture.skinPack())
+        val oversized = dir.resolve("art/fonts/title.ttf")
+        oversized.writeBytes(ByteArray(3 * 1024 * 1024))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.typography.title.file exceeds 2 MB" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `invalid font case and tracking fail`() {
+        val theme = skinTheme().copy(
+            typography = skinTheme().typography?.copy(
+                display = skinTheme().typography?.display?.copy(case = "small-caps", tracking = 0.9),
+            ),
+        )
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.typography.display.case 'small-caps'" in it.message }, errors.toString())
+        assertTrue(errors.any { "theme.typography.display.tracking 0.9" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `decor slot with missing file fails`() {
+        // Write the original art set so nothing else is missing, then declare
+        // a decor file that was never written.
+        val original = Fixture.skinPack()
+        val theme = skinTheme().copy(decor = mapOf("header" to "art/nonexistent.png"))
+        val dir = tempDir()
+        Fixture.writePack(dir, pack = original.copy(theme = theme))
+        Fixture.writeSkinArt(dir, original.theme!!)
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.decor['header'] file not found" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `decor slot with invalid name fails`() {
+        val theme = skinTheme().copy(decor = mapOf("Header" to "art/decor-header.png"))
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "not a lowercase slug token" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `theme with seeds passes the contrast rule`() {
+        // The skin fixture declares parseable seeds; the generated scheme must
+        // be AA-clean on every text pair (no false positives on valid data).
+        val dir = writeSkin(Fixture.skinPack())
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.none { "WCAG AA" in it.message }, errors.toString())
     }
 
     @Test

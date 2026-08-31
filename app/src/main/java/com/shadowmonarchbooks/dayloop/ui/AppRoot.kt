@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -22,11 +23,13 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
@@ -47,6 +50,10 @@ import com.shadowmonarchbooks.dayloop.ui.month.MonthScreen
 import com.shadowmonarchbooks.dayloop.ui.onboarding.OnboardingScreen
 import com.shadowmonarchbooks.dayloop.ui.search.SearchScreen
 import com.shadowmonarchbooks.dayloop.ui.settings.SettingsScreen
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.navMotion
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
 /** Every top-level destination stays registered, whatever the active pack ships. */
@@ -127,10 +134,20 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             }
         },
     ) { padding ->
+        // Skin motion grammar (docs/ROADMAP-v3.md Phase 12): the pack's
+        // `theme.motion` token drives screen transitions; null = engine
+        // defaults; the system remove-animations setting collapses everything.
+        val skin = LocalSkin.current
+        val animationsDisabled = rememberAnimationsDisabled()
+        val motion = remember(skin, animationsDisabled) { skin.navMotion(animationsDisabled) }
         NavHost(
             navController = nav,
             startDestination = startDestination,
             modifier = Modifier.padding(padding),
+            enterTransition = { motion.enter },
+            exitTransition = { motion.exit },
+            popEnterTransition = { motion.popEnter },
+            popExitTransition = { motion.popExit },
         ) {
             composable("onboarding") {
                 OnboardingScreen(
@@ -240,7 +257,13 @@ private fun DayloopTopBar(
     onOpenSearch: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
+    // Engine look preserved: the bar keeps its surface fill (drawn on the
+    // modifier so the skin's header decoration can sit behind it).
     TopAppBar(
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.surface)
+            .skinDecor("header"),
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
         navigationIcon = {
             if (canGoBack) {
                 IconButton(onClick = onBack) {

@@ -7,8 +7,13 @@ import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
+import com.shadowmonarchbooks.dayloop.pack.schema.SkinFont
 import com.shadowmonarchbooks.dayloop.pack.schema.StatGte
 import com.shadowmonarchbooks.dayloop.pack.schema.Weekdays
+import com.shadowmonarchbooks.dayloop.pack.theme.SkinTokens
+import com.shadowmonarchbooks.dayloop.pack.theme.THEME_STYLES
+import com.shadowmonarchbooks.dayloop.pack.theme.Wcag
+import com.shadowmonarchbooks.dayloop.pack.theme.contrastResults
 import com.shadowmonarchbooks.dayloop.pack.walkConditions
 import java.nio.file.Files
 import java.nio.file.Path
@@ -51,7 +56,6 @@ object PackLint {
     private val DAY_KINDS = setOf("free", "school", "story", "exam", "forced")
     private val TIME_MODELS = setOf("weekdayGrid", "dayCounter")
     private val ANSWER_KINDS = setOf("exam", "classQuestion")
-    private val THEME_STYLES = setOf("tonalSpot", "vibrant", "expressive", "content")
     private val ART_EXTENSIONS = setOf("png", "jpg", "jpeg", "webp")
     /** Media may also ship GIFs (decoded as stills by the app today). */
     private val MEDIA_EXTENSIONS = ART_EXTENSIONS + "gif"
@@ -353,23 +357,66 @@ object PackLint {
                 }
             }
             theme.motif?.let { motif ->
-                if (!Regex("^[a-z][a-z0-9-]*$").matches(motif)) {
-                    issues += err("pack.json", "theme.motif '$motif' is not a lowercase slug token")
+                // Promoted to a closed set in ROADMAP-v3 Phase 12: the engine
+                // maps each token to a decoration family; unknown tokens fail.
+                if (motif !in SkinTokens.MOTIFS) {
+                    issues += err("pack.json", "theme.motif '$motif' is not one of ${SkinTokens.MOTIFS}")
                 }
             }
             theme.art.forEach { (slot, rel) ->
-                if (!Regex("^[a-z][a-z0-9-]*$").matches(slot)) {
-                    issues += err("pack.json", "theme.art slot '$slot' is not a lowercase slug token")
+                issues += checkArtFile(packDir, "theme.art", slot, rel)
+            }
+            // Skin DSL (docs/ROADMAP-v3.md Phase 12): closed-set silhouette and
+            // motion tokens, bundled font rules, decor art slots.
+            theme.shapes?.let { shapes ->
+                listOfNotNull(shapes.card, shapes.chip, shapes.header, shapes.frame).forEach { token ->
+                    if (token !in SkinTokens.SHAPES) {
+                        issues += err("pack.json", "theme.shapes token '$token' is not one of ${SkinTokens.SHAPES}")
+                    }
                 }
-                val backslash = rel.contains('\\')
-                when {
-                    backslash || rel.startsWith('/') || rel.split('/').contains("..") ->
-                        issues += err("pack.json", "theme.art['$slot'] must be a pack-relative path: '$rel'")
-                    !packDir.resolve(rel).isRegularFile() ->
-                        issues += err("pack.json", "theme.art['$slot'] file not found: $rel")
-                    rel.substringAfterLast('.').lowercase() !in ART_EXTENSIONS ->
-                        issues += err("pack.json", "theme.art['$slot'] must be a $ART_EXTENSIONS file: $rel")
+            }
+            theme.motion?.let { motion ->
+                if (motion !in SkinTokens.MOTIONS) {
+                    issues += err("pack.json", "theme.motion '$motion' is not one of ${SkinTokens.MOTIONS}")
                 }
+            }
+            theme.typography?.let { typography ->
+                fun checkFont(role: String, font: SkinFont?) {
+                    if (font == null) return
+                    val rel = font.file
+                    val ext = rel.substringAfterLast('.').lowercase()
+                    when {
+                        rel.contains('\\') || rel.startsWith('/') || rel.split('/').contains("..") ->
+                            issues += err("pack.json", "theme.typography.$role.file must be a pack-relative path: '$rel'")
+                        !packDir.resolve(rel).isRegularFile() ->
+                            issues += err("pack.json", "theme.typography.$role.file not found: $rel")
+                        ext !in SkinTokens.FONT_EXTENSIONS ->
+                            issues += err("pack.json", "theme.typography.$role.file must be a ${SkinTokens.FONT_EXTENSIONS} font: $rel")
+                        Files.size(packDir.resolve(rel)) > SkinTokens.MAX_FONT_BYTES ->
+                            issues += err("pack.json", "theme.typography.$role.file exceeds ${SkinTokens.MAX_FONT_BYTES / (1024 * 1024)} MB: $rel")
+                    }
+                    font.case?.takeIf { it !in SkinTokens.FONT_CASES }?.let {
+                        issues += err("pack.json", "theme.typography.$role.case '$it' is not one of ${SkinTokens.FONT_CASES}")
+                    }
+                    font.tracking?.takeIf { it < SkinTokens.MIN_TRACKING || it > SkinTokens.MAX_TRACKING }?.let {
+                        issues += err(
+                            "pack.json",
+                            "theme.typography.$role.tracking $it must be between ${SkinTokens.MIN_TRACKING} and ${SkinTokens.MAX_TRACKING} em",
+                        )
+                    }
+                }
+                checkFont("display", typography.display)
+                checkFont("title", typography.title)
+                checkFont("body", typography.body)
+            }
+            theme.decor.forEach { (slot, rel) ->
+                issues += checkArtFile(packDir, "theme.decor", slot, rel)
+            }
+            // Contrast rule (docs/ROADMAP-v3.md Phase 12, guardrail 5): the
+            // exact scheme the renderer materializes from this pack's seeds
+            // must pass WCAG AA on every text-carrying pair, in both modes.
+            for (dark in listOf(true, false)) {
+                themeContrastIssues(theme, dark).forEach { issues += it }
             }
         }
         pack.labels.deadlineKinds.forEach { (kind, label) ->
@@ -503,6 +550,44 @@ object PackLint {
     }
 
     private fun err(location: String, message: String) = LintIssue(LintIssue.Severity.ERROR, location, message)
+
+    /**
+     * Shared path/extension check for a pack-relative art declaration
+     * (theme.art slots today, theme.decor slots in ROADMAP-v3 Phase 12).
+     * [prefix] names the declaration family, e.g. "theme.art" / "theme.decor".
+     */
+    private fun checkArtFile(packDir: Path, prefix: String, slot: String, rel: String): List<LintIssue> {
+        val what = "$prefix['$slot']"
+        val backslash = rel.contains('\\')
+        return when {
+            !Regex("^[a-z][a-z0-9-]*$").matches(slot) ->
+                listOf(err("pack.json", "$what slot name is not a lowercase slug token"))
+            backslash || rel.startsWith('/') || rel.split('/').contains("..") ->
+                listOf(err("pack.json", "$what must be a pack-relative path: '$rel'"))
+            !packDir.resolve(rel).isRegularFile() ->
+                listOf(err("pack.json", "$what file not found: $rel"))
+            rel.substringAfterLast('.').lowercase() !in ART_EXTENSIONS ->
+                listOf(err("pack.json", "$what must be a $ART_EXTENSIONS file: $rel"))
+            else -> emptyList()
+        }
+    }
+
+    /**
+     * WCAG AA contrast rule (docs/ROADMAP-v3.md Phase 12, guardrail 5): the
+     * scheme the renderer materializes from the pack's declared seeds must
+     * keep every text-carrying pair at AA (4.5:1) or better. Empty unless the
+     * theme declares parseable seeds.
+     */
+    private fun themeContrastIssues(theme: PackTheme, dark: Boolean): List<LintIssue> =
+        contrastResults(theme, dark)
+            .filter { it.ratio < Wcag.AA_NORMAL }
+            .map {
+                err(
+                    "pack.json",
+                    "theme ${if (dark) "dark" else "light"} scheme fails WCAG AA: " +
+                        "${it.foreground} on ${it.background} is ${"%.2f".format(it.ratio)}:1 (needs ${Wcag.AA_NORMAL})",
+                )
+            }
 }
 
 fun main(args: Array<String>) {

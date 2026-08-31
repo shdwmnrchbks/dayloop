@@ -10,7 +10,6 @@ while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 | 1 | One game picker: Settings redirects to the onboarding carousel | Phase 11 ✓ |
 | 2 | Every guide-package graphic bundled, declared, and served | Phase 11 ✓ |
 | 3 | Full per-game UI/UX imitation (graphic style, shapes, type, motion) | Phases 12–17 |
-
 Architecture rules from `docs/PLAN.md` §3 still bind everything below: the engine
 never knows a game's name; every look is pack data (`pack.json` `theme` + bundled
 art); packs without a skin keep the engine look; anything that says "Palace" or
@@ -100,7 +99,67 @@ only), per-skin shapes/type/motion (Phases 12–16), image budget optimization
 
 ---
 
-## Phase 12 — The Skin DSL (engine foundation)
+## Phase 12 — The Skin DSL (engine foundation) ✅
+
+**Status: shipped in v0.7.0.**
+
+What landed (engine = socket, packs stay skin-less until Phases 13–15):
+
+- **Schema (all optional; absent = engine look).** `theme.shapes` (per-slot
+  `card`/`chip`/`header`/`frame` silhouette tokens), `theme.typography`
+  (`display`/`title`/`body` roles, each `{file, case, italic, tracking}`),
+  `theme.decor` (named decoration art slots), `theme.motion`
+  (`slash | fade | flip | none`). **Motif promoted** to the closed-set
+  decorative selector: `masks | moon | crown` (unknown tokens fail lint).
+- **Shared token vocabulary in `:core:pack`** (`pack.theme.SkinTokens`):
+  closed sets + per-slot resolution (`explicit token > motif family > engine
+  look`) shared by the app renderer and packlint, so a token can never be
+  valid to one and unknown to the other. Motif→family: `masks` → jagged
+  silhouettes (card/chip/header) + halftone painter; `moon` → glass painter
+  (painter-driven — no silhouette change, readability never shifts by motif
+  alone); `crown` → filigree painter.
+- **Engine primitives** (`ui/skin/Skin.kt` + `SkinDecor.kt`): `SkinSpec`
+  resolves shapes (seeded-jitter `GenericShape` builders: jagged / slash /
+  cut / ribbon / diamond), typography (pack fonts via `FontFamily`, case
+  transform, italic, em tracking — roles: display→display*, title→headline+
+  title*, body→body+label*), decoration painters (halftone / grain / glass /
+  filigree, procedural, scheme-colored, plus declared decor art), and motion
+  (NavHost transition set + step/spoiler reveal grammar). Everything honors
+  the system remove-animations setting (snap), and engine look is byte-stable
+  for packs that declare nothing.
+- **Surfaces consuming skins in this phase** (the socket proof): Material
+  typography (whole app), NavHost transitions, day/spoiler reveal in step
+  rows, day-kind chips + slot pills (chip slot), carried-over card /
+  deadline banner / answer-sheet card (card slot + `panel` decor), top app
+  bar (`header` decor).
+- **packlint**: shapes/motion closed sets, motif closed set, font file rules
+  (pack-relative, ttf/otf, ≤ 2 MB, case + tracking bounds — tracking allows
+  the −1…−4% condensed-display range), decor art slots (shared art-file
+  checker), and the **WCAG AA contrast rule**: the exact scheme the renderer
+  materializes from a pack's seeds (shared `schemeArgb` in `:core:pack`) must
+  keep every text-carrying pair ≥ 4.5:1 in both modes.
+- **Tests**: `SkinTokensTest` (resolution precedence, families, case),
+  `PackSchemeTest` (shared scheme + WCAG math, AA sweep across seeds/styles),
+  `PackLintTest` skin rules (every-token fixture pack lints clean; unknown
+  tokens, missing/oversized fonts, bad decor slots fail), `EngineNeutralityTest`
+  (CI grep: no pack title in engine sources, no game words in string
+  literals).
+- **Research base**: `docs/references/p5r-ui.md`, `p3r-ui.md` and
+  `metaphor-ui.md` — cited design-language references (designer interviews,
+  CEDEC panels, community technical recreations, measured palettes from
+  ~160 Game UI Database captures) that grounded the primitive parameters
+  (spike counts, slash angles, halftone scale, negative display tracking,
+  glass painters, motion grammar) and will drive Phases 13–15.
+
+**Deliberately deferred:** per-game skin authoring (Phases 13–15 — the three
+real packs stay token-less apart from their Phase 10 `motif`), day-advance
+sequences + sound (16), widget/icon parity (17), budgets/GIF→WebP (18).
+Visual parity screenshots for the fixture pack land with the Phase 18
+screenshot matrix; this phase pins the mapping with JVM tests.
+
+---
+
+**Original Phase 12 spec:**
 
 **Goal:** the four skin layers (shape/type/decoration/motion) become pack data,
 and the engine grows the primitives to render them. No pack ships a skin yet —

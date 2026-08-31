@@ -57,7 +57,7 @@ Kotlin contains no game names and no per-game colors.
   "accent": "#A61E22",          // light-scheme seed, "#RRGGBB" or "#AARRGGBB"
   "accentDark": "#D9433C",      // dark-scheme seed (falls back to accent)
   "style": "vibrant",           // tonalSpot | vibrant | expressive | content
-  "motif": "masks",             // reserved decorative token (unused today)
+  "motif": "masks",             // decorative family: masks | moon | crown (closed set)
   "art": {                      // named art slots, pack-relative paths
     "card": "art/card.jpg",
     "icon": "art/icon.png"
@@ -78,6 +78,70 @@ Kotlin contains no game names and no per-game colors.
   kinds the UI prints, e.g. `{ "palace": "Mission" }` for a pack whose
   dungeon deadlines aren't "palaces". Unlisted kinds render as the
   capitalized token. Keys outside the kind set fail lint.
+
+## Skin DSL (docs/ROADMAP-v3.md Phase 12)
+
+The `theme` block grows four optional skin layers — **shapes, typography,
+decor, motion** — that let a pack restyle the whole app without any engine
+code. Every layer is optional; each falls back to the pack's `motif` family
+default, then to the engine look. Packs declaring nothing render exactly the
+engine look.
+
+```json
+"theme": {
+  "motif": "masks",
+  "shapes": {                          // per-slot silhouettes, closed set
+    "card": "jagged",                  // step rows, dossier, banners
+    "chip": "slash",                   // day-kind chips, slot tags
+    "header": "ribbon",                // section/page headers
+    "frame": "cut"                     // bordered emphasis containers
+  },
+  "typography": {
+    "display": { "file": "art/fonts/display.ttf", "case": "upper", "italic": true, "tracking": -0.02 },
+    "title": { "file": "art/fonts/title.ttf" },
+    "body": null                       // null role = engine default type
+  },
+  "decor": {                           // named decoration art slots (like theme.art)
+    "header": "art/header.png",
+    "panel": "art/panel.png",
+    "divider": "art/divider.png"
+  },
+  "motion": "slash"                    // slash | fade | flip | none
+}
+```
+
+- **Shape tokens** (closed set): `jagged` (irregular sawtooth silhouette),
+  `slash` (diagonally sheared panel), `cut` (45° chamfered corners),
+  `ribbon` (banner band with angled ends), `diamond` (rhombus — small tags
+  only). Slots: `card`, `chip`, `header`, `frame`.
+- **Typography roles**: `display` covers the display styles, `title` the
+  headline/title styles, `body` the body/label styles. Fonts are bundled
+  under the pack dir (conventionally `art/fonts/`, ttf/otf, ≤ 2 MB each) and
+  load from assets; `case: "upper"` transforms rendered text, `italic`
+  slants, `tracking` adds letter spacing in em (−0.05 … 0.30 — negative
+  tracking is valid for condensed display type). A missing font file fails
+  lint; an unreadable one degrades that role to the engine type at runtime.
+- **Motif families**: `masks` → jagged card/chip/header silhouettes +
+  halftone painter; `moon` → glass painter; `crown` → filigree painter.
+  Painter-driven families change no silhouettes — readability never shifts
+  by motif alone.
+- **Decor slots**: the engine consumes `header` (top app bar), `panel`
+  (cards), `divider` (reserved); other lowercase-slug slots ride along for
+  future surfaces. A declared decor file draws behind the slot's content;
+  without one, the motif family's procedural painter (halftone/grain/glass/
+  filigree) renders instead; with neither, the engine look applies.
+- **Motion**: `slash` (hard diagonal wipe + skew-in, ~240 ms), `fade`
+  (180 ms cross-fade), `flip` (page-turn slide + scale), `none` (engine
+  default). Applies to screen navigation and the spoiler/step reveal; all of
+  it collapses to no animation when the system remove-animations setting is
+  on.
+- **Contrast rule (guardrail 5)**: packlint materializes the exact scheme
+  the app will render from the pack's seeds and fails if any text-carrying
+  role pair drops below WCAG AA (4.5:1) in either mode. Tune seeds, not
+  roles — the engine derives on-colors from the seeds.
+- Everything above is validated by packlint (closed sets, files, bounds) and
+  pinned by JVM tests (`SkinTokensTest`, `PackLintTest` skin rules). Design
+  references for tuning a skin's parameters live in `docs/references/`.
 
 ## Media: bundling graphics (docs/ROADMAP-v3.md Phase 11)
 

@@ -138,6 +138,11 @@ data class Labels(
  * bundled files relative to the pack dir so swapping art is a content change;
  * the engine reads the slots it knows ("card", "icon"), extra slots ride
  * along for future surfaces.
+ *
+ * ROADMAP-v3 Phase 12 grows this into the skin DSL: [shapes], [typography],
+ * [decor] and [motion] are optional layers a pack composes; absent layers
+ * fall back to [motif]'s family defaults, then to the engine look. Packs
+ * without any of them render byte-identically to the engine.
  */
 @Serializable
 data class PackTheme(
@@ -152,12 +157,23 @@ data class PackTheme(
      */
     val style: String? = null,
     /**
-     * Reserved decorative token (lowercase slug) for future motif-driven
-     * surfaces; validated by packlint, unused by the engine today.
+     * Decorative selector (docs/ROADMAP-v3.md Phase 12: promoted from a
+     * reserved token): a closed-set token the engine maps to a decoration
+     * family — silhouettes, painter and motion defaults. Explicit [shapes]/
+     * [decor]/[motion] tokens override the family per slot. packlint
+     * validates the token; packs declaring none keep the engine look.
      */
     val motif: String? = null,
     /** Named art slots, e.g. `{ "card": "art/card.png", "icon": "art/icon.png" }`. */
     val art: Map<String, String> = emptyMap(),
+    /** Per-slot silhouette tokens (docs/ROADMAP-v3.md Phase 12). Null = family/engine default. */
+    val shapes: SkinShapes? = null,
+    /** Pack-bundled fonts + role tuning (docs/ROADMAP-v3.md Phase 12). Null roles = engine type. */
+    val typography: SkinTypography? = null,
+    /** Named decoration art slots, e.g. `{ "header": "art/header.png", "panel": "art/panel.png" }`. */
+    val decor: Map<String, String> = emptyMap(),
+    /** Closed-set motion token: "slash" | "fade" | "flip" | "none". Null = engine default. */
+    val motion: String? = null,
 ) {
     /** The scheme seed for [dark] mode as an ARGB int, or null when undeclared. */
     fun seedArgb(dark: Boolean): Int? {
@@ -178,3 +194,51 @@ data class PackTheme(
         }
     }
 }
+
+/**
+ * Per-slot silhouette tokens (docs/ROADMAP-v3.md Phase 12). Every slot is
+ * optional; a null slot resolves to the [PackTheme.motif] family default,
+ * then to the engine's rounded-corner look. Tokens come from the closed set
+ * in `pack.theme.SkinTokens` (jagged / slash / cut / ribbon / diamond …),
+ * validated by packlint.
+ */
+@Serializable
+data class SkinShapes(
+    /** Cards and wide panels (step rows, dossier, banners). */
+    val card: String? = null,
+    /** Small pill/tag containers (day-kind chips, slot tags). */
+    val chip: String? = null,
+    /** Full-width section/page headers. */
+    val header: String? = null,
+    /** Bordered emphasis containers (deadline banners, plaques). */
+    val frame: String? = null,
+)
+
+/**
+ * Pack-bundled font roles (docs/ROADMAP-v3.md Phase 12). Each role overrides
+ * the matching Material typography roles for the whole app; null roles keep
+ * the engine type. Files live under the pack dir (conventionally
+ * `art/fonts/`), linted for existence, extension and size.
+ */
+@Serializable
+data class SkinTypography(
+    /** Hero/display type — big headers and moment text. */
+    val display: SkinFont? = null,
+    /** Titles — screen titles, card headings. */
+    val title: SkinFont? = null,
+    /** Body text — step labels, notes. Null = engine default font. */
+    val body: SkinFont? = null,
+)
+
+/** One bundled font role: the file plus its tuning knobs (all optional). */
+@Serializable
+data class SkinFont(
+    /** Pack-relative path to a .ttf/.otf file, e.g. "art/fonts/display.ttf". */
+    val file: String,
+    /** Closed-set case transform applied at render: "upper" today. */
+    val case: String? = null,
+    /** Slant the role's text. */
+    val italic: Boolean = false,
+    /** Extra letter spacing in em units (0.0–0.30, linted). */
+    val tracking: Double? = null,
+)

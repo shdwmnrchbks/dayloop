@@ -3,19 +3,18 @@ package com.shadowmonarchbooks.dayloop.ui.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
-import com.materialkolor.dynamiccolor.DynamicColor
-import com.materialkolor.dynamiccolor.MaterialDynamicColors
-import com.materialkolor.hct.Hct
-import com.materialkolor.scheme.DynamicScheme
-import com.materialkolor.scheme.SchemeContent
-import com.materialkolor.scheme.SchemeExpressive
-import com.materialkolor.scheme.SchemeTonalSpot
-import com.materialkolor.scheme.SchemeVibrant
+import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
+import com.shadowmonarchbooks.dayloop.pack.theme.schemeArgb
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinTypography
 
 // Engine skin (dark-first, docs/PLAN.md §5): deep neutral surfaces with a
 // lantern-warm accent. It is the fallback for packs that declare no `theme`.
@@ -74,121 +73,122 @@ private val LightColors = lightColorScheme(
 )
 
 /**
- * Engine-neutral scheme-character token (pack.json `theme.style`) → material
- * scheme variant. Tokens the pack doesn't declare fall back to the calm
- * tonal-spot default; packlint validates the closed set.
- */
-private fun buildScheme(style: String?, seed: Hct, dark: Boolean): DynamicScheme = when (style) {
-    "vibrant" -> SchemeVibrant(seed, dark, 0.0)
-    "expressive" -> SchemeExpressive(seed, dark, 0.0)
-    "content" -> SchemeContent(seed, dark, 0.0)
-    else -> SchemeTonalSpot(seed, dark, 0.0)
-}
-
-/**
  * Builds the pack's Material 3 [ColorScheme] for [dark] mode from its declared
  * seeds and style token. Hand-tuning lives in the pack data (accent seeds are
- * chosen per pack); this mapping is game-neutral and identical for every pack.
- * A theme without parseable colors falls back to the engine skin.
+ * chosen per pack); the seed→scheme mapping lives in :core:pack
+ * (pack.theme.schemeArgb) so packlint's contrast rule validates the exact
+ * colors rendered here. A theme without parseable colors falls back to the
+ * engine skin.
  */
 fun packColorScheme(theme: PackTheme, dark: Boolean): ColorScheme {
-    val seedArgb = theme.seedArgb(dark) ?: return if (dark) DarkColors else LightColors
-    val scheme = buildScheme(theme.style, Hct.fromInt(seedArgb), dark)
-    val m = MaterialDynamicColors()
-    fun c(role: () -> DynamicColor): Color = Color(role().getArgb(scheme))
+    val roles = schemeArgb(theme, dark)
+        ?: return if (dark) DarkColors else LightColors
+    fun c(role: String): Color = Color(roles.getValue(role))
     return if (dark) {
         darkColorScheme(
-            primary = c(m::primary),
-            onPrimary = c(m::onPrimary),
-            primaryContainer = c(m::primaryContainer),
-            onPrimaryContainer = c(m::onPrimaryContainer),
-            inversePrimary = c(m::inversePrimary),
-            secondary = c(m::secondary),
-            onSecondary = c(m::onSecondary),
-            secondaryContainer = c(m::secondaryContainer),
-            onSecondaryContainer = c(m::onSecondaryContainer),
-            tertiary = c(m::tertiary),
-            onTertiary = c(m::onTertiary),
-            tertiaryContainer = c(m::tertiaryContainer),
-            onTertiaryContainer = c(m::onTertiaryContainer),
-            error = c(m::error),
-            onError = c(m::onError),
-            errorContainer = c(m::errorContainer),
-            onErrorContainer = c(m::onErrorContainer),
-            background = c(m::background),
-            onBackground = c(m::onBackground),
-            surface = c(m::surface),
-            onSurface = c(m::onSurface),
-            surfaceVariant = c(m::surfaceVariant),
-            onSurfaceVariant = c(m::onSurfaceVariant),
-            surfaceTint = c(m::surfaceTint),
-            inverseSurface = c(m::inverseSurface),
-            inverseOnSurface = c(m::inverseOnSurface),
-            outline = c(m::outline),
-            outlineVariant = c(m::outlineVariant),
-            scrim = c(m::scrim),
-            surfaceDim = c(m::surfaceDim),
-            surfaceBright = c(m::surfaceBright),
-            surfaceContainerLowest = c(m::surfaceContainerLowest),
-            surfaceContainerLow = c(m::surfaceContainerLow),
-            surfaceContainer = c(m::surfaceContainer),
-            surfaceContainerHigh = c(m::surfaceContainerHigh),
-            surfaceContainerHighest = c(m::surfaceContainerHighest),
+            primary = c("primary"),
+            onPrimary = c("onPrimary"),
+            primaryContainer = c("primaryContainer"),
+            onPrimaryContainer = c("onPrimaryContainer"),
+            inversePrimary = c("inversePrimary"),
+            secondary = c("secondary"),
+            onSecondary = c("onSecondary"),
+            secondaryContainer = c("secondaryContainer"),
+            onSecondaryContainer = c("onSecondaryContainer"),
+            tertiary = c("tertiary"),
+            onTertiary = c("onTertiary"),
+            tertiaryContainer = c("tertiaryContainer"),
+            onTertiaryContainer = c("onTertiaryContainer"),
+            error = c("error"),
+            onError = c("onError"),
+            errorContainer = c("errorContainer"),
+            onErrorContainer = c("onErrorContainer"),
+            background = c("background"),
+            onBackground = c("onBackground"),
+            surface = c("surface"),
+            onSurface = c("onSurface"),
+            surfaceVariant = c("surfaceVariant"),
+            onSurfaceVariant = c("onSurfaceVariant"),
+            surfaceTint = c("surfaceTint"),
+            inverseSurface = c("inverseSurface"),
+            inverseOnSurface = c("inverseOnSurface"),
+            outline = c("outline"),
+            outlineVariant = c("outlineVariant"),
+            scrim = c("scrim"),
+            surfaceDim = c("surfaceDim"),
+            surfaceBright = c("surfaceBright"),
+            surfaceContainerLowest = c("surfaceContainerLowest"),
+            surfaceContainerLow = c("surfaceContainerLow"),
+            surfaceContainer = c("surfaceContainer"),
+            surfaceContainerHigh = c("surfaceContainerHigh"),
+            surfaceContainerHighest = c("surfaceContainerHighest"),
         )
     } else {
         lightColorScheme(
-            primary = c(m::primary),
-            onPrimary = c(m::onPrimary),
-            primaryContainer = c(m::primaryContainer),
-            onPrimaryContainer = c(m::onPrimaryContainer),
-            inversePrimary = c(m::inversePrimary),
-            secondary = c(m::secondary),
-            onSecondary = c(m::onSecondary),
-            secondaryContainer = c(m::secondaryContainer),
-            onSecondaryContainer = c(m::onSecondaryContainer),
-            tertiary = c(m::tertiary),
-            onTertiary = c(m::onTertiary),
-            tertiaryContainer = c(m::tertiaryContainer),
-            onTertiaryContainer = c(m::onTertiaryContainer),
-            error = c(m::error),
-            onError = c(m::onError),
-            errorContainer = c(m::errorContainer),
-            onErrorContainer = c(m::onErrorContainer),
-            background = c(m::background),
-            onBackground = c(m::onBackground),
-            surface = c(m::surface),
-            onSurface = c(m::onSurface),
-            surfaceVariant = c(m::surfaceVariant),
-            onSurfaceVariant = c(m::onSurfaceVariant),
-            surfaceTint = c(m::surfaceTint),
-            inverseSurface = c(m::inverseSurface),
-            inverseOnSurface = c(m::inverseOnSurface),
-            outline = c(m::outline),
-            outlineVariant = c(m::outlineVariant),
-            scrim = c(m::scrim),
-            surfaceDim = c(m::surfaceDim),
-            surfaceBright = c(m::surfaceBright),
-            surfaceContainerLowest = c(m::surfaceContainerLowest),
-            surfaceContainerLow = c(m::surfaceContainerLow),
-            surfaceContainer = c(m::surfaceContainer),
-            surfaceContainerHigh = c(m::surfaceContainerHigh),
-            surfaceContainerHighest = c(m::surfaceContainerHighest),
+            primary = c("primary"),
+            onPrimary = c("onPrimary"),
+            primaryContainer = c("primaryContainer"),
+            onPrimaryContainer = c("onPrimaryContainer"),
+            inversePrimary = c("inversePrimary"),
+            secondary = c("secondary"),
+            onSecondary = c("onSecondary"),
+            secondaryContainer = c("secondaryContainer"),
+            onSecondaryContainer = c("onSecondaryContainer"),
+            tertiary = c("tertiary"),
+            onTertiary = c("onTertiary"),
+            tertiaryContainer = c("tertiaryContainer"),
+            onTertiaryContainer = c("onTertiaryContainer"),
+            error = c("error"),
+            onError = c("onError"),
+            errorContainer = c("errorContainer"),
+            onErrorContainer = c("onErrorContainer"),
+            background = c("background"),
+            onBackground = c("onBackground"),
+            surface = c("surface"),
+            onSurface = c("onSurface"),
+            surfaceVariant = c("surfaceVariant"),
+            onSurfaceVariant = c("onSurfaceVariant"),
+            surfaceTint = c("surfaceTint"),
+            inverseSurface = c("inverseSurface"),
+            inverseOnSurface = c("inverseOnSurface"),
+            outline = c("outline"),
+            outlineVariant = c("outlineVariant"),
+            scrim = c("scrim"),
+            surfaceDim = c("surfaceDim"),
+            surfaceBright = c("surfaceBright"),
+            surfaceContainerLowest = c("surfaceContainerLowest"),
+            surfaceContainerLow = c("surfaceContainerLow"),
+            surfaceContainer = c("surfaceContainer"),
+            surfaceContainerHigh = c("surfaceContainerHigh"),
+            surfaceContainerHighest = c("surfaceContainerHighest"),
         )
     }
 }
 
+/**
+ * The app's theme root: resolves the active pack's scheme (Phase 10) and its
+ * skin (docs/ROADMAP-v3.md Phase 12) and provides both to every surface. A
+ * pack declaring nothing renders exactly the engine look.
+ */
 @Composable
 fun DayloopTheme(
-    theme: PackTheme? = null,
+    pack: LoadedPack? = null,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
+    val theme = pack?.pack?.theme
+    val skin = rememberSkin(theme, pack?.slug)
     MaterialTheme(
         colorScheme = when {
             theme != null -> packColorScheme(theme, darkTheme)
             darkTheme -> DarkColors
             else -> LightColors
         },
-        content = content,
+        typography = skinTypography(Typography(), skin.type),
+        content = {
+            CompositionLocalProvider(LocalSkin provides skin) {
+                content()
+            }
+        },
     )
 }

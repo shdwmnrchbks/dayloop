@@ -1,0 +1,489 @@
+package com.shadowmonarchbooks.dayloop.ui.skin
+
+import android.content.Context
+import android.provider.Settings
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
+import com.shadowmonarchbooks.dayloop.pack.theme.SkinTokens
+import kotlin.random.Random
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+/**
+ * The Skin DSL's Compose half (docs/ROADMAP-v3.md Phase 12): resolves a pack's
+ * optional `theme` skin layers into engine primitives — silhouette shapes,
+ * typography roles, decoration painters, and transition grammar. Closed-set
+ * tokens and the motif→family mapping live in `:core:pack` (`SkinTokens`) so
+ * packlint validates the exact same vocabulary; this file maps tokens to
+ * Compose types only. No game names — families are motifs, looks are data.
+ *
+ * Resolution per layer: explicit token > motif family default > engine look.
+ * [SkinSpec.Engine] is the null skin: everything falls back to the engine look.
+ */
+
+/** Resolved silhouette shapes for the four shape slots. */
+data class SkinShapes(
+    val card: Shape,
+    val chip: Shape,
+    val header: Shape,
+    val frame: Shape,
+)
+
+/**
+ * One resolved typography role: family (null while the pack font is absent or
+ * still loading → engine type), tuning, and the case transform token.
+ */
+data class SkinFontStyle(
+    val family: FontFamily?,
+    val italic: Boolean,
+    val trackingEm: Double?,
+    val case: String?,
+)
+
+/** Resolved typography roles; null families keep the engine type. */
+data class SkinType(
+    val display: SkinFontStyle?,
+    val title: SkinFontStyle?,
+    val body: SkinFontStyle?,
+)
+
+/** Decoration resolution: art-backed slots (asset paths) + the motif's painter. */
+data class SkinDecor(
+    /** slot -> pack asset path ("<slug>/art/...") for art-backed slots. */
+    val art: Map<String, String>,
+    /** The motif family's procedural painter token, or null. */
+    val painter: String?,
+)
+
+/**
+ * The resolved skin for one pack. Everything is data; surfaces read it through
+ * [LocalSkin]. Nullability means "keep the engine look".
+ */
+data class SkinSpec(
+    val motif: String?,
+    val shapes: SkinShapes,
+    /** Resolved token per shape slot — kept for debug/lint-parity checks. */
+    val shapeTokens: Map<String, String?>,
+    val type: SkinType,
+    val decor: SkinDecor,
+    /** Resolved motion token, or null for the engine's default transitions. */
+    val motion: String?,
+) {
+    /** Text transform for a typography role (the case token applied to rendered text). */
+    fun cased(text: String, role: String): String {
+        val case = when (role) {
+            "display" -> type.display?.case
+            "title" -> type.title?.case
+            else -> type.body?.case
+        }
+        return if (case == "upper") text.uppercase() else text
+    }
+
+    internal fun withFamilies(display: FontFamily?, title: FontFamily?, body: FontFamily?): SkinSpec = copy(
+        type = SkinType(
+            display = type.display?.copy(family = display ?: type.display.family),
+            title = type.title?.copy(family = title ?: type.title.family),
+            body = type.body?.copy(family = body ?: type.body.family),
+        ),
+    )
+
+    companion object {
+        /** The null skin — engine look everywhere, engine transitions. */
+        val Engine = SkinSpec(
+            motif = null,
+            shapes = SkinShapes(
+                card = RoundedCornerShape(12.dp),
+                chip = RoundedCornerShape(50),
+                header = RoundedCornerShape(8.dp),
+                frame = RoundedCornerShape(12.dp),
+            ),
+            shapeTokens = emptyMap(),
+            type = SkinType(display = null, title = null, body = null),
+            decor = SkinDecor(art = emptyMap(), painter = null),
+            motion = null,
+        )
+    }
+}
+
+/** Skin availability to every composable; defaults to [SkinSpec.Engine]. */
+val LocalSkin = staticCompositionLocalOf { SkinSpec.Engine }
+
+/**
+ * Resolves a pack theme into a [SkinSpec], loading bundled fonts from the
+ * app's assets (every pack directory is an asset root). A missing or
+ * unreadable font degrades that role to the engine type — skins never crash
+ * the app and the engine look shows while a font decodes.
+ */
+@Composable
+fun rememberSkin(theme: PackTheme?, packSlug: String?): SkinSpec {
+    val context = LocalContext.current
+    val base = remember(theme, packSlug) { resolveSkinBase(theme, packSlug) }
+    val display = rememberPackFontFamily(theme?.typography?.display?.let { assetPathOf(packSlug, it.file) })
+    val title = rememberPackFontFamily(theme?.typography?.title?.let { assetPathOf(packSlug, it.file) })
+    val body = rememberPackFontFamily(theme?.typography?.body?.let { assetPathOf(packSlug, it.file) })
+    return remember(base, display, title, body) { base.withFamilies(display, title, body) }
+}
+
+private fun assetPathOf(packSlug: String?, file: String): String =
+    if (packSlug != null) "$packSlug/$file" else file
+
+/** Loads a pack font from assets; any failure (or no file) yields null. */
+@Composable
+private fun rememberPackFontFamily(assetPath: String?): FontFamily? {
+    val context = LocalContext.current
+    return produceState<FontFamily?>(initialValue = null, key1 = assetPath) {
+        value = assetPath?.let { path ->
+            withContext(Dispatchers.IO) {
+                runCatching {
+                    val typeface = android.graphics.Typeface.createFromAsset(context.assets, path)
+                    FontFamily(typeface)
+                }.getOrNull()
+            }
+        }
+    }.value
+}
+
+/** Synchronous resolution of everything except font families. */
+private fun resolveSkinBase(theme: PackTheme?, packSlug: String?): SkinSpec {
+    if (theme == null) return SkinSpec.Engine
+    val motif = theme.motif?.takeIf { it in SkinTokens.MOTIFS }
+
+    val slots = listOf("card", "chip", "header", "frame")
+    val tokens = slots.associateWith { SkinTokens.resolveShape(theme.shapes, motif, it) }
+    val shapes = SkinShapes(
+        card = tokens["card"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.card,
+        chip = tokens["chip"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.chip,
+        header = tokens["header"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.header,
+        frame = tokens["frame"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.frame,
+    )
+
+    fun styleOf(font: com.shadowmonarchbooks.dayloop.pack.schema.SkinFont?): SkinFontStyle? = font?.let {
+        SkinFontStyle(family = null, italic = it.italic, trackingEm = it.tracking, case = it.case)
+    }
+    val type = SkinType(
+        display = styleOf(theme.typography?.display),
+        title = styleOf(theme.typography?.title),
+        body = styleOf(theme.typography?.body),
+    )
+
+    val decor = SkinDecor(
+        art = theme.decor.mapValues { (_, rel) -> assetPathOf(packSlug, rel) },
+        painter = SkinTokens.painterForMotif(motif),
+    )
+
+    return SkinSpec(
+        motif = motif,
+        shapes = shapes,
+        shapeTokens = tokens,
+        type = type,
+        decor = decor,
+        motion = SkinTokens.resolveMotion(theme.motion),
+    )
+}
+
+// ---- Silhouette primitives (closed set: new look = new token, never a screen) ----
+
+/**
+ * Maps a silhouette token to a [Shape]. All parameters are size-relative and
+ * deterministic (seeded jitter) so a shape scales cleanly from chips to panels
+ * and renders identically every frame.
+ */
+fun shapeFor(token: String): Shape = when (token) {
+    "jagged" -> jaggedShape()
+    "slash" -> slashShape()
+    "cut" -> cutShape()
+    "ribbon" -> ribbonShape()
+    "diamond" -> diamondShape()
+    else -> SkinSpec.Engine.shapes.card
+}
+
+/** Irregular sawtooth silhouette — uneven peaks pushed outward beyond each edge. */
+private fun jaggedShape(): Shape = GenericShape { size, _ ->
+    val p = this
+    val rng = Random(0x5EED)
+    val depth = minOf(size.width, size.height) * 0.06f
+    fun edge(from: Offset, to: Offset, normal: Offset, spikes: Int, scale: Float) {
+        for (i in 0 until spikes) {
+            val t0 = i / spikes.toFloat()
+            p.lineTo(
+                from.x + (to.x - from.x) * t0,
+                from.y + (to.y - from.y) * t0,
+            )
+            val tm = (i + 0.5f) / spikes
+            val d = depth * scale * (0.6f + rng.nextFloat() * 0.8f)
+            p.lineTo(
+                from.x + (to.x - from.x) * tm + normal.x * d,
+                from.y + (to.y - from.y) * tm + normal.y * d,
+            )
+        }
+        p.lineTo(to.x, to.y)
+    }
+    p.moveTo(0f, 0f)
+    edge(Offset(0f, 0f), Offset(size.width, 0f), Offset(0f, -depth), spikes = 8, scale = 1f)
+    edge(Offset(size.width, 0f), Offset(size.width, size.height), Offset(depth, 0f), spikes = 5, scale = 0.8f)
+    edge(Offset(size.width, size.height), Offset(0f, size.height), Offset(0f, depth), spikes = 8, scale = 1f)
+    edge(Offset(0f, size.height), Offset(0f, 0f), Offset(-depth, 0f), spikes = 5, scale = 0.8f)
+    p.close()
+}
+
+/** Both vertical edges slant the same way — a diagonally sheared panel. */
+private fun slashShape(): Shape = GenericShape { size, _ ->
+    val skew = size.width * 0.07f
+    moveTo(skew, 0f)
+    lineTo(size.width, 0f)
+    lineTo(size.width - skew, size.height)
+    lineTo(0f, size.height)
+    close()
+}
+
+/** Corners chamfered at 45° — the cut-out look. */
+private fun cutShape(): Shape = GenericShape { size, _ ->
+    val c = minOf(size.width, size.height) * 0.18f
+    moveTo(c, 0f)
+    lineTo(size.width, 0f)
+    lineTo(size.width, size.height - c)
+    lineTo(size.width - c, size.height)
+    lineTo(0f, size.height)
+    lineTo(0f, c)
+    close()
+}
+
+/** A banner band: opposing corners beveled into angled ribbon ends. */
+private fun ribbonShape(): Shape = GenericShape { size, _ ->
+    val sx = size.width * 0.045f
+    val sy = size.height * 0.35f
+    moveTo(0f, sy)
+    lineTo(sx, 0f)
+    lineTo(size.width, 0f)
+    lineTo(size.width, size.height - sy)
+    lineTo(size.width - sx, size.height)
+    lineTo(0f, size.height)
+    close()
+}
+
+/** A rhombus — small tags and caps. */
+private fun diamondShape(): Shape = GenericShape { size, _ ->
+    moveTo(size.width / 2f, 0f)
+    lineTo(size.width, size.height / 2f)
+    lineTo(size.width / 2f, size.height)
+    lineTo(0f, size.height / 2f)
+    close()
+}
+
+// ---- Typography ----
+
+/** Overrides the Material roles each declared font role governs. */
+fun skinTypography(base: androidx.compose.material3.Typography, type: SkinType): androidx.compose.material3.Typography {
+    fun TextStyle.skin(font: SkinFontStyle?): TextStyle {
+        // A role without a loaded family (no font declared, or the file
+        // failed to load) keeps the engine type entirely — tuning never
+        // applies to a font the pack didn't ship.
+        if (font == null || font.family == null) return this
+        return copy(
+            fontFamily = font.family,
+            fontStyle = if (font.italic) FontStyle.Italic else fontStyle,
+            letterSpacing = font.trackingEm?.let { (fontSize.value * it).sp } ?: letterSpacing,
+        )
+    }
+    return base.copy(
+        displayLarge = base.displayLarge.skin(type.display),
+        displayMedium = base.displayMedium.skin(type.display),
+        displaySmall = base.displaySmall.skin(type.display),
+        headlineLarge = base.headlineLarge.skin(type.title),
+        headlineMedium = base.headlineMedium.skin(type.title),
+        headlineSmall = base.headlineSmall.skin(type.title),
+        titleLarge = base.titleLarge.skin(type.title),
+        titleMedium = base.titleMedium.skin(type.title),
+        titleSmall = base.titleSmall.skin(type.title),
+        bodyLarge = base.bodyLarge.skin(type.body),
+        bodyMedium = base.bodyMedium.skin(type.body),
+        bodySmall = base.bodySmall.skin(type.body),
+        labelLarge = base.labelLarge.skin(type.body),
+        labelMedium = base.labelMedium.skin(type.body),
+        labelSmall = base.labelSmall.skin(type.body),
+    )
+}
+
+// ---- Motion (docs/ROADMAP-v3.md Phase 12; day-advance sequences land in 16) ----
+
+/** Durations/easings are engine constants; skins choose the grammar, not the ms. */
+private const val DURATION = 240
+private val SlashEnter = CubicBezierEasing(0.2f, 0f, 0f, 1f)
+
+/** NavHost transition set; [SkinMotion.EngineDefault] mirrors NavHost's own default. */
+data class SkinMotion(
+    val enter: EnterTransition,
+    val exit: ExitTransition,
+    val popEnter: EnterTransition,
+    val popExit: ExitTransition,
+) {
+    companion object {
+        /** Navigation's built-in default: a plain 700 ms cross-fade. */
+        val EngineDefault = SkinMotion(
+            enter = fadeIn(tween(700)),
+            exit = fadeOut(tween(700)),
+            popEnter = fadeIn(tween(700)),
+            popExit = fadeOut(tween(700)),
+        )
+
+        /** Snapping (no animation) — the remove-animations collapse. */
+        val Snap = SkinMotion(
+            enter = EnterTransition.None,
+            exit = ExitTransition.None,
+            popEnter = EnterTransition.None,
+            popExit = ExitTransition.None,
+        )
+    }
+}
+
+/**
+ * Builds the NavHost transition set for this skin. No declared token (or
+ * `none`) = the engine default; the system remove-animations setting snaps.
+ */
+fun SkinSpec.navMotion(animationsDisabled: Boolean): SkinMotion {
+    if (animationsDisabled) return SkinMotion.Snap
+    return when (motion) {
+        "fade" -> SkinMotion(
+            enter = fadeIn(tween(180)),
+            exit = fadeOut(tween(180)),
+            popEnter = fadeIn(tween(180)),
+            popExit = fadeOut(tween(180)),
+        )
+        "slash" -> SkinMotion(
+            enter = expandHorizontally(expandFrom = Alignment.Start, animationSpec = tween(DURATION, easing = SlashEnter)) +
+                fadeIn(tween(DURATION, easing = LinearEasing)),
+            exit = slideOutHorizontally(targetOffsetX = { it / 3 }, animationSpec = tween(DURATION)) +
+                fadeOut(tween(DURATION)),
+            popEnter = slideInHorizontally(initialOffsetX = { -it / 3 }, animationSpec = tween(DURATION)) +
+                fadeIn(tween(DURATION)),
+            popExit = shrinkHorizontally(shrinkTowards = Alignment.End, animationSpec = tween(DURATION)) +
+                fadeOut(tween(DURATION)),
+        )
+        "flip" -> SkinMotion(
+            enter = slideInHorizontally(initialOffsetX = { it }, animationSpec = tween(DURATION)) +
+                scaleIn(initialScale = 0.94f, animationSpec = tween(DURATION)) +
+                fadeIn(tween(DURATION)),
+            exit = slideOutHorizontally(targetOffsetX = { -it / 6 }, animationSpec = tween(DURATION)) +
+                fadeOut(tween(DURATION)),
+            popEnter = slideInHorizontally(initialOffsetX = { -it / 6 }, animationSpec = tween(DURATION)) +
+                fadeIn(tween(DURATION)),
+            popExit = slideOutHorizontally(targetOffsetX = { it }, animationSpec = tween(DURATION)),
+        )
+        else -> SkinMotion.EngineDefault
+    }
+}
+
+/**
+ * The step-list/spoiler reveal grammar (docs/PLAN.md §6.2: the reveal is
+ * presentation, never information). Returns the content transform for an
+ * [androidx.compose.animation.AnimatedContent] keyed on the hidden/revealed
+ * state. Engine look and `none` snap (no animation), honoring the system
+ * remove-animations setting.
+ */
+fun <T> SkinSpec.revealTransform(animationsDisabled: Boolean): AnimatedContentTransitionScope<T>.() -> ContentTransform {
+    val token = if (animationsDisabled) "none" else motion
+    return when (token) {
+        "slash" -> ({
+            (expandHorizontally(expandFrom = Alignment.Start, animationSpec = tween(200)) + fadeIn(tween(200)))
+                .togetherWith(shrinkHorizontally(shrinkTowards = Alignment.Start, animationSpec = tween(160)) + fadeOut(tween(120)))
+        })
+        "flip" -> ({
+            (scaleIn(initialScale = 0.92f, animationSpec = tween(220)) + fadeIn(tween(220)))
+                .togetherWith(fadeOut(tween(140)))
+        })
+        "fade" -> ({
+            (fadeIn(tween(180))).togetherWith(fadeOut(tween(140)))
+        })
+        else -> ({
+            EnterTransition.None.togetherWith(ExitTransition.None)
+        })
+    }
+}
+
+/** True when the system has animations removed (duration or transition scale 0). */
+@Composable
+fun rememberAnimationsDisabled(): Boolean {
+    val context = LocalContext.current
+    return remember {
+        val resolver = context.contentResolver
+        Settings.Global.getFloat(resolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f ||
+            Settings.Global.getFloat(resolver, Settings.Global.TRANSITION_ANIMATION_SCALE, 1f) == 0f
+    }
+}
+
+/**
+ * Procedural decoration painters (closed set). Drawn behind a surface's
+ * content; deterministic, engine-neutral, color derived from the scheme.
+ */
+object SkinPainters {
+    /** A sparse dot grid — the halftone family. */
+    fun halftonePath(size: Size, density: Float): Path {
+        val path = Path()
+        val step = 9f * density
+        val radius = 1.4f * density
+        var row = 0
+        var y = 0f
+        while (y <= size.height + step) {
+            val offsetX = if (row % 2 == 0) 0f else step / 2f
+            var x = offsetX
+            while (x <= size.width + step) {
+                path.addOval(Rect(center = Offset(x, y), radius = radius))
+                x += step
+            }
+            y += step
+            row++
+        }
+        return path
+    }
+
+    /** Deterministic speckle — paper/grain texture. */
+    fun grainPath(size: Size, density: Float): Path {
+        val rng = Random(0xC0FFEE)
+        val path = Path()
+        repeat(220) {
+            val x = rng.nextFloat() * size.width
+            val y = rng.nextFloat() * size.height
+            path.addOval(Rect(center = Offset(x, y), radius = (rng.nextFloat() * 1.2f + 0.3f) * density))
+        }
+        return path
+    }
+
+    /** A soft top-to-bottom wash — the glass family's panel treatment. */
+    fun glassBrush(color: Color): Brush = Brush.verticalGradient(
+        listOf(color.copy(alpha = 0.14f), color.copy(alpha = 0.04f), color.copy(alpha = 0.10f)),
+    )
+}
