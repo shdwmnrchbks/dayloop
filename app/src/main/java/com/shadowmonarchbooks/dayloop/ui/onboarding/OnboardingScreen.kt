@@ -227,7 +227,7 @@ private fun dateRange(pack: LoadedPack): String =
 /** Engine-neutral capability summary; packs without extras get no line at all. */
 private fun featureText(pack: LoadedPack): String? {
     val features = buildList {
-        if (pack.pack.capabilities.exams) add("exam answers")
+        if (pack.pack.capabilities.answers) add("exam answers")
         if (pack.pack.routes.size > 1) add("${pack.pack.routes.size} routes")
     }
     return features.takeIf { it.isNotEmpty() }?.joinToString(" · ")

@@ -23,7 +23,8 @@
   ],
   "capabilities": {
     "exams": true,
-    "weather": false
+    "weather": false,
+    "answers": true
   },
   "labels": {
     "bond": "Confidant",

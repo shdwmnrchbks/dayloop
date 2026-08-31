@@ -318,6 +318,18 @@ object PackLint {
             }
         }
 
+        // Capability ⇔ shipped-data cross-check (docs/ROADMAP-v2.md Phase 8):
+        // a pack must not declare capabilities for files it doesn't ship,
+        // nor ship the data without declaring the capability. The app derives
+        // its tabs from these flags, so disagreement fails lint.
+        val shipsAnswers = loaded.answers?.answers?.isNotEmpty() == true
+        if (pack.capabilities.answers && !shipsAnswers) {
+            issues += err("pack.json", "capabilities.answers is true but answers.json is missing or has no sheets")
+        }
+        if (!pack.capabilities.answers && shipsAnswers) {
+            issues += err("pack.json", "pack ships answers.json but does not declare capabilities.answers")
+        }
+
         // Coverage (warn — packs grow incrementally), computed per route
         run {
             val expected = cal.dates - nonPlayable

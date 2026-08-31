@@ -40,6 +40,13 @@ data class LoadedPack(
     /** routeId -> (ISO date -> authored day). */
     val daysByRoute: Map<String, Map<String, Day>> = emptyMap(),
     /**
+     * Whether the pack ships the backing file at all — distinct from "shipped
+     * empty", which stays a legitimate state with its own UI (docs/ROADMAP-v2.md
+     * Phase 8). The bottom bar gates the Bonds/Deadlines tabs on these.
+     */
+    val hasBondsFile: Boolean = false,
+    val hasDeadlinesFile: Boolean = false,
+    /**
      * Pack-supplied tile art asset (e.g. "<slug>/art/icon.png"), null when the
      * pack ships none (docs/ROADMAP-v2.md Phase 7 grid cards). Conventional
      * path for now; Phase 10 formalizes art slots in pack.json `theme`.
@@ -198,6 +205,8 @@ class PackStore @Inject constructor(
                     activities = activities,
                     answersByDate = answers,
                     daysByRoute = daysByRoute,
+                    hasBondsFile = "confidants.json" in files,
+                    hasDeadlinesFile = "deadlines.json" in files,
                     iconAsset = iconAsset,
                     cardAsset = cardAsset,
                 )

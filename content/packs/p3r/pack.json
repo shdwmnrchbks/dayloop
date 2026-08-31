@@ -26,7 +26,8 @@
   ],
   "capabilities": {
     "exams": true,
-    "weather": false
+    "weather": false,
+    "answers": true
   },
   "labels": {
     "bond": "Social Link",

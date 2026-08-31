@@ -65,6 +65,24 @@ Acceptance:
 
 ## Phase 8 — Capability-driven UI (pack-tailored tabs & screens)
 
+**Status: shipped in v0.3.0.** As specified, plus these resolutions:
+- The answers capability gates the tab, not a new UI concept: `capabilities.answers`
+  ⇔ answers.json ships non-empty, enforced by packlint in both directions (declaring
+  without data, or shipping without declaring, both fail lint — including an empty
+  answers.json, which does not satisfy the capability).
+- Bonds/Deadlines tabs key off **file presence** (`LoadedPack.hasBondsFile` /
+  `hasDeadlinesFile`), not content count: a pack shipping an empty confidants.json
+  still gets the tab, where the existing empty state renders. All three first-release
+  packs ship both files, so the visible difference today is the Answers tab only.
+- The empty-state audit found every shippable-empty list already carries a real empty
+  state (bonds, deadlines, answer sheets, authored months, unauthored days, search);
+  routes always resolve to ≥1 via the implicit default, and Settings only renders the
+  route picker when >1 routes exist — no gaps to fill.
+- `contentVersion` was deliberately **not** bumped for the pack.json capability
+  backfill: it stamps saved marks against authored content (§3.6), and capability
+  flags change no IDs, days, or steps — bumping would raise a spurious "content was
+  updated" notice on every existing save.
+
 **Goal:** the navigation and screens adapt to what the active pack actually contains.
 Metaphor gets no Answers/Exam tab; nothing engine-side knows that fact — the pack does.
 

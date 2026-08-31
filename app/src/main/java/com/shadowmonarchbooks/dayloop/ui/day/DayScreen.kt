@@ -95,8 +95,12 @@ fun DayScreen(
             }
         }
 
-        pack.answersByDate[date]?.let { sheet ->
-            AnswerSheetCard(sheet = sheet, onOpenAnswers = onOpenAnswers)
+        // Guarded entry point (docs/ROADMAP-v2.md Phase 8): the affordance
+        // exists only on days with a sheet, in packs declaring the capability.
+        if (pack.pack.capabilities.answers) {
+            pack.answersByDate[date]?.let { sheet ->
+                AnswerSheetCard(sheet = sheet, onOpenAnswers = onOpenAnswers)
+            }
         }
 
         DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))

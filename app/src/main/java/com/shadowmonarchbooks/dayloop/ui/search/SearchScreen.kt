@@ -49,6 +49,10 @@ fun SearchScreen(
     }
 
     var query by remember { mutableStateOf("") }
+    // Guarded surface (docs/ROADMAP-v2.md Phase 8): answer hits only exist for
+    // packs declaring the capability, so results can never point at one the
+    // pack lacks.
+    val answersByDate = if (pack.pack.capabilities.answers) pack.answersByDate else emptyMap()
     val hits = remember(query, state.days, pack.id()) {
         searchPack(
             query = query,
@@ -56,7 +60,7 @@ fun SearchScreen(
             bonds = pack.bonds,
             activities = pack.activities,
             deadlines = pack.deadlines,
-            answersByDate = pack.answersByDate,
+            answersByDate = answersByDate,
         )
     }
 

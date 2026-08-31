@@ -27,12 +27,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.ui.answers.AnswersScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
@@ -44,7 +46,32 @@ import com.shadowmonarchbooks.dayloop.ui.search.SearchScreen
 import com.shadowmonarchbooks.dayloop.ui.settings.SettingsScreen
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
+/** Every top-level destination stays registered, whatever the active pack ships. */
 private val TopLevelRoutes = setOf("today", "calendar", "bonds", "deadlines", "answers")
+
+/** One bottom-bar entry; the list is derived from the active pack (Phase 8). */
+private data class TopTab(val route: String, val label: String, val icon: ImageVector)
+
+/**
+ * Tabs the active pack earns (docs/ROADMAP-v2.md Phase 8): Bonds/Deadlines
+ * appear when the pack ships their files, the Answers tab only when the pack
+ * declares `capabilities.answers` (packlint guarantees the data exists).
+ * Tab count and order are pack data, never hardcoded; a null pack falls back
+ * to the full set so navigation never strands.
+ */
+private fun topLevelTabs(pack: LoadedPack?): List<TopTab> = buildList {
+    add(TopTab("today", "Today", Icons.Filled.Home))
+    add(TopTab("calendar", "Calendar", Icons.Filled.DateRange))
+    if (pack == null || pack.hasBondsFile) {
+        add(TopTab("bonds", pack?.pack?.labels?.bond?.let { it + "s" } ?: "Bonds", Icons.Filled.Person))
+    }
+    if (pack == null || pack.hasDeadlinesFile) {
+        add(TopTab("deadlines", "Deadlines", Icons.Filled.Warning))
+    }
+    if (pack == null || pack.pack.capabilities.answers) {
+        add(TopTab("answers", "Answers", Icons.Filled.Info))
+    }
+}
 
 @Composable
 fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
@@ -85,36 +112,14 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
         bottomBar = {
             if (route in TopLevelRoutes) {
                 NavigationBar {
-                    NavigationBarItem(
-                        selected = route == "today",
-                        onClick = { nav.navigate("today") { launchSingleTop = true } },
-                        icon = { Icon(Icons.Filled.Home, contentDescription = null) },
-                        label = { Text("Today") },
-                    )
-                    NavigationBarItem(
-                        selected = route == "calendar",
-                        onClick = { nav.navigate("calendar") { launchSingleTop = true } },
-                        icon = { Icon(Icons.Filled.DateRange, contentDescription = null) },
-                        label = { Text("Calendar") },
-                    )
-                    NavigationBarItem(
-                        selected = route == "bonds",
-                        onClick = { nav.navigate("bonds") { launchSingleTop = true } },
-                        icon = { Icon(Icons.Filled.Person, contentDescription = null) },
-                        label = { Text(pack?.pack?.labels?.bond?.let { it + "s" } ?: "Bonds") },
-                    )
-                    NavigationBarItem(
-                        selected = route == "deadlines",
-                        onClick = { nav.navigate("deadlines") { launchSingleTop = true } },
-                        icon = { Icon(Icons.Filled.Warning, contentDescription = null) },
-                        label = { Text("Deadlines") },
-                    )
-                    NavigationBarItem(
-                        selected = route == "answers",
-                        onClick = { nav.navigate("answers") { launchSingleTop = true } },
-                        icon = { Icon(Icons.Filled.Info, contentDescription = null) },
-                        label = { Text("Answers") },
-                    )
+                    topLevelTabs(pack).forEach { tab ->
+                        NavigationBarItem(
+                            selected = route == tab.route,
+                            onClick = { nav.navigate(tab.route) { launchSingleTop = true } },
+                            icon = { Icon(tab.icon, contentDescription = null) },
+                            label = { Text(tab.label) },
+                        )
+                    }
                 }
             }
         },

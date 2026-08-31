@@ -9,6 +9,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
+import com.shadowmonarchbooks.dayloop.pack.schema.Capabilities
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
@@ -146,7 +147,12 @@ class PackLintTest {
                 if (it.date == "2016-04-11") it.copy(dayKind = "exam") else it
             }
         )
-        Fixture.writePack(dir, walkthroughs = listOf(wt))
+        // The pack ships answer sheets, so it must declare the capability.
+        Fixture.writePack(
+            dir,
+            pack = Fixture.validPack().copy(capabilities = Capabilities(exams = true, answers = true)),
+            walkthroughs = listOf(wt),
+        )
         Fixture.writeDeadlines(
             dir,
             DeadlinesFile(deadlines = listOf(Deadline("t1.deadline.exam", "Exams", "exam", date = "2016-04-12"))),
@@ -167,7 +173,7 @@ class PackLintTest {
     @Test
     fun `misaligned answer sheets fail`() {
         val dir = tempDir()
-        Fixture.writePack(dir)
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(capabilities = Capabilities(exams = true, answers = true)))
         Fixture.writeAnswers(
             dir,
             AnswersFile(
@@ -183,6 +189,42 @@ class PackLintTest {
         assertTrue(errors.none { "2016-04-10' has no authored day" in it.message }, errors.toString())
         assertTrue(errors.any { "not an authored exam day" in it.message }, errors.toString())
         assertTrue(errors.any { "references unknown deadline 't1.deadline.missing'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `answers capability without answers file fails`() {
+        val dir = tempDir()
+        Fixture.writePack(
+            dir,
+            pack = Fixture.validPack().copy(capabilities = Capabilities(exams = true, answers = true)),
+        )
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "capabilities.answers is true but answers.json" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `answers file without the capability fails`() {
+        val dir = tempDir()
+        // validPack() declares no answers capability, so shipping sheets fails.
+        Fixture.writePack(dir)
+        Fixture.writeAnswers(
+            dir,
+            AnswersFile(answers = listOf(AnswerSheet("t1.answers.exam.2016-04-11", "2016-04-11", "exam", "Exams", listOf("a")))),
+        )
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "ships answers.json but does not declare capabilities.answers" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `empty answers file does not satisfy the capability`() {
+        val dir = tempDir()
+        Fixture.writePack(
+            dir,
+            pack = Fixture.validPack().copy(capabilities = Capabilities(exams = true, answers = true)),
+        )
+        Fixture.writeAnswers(dir, AnswersFile(answers = emptyList()))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "capabilities.answers is true but answers.json" in it.message }, errors.toString())
     }
 
     @Test

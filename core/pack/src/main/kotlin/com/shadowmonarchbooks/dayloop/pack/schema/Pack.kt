@@ -92,10 +92,17 @@ data class Slot(val id: String, val label: String)
 @Serializable
 data class StatDef(val id: String, val label: String)
 
+/**
+ * Closed-set capability manifest (docs/PLAN.md §3.1): additive booleans the
+ * engine reads, never per-game flags. packlint cross-checks every declared
+ * capability against the files the pack actually ships.
+ */
 @Serializable
 data class Capabilities(
     val exams: Boolean = false,
     val weather: Boolean = false,
+    /** Pack ships structured answer sheets (exams + class questions) in answers.json. */
+    val answers: Boolean = false,
 )
 
 @Serializable
