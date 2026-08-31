@@ -80,6 +80,20 @@ class PackLintTest {
     }
 
     @Test
+    fun `royal vocabulary plaque and seal lints clean`() {
+        // ROADMAP-v3 Phase 15: the closed set grew by tokens, not code paths —
+        // the fixture declaring plaque/seal everywhere must pass lint.
+        val theme = skinTheme().copy(
+            motif = "crown",
+            shapes = skinTheme().shapes?.copy(card = "plaque", chip = "seal", header = "plaque", frame = "plaque"),
+            motion = "flip",
+        )
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val issues = PackLint.runOn(dir)
+        assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    @Test
     fun `unknown shape token fails`() {
         val theme = skinTheme().copy(shapes = skinTheme().shapes?.copy(card = "spiky"))
         val dir = writeSkin(Fixture.skinPack().copy(theme = theme))

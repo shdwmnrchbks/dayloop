@@ -17,7 +17,10 @@ class SkinTokensTest {
     @Test
     fun `closed sets contain the documented tokens`() {
         assertEquals(setOf("masks", "moon", "crown"), SkinTokens.MOTIFS)
-        assertEquals(setOf("jagged", "slash", "cut", "ribbon", "diamond"), SkinTokens.SHAPES)
+        assertEquals(
+            setOf("jagged", "slash", "cut", "ribbon", "diamond", "plaque", "seal"),
+            SkinTokens.SHAPES,
+        )
         assertEquals(setOf("slash", "fade", "flip", "none"), SkinTokens.MOTIONS)
         assertEquals(setOf("upper"), SkinTokens.FONT_CASES)
         assertEquals(setOf("header", "panel", "divider"), SkinTokens.DECOR_SLOTS)
@@ -28,6 +31,16 @@ class SkinTokensTest {
     fun `explicit shape tokens beat the motif family`() {
         val shapes = SkinShapes(card = "cut")
         assertEquals("cut", SkinTokens.resolveShape(shapes, "masks", "card"))
+    }
+
+    @Test
+    fun `plaque and seal tokens resolve in every slot`() {
+        // ROADMAP-v3 Phase 15: the royal vocabulary rides the same closed set.
+        for (slot in SkinTokens.SHAPE_SLOTS) {
+            val shapes = SkinShapes(card = "plaque", chip = "seal", header = "plaque", frame = "plaque")
+            val expected = if (slot == "chip") "seal" else "plaque"
+            assertEquals(expected, SkinTokens.resolveShape(shapes, "crown", slot), "$slot")
+        }
     }
 
     @Test

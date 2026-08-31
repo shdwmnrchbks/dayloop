@@ -1,18 +1,23 @@
 package com.shadowmonarchbooks.dayloop.ui.bonds
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
@@ -37,6 +42,7 @@ import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /** Bond list — labels come from the pack ("Confidant", "Social Link", "Follower"). */
 @Composable
@@ -63,6 +69,8 @@ fun BondsScreen(
             if (skin.hasSkin) {
                 // Arcana-card rows (docs/ROADMAP-v3.md Phase 13): each bond is
                 // a card in the pack's card silhouette; dividers go away.
+                // Crown language (Phase 15): the row's panel decor (parchment
+                // fill + filigree frame) renders behind the list content.
                 Surface(
                     shape = skin.shapes.card,
                     color = MaterialTheme.colorScheme.surfaceVariant,
@@ -82,6 +90,7 @@ fun BondsScreen(
                             )
                         },
                         colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        modifier = Modifier.skinDecor("panel"),
                     )
                 }
             } else {
@@ -116,6 +125,10 @@ fun BondDetailScreen(
     }
     val bondLabels = pack.bonds.associate { it.id to it.label }
     val statLabels = pack.pack.statLabels()
+    // Crown language (docs/ROADMAP-v3.md Phase 15): follower ranks render as
+    // embossed medallions — a filled crest with a double ring and the rank
+    // number at its center.
+    val crown = LocalSkin.current.hasSkin && LocalSkin.current.motif == "crown"
 
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -190,14 +203,41 @@ fun BondDetailScreen(
 
         bond.ranks.sortedBy { it.rank }.forEach { step ->
             Row(
+                verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(
-                    text = "${step.rank}",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                )
+                if (crown) {
+                    // Embossed medallion (Phase 15): filled crest, double ring,
+                    // the rank number in the center of the crest.
+                    Box(
+                        modifier = Modifier.size(34.dp),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                                .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape),
+                        )
+                        Box(
+                            modifier = Modifier
+                                .size(26.dp)
+                                .border(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.55f), CircleShape),
+                        )
+                        Text(
+                            text = "${step.rank}",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        )
+                    }
+                } else {
+                    Text(
+                        text = "${step.rank}",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
                 Column {
                     listOfNotNull(
                         step.availableFrom?.let { "From ${formatDate(it, pack.calendar)}" },

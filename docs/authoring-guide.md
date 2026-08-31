@@ -114,8 +114,11 @@ engine look.
   `slash` (diagonally sheared panel), `cut` (45° chamfered corners),
   `ribbon` (banner band with angled ends), `diamond` (small tags only —
   rendered as a diamond marker beside the label, and as a diamond cap on
-  header bands; never a text-clipping container). Slots: `card`, `chip`,
-  `header`, `frame`.
+  header bands; never a text-clipping container), `plaque` (straight-ruled
+  panel with a small bounded corner chamfer — the engraved-plaque
+  silhouette), `seal` (a wax-stamp disc; as a chip it renders a small seal
+  beside the label — tags, never text containers, and containers fall back
+  to the card silhouette). Slots: `card`, `chip`, `header`, `frame`.
 - **Typography roles**: `display` covers the display styles, `title` the
   headline/title styles, `body` the body/label styles. Fonts are bundled
   under the pack dir (conventionally `art/fonts/`, ttf/otf, ≤ 2 MB each) and
@@ -128,10 +131,15 @@ engine look.
   Painter-driven families change no silhouettes — readability never shifts
   by motif alone.
 - **Decor slots**: the engine consumes `header` (top app bar), `panel`
-  (cards), `divider` (reserved); other lowercase-slug slots ride along for
-  future surfaces. A declared decor file draws behind the slot's content;
-  without one, the motif family's procedural painter (halftone/grain/glass/
-  filigree) renders instead; with neither, the engine look applies.
+  (cards — carried-over, banners, answer sheets, bond rows; the slot
+  composes the declared art as the fill with the motif painter drawn over
+  it as an exact-size frame), `divider` (gold-rule slot dividers on Day
+  pages); other lowercase-slug slots ride along for future surfaces. A
+  declared decor file draws behind the slot's content; without one, the
+  motif family's procedural painter (halftone/grain/glass/filigree)
+  renders instead; with neither, the engine look applies. Apply decor
+  modifiers to the content root *inside* a Surface — an outer modifier
+  draws behind the opaque container and never shows.
 - **Motion**: `slash` (hard diagonal wipe + skew-in, ~240 ms), `fade`
   (180 ms cross-fade), `flip` (page-turn slide + scale), `none` (engine
   default). Applies to screen navigation and the spoiler/step reveal; all of
@@ -148,6 +156,10 @@ engine look.
   ROADMAP-v3.md Phase 13) — jagged/slash/ribbon/cut shapes, a bundled OFL
   display font (`art/fonts/` with its license), decor art, `slash` motion,
   and hand-tuned seeds that pass the AA rule in both modes. Start there.
+  `content/packs/metaphor/` (Phase 15) shows the crown vocabulary end to
+  end: `plaque`/`seal` shapes, engraved serif display type, all three decor
+  slots, `flip` motion, and a reproducible decor-art generator at
+  `tools/artgen/metaphor-royal.ps1`.
 
 ## Media: bundling graphics (docs/ROADMAP-v3.md Phase 11)
 

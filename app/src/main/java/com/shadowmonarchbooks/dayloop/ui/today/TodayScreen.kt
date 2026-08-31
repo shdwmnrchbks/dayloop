@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.today
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -15,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -22,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
@@ -30,6 +34,7 @@ import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
+import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedOverCard
@@ -41,7 +46,9 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.StepsList
+import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
  * Hero screen: the persisted in-game clock (End-Day), today's checkbox steps,
@@ -102,6 +109,14 @@ fun TodayScreen(
             DayKindChip(day?.dayKind ?: "rest")
         }
 
+        // Crown-language packs (docs/ROADMAP-v3.md Phase 15): the dayCounter's
+        // game-month position renders as an ornate plaque under the date.
+        val skin = LocalSkin.current
+        val calendar = pack.calendar
+        if (skin.motif == "crown" && skin.hasSkin && calendar != null) {
+            DayCounterPlaque(date = date, calendar = calendar)
+        }
+
         day?.notes?.let { notes ->
             Text(
                 text = notes,
@@ -112,7 +127,6 @@ fun TodayScreen(
 
         // Moon-language packs (Phase 14): deadlines landing on dates the pack
         // marks with media wear the red-moon chip in the banner.
-        val skin = LocalSkin.current
         val moonMarkedDates = remember(pack, skin.motif) {
             if (skin.motif == "moon") {
                 pack.media.filter { it.kind == "day" }.flatMap { it.dates }.toSet()
@@ -125,6 +139,7 @@ fun TodayScreen(
                 deadline = deadline,
                 daysLeft = days,
                 moonMarked = deadlineStart(deadline) in moonMarkedDates,
+                kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
             )
         }
 
@@ -169,11 +184,15 @@ fun TodayScreen(
                 onClick = vm::endDay,
                 enabled = state.hasNextDay(),
                 // Skinned packs: the big advance button (ROADMAP-v3 Phase 13)
-                // wears the chip silhouette's slant — except diamond chips,
-                // which are tags, never containers: those fall back to the
-                // card silhouette (Phase 14, calm-language packs).
+                // wears the chip silhouette's slant — except tag-shaped chips
+                // (diamond, wax-seal), which are tags, never containers: those
+                // fall back to the card silhouette (Phase 14/15 calm packs).
                 shape = if (skin.hasSkin) {
-                    if (skin.shapeTokens["chip"] == "diamond") skin.shapes.card else skin.shapes.chip
+                    if (skin.shapeTokens["chip"] == "diamond" || skin.shapeTokens["chip"] == "seal") {
+                        skin.shapes.card
+                    } else {
+                        skin.shapes.chip
+                    }
                 } else {
                     ButtonDefaults.shape
                 },
@@ -205,6 +224,23 @@ fun TodayScreen(
             }
         }
         if (!state.hasNextDay()) {
+            // Crown-language packs (Phase 15): the pack's post-game banner art
+            // (Phase 11 media) decorates the end-of-calendar state.
+            if (skin.motif == "crown") {
+                pack.media.firstOrNull { it.kind == "banner" }?.let { banner ->
+                    val bmp = rememberAssetImage(pack.assetOf(banner))
+                    if (bmp != null) {
+                        Image(
+                            bitmap = bmp,
+                            contentDescription = banner.title,
+                            contentScale = ContentScale.FillWidth,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(max = 150.dp),
+                        )
+                    }
+                }
+            }
             Text(
                 text = "End of this pack's calendar.",
                 style = MaterialTheme.typography.labelMedium,
@@ -245,6 +281,48 @@ private fun OrphanBanner(count: Int, onReview: () -> Unit, modifier: Modifier = 
         )
         TextButton(onClick = onReview) {
             Text("Review")
+        }
+    }
+}
+
+/**
+ * Crown-language day counter (docs/ROADMAP-v3.md Phase 15): the game-month
+ * position of a `dayCounter` pack rendered as an ornate plaque — filigree
+ * panel decor over the primary container, label in display type. Engine
+ * vocabulary only: game months, days, and the journey-day count come from
+ * [GameCalendar] math, never from a game's name.
+ */
+@Composable
+private fun DayCounterPlaque(date: String, calendar: GameCalendar) {
+    val skin = LocalSkin.current
+    val month = date.take(7)
+    val monthNo = calendar.monthKeys.indexOf(month) + 1
+    val dayNo = calendar.datesInMonth(month).indexOf(date) + 1
+    if (monthNo <= 0 || dayNo <= 0) return
+    val journeyDay = calendar.diffDays(calendar.startDate, date)?.plus(1)
+    Surface(
+        shape = skin.shapes.header,
+        color = MaterialTheme.colorScheme.primaryContainer,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(
+            Modifier
+                .skinDecor("panel")
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = skin.cased("Month $monthNo · Day $dayNo", "display"),
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+            journeyDay?.let {
+                Text(
+                    text = "Journey day $it of ${calendar.size}",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f),
+                )
+            }
         }
     }
 }

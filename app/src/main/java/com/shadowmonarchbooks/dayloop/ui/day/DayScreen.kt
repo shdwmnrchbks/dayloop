@@ -109,7 +109,11 @@ fun DayScreen(
 
         state.currentDate?.let { current ->
             nextDeadline(pack.deadlines, current, pack.calendar)?.let { (deadline, days) ->
-                DeadlineBanner(deadline = deadline, daysLeft = days)
+                DeadlineBanner(
+                    deadline = deadline,
+                    daysLeft = days,
+                    kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
+                )
             }
         }
 

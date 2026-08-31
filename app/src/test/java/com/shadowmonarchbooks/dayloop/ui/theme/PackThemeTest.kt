@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import java.nio.file.Files
@@ -166,15 +167,94 @@ class PackThemeTest {
         }
     }
 
+    // ---- Phase 15 (docs/ROADMAP-v3.md): the Royal skin data ----
+
     @Test
-    fun `metaphor stays token-less for skin isolation`() {
-        // ROADMAP-v3 acceptance: theme-less packs must render byte-identical
-        // to the engine look — metaphor ships no v3 skin layers until Phase 15.
+    fun `metaphor declares the royal skin data`() {
         val theme = themeOf("metaphor")
-        assertEquals(null, theme.shapes, "metaphor must not declare shapes yet")
-        assertEquals(null, theme.motion, "metaphor must not declare motion yet")
-        assertEquals(null, theme.typography, "metaphor must not declare typography yet")
-        assertTrue(theme.decor.isEmpty(), "metaphor must not declare decor yet")
+        assertEquals("crown", theme.motif)
+        assertNotNull(theme.shapes, "metaphor must declare shapes")
+        assertEquals("plaque", theme.shapes?.card, "parchment plaques")
+        assertEquals("seal", theme.shapes?.chip, "wax-stamp chips")
+        assertEquals("plaque", theme.shapes?.header, "ornate plaque headers")
+        assertEquals("plaque", theme.shapes?.frame, "plaque frames")
+        assertEquals("flip", theme.motion, "royal motion is the page turn")
+        val display = assertNotNull(theme.typography?.display, "metaphor must declare a display font role")
+        assertEquals("art/fonts/display.ttf", display.file)
+        assertEquals("upper", display.case, "display case token")
+        assertTrue(!display.italic, "engraved roman type is upright")
+        assertTrue((display.tracking ?: 0.0) > 0.0, "generous engraved tracking")
+        assertTrue("header" in theme.decor, "metaphor decor header slot")
+        assertTrue("panel" in theme.decor, "metaphor decor panel slot")
+        assertTrue("divider" in theme.decor, "metaphor decor divider slot")
+        // Royal seeds over the expressive scheme (docs/references/metaphor-ui.md §2).
+        assertEquals("#9E815F", theme.accent, "brass light seed")
+        assertEquals("#BEA52A", theme.accentDark, "ornament-gold dark seed")
+        assertEquals("expressive", theme.style)
+    }
+
+    @Test
+    fun `metaphor bundles its display font and license`() {
+        val root = contentPacksDir() ?: error("no content checkout")
+        val dir = root.resolve("metaphor")
+        val font = dir.resolve("art/fonts/display.ttf")
+        assertTrue(font.isRegularFile(), "bundled display font missing")
+        assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
+        assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
+        val head = Files.readAllBytes(font).take(4)
+        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
+        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
+    }
+
+    @Test
+    fun `metaphor decor art files exist on disk`() {
+        val root = contentPacksDir() ?: error("no content checkout")
+        val dir = root.resolve("metaphor")
+        val theme = themeOf("metaphor")
+        theme.decor.forEach { (slot, rel) ->
+            assertTrue(dir.resolve(rel).isRegularFile(), "metaphor theme.decor['$slot'] missing file $rel")
+        }
+    }
+
+    @Test
+    fun `the three skins keep distinct motion languages`() {
+        // Each pack's transition grammar stays its own: no skin bleeds into
+        // another (Phase 14's slash-language gating, generalized).
+        assertEquals(
+            listOf("slash", "fade", "flip"),
+            listOf("p5r", "p3r", "metaphor").map { themeOf(it).motion },
+        )
+    }
+
+    @Test
+    fun `royal skin leaves the dayCounter month grid intact`() {
+        // Phase 15 acceptance: the Royal skin must not break the dayCounter
+        // month grid — 30-day game months and the cycle weekday math. The
+        // skin touches presentation only; the calendar contract is re-pinned
+        // here with the skin data in place.
+        val root = contentPacksDir() ?: error("no content checkout")
+        val pack = PackLoader.load(root.resolve("metaphor")).pack ?: error("metaphor must decode")
+        val cal = assertNotNull(GameCalendar.of(pack.calendar), "travel calendar constructs")
+        assertEquals(
+            listOf("2100-06", "2100-07", "2100-08", "2100-09", "2100-10"),
+            cal.monthKeys,
+            "five authored game months",
+        )
+        // June starts on the 2nd (the journey's first day) — 29 authored
+        // dates; July–September are full 30-day game months; October runs to
+        // the journey's last day, the 26th.
+        assertEquals(29, cal.daysInMonth("2100-06"))
+        assertEquals(30, cal.daysInMonth("2100-07"))
+        assertEquals(30, cal.daysInMonth("2100-08"))
+        assertEquals(30, cal.daysInMonth("2100-09"))
+        assertEquals(26, cal.daysInMonth("2100-10"))
+        assertEquals(5, cal.cycleTokens.size, "five-day game week")
+        assertEquals("watersday", cal.weekdayOf("2100-06-02"), "anchor weekday")
+        assertEquals("arboursday", cal.weekdayOf("2100-06-03"), "cycle advances")
+        assertEquals("idlesday", cal.weekdayOf("2100-06-05"), "the rest day")
+        assertEquals(3, cal.cyclePosition("2100-06-02"), "watersday's position in the cycle")
+        // End of calendar: 2010-01-31-style terminus equivalent for the travel pack.
+        assertEquals("2100-10-26", cal.endDate, "the journey's last day")
     }
 
     // ---- Phase 14 (docs/ROADMAP-v3.md): the Moonlight skin data ----

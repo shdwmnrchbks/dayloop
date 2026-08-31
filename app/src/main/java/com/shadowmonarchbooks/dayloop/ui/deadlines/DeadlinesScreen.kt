@@ -26,6 +26,9 @@ import com.shadowmonarchbooks.dayloop.data.daysUntil
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
  * All deadlines, soonest first. Deadline names stay visible (docs/PLAN.md §6.2);
@@ -55,19 +58,33 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         items(sorted, key = { it.id }) { deadline ->
+            // Crown language (docs/ROADMAP-v3.md Phase 15): mission stamps —
+            // plaque cards with panel decor, the kind chip as a wax-seal tag
+            // (pack-supplied label), and the countdown as a plaque ribbon.
+            // Other looks keep the engine card unchanged.
+            val skin = LocalSkin.current
+            val crown = skin.hasSkin && skin.motif == "crown"
             Surface(
-                shape = RoundedCornerShape(12.dp),
+                shape = if (crown) skin.shapes.card else RoundedCornerShape(12.dp),
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(if (crown) Modifier.skinDecor("panel") else Modifier)
+                        .padding(horizontal = 14.dp, vertical = 10.dp),
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = deadline.label,
-                            style = MaterialTheme.typography.bodyLarge,
+                            text = if (crown) {
+                                skin.cased(deadline.label, "display")
+                            } else {
+                                deadline.label
+                            },
+                            style = if (crown) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.SemiBold,
                         )
                         val start = deadlineStart(deadline)
@@ -76,7 +93,15 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            DeadlineKindChip(pack.pack.labels.deadlineKind(deadline.kind))
+                            if (crown) {
+                                SkinTag(
+                                    text = pack.pack.labels.deadlineKind(deadline.kind),
+                                    container = MaterialTheme.colorScheme.tertiaryContainer,
+                                    content = MaterialTheme.colorScheme.onTertiaryContainer,
+                                )
+                            } else {
+                                DeadlineKindChip(pack.pack.labels.deadlineKind(deadline.kind))
+                            }
                             Text(
                                 text = when {
                                     start != null && end != null && end != start ->
@@ -92,19 +117,48 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                     current?.let {
                         val days = daysUntil(it, deadline, pack.calendar)
                         if (days != null) {
-                            Text(
-                                text = when {
-                                    days < 0 -> "past"
-                                    days == 0L -> "today"
-                                    else -> "in $days d"
-                                },
-                                style = MaterialTheme.typography.labelLarge,
-                                color = if (days in 0..3) {
-                                    MaterialTheme.colorScheme.error
-                                } else {
-                                    MaterialTheme.colorScheme.onSurfaceVariant
-                                },
-                            )
+                            if (crown) {
+                                Surface(
+                                    shape = skin.shapes.header,
+                                    color = if (days in 0..3) {
+                                        MaterialTheme.colorScheme.error
+                                    } else {
+                                        MaterialTheme.colorScheme.primaryContainer
+                                    },
+                                ) {
+                                    Text(
+                                        text = skin.cased(
+                                            when {
+                                                days < 0 -> "past"
+                                                days == 0L -> "due today"
+                                                else -> "in $days d"
+                                            },
+                                            "display",
+                                        ),
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = if (days in 0..3) {
+                                            MaterialTheme.colorScheme.onError
+                                        } else {
+                                            MaterialTheme.colorScheme.onPrimaryContainer
+                                        },
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                                    )
+                                }
+                            } else {
+                                Text(
+                                    text = when {
+                                        days < 0 -> "past"
+                                        days == 0L -> "today"
+                                        else -> "in $days d"
+                                    },
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = if (days in 0..3) {
+                                        MaterialTheme.colorScheme.error
+                                    } else {
+                                        MaterialTheme.colorScheme.onSurfaceVariant
+                                    },
+                                )
+                            }
                         }
                     }
                 }

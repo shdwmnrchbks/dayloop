@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.month
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -259,6 +260,10 @@ private fun DayCell(
     marker: Pair<String, String>? = null,
 ) {
     val skin = LocalSkin.current
+    // Crown language (docs/ROADMAP-v3.md Phase 15): authored cells become
+    // gold-ruled itinerary tiles (hairline border; fills stay kind-colored),
+    // and deadline dates wear a wax-stamp mark instead of the generic dot.
+    val crown = skin.hasSkin && skin.motif == "crown"
     // Moon-language packs: Dark-Hour block days invert to a darker glass
     // (docs/ROADMAP-v3.md Phase 14) — the cell uses the inverse roles.
     val inverted = skin.motif == "moon" && day?.dayKind == "forced"
@@ -282,7 +287,11 @@ private fun DayCell(
                 container ?: MaterialTheme.colorScheme.surface
             },
             tonalElevation = if (container == null) 0.dp else 2.dp,
-            border = if (isClockDate && !skin.hasSkin) BorderStroke(2.dp, MaterialTheme.colorScheme.primary) else null,
+            border = when {
+                isClockDate && !skin.hasSkin -> BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
+                crown && day != null -> BorderStroke(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f))
+                else -> null
+            },
             modifier = Modifier
                 .fillMaxSize()
                 .then(
@@ -315,13 +324,32 @@ private fun DayCell(
                         modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 2.dp),
                     )
                 } else if (hasDeadline) {
-                    Box(
-                        modifier = Modifier
-                            .align(Alignment.BottomCenter)
-                            .padding(bottom = 3.dp)
-                            .size(5.dp)
-                            .background(MaterialTheme.colorScheme.primary, CircleShape),
-                    )
+                    if (crown) {
+                        // Wax-stamp mark (Phase 15): a ringed crimson disc —
+                        // the mission-stamp read — instead of the plain dot.
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .padding(bottom = 2.dp)
+                                .size(9.dp)
+                                .border(1.dp, MaterialTheme.colorScheme.error, CircleShape),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(3.5.dp)
+                                    .background(MaterialTheme.colorScheme.error, CircleShape),
+                            )
+                        }
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .padding(bottom = 3.dp)
+                                .size(5.dp)
+                                .background(MaterialTheme.colorScheme.primary, CircleShape),
+                        )
+                    }
                 }
             }
         }

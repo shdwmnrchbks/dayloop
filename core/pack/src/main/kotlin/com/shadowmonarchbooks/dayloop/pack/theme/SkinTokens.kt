@@ -20,8 +20,16 @@ object SkinTokens {
     /** `theme.motif` — decorative family selector. */
     val MOTIFS = setOf("masks", "moon", "crown")
 
-    /** Silhouette tokens valid for every [shape slot][SkinSlots]. */
-    val SHAPES = setOf("jagged", "slash", "cut", "ribbon", "diamond")
+    /**
+     * Silhouette tokens valid for every [shape slot][SkinSlots].
+     *
+     * `plaque` (docs/ROADMAP-v3.md Phase 15): a straight-ruled panel with
+     * small corner chamfers — the engraved-plaque silhouette (no rounded
+     * softness; far tighter than `cut`'s deep 45° corners).
+     * `seal`: a wax-stamp disc — like `diamond`, a tag/cap token, never a
+     * text container (a filled circle would clip the label).
+     */
+    val SHAPES = setOf("jagged", "slash", "cut", "ribbon", "diamond", "plaque", "seal")
 
     /** `theme.motion` — screen-transition grammar. */
     val MOTIONS = setOf("slash", "fade", "flip", "none")

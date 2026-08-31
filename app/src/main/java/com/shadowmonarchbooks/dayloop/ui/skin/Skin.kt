@@ -260,6 +260,8 @@ fun shapeFor(token: String, density: Density): Shape = when (token) {
     "cut" -> cutShape(density)
     "ribbon" -> ribbonShape(density)
     "diamond" -> diamondShape()
+    "plaque" -> plaqueShape(density)
+    "seal" -> sealShape(density)
     else -> SkinSpec.Engine.shapes.card
 }
 
@@ -352,6 +354,66 @@ private fun diamondShape(): Shape = GenericShape { size, _ ->
     lineTo(size.width / 2f, size.height)
     lineTo(0f, size.height / 2f)
     close()
+}
+
+/**
+ * Straight-ruled rectangle with small corner chamfers — the engraved-plaque
+ * silhouette (docs/ROADMAP-v3.md Phase 15). Chamfer is bounded in dp so wide
+ * panels keep crisp corner cuts instead of the bevel stretching.
+ */
+private fun plaqueShape(density: Density): Shape = GenericShape { size, _ ->
+    val c = plaqueChamfer(size, density)
+    moveTo(c, 0f)
+    lineTo(size.width - c, 0f)
+    lineTo(size.width, c)
+    lineTo(size.width, size.height - c)
+    lineTo(size.width - c, size.height)
+    lineTo(c, size.height)
+    lineTo(0f, size.height - c)
+    lineTo(0f, c)
+    close()
+}
+
+/**
+ * The plaque's corner chamfer in px: absolute-dp bounded (4 dp), floored for
+ * tiny surfaces so even a 10 dp tag keeps a readable cut. Test-pinned in
+ * [SkinShapeTest].
+ */
+internal fun plaqueChamfer(size: Size, density: Density): Float =
+    with(density) { minOf(minOf(size.width, size.height) * 0.35f, 4.dp.toPx()) }
+
+/** A wax-stamp disc — for seal markers and seal-shaped medallions. */
+private fun sealShape(density: Density): Shape = GenericShape { size, _ ->
+    val pts = sealRim(size, density)
+    moveTo(pts.first().x, pts.first().y)
+    for (i in 1 until pts.size) lineTo(pts[i].x, pts[i].y)
+    close()
+}
+
+/**
+ * Rim points of the wax-stamp disc: 14 deterministic, slightly wobbled radii
+ * (±2.25%) around the center — a pressed stamp edge, stable across frames.
+ * Test-pinned in [SkinShapeTest].
+ */
+internal fun sealRim(size: Size, density: Density): List<Offset> {
+    val minSide = minOf(size.width, size.height)
+    val cx = size.width / 2f
+    val cy = size.height / 2f
+    val r = minSide / 2f
+    val rng = Random(0x5EA1)
+    val bumps = 14
+    val pts = mutableListOf<Offset>()
+    var angle = 0.0
+    while (angle < 360.0) {
+        val wobble = 1f + (rng.nextFloat() - 0.5f) * 0.045f
+        val rad = Math.toRadians(angle)
+        pts += Offset(
+            cx + (r * wobble * kotlin.math.cos(rad)).toFloat(),
+            cy + (r * wobble * kotlin.math.sin(rad)).toFloat(),
+        )
+        angle += 360.0 / bumps
+    }
+    return pts
 }
 
 // ---- Typography ----

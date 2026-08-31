@@ -3,6 +3,7 @@ package com.shadowmonarchbooks.dayloop.ui.components
 import android.graphics.BitmapFactory
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -84,14 +86,15 @@ fun DayKindChip(kind: String) {
 /**
  * Chip-vocabulary tag (docs/ROADMAP-v3.md Phase 14). Packs whose `chip` token
  * is `diamond` render a small diamond marker beside the label — a clipped
- * rhombus would cut text, and diamonds are tags, never containers. Every
- * other chip token keeps its silhouette Surface; the engine look is unchanged.
+ * rhombus would cut text; `seal` (Phase 15) renders a small wax-stamp disc
+ * beside the label for the same reason. Every other chip token keeps its
+ * silhouette Surface; the engine look is unchanged.
  */
 @Composable
 fun SkinTag(text: String, container: Color, content: Color, modifier: Modifier = Modifier) {
     val skin = LocalSkin.current
-    if (skin.shapeTokens["chip"] == "diamond") {
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
+    when (skin.shapeTokens["chip"]) {
+        "diamond" -> Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
             Box(
                 modifier = Modifier
                     .size(7.dp)
@@ -105,8 +108,20 @@ fun SkinTag(text: String, container: Color, content: Color, modifier: Modifier =
                 modifier = Modifier.padding(start = 6.dp),
             )
         }
-    } else {
-        Surface(shape = skin.shapes.chip, color = container, modifier = modifier) {
+        "seal" -> Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
+            Box(
+                modifier = Modifier
+                    .size(9.dp)
+                    .background(container, skin.shapes.chip),
+            )
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelMedium,
+                color = content,
+                modifier = Modifier.padding(start = 6.dp),
+            )
+        }
+        else -> Surface(shape = skin.shapes.chip, color = container, modifier = modifier) {
             Text(
                 text = text,
                 style = MaterialTheme.typography.labelMedium,
@@ -313,13 +328,40 @@ fun StepRow(
                             }
                         }
                         if (step.statGains.isNotEmpty()) {
-                            Text(
-                                text = step.statGains.entries.joinToString(" · ") { (stat, gain) ->
-                                    "${statLabels[stat] ?: stat} +$gain"
-                                },
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.tertiary,
-                            )
+                            val gains = step.statGains.entries.joinToString(" · ") { (stat, gain) ->
+                                "${statLabels[stat] ?: stat} +$gain"
+                            }
+                            if (skin.hasSkin && skin.motif == "crown") {
+                                // Crown language (Phase 15): follower-step gains
+                                // framed as a small laurel medallion — gold
+                                // hairline ring flanked by two leaf marks.
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    modifier = Modifier.padding(top = 2.dp),
+                                ) {
+                                    LaurelLeaf(mirrored = true)
+                                    Text(
+                                        text = gains,
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = MaterialTheme.colorScheme.tertiary,
+                                        modifier = Modifier
+                                            .padding(horizontal = 5.dp)
+                                            .border(
+                                                1.dp,
+                                                MaterialTheme.colorScheme.primary.copy(alpha = 0.45f),
+                                                RoundedCornerShape(9.dp),
+                                            )
+                                            .padding(horizontal = 8.dp, vertical = 2.dp),
+                                    )
+                                    LaurelLeaf(mirrored = false)
+                                }
+                            } else {
+                                Text(
+                                    text = gains,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.tertiary,
+                                )
+                            }
                         }
                     }
                 }
@@ -350,8 +392,18 @@ fun StepsList(
         )
         return
     }
+    val skin = LocalSkin.current
+    val crown = skin.hasSkin && skin.motif == "crown"
     Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = modifier) {
+        var previousSlot: String? = null
         steps.forEachIndexed { i, step ->
+            // Crown language (docs/ROADMAP-v3.md Phase 15): slot rows are
+            // separated by a filigree divider when the slot changes.
+            val slot = step.slot
+            if (crown && i > 0 && slot != null && slot != previousSlot) {
+                FiligreeDivider()
+            }
+            previousSlot = slot
             StepRow(
                 index = i,
                 step = step,
@@ -366,6 +418,21 @@ fun StepsList(
             )
         }
     }
+}
+
+/**
+ * The crown family's gold-rule divider (docs/ROADMAP-v3.md Phase 15): the
+ * pack's declared `divider` decor art (gold rule with a lozenge stop), or the
+ * filigree painter as the fallback. Presentation only — never information.
+ */
+@Composable
+fun FiligreeDivider() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(10.dp)
+            .skinDecor("divider"),
+    )
 }
 
 /** Compact per-day tally, e.g. "2 of 5 done · 1 later · 1 skipped". */
@@ -401,11 +468,16 @@ fun CarriedOverCard(
     Surface(
         shape = LocalSkin.current.shapes.card,
         color = MaterialTheme.colorScheme.surfaceVariant,
-        modifier = modifier
-            .fillMaxWidth()
-            .skinDecor("panel"),
+        modifier = modifier.fillMaxWidth(),
     ) {
-        Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        // Panel decor rides the content root (Phase 15 layering fix): drawn
+        // between the Surface's container and the card's own content.
+        Column(
+            Modifier
+                .skinDecor("panel")
+                .padding(horizontal = 14.dp, vertical = 10.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
             Text(
                 text = "Carried over from earlier days",
                 style = MaterialTheme.typography.titleSmall,
@@ -446,6 +518,12 @@ fun DeadlineBanner(
     modifier: Modifier = Modifier,
     /** True when the deadline lands on a date the pack marks with moon media (Phase 14). */
     moonMarked: Boolean = false,
+    /**
+     * Pack-supplied deadline-kind display label ("Mission", …) from
+     * `labels.deadlineKinds` — consumed by the crown-language mission stamp
+     * (Phase 15); other looks ignore it.
+     */
+    kindLabel: String? = null,
 ) {
     val skin = LocalSkin.current
     if (skin.motion == "slash") {
@@ -457,11 +535,13 @@ fun DeadlineBanner(
         Surface(
             shape = skin.shapes.card,
             color = MaterialTheme.colorScheme.inverseSurface,
-            modifier = modifier
-                .fillMaxWidth()
-                .skinDecor("panel"),
+            modifier = modifier.fillMaxWidth(),
         ) {
-            Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
+            Column(
+                Modifier
+                    .skinDecor("panel")
+                    .padding(horizontal = 14.dp, vertical = 10.dp),
+            ) {
                 Text(
                     text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
                     style = MaterialTheme.typography.labelLarge,
@@ -481,6 +561,75 @@ fun DeadlineBanner(
         }
         return
     }
+    // Crown language (docs/ROADMAP-v3.md Phase 15): mission stamps — a wax
+    // seal beside the pack-supplied kind label, the countdown as a small
+    // plaque ribbon, and the deadline in display type. Urgency colors stay
+    // engine logic.
+    if (skin.hasSkin && skin.motif == "crown") {
+        val urgent = daysLeft <= 3
+        Surface(
+            shape = skin.shapes.card,
+            color = if (urgent) {
+                MaterialTheme.colorScheme.errorContainer
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            },
+            modifier = modifier.fillMaxWidth(),
+        ) {
+            Column(
+                Modifier
+                    .skinDecor("panel")
+                    .padding(horizontal = 14.dp, vertical = 10.dp),
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(9.dp)
+                            .background(
+                                if (urgent) MaterialTheme.colorScheme.onErrorContainer else MaterialTheme.colorScheme.error,
+                                skin.shapes.chip,
+                            ),
+                    )
+                    kindLabel?.let {
+                        Text(
+                            text = skin.cased(it, "display"),
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.SemiBold,
+                            color = if (urgent) {
+                                MaterialTheme.colorScheme.onErrorContainer
+                            } else {
+                                MaterialTheme.colorScheme.onSurfaceVariant
+                            },
+                            modifier = Modifier.padding(start = 6.dp),
+                        )
+                    }
+                    Spacer(Modifier.weight(1f))
+                    Surface(
+                        shape = skin.shapes.header,
+                        color = if (urgent) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primaryContainer,
+                    ) {
+                        Text(
+                            text = skin.cased(if (daysLeft == 0L) "due today" else "in $daysLeft d", "display"),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = if (urgent) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onPrimaryContainer,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                        )
+                    }
+                }
+                Text(
+                    text = skin.cased(deadline.label, "display"),
+                    style = MaterialTheme.typography.displaySmall,
+                    color = if (urgent) {
+                        MaterialTheme.colorScheme.onErrorContainer
+                    } else {
+                        MaterialTheme.colorScheme.onSurface
+                    },
+                    modifier = Modifier.padding(top = 4.dp),
+                )
+            }
+        }
+        return
+    }
     Surface(
         shape = LocalSkin.current.shapes.card,
         color = if (daysLeft <= 3) {
@@ -488,11 +637,13 @@ fun DeadlineBanner(
         } else {
             MaterialTheme.colorScheme.surfaceVariant
         },
-        modifier = modifier
-            .fillMaxWidth()
-            .skinDecor("panel"),
+        modifier = modifier.fillMaxWidth(),
     ) {
-        Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
+        Column(
+            Modifier
+                .skinDecor("panel")
+                .padding(horizontal = 14.dp, vertical = 10.dp),
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 // Moon-language packs (Phase 14): full-moon operations wear a
                 // red-moon chip — a full red disc in the scheme's warning red.
@@ -567,11 +718,14 @@ fun AnswerSheetCard(
         enabled = onOpenAnswers != null,
         shape = LocalSkin.current.shapes.card,
         color = MaterialTheme.colorScheme.surfaceVariant,
-        modifier = modifier
-            .fillMaxWidth()
-            .skinDecor("panel"),
+        modifier = modifier.fillMaxWidth(),
     ) {
-        Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Column(
+            Modifier
+                .skinDecor("panel")
+                .padding(horizontal = 14.dp, vertical = 10.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 AnswerKindChip(sheet.kind)
                 Text(
@@ -596,6 +750,20 @@ fun AnswerSheetCard(
             }
         }
     }
+}
+
+/** One small leaf mark flanking the crown family's laurel frame (Phase 15). */
+@Composable
+private fun LaurelLeaf(mirrored: Boolean, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .size(6.dp)
+            .graphicsLayer { rotationZ = if (mirrored) -45f else 45f }
+            .background(
+                MaterialTheme.colorScheme.tertiary.copy(alpha = 0.8f),
+                RoundedCornerShape(topStart = 5.dp, bottomEnd = 5.dp),
+            ),
+    )
 }
 
 /** Up to three word-initials of the pack title — a generic, art-free tile. */

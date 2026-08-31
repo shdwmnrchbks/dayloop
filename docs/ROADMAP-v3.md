@@ -392,7 +392,90 @@ full-moon dates + 2010-01-31 already anchored in media.json (lint/test-pinned).
 
 ---
 
-## Phase 15 — Metaphor "Royal" skin
+## Phase 15 — Metaphor "Royal" skin ✅
+
+**Status: shipped in v0.10.0.**
+
+What landed:
+
+- **Pack data** (`content/packs/metaphor/`): `plaque` cards/headers/frames,
+  `seal` chips, motion `flip` (the page-turn grammar), display typography
+  (bundled Cinzel Bold, case `upper`, tracking +0.05 em), decor slots
+  `header` + `panel` + `divider`. Seeds retuned to the measured royal
+  palette — **brass light** `#9E815F` / **ornament-gold dark** `#BEA52A`
+  over the expressive scheme (docs/references/metaphor-ui.md §2) — both
+  modes pass the packlint AA rule.
+- **Bundled font**: Cinzel Bold (SIL OFL in-pack at `art/fonts/OFL.txt`) —
+  an engraved-inscription serif, the "engraved serif" the spec asks for.
+  Static latin-subset weight (Android asset fonts can't select variation
+  instances, the Phase 14 constraint). Test-pinned (magic, size, license).
+- **Two new closed-set tokens** (the vocabulary grows by tokens, never
+  game-named code): `plaque` — a straight-ruled panel with a bounded 4 dp
+  corner chamfer, the engraved-plaque silhouette (no rounded softness); and
+  `seal` — a wax-stamp disc. A `seal` chip renders as a small wax-seal disc
+  beside its label (tags, never text containers — the advance button falls
+  back to the card silhouette, the Phase 14 rule extended).
+- **Filigree painter upgraded** to the family's signature: a double gold
+  border (outer hairline + inner main stroke), mirrored corner curls, and
+  lozenge stops at the edge midpoints — the double-stroke borders and
+  corner clusters measured in the reference (§1/§7); gold coverage stays
+  sparse (hairlines and corners, never fills).
+- **Panel decor layering fix**: `skinDecor("panel")` sat on the Surface's
+  outer modifier, which draws *behind* the opaque container — panel
+  decorations never actually rendered on carried-over cards, deadline
+  banners, or answer sheets for any pack. The decor now rides the content
+  root (between container and content), and the panel slot composes
+  declared art (fill texture) with the motif painter (exact-size frame —
+  art crops, frames must not). This realizes the Phase 12/13/14 documented
+  intent (halftone/glass cards) and gives Royal its parchment-fill +
+  filigree-frame panels.
+- **Original decor art** (drawn from scratch by the reproducible
+  `tools/artgen/metaphor-royal.ps1`; guide-derived vocabulary, no game
+  assets): `art/decor-header.png` (ink wash, gold speckle, bottom double
+  rule, corner curls — sits on light and dark bars), `art/decor-panel.png`
+  (parchment mottle: ivory blotches, sage map tints, fiber specks),
+  `art/decor-divider.png` (gold rule with center lozenge stop).
+- **Per-surface treatments** (gated on the crown motif / tokens; the other
+  packs render byte-identical to their shipped skins):
+  - *Today*: the dayCounter's game-month position renders as an **ornate
+    plaque** ("Month 1 · Day 1" / "Journey day n of N") in display type
+    over filigree panel decor, under the plaque date header.
+  - *Day*: slot changes are separated by the **gold-rule divider**; stat
+    gains are framed as small **laurel medallions** (gold hairline ring
+    flanked by leaf marks).
+  - *Calendar*: authored cells become **gold-ruled itinerary tiles**
+    (hairline border over the kind fills); deadline dates wear a
+    **wax-stamp** ringed disc instead of the plain dot; the game-month
+    strip across the top is already driven by the dayCounter engine.
+  - *Bonds*: rows carry the panel decor; the detail rank ladder renders
+    **embossed medallions** — filled crest, double ring, rank number
+    centered.
+  - *Deadlines*: **mission stamps** — plaque cards with parchment fill +
+    filigree frame, the kind chip as a wax-seal tag carrying the
+    pack-supplied label ("Mission", via `labels.deadlineKinds`), and the
+    countdown as a small plaque ribbon.
+  - *End of calendar*: the pack's post-game banner art (Phase 11 media)
+    decorates the "End of this pack's calendar" state.
+- **Tests**: `PackThemeTest` pins the Royal data (tokens, font + license,
+  decor files, brass/gold seeds, expressive style) plus the acceptance pin
+  `royal skin leaves the dayCounter month grid intact` (five game months,
+  June's 29 authored dates from the 2nd, the 30-day months after, the
+  five-day cycle weekday math including the rest day) and a distinct-motion
+  isolation pin (slash / fade / flip — no skin bleeds into another).
+  `SkinShapeTest` pins the plaque chamfer bounds and the seal rim's
+  deterministic wobble; `SkinTokensTest` pins the grown closed set;
+  `PackLintTest`'s fixture pack declares plaque/seal/flip and lints clean.
+  packlint: 0 errors / 0 warnings on all three packs.
+
+**Deferred** (same ledger as Phases 13–14): the side-by-side screenshot
+review and the explicit Royal dayCounter-grid screenshots land with the
+Phase 18 screenshot matrix (this phase pins the data + calendar contract
+with tests); rank-ladder-as-timeline rework (Phase 18 polish); sound and
+day-advance sequences (Phase 16); widget/icon parity (Phase 17).
+
+---
+
+**Original Phase 15 spec:**
 
 **Goal:** Metaphor's ornate courtly UI: parchment and gold, filigree frames,
 engraved serif type, stamp-like chips — matching its fantasy travel-calendar

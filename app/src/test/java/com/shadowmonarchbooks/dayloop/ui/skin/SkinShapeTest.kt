@@ -62,4 +62,43 @@ class SkinShapeTest {
         val expected = 14f * 2.6f
         assertTrue(avgSpan <= expected * 1.6f, "teeth too coarse on large card: $avgSpan px")
     }
+
+    // ---- Phase 15 (docs/ROADMAP-v3.md): plaque + seal geometry ----
+
+    @Test
+    fun `plaque chamfer stays bounded in dp`() {
+        // The cap is 4 dp regardless of surface size.
+        assertEquals(4f * 2.6f, plaqueChamfer(large, density), 0.01f, "large surface cap")
+        assertEquals(4f * 2.6f, plaqueChamfer(cell, density), 0.01f, "small cell cap")
+        // Tiny surfaces floor at 35% of the min side so the cut stays visible.
+        val tiny = Size(10f, 10f)
+        assertEquals(3.5f, plaqueChamfer(tiny, density), 0.01f, "tiny surface floor")
+    }
+
+    @Test
+    fun `plaque chamfer is deterministic`() {
+        assertEquals(plaqueChamfer(large, density), plaqueChamfer(large, density))
+    }
+
+    @Test
+    fun `seal rim stays a wobbled disc around the center`() {
+        val marker = Size(9f * 2.6f, 9f * 2.6f) // the SkinTag seal marker
+        val pts = sealRim(marker, density)
+        assertEquals(14, pts.size, "the stamp edge has 14 points")
+        val cx = marker.width / 2f
+        val cy = marker.height / 2f
+        val r = marker.width / 2f
+        for (p in pts) {
+            val dist = kotlin.math.hypot((p.x - cx).toDouble(), (p.y - cy).toDouble()).toFloat()
+            assertTrue(dist <= r * 1.0225f + 0.01f, "rim exceeds the stamp: $dist")
+            assertTrue(dist >= r * 0.9775f - 0.01f, "rim collapses inward: $dist")
+        }
+    }
+
+    @Test
+    fun `seal rim is deterministic across calls`() {
+        assertEquals(sealRim(marker(), density), sealRim(marker(), density), "seeded wobble must not wobble between frames")
+    }
+
+    private fun marker(): Size = Size(23.4f, 23.4f)
 }
