@@ -69,6 +69,17 @@ fun MonthScreen(
         )
     }
     val month = months[index]
+    // Moon-language packs (docs/ROADMAP-v3.md Phase 14): dates the pack marks
+    // with day-anchored media (full-moon operations) render the marker art in
+    // their calendar cell instead of the generic deadline dot.
+    val dateMarkers: Map<String, Pair<String, String>> =
+        if (LocalSkin.current.motif == "moon") {
+            pack.media.filter { it.kind == "day" && it.dates.isNotEmpty() }
+                .flatMap { item -> item.dates.map { date -> date to (pack.assetOf(item) to item.title) } }
+                .toMap()
+        } else {
+            emptyMap()
+        }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -99,7 +110,7 @@ fun MonthScreen(
             }
         }
 
-        CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay)
+        CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay, dateMarkers = dateMarkers)
 
         // Achievements the guide ties to this month (facts, spoiler-safe):
         // pack-supplied icon + title chips (docs/ROADMAP-v3.md Phase 11).
@@ -123,6 +134,7 @@ private fun CalendarGrid(
     clockDate: String?,
     calendar: com.shadowmonarchbooks.dayloop.pack.GameCalendar?,
     onOpenDay: (String) -> Unit,
+    dateMarkers: Map<String, Pair<String, String>> = emptyMap(),
 ) {
     val deadlineDates = deadlines.mapNotNull { deadlineStart(it) }.toSet()
 
@@ -131,7 +143,7 @@ private fun CalendarGrid(
     // (no cycle) keep the real 7-column Monday-first grid.
     val cycle = calendar?.cycleTokens.orEmpty()
     if (cycle.isEmpty() || calendar == null) {
-        RealMonthGrid(days, deadlineDates, month, clockDate, onOpenDay)
+        RealMonthGrid(days, deadlineDates, month, clockDate, onOpenDay, dateMarkers)
         return
     }
     val dates = calendar.datesInMonth(month)
@@ -167,6 +179,7 @@ private fun CalendarGrid(
                                 day = days[iso],
                                 hasDeadline = iso in deadlineDates,
                                 isClockDate = iso == clockDate,
+                                marker = dateMarkers[iso],
                                 onOpenDay = onOpenDay,
                                 modifier = Modifier.fillMaxSize(),
                             )
@@ -186,6 +199,7 @@ private fun RealMonthGrid(
     month: String,
     clockDate: String?,
     onOpenDay: (String) -> Unit,
+    dateMarkers: Map<String, Pair<String, String>> = emptyMap(),
 ) {
     val first = parseDateOrNull("$month-01") ?: return
     val daysInMonth = first.lengthOfMonth()
@@ -220,6 +234,7 @@ private fun RealMonthGrid(
                                 day = days[iso],
                                 hasDeadline = iso in deadlineDates,
                                 isClockDate = iso == clockDate,
+                                marker = dateMarkers[iso],
                                 onOpenDay = onOpenDay,
                                 modifier = Modifier.fillMaxSize(),
                             )
@@ -240,20 +255,25 @@ private fun DayCell(
     isClockDate: Boolean,
     onOpenDay: (String) -> Unit,
     modifier: Modifier = Modifier,
+    /** Moon-language packs (Phase 14): date-marked media (asset, title) renders in the cell. */
+    marker: Pair<String, String>? = null,
 ) {
+    val skin = LocalSkin.current
+    // Moon-language packs: Dark-Hour block days invert to a darker glass
+    // (docs/ROADMAP-v3.md Phase 14) — the cell uses the inverse roles.
+    val inverted = skin.motif == "moon" && day?.dayKind == "forced"
     val container = when (day?.dayKind) {
         "school" -> MaterialTheme.colorScheme.surfaceVariant
         "story" -> MaterialTheme.colorScheme.primaryContainer
         "exam" -> MaterialTheme.colorScheme.errorContainer
-        "forced" -> MaterialTheme.colorScheme.tertiaryContainer
+        "forced" -> if (inverted) MaterialTheme.colorScheme.inverseSurface else MaterialTheme.colorScheme.tertiaryContainer
         "free" -> MaterialTheme.colorScheme.secondaryContainer
         else -> null // authored months may skip a day; render it dimmed
     }
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
-        val skin = LocalSkin.current
         Surface(
-            // Skinned packs: the clock date is a solid accent jagged burst
+            // Skinned packs: the clock date is a solid accent burst
             // (ROADMAP-v3 Phase 13); the engine look keeps the border ring.
             shape = if (isClockDate && skin.hasSkin) skin.shapes.card else RoundedCornerShape(10.dp),
             color = if (isClockDate && skin.hasSkin && container != null) {
@@ -280,11 +300,21 @@ private fun DayCell(
                     fontWeight = if (isClockDate) FontWeight.SemiBold else null,
                     color = when {
                         day == null -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
+                        inverted -> MaterialTheme.colorScheme.inverseOnSurface
                         isClockDate && skin.hasSkin && container != null -> MaterialTheme.colorScheme.onPrimary
                         else -> MaterialTheme.colorScheme.onSurface
                     },
                 )
-                if (hasDeadline) {
+                if (marker != null) {
+                    // The pack's own moon marker art replaces the generic
+                    // deadline dot on exactly the dates it anchors.
+                    MediaImage(
+                        assetPath = marker.first,
+                        title = marker.second,
+                        size = 16.dp,
+                        modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 2.dp),
+                    )
+                } else if (hasDeadline) {
                     Box(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)

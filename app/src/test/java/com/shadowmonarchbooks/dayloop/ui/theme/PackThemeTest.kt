@@ -167,16 +167,80 @@ class PackThemeTest {
     }
 
     @Test
-    fun `p3r and metaphor stay token-less for skin isolation`() {
-        // ROADMAP-v3 Phase 13 acceptance: the other packs must render
-        // byte-identical to the engine look — no v3 skin layers declared.
-        listOf("p3r", "metaphor").forEach { slug ->
-            val theme = themeOf(slug)
-            assertEquals(null, theme.shapes, "$slug must not declare shapes yet")
-            assertEquals(null, theme.motion, "$slug must not declare motion yet")
-            assertEquals(null, theme.typography, "$slug must not declare typography yet")
-            assertTrue(theme.decor.isEmpty(), "$slug must not declare decor yet")
+    fun `metaphor stays token-less for skin isolation`() {
+        // ROADMAP-v3 acceptance: theme-less packs must render byte-identical
+        // to the engine look — metaphor ships no v3 skin layers until Phase 15.
+        val theme = themeOf("metaphor")
+        assertEquals(null, theme.shapes, "metaphor must not declare shapes yet")
+        assertEquals(null, theme.motion, "metaphor must not declare motion yet")
+        assertEquals(null, theme.typography, "metaphor must not declare typography yet")
+        assertTrue(theme.decor.isEmpty(), "metaphor must not declare decor yet")
+    }
+
+    // ---- Phase 14 (docs/ROADMAP-v3.md): the Moonlight skin data ----
+
+    @Test
+    fun `p3r declares the moonlight skin data`() {
+        val theme = themeOf("p3r")
+        assertEquals("moon", theme.motif)
+        assertNotNull(theme.shapes, "p3r must declare shapes")
+        assertEquals("diamond", theme.shapes?.chip, "slot pills become diamond tags")
+        assertEquals("diamond", theme.shapes?.header, "diamond-capped headers")
+        assertEquals("fade", theme.motion, "moonlight motion is calm fades")
+        val display = assertNotNull(theme.typography?.display, "p3r must declare a display font role")
+        assertEquals("art/fonts/display.ttf", display.file)
+        assertEquals("upper", display.case, "display case token")
+        assertTrue(!display.italic, "moonlight type is upright")
+        assertTrue((display.tracking ?: 0.0) > 0.0, "elegant wide tracking")
+        assertTrue("header" in theme.decor, "p3r decor header slot")
+        // Moonlit dark + dawn light seeds (docs/references/p3r-ui.md §2).
+        assertEquals("#09134E", theme.accent, "dawn light seed")
+        assertEquals("#1A46CE", theme.accentDark, "moonlit dark seed")
+        assertEquals("tonalSpot", theme.style)
+    }
+
+    @Test
+    fun `p3r bundles its display font and license`() {
+        val root = contentPacksDir() ?: error("no content checkout")
+        val dir = root.resolve("p3r")
+        val font = dir.resolve("art/fonts/display.ttf")
+        assertTrue(font.isRegularFile(), "bundled display font missing")
+        assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
+        assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
+        val head = Files.readAllBytes(font).take(4)
+        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
+        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
+    }
+
+    @Test
+    fun `p3r decor art files exist on disk`() {
+        val root = contentPacksDir() ?: error("no content checkout")
+        val dir = root.resolve("p3r")
+        val theme = themeOf("p3r")
+        theme.decor.forEach { (slot, rel) ->
+            assertTrue(dir.resolve(rel).isRegularFile(), "p3r theme.decor['$slot'] missing file $rel")
         }
+    }
+
+    @Test
+    fun `moon marker anchors pin exactly the ten accepted dates`() {
+        // Phase 14 acceptance: "the moon icon must appear on exactly the nine
+        // full-moon dates + 2010-01-31 already anchored in media.json".
+        val root = contentPacksDir() ?: error("no content checkout")
+        val media = PackLoader.decodeMedia(
+            String(Files.readAllBytes(root.resolve("p3r").resolve("media.json"))),
+        )?.media.orEmpty()
+        val dayAnchored = media.filter { it.kind == "day" && it.dates.isNotEmpty() }
+        val dates = dayAnchored.flatMap { it.dates }.toSet()
+        assertEquals(10, dates.size, "exactly ten moon-marked dates expected")
+        assertEquals(
+            setOf(
+                "2009-04-18", "2009-05-10", "2009-06-09", "2009-07-08", "2009-08-07",
+                "2009-09-06", "2009-10-05", "2009-11-04", "2009-12-03", "2010-01-31",
+            ),
+            dates,
+            "nine full moons + the Promised Day",
+        )
     }
 
     // ---- contrast helper (WCAG relative luminance) ----

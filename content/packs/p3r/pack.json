@@ -34,10 +34,25 @@
     "stat": "Social Stat"
   },
   "theme": {
-    "accent": "#2E5C8A",
-    "accentDark": "#5C8FCB",
+    "accent": "#09134E",
+    "accentDark": "#1A46CE",
     "style": "tonalSpot",
     "motif": "moon",
+    "shapes": {
+      "chip": "diamond",
+      "header": "diamond"
+    },
+    "typography": {
+      "display": {
+        "file": "art/fonts/display.ttf",
+        "case": "upper",
+        "tracking": 0.06
+      }
+    },
+    "decor": {
+      "header": "art/decor-header.png"
+    },
+    "motion": "fade",
     "art": {
       "card": "art/card.png",
       "icon": "art/icon.png"

@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
+import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
@@ -36,6 +38,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.StepsList
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
@@ -89,6 +92,13 @@ fun TodayScreen(
             // Skinned packs render the date as a ribbon header in display type
             // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
             SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
+            // Moon-language packs (Phase 14): the date's moon-phase art renders
+            // beside the header when the pack anchors media to this date.
+            if (LocalSkin.current.motif == "moon") {
+                pack.mediaForDate(date).firstOrNull { it.kind == "day" }?.let { marker ->
+                    MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 30.dp)
+                }
+            }
             DayKindChip(day?.dayKind ?: "rest")
         }
 
@@ -100,8 +110,22 @@ fun TodayScreen(
             )
         }
 
+        // Moon-language packs (Phase 14): deadlines landing on dates the pack
+        // marks with media wear the red-moon chip in the banner.
+        val skin = LocalSkin.current
+        val moonMarkedDates = remember(pack, skin.motif) {
+            if (skin.motif == "moon") {
+                pack.media.filter { it.kind == "day" }.flatMap { it.dates }.toSet()
+            } else {
+                emptySet()
+            }
+        }
         upcoming?.let { (deadline, days) ->
-            DeadlineBanner(deadline = deadline, daysLeft = days)
+            DeadlineBanner(
+                deadline = deadline,
+                daysLeft = days,
+                moonMarked = deadlineStart(deadline) in moonMarkedDates,
+            )
         }
 
         if (state.orphans.isNotEmpty()) {
@@ -137,7 +161,6 @@ fun TodayScreen(
         }
 
         Spacer(Modifier.height(4.dp))
-        val skin = LocalSkin.current
         Row(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxWidth(),
@@ -145,9 +168,15 @@ fun TodayScreen(
             Button(
                 onClick = vm::endDay,
                 enabled = state.hasNextDay(),
-                // Skinned packs: the big slanted advance button (ROADMAP-v3
-                // Phase 13) — the chip silhouette provides the slant.
-                shape = if (skin.hasSkin) skin.shapes.chip else ButtonDefaults.shape,
+                // Skinned packs: the big advance button (ROADMAP-v3 Phase 13)
+                // wears the chip silhouette's slant — except diamond chips,
+                // which are tags, never containers: those fall back to the
+                // card silhouette (Phase 14, calm-language packs).
+                shape = if (skin.hasSkin) {
+                    if (skin.shapeTokens["chip"] == "diamond") skin.shapes.card else skin.shapes.chip
+                } else {
+                    ButtonDefaults.shape
+                },
                 contentPadding = if (skin.hasSkin) {
                     PaddingValues(horizontal = 22.dp, vertical = 12.dp)
                 } else {

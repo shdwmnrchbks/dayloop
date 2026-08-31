@@ -13,7 +13,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -33,8 +37,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
@@ -49,6 +55,7 @@ import com.shadowmonarchbooks.dayloop.progress.DayProgress
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.revealTransform
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
@@ -67,20 +74,55 @@ fun DayKindChip(kind: String) {
         "forced" -> MaterialTheme.colorScheme.tertiaryContainer to MaterialTheme.colorScheme.onTertiaryContainer
         else -> MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer
     }
-    Surface(shape = LocalSkin.current.shapes.chip, color = colors.first) {
-        Text(
-            text = kind.replaceFirstChar { it.uppercase() },
-            style = MaterialTheme.typography.labelMedium,
-            color = colors.second,
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
-        )
+    SkinTag(
+        text = kind.replaceFirstChar { it.uppercase() },
+        container = colors.first,
+        content = colors.second,
+    )
+}
+
+/**
+ * Chip-vocabulary tag (docs/ROADMAP-v3.md Phase 14). Packs whose `chip` token
+ * is `diamond` render a small diamond marker beside the label — a clipped
+ * rhombus would cut text, and diamonds are tags, never containers. Every
+ * other chip token keeps its silhouette Surface; the engine look is unchanged.
+ */
+@Composable
+fun SkinTag(text: String, container: Color, content: Color, modifier: Modifier = Modifier) {
+    val skin = LocalSkin.current
+    if (skin.shapeTokens["chip"] == "diamond") {
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
+            Box(
+                modifier = Modifier
+                    .size(7.dp)
+                    .graphicsLayer { rotationZ = 45f }
+                    .background(container, RoundedCornerShape(1.5.dp)),
+            )
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelMedium,
+                color = content,
+                modifier = Modifier.padding(start = 6.dp),
+            )
+        }
+    } else {
+        Surface(shape = skin.shapes.chip, color = container, modifier = modifier) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelMedium,
+                color = content,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
+            )
+        }
     }
 }
 
 /**
  * A skinned section/date header (docs/ROADMAP-v3.md Phase 13): the pack's
  * header silhouette carrying display type on the accent container. Packs
- * without skin tokens keep the engine headline look unchanged.
+ * whose header token is `diamond` get a soft band with a diamond cap (Phase
+ * 14) — never a text-clipping rhombus. Packs without skin tokens keep the
+ * engine headline look unchanged.
  */
 @Composable
 fun SkinHeader(text: String, modifier: Modifier = Modifier) {
@@ -89,17 +131,31 @@ fun SkinHeader(text: String, modifier: Modifier = Modifier) {
         Text(text = text, style = MaterialTheme.typography.headlineSmall, modifier = modifier)
         return
     }
+    val capped = skin.shapeTokens["header"] == "diamond"
     Surface(
-        shape = skin.shapes.header,
+        shape = if (capped) SkinSpec.Engine.shapes.header else skin.shapes.header,
         color = MaterialTheme.colorScheme.primaryContainer,
         modifier = modifier,
     ) {
-        Text(
-            text = skin.cased(text, "display"),
-            style = MaterialTheme.typography.displaySmall,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 4.dp),
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(start = if (capped) 12.dp else 14.dp, end = 14.dp, top = 4.dp, bottom = 4.dp),
+        ) {
+            if (capped) {
+                Box(
+                    modifier = Modifier
+                        .size(9.dp)
+                        .graphicsLayer { rotationZ = 45f }
+                        .background(MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(2.dp)),
+                )
+                Spacer(Modifier.width(8.dp))
+            }
+            Text(
+                text = skin.cased(text, "display"),
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+        }
     }
 }
 
@@ -212,25 +268,20 @@ fun StepRow(
                 } else {
                     Column {
                         if (slotLabel != null) {
-                            Surface(
-                                shape = skin.shapes.chip,
-                                color = MaterialTheme.colorScheme.surfaceVariant,
+                            SkinTag(
+                                text = slotLabel,
+                                container = MaterialTheme.colorScheme.surfaceVariant,
+                                content = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 3.dp),
-                            ) {
-                                Text(
-                                    text = slotLabel,
-                                    style = MaterialTheme.typography.labelMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                                )
-                            }
+                            )
                         }
                         Text(
                             text = step.label,
                             style = MaterialTheme.typography.bodyLarge,
-                            // Engine look: plain strikethrough. Skinned packs:
-                            // a rising slash strike (ROADMAP-v3 Phase 13).
-                            textDecoration = if (mark == StepMark.DONE && !skin.hasSkin) {
+                            // Slash-language packs: a rising slash strike
+                            // (ROADMAP-v3 Phase 13); everyone else — engine
+                            // look and calm skins — keeps plain strikethrough.
+                            textDecoration = if (mark == StepMark.DONE && skin.motion != "slash") {
                                 TextDecoration.LineThrough
                             } else {
                                 null
@@ -241,7 +292,7 @@ fun StepRow(
                                 else -> MaterialTheme.colorScheme.onSurface
                             },
                             modifier = Modifier.skinStrike(
-                                enabled = mark == StepMark.DONE && skin.hasSkin,
+                                enabled = mark == StepMark.DONE && skin.motion == "slash",
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             ),
                         )
@@ -389,12 +440,19 @@ fun CarriedOverCard(
 }
 
 @Composable
-fun DeadlineBanner(deadline: Deadline, daysLeft: Long, modifier: Modifier = Modifier) {
+fun DeadlineBanner(
+    deadline: Deadline,
+    daysLeft: Long,
+    modifier: Modifier = Modifier,
+    /** True when the deadline lands on a date the pack marks with moon media (Phase 14). */
+    moonMarked: Boolean = false,
+) {
     val skin = LocalSkin.current
-    if (skin.hasSkin) {
-        // Calling-card treatment (docs/ROADMAP-v3.md Phase 13): an inverted
-        // card with the label in display type — the urgent/due color logic
-        // stays engine logic, reduced to the due line so contrast holds.
+    if (skin.motion == "slash") {
+        // Calling-card treatment (docs/ROADMAP-v3.md Phase 13, slash-language
+        // packs): an inverted card with the label in display type — the
+        // urgent/due color logic stays engine logic, reduced to the due line
+        // so contrast holds.
         val urgent = daysLeft <= 3
         Surface(
             shape = skin.shapes.card,
@@ -435,16 +493,28 @@ fun DeadlineBanner(deadline: Deadline, daysLeft: Long, modifier: Modifier = Modi
             .skinDecor("panel"),
     ) {
         Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
-            Text(
-                text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.SemiBold,
-                color = if (daysLeft <= 3) {
-                    MaterialTheme.colorScheme.onErrorContainer
-                } else {
-                    MaterialTheme.colorScheme.onSurfaceVariant
-                },
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                // Moon-language packs (Phase 14): full-moon operations wear a
+                // red-moon chip — a full red disc in the scheme's warning red.
+                if (moonMarked && skin.motif == "moon") {
+                    Box(
+                        modifier = Modifier
+                            .padding(end = 6.dp)
+                            .size(9.dp)
+                            .background(MaterialTheme.colorScheme.error, CircleShape),
+                    )
+                }
+                Text(
+                    text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.SemiBold,
+                    color = if (daysLeft <= 3) {
+                        MaterialTheme.colorScheme.onErrorContainer
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
+                )
+            }
             Text(
                 text = deadline.label,
                 style = MaterialTheme.typography.bodyMedium,

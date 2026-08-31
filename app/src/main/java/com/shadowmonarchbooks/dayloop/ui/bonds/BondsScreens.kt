@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -123,7 +125,9 @@ fun BondDetailScreen(
             .padding(16.dp),
     ) {
         // Pack-supplied portrait art (docs/ROADMAP-v3.md Phase 11): media.json
-        // items anchored to this bond render beside the arcana label.
+        // items anchored to this bond render beside the arcana label. Skinned
+        // packs frame it as a tarot-card slip at the native 145×205 portrait
+        // ratio (docs/ROADMAP-v3.md Phase 14).
         val portraits = pack.mediaForBond(bondId)
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -131,13 +135,31 @@ fun BondDetailScreen(
             modifier = Modifier.fillMaxWidth(),
         ) {
             portraits.firstOrNull()?.let { portrait ->
-                Surface(shape = RoundedCornerShape(14.dp), color = MaterialTheme.colorScheme.surfaceVariant) {
-                    MediaImage(
-                        assetPath = pack.assetOf(portrait),
-                        title = portrait.title,
-                        size = 72.dp,
-                        modifier = Modifier.padding(6.dp),
-                    )
+                val skin = LocalSkin.current
+                if (skin.hasSkin) {
+                    Surface(
+                        shape = skin.shapes.card,
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        modifier = Modifier
+                            .width(96.dp)
+                            .aspectRatio(145f / 205f),
+                    ) {
+                        MediaImage(
+                            assetPath = pack.assetOf(portrait),
+                            title = portrait.title,
+                            size = 96.dp,
+                            modifier = Modifier.fillMaxSize(),
+                        )
+                    }
+                } else {
+                    Surface(shape = RoundedCornerShape(14.dp), color = MaterialTheme.colorScheme.surfaceVariant) {
+                        MediaImage(
+                            assetPath = pack.assetOf(portrait),
+                            title = portrait.title,
+                            size = 72.dp,
+                            modifier = Modifier.padding(6.dp),
+                        )
+                    }
                 }
             }
             Text(bond.label, style = MaterialTheme.typography.headlineSmall)

@@ -317,7 +317,53 @@ typography, halftone `decor` painter, `slash` motion.
 
 ---
 
-## Phase 14 — P3R "Moonlight" skin
+## Phase 14 — P3R "Moonlight" skin ✅
+
+**Status: shipped in v0.9.0.**
+
+What landed:
+
+- **Pack data** (`content/packs/p3r/`): `chip`/`header` tokens `diamond`
+  (tags and caps — never containers), motion `fade` (soft opacity reveals,
+  no wipes), display typography (bundled geometric sans, case `upper`,
+  tracking +0.06 em — the elegant wide setting), decor `header` glass
+  gradient. Seeds retuned to the measured palette: **dawn light** `#09134E`
+  / **moonlit dark** `#1A46CE` over the tonalSpot scheme — both modes pass
+  the packlint AA rule (the game's dark-only median is noted in
+  `docs/references/p3r-ui.md` §2, but non-negotiable 3 stands).
+- **Bundled font**: Poppins SemiBold (SIL OFL in-pack; a Montserrat-class
+  geometric sans — Montserrat ships variable-only upstream, and Android
+  asset fonts can't select variation instances). Test-pinned (magic, size,
+  license).
+- **Diamond rendering rules (engine)**: a `diamond` **chip** renders as a
+  small diamond marker beside the label (`SkinTag`) — a clipped rhombus
+  would cut text; a `diamond` **header** renders as a soft band with a
+  diamond cap. Diamond never becomes a container: the advance button falls
+  back to the card silhouette for calm-language packs.
+- **Slash-language gating**: the Phase 13 calling-card banner and slash
+  strike are keyed to `motion == "slash"` (the Phantom's language), so the
+  Moonlight banner keeps the engine vocabulary with a **red-moon chip** on
+  full-moon operations and done-steps keep the plain strikethrough.
+- **Moon media is first-class** (gated on `motif == "moon"`): the date's
+  moon marker renders beside the date header on Today and Day; calendar
+  cells on date-marked days show the pack's moon art instead of the generic
+  deadline dot; Dark-Hour block days (`dayKind forced`) invert to a darker
+  glass via the inverse roles. The ten marked dates (nine full moons +
+  2010-01-31) are **test-pinned** exactly as the acceptance requires.
+- **Bonds**: rows become card slips (Phase 13 socket, rounded here); the
+  detail portrait is framed as a tarot-card slip at the native 145×205
+  ratio.
+- **Tests**: `PackThemeTest` pins the Moonlight data, font provenance,
+  decor files, the ten-date pin, and metaphor's continued token-less
+  isolation. packlint: 0 errors on all three packs.
+
+**Deferred**: rank-ladder-as-timeline layout rework (Phase 18 polish — the
+socket and data are ready); procedural caustics painter refinement (the
+glass painter carries the look today).
+
+---
+
+**Original Phase 14 spec:**
 
 **Goal:** P3R's UI: deep-blue glass panels under moonlight, thin elegant type,
 diamond caps, calm motion — with the bundled full-moon art as a first-class

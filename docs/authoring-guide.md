@@ -112,8 +112,10 @@ engine look.
 
 - **Shape tokens** (closed set): `jagged` (irregular sawtooth silhouette),
   `slash` (diagonally sheared panel), `cut` (45° chamfered corners),
-  `ribbon` (banner band with angled ends), `diamond` (rhombus — small tags
-  only). Slots: `card`, `chip`, `header`, `frame`.
+  `ribbon` (banner band with angled ends), `diamond` (small tags only —
+  rendered as a diamond marker beside the label, and as a diamond cap on
+  header bands; never a text-clipping container). Slots: `card`, `chip`,
+  `header`, `frame`.
 - **Typography roles**: `display` covers the display styles, `title` the
   headline/title styles, `body` the body/label styles. Fonts are bundled
   under the pack dir (conventionally `art/fonts/`, ttf/otf, ≤ 2 MB each) and
