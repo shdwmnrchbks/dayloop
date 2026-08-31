@@ -23,7 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.data.byId
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
+import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
@@ -44,6 +46,7 @@ fun DayScreen(
     vm: DayloopViewModel = hiltViewModel(),
     onOpenDay: (String) -> Unit = {},
     onOpenAnswers: () -> Unit = {},
+    onOpenActivity: (String) -> Unit = {},
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected ?: run {
@@ -99,7 +102,11 @@ fun DayScreen(
         // exists only on days with a sheet, in packs declaring the capability.
         if (pack.pack.capabilities.answers) {
             pack.answersByDate[date]?.let { sheet ->
-                AnswerSheetCard(sheet = sheet, onOpenAnswers = onOpenAnswers)
+                AnswerSheetCard(
+                    sheet = sheet,
+                    onOpenAnswers = onOpenAnswers,
+                    deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
+                )
             }
         }
 
@@ -112,6 +119,8 @@ fun DayScreen(
             onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
             statLabels = pack.pack.statLabels(),
             activityLabels = pack.activities.mapValues { it.value.label },
+            slotLabels = pack.pack.slotLabels(),
+            onOpenActivity = onOpenActivity,
         )
 
         Row(

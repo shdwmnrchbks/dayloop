@@ -38,12 +38,13 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 | 6 | Second complete pack (P3R or Metaphor) proving drop-in claim, then the third to complete the first-release trio |
 | 7 | First-run onboarding carousel & pack selection relocated to Settings ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
 | 8 | Capability-driven UI: pack-tailored tabs & screens ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
+| 9 | Data completeness: every pack fact served — audit matrix in [docs/data-coverage.md](docs/data-coverage.md) |
 
 See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 **Phase 0–8 done — v0.3.0 released** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+🚧 **Phase 0–9 done — v0.4.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
@@ -69,7 +70,12 @@ Phase 8 (v0.3.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
 - **`capabilities.answers`** — a new closed-set capability flag declares that a pack ships structured answer sheets; packlint now fails any pack that declares it without shipping answers.json (or ships the file without declaring it).
 - **Guarded entry points** — the day-page answer-sheet affordance and search's answer results render only for packs with the capability; the onboarding card feature line follows the same flag.
 
-Next: the data-completeness audit (Phase 9) and per-pack theming & art (Phase 10) — all in [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md).
+Phase 9 (v0.4.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md), matrix in [docs/data-coverage.md](docs/data-coverage.md):
+- **Data-completeness audit** — every field in the pack schema is mapped to its serving surface in docs/data-coverage.md with an explicit status (served / intentionally not served); a checklist at the bottom keeps it honest with future schema changes.
+- **Served gaps closed** — activity browsing (new Activities list + detail screens; entry points from Today, tappable step references, and search), slot pills on step rows (Metaphor's afternoon/night steps), bond rank gates rendered as spoiler-safe "Requires: …" text (the PLAN.md §3.3 promise), rank availability windows ("Until <date>"), deadline kind chips, answer-sheet ⇄ deadline cross-links, and search results for activities/deadlines now navigate instead of dead-ending.
+- **CI-ready JVM tests** — PackContentTest pins the cross-references the UI resolves (answer→deadline, step→activity, step→slot, gate→stat/bond) over all three bundled packs; PackTextTest covers the gate text renderer.
+
+Next: per-pack theming & art (Phase 10) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md).
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

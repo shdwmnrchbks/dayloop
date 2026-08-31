@@ -35,6 +35,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.ui.activities.ActivitiesScreen
+import com.shadowmonarchbooks.dayloop.ui.activities.ActivityDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.answers.AnswersScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
@@ -145,6 +147,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     onOpenDay = { date -> nav.navigate("day/$date") },
                     onOpenCalendar = { nav.navigate("calendar") { launchSingleTop = true } },
                     onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
+                    onOpenActivities = { nav.navigate("activities") { launchSingleTop = true } },
                 )
             }
             composable("day/{date}") { entry ->
@@ -159,6 +162,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         }
                     },
                     onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
+                    onOpenActivity = { ref -> nav.navigate("activity/$ref") },
                 )
             }
             composable("calendar") {
@@ -182,11 +186,25 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             composable("answers") {
                 AnswersScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
             }
+            composable("activities") {
+                ActivitiesScreen(
+                    vm = vm,
+                    onOpenActivity = { id -> nav.navigate("activity/$id") },
+                )
+            }
+            composable("activity/{activityId}") { entry ->
+                ActivityDetailScreen(
+                    activityId = entry.arguments?.getString("activityId").orEmpty(),
+                    vm = vm,
+                )
+            }
             composable("search") {
                 SearchScreen(
                     vm = vm,
                     onOpenDay = { date -> nav.navigate("day/$date") },
                     onOpenBond = { id -> nav.navigate("bond/$id") },
+                    onOpenActivity = { id -> nav.navigate("activity/$id") },
+                    onOpenDeadlines = { nav.navigate("deadlines") { launchSingleTop = true } },
                 )
             }
             composable("settings") {

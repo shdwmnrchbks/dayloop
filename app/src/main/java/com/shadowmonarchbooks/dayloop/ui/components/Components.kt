@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.components
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -124,6 +125,9 @@ private fun MarkButton(
 /**
  * One walkthrough step with its persisted mark. Spoiler steps still collapse
  * behind a tap (docs/PLAN.md §6.2); marks render on top of the reveal state.
+ * The step's [slotLabel] (pack-supplied, e.g. "Afternoon") and a tappable
+ * activity reference render as metadata lines (docs/ROADMAP-v2.md Phase 9:
+ * fields the walkthrough carries get surfaced, not flattened).
  */
 @Composable
 fun StepRow(
@@ -133,6 +137,8 @@ fun StepRow(
     onToggleMark: (StepMark) -> Unit,
     statLabels: Map<String, String>,
     activityLabel: String?,
+    slotLabel: String? = null,
+    onOpenActivity: (() -> Unit)? = null,
 ) {
     var revealed by remember(step.label, index) { mutableStateOf(false) }
     Row(
@@ -161,6 +167,20 @@ fun StepRow(
                     )
                 }
             } else {
+                if (slotLabel != null) {
+                    Surface(
+                        shape = RoundedCornerShape(50),
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        modifier = Modifier.padding(bottom = 3.dp),
+                    ) {
+                        Text(
+                            text = slotLabel,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+                        )
+                    }
+                }
                 Text(
                     text = step.label,
                     style = MaterialTheme.typography.bodyLarge,
@@ -177,6 +197,13 @@ fun StepRow(
                             text = label,
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.secondary,
+                            modifier = if (onOpenActivity != null) {
+                                Modifier
+                                    .padding(top = 1.dp)
+                                    .clickable(onClick = onOpenActivity)
+                            } else {
+                                Modifier.padding(top = 1.dp)
+                            },
                         )
                     }
                 }
@@ -204,6 +231,8 @@ fun StepsList(
     statLabels: Map<String, String>,
     activityLabels: Map<String, String>,
     modifier: Modifier = Modifier,
+    slotLabels: Map<String, String> = emptyMap(),
+    onOpenActivity: ((String) -> Unit)? = null,
 ) {
     if (steps.isEmpty()) {
         Text(
@@ -223,6 +252,10 @@ fun StepsList(
                 onToggleMark = { mark -> onToggleMark(i, mark) },
                 statLabels = statLabels,
                 activityLabel = step.activityRef?.let(activityLabels::get),
+                slotLabel = step.slot?.let(slotLabels::get),
+                onOpenActivity = step.activityRef?.let { ref ->
+                    onOpenActivity?.let { open -> { open(ref) } }
+                },
             )
         }
     }
@@ -356,12 +389,15 @@ fun AnswerKindChip(kind: String, modifier: Modifier = Modifier) {
 /**
  * One structured answer sheet (docs/PLAN.md Phase 5): the accepted answers
  * for an exam day or a class question. Answers are facts — always visible.
+ * A resolved [deadlineLabel] surfaces the sheet's deadlineRef cross-link
+ * (docs/ROADMAP-v2.md Phase 9).
  */
 @Composable
 fun AnswerSheetCard(
     sheet: AnswerSheet,
     modifier: Modifier = Modifier,
     onOpenAnswers: (() -> Unit)? = null,
+    deadlineLabel: String? = null,
 ) {
     Surface(
         onClick = { onOpenAnswers?.invoke() },
@@ -378,6 +414,13 @@ fun AnswerSheetCard(
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.weight(1f),
+                )
+            }
+            deadlineLabel?.let {
+                Text(
+                    text = "Deadline: $it",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.secondary,
                 )
             }
             sheet.answers.forEachIndexed { i, answer ->

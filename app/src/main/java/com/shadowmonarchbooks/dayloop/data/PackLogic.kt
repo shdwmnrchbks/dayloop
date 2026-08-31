@@ -72,3 +72,9 @@ fun nextDeadline(
         .minByOrNull { (_, days) -> days }
 
 fun Pack.statLabels(): Map<String, String> = stats.associate { it.id to it.label }
+
+/** Slot id -> pack-supplied display label ("Afternoon", "Night", …). */
+fun Pack.slotLabels(): Map<String, String> = slots.associate { it.id to it.label }
+
+/** The deadline a reference points at, or null when unresolved. */
+fun List<Deadline>.byId(id: String?): Deadline? = id?.let { ref -> firstOrNull { it.id == ref } }

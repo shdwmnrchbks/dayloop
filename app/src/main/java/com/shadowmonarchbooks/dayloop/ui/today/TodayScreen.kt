@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
+import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
@@ -45,6 +46,8 @@ fun TodayScreen(
     onOpenDay: (String) -> Unit,
     onOpenCalendar: () -> Unit,
     onOpenSettings: () -> Unit,
+    onOpenActivities: () -> Unit = {},
+    onOpenActivity: (String) -> Unit = {},
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected
@@ -108,6 +111,8 @@ fun TodayScreen(
                 onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
                 statLabels = pack.pack.statLabels(),
                 activityLabels = pack.activities.mapValues { it.value.label },
+                slotLabels = pack.pack.slotLabels(),
+                onOpenActivity = onOpenActivity,
             )
         } else {
             Text(
@@ -158,6 +163,13 @@ fun TodayScreen(
             }
             TextButton(onClick = { onOpenDay(date) }) {
                 Text("Open full day page")
+            }
+            // Activities browsing (docs/ROADMAP-v2.md Phase 9): shown when the
+            // pack ships an activity catalog.
+            if (pack.activities.isNotEmpty()) {
+                TextButton(onClick = onOpenActivities) {
+                    Text("Activities")
+                }
             }
         }
     }

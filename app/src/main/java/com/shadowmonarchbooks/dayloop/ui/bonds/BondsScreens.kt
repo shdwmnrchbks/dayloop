@@ -25,7 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.data.describeCondition
 import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 
 /** Bond list — labels come from the pack ("Confidant", "Social Link", "Follower"). */
@@ -63,7 +65,7 @@ fun BondsScreen(
     }
 }
 
-/** Bond detail: rank ladder with availability; character and notes behind taps. */
+/** Bond detail: rank ladder with availability, gates, and location; character and notes behind taps. */
 @Composable
 fun BondDetailScreen(
     bondId: String,
@@ -73,6 +75,8 @@ fun BondDetailScreen(
         EmptyState("Bond not found in this pack.")
         return
     }
+    val bondLabels = pack.bonds.associate { it.id to it.label }
+    val statLabels = pack.pack.statLabels()
 
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -117,15 +121,28 @@ fun BondDetailScreen(
                     color = MaterialTheme.colorScheme.primary,
                 )
                 Column {
-                    step.availableFrom?.let {
+                    listOfNotNull(
+                        step.availableFrom?.let { "From ${formatDate(it, pack.calendar)}" },
+                        step.availableUntil?.let { "Until ${formatDate(it, pack.calendar)}" },
+                    ).joinToString(" · ").takeIf { it.isNotEmpty() }?.let {
                         Text(
-                            text = "From ${formatDate(it, pack.calendar)}",
+                            text = it,
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                     step.location?.let {
                         Text(
                             text = it,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    // The §3.3 promise ("why is this locked today?") rendered as
+                    // pack-supplied predicates → one spoiler-safe line
+                    // (docs/ROADMAP-v2.md Phase 9).
+                    step.gates?.let { gate ->
+                        Text(
+                            text = "Requires: " + describeCondition(gate, statLabels, bondLabels),
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )

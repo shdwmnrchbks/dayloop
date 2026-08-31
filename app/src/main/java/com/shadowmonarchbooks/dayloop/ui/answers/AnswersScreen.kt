@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.data.byId
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
@@ -76,6 +77,15 @@ fun AnswersScreen(
                             text = formatDate(sheet.date, pack.calendar),
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    // deadlineRef cross-link rendered as the referenced
+                    // deadline's label (docs/ROADMAP-v2.md Phase 9).
+                    pack.deadlines.byId(sheet.deadlineRef)?.let { dl ->
+                        Text(
+                            text = "Deadline: ${dl.label}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.secondary,
                         )
                     }
                     sheet.answers.forEachIndexed { i, answer ->

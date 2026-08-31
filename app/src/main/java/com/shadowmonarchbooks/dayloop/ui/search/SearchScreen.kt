@@ -41,6 +41,8 @@ fun SearchScreen(
     vm: DayloopViewModel = hiltViewModel(),
     onOpenDay: (String) -> Unit,
     onOpenBond: (String) -> Unit,
+    onOpenActivity: (String) -> Unit = {},
+    onOpenDeadlines: () -> Unit = {},
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected ?: run {
@@ -106,13 +108,24 @@ fun SearchScreen(
             if (hits.activities.isNotEmpty()) {
                 item { SectionHeader("Activities") }
                 items(hits.activities, key = { "act-" + it.activityId }) { hit ->
-                    ResultRow(title = hit.label, snippet = null, onClick = null)
+                    // Phase 9: activity hits open the activity detail instead
+                    // of dead-ending.
+                    ResultRow(
+                        title = hit.label,
+                        snippet = null,
+                        onClick = { onOpenActivity(hit.activityId) },
+                    )
                 }
             }
             if (hits.deadlines.isNotEmpty()) {
                 item { SectionHeader("Deadlines") }
                 items(hits.deadlines, key = { "dl-" + it.deadlineId }) { hit ->
-                    ResultRow(title = hit.label, snippet = null, onClick = null)
+                    // Phase 9: deadline hits open the Deadlines tab.
+                    ResultRow(
+                        title = hit.label,
+                        snippet = null,
+                        onClick = onOpenDeadlines,
+                    )
                 }
             }
             if (hits.answers.isNotEmpty()) {

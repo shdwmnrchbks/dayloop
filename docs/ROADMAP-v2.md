@@ -114,6 +114,29 @@ Acceptance:
 
 ## Phase 9 — Data completeness: every pack fact served
 
+**Status: done.** As specified, plus these resolutions:
+- The audit lives in [docs/data-coverage.md](data-coverage.md) — every schema
+  field mapped to its serving surface with a status, and a "keep it honest"
+  checklist (schema change ⇒ matrix change, same commit).
+- **Served gaps closed** (grouped by screen): slot pills on step rows (`Step.slot`,
+  pack slot labels); Activities browsing (list + detail surfaces for
+  `Activity.kind/statGains/location/notes/spoiler`, entered from a Today link,
+  tappable step references, and search hits); bond rank gates render as a
+  spoiler-safe "Requires: …" line (`describeCondition`, the §3.3 promise at
+  presentation level — gates are validated data today, zero authored instances);
+  `rank.availableUntil` renders as "Until <date>"; deadline kind chips;
+  `AnswerSheet.deadlineRef` renders as a "Deadline: <label>" cross-link;
+  search's activity/deadline hits navigate instead of dead-ending;
+  `labels.stat` names the Activities gains section.
+- **Intentionally unserved, documented:** `timeModel` (engine dimension),
+  `day.weekday` (validated, not rendered), `calendar.nonPlayableDates` (clock
+  behavior), `sheet.id` (identity), `capabilities.exams`/`weather` + the
+  `Weather` condition (reserved flags), `routes[].description` (confined to
+  profile creation).
+- Cross-references the app resolves at render time are pinned by JVM tests
+  (`PackContentTest`: deadlineRef, activityRef, slot and gate refs over the
+  three bundled packs) on top of packlint's structural rules — CI-ready.
+
 **Goal:** "served accordingly" is checkable, not vibes. Every field in the pack schema
 is either rendered somewhere, reachable in ≤3 taps, or documented as intentionally
 unserved with a reason.

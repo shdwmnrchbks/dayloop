@@ -14,6 +14,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,9 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 
 /**
  * All deadlines, soonest first. Deadline names stay visible (docs/PLAN.md §6.2);
- * story detail lives in the walkthrough spoilers, not here.
+ * story detail lives in the walkthrough spoilers, not here. The closed-set
+ * kind (palace | exam | missable | request | other) chips each row
+ * (docs/ROADMAP-v2.md Phase 9).
  */
 @Composable
 fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
@@ -69,16 +72,22 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                         )
                         val start = deadlineStart(deadline)
                         val end = deadlineEnd(deadline)
-                        Text(
-                            text = when {
-                                start != null && end != null && end != start ->
-                                    "Window ${formatDate(start, pack.calendar)} – ${formatDate(end, pack.calendar)}"
-                                start != null -> "Due ${formatDate(start, pack.calendar)}"
-                                else -> "Unscheduled"
-                            },
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            DeadlineKindChip(deadline.kind)
+                            Text(
+                                text = when {
+                                    start != null && end != null && end != start ->
+                                        "Window ${formatDate(start, pack.calendar)} – ${formatDate(end, pack.calendar)}"
+                                    start != null -> "Due ${formatDate(start, pack.calendar)}"
+                                    else -> "Unscheduled"
+                                },
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
                     }
                     current?.let {
                         val days = daysUntil(it, deadline, pack.calendar)
@@ -101,5 +110,18 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                 }
             }
         }
+    }
+}
+
+/** Neutral chip for the deadline's closed-set kind — capitalized token, no game words. */
+@Composable
+private fun DeadlineKindChip(kind: String) {
+    Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.tertiaryContainer) {
+        Text(
+            text = kind.replaceFirstChar { it.uppercase() },
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onTertiaryContainer,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+        )
     }
 }
