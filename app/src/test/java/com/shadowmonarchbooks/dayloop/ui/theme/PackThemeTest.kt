@@ -8,6 +8,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
+import kotlin.io.path.fileSize
 import kotlin.io.path.name
 import kotlin.math.pow
 import kotlin.test.Test
@@ -119,6 +120,63 @@ class PackThemeTest {
     fun `theme without colors falls back to the engine skin`() {
         val fallback = packColorScheme(PackTheme(), dark = true)
         assertEquals(Color(0xFFE8B84B), fallback.primary, "engine lantern primary expected")
+    }
+
+    // ---- Phase 13 (docs/ROADMAP-v3.md): the Phantom skin data ----
+
+    @Test
+    fun `p5r declares the phantom skin data`() {
+        val theme = themeOf("p5r")
+        assertEquals("masks", theme.motif)
+        assertNotNull(theme.shapes, "p5r must declare shapes")
+        assertEquals("jagged", theme.shapes?.card)
+        assertEquals("slash", theme.shapes?.chip)
+        assertEquals("ribbon", theme.shapes?.header)
+        assertEquals("cut", theme.shapes?.frame)
+        assertEquals("slash", theme.motion, "p5r motion token")
+        val display = assertNotNull(theme.typography?.display, "p5r must declare a display font role")
+        assertEquals("art/fonts/display.ttf", display.file)
+        assertEquals("upper", display.case, "display case token")
+        assertTrue(display.italic, "display must be italic")
+        assertTrue("header" in theme.decor, "p5r decor header slot")
+        assertTrue("divider" in theme.decor, "p5r decor divider slot")
+    }
+
+    @Test
+    fun `p5r bundles its display font and license`() {
+        val root = contentPacksDir() ?: error("no content checkout")
+        val dir = root.resolve("p5r")
+        val font = dir.resolve("art/fonts/display.ttf")
+        assertTrue(font.isRegularFile(), "bundled display font missing")
+        assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
+        assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
+        val head = Files.readAllBytes(font).take(4)
+        // TTF magic 00 01 00 00 — a real TrueType file, not a stray download.
+        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
+        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
+    }
+
+    @Test
+    fun `p5r decor art files exist on disk`() {
+        val root = contentPacksDir() ?: error("no content checkout")
+        val dir = root.resolve("p5r")
+        val theme = themeOf("p5r")
+        theme.decor.forEach { (slot, rel) ->
+            assertTrue(dir.resolve(rel).isRegularFile(), "p5r theme.decor['$slot'] missing file $rel")
+        }
+    }
+
+    @Test
+    fun `p3r and metaphor stay token-less for skin isolation`() {
+        // ROADMAP-v3 Phase 13 acceptance: the other packs must render
+        // byte-identical to the engine look — no v3 skin layers declared.
+        listOf("p3r", "metaphor").forEach { slug ->
+            val theme = themeOf(slug)
+            assertEquals(null, theme.shapes, "$slug must not declare shapes yet")
+            assertEquals(null, theme.motion, "$slug must not declare motion yet")
+            assertEquals(null, theme.typography, "$slug must not declare typography yet")
+            assertTrue(theme.decor.isEmpty(), "$slug must not declare decor yet")
+        }
     }
 
     // ---- contrast helper (WCAG relative luminance) ----

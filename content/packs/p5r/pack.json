@@ -31,10 +31,29 @@
     "stat": "Social Stat"
   },
   "theme": {
-    "accent": "#A61E22",
-    "accentDark": "#D9433C",
+    "accent": "#C01800",
+    "accentDark": "#D81800",
     "style": "vibrant",
     "motif": "masks",
+    "shapes": {
+      "card": "jagged",
+      "chip": "slash",
+      "header": "ribbon",
+      "frame": "cut"
+    },
+    "typography": {
+      "display": {
+        "file": "art/fonts/display.ttf",
+        "case": "upper",
+        "italic": true,
+        "tracking": -0.02
+      }
+    },
+    "decor": {
+      "header": "art/decor-header.png",
+      "divider": "art/decor-divider.png"
+    },
+    "motion": "slash",
     "art": {
       "card": "art/card.jpg",
       "icon": "art/icon.png"

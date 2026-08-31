@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.today
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -34,7 +36,9 @@ import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.StepsList
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 
 /**
  * Hero screen: the persisted in-game clock (End-Day), today's checkbox steps,
@@ -82,7 +86,9 @@ fun TodayScreen(
         }
 
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(formatDate(date, pack.calendar), style = MaterialTheme.typography.headlineSmall)
+            // Skinned packs render the date as a ribbon header in display type
+            // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
+            SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
             DayKindChip(day?.dayKind ?: "rest")
         }
 
@@ -131,6 +137,7 @@ fun TodayScreen(
         }
 
         Spacer(Modifier.height(4.dp))
+        val skin = LocalSkin.current
         Row(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxWidth(),
@@ -138,9 +145,28 @@ fun TodayScreen(
             Button(
                 onClick = vm::endDay,
                 enabled = state.hasNextDay(),
+                // Skinned packs: the big slanted advance button (ROADMAP-v3
+                // Phase 13) — the chip silhouette provides the slant.
+                shape = if (skin.hasSkin) skin.shapes.chip else ButtonDefaults.shape,
+                contentPadding = if (skin.hasSkin) {
+                    PaddingValues(horizontal = 22.dp, vertical = 12.dp)
+                } else {
+                    ButtonDefaults.ContentPadding
+                },
+                colors = if (skin.hasSkin) {
+                    ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                    )
+                } else {
+                    ButtonDefaults.buttonColors()
+                },
                 modifier = Modifier.weight(1f),
             ) {
-                Text("End day ›")
+                Text(
+                    text = if (skin.hasSkin) skin.cased("End day ›", "display") else "End day ›",
+                    style = if (skin.hasSkin) MaterialTheme.typography.titleLarge else MaterialTheme.typography.labelLarge,
+                )
             }
             OutlinedButton(
                 onClick = vm::rerollDay,

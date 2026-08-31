@@ -52,6 +52,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.revealTransform
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.skinStrike
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -72,6 +73,32 @@ fun DayKindChip(kind: String) {
             style = MaterialTheme.typography.labelMedium,
             color = colors.second,
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
+        )
+    }
+}
+
+/**
+ * A skinned section/date header (docs/ROADMAP-v3.md Phase 13): the pack's
+ * header silhouette carrying display type on the accent container. Packs
+ * without skin tokens keep the engine headline look unchanged.
+ */
+@Composable
+fun SkinHeader(text: String, modifier: Modifier = Modifier) {
+    val skin = LocalSkin.current
+    if (!skin.hasSkin) {
+        Text(text = text, style = MaterialTheme.typography.headlineSmall, modifier = modifier)
+        return
+    }
+    Surface(
+        shape = skin.shapes.header,
+        color = MaterialTheme.colorScheme.primaryContainer,
+        modifier = modifier,
+    ) {
+        Text(
+            text = skin.cased(text, "display"),
+            style = MaterialTheme.typography.displaySmall,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 4.dp),
         )
     }
 }
@@ -201,12 +228,22 @@ fun StepRow(
                         Text(
                             text = step.label,
                             style = MaterialTheme.typography.bodyLarge,
-                            textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
+                            // Engine look: plain strikethrough. Skinned packs:
+                            // a rising slash strike (ROADMAP-v3 Phase 13).
+                            textDecoration = if (mark == StepMark.DONE && !skin.hasSkin) {
+                                TextDecoration.LineThrough
+                            } else {
+                                null
+                            },
                             color = when (mark) {
                                 StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                                 StepMark.LATER -> MaterialTheme.colorScheme.tertiary
                                 else -> MaterialTheme.colorScheme.onSurface
                             },
+                            modifier = Modifier.skinStrike(
+                                enabled = mark == StepMark.DONE && skin.hasSkin,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                            ),
                         )
                         step.activityRef?.let { ref ->
                             activityLabel?.let { label ->
@@ -353,6 +390,39 @@ fun CarriedOverCard(
 
 @Composable
 fun DeadlineBanner(deadline: Deadline, daysLeft: Long, modifier: Modifier = Modifier) {
+    val skin = LocalSkin.current
+    if (skin.hasSkin) {
+        // Calling-card treatment (docs/ROADMAP-v3.md Phase 13): an inverted
+        // card with the label in display type — the urgent/due color logic
+        // stays engine logic, reduced to the due line so contrast holds.
+        val urgent = daysLeft <= 3
+        Surface(
+            shape = skin.shapes.card,
+            color = MaterialTheme.colorScheme.inverseSurface,
+            modifier = modifier
+                .fillMaxWidth()
+                .skinDecor("panel"),
+        ) {
+            Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
+                Text(
+                    text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.SemiBold,
+                    color = if (urgent) {
+                        MaterialTheme.colorScheme.error
+                    } else {
+                        MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.75f)
+                    },
+                )
+                Text(
+                    text = skin.cased(deadline.label, "display"),
+                    style = MaterialTheme.typography.displaySmall,
+                    color = MaterialTheme.colorScheme.inverseOnSurface,
+                )
+            }
+        }
+        return
+    }
     Surface(
         shape = LocalSkin.current.shapes.card,
         color = if (daysLeft <= 3) {

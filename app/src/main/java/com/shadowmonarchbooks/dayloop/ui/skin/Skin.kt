@@ -24,6 +24,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -31,6 +32,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -102,6 +104,12 @@ data class SkinSpec(
     val decor: SkinDecor,
     /** Resolved motion token, or null for the engine's default transitions. */
     val motion: String?,
+    /**
+     * True when the pack declared any v3 skin layer (shapes/typography/decor/
+     * motion) — gates the per-surface stylings that must not touch the engine
+     * look for token-less packs (motif alone does not count).
+     */
+    val hasSkin: Boolean,
 ) {
     /** Text transform for a typography role (the case token applied to rendered text). */
     fun cased(text: String, role: String): String {
@@ -135,6 +143,7 @@ data class SkinSpec(
             type = SkinType(display = null, title = null, body = null),
             decor = SkinDecor(art = emptyMap(), painter = null),
             motion = null,
+            hasSkin = false,
         )
     }
 }
@@ -205,6 +214,14 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?): SkinSpec {
         painter = SkinTokens.painterForMotif(motif),
     )
 
+    // A pack is "skinned" only when it declares a v3 skin layer; motif alone
+    // keeps the engine layout (family painters/shapes still apply) so the
+    // Phase 13+ per-surface treatments can't leak into token-less packs.
+    val hasSkin = theme.shapes != null ||
+        theme.motion != null ||
+        theme.decor.isNotEmpty() ||
+        type.display != null || type.title != null || type.body != null
+
     return SkinSpec(
         motif = motif,
         shapes = shapes,
@@ -212,7 +229,18 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?): SkinSpec {
         type = type,
         decor = decor,
         motion = SkinTokens.resolveMotion(theme.motion),
+        hasSkin = hasSkin,
     )
+}
+
+/**
+ * Cheap shape-only resolution for previews (the onboarding carousel renders
+ * every installed pack's card silhouette without loading its fonts).
+ */
+fun packShape(theme: PackTheme?, slot: String, fallback: Shape): Shape {
+    if (theme == null) return fallback
+    val motif = theme.motif?.takeIf { it in SkinTokens.MOTIFS }
+    return SkinTokens.resolveShape(theme.shapes, motif, slot)?.let(::shapeFor) ?: fallback
 }
 
 // ---- Silhouette primitives (closed set: new look = new token, never a screen) ----
@@ -444,6 +472,23 @@ fun rememberAnimationsDisabled(): Boolean {
             Settings.Global.getFloat(resolver, Settings.Global.TRANSITION_ANIMATION_SCALE, 1f) == 0f
     }
 }
+
+/**
+ * Diagonal slash strike-through for skinned packs (docs/ROADMAP-v3.md Phase
+ * 13): done steps get a rising slash instead of the plain strikethrough.
+ * [color] should be the text's own color, dimmed by the caller.
+ */
+fun Modifier.skinStrike(enabled: Boolean, color: Color): Modifier =
+    if (!enabled) this else drawBehind {
+        if (size.width <= 0f) return@drawBehind
+        val stroke = 1.5.dp.toPx()
+        drawLine(
+            color = color,
+            start = Offset(0f, size.height * 0.82f),
+            end = Offset(size.width, size.height * 0.18f),
+            strokeWidth = stroke,
+        )
+    }
 
 /**
  * Procedural decoration painters (closed set). Drawn behind a surface's

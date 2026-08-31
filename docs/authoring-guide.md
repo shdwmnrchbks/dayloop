@@ -142,6 +142,10 @@ engine look.
 - Everything above is validated by packlint (closed sets, files, bounds) and
   pinned by JVM tests (`SkinTokensTest`, `PackLintTest` skin rules). Design
   references for tuning a skin's parameters live in `docs/references/`.
+- **Worked example**: `content/packs/p5r/` is the reference skin (docs/
+  ROADMAP-v3.md Phase 13) — jagged/slash/ribbon/cut shapes, a bundled OFL
+  display font (`art/fonts/` with its license), decor art, `slash` motion,
+  and hand-tuned seeds that pass the AA rule in both modes. Start there.
 
 ## Media: bundling graphics (docs/ROADMAP-v3.md Phase 11)
 

@@ -223,7 +223,62 @@ closed-set rule (new look = new token + data, never a game-named composable).
 
 ---
 
-## Phase 13 — P5R "Phantom" skin
+## Phase 13 — P5R "Phantom" skin ✅
+
+**Status: shipped in v0.8.0.**
+
+What landed:
+
+- **Pack data** (`content/packs/p5r/`): skin tokens on `theme` — shapes
+  `jagged` cards / `slash` chips / `ribbon` headers / `cut` frames, motion
+  `slash`, display typography (`art/fonts/display.ttf`, case `upper`, italic,
+  tracking −0.02 em), decor slots `header` + `divider`. Seeds retuned to the
+  measured signature reds (`#C01800` light / `#D81800` dark, from
+  `docs/references/p5r-ui.md` §2) — both modes pass the packlint AA rule.
+- **Bundled font**: Barlow Condensed Black Italic (a true-italic heavy
+  condensed face; SIL OFL — `art/fonts/OFL.txt` ships beside it), verified by
+  test (TTF magic, size cap, license presence).
+- **Original decor art** (guide-derived vocabulary, no game assets):
+  `art/decor-header.png` (red halftone field fading left→right + black slash
+  band with white edge, transparent so it sits on both light and dark top
+  bars) and `art/decor-divider.png` (red slash + black echo). Cards keep the
+  procedural halftone painter (scheme-adaptive).
+- **Per-surface treatments** (all gated on `hasSkin` — a pack declaring any
+  v3 skin layer — so token-less packs stay byte-identical to the engine
+  look):
+  - *Onboarding carousel*: heading in display type when the active pack has
+    a skin; every card wears its **own pack's** card silhouette
+    (shape-only resolution, no font loads per preview); selected border
+    thickened to 3 dp.
+  - *Today*: date as a ribbon header in display type; End-Day as the big
+    slanted button (chip silhouette + display-cased label).
+  - *Day*: ribbon date header.
+  - *Step rows*: done steps get a rising **slash strike** instead of the
+    plain strikethrough.
+  - *Calendar*: month title as a ribbon header; the clock date cell becomes
+    a solid accent jagged burst (engine look keeps the border ring).
+  - *Bonds*: rows become arcana cards in the card silhouette (dividers go
+    away); detail keeps the portrait frame.
+  - *Deadlines*: calling-card banner — inverted surface card with the label
+    in display type; urgency colors reduce to the due line (warning logic
+    stays engine logic).
+  - *Chips/cards/topbar decor/motion*: already global from Phase 12
+    (slash chips, jagged cards, header decor art, cut-in reveal, slash
+    navigation).
+- **Tests**: `PackThemeTest` pins the p5r skin data (tokens, font file +
+  magic + license, decor files on disk) and the **skin-isolation acceptance**
+  (p3r/metaphor declare no v3 layers). packlint: 0 errors on all three packs.
+
+**Deferred** (documented, not silently dropped): widget row (Phase 17 per the
+matrix — Glance can't take custom silhouettes cheaply); "rank burst" corner
+decoration and exam wax-seal chip (need per-item art, land with Phase 16's
+advance-animation pass or Phase 18 polish); the **side-by-side screenshot
+review** against in-game UI happens with the Phase 18 screenshot matrix —
+this phase pins the data + mappings with tests and lint.
+
+---
+
+**Original Phase 13 spec:**
 
 **Goal:** with P5R selected, the app reads as Persona 5 Royal's UI — the jagged
 red/black/white comic language — on every surface the engine drives.

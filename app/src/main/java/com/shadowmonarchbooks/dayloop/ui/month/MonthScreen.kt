@@ -40,6 +40,8 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
+import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import java.time.LocalDate
 
 private val WeekHeaders = listOf("M", "T", "W", "T", "F", "S", "S")
@@ -86,11 +88,9 @@ fun MonthScreen(
             monthMedia.firstOrNull { it.kind == "month" }?.let { opener ->
                 MediaImage(assetPath = pack.assetOf(opener), title = opener.title, size = 40.dp)
             }
-            Text(
-                text = formatMonth(month),
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.weight(1f),
-            )
+            // Skinned packs render the month as a ribbon header in display
+            // type (docs/ROADMAP-v3.md Phase 13); engine look keeps title text.
+            SkinHeader(text = formatMonth(month), modifier = Modifier.weight(1f))
             monthMedia.filter { it.kind == "section" }.forEach { marker ->
                 MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 22.dp)
             }
@@ -251,11 +251,18 @@ private fun DayCell(
     }
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        val skin = LocalSkin.current
         Surface(
-            shape = RoundedCornerShape(10.dp),
-            color = container ?: MaterialTheme.colorScheme.surface,
+            // Skinned packs: the clock date is a solid accent jagged burst
+            // (ROADMAP-v3 Phase 13); the engine look keeps the border ring.
+            shape = if (isClockDate && skin.hasSkin) skin.shapes.card else RoundedCornerShape(10.dp),
+            color = if (isClockDate && skin.hasSkin && container != null) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                container ?: MaterialTheme.colorScheme.surface
+            },
             tonalElevation = if (container == null) 0.dp else 2.dp,
-            border = if (isClockDate) BorderStroke(2.dp, MaterialTheme.colorScheme.primary) else null,
+            border = if (isClockDate && !skin.hasSkin) BorderStroke(2.dp, MaterialTheme.colorScheme.primary) else null,
             modifier = Modifier
                 .fillMaxSize()
                 .then(
@@ -271,10 +278,10 @@ private fun DayCell(
                     text = dayNumber.toString(),
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = if (isClockDate) FontWeight.SemiBold else null,
-                    color = if (day == null) {
-                        MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
-                    } else {
-                        MaterialTheme.colorScheme.onSurface
+                    color = when {
+                        day == null -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
+                        isClockDate && skin.hasSkin && container != null -> MaterialTheme.colorScheme.onPrimary
+                        else -> MaterialTheme.colorScheme.onSurface
                     },
                 )
                 if (hasDeadline) {

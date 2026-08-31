@@ -45,6 +45,8 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.packShape
 import com.shadowmonarchbooks.dayloop.ui.theme.packColorScheme
 
 /**
@@ -107,11 +109,22 @@ fun OnboardingScreen(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.height(18.dp))
-            Text(
-                text = "What are we tracking?",
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.SemiBold,
-            )
+            // Skinned packs set the picker's display voice (ROADMAP-v3 Phase
+            // 13); token-less packs keep the engine title look byte-stable.
+            val skin = LocalSkin.current
+            if (skin.hasSkin) {
+                Text(
+                    text = skin.cased("What are we tracking?", "display"),
+                    style = MaterialTheme.typography.displaySmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            } else {
+                Text(
+                    text = "What are we tracking?",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.SemiBold,
+                )
+            }
         }
 
         HorizontalPager(
@@ -168,11 +181,14 @@ private fun GameCard(
     // not the active pack's — the carousel previews every installed skin.
     val packAccent = pack.pack.theme?.let { packColorScheme(it, dark = true).primary }
         ?: MaterialTheme.colorScheme.primary
+    // …and each card wears its own pack's card silhouette (ROADMAP-v3 Phase
+    // 13) — shape-only resolution, no font loading per preview card.
+    val packCardShape = packShape(pack.pack.theme, "card", RoundedCornerShape(24.dp))
     Surface(
         onClick = onSelect,
-        shape = RoundedCornerShape(24.dp),
+        shape = packCardShape,
         color = MaterialTheme.colorScheme.surfaceVariant,
-        border = if (selected) BorderStroke(2.dp, packAccent) else null,
+        border = if (selected) BorderStroke(3.dp, packAccent) else null,
         modifier = Modifier.fillMaxSize(),
     ) {
         Box(Modifier.fillMaxSize()) {

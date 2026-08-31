@@ -32,6 +32,7 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
+import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
@@ -72,7 +73,7 @@ fun DayScreen(
             .padding(16.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(formatDate(date, pack.calendar), style = MaterialTheme.typography.headlineSmall)
+            SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
             DayKindChip(day.dayKind)
         }
 
