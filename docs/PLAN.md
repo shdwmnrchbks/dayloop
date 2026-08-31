@@ -36,7 +36,7 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 
 ## 2. Key design decision: model entities, not paragraphs
 
-- **Pack format** `/content/packs/p5r/`: title-agnostic JSON bundle — `pack.json` (calendar range incl. Third Semester, time slots, currencies, declared routes), `confidants.json`, `activities.json`, `deadlines.json`, `answers.json` (exam/class-question answer sheets, optional), `walkthrough/{month}.json` (+ per-route subdirectories for additional routes).
+- **Pack format** `/content/packs/p5r/`: title-agnostic JSON bundle — `pack.json` (calendar range incl. Third Semester, time slots, currencies, declared routes, theme), `confidants.json`, `activities.json`, `deadlines.json`, `answers.json` (exam/class-question answer sheets, optional), `media.json` (bundled graphic manifest, optional — ROADMAP-v3 Phase 11), `walkthrough/{month}.json` (+ per-route subdirectories for additional routes).
 - **Template + override days:** most school days share a weekly template; special days (exams, plot events, confidant opportunities) are diffs/overrides. Cuts authoring effort roughly in half while keeping every day renderable.
 - **Confidants as objects:** each rank step carries gates (availability window, stat requirement, location, prerequisites) so the UI can show *why* something isn't available today, and validators can catch contradictions.
 - **Pack validation script** (`tools/packlint`): every deadline exists on the real calendar, every rank step precedes its date, no double-booked evening slot. Content edits become tested changes instead of silent breakage.
@@ -85,7 +85,7 @@ Game-switcher lists installed packs (bundled now, imported later); separate prof
 
 - **Design for three, build one.** Before mass-authoring P5R, throwaway mini-packs exercise the schema: one Metaphor month (`dayCounter`, virtue gates, remaining-day counters) and one P3R month (same `weekdayGrid` model as P5R, but a different stat set and different gate shapes, e.g. full-moon-operation-style deadlines). Both must render through the same engine unmodified before Phase 4 authoring begins.
 - **Facts vs prose.** Schedules, thresholds, dates, exam answers = facts (safe to structure). Guide sentences = rewritten in our own words.
-- **No game assets ever bundled.** Original typography/shapes only; unofficial-fan-tool naming ready for public flip. *(Amended 2026-08-31, ROADMAP-v2 Phase 10: curated guide-derived art is allowed for the private, non-commercial build; strip before any public flip.)*
+- **No game assets ever bundled.** Original typography/shapes only; unofficial-fan-tool naming ready for public flip. *(Amended 2026-08-31, ROADMAP-v2 Phase 10: curated guide-derived art is allowed for the private, non-commercial build; strip before any public flip. Further amended by ROADMAP-v3 Phase 11: the full guide-image sets ship as declared pack media — `media.json` + packlint orphans rule — under the same strip-before-public rule.)*
 
 ## 5. Architecture table
 

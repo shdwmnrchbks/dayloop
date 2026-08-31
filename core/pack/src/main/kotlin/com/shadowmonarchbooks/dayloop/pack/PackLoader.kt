@@ -5,6 +5,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile
@@ -42,6 +43,8 @@ class PackLoadResult(
     /** Parsed walkthrough month files across all routes (docs/PLAN.md Phase 5). */
     val walkthroughs: List<LoadedWalkthrough>,
     val answers: AnswersFile?,
+    /** Graphic manifest (docs/ROADMAP-v3.md Phase 11); null when the pack ships none. */
+    val media: MediaFile?,
     val parseIssues: List<LintIssue>,
 )
 
@@ -75,6 +78,9 @@ object PackLoader {
 
     fun decodeAnswers(jsonText: String): AnswersFile? =
         runCatching { json.decodeFromString(AnswersFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeMedia(jsonText: String): MediaFile? =
+        runCatching { json.decodeFromString(MediaFile.serializer(), jsonText) }.getOrNull()
 
     fun decodeWalkthrough(jsonText: String): WalkthroughFile? =
         runCatching { json.decodeFromString(WalkthroughFile.serializer(), jsonText) }.getOrNull()
@@ -141,6 +147,11 @@ object PackLoader {
         issues += answersJson.second
         val answers = parse(answersJson.first, answersFile, "answers.json", AnswersFile.serializer())
 
+        val mediaFile = packDir.resolve("media.json")
+        val mediaJson = decode(mediaFile, "media.json")
+        issues += mediaJson.second
+        val media = parse(mediaJson.first, mediaFile, "media.json", MediaFile.serializer())
+
         val walkthroughs = mutableListOf<LoadedWalkthrough>()
         fun parseWalkthrough(file: Path, routeId: String, monthKey: String, location: String) {
             val j = decode(file, location)
@@ -173,6 +184,6 @@ object PackLoader {
             }
         }
 
-        return PackLoadResult(pack, bonds, activities, deadlines, walkthroughs, answers, issues)
+        return PackLoadResult(pack, bonds, activities, deadlines, walkthroughs, answers, media, issues)
     }
 }

@@ -1,0 +1,123 @@
+{
+  "media": [
+    {
+      "id": "p3r.media.rewind-demo",
+      "file": "images/img001_B9329389BD21F0AB.gif",
+      "kind": "guide",
+      "title": "Rewind feature",
+      "caption": "The new Rewind system, demonstrated in the guide's introduction."
+    },
+    {
+      "id": "p3r.media.full-moon",
+      "file": "images/img002_A3D12CE8D2D477D7.png",
+      "kind": "day",
+      "title": "Full Moon",
+      "caption": "Marks the guide's full-moon operation entries.",
+      "dates": ["2009-04-18", "2009-05-10", "2009-06-09", "2009-07-08", "2009-08-07", "2009-09-06", "2009-10-05", "2009-11-04", "2009-12-03"]
+    },
+    {
+      "id": "p3r.media.promised-day",
+      "file": "images/img003_58768081F2F5DD61.png",
+      "kind": "day",
+      "title": "Tartarus — The Promised Day",
+      "caption": "Marks the final Tartarus climb in the guide's January schedule.",
+      "dates": ["2010-01-31"]
+    },
+    {
+      "id": "p3r.media.epilogue-ending",
+      "file": "images/img004_09452729B131F942.gif",
+      "kind": "guide",
+      "title": "Epilogue — ending",
+      "caption": "Ending animation embedded in the guide's epilogue section."
+    },
+    {
+      "id": "p3r.media.epilogue-expansion-pass",
+      "file": "images/img005_6F6269A713C51D82.gif",
+      "kind": "guide",
+      "title": "Epilogue — Expansion Pass",
+      "caption": "Expansion Pass content overview from the guide's epilogue section."
+    },
+    {
+      "id": "p3r.media.social-link-guide-banner",
+      "file": "images/img006_4E765642995C0C4B.png",
+      "kind": "banner",
+      "title": "Detailed Social Link Guide",
+      "caption": "Preview image of the companion Social Link guide referenced in the source's end notes."
+    },
+    {
+      "id": "p3r.media.portrait-protagonist",
+      "file": "images/img007_4486B353CD3B0F9F.png",
+      "kind": "portrait",
+      "title": "Protagonist",
+      "caption": "Portrait from the guide's Theurgy & personality section."
+    },
+    {
+      "id": "p3r.media.portrait-yukari",
+      "file": "images/img008_0C3BB1EB43921145.png",
+      "kind": "portrait",
+      "title": "Yukari Takeba",
+      "caption": "Portrait from the guide's Theurgy & personality section.",
+      "bonds": ["p3r.bond.lovers"]
+    },
+    {
+      "id": "p3r.media.portrait-junpei",
+      "file": "images/img009_B207081737B893E3.png",
+      "kind": "portrait",
+      "title": "Junpei Iori",
+      "caption": "Portrait from the guide's Theurgy & personality section.",
+      "bonds": ["p3r.bond.magician"]
+    },
+    {
+      "id": "p3r.media.portrait-akihiko",
+      "file": "images/img010_38953D599F21D5D2.png",
+      "kind": "portrait",
+      "title": "Akihiko Sanada",
+      "caption": "Portrait from the guide's Theurgy & personality section."
+    },
+    {
+      "id": "p3r.media.portrait-mitsuru",
+      "file": "images/img011_15C451FF5A0BEF69.png",
+      "kind": "portrait",
+      "title": "Mitsuru Kirijo",
+      "caption": "Portrait from the guide's Theurgy & personality section.",
+      "bonds": ["p3r.bond.empress"]
+    },
+    {
+      "id": "p3r.media.portrait-fuuka",
+      "file": "images/img012_4E7AB3CD73D936EB.png",
+      "kind": "portrait",
+      "title": "Fuuka Yamagishi",
+      "caption": "Portrait from the guide's Theurgy & personality section.",
+      "bonds": ["p3r.bond.priestess"]
+    },
+    {
+      "id": "p3r.media.portrait-aigis",
+      "file": "images/img013_2DA5D37F9706693A.png",
+      "kind": "portrait",
+      "title": "Aigis",
+      "caption": "Portrait from the guide's Theurgy & personality section.",
+      "bonds": ["p3r.bond.aeon"]
+    },
+    {
+      "id": "p3r.media.portrait-koromaru",
+      "file": "images/img014_48F3EB0D8F866B26.png",
+      "kind": "portrait",
+      "title": "Koromaru",
+      "caption": "Portrait from the guide's Theurgy & personality section."
+    },
+    {
+      "id": "p3r.media.portrait-ken",
+      "file": "images/img015_36FD83EA9E539712.png",
+      "kind": "portrait",
+      "title": "Ken Amada",
+      "caption": "Portrait from the guide's Theurgy & personality section."
+    },
+    {
+      "id": "p3r.media.portrait-shinjiro",
+      "file": "images/img016_2D90B07A614AF894.png",
+      "kind": "portrait",
+      "title": "Shinjiro Aragaki",
+      "caption": "Portrait from the guide's Theurgy & personality section."
+    }
+  ]
+}

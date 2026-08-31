@@ -10,6 +10,8 @@ import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.RouteDef
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
@@ -57,6 +59,12 @@ data class LoadedPack(
      * `theme.art["card"]` or the conventional "<slug>/art/card.png|jpg|jpeg".
      */
     val cardAsset: String? = null,
+    /**
+     * The pack's graphic manifest (docs/ROADMAP-v3.md Phase 11): every bundled
+     * `images/` graphic with its engine-neutral anchors. Empty when the pack
+     * ships no media.json — packlint guarantees declared files exist.
+     */
+    val media: List<MediaItem> = emptyList(),
 ) {
     /** The pack's game calendar (cycle/weekday lookups, deadline day math). */
     val calendar: GameCalendar? by lazy { GameCalendar.of(pack.calendar) }
@@ -74,6 +82,25 @@ data class LoadedPack(
 
     fun routeLabel(routeId: String): String =
         routes.firstOrNull { it.id == routeId }?.label ?: routeId
+
+    // ---- Media serving (docs/ROADMAP-v3.md Phase 11) ----
+
+    /** Asset path for a media item's file, e.g. "p5r/images/img001_....png". */
+    fun assetOf(item: MediaItem): String = "$slug/${item.file}"
+
+    /** Month-anchored media in manifest order (month art, section markers, month achievements). */
+    fun mediaForMonth(month: String): List<MediaItem> = media.filter { month in it.months }
+
+    /** Date-anchored media in manifest order (day icons like P3R's full-moon marker). */
+    fun mediaForDate(date: String): List<MediaItem> = media.filter { date in it.dates }
+
+    /** Bond-anchored media in manifest order (character portraits). */
+    fun mediaForBond(bondId: String): List<MediaItem> = media.filter { bondId in it.bonds }
+
+    /** Everything the pack ships, grouped by kind for the media gallery. */
+    fun mediaByKind(): List<Pair<String, List<MediaItem>>> =
+        MediaKinds.ALL.toList().map { kind -> kind to media.filter { it.kind == kind } }
+            .filter { it.second.isNotEmpty() }
 }
 
 data class PacksState(
@@ -168,6 +195,11 @@ class PackStore @Inject constructor(
                 } else {
                     emptyMap()
                 }
+                val media = if ("media.json" in files) {
+                    PackLoader.decodeMedia(readAsset(assets, "$slug/media.json"))?.media.orEmpty()
+                } else {
+                    emptyList()
+                }
                 // walkthrough/*.json is the default route; walkthrough/<routeId>/*.json
                 // are additional declared routes (docs/PLAN.md Phase 5).
                 val daysByRoute = mutableMapOf<String, Map<String, Day>>()
@@ -215,6 +247,7 @@ class PackStore @Inject constructor(
                     hasDeadlinesFile = "deadlines.json" in files,
                     iconAsset = iconAsset,
                     cardAsset = cardAsset,
+                    media = media,
                 )
             } catch (_: Exception) {
                 // A broken pack must never take the app down; lint guards content quality.

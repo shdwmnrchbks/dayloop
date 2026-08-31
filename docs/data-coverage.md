@@ -16,7 +16,8 @@ vibes. Every field in the pack schema is either rendered somewhere, reachable in
 
 Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 (list + detail), **Deadlines**, **Answers**, **Activities** (list + detail),
-**Search**, **Settings**, **Onboarding**, **Widget**.
+**Search**, **Settings**, **Media** (pack graphic gallery), **Onboarding**,
+**Widget**.
 
 ## pack.json (`Pack`)
 
@@ -43,8 +44,27 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `labels.deadlineKinds` | Deadline kind chips ("Palace"/"Mission"/…), pack override per kind token (⟂ packlint-validated closed set) | Served |
 | `theme.accent` / `theme.accentDark` | Seed colors: Theme.kt builds the full Material 3 light/dark schemes for the active pack (whole app recolors on pack switch); dark seed also drives the widget accent | Served |
 | `theme.style` | Closed-set scheme-character token (tonalSpot/vibrant/expressive/content) → scheme variant in Theme.kt | Served |
-| `theme.motif` | Reserved decorative slug token — declared + lint-validated, no surface consumes it yet | Intentionally not served (reserved for future motif-driven decoration) |
+| `theme.motif` | Reserved decorative slug token — declared + lint-validated, no surface consumes it yet | Intentionally not served (reserved for future motif-driven decoration; ROADMAP-v3 Phase 12 promotes it) |
 | `theme.art` | Named art slots: `card` → onboarding carousel cover, `icon` → Settings/PackIcon tiles; unknown slots ride along for future surfaces. packlint validates every declared file | Served (card, icon) |
+
+## media.json (`MediaFile`, `MediaItem`) — docs/ROADMAP-v3.md Phase 11
+
+| Field | Served by | Status |
+|---|---|---|
+| `item.id` | Media gallery keys, navigation identity, packlint uniqueness | Served (identity; no direct user-facing print) |
+| `item.file` | Decoded to the pack asset path on Day (date anchors), Calendar (month anchors + section markers), Bond detail (bond anchors), Media gallery | Served |
+| `item.kind` | Gallery grouping + which surfaces attempt to serve the item (closed set: achievement/month/section/day/portrait/banner/guide) | Served |
+| `item.title` | Media chip labels, month achievements strip, gallery rows | Served |
+| `item.caption` | Media gallery rows | Served |
+| `item.months` | Calendar header art/markers + month achievements strip; gallery anchor text | Served |
+| `item.dates` | Day-page media strip; gallery anchor text | Served |
+| `item.bonds` | Bond-detail portrait; gallery anchor text (resolved to the pack's bond label) | Served |
+
+Enforcement: packlint fails on any `images/` file not declared exactly once
+(no orphaned art), on declarations whose file is missing/undecodable, on
+duplicate/imprefixed ids, and on anchors that don't resolve (month/date not in
+the calendar, bond not in confidants.json). `PackContentTest` pins the same
+contract JVM-side.
 
 ## walkthrough/*.json (`WalkthroughFile`, `Day`, `Step`)
 

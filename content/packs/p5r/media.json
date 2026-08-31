@@ -1,0 +1,378 @@
+{
+  "media": [
+    {
+      "id": "p5r.media.achievement.easy-money",
+      "file": "images/img001_5E1BA6BEEB5D8C6E.png",
+      "kind": "achievement",
+      "title": "Easy Money",
+      "caption": "The one 100% achievement the guide flags as not guaranteed."
+    },
+    {
+      "id": "p5r.media.month-opener",
+      "file": "images/img002_B282AE1144B43051.png",
+      "kind": "month",
+      "title": "Month opener",
+      "caption": "Graphic that opens each month's schedule in the guide.",
+      "months": ["2016-04", "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-11", "2016-12", "2017-01"]
+    },
+    {
+      "id": "p5r.media.marker-schedule",
+      "file": "images/img003_1F005A6DFE489F36.png",
+      "kind": "section",
+      "title": "Schedule marker",
+      "caption": "Small marker the guide uses on regular schedule sections.",
+      "months": ["2016-04", "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-10", "2016-11", "2016-12", "2017-01"]
+    },
+    {
+      "id": "p5r.media.marker-deadline",
+      "file": "images/img004_9C21CC7316E37F3A.png",
+      "kind": "section",
+      "title": "Deadline stretch marker",
+      "caption": "Small marker the guide uses on deadline-stretch sections.",
+      "months": ["2016-04", "2016-05", "2016-06", "2016-07", "2016-10", "2016-11", "2016-12", "2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.pyramid-of-wrath-plundered",
+      "file": "images/img005_385BC000E7F840D6.png",
+      "kind": "achievement",
+      "title": "Pyramid of Wrath: Plundered",
+      "months": ["2016-07"]
+    },
+    {
+      "id": "p5r.media.achievement.true-confidence",
+      "file": "images/img006_0AA890184891A7E3.png",
+      "kind": "achievement",
+      "title": "True Confidence",
+      "months": ["2016-07"]
+    },
+    {
+      "id": "p5r.media.achievement.intensive-training",
+      "file": "images/img007_718272515213E048.png",
+      "kind": "achievement",
+      "title": "Intensive Training",
+      "months": ["2016-07"]
+    },
+    {
+      "id": "p5r.media.achievement.success-built-on-sacrifice",
+      "file": "images/img008_F529D1AE32F31888.png",
+      "kind": "achievement",
+      "title": "Success Built on Sacrifice",
+      "months": ["2016-07"]
+    },
+    {
+      "id": "p5r.media.achievement.leblanc-buffer",
+      "file": "images/img009_A6699FAAC30EE8EC.png",
+      "kind": "achievement",
+      "title": "Leblanc Buffer",
+      "months": ["2016-07"]
+    },
+    {
+      "id": "p5r.media.achievement.the-search-for-power",
+      "file": "images/img010_04359252BFC62497.png",
+      "kind": "achievement",
+      "title": "The Search for Power",
+      "months": ["2016-08"]
+    },
+    {
+      "id": "p5r.media.achievement.batter-up",
+      "file": "images/img011_73C7C00871B30837.png",
+      "kind": "achievement",
+      "title": "Batter Up!",
+      "months": ["2016-08"]
+    },
+    {
+      "id": "p5r.media.achievement.a-hustlers-journey",
+      "file": "images/img012_370260CC961A2275.png",
+      "kind": "achievement",
+      "title": "A Hustler's Journey",
+      "months": ["2016-08"]
+    },
+    {
+      "id": "p5r.media.achievement.professional-modification",
+      "file": "images/img013_46AF62565F317E79.png",
+      "kind": "achievement",
+      "title": "Professional Modification",
+      "months": ["2016-08"]
+    },
+    {
+      "id": "p5r.media.achievement.going-against-the-crane",
+      "file": "images/img014_E9F7DDCDFAD9240C.png",
+      "kind": "achievement",
+      "title": "Going Against the Crane",
+      "months": ["2016-09"]
+    },
+    {
+      "id": "p5r.media.achievement.spaceport-of-greed-obliterated",
+      "file": "images/img015_5CBA164F907D2040.png",
+      "kind": "achievement",
+      "title": "Spaceport of Greed: Obliterated",
+      "months": ["2016-10"]
+    },
+    {
+      "id": "p5r.media.achievement.pure-perfection",
+      "file": "images/img016_99A374B301CB55FF.png",
+      "kind": "achievement",
+      "title": "Pure Perfection",
+      "months": ["2016-10"]
+    },
+    {
+      "id": "p5r.media.achievement.a-most-studious-disguise",
+      "file": "images/img017_1C5D74A9AD3C56A1.png",
+      "kind": "achievement",
+      "title": "A Most Studious Disguise",
+      "months": ["2016-10"]
+    },
+    {
+      "id": "p5r.media.achievement.casino-of-jealousy-bankrupted",
+      "file": "images/img018_DBEC66C50AAC7FC4.png",
+      "kind": "achievement",
+      "title": "Casino of Jealousy: Bankrupted",
+      "months": ["2016-11"]
+    },
+    {
+      "id": "p5r.media.achievement.cruiser-of-pride-capsized",
+      "file": "images/img019_FE6505706E562CF6.png",
+      "kind": "achievement",
+      "title": "Cruiser of Pride: Capsized",
+      "months": ["2016-12"]
+    },
+    {
+      "id": "p5r.media.achievement.the-thorough-trickster",
+      "file": "images/img020_B89CF3B12F04A059.png",
+      "kind": "achievement",
+      "title": "The Thorough Trickster",
+      "months": ["2016-12"]
+    },
+    {
+      "id": "p5r.media.achievement.a-night-in-kichijoji",
+      "file": "images/img021_6A058E8E22ABFD5A.png",
+      "kind": "achievement",
+      "title": "A Night in Kichijoji",
+      "months": ["2016-12"]
+    },
+    {
+      "id": "p5r.media.achievement.anglers-debut",
+      "file": "images/img022_0D7F2C2DE2F4CB38.png",
+      "kind": "achievement",
+      "title": "Angler's Debut",
+      "months": ["2016-12"]
+    },
+    {
+      "id": "p5r.media.achievement.castle-of-lust-seized",
+      "file": "images/img023_CB225A4359DA17EE.png",
+      "kind": "achievement",
+      "title": "Castle of Lust: Seized",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.spirit-of-rebellion",
+      "file": "images/img024_5FEF0C1E72FC3BD1.png",
+      "kind": "achievement",
+      "title": "Spirit of Rebellion",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.youd-better-hang-on",
+      "file": "images/img025_CA433B8E464FC4FD.png",
+      "kind": "achievement",
+      "title": "You'd Better Hang On!",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.i-am-thou",
+      "file": "images/img026_65843384E2B1D73F.png",
+      "kind": "achievement",
+      "title": "I am Thou...",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.a-deadly-debut",
+      "file": "images/img027_F75B8B3718E14DA9.png",
+      "kind": "achievement",
+      "title": "A Deadly Debut",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.tactical-teamwork",
+      "file": "images/img028_5008FD250E1A8EE4.png",
+      "kind": "achievement",
+      "title": "Tactical Teamwork",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.lets-blow-it-up",
+      "file": "images/img029_4B4F8268F0F00AC7.png",
+      "kind": "achievement",
+      "title": "Let's Blow It Up",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.technician",
+      "file": "images/img030_4CA8D4E390D2CBC5.png",
+      "kind": "achievement",
+      "title": "Technician",
+      "months": ["2016-04"]
+    },
+    {
+      "id": "p5r.media.achievement.a-serene-experience",
+      "file": "images/img031_A9D0A138AD12D112.png",
+      "kind": "achievement",
+      "title": "A Serene Experience",
+      "months": ["2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.awakening-the-phantom-thieves",
+      "file": "images/img032_0AA544C74C693366.png",
+      "kind": "achievement",
+      "title": "Awakening the Phantom Thieves",
+      "months": ["2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.unsurpassed-rebel",
+      "file": "images/img033_BE20CA275C8D7E09.png",
+      "kind": "achievement",
+      "title": "Unsurpassed Rebel",
+      "months": ["2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.take-back-the-future",
+      "file": "images/img034_239F0D281AE60537.png",
+      "kind": "achievement",
+      "title": "Take Back the Future",
+      "months": ["2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.the-path-chosen",
+      "file": "images/img035_7971850B78C59F8C.png",
+      "kind": "achievement",
+      "title": "The Path Chosen",
+      "months": ["2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.the-phenomenal-phantom-thief",
+      "file": "images/img036_A5EB7F4B7A2F7DAE.png",
+      "kind": "achievement",
+      "title": "The Phenomenal Phantom Thief",
+      "months": ["2017-01", "2017-02"]
+    },
+    {
+      "id": "p5r.media.achievement.museum-of-vanity-repossessed",
+      "file": "images/img037_3A18D93A6E45271A.png",
+      "kind": "achievement",
+      "title": "Museum of Vanity: Repossessed",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.phantom-thieves-assemble",
+      "file": "images/img038_5BE4A81E3FDDE42B.png",
+      "kind": "achievement",
+      "title": "Phantom Thieves: Assemble!",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.punch-that-clock",
+      "file": "images/img039_4CCB2200AEF1C0CA.png",
+      "kind": "achievement",
+      "title": "Punch That Clock!",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.one-step-at-a-time",
+      "file": "images/img040_2A8FA31CBE98A988.png",
+      "kind": "achievement",
+      "title": "One Step at a Time",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.the-purpose-of-a-thief",
+      "file": "images/img041_AD855C3C37C6125F.png",
+      "kind": "achievement",
+      "title": "The Purpose of a Thief",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.a-grand-experiment",
+      "file": "images/img042_961261BE8B667B53.png",
+      "kind": "achievement",
+      "title": "A Grand Experiment",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.tokyo-tourist",
+      "file": "images/img043_AE59F831F0C3B4F7.png",
+      "kind": "achievement",
+      "title": "Tokyo Tourist",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.the-deviated-cognition",
+      "file": "images/img044_EA47DEEB9701E0F9.png",
+      "kind": "achievement",
+      "title": "The Deviated Cognition",
+      "months": ["2016-05"]
+    },
+    {
+      "id": "p5r.media.achievement.bank-of-gluttony-cleaned-out",
+      "file": "images/img045_F873BD82996F0A29.png",
+      "kind": "achievement",
+      "title": "Bank of Gluttony: Cleaned Out",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.my-closest-partner",
+      "file": "images/img046_51CE164008B8F757.png",
+      "kind": "achievement",
+      "title": "My Closest Partner",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.getting-the-vapors",
+      "file": "images/img047_C781982AD423199E.png",
+      "kind": "achievement",
+      "title": "Getting the Vapors",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.trash-into-treasure",
+      "file": "images/img048_CEC664E889C142BE.png",
+      "kind": "achievement",
+      "title": "Trash Into Treasure",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.dartslinger",
+      "file": "images/img049_40B0DE4D844B293F.png",
+      "kind": "achievement",
+      "title": "Dartslinger",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.talent-thief",
+      "file": "images/img050_0395D204D19B7000.png",
+      "kind": "achievement",
+      "title": "Talent Thief",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.joses-favorite-customer",
+      "file": "images/img051_68FF1192AF6A11AE.png",
+      "kind": "achievement",
+      "title": "Jose's Favorite Customer",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.the-phantom-philatelist",
+      "file": "images/img052_4075BAABFFC3B0EA.png",
+      "kind": "achievement",
+      "title": "The Phantom Philatelist",
+      "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.achievement.efficient-executioner",
+      "file": "images/img053_0063D6B419E65D90.png",
+      "kind": "achievement",
+      "title": "Efficient Executioner",
+      "months": ["2016-06"]
+    }
+  ]
+}

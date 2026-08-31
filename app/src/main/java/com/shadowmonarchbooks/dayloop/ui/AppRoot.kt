@@ -42,6 +42,7 @@ import com.shadowmonarchbooks.dayloop.ui.bonds.BondDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
 import com.shadowmonarchbooks.dayloop.ui.day.DayScreen
 import com.shadowmonarchbooks.dayloop.ui.deadlines.DeadlinesScreen
+import com.shadowmonarchbooks.dayloop.ui.media.MediaScreen
 import com.shadowmonarchbooks.dayloop.ui.month.MonthScreen
 import com.shadowmonarchbooks.dayloop.ui.onboarding.OnboardingScreen
 import com.shadowmonarchbooks.dayloop.ui.search.SearchScreen
@@ -139,6 +140,13 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                             popUpTo("onboarding") { inclusive = true }
                         }
                     },
+                    // Re-entered from Settings (a game is already active):
+                    // the back arrow pops back instead of stranding the user.
+                    onCancel = if (state.selectedSlug != null) {
+                        { nav.popBackStack() }
+                    } else {
+                        null
+                    },
                 )
             }
             composable("today") {
@@ -208,7 +216,16 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 )
             }
             composable("settings") {
-                SettingsScreen(vm = vm)
+                SettingsScreen(
+                    vm = vm,
+                    // One game picker in the whole app: Settings redirects to
+                    // the first-run carousel (docs/ROADMAP-v3.md Phase 11).
+                    onSwitchGame = { nav.navigate("onboarding") { launchSingleTop = true } },
+                    onOpenMedia = { nav.navigate("media") { launchSingleTop = true } },
+                )
+            }
+            composable("media") {
+                MediaScreen(vm = vm)
             }
         }
     }

@@ -38,6 +38,8 @@ import com.shadowmonarchbooks.dayloop.data.formatMonth
 import com.shadowmonarchbooks.dayloop.data.parseDateOrNull
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
+import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
 import java.time.LocalDate
 
 private val WeekHeaders = listOf("M", "T", "W", "T", "F", "S", "S")
@@ -78,17 +80,38 @@ fun MonthScreen(
             IconButton(onClick = { if (index > 0) index-- }, enabled = index > 0) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous month")
             }
+            // Pack-supplied month opener art + section markers
+            // (docs/ROADMAP-v3.md Phase 11), when this pack declares them.
+            val monthMedia = pack.mediaForMonth(month)
+            monthMedia.firstOrNull { it.kind == "month" }?.let { opener ->
+                MediaImage(assetPath = pack.assetOf(opener), title = opener.title, size = 40.dp)
+            }
             Text(
                 text = formatMonth(month),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.weight(1f),
             )
+            monthMedia.filter { it.kind == "section" }.forEach { marker ->
+                MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 22.dp)
+            }
             IconButton(onClick = { if (index < months.lastIndex) index++ }, enabled = index < months.lastIndex) {
                 Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next month")
             }
         }
 
         CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay)
+
+        // Achievements the guide ties to this month (facts, spoiler-safe):
+        // pack-supplied icon + title chips (docs/ROADMAP-v3.md Phase 11).
+        val monthAchievements = pack.mediaForMonth(month).filter { it.kind == "achievement" }
+        if (monthAchievements.isNotEmpty()) {
+            Text(
+                text = "Achievements this month",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+            )
+            MediaStrip(items = monthAchievements.map { pack.assetOf(it) to it.title })
+        }
     }
 }
 

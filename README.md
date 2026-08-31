@@ -40,12 +40,14 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 | 8 | Capability-driven UI: pack-tailored tabs & screens ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
 | 9 | Data completeness: every pack fact served — audit matrix in [docs/data-coverage.md](docs/data-coverage.md) |
 | 10 | Per-pack theme & visual identity: pack.json `theme` drives full Material 3 skins ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
+| 11 | One game picker + every guide graphic bundled & served ([docs/ROADMAP-v3.md](docs/ROADMAP-v3.md)) |
+| 12–18 | Full per-game UI/UX imitation: skins, shapes, type, motion, sound ([docs/ROADMAP-v3.md](docs/ROADMAP-v3.md)) |
 
 See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 **Phase 0–10 done — v0.5.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+🚧 **Phase 0–11 done — v0.6.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
@@ -81,6 +83,12 @@ Phase 10 (v0.5.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
 - **Pack art slots formalized** — the onboarding covers (Phase 7) plus new per-pack icon tiles are declared in `theme.art` and lint-validated (pack-relative path, image file exists); swapping art is a content change, never code.
 - **Vocabulary extended** — deadline kind chips are now pack-supplied (`labels.deadlineKinds`; Metaphor's dungeon deadlines read "Mission", not "Palace").
 - **Widget inherits the accent** — the home-screen widget picks up the active pack's dark-scheme primary so the home screen matches the app.
+
+Phase 11 (v0.6.0) — [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md):
+- **One game picker** — Settings' Game section no longer switches packs inline; it shows the active game and redirects to the first-run carousel (back arrow, current game preselected, saved-profile counts on cards). The carousel is the single place in the app that picks a game, and switching never drops saves.
+- **All 116 guide graphics bundled & served** — every image from the three guide packages now ships under `content/packs/<slug>/images/` (P5R 53, P3R 16, Metaphor 47) with a per-pack `media.json` manifest: engine-neutral kinds (achievement/month/section/day/portrait/banner/guide), pack-supplied titles, and month/date/bond anchors.
+- **packlint enforces "all art ships and serves"** — orphaned images fail, undecodable/missing files fail, ids and anchors are validated; JVM tests pin the same contract.
+- **Serving surfaces** — day-anchored art on Day pages (P3R's full-moon marker on all nine full-moon dates + the Promised Day), month-anchored art + section markers + per-month achievement icons on the Calendar (all 94 achievement icons across P5R/Metaphor), character portraits on Bond detail (Lovers/Magician/Empress/Priestess/Aeon), and a new Media gallery (Settings → Pack media) browsing everything with captions and anchors.
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

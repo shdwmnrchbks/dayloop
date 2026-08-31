@@ -144,4 +144,52 @@ class PackContentTest {
             }
         }
     }
+
+    // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
+
+    @Test
+    fun `every bundled image is declared exactly once in media json`() {
+        loadPacks().forEach { (slug, dir, loaded) ->
+            val images = dir.resolve("images")
+            if (!images.isDirectory()) return@forEach
+            val declared = loaded.media?.media?.map { it.file }?.toSet().orEmpty()
+            val bundled = Files.list(images).use { stream ->
+                stream.map { "images/${it.name}" }.toList()
+            }
+            assertTrue(bundled.isNotEmpty(), "$slug ships no images but has an images/ dir")
+            bundled.forEach { file ->
+                assertTrue(
+                    file in declared,
+                    "$slug: $file is bundled but not declared in media.json",
+                )
+            }
+            assertEquals(bundled.size, declared.size, "$slug: media.json must declare exactly the bundled images")
+        }
+    }
+
+    @Test
+    fun `every media bond anchor resolves to a real bond`() {
+        loadPacks().forEach { (slug, _, loaded) ->
+            val bondIds = loaded.bonds?.bonds?.map { it.id }?.toSet().orEmpty()
+            loaded.media?.media?.forEach { item ->
+                item.bonds.forEach { bond ->
+                    assertTrue(
+                        bond in bondIds,
+                        "$slug: media '${item.id}' references unknown bond '$bond'",
+                    )
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `every pack ships a media manifest covering its graphics`() {
+        val counts = mutableMapOf<String, Int>()
+        loadPacks().forEach { (slug, _, loaded) ->
+            counts[slug] = loaded.media?.media?.size ?: 0
+        }
+        assertTrue((counts["p5r"] ?: 0) >= 53, "p5r must declare its 53 guide graphics, found ${counts["p5r"]}")
+        assertTrue((counts["p3r"] ?: 0) >= 16, "p3r must declare its 16 guide graphics, found ${counts["p3r"]}")
+        assertTrue((counts["metaphor"] ?: 0) >= 47, "metaphor must declare its 47 guide graphics, found ${counts["metaphor"]}")
+    }
 }

@@ -12,6 +12,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Weekdays
 import com.shadowmonarchbooks.dayloop.pack.walkConditions
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
 import kotlin.io.path.readText
 import kotlin.io.path.writeText
@@ -52,6 +53,9 @@ object PackLint {
     private val ANSWER_KINDS = setOf("exam", "classQuestion")
     private val THEME_STYLES = setOf("tonalSpot", "vibrant", "expressive", "content")
     private val ART_EXTENSIONS = setOf("png", "jpg", "jpeg", "webp")
+    /** Media may also ship GIFs (decoded as stills by the app today). */
+    private val MEDIA_EXTENSIONS = ART_EXTENSIONS + "gif"
+    private val MEDIA_KINDS = com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds.ALL
 
     fun run(packDir: Path, writeBaseline: Boolean): List<LintIssue> {
         val issues = mutableListOf<LintIssue>()
@@ -374,6 +378,73 @@ object PackLint {
             }
             if (label.isBlank()) {
                 issues += err("pack.json", "labels.deadlineKinds['$kind'] needs a non-blank display label")
+            }
+        }
+
+        // Media manifest (docs/ROADMAP-v3.md Phase 11): every graphic the pack
+        // bundles must be declared exactly once with valid anchors, so the app
+        // serves all of it — orphaned or unresolvable art fails lint.
+        val mediaItems = loaded.media?.media.orEmpty()
+        if (mediaItems.isNotEmpty() || packDir.resolve("images").isDirectory()) {
+            val mediaIds = mutableSetOf<String>()
+            val referencedFiles = mutableSetOf<String>()
+            val monthKeys = cal.monthKeys.toSet()
+            mediaItems.forEach { item ->
+                val loc = "media.json"
+                if (!mediaIds.add(item.id)) issues += err(loc, "duplicate media id '${item.id}'")
+                if (!item.id.startsWith("$packId.media.")) {
+                    issues += err(loc, "media id '${item.id}' must be prefixed '$packId.media.'")
+                }
+                if (item.kind !in MEDIA_KINDS) {
+                    issues += err(loc, "media '${item.id}' has unknown kind '${item.kind}' ($MEDIA_KINDS)")
+                }
+                if (item.title.isBlank()) issues += err(loc, "media '${item.id}' needs a non-blank title")
+                val backslash = item.file.contains('\\')
+                when {
+                    backslash || item.file.startsWith('/') || item.file.split('/').contains("..") ->
+                        issues += err(loc, "media '${item.id}' file must be a pack-relative path: '${item.file}'")
+                    !packDir.resolve(item.file).isRegularFile() ->
+                        issues += err(loc, "media '${item.id}' file not found: ${item.file}")
+                    item.file.substringAfterLast('.').lowercase() !in MEDIA_EXTENSIONS ->
+                        issues += err(loc, "media '${item.id}' must be a $MEDIA_EXTENSIONS file: ${item.file}")
+                }
+                if (!referencedFiles.add(item.file)) {
+                    issues += err(loc, "media file ${item.file} is declared more than once")
+                }
+                item.months.forEach { m ->
+                    if (!Regex("^\\d{4}-\\d{2}$").matches(m)) {
+                        issues += err(loc, "media '${item.id}' month '$m' is not YYYY-MM")
+                    } else if (m !in monthKeys) {
+                        issues += err(loc, "media '${item.id}' month '$m' is not a month of this pack's calendar")
+                    }
+                }
+                item.dates.forEach { d ->
+                    if (d !in cal) {
+                        issues += err(loc, "media '${item.id}' date '$d' is not a date in this pack's calendar")
+                    }
+                }
+                item.bonds.forEach { b ->
+                    if (b !in bondIds) {
+                        issues += err(loc, "media '${item.id}' references unknown bond '$b'")
+                    }
+                }
+            }
+            // Every bundled graphic must be declared exactly once.
+            val imagesDir = packDir.resolve("images")
+            if (imagesDir.isDirectory()) {
+                Files.list(imagesDir).use { stream ->
+                    stream.filter { it.isRegularFile() }.sorted().forEach { file ->
+                        val rel = "images/${file.fileName}"
+                        val ext = file.fileName.toString().substringAfterLast('.').lowercase()
+                        if (ext !in MEDIA_EXTENSIONS) {
+                            issues += err("images/", "'$rel' is not an image the app can decode ($MEDIA_EXTENSIONS); remove it or declare it in media.json")
+                        } else if (rel !in referencedFiles) {
+                            issues += err("images/", "'$rel' is bundled but not declared in media.json (all graphics must ship + serve, ROADMAP-v3 Phase 11)")
+                        }
+                    }
+                }
+            } else {
+                issues += err("media.json", "media.json exists but the pack ships no images/ directory")
             }
         }
 

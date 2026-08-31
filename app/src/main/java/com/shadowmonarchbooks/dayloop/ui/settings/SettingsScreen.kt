@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
@@ -43,10 +44,16 @@ import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 /**
  * Settings (docs/PLAN.md §5): advance/reroll/reset the in-game clock, manage
  * per-pack profiles (§3.7), and review orphaned marks (§3.6) instead of
- * dropping them silently.
+ * dropping them silently. The Game section no longer switches packs inline —
+ * it redirects to the first-run game-selection carousel (docs/ROADMAP-v3.md
+ * Phase 11), so there is exactly one place in the app that picks a game.
  */
 @Composable
-fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
+fun SettingsScreen(
+    vm: DayloopViewModel = hiltViewModel(),
+    onSwitchGame: () -> Unit = {},
+    onOpenMedia: () -> Unit = {},
+) {
     val state by vm.state.collectAsState()
     val profileCounts by vm.profileCounts.collectAsState()
     val pack = state.selected ?: run {
@@ -67,37 +74,63 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
-        // ---- Game (docs/ROADMAP-v2.md Phase 7: pack switching lives here,
-        //      no longer in the top bar) ----
+        // ---- Game (ROADMAP-v3 Phase 11: one picker, the onboarding carousel) ----
         SectionTitle("Game")
         Surface(
+            onClick = onSwitchGame,
             shape = RoundedCornerShape(12.dp),
             color = MaterialTheme.colorScheme.surfaceVariant,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                state.packs.forEach { loaded ->
-                    val active = loaded.slug == state.selectedSlug
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        RadioButton(selected = active, onClick = { vm.selectPack(loaded.slug) })
-                        PackIcon(loaded.iconAsset, loaded.pack.title, size = 36.dp)
-                        Column(Modifier.weight(1f)) {
-                            Text(
-                                text = loaded.pack.title,
-                                style = MaterialTheme.typography.bodyLarge,
-                                fontWeight = if (active) FontWeight.SemiBold else null,
-                            )
-                            val count = profileCounts[loaded.slug] ?: 0
-                            Text(
-                                text = if (count == 1) "1 saved profile" else "$count saved profiles",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.padding(10.dp),
+            ) {
+                PackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        text = pack.pack.title,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                    val count = profileCounts[pack.slug] ?: 0
+                    Text(
+                        text = if (count == 1) "Active · 1 saved profile" else
+                            "Active · $count saved profiles",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Text(
+                        text = "Tap to choose a different game — every game keeps its saves.",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Choose a game")
+            }
+        }
+
+        // ---- Pack media (ROADMAP-v3 Phase 11): the pack's bundled graphics ----
+        if (pack.media.isNotEmpty()) {
+            SectionTitle("Pack media")
+            Surface(
+                onClick = onOpenMedia,
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier.padding(10.dp),
+                ) {
+                    Text(
+                        text = "${pack.media.size} bundled graphics from the guide sources",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f),
+                    )
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Open pack media")
                 }
             }
         }

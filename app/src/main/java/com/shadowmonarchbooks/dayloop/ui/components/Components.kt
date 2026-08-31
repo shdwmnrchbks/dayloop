@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -499,5 +501,85 @@ fun PackIcon(
                 )
             }
         }
+    }
+}
+
+// ---- Pack media (docs/ROADMAP-v3.md Phase 11): graphics declared in the
+// pack's media.json, served by kind — never by game name. ----
+
+/**
+ * One media image loaded from a pack asset (GIFs decode their first frame).
+ * Renders nothing when the asset is missing or unreadable.
+ */
+@Composable
+fun MediaImage(
+    assetPath: String,
+    title: String,
+    modifier: Modifier = Modifier,
+    size: Dp = 36.dp,
+) {
+    val bitmap = rememberAssetImage(assetPath)
+    if (bitmap != null) {
+        Image(
+            bitmap = bitmap,
+            contentDescription = title,
+            contentScale = ContentScale.Fit,
+            modifier = modifier.size(size),
+        )
+    }
+}
+
+/**
+ * A media chip: the pack graphic with its title — used for achievement rows
+ * (month screen) and anchored day art (day screen).
+ */
+@Composable
+fun MediaChip(
+    assetPath: String,
+    title: String,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        modifier = modifier,
+    ) {
+        Surface(
+            shape = RoundedCornerShape(8.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant,
+        ) {
+            MediaImage(
+                assetPath = assetPath,
+                title = title,
+                size = 30.dp,
+                modifier = Modifier.padding(4.dp),
+            )
+        }
+        Text(
+            text = title,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 2,
+        )
+    }
+}
+
+/**
+ * A horizontal strip of media chips (does not wrap; scrolls horizontally).
+ * Renders nothing when the pack has no media anchored here.
+ */
+@Composable
+fun MediaStrip(
+    items: List<Pair<String, String>>,
+    modifier: Modifier = Modifier,
+) {
+    if (items.isEmpty()) return
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+    ) {
+        items.forEach { (asset, title) -> MediaChip(assetPath = asset, title = title) }
     }
 }

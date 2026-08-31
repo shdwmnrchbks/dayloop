@@ -34,6 +34,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
 import com.shadowmonarchbooks.dayloop.ui.components.StepsList
 
 /**
@@ -74,6 +75,10 @@ fun DayScreen(
             Text(formatDate(date, pack.calendar), style = MaterialTheme.typography.headlineSmall)
             DayKindChip(day.dayKind)
         }
+
+        // Pack-supplied day art (docs/ROADMAP-v3.md Phase 11): graphics
+        // media.json anchors to this exact date (e.g. a full-moon marker).
+        MediaStrip(items = pack.mediaForDate(date).map { pack.assetOf(it) to it.title })
 
         // Highlight when this page is the profile's current in-game day.
         if (state.currentDate == date) {

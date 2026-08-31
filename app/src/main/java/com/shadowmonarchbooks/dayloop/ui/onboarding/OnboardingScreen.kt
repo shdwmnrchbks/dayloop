@@ -20,6 +20,10 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -48,18 +52,43 @@ import com.shadowmonarchbooks.dayloop.ui.theme.packColorScheme
  * cover-art cards, one per installed pack. Fully engine-neutral — titles,
  * date ranges, day counts, and the art all come from pack data; Kotlin never
  * names a game.
+ *
+ * The same screen is the app's single game picker (docs/ROADMAP-v3.md
+ * Phase 11): when a game is already selected, Settings' Game section lands
+ * here with [onCancel] wired (back arrow, current game preselected, saved
+ * profile counts on the cards).
  */
 @Composable
 fun OnboardingScreen(
     vm: DayloopViewModel,
     onStart: () -> Unit,
+    onCancel: (() -> Unit)? = null,
 ) {
     val state by vm.state.collectAsState()
     val packs = state.packs
-    val pagerState = rememberPagerState(pageCount = { packs.size })
+    val profileCounts by vm.profileCounts.collectAsState()
+    val reselecting = state.selectedSlug != null
+    val pagerState = rememberPagerState(
+        initialPage = packs.indexOfFirst { it.slug == state.selectedSlug }.coerceAtLeast(0),
+        pageCount = { packs.size },
+    )
 
     Column(Modifier.fillMaxSize().padding(vertical = 28.dp)) {
         Column(Modifier.padding(horizontal = 28.dp)) {
+            if (reselecting && onCancel != null) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    IconButton(onClick = onCancel) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back to settings")
+                    }
+                    Text(
+                        text = "Choose a game",
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                }
+            }
             Text(
                 text = "dayloop",
                 style = MaterialTheme.typography.headlineMedium,
@@ -68,8 +97,12 @@ fun OnboardingScreen(
             )
             Spacer(Modifier.height(6.dp))
             Text(
-                text = "Track a calendar-JRPG run day by day — what to do now, " +
-                    "and what you're about to miss. Your progress is saved per game.",
+                text = if (reselecting) {
+                    "Switching games never drops saves — each game keeps its own profiles and clock."
+                } else {
+                    "Track a calendar-JRPG run day by day — what to do now, " +
+                        "and what you're about to miss. Your progress is saved per game."
+                },
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -92,6 +125,7 @@ fun OnboardingScreen(
             GameCard(
                 pack = packs[page],
                 selected = page == pagerState.currentPage,
+                savedProfiles = profileCounts[packs[page].slug] ?: 0,
                 onSelect = {
                     vm.selectPack(packs[page].slug)
                     onStart()
@@ -126,6 +160,7 @@ fun OnboardingScreen(
 private fun GameCard(
     pack: LoadedPack,
     selected: Boolean,
+    savedProfiles: Int,
     onSelect: () -> Unit,
 ) {
     val cover = rememberAssetImage(pack.cardAsset)
@@ -174,7 +209,7 @@ private fun GameCard(
                         color = Color.White,
                     )
                     Text(
-                        text = metaLine(pack),
+                        text = metaLine(pack, savedProfiles),
                         style = MaterialTheme.typography.labelMedium,
                         color = Color.White.copy(alpha = 0.85f),
                     )
@@ -203,7 +238,7 @@ private fun GameCard(
                         textAlign = TextAlign.Center,
                     )
                     Text(
-                        text = metaLine(pack),
+                        text = metaLine(pack, savedProfiles),
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
@@ -222,8 +257,14 @@ private fun GameCard(
     }
 }
 
-private fun metaLine(pack: LoadedPack): String =
-    "${pack.sortedDates(Routes.defaultId(pack.pack)).size} authored days · ${dateRange(pack)}"
+private fun metaLine(pack: LoadedPack, savedProfiles: Int): String {
+    val base = "${pack.sortedDates(Routes.defaultId(pack.pack)).size} authored days · ${dateRange(pack)}"
+    return when (savedProfiles) {
+        0 -> base
+        1 -> "$base · 1 saved profile"
+        else -> "$base · $savedProfiles saved profiles"
+    }
+}
 
 private fun dateRange(pack: LoadedPack): String =
     "${formatDate(pack.pack.calendar.startDate, pack.calendar)} → " +

@@ -1,0 +1,333 @@
+{
+  "media": [
+    {
+      "id": "metaphor.media.intro",
+      "file": "images/img001_78C6FE3822CA4162.gif",
+      "kind": "guide",
+      "title": "Guide intro",
+      "caption": "Opening animation of the source guide."
+    },
+    {
+      "id": "metaphor.media.achievement.allies-united",
+      "file": "images/img002_408172D69E43CBE6.jpg",
+      "kind": "achievement",
+      "title": "Allies United",
+      "caption": "Traverse the Northern Border Fort."
+    },
+    {
+      "id": "metaphor.media.achievement.out-of-the-fire",
+      "file": "images/img003_418CEDC55FC3813E.jpg",
+      "kind": "achievement",
+      "title": "Out of the Fire",
+      "caption": "Traverse the Nord Mines."
+    },
+    {
+      "id": "metaphor.media.achievement.calamity-averted",
+      "file": "images/img004_0F8B1758522A6214.jpg",
+      "kind": "achievement",
+      "title": "Calamity Averted",
+      "caption": "Traverse the Regalith Grand Cathedral."
+    },
+    {
+      "id": "metaphor.media.achievement.dark-truths",
+      "file": "images/img005_281DC0CC637C347C.jpg",
+      "kind": "achievement",
+      "title": "Dark Truths",
+      "caption": "Traverse Kriegante Castle."
+    },
+    {
+      "id": "metaphor.media.achievement.on-knifes-edge",
+      "file": "images/img006_D0E46122AC7AB918.jpg",
+      "kind": "achievement",
+      "title": "On Knife’s Edge",
+      "caption": "Traverse the Charadrius."
+    },
+    {
+      "id": "metaphor.media.achievement.history-untold",
+      "file": "images/img007_77D60E5509888E4E.jpg",
+      "kind": "achievement",
+      "title": "History Untold",
+      "caption": "Traverse the Dragon Temple."
+    },
+    {
+      "id": "metaphor.media.achievement.mission-accomplished",
+      "file": "images/img008_65128D6EB34566BC.jpg",
+      "kind": "achievement",
+      "title": "Mission Accomplished",
+      "caption": "Traverse Montario Opera House."
+    },
+    {
+      "id": "metaphor.media.achievement.his-majesty",
+      "file": "images/img009_FDFCD41EB0795203.jpg",
+      "kind": "achievement",
+      "title": "His Majesty",
+      "caption": "Study the Prince Archetype."
+    },
+    {
+      "id": "metaphor.media.achievement.skybound-hope",
+      "file": "images/img010_D62648E39ADC5CDE.jpg",
+      "kind": "achievement",
+      "title": "Skybound Hope",
+      "caption": "Traverse the Skybound Avatar."
+    },
+    {
+      "id": "metaphor.media.achievement.coronation-of-the-king",
+      "file": "images/img011_8AC81BDC450B4D75.jpg",
+      "kind": "achievement",
+      "title": "Coronation of the King",
+      "caption": "Witness the ending."
+    },
+    {
+      "id": "metaphor.media.achievement.the-traveller",
+      "file": "images/img012_EC833D9F3EB98346.jpg",
+      "kind": "achievement",
+      "title": "The Traveller",
+      "caption": "Acquire all achievements."
+    },
+    {
+      "id": "metaphor.media.achievement.stunning",
+      "file": "images/img013_1B3F301DA7D3579A.jpg",
+      "kind": "achievement",
+      "title": "Stunning!",
+      "caption": "Stun an enemy."
+    },
+    {
+      "id": "metaphor.media.achievement.united-front",
+      "file": "images/img014_A00845AAAD8693E8.jpg",
+      "kind": "achievement",
+      "title": "United Front",
+      "caption": "Use a Synthesis skill for the first time."
+    },
+    {
+      "id": "metaphor.media.achievement.no-mercy",
+      "file": "images/img015_26F747DA1F693AD0.jpg",
+      "kind": "achievement",
+      "title": "No Mercy",
+      "caption": "End 50 battles without taking damage."
+    },
+    {
+      "id": "metaphor.media.achievement.monster-hunter",
+      "file": "images/img016_CE91C7F02339DC05.jpg",
+      "kind": "achievement",
+      "title": "Monster Hunter",
+      "caption": "Subjugate a bounty."
+    },
+    {
+      "id": "metaphor.media.achievement.archetype-adept",
+      "file": "images/img017_A60091B68E1EA336.jpg",
+      "kind": "achievement",
+      "title": "Archetype Adept",
+      "caption": "Master an Archetype."
+    },
+    {
+      "id": "metaphor.media.achievement.tactical-strike",
+      "file": "images/img018_CE832B80AEC97B89.jpg",
+      "kind": "achievement",
+      "title": "Tactical Strike",
+      "caption": "Inflict ambush damage against stunned enemies 100 times."
+    },
+    {
+      "id": "metaphor.media.achievement.whats-yours-is-mine",
+      "file": "images/img019_171EB36E3DE0CB22.jpg",
+      "kind": "achievement",
+      "title": "What's Yours is Mine",
+      "caption": "Steal an item from an enemy."
+    },
+    {
+      "id": "metaphor.media.achievement.stray-elements",
+      "file": "images/img020_B56428175BC49E45.jpg",
+      "kind": "achievement",
+      "title": "Stray Elements",
+      "caption": "Defeat 10 Elmentas."
+    },
+    {
+      "id": "metaphor.media.achievement.teamwork-makes-the-dream-work",
+      "file": "images/img021_9F5BD3198AC9650B.jpg",
+      "kind": "achievement",
+      "title": "Teamwork Makes the Dream Work",
+      "caption": "Use 50 different Synthesis skills."
+    },
+    {
+      "id": "metaphor.media.achievement.money-is-power",
+      "file": "images/img022_F3C7571538B38B49.jpg",
+      "kind": "achievement",
+      "title": "Money is Power",
+      "caption": "Spend a total of 100,000 reeve using skills that consume money."
+    },
+    {
+      "id": "metaphor.media.post-game-banner",
+      "file": "images/img023_63FFBA880BEF678E.jpg",
+      "kind": "banner",
+      "title": "Post-game",
+      "caption": "Header art of the guide's post-game section."
+    },
+    {
+      "id": "metaphor.media.more-guides-banner",
+      "file": "images/img024_AF069D10E5529D1F.jpg",
+      "kind": "banner",
+      "title": "More guides by the author",
+      "caption": "End-notes art pointing at the author's other Metaphor guides."
+    },
+    {
+      "id": "metaphor.media.daily-life-marker",
+      "file": "images/img025_D213D3B3241790BD.jpg",
+      "kind": "section",
+      "title": "Daily life achievements",
+      "caption": "Section icon for the daily-life achievement list."
+    },
+    {
+      "id": "metaphor.media.achievement.shake-on-it",
+      "file": "images/img026_19B1AF0B42C2F9A1.jpg",
+      "kind": "achievement",
+      "title": "Shake on It",
+      "caption": "Obtain a Follower."
+    },
+    {
+      "id": "metaphor.media.achievement.shrewd-shopper",
+      "file": "images/img027_89484FA380B59050.jpg",
+      "kind": "achievement",
+      "title": "Shrewd Shopper",
+      "caption": "Buy an item on discount."
+    },
+    {
+      "id": "metaphor.media.achievement.blessed-power",
+      "file": "images/img028_550DBD939D5A7665.jpg",
+      "kind": "achievement",
+      "title": "Blessed Power",
+      "caption": "Purify a piece of equipment."
+    },
+    {
+      "id": "metaphor.media.achievement.for-science",
+      "file": "images/img029_35A48955937FEFEA.jpg",
+      "kind": "achievement",
+      "title": "For Science!",
+      "caption": "Perform a Special Experiment."
+    },
+    {
+      "id": "metaphor.media.achievement.globetrotter",
+      "file": "images/img030_5153DB9347765B95.jpg",
+      "kind": "achievement",
+      "title": "Globetrotter",
+      "caption": "Visit all towns."
+    },
+    {
+      "id": "metaphor.media.achievement.vista-viewer",
+      "file": "images/img031_3D9DF37EEDA8664F.jpg",
+      "kind": "achievement",
+      "title": "Vista Viewer",
+      "caption": "Collect all drawings of the journey."
+    },
+    {
+      "id": "metaphor.media.achievement.hearts-as-one",
+      "file": "images/img032_9602C2EBAF0A7038.jpg",
+      "kind": "achievement",
+      "title": "Hearts as One",
+      "caption": "Max all Follower ranks."
+    },
+    {
+      "id": "metaphor.media.achievement.hey-listen",
+      "file": "images/img033_DBC9AE47926BDC64.jpg",
+      "kind": "achievement",
+      "title": "Hey, Listen!",
+      "caption": "Consult Gallica 100 times."
+    },
+    {
+      "id": "metaphor.media.achievement.worldly-wisdom",
+      "file": "images/img034_3D734493B1C936E1.jpg",
+      "kind": "achievement",
+      "title": "Worldly Wisdom",
+      "caption": "Unlock the entire map."
+    },
+    {
+      "id": "metaphor.media.achievement.at-your-own-risk",
+      "file": "images/img035_7BDCB912D4873A00.jpg",
+      "kind": "achievement",
+      "title": "At Your Own Risk",
+      "caption": "Successfully challenge the test of courage at the highest difficulty."
+    },
+    {
+      "id": "metaphor.media.achievement.chef-in-training",
+      "file": "images/img036_6461E00D7C367DD8.jpg",
+      "kind": "achievement",
+      "title": "Chef in Training",
+      "caption": "Help cook a meal at the inn with Maria."
+    },
+    {
+      "id": "metaphor.media.achievement.help-anyone-in-need",
+      "file": "images/img037_1976402295F8FE26.jpg",
+      "kind": "achievement",
+      "title": "Help Anyone in Need",
+      "caption": "Complete all quests."
+    },
+    {
+      "id": "metaphor.media.achievement.bookworm",
+      "file": "images/img038_1F8C12D9E73F80C7.jpg",
+      "kind": "achievement",
+      "title": "Bookworm",
+      "caption": "Finish reading all books."
+    },
+    {
+      "id": "metaphor.media.achievement.all-that-glitters",
+      "file": "images/img039_0B5EDC807D2F7F30.jpg",
+      "kind": "achievement",
+      "title": "All That Glitters",
+      "caption": "Make all possible gold beetle item exchanges."
+    },
+    {
+      "id": "metaphor.media.achievement.king-of-cuisine",
+      "file": "images/img040_F756AE374C9377E5.jpg",
+      "kind": "achievement",
+      "title": "King of Cuisine",
+      "caption": "Make all recipes."
+    },
+    {
+      "id": "metaphor.media.achievement.summon-mask-time",
+      "file": "images/img041_B43CF88EA0943C45.jpg",
+      "kind": "achievement",
+      "title": "Summon Mask Time",
+      "caption": "Create all summoning vessels and masks."
+    },
+    {
+      "id": "metaphor.media.achievement.sword-surfer",
+      "file": "images/img042_123996E32D0F364B.jpg",
+      "kind": "achievement",
+      "title": "Sword Surfer",
+      "caption": "Travel a significant distance by blade-riding."
+    },
+    {
+      "id": "metaphor.media.achievement.debate-me",
+      "file": "images/img043_1176E2EEBBAC100A.jpg",
+      "kind": "achievement",
+      "title": "Debate Me",
+      "caption": "Win debates against all candidates."
+    },
+    {
+      "id": "metaphor.media.achievement.coliseum-champion",
+      "file": "images/img044_26F9569B7F94347D.jpg",
+      "kind": "achievement",
+      "title": "Coliseum Champion",
+      "caption": "Win 30 consecutive Gold Class battles at the coliseum."
+    },
+    {
+      "id": "metaphor.media.achievement.archetype-hero",
+      "file": "images/img045_68340DDB875760E8.jpg",
+      "kind": "achievement",
+      "title": "Archetype Hero",
+      "caption": "Master all the Archetypes with the protagonist."
+    },
+    {
+      "id": "metaphor.media.achievement.star-shatterer",
+      "file": "images/img046_59FC5B9D98EB9F46.jpg",
+      "kind": "achievement",
+      "title": "Star Shatterer",
+      "caption": "Defeat Destroyer Charadrius, wielder of true power."
+    },
+    {
+      "id": "metaphor.media.achievement.closing-the-book",
+      "file": "images/img047_0D74F5EA024E4921.jpg",
+      "kind": "achievement",
+      "title": "Closing the Book",
+      "caption": "Defeat the redscale dragon from the Book of Apocalypse."
+    }
+  ]
+}
