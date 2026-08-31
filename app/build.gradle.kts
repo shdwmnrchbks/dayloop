@@ -26,8 +26,8 @@ android {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
         targetSdk = 35
-        versionCode = 4
-        versionName = "0.4.0"
+        versionCode = 5
+        versionName = "0.5.0"
     }
 
     signingConfigs {
@@ -81,6 +81,7 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.material3)
+    implementation(libs.material.color.utilities)
 
     // Progress layer (docs/PLAN.md Phase 3): Room for mutable progress,
     // DataStore for settings (active profile per pack).

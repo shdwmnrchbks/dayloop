@@ -41,6 +41,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
+import com.shadowmonarchbooks.dayloop.ui.theme.packColorScheme
 
 /**
  * First-run game picker (docs/ROADMAP-v2.md Phase 7): a swipeable carousel of
@@ -128,11 +129,15 @@ private fun GameCard(
     onSelect: () -> Unit,
 ) {
     val cover = rememberAssetImage(pack.cardAsset)
+    // Each card wears its own pack's accent (docs/ROADMAP-v2.md Phase 10),
+    // not the active pack's — the carousel previews every installed skin.
+    val packAccent = pack.pack.theme?.let { packColorScheme(it, dark = true).primary }
+        ?: MaterialTheme.colorScheme.primary
     Surface(
         onClick = onSelect,
         shape = RoundedCornerShape(24.dp),
         color = MaterialTheme.colorScheme.surfaceVariant,
-        border = if (selected) BorderStroke(2.dp, MaterialTheme.colorScheme.primary) else null,
+        border = if (selected) BorderStroke(2.dp, packAccent) else null,
         modifier = Modifier.fillMaxSize(),
     ) {
         Box(Modifier.fillMaxSize()) {

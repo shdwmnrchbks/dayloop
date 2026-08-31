@@ -40,6 +40,11 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `capabilities.weather` | Reserved flag — no pack ships a weather system | Intentionally not served (reserved; `Weather` condition same) |
 | `labels.bond` | Bottom-bar tab label ("Confidants"/"Social Links"/"Followers"), Search section header | Served |
 | `labels.stat` | Activities detail section header ("<Stat label> gains") | Served |
+| `labels.deadlineKinds` | Deadline kind chips ("Palace"/"Mission"/…), pack override per kind token (⟂ packlint-validated closed set) | Served |
+| `theme.accent` / `theme.accentDark` | Seed colors: Theme.kt builds the full Material 3 light/dark schemes for the active pack (whole app recolors on pack switch); dark seed also drives the widget accent | Served |
+| `theme.style` | Closed-set scheme-character token (tonalSpot/vibrant/expressive/content) → scheme variant in Theme.kt | Served |
+| `theme.motif` | Reserved decorative slug token — declared + lint-validated, no surface consumes it yet | Intentionally not served (reserved for future motif-driven decoration) |
+| `theme.art` | Named art slots: `card` → onboarding carousel cover, `icon` → Settings/PackIcon tiles; unknown slots ride along for future surfaces. packlint validates every declared file | Served (card, icon) |
 
 ## walkthrough/*.json (`WalkthroughFile`, `Day`, `Step`)
 

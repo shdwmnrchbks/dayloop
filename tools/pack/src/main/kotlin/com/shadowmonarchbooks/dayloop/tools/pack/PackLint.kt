@@ -5,6 +5,7 @@ import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
+import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.pack.schema.StatGte
 import com.shadowmonarchbooks.dayloop.pack.schema.Weekdays
@@ -49,6 +50,8 @@ object PackLint {
     private val DAY_KINDS = setOf("free", "school", "story", "exam", "forced")
     private val TIME_MODELS = setOf("weekdayGrid", "dayCounter")
     private val ANSWER_KINDS = setOf("exam", "classQuestion")
+    private val THEME_STYLES = setOf("tonalSpot", "vibrant", "expressive", "content")
+    private val ART_EXTENSIONS = setOf("png", "jpg", "jpeg", "webp")
 
     fun run(packDir: Path, writeBaseline: Boolean): List<LintIssue> {
         val issues = mutableListOf<LintIssue>()
@@ -328,6 +331,50 @@ object PackLint {
         }
         if (!pack.capabilities.answers && shipsAnswers) {
             issues += err("pack.json", "pack ships answers.json but does not declare capabilities.answers")
+        }
+
+        // Theme & vocabulary (docs/ROADMAP-v2.md Phase 10): the pack supplies
+        // its visual identity and any engine-term display names, so the app
+        // hardcodes neither. Validate the shapes here; the app maps valid
+        // tokens to schemes and labels.
+        pack.theme?.let { theme ->
+            listOfNotNull(theme.accent, theme.accentDark).forEach { hex ->
+                if (PackTheme.parseHexColor(hex) == null) {
+                    issues += err("pack.json", "theme color '$hex' is not #RRGGBB or #AARRGGBB")
+                }
+            }
+            theme.style?.let { style ->
+                if (style !in THEME_STYLES) {
+                    issues += err("pack.json", "theme.style '$style' is not one of $THEME_STYLES")
+                }
+            }
+            theme.motif?.let { motif ->
+                if (!Regex("^[a-z][a-z0-9-]*$").matches(motif)) {
+                    issues += err("pack.json", "theme.motif '$motif' is not a lowercase slug token")
+                }
+            }
+            theme.art.forEach { (slot, rel) ->
+                if (!Regex("^[a-z][a-z0-9-]*$").matches(slot)) {
+                    issues += err("pack.json", "theme.art slot '$slot' is not a lowercase slug token")
+                }
+                val backslash = rel.contains('\\')
+                when {
+                    backslash || rel.startsWith('/') || rel.split('/').contains("..") ->
+                        issues += err("pack.json", "theme.art['$slot'] must be a pack-relative path: '$rel'")
+                    !packDir.resolve(rel).isRegularFile() ->
+                        issues += err("pack.json", "theme.art['$slot'] file not found: $rel")
+                    rel.substringAfterLast('.').lowercase() !in ART_EXTENSIONS ->
+                        issues += err("pack.json", "theme.art['$slot'] must be a $ART_EXTENSIONS file: $rel")
+                }
+            }
+        }
+        pack.labels.deadlineKinds.forEach { (kind, label) ->
+            if (kind !in DEADLINE_KINDS) {
+                issues += err("pack.json", "labels.deadlineKinds key '$kind' is not a deadline kind ($DEADLINE_KINDS)")
+            }
+            if (label.isBlank()) {
+                issues += err("pack.json", "labels.deadlineKinds['$kind'] needs a non-blank display label")
+            }
         }
 
         // Coverage (warn — packs grow incrementally), computed per route

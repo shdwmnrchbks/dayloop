@@ -7,10 +7,10 @@ labels, ID discipline) still apply everywhere below.
 
 | # | Ask | Phase |
 |---|-----|-------|
-| 1 | First-run game picker; pack switcher out of the top bar, into Settings | Phase 7 |
-| 2 | UI tailored to the pack (no Answers/Exam tab for Metaphor) | Phase 8 |
-| 3 | Every fact in the packs actually served by the app | Phase 9 |
-| 4 | Per-pack theme & visual identity, incl. graphic assets | Phase 10 |
+| 1 | First-run game picker; pack switcher out of the top bar, into Settings | Phase 7 ✓ |
+| 2 | UI tailored to the pack (no Answers/Exam tab for Metaphor) | Phase 8 ✓ |
+| 3 | Every fact in the packs actually served by the app | Phase 9 ✓ |
+| 4 | Per-pack theme & visual identity, incl. graphic assets | Phase 10 ✓ |
 
 ---
 
@@ -166,6 +166,28 @@ Acceptance:
 
 ## Phase 10 — Per-pack theme & visual identity
 
+**Status: shipped in v0.5.0.** As specified, plus these resolutions:
+- `pack.json` gained an optional **`theme`** block: `accent`/`accentDark` seed
+  colors (`#RRGGBB`/`#AARRGGBB`), a closed-set **`style`** token
+  (`tonalSpot`/`vibrant`/`expressive`/`content` — how the seed expands into a
+  scheme), a reserved `motif` slug token, and **`art`** slots
+  (`{"card": "art/card.jpg", "icon": "art/icon.png"}`). `Theme.kt` maps the
+  active pack's theme → full Material 3 dark *and* light schemes via the
+  material color system (Apache-2.0 `material-color-utilities`); the
+  hand-tuning lives in the pack data, the mapping is game-neutral Kotlin and
+  identical for every pack. Packs without a theme keep the lantern engine skin.
+- **Art decision (2026-08-31) implemented:** each pack ships curated guide-derived
+  `card` (onboarding hero) and `icon` (Settings tiles) art, declared in
+  `theme.art` — the Phase 7 conventional-path probing remains only as a
+  fallback for theme-less packs. packlint validates every declared slot
+  (pack-relative path, image extension, file exists). PLAN.md §9 carries the
+  "strip game-derived art before any public flip" item.
+- **Vocabulary extended to deadline kinds:** `labels.deadlineKinds` lets a pack
+  rename the closed-set kind tokens the UI prints (Metaphor: `palace` →
+  "Mission"); unlisted kinds keep the capitalized-token default.
+- The Glance widget inherits the active pack's dark-scheme primary as its
+  accent; a theme-less pack keeps the engine amber.
+
 **Goal:** switching games switches the skin — PLAN.md §3.5 finally wired end to end.
 
 Work items:
@@ -204,3 +226,5 @@ Acceptance:
   (capabilities, labels, theme all come from data).
 - Import packs from device storage: not scheduled; Phase 7's onboarding assumes bundled
   packs only until that exists.
+- `theme.motif` is declared and lint-validated but still reserved — no decorative surface
+  consumes it yet.

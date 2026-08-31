@@ -29,6 +29,13 @@ data class Pack(
     val capabilities: Capabilities = Capabilities(),
     /** Pack-supplied display vocabulary for engine terms (docs/PLAN.md §3.1). */
     val labels: Labels = Labels(),
+    /**
+     * Pack-supplied visual identity (docs/ROADMAP-v2.md Phase 10 / PLAN.md
+     * §3.5): seed colors, scheme style, and named art slots. Null = the
+     * engine's own skin. Switching packs switches the skin with zero code
+     * change — the pack supplies everything.
+     */
+    val theme: PackTheme? = null,
 )
 
 @Serializable
@@ -111,4 +118,63 @@ data class Labels(
     val bond: String = "Bond",
     /** e.g. "Social Stat" / "Royal Virtue". */
     val stat: String = "Stat",
-)
+    /**
+     * Pack display names for the closed-set deadline kinds (docs/ROADMAP-v2.md
+     * Phase 10: vocabulary the UI prints stays pack-driven), e.g.
+     * `{ "palace": "Mission" }` for a pack whose dungeon deadlines aren't
+     * "palaces". Kinds not listed fall back to the capitalized token.
+     */
+    val deadlineKinds: Map<String, String> = emptyMap(),
+) {
+    /** Display name for a deadline kind token: pack override, else capitalized token. */
+    fun deadlineKind(kind: String): String =
+        deadlineKinds[kind] ?: kind.replaceFirstChar { it.uppercase() }
+}
+
+/**
+ * Pack-supplied visual identity (docs/PLAN.md §3.5 / ROADMAP-v2 Phase 10).
+ * The engine maps [accent]/[accentDark] seeds to full hand-tuned Material 3
+ * dark/light schemes — no colors or game names live in Kotlin. Art slots name
+ * bundled files relative to the pack dir so swapping art is a content change;
+ * the engine reads the slots it knows ("card", "icon"), extra slots ride
+ * along for future surfaces.
+ */
+@Serializable
+data class PackTheme(
+    /** Seed color for the light scheme: "#RRGGBB" or "#AARRGGBB". */
+    val accent: String? = null,
+    /** Seed color for the dark scheme; falls back to [accent] when omitted. */
+    val accentDark: String? = null,
+    /**
+     * Closed-set scheme character token: "tonalSpot" (calm default),
+     * "vibrant" (bold), "expressive" (playful), "content" (source-anchored).
+     * packlint validates the token; the engine maps it to a scheme variant.
+     */
+    val style: String? = null,
+    /**
+     * Reserved decorative token (lowercase slug) for future motif-driven
+     * surfaces; validated by packlint, unused by the engine today.
+     */
+    val motif: String? = null,
+    /** Named art slots, e.g. `{ "card": "art/card.png", "icon": "art/icon.png" }`. */
+    val art: Map<String, String> = emptyMap(),
+) {
+    /** The scheme seed for [dark] mode as an ARGB int, or null when undeclared. */
+    fun seedArgb(dark: Boolean): Int? {
+        val hex = if (dark) accentDark ?: accent else accent
+        return hex?.let { parseHexColor(it) }
+    }
+
+    companion object {
+        /** Parses "#RRGGBB"/"RRGGBB"/"#AARRGGBB"/"AARRGGBB" into an ARGB int; null when malformed. */
+        fun parseHexColor(hex: String): Int? {
+            val digits = hex.removePrefix("#")
+            val value = digits.toLongOrNull(16) ?: return null
+            return when (digits.length) {
+                6 -> (0xFF000000L or value).toInt()
+                8 -> value.toInt()
+                else -> null
+            }
+        }
+    }
+}

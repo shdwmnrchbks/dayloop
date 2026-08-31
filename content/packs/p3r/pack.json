@@ -32,5 +32,15 @@
   "labels": {
     "bond": "Social Link",
     "stat": "Social Stat"
+  },
+  "theme": {
+    "accent": "#2E5C8A",
+    "accentDark": "#5C8FCB",
+    "style": "tonalSpot",
+    "motif": "moon",
+    "art": {
+      "card": "art/card.png",
+      "icon": "art/icon.png"
+    }
   }
 }

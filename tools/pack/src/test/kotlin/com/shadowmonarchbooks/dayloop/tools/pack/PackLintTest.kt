@@ -13,6 +13,8 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Capabilities
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.Labels
+import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.RankStep
 import com.shadowmonarchbooks.dayloop.pack.schema.RouteDef
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
@@ -331,5 +333,89 @@ class PackLintTest {
         Fixture.writePack(dir, walkthroughs = listOf(wt))
         val warnings = PackLint.runOn(dir).filter { it.severity == LintIssue.Severity.WARN }
         assertTrue(warnings.any { "3 day(s) not yet authored" in it.message }, warnings.toString())
+    }
+
+    // ---- Theme & vocabulary (docs/ROADMAP-v2.md Phase 10) ----
+
+    @Test
+    fun `valid theme block passes`() {
+        val dir = tempDir()
+        val theme = PackTheme(
+            accent = "#A61E22",
+            accentDark = "#D9433C",
+            style = "vibrant",
+            motif = "masks",
+            art = mapOf("card" to "art/card.png"),
+        )
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(theme = theme))
+        Files.createDirectories(dir.resolve("art"))
+        Files.write(dir.resolve("art/card.png"), byteArrayOf())
+        val issues = PackLint.runOn(dir)
+        assertEquals(emptyList(), issues.filter { it.severity == LintIssue.Severity.ERROR }, issues.toString())
+    }
+
+    @Test
+    fun `malformed theme color fails`() {
+        val dir = tempDir()
+        val theme = PackTheme(accent = "red")
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme color 'red' is not #RRGGBB or #AARRGGBB" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `unknown theme style token fails`() {
+        val dir = tempDir()
+        val theme = PackTheme(accent = "#A61E22", style = "neon")
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.style 'neon'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `theme art slot pointing at a missing file fails`() {
+        val dir = tempDir()
+        val theme = PackTheme(art = mapOf("card" to "art/missing.png"))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.art['card'] file not found: art/missing.png" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `theme art slot escaping the pack dir fails`() {
+        val dir = tempDir()
+        val theme = PackTheme(art = mapOf("card" to "../other-pack/art/card.png"))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.art['card'] must be a pack-relative path" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `theme art slot with a non-image extension fails`() {
+        val dir = tempDir()
+        val theme = PackTheme(art = mapOf("card" to "art/card.gif"))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(theme = theme))
+        Files.createDirectories(dir.resolve("art"))
+        Files.write(dir.resolve("art/card.gif"), byteArrayOf())
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.art['card'] must be a" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `unknown deadline kind label key fails`() {
+        val dir = tempDir()
+        val labels = Labels(bond = "Bond", stat = "Stat", deadlineKinds = mapOf("dungeon" to "Dungeon"))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(labels = labels))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "labels.deadlineKinds key 'dungeon'" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `blank deadline kind label fails`() {
+        val dir = tempDir()
+        val labels = Labels(bond = "Bond", stat = "Stat", deadlineKinds = mapOf("palace" to " "))
+        Fixture.writePack(dir, pack = Fixture.validPack().copy(labels = labels))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "labels.deadlineKinds['palace'] needs a non-blank display label" in it.message }, errors.toString())
     }
 }

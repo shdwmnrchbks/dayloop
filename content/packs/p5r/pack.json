@@ -29,5 +29,15 @@
   "labels": {
     "bond": "Confidant",
     "stat": "Social Stat"
+  },
+  "theme": {
+    "accent": "#A61E22",
+    "accentDark": "#D9433C",
+    "style": "vibrant",
+    "motif": "masks",
+    "art": {
+      "card": "art/card.jpg",
+      "icon": "art/icon.png"
+    }
   }
 }

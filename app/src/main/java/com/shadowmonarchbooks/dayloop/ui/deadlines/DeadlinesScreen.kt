@@ -76,7 +76,7 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            DeadlineKindChip(deadline.kind)
+                            DeadlineKindChip(pack.pack.labels.deadlineKind(deadline.kind))
                             Text(
                                 text = when {
                                     start != null && end != null && end != start ->
@@ -113,12 +113,14 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
     }
 }
 
-/** Neutral chip for the deadline's closed-set kind — capitalized token, no game words. */
+/** Chip for the deadline's closed-set kind; the display name is pack-supplied
+ *  via `labels.deadlineKinds` (docs/ROADMAP-v2.md Phase 10), falling back to
+ *  the capitalized token. */
 @Composable
-private fun DeadlineKindChip(kind: String) {
+private fun DeadlineKindChip(label: String) {
     Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.tertiaryContainer) {
         Text(
-            text = kind.replaceFirstChar { it.uppercase() },
+            text = label,
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onTertiaryContainer,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),

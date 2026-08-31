@@ -2,7 +2,7 @@
 
 **Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — launching with Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio. The engine stays pack-generic; further ATLUS titles can drop in later.
 
-> *This is a fan-made tool. It is not affiliated with or endorsed by ATLUS/SEGA. No game assets are bundled.*
+> *This is a fan-made tool. It is not affiliated with or endorsed by ATLUS/SEGA. Guide-derived art is bundled for this private, non-commercial build only and is stripped before any public release (docs/PLAN.md §9).*
 
 ## What it is
 
@@ -39,12 +39,13 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 | 7 | First-run onboarding carousel & pack selection relocated to Settings ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
 | 8 | Capability-driven UI: pack-tailored tabs & screens ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
 | 9 | Data completeness: every pack fact served — audit matrix in [docs/data-coverage.md](docs/data-coverage.md) |
+| 10 | Per-pack theme & visual identity: pack.json `theme` drives full Material 3 skins ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
 
 See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
 
 ## Status
 
-🚧 **Phase 0–9 done — v0.4.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+🚧 **Phase 0–10 done — v0.5.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
@@ -75,7 +76,11 @@ Phase 9 (v0.4.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md), matrix in [docs/d
 - **Served gaps closed** — activity browsing (new Activities list + detail screens; entry points from Today, tappable step references, and search), slot pills on step rows (Metaphor's afternoon/night steps), bond rank gates rendered as spoiler-safe "Requires: …" text (the PLAN.md §3.3 promise), rank availability windows ("Until <date>"), deadline kind chips, answer-sheet ⇄ deadline cross-links, and search results for activities/deadlines now navigate instead of dead-ending.
 - **CI-ready JVM tests** — PackContentTest pins the cross-references the UI resolves (answer→deadline, step→activity, step→slot, gate→stat/bond) over all three bundled packs; PackTextTest covers the gate text renderer.
 
-Next: per-pack theming & art (Phase 10) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md).
+Phase 10 (v0.5.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
+- **Per-pack themes** — each pack declares a `theme` block (accent/accentDark seeds, a closed-set `style` token, reserved `motif`, and named `art` slots); Theme.kt maps the active pack's theme to full hand-tuned Material 3 dark *and* light schemes via the material color system. Switching packs in Settings recolors the whole app in place — no restart, no game names or colors in Kotlin.
+- **Pack art slots formalized** — the onboarding covers (Phase 7) plus new per-pack icon tiles are declared in `theme.art` and lint-validated (pack-relative path, image file exists); swapping art is a content change, never code.
+- **Vocabulary extended** — deadline kind chips are now pack-supplied (`labels.deadlineKinds`; Metaphor's dungeon deadlines read "Mission", not "Palace").
+- **Widget inherits the accent** — the home-screen widget picks up the active pack's dark-scheme primary so the home screen matches the app.
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 

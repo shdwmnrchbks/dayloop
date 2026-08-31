@@ -1,11 +1,13 @@
 package com.shadowmonarchbooks.dayloop.widget
 
+import androidx.compose.ui.graphics.toArgb
 import com.shadowmonarchbooks.dayloop.data.PackStore
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.ui.theme.packColorScheme
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -24,6 +26,12 @@ data class WidgetSnapshot(
     val deadlineLabel: String? = null,
     /** Days until the next deadline; null when nothing is upcoming. */
     val deadlineDays: Long? = null,
+    /**
+     * ARGB accent inherited from the active pack's theme (docs/ROADMAP-v2.md
+     * Phase 10): the widget is always dark, so this is the pack's dark-scheme
+     * primary. Null = engine default accent.
+     */
+    val accentArgb: Int? = null,
 ) {
     val isEmpty: Boolean get() = packTitle == null
 }
@@ -64,6 +72,7 @@ class WidgetSnapshotter @Inject constructor(
             totalCount = total,
             deadlineLabel = upcoming?.first?.label,
             deadlineDays = upcoming?.second,
+            accentArgb = pack.pack.theme?.let { packColorScheme(it, dark = true).primary.toArgb() },
         )
     }
 }

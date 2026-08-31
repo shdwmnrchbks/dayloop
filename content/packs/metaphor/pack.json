@@ -35,6 +35,17 @@
   },
   "labels": {
     "bond": "Follower",
-    "stat": "Royal Virtue"
+    "stat": "Royal Virtue",
+    "deadlineKinds": { "palace": "Mission" }
+  },
+  "theme": {
+    "accent": "#9A6D07",
+    "accentDark": "#DCA11E",
+    "style": "expressive",
+    "motif": "crown",
+    "art": {
+      "card": "art/card.png",
+      "icon": "art/icon.png"
+    }
   }
 }

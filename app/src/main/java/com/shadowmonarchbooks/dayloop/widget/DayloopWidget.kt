@@ -29,7 +29,6 @@ private val InkSoft = Color(0xFF1D2230)
 private val TextPrimary = Color(0xFFF2F4F8)
 private val TextSecondary = Color(0xFF9AA3B2)
 private val Amber = Color(0xFFFFC857)
-private val Sky = Color(0xFF6FA8FF)
 private val Danger = Color(0xFFFF8A80)
 
 /**
@@ -48,6 +47,9 @@ class DayloopWidget : GlanceAppWidget() {
 
     @Composable
     private fun Content(snapshot: WidgetSnapshot) {
+        // Accent inherited from the active pack's theme (ROADMAP-v2 Phase 10);
+        // falls back to the engine amber when the pack declares none.
+        val accent = snapshot.accentArgb?.let { Color(it) } ?: Amber
         Box(
             modifier = GlanceModifier.fillMaxSize().background(Ink).padding(12.dp),
             contentAlignment = Alignment.CenterStart,
@@ -67,7 +69,7 @@ class DayloopWidget : GlanceAppWidget() {
                         snapshot.routeLabel?.let {
                             Text(
                                 it,
-                                style = TextStyle(color = ColorProvider(Sky), fontSize = 11.sp),
+                                style = TextStyle(color = ColorProvider(accent), fontSize = 11.sp),
                             )
                         }
                     }
@@ -82,12 +84,12 @@ class DayloopWidget : GlanceAppWidget() {
                     if (snapshot.totalCount > 0) {
                         Text(
                             "${snapshot.doneCount} of ${snapshot.totalCount} done today",
-                            style = TextStyle(color = ColorProvider(TextSecondary), fontSize = 12.sp),
+                            style = TextStyle(color = ColorProvider(accent), fontSize = 12.sp),
                         )
                     }
                     snapshot.deadlineLabel?.let { label ->
                         val days = snapshot.deadlineDays
-                        val urgency = if (days != null && days <= 3) Danger else Amber
+                        val urgency = if (days != null && days <= 3) Danger else accent
                         Box(
                             modifier = GlanceModifier.fillMaxWidth().background(InkSoft).padding(horizontal = 8.dp, vertical = 6.dp),
                         ) {

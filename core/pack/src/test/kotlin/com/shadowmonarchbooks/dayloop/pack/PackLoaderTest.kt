@@ -5,6 +5,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.CalendarRange
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
+import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.Slot
 import com.shadowmonarchbooks.dayloop.pack.schema.StatDef
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
@@ -103,5 +104,71 @@ class PackLoaderTest {
         assertNotNull(CalendarRange(startDate = "2100-06-01", endDate = "2100-06-07"))
         assertEquals(1, minimal.slots.size)
         assertEquals(StatDef("courage", "Courage"), minimal.stats.first())
+    }
+
+    @Test
+    fun `pack without theme decodes to null theme`() {
+        val pack = PackLoader.decodePack(packJson)
+        assertNotNull(pack)
+        assertNull(pack.theme)
+    }
+
+    @Test
+    fun `theme block decodes seeds, style, motif, and art slots`() {
+        val pack = PackLoader.decodePack(
+            """
+            {
+              "packId": "t3",
+              "title": "Themed",
+              "contentVersion": 1,
+              "timeModel": "weekdayGrid",
+              "calendar": { "startDate": "2016-04-09", "endDate": "2016-04-10" },
+              "slots": [ { "id": "afternoon", "label": "Afternoon" } ],
+              "stats": [ { "id": "knowledge", "label": "Knowledge" } ],
+              "theme": {
+                "accent": "#A61E22",
+                "accentDark": "#D9433C",
+                "style": "vibrant",
+                "motif": "masks",
+                "art": { "card": "art/card.jpg", "icon": "art/icon.png" }
+              }
+            }
+            """.trimIndent(),
+        )
+        assertNotNull(pack)
+        val theme = pack.theme
+        assertNotNull(theme)
+        assertEquals("#A61E22", theme.accent)
+        assertEquals("#D9433C", theme.accentDark)
+        assertEquals("vibrant", theme.style)
+        assertEquals("masks", theme.motif)
+        assertEquals(mapOf("card" to "art/card.jpg", "icon" to "art/icon.png"), theme.art)
+    }
+
+    @Test
+    fun `seedArgb picks the mode-specific color with light fallback`() {
+        val theme = PackTheme(accent = "#FF0000", accentDark = "#00FF00")
+        assertEquals(0xFFFF0000.toInt(), theme.seedArgb(dark = false))
+        assertEquals(0xFF00FF00.toInt(), theme.seedArgb(dark = true))
+        assertEquals(0xFFFF0000.toInt(), theme.copy(accentDark = null).seedArgb(dark = true))
+        assertNull(PackTheme().seedArgb(dark = true))
+    }
+
+    @Test
+    fun `parseHexColor accepts the documented shapes only`() {
+        assertEquals(0xFFA61E22.toInt(), PackTheme.parseHexColor("#A61E22"))
+        assertEquals(0xFFA61E22.toInt(), PackTheme.parseHexColor("A61E22"))
+        assertEquals(0x80A61E22.toInt(), PackTheme.parseHexColor("#80A61E22"))
+        assertNull(PackTheme.parseHexColor("#A61E2"))
+        assertNull(PackTheme.parseHexColor("#GGGGGG"))
+        assertNull(PackTheme.parseHexColor(""))
+    }
+
+    @Test
+    fun `deadline kind labels prefer the pack override`() {
+        val labels = Labels(bond = "Follower", stat = "Royal Virtue", deadlineKinds = mapOf("palace" to "Mission"))
+        assertEquals("Mission", labels.deadlineKind("palace"))
+        assertEquals("Missable", labels.deadlineKind("missable"))
+        assertEquals(Labels().deadlineKind("palace"), "Palace")
     }
 }

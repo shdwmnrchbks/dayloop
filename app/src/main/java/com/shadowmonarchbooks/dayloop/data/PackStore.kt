@@ -48,13 +48,13 @@ data class LoadedPack(
     val hasDeadlinesFile: Boolean = false,
     /**
      * Pack-supplied tile art asset (e.g. "<slug>/art/icon.png"), null when the
-     * pack ships none (docs/ROADMAP-v2.md Phase 7 grid cards). Conventional
-     * path for now; Phase 10 formalizes art slots in pack.json `theme`.
+     * pack ships none. Resolved from the pack.json `theme.art` slots first
+     * (docs/ROADMAP-v2.md Phase 10), falling back to the Phase 7 convention.
      */
     val iconAsset: String? = null,
     /**
-     * Pack-supplied cover art for the onboarding carousel card:
-     * "<slug>/art/card.png|jpg|jpeg", null when the pack ships none.
+     * Pack-supplied cover art for the onboarding carousel card, resolved from
+     * `theme.art["card"]` or the conventional "<slug>/art/card.png|jpg|jpeg".
      */
     val cardAsset: String? = null,
 ) {
@@ -189,14 +189,20 @@ class PackStore @Inject constructor(
                         }
                     }
                 }
-                // Optional pack art (ROADMAP-v2 Phase 7/10): art/icon.png feeds
-                // small tiles, art/card.(png|jpg) feeds the onboarding carousel.
+                // Pack art (ROADMAP-v2 Phase 7/10): slots declared in pack.json
+                // `theme.art` are the source of truth (packlint validates the
+                // files exist); the conventional art/icon.png / art/card.*
+                // probes remain as fallback for theme-less packs.
                 val artFiles =
                     if ("art" in files) assets.list("$slug/art").orEmpty().toSet() else emptySet()
-                val iconAsset = "icon.png".takeIf { it in artFiles }?.let { "$slug/art/icon.png" }
-                val cardAsset = listOf("card.png", "card.jpg", "card.jpeg")
-                    .firstOrNull { it in artFiles }
-                    ?.let { "$slug/art/$it" }
+                fun declaredArt(slot: String): String? =
+                    pack.theme?.art?.get(slot)?.let { "$slug/$it" }
+                val iconAsset = declaredArt("icon")
+                    ?: "icon.png".takeIf { it in artFiles }?.let { "$slug/art/icon.png" }
+                val cardAsset = declaredArt("card")
+                    ?: listOf("card.png", "card.jpg", "card.jpeg")
+                        .firstOrNull { it in artFiles }
+                        ?.let { "$slug/art/$it" }
                 result += LoadedPack(
                     slug = slug,
                     pack = pack,
