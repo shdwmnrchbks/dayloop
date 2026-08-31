@@ -179,6 +179,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     onOpenCalendar = { nav.navigate("calendar") { launchSingleTop = true } },
                     onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
                     onOpenActivities = { nav.navigate("activities") { launchSingleTop = true } },
+                    // The Today answer-sheet card taps through to the full
+                    // Answers tab (exam answers now surface on the tracker).
+                    onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
                 )
             }
             composable("day/{date}") { entry ->

@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.data.byId
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.slotLabels
@@ -42,6 +43,7 @@ import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
+import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedOverCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedStep
 import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
@@ -76,6 +78,7 @@ fun TodayScreen(
     onOpenSettings: () -> Unit,
     onOpenActivities: () -> Unit = {},
     onOpenActivity: (String) -> Unit = {},
+    onOpenAnswers: () -> Unit = {},
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected
@@ -181,6 +184,23 @@ fun TodayScreen(
                 moonMarked = deadlineStart(deadline) in moonMarkedDates,
                 kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
             )
+        }
+
+        // Exam answers on the daily tracker (docs/PLAN.md Phase 5): when the
+        // current day has an authored answer sheet — the morning of an exam
+        // or a class question — the accepted answers render right on Today,
+        // where the user is checking the day off, instead of living only on
+        // the full day page and the Answers tab. Same guarded affordance as
+        // the Day screen: only in packs declaring `capabilities.answers`,
+        // only on days that actually carry a sheet.
+        if (pack.pack.capabilities.answers) {
+            pack.answersByDate[date]?.let { sheet ->
+                AnswerSheetCard(
+                    sheet = sheet,
+                    onOpenAnswers = onOpenAnswers,
+                    deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
+                )
+            }
         }
 
         if (state.orphans.isNotEmpty()) {
