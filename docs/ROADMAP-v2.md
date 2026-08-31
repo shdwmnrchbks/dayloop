@@ -1,0 +1,165 @@
+# dayloop — UX Roadmap v2 (Phases 7–10)
+
+Post-release roadmap (v0.1.0 shipped). Phases 0–6 in `docs/PLAN.md` are done; this
+doc continues the numbering and focuses on how the app *feels* rather than what it
+contains. Architecture rules from `docs/PLAN.md` §3 (engine neutrality, pack-supplied
+labels, ID discipline) still apply everywhere below.
+
+| # | Ask | Phase |
+|---|-----|-------|
+| 1 | First-run game picker; pack switcher out of the top bar, into Settings | Phase 7 |
+| 2 | UI tailored to the pack (no Answers/Exam tab for Metaphor) | Phase 8 |
+| 3 | Every fact in the packs actually served by the app | Phase 9 |
+| 4 | Per-pack theme & visual identity, incl. graphic assets | Phase 10 |
+
+---
+
+## Phase 7 — First-run onboarding & pack selection relocation
+
+**Status: shipped in v0.2.0.** As specified, plus these resolutions:
+- The picker is a **swipeable carousel of cover-art cards** (owner request, refined from
+  the first grid take): `HorizontalPager` with peeking neighbors, page dots, and a
+  scrim-overlaid title block. Each pack's card renders its own `art/card.png|jpg`
+  (owner-supplied covers, copied into the pack asset dirs); packs without art get a
+  centered monogram fallback. Small tiles elsewhere (Settings rows) keep the separate
+  `art/icon.png` slot with the same monogram fallback (`PackIcon`); both art slots are
+  deliberately schema-free conventions — Phase 10 formalizes art slots in pack.json.
+- Returning v0.1.0 users with no persisted selection see the picker once (their profiles
+  and marks are untouched — profiles belong to packs, §3.7). The planned "restore
+  prompt" was dropped: `ensureProfiles` bootstraps profiles for every pack, so
+  "has progress" can't distinguish fresh from legacy installs; the one-time picker is
+  the honest flow either way.
+- Single-pack installs skip the picker (auto-selected and persisted).
+
+**Goal:** a fresh install opens with "which game are we tracking?", not a hot-swappable
+dropdown. Pack switching remains possible but lives in Settings.
+
+Current state: `PackStore` auto-selects the most complete pack on first launch;
+`AppRoot.DayloopTopBar` renders a pack DropdownMenu; `SettingsScreen` has no pack section.
+
+Work items:
+- **First-run detection:** "no persisted `selectedPack` in DataStore" = first run.
+  `PackStore` must stop auto-selecting in that case (`selectedSlug = null`); only
+  restore a persisted selection when one exists.
+- **Onboarding route** (`"onboarding"`, outside the bottom-nav tabs):
+  - Short app intro (one screen, not a wizard): what dayloop is + the fan-tool
+    disclaimer (per-pack art per the Phase 10 decision rides on these cards).
+  - One card per loaded pack: title, calendar range (pack-formatted), authored-day
+    count, and the subsystems it includes (from Phase 8 capabilities: exams/answers,
+    routes). Card tap = `selectPack(slug)` + navigate Today.
+  - Edge cases: DataStore has profiles but no selection (restore prompt, don't re-greet
+    as if new); only one pack installed → skip the picker, show a "you're tracking X"
+    confirm.
+- **Top bar de-swap:** remove the DropdownMenu from `DayloopTopBar`; title becomes the
+  active pack title as plain text. Search/Settings actions stay.
+- **Settings "Game" section** (top of `SettingsScreen`): pack list with the active one
+  marked; tap to switch via existing `vm.selectPack`; each row shows per-pack profile
+  count so it's clear saves are not lost (§3.7 profiles belong to packs).
+- Update README Status line: onboarding + capability UI are Phase 7–8.
+
+Acceptance:
+- Fresh install → onboarding card list → pick → lands on Today; killing/reopening the
+  app goes straight to Today for the chosen pack.
+- No pack switcher in the top bar; switching works from Settings with per-pack profiles
+  intact; a pack with zero profiles starts a fresh clock.
+
+## Phase 8 — Capability-driven UI (pack-tailored tabs & screens)
+
+**Goal:** the navigation and screens adapt to what the active pack actually contains.
+Metaphor gets no Answers/Exam tab; nothing engine-side knows that fact — the pack does.
+
+Current state: `Capabilities` has only `exams`/`weather`; `AppRoot.TopLevelRoutes`
+hardcodes all five tabs; Metaphor ships no `answers.json` yet still gets an Answers tab.
+
+Work items:
+- **Extend the capability manifest** (`Pack.kt` `Capabilities`): add
+  `answers: Boolean = false` (exam + class-question answer sheets). Keep the closed-set
+  rule (§3.1): new booleans are additive, never per-game flags.
+- **Backfill pack.json:** p5r/p3r `answers=true`; metaphor `answers=false` (omit = false).
+- **packlint cross-checks:** `capabilities.answers == true` ⇔ `answers.json` exists and
+  is non-empty; a pack declaring capabilities for files it doesn't ship fails lint (and
+  vice versa).
+- **Derived navigation:** build the tab list from the active pack (answers tab only when
+  `capabilities.answers`; bonds/deadlines tabs only when the pack ships those files) —
+  tab *count and order* become data-driven. Destinations stay registered so deep links
+  never 404; tabs are what's filtered.
+- **Guarded entry points:** DayScreen's answers affordance renders only on days that
+  have an `AnswerSheet` in packs with the capability; Search results never link to
+  hidden surfaces; the widget never promises a surface the pack lacks.
+- Empty-state audit: any list the pack can legitimately ship empty (routes > 1, bonds)
+  gets a real empty state, not a blank column.
+
+Acceptance:
+- Metaphor shows 4 tabs (Today/Calendar/Bonds/Deadlines); P5R/P3R show 5.
+- No route reaches a screen whose data source the pack doesn't ship; packlint fails on
+  manifest/file disagreement.
+
+## Phase 9 — Data completeness: every pack fact served
+
+**Goal:** "served accordingly" is checkable, not vibes. Every field in the pack schema
+is either rendered somewhere, reachable in ≤3 taps, or documented as intentionally
+unserved with a reason.
+
+Current state: the schema (`core/pack/.../schema/`) is richer than the UI in places.
+Seed suspects for the audit (verify, then fix or document):
+- `RankStep.gates` / `location` / `availableFrom` / `availableUntil` — the §3.3 promise
+  of *"why is this locked today?"* is the biggest unserved feature candidate.
+- `Activity.location` / `Activity.notes` — activities surface via walkthrough steps, but
+  is there any way to browse the pack's activities themselves (stat gains, locations)?
+- `Day.dayKind` / `Day.notes` — rendered distinctly, or flattened into steps?
+- `Step.statGains` / `Step.spoiler` — shown per step? Spoiler behavior consistent with
+  §6 progressive disclosure?
+- `Bond.characterLabel`, `AnswerSheet.deadlineRef` (answer sheet ⇄ deadline cross-link).
+- Route labels/descriptions surfaced outside Settings profile pinning.
+
+Work items:
+- **`docs/data-coverage.md`** — a matrix: schema field → serving surface (composable) →
+  status (served / partially served / unserved / intentionally not). Kept honest by a
+  checklist in the doc; updated with every schema change.
+- Gaps become small work items inside this phase, grouped by screen, each one commit.
+- Where cheap, add JVM tests (e.g., every `deadlineRef` resolves to a real deadline).
+
+Acceptance:
+- Matrix has zero "unknown" cells; every pack fact is reachable or documented.
+- Packlint + unit tests still green on all three packs.
+
+## Phase 10 — Per-pack theme & visual identity
+
+**Goal:** switching games switches the skin — PLAN.md §3.5 finally wired end to end.
+
+Work items:
+- **Theme rides in the pack:** `pack.json` gains an optional `theme` block
+  (`accent`/`accentDark` seed colors, optional motif token). `Theme.kt` maps the active
+  pack's theme → Material 3 `ColorScheme` (hand-tuned dark *and* light pairs per pack;
+  fall back to the current lantern scheme when a pack declares none). No hardcoded game
+  names in Kotlin — the pack supplies everything.
+- **Vocabulary already pack-driven** (bond → Confidant/Social Link/Follower) — extend to
+  any engine term the UI prints (stat groups, deadline kinds) so no game leaks through.
+- **Graphic assets — DECIDED (2026-08-31): bundle curated art from the guide sources**
+  (option c). Owner's call: fan-made, non-commercial, private repo. Implications:
+  - Source material: the gitignored `*_Guide_AI_Package/images/` sets. Curate
+    selectively (don't bulk-copy) into `content/packs/<slug>/art/` — the existing
+    `assets.srcDir(content/packs)` ships it with no build changes.
+  - Art gets committed to the private repo per this decision; PLAN.md §9 now carries a
+    "strip game-derived art before any public flip" item — a future public flip means
+    removing art and reverting to the original-motif identity (option a).
+  - Art slots are named in `pack.json` `theme` (e.g. onboarding hero, header motif,
+    bond-kind icon) so the engine stays data-driven and swapping art is a content
+    change, never code.
+- Onboarding cards (Phase 7) and the Settings game list get the per-pack treatment;
+  the Glance widget inherits the active pack's accent so the home screen matches.
+
+Acceptance:
+- Switching packs in Settings recolors app + widget without restart; dark and light
+  both hold contrast; zero game-title strings or game-derived binaries in git.
+
+---
+
+## Deferred / unchanged
+
+- Release hardening (R8/minify, versioning discipline, CI) — still planned, unscheduled;
+  Phase 9's JVM tests should land CI-ready.
+- P4G and future packs stay drop-in: every phase above is engine-neutral by construction
+  (capabilities, labels, theme all come from data).
+- Import packs from device storage: not scheduled; Phase 7's onboarding assumes bundled
+  packs only until that exists.

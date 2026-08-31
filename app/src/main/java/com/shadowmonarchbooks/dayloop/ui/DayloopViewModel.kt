@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.PackStore
+import com.shadowmonarchbooks.dayloop.data.PacksState
 import com.shadowmonarchbooks.dayloop.data.progress.PackSeed
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
 import com.shadowmonarchbooks.dayloop.data.progress.ProfileEntity
@@ -48,6 +49,8 @@ data class ProfileUi(
 data class DayloopUiState(
     val packs: List<LoadedPack> = emptyList(),
     val selectedSlug: String? = null,
+    /** False on a cold start until the persisted selection has been read. */
+    val selectionReady: Boolean = true,
     val profiles: List<ProfileUi> = emptyList(),
     val activeProfile: ProfileUi? = null,
     val activeRouteId: String = Routes.DEFAULT,
@@ -109,7 +112,7 @@ class DayloopViewModel @Inject constructor(
             val slug = packs.selectedSlug
             val pack = packs.packs.firstOrNull { it.slug == slug }
             if (slug == null || pack == null) {
-                flowOf(DayloopUiState(packs = packs.packs))
+                flowOf(DayloopUiState(packs = packs.packs, selectionReady = packs.selectionReady))
             } else {
                 combine(
                     repo.profilesFor(slug),
@@ -121,12 +124,30 @@ class DayloopViewModel @Inject constructor(
                         val marksFlow = active?.let { repo.marksFor(it.id) }
                             ?: flowOf(emptyList())
                         marksFlow.map { rows ->
-                            buildUiState(packs.packs, slug, pack, profiles, active, rows)
+                            buildUiState(packs, pack, profiles, active, rows)
                         }
                     }
             }
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), DayloopUiState())
+
+    /**
+     * Saved-profile count per pack slug (Settings "Game" rows, ROADMAP-v2
+     * Phase 7) — makes it visible that switching packs never drops saves.
+     */
+    val profileCounts: StateFlow<Map<String, Int>> = store.state
+        .flatMapLatest { packsState ->
+            if (packsState.packs.isEmpty()) {
+                flowOf(emptyMap())
+            } else {
+                combine(
+                    packsState.packs.map { loaded ->
+                        repo.profilesFor(loaded.slug).map { rows -> loaded.slug to rows.size }
+                    },
+                ) { entries -> entries.toMap() }
+            }
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyMap())
 
     init {
         // First-run bootstrap: one profile per installed pack, valid active pointer.
@@ -194,8 +215,7 @@ class DayloopViewModel @Inject constructor(
     // ---- Helpers ----
 
     private fun buildUiState(
-        packs: List<LoadedPack>,
-        slug: String,
+        packsState: PacksState,
         pack: LoadedPack,
         profiles: List<ProfileEntity>,
         active: ProfileEntity?,
@@ -213,8 +233,9 @@ class DayloopViewModel @Inject constructor(
         val days = pack.daysByRoute[routeId].orEmpty()
         val stepCounts = days.mapValues { (_, day) -> day.steps.size }
         return DayloopUiState(
-            packs = packs,
-            selectedSlug = slug,
+            packs = packsState.packs,
+            selectedSlug = packsState.selectedSlug,
+            selectionReady = packsState.selectionReady,
             profiles = profiles.map { it.toUi() },
             activeProfile = active?.toUi(),
             activeRouteId = routeId,

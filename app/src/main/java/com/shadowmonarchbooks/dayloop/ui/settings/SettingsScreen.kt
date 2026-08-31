@@ -38,6 +38,7 @@ import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 
 /**
  * Settings (docs/PLAN.md §5): advance/reroll/reset the in-game clock, manage
@@ -47,6 +48,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 @Composable
 fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
     val state by vm.state.collectAsState()
+    val profileCounts by vm.profileCounts.collectAsState()
     val pack = state.selected ?: run {
         EmptyState("No pack selected.")
         return
@@ -65,6 +67,41 @@ fun SettingsScreen(vm: DayloopViewModel = hiltViewModel()) {
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
+        // ---- Game (docs/ROADMAP-v2.md Phase 7: pack switching lives here,
+        //      no longer in the top bar) ----
+        SectionTitle("Game")
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                state.packs.forEach { loaded ->
+                    val active = loaded.slug == state.selectedSlug
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        RadioButton(selected = active, onClick = { vm.selectPack(loaded.slug) })
+                        PackIcon(loaded.iconAsset, loaded.pack.title, size = 36.dp)
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                text = loaded.pack.title,
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontWeight = if (active) FontWeight.SemiBold else null,
+                            )
+                            val count = profileCounts[loaded.slug] ?: 0
+                            Text(
+                                text = if (count == 1) "1 saved profile" else "$count saved profiles",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
         // ---- In-game clock ----
         SectionTitle("In-game clock")
         Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {

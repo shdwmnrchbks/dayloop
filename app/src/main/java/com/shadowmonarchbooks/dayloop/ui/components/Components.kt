@@ -1,5 +1,7 @@
 package com.shadowmonarchbooks.dayloop.ui.components
 
+import android.graphics.BitmapFactory
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,13 +24,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
@@ -36,6 +44,8 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.progress.DayProgress
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /** Vocabulary-free day-kind chip, spoiler-gated step rows, and deadline banner. */
 
@@ -374,6 +384,75 @@ fun AnswerSheetCard(
                 Text(
                     text = "${i + 1}. $answer",
                     style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        }
+    }
+}
+
+/** Up to three word-initials of the pack title — a generic, art-free tile. */
+private fun monogramOf(title: String): String =
+    title.split(Regex("[^\\p{L}\\p{N}]+"))
+        .filter { it.isNotBlank() }
+        .take(3)
+        .map { it.first().uppercaseChar() }
+        .joinToString("")
+        .ifEmpty { "?" }
+
+/**
+ * Decodes a packed asset image off the main thread; null when the asset is
+ * missing or unreadable. Shared by pack tile icons and carousel cover art.
+ */
+@Composable
+fun rememberAssetImage(path: String?): ImageBitmap? {
+    val context = LocalContext.current
+    return produceState<ImageBitmap?>(initialValue = null, key1 = path) {
+        value = path?.let { asset ->
+            withContext(Dispatchers.IO) {
+                runCatching {
+                    context.assets.open(asset).use { stream ->
+                        BitmapFactory.decodeStream(stream)?.asImageBitmap()
+                    }
+                }.getOrNull()
+            }
+        }
+    }.value
+}
+
+/**
+ * Pack-supplied tile icon (ROADMAP-v2 Phase 7): loads the pack's own
+ * `art/icon.png` asset when it ships one, otherwise falls back to a monogram
+ * tile. Engine stays neutral — the pack (or Phase 10 art) supplies the look.
+ */
+@Composable
+fun PackIcon(
+    iconAsset: String?,
+    title: String,
+    modifier: Modifier = Modifier,
+    size: Dp = 96.dp,
+) {
+    val bitmap = rememberAssetImage(iconAsset)
+    val shape = RoundedCornerShape(22.dp)
+    Surface(
+        shape = shape,
+        color = MaterialTheme.colorScheme.primaryContainer,
+        modifier = modifier.size(size),
+    ) {
+        val bmp = bitmap
+        if (bmp != null) {
+            Image(
+                bitmap = bmp,
+                contentDescription = title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize(),
+            )
+        } else {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = monogramOf(title),
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
             }
         }

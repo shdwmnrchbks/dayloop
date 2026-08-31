@@ -85,7 +85,7 @@ Game-switcher lists installed packs (bundled now, imported later); separate prof
 
 - **Design for three, build one.** Before mass-authoring P5R, throwaway mini-packs exercise the schema: one Metaphor month (`dayCounter`, virtue gates, remaining-day counters) and one P3R month (same `weekdayGrid` model as P5R, but a different stat set and different gate shapes, e.g. full-moon-operation-style deadlines). Both must render through the same engine unmodified before Phase 4 authoring begins.
 - **Facts vs prose.** Schedules, thresholds, dates, exam answers = facts (safe to structure). Guide sentences = rewritten in our own words.
-- **No game assets ever bundled.** Original typography/shapes only; unofficial-fan-tool naming ready for public flip.
+- **No game assets ever bundled.** Original typography/shapes only; unofficial-fan-tool naming ready for public flip. *(Amended 2026-08-31, ROADMAP-v2 Phase 10: curated guide-derived art is allowed for the private, non-commercial build; strip before any public flip.)*
 
 ## 5. Architecture table
 
@@ -133,6 +133,7 @@ Today (hero: current slot, next action, deadline bar) → Day detail (slot-by-sl
 - [x] Code license separable (MIT) from content licensing (CC BY when public)
 - [x] Unofficial fan-tool positioning baked into identity
 - [ ] Content licensing headers added to packs before any public flip
+- [ ] Strip bundled game-derived art before any public flip (ROADMAP-v2 Phase 10 decision)
 - [ ] Icon/name trademark sweep before Play Store submission
 
 ## 10. Content sources policy

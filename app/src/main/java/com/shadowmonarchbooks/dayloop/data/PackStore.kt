@@ -22,6 +22,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /**
@@ -38,6 +39,17 @@ data class LoadedPack(
     val answersByDate: Map<String, AnswerSheet> = emptyMap(),
     /** routeId -> (ISO date -> authored day). */
     val daysByRoute: Map<String, Map<String, Day>> = emptyMap(),
+    /**
+     * Pack-supplied tile art asset (e.g. "<slug>/art/icon.png"), null when the
+     * pack ships none (docs/ROADMAP-v2.md Phase 7 grid cards). Conventional
+     * path for now; Phase 10 formalizes art slots in pack.json `theme`.
+     */
+    val iconAsset: String? = null,
+    /**
+     * Pack-supplied cover art for the onboarding carousel card:
+     * "<slug>/art/card.png|jpg|jpeg", null when the pack ships none.
+     */
+    val cardAsset: String? = null,
 ) {
     /** The pack's game calendar (cycle/weekday lookups, deadline day math). */
     val calendar: GameCalendar? by lazy { GameCalendar.of(pack.calendar) }
@@ -60,6 +72,13 @@ data class LoadedPack(
 data class PacksState(
     val packs: List<LoadedPack> = emptyList(),
     val selectedSlug: String? = null,
+    /**
+     * True once the persisted selection has been read from DataStore. False on
+     * a cold start until then — the UI shows a loading shell, never the
+     * onboarding, so returning users don't get a flash of the picker
+     * (docs/ROADMAP-v2.md Phase 7).
+     */
+    val selectionReady: Boolean = false,
     // The in-game clock moved to the persisted profile in Phase 3; this state
     // stays a read-only registry of loaded packs + selection.
 ) {
@@ -85,19 +104,27 @@ class PackStore @Inject constructor(
 
     init {
         val packs = loadAll(context)
-        // Default: the most complete pack (most authored default-route days),
-        // so placeholder/fit-check packs never hijack first launch. Ties fall
-        // back to the sorted asset order.
-        val first = packs.maxByOrNull { it.daysByRoute[Routes.DEFAULT].orEmpty().size }
-        _state.value = PacksState(
-            packs = packs,
-            selectedSlug = first?.slug,
-        )
-        // Reopen on the pack the user last selected (docs/PLAN.md §3.7: the
-        // engine never names a specific pack).
+        // No auto-selected pack: the UI decides between the onboarding grid
+        // (fresh install / no persisted choice) and restoring the persisted
+        // selection once DataStore answers (docs/ROADMAP-v2.md Phase 7).
+        _state.value = PacksState(packs = packs)
+        scope.launch {
+            val persisted = repo.selectedPack().first()
+            val resolved = persisted?.takeIf { slug -> packs.any { it.slug == slug } }
+                // Single-pack installs skip the picker — there's no choice to make.
+                ?: packs.singleOrNull()?.slug
+            _state.value = _state.value.copy(selectedSlug = resolved, selectionReady = true)
+            // Persist single-pack auto-selection so the picker never re-shows.
+            if (persisted == null && resolved != null) repo.selectPack(resolved)
+        }
+        // Re-apply the persisted choice whenever it changes under us; no-op
+        // for selections made in-app (they persist before this observes them).
         scope.launch {
             repo.selectedPack().collect { persisted ->
-                if (persisted != null && packs.any { it.slug == persisted }) {
+                if (persisted != null && _state.value.selectionReady &&
+                    packs.any { it.slug == persisted } &&
+                    _state.value.selectedSlug != persisted
+                ) {
                     _state.value = _state.value.copy(selectedSlug = persisted)
                 }
             }
@@ -155,7 +182,25 @@ class PackStore @Inject constructor(
                         }
                     }
                 }
-                result += LoadedPack(slug, pack, bonds, deadlines, activities, answers, daysByRoute)
+                // Optional pack art (ROADMAP-v2 Phase 7/10): art/icon.png feeds
+                // small tiles, art/card.(png|jpg) feeds the onboarding carousel.
+                val artFiles =
+                    if ("art" in files) assets.list("$slug/art").orEmpty().toSet() else emptySet()
+                val iconAsset = "icon.png".takeIf { it in artFiles }?.let { "$slug/art/icon.png" }
+                val cardAsset = listOf("card.png", "card.jpg", "card.jpeg")
+                    .firstOrNull { it in artFiles }
+                    ?.let { "$slug/art/$it" }
+                result += LoadedPack(
+                    slug = slug,
+                    pack = pack,
+                    bonds = bonds,
+                    deadlines = deadlines,
+                    activities = activities,
+                    answersByDate = answers,
+                    daysByRoute = daysByRoute,
+                    iconAsset = iconAsset,
+                    cardAsset = cardAsset,
+                )
             } catch (_: Exception) {
                 // A broken pack must never take the app down; lint guards content quality.
                 continue
