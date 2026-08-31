@@ -22,6 +22,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,6 +42,7 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
+import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
  * Settings (docs/PLAN.md §5): advance/reroll/reset the in-game clock, manage
@@ -66,6 +69,7 @@ fun SettingsScreen(
     var renameTarget by remember { mutableStateOf<ProfileUi?>(null) }
     var createOpen by remember { mutableStateOf(false) }
     val hasMultipleRoutes = pack.routes.size > 1
+    val view = LocalView.current
 
     Column(
         verticalArrangement = Arrangement.spacedBy(18.dp),
@@ -148,7 +152,17 @@ fun SettingsScreen(
                     fontWeight = FontWeight.SemiBold,
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Button(onClick = vm::endDay, enabled = state.hasNextDay()) {
+                    // Day advance here gets the same light haptic tick + the
+                    // pack's `advance` sound (if Skin sounds are on) as the
+                    // End-Day button (docs/ROADMAP-v3.md Phase 16).
+                    Button(
+                        onClick = {
+                            view.skinTick()
+                            vm.skinFx.play("advance")
+                            vm.endDay()
+                        },
+                        enabled = state.hasNextDay(),
+                    ) {
                         Text("Advance a day")
                     }
                     OutlinedButton(onClick = vm::rerollDay, enabled = state.hasPreviousDay()) {
@@ -163,6 +177,36 @@ fun SettingsScreen(
                         text = "Pack content was updated after this save was made.",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.tertiary,
+                    )
+                }
+            }
+        }
+
+        // ---- Skin sounds (docs/ROADMAP-v3.md Phase 16): opt-in, muted by
+        // default. Only shown when the active pack actually bundles SFX —
+        // the toggle would be a no-op otherwise. ----
+        if (pack.pack.theme?.sfx?.isNotEmpty() == true) {
+            val soundsEnabled by vm.soundsEnabled.collectAsState()
+            SectionTitle("Skin sounds")
+            Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                ) {
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        Text(
+                            text = "Play ${pack.pack.title}'s bundled sound effects",
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                        Text(
+                            text = "Off by default; when on, short bundled blips play for step marks, End-Day, and a perfect day. Never on the home-screen widget.",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Switch(
+                        checked = soundsEnabled,
+                        onCheckedChange = vm::setSkinSounds,
                     )
                 }
             }

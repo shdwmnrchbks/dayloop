@@ -16,6 +16,7 @@ import com.shadowmonarchbooks.dayloop.progress.Clock
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinFx
 import com.shadowmonarchbooks.dayloop.widget.WidgetUpdater
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -105,7 +106,14 @@ class DayloopViewModel @Inject constructor(
     private val store: PackStore,
     private val repo: ProgressRepository,
     private val widgetUpdater: WidgetUpdater,
+    /** Feedback layer (docs/ROADMAP-v3.md Phase 16); exposed for the UI. */
+    val skinFx: SkinFx,
 ) : ViewModel() {
+
+    /** The persisted "Skin sounds" toggle, for the Settings screen. */
+    val soundsEnabled: StateFlow<Boolean> = skinFx.soundsEnabled
+
+    fun setSkinSounds(enabled: Boolean) = skinFx.setSoundsEnabled(enabled)
 
     val state: StateFlow<DayloopUiState> = store.state
         .flatMapLatest { packs ->
@@ -163,9 +171,20 @@ class DayloopViewModel @Inject constructor(
                 },
             )
         }
-        // Keep the widget in sync with any state change (clock, marks, profiles).
+        // Keep the widget in sync with any state change (clock, marks,
+        // profiles), and keep the feedback layer's bundled sounds bound to
+        // the active pack (docs/ROADMAP-v3.md Phase 16).
+        var boundSlug: String? = null
         viewModelScope.launch {
-            state.collect { widgetUpdater.requestPush() }
+            state.collect { s ->
+                widgetUpdater.requestPush()
+                val slug = s.selectedSlug
+                if (slug != boundSlug) {
+                    boundSlug = slug
+                    val selected = s.selected
+                    skinFx.bind(slug, selected?.pack?.theme?.sfx ?: emptyMap())
+                }
+            }
         }
     }
 

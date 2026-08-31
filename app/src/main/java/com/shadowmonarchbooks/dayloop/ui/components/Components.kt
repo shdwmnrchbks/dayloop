@@ -2,6 +2,9 @@ package com.shadowmonarchbooks.dayloop.ui.components
 
 import android.graphics.BitmapFactory
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.snap
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,6 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -57,8 +61,11 @@ import com.shadowmonarchbooks.dayloop.progress.DayProgress
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.MoonFillBadge
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
 import com.shadowmonarchbooks.dayloop.ui.skin.revealTransform
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinStrike
@@ -210,8 +217,24 @@ private fun MarkButton(
     onToggle: (StepMark) -> Unit,
 ) {
     val active = selected == mark
+    val skin = LocalSkin.current
+    // Phase 16 (docs/ROADMAP-v3.md): every mark tap gives a light haptic tick
+    // and — only when the user enabled Skin sounds — the pack's `tap` blip.
+    val feedback = rememberMarkFeedback()
+    // Done-mark micro-animation, per motif family: the moon language fills a
+    // disc like a moon phase, the crown language stamps a wax seal; the slash
+    // language's sweep runs on the step label itself (StepRow). Engine look:
+    // instant color swap, unchanged.
+    val fx by animateFloatAsState(
+        targetValue = if (active && mark == StepMark.DONE && skin.hasSkin) 1f else 0f,
+        animationSpec = tween(SkinFxTiming.MARK_MS),
+        label = "markFx",
+    )
     IconButton(
-        onClick = { onToggle(mark) },
+        onClick = {
+            feedback()
+            onToggle(mark)
+        },
         modifier = Modifier.size(30.dp),
         colors = if (active) {
             when (mark) {
@@ -223,7 +246,35 @@ private fun MarkButton(
             IconButtonDefaults.iconButtonColors()
         },
     ) {
-        icon()
+        Box(contentAlignment = Alignment.Center) {
+            if (mark == StepMark.DONE && skin.hasSkin && fx > 0f) {
+                when (skin.motif) {
+                    "moon" -> MoonFillBadge(
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.30f * fx),
+                        modifier = Modifier.size(26.dp),
+                    )
+                    "crown" -> Box(
+                        modifier = Modifier
+                            .size(26.dp)
+                            .graphicsLayer {
+                                scaleX = 1.4f - 0.4f * fx
+                                scaleY = 1.4f - 0.4f * fx
+                                alpha = fx
+                            }
+                            .background(MaterialTheme.colorScheme.primary, skin.shapes.chip),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(11.dp)
+                                .background(Color.White.copy(alpha = 0.35f), CircleShape),
+                        )
+                    }
+                    else -> Unit
+                }
+            }
+            icon()
+        }
     }
 }
 
@@ -248,6 +299,15 @@ fun StepRow(
     var revealed by remember(step.label, index) { mutableStateOf(false) }
     val skin = LocalSkin.current
     val animationsDisabled = rememberAnimationsDisabled()
+    // Phase 16 mark micro-animation (slash language): the rising strike
+    // sweeps in at mark speed instead of snapping. Skins without the slash
+    // grammar keep the plain strikethrough; the system remove-animations
+    // setting collapses the sweep to an instant jump.
+    val strikeProgress by animateFloatAsState(
+        targetValue = if (mark == StepMark.DONE && skin.motion == "slash") 1f else 0f,
+        animationSpec = if (animationsDisabled) snap() else tween(SkinFxTiming.MARK_MS),
+        label = "strikeSweep",
+    )
     Row(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -309,6 +369,7 @@ fun StepRow(
                             modifier = Modifier.skinStrike(
                                 enabled = mark == StepMark.DONE && skin.motion == "slash",
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                                progress = strikeProgress,
                             ),
                         )
                         step.activityRef?.let { ref ->
@@ -897,7 +958,8 @@ fun MediaChip(
 
 /**
  * A horizontal strip of media chips (does not wrap; scrolls horizontally).
- * Renders nothing when the pack has no media anchored here.
+ * Renders nothing when the pack has no media anchored here. Used for the
+ * date-anchored day art, where a handful of chips reads naturally in a row.
  */
 @Composable
 fun MediaStrip(
@@ -910,6 +972,30 @@ fun MediaStrip(
         modifier = modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState()),
+    ) {
+        items.forEach { (asset, title) -> MediaChip(assetPath = asset, title = title) }
+    }
+}
+
+/**
+ * A vertical list of media chips that scrolls within the height it is given —
+ * the calendar's month-achievement list. A vertical list keeps every chip's
+ * full title readable and grows downward under the month grid instead of
+ * fighting it for width; [modifier] should bound the height (e.g.
+ * `Modifier.heightIn(max = …)`) so long lists scroll instead of pushing the
+ * grid off screen. Renders nothing when nothing is anchored here.
+ */
+@Composable
+fun MediaList(
+    items: List<Pair<String, String>>,
+    modifier: Modifier = Modifier,
+) {
+    if (items.isEmpty()) return
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState()),
     ) {
         items.forEach { (asset, title) -> MediaChip(assetPath = asset, title = title) }
     }

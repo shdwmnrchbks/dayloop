@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.today
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -22,10 +23,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
@@ -36,6 +40,7 @@ import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
+import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedOverCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedStep
@@ -47,12 +52,21 @@ import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.StepsList
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
+import com.shadowmonarchbooks.dayloop.ui.skin.AdvanceFx
+import com.shadowmonarchbooks.dayloop.ui.skin.DayAdvanceOverlay
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
+import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
  * Hero screen: the persisted in-game clock (End-Day), today's checkbox steps,
- * the carried-over queue, and the next deadline (docs/PLAN.md §5/§6).
+ * the carried-over queue, and the next deadline (docs/PLAN.md §5/§6). End-Day
+ * plays the skin's day-advance sequence (docs/ROADMAP-v3.md Phase 16) —
+ * skippable, ≤400 ms, nothing at all under remove-animations — and a
+ * perfect-day splash rises when every authored step of the day is Done.
  */
 @Composable
 fun TodayScreen(
@@ -71,6 +85,11 @@ fun TodayScreen(
         return
     }
 
+    val skin = LocalSkin.current
+    val skinFx = LocalSkinFx.current
+    val view = LocalView.current
+    val animationsDisabled = rememberAnimationsDisabled()
+
     val day = state.day(date)
     val upcoming = nextDeadline(pack.deadlines, date, pack.calendar)
     val carried = ProgressLogic.carriedOver(state.marks, date).mapNotNull { key ->
@@ -79,13 +98,35 @@ fun TodayScreen(
         }
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(14.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-    ) {
+    // Day-advance sequence state (docs/ROADMAP-v3.md Phase 16): null = the
+    // instant path. Skinned packs with animations play the per-motif overlay;
+    // the clock commits while the screen is covered.
+    var advance by remember { mutableStateOf<AdvanceFx?>(null) }
+    fun advanceDay() {
+        if (advance != null) return
+        view.skinTick()
+        val motif = skin.motif
+        if (skin.hasSkin && motif != null && !animationsDisabled) {
+            advance = AdvanceFx(
+                motif = motif,
+                steps = day?.steps?.mapIndexed { i, step ->
+                    step.label to (state.markAt(date, i) == StepMark.DONE)
+                }.orEmpty(),
+            )
+        } else {
+            skinFx?.play("advance")
+            vm.endDay()
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        ) {
         state.activeProfile?.let { profile ->
             val routeSuffix = if (pack.routes.size > 1) " · ${pack.routeLabel(state.activeRouteId)}" else ""
             Text(
@@ -111,7 +152,6 @@ fun TodayScreen(
 
         // Crown-language packs (docs/ROADMAP-v3.md Phase 15): the dayCounter's
         // game-month position renders as an ornate plaque under the date.
-        val skin = LocalSkin.current
         val calendar = pack.calendar
         if (skin.motif == "crown" && skin.hasSkin && calendar != null) {
             DayCounterPlaque(date = date, calendar = calendar)
@@ -181,7 +221,7 @@ fun TodayScreen(
             modifier = Modifier.fillMaxWidth(),
         ) {
             Button(
-                onClick = vm::endDay,
+                onClick = ::advanceDay,
                 enabled = state.hasNextDay(),
                 // Skinned packs: the big advance button (ROADMAP-v3 Phase 13)
                 // wears the chip silhouette's slant — except tag-shaped chips
@@ -263,6 +303,29 @@ fun TodayScreen(
                 }
             }
         }
+        }
+
+        // Day-advance sequence (docs/ROADMAP-v3.md Phase 16): the per-skin
+        // overlay; the clock commits while the screen is covered.
+        DayAdvanceOverlay(
+            fx = advance,
+            onCovered = {
+                skinFx?.play("advance")
+                vm.endDay()
+            },
+            onFinished = { advance = null },
+        )
+
+        // Perfect-day splash (Phase 16): engine-triggered, skin-styled, and
+        // never blocking — only the card itself is tappable.
+        PerfectDaySplash(
+            allDone = day != null && day.steps.isNotEmpty() &&
+                day.steps.indices.all { state.markAt(date, it) == StepMark.DONE },
+            key = date,
+            modifier = Modifier
+                .align(Alignment.Center)
+                .padding(horizontal = 32.dp),
+        )
     }
 }
 

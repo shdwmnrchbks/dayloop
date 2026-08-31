@@ -22,6 +22,9 @@ class SkinTokensTest {
             SkinTokens.SHAPES,
         )
         assertEquals(setOf("slash", "fade", "flip", "none"), SkinTokens.MOTIONS)
+        assertEquals(setOf("tap", "advance", "complete"), SkinTokens.SFX_SLOTS)
+        assertEquals(setOf("ogg"), SkinTokens.SFX_EXTENSIONS)
+        assertEquals(100L * 1024, SkinTokens.MAX_SFX_BYTES)
         assertEquals(setOf("upper"), SkinTokens.FONT_CASES)
         assertEquals(setOf("header", "panel", "divider"), SkinTokens.DECOR_SLOTS)
         assertEquals(setOf("halftone", "grain", "glass", "filigree"), SkinTokens.DECOR_PAINTERS)

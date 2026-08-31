@@ -412,6 +412,11 @@ object PackLint {
             theme.decor.forEach { (slot, rel) ->
                 issues += checkArtFile(packDir, "theme.decor", slot, rel)
             }
+            // Skin sounds (docs/ROADMAP-v3.md Phase 16): closed-set moment
+            // slots, pack-relative .ogg files within a per-file budget.
+            theme.sfx.forEach { (slot, rel) ->
+                issues += checkSfxFile(packDir, slot, rel)
+            }
             // Contrast rule (docs/ROADMAP-v3.md Phase 12, guardrail 5): the
             // exact scheme the renderer materializes from this pack's seeds
             // must pass WCAG AA on every text-carrying pair, in both modes.
@@ -568,6 +573,31 @@ object PackLint {
                 listOf(err("pack.json", "$what file not found: $rel"))
             rel.substringAfterLast('.').lowercase() !in ART_EXTENSIONS ->
                 listOf(err("pack.json", "$what must be a $ART_EXTENSIONS file: $rel"))
+            else -> emptyList()
+        }
+    }
+
+    /**
+     * Skin-sound rule (docs/ROADMAP-v3.md Phase 16): a `theme.sfx` slot must
+     * be a known moment (tap/advance/complete), point at a pack-relative
+     * .ogg file that exists, and stay within the ≤100 KB per-file budget —
+     * short UI blips, never long clips.
+     */
+    private fun checkSfxFile(packDir: Path, slot: String, rel: String): List<LintIssue> {
+        val what = "theme.sfx['$slot']"
+        val backslash = rel.contains('\\')
+        val exists = packDir.resolve(rel).isRegularFile()
+        return when {
+            slot !in SkinTokens.SFX_SLOTS ->
+                listOf(err("pack.json", "$what is not a sound moment (${SkinTokens.SFX_SLOTS})"))
+            backslash || rel.startsWith('/') || rel.split('/').contains("..") ->
+                listOf(err("pack.json", "$what must be a pack-relative path: '$rel'"))
+            !exists ->
+                listOf(err("pack.json", "$what file not found: $rel"))
+            rel.substringAfterLast('.').lowercase() !in SkinTokens.SFX_EXTENSIONS ->
+                listOf(err("pack.json", "$what must be a ${SkinTokens.SFX_EXTENSIONS} file: $rel"))
+            Files.size(packDir.resolve(rel)) > SkinTokens.MAX_SFX_BYTES ->
+                listOf(err("pack.json", "$what exceeds ${SkinTokens.MAX_SFX_BYTES / 1024} KB: $rel"))
             else -> emptyList()
         }
     }

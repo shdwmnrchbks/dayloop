@@ -169,6 +169,56 @@ class PackLintTest {
         assertTrue(errors.any { "not a lowercase slug token" in it.message }, errors.toString())
     }
 
+    // ---- Skin sounds (docs/ROADMAP-v3.md Phase 16) ----
+
+    @Test
+    fun `skin pack with all three sound moments lints clean`() {
+        val dir = writeSkin(Fixture.skinPack())
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.none { "theme.sfx" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `unknown sfx slot fails`() {
+        val theme = skinTheme().copy(sfx = mapOf("fanfare" to "art/sfx/fanfare.ogg"))
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.sfx['fanfare'] is not a sound moment" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `missing sfx file fails`() {
+        val dir = writeSkin(Fixture.skinPack())
+        Files.delete(dir.resolve("art/sfx/advance.ogg"))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.sfx['advance'] file not found" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `sfx file with a non-ogg extension fails`() {
+        val theme = skinTheme().copy(sfx = mapOf("tap" to "art/sfx/tap.wav"))
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.sfx['tap'] must be a [ogg] file" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `oversized sfx file fails`() {
+        val dir = writeSkin(Fixture.skinPack())
+        val oversized = dir.resolve("art/sfx/complete.ogg")
+        oversized.writeBytes(ByteArray((101 * 1024)))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.sfx['complete'] exceeds 100 KB" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `sfx path escaping the pack dir fails`() {
+        val theme = skinTheme().copy(sfx = mapOf("tap" to "../other/art/sfx/tap.ogg"))
+        val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
+        val errors = PackLint.runOn(dir).errorsIn("pack.json")
+        assertTrue(errors.any { "theme.sfx['tap'] must be a pack-relative path" in it.message }, errors.toString())
+    }
+
     @Test
     fun `theme with seeds passes the contrast rule`() {
         // The skin fixture declares parseable seeds; the generated scheme must

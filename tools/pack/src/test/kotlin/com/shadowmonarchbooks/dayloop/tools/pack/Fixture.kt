@@ -99,7 +99,8 @@ object Fixture {
 
     /**
      * A pack declaring every skin token: all four shape slots, all three font
-     * roles, all three decor slots, a motion token, and a motif family.
+     * roles, all three decor slots, a motion token, a motif family, and all
+     * three sound moments (docs/ROADMAP-v3.md Phase 16).
      */
     fun skinPack() = validPack().copy(
         theme = PackTheme(
@@ -123,13 +124,19 @@ object Fixture {
                 "divider" to "art/decor-divider.png",
             ),
             motion = "slash",
+            sfx = mapOf(
+                "tap" to "art/sfx/tap.ogg",
+                "advance" to "art/sfx/advance.ogg",
+                "complete" to "art/sfx/complete.ogg",
+            ),
         ),
     )
 
-    /** Writes every art/font file the skin pack's theme references. */
+    /** Writes every art/font/sfx file the skin pack's theme references. */
     fun writeSkinArt(dir: Path, theme: PackTheme = skinPack().theme!!) {
         val png = java.util.Base64.getDecoder().decode(ONE_PX_PNG_B64)
         val fakeFont = "FAKE-TTF-FOR-LINT-FIXTURE".encodeToByteArray()
+        val fakeOgg = "FAKE-OGG-FOR-LINT-FIXTURE".encodeToByteArray()
         (theme.art.values + theme.decor.values).forEach { rel ->
             val target = dir.resolve(rel)
             Files.createDirectories(target.parent)
@@ -141,6 +148,11 @@ object Fixture {
                 Files.createDirectories(target.parent)
                 target.writeBytes(fakeFont)
             }
+        }
+        theme.sfx.values.forEach { rel ->
+            val target = dir.resolve(rel)
+            Files.createDirectories(target.parent)
+            target.writeBytes(fakeOgg)
         }
     }
 }

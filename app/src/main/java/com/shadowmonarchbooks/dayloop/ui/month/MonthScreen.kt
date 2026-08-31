@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -40,7 +41,7 @@ import com.shadowmonarchbooks.dayloop.data.parseDateOrNull
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
-import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
+import com.shadowmonarchbooks.dayloop.ui.components.MediaList
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import java.time.LocalDate
@@ -114,7 +115,9 @@ fun MonthScreen(
         CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay, dateMarkers = dateMarkers)
 
         // Achievements the guide ties to this month (facts, spoiler-safe):
-        // pack-supplied icon + title chips (docs/ROADMAP-v3.md Phase 11).
+        // pack-supplied icon + title chips (docs/ROADMAP-v3.md Phase 11),
+        // listed vertically under the grid and scrolling within a bounded
+        // region so long lists never push the calendar off screen.
         val monthAchievements = pack.mediaForMonth(month).filter { it.kind == "achievement" }
         if (monthAchievements.isNotEmpty()) {
             Text(
@@ -122,7 +125,10 @@ fun MonthScreen(
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold,
             )
-            MediaStrip(items = monthAchievements.map { pack.assetOf(it) to it.title })
+            MediaList(
+                items = monthAchievements.map { pack.assetOf(it) to it.title },
+                modifier = Modifier.heightIn(max = 220.dp),
+            )
         }
     }
 }

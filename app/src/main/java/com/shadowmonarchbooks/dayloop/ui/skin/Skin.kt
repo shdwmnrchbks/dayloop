@@ -560,18 +560,26 @@ fun rememberAnimationsDisabled(): Boolean {
 /**
  * Diagonal slash strike-through for skinned packs (docs/ROADMAP-v3.md Phase
  * 13): done steps get a rising slash instead of the plain strikethrough.
- * [color] should be the text's own color, dimmed by the caller.
+ * [color] should be the text's own color, dimmed by the caller. [progress]
+ * (docs/ROADMAP-v3.md Phase 16) sweeps the strike in — 0 hides it, 1 is the
+ * full line; animate it at [com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming.MARK_MS]
+ * for the mark micro-animation, or leave the default for a static strike.
  */
-fun Modifier.skinStrike(enabled: Boolean, color: Color): Modifier =
-    if (!enabled) this else drawBehind {
-        if (size.width <= 0f) return@drawBehind
-        val stroke = 1.5.dp.toPx()
-        drawLine(
-            color = color,
-            start = Offset(0f, size.height * 0.82f),
-            end = Offset(size.width, size.height * 0.18f),
-            strokeWidth = stroke,
-        )
+fun Modifier.skinStrike(enabled: Boolean, color: Color, progress: Float = 1f): Modifier =
+    if (!enabled || progress <= 0f) {
+        this
+    } else {
+        drawBehind {
+            if (size.width <= 0f) return@drawBehind
+            val stroke = 1.5.dp.toPx()
+            val t = progress.coerceIn(0f, 1f)
+            drawLine(
+                color = color,
+                start = Offset(0f, size.height * 0.82f),
+                end = Offset(size.width * t, size.height * (0.82f - t * 0.64f)),
+                strokeWidth = stroke,
+            )
+        }
     }
 
 /**

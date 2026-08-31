@@ -174,6 +174,15 @@ data class PackTheme(
     val decor: Map<String, String> = emptyMap(),
     /** Closed-set motion token: "slash" | "fade" | "flip" | "none". Null = engine default. */
     val motion: String? = null,
+    /**
+     * Named sound slots (docs/ROADMAP-v3.md Phase 16), e.g.
+     * `{ "tap": "art/sfx/tap.ogg" }`. Slots are the closed set in
+     * [SkinTokens.SFX_SLOTS]; every declared file is linted for existence,
+     * extension (.ogg) and a ≤100 KB budget. Optional — packs that ship no
+     * audio keep the app silent, and playback only ever happens after the
+     * user enables "Skin sounds" in Settings.
+     */
+    val sfx: Map<String, String> = emptyMap(),
 ) {
     /** The scheme seed for [dark] mode as an ARGB int, or null when undeclared. */
     fun seedArgb(dark: Boolean): Int? {

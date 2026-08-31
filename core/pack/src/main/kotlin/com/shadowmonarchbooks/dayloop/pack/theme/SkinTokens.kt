@@ -34,6 +34,20 @@ object SkinTokens {
     /** `theme.motion` — screen-transition grammar. */
     val MOTIONS = setOf("slash", "fade", "flip", "none")
 
+    /**
+     * `theme.sfx` slots (docs/ROADMAP-v3.md Phase 16): the moment each bundled
+     * sound plays — `tap` on a step-mark toggle, `advance` on End-Day,
+     * `complete` on a perfect day. Slots are closed-set; a pack declares only
+     * the moments it ships audio for.
+     */
+    val SFX_SLOTS = setOf("tap", "advance", "complete")
+
+    /** Sound files must be OGG (SoundPool decodes Vorbis; budgets assume it). */
+    val SFX_EXTENSIONS = setOf("ogg")
+
+    /** Per-file sound budget (docs/ROADMAP-v3.md Phase 16: ≤100 KB each). */
+    const val MAX_SFX_BYTES = 100L * 1024
+
     /** Case transforms a [SkinFont] may request. */
     val FONT_CASES = setOf("upper")
 

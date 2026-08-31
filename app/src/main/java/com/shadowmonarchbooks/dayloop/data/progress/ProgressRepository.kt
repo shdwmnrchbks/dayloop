@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.data.progress
 
 import android.content.Context
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -62,6 +63,18 @@ class ProgressRepository @Inject constructor(
     /** Persist the user's pack choice so the app reopens on the same game. */
     suspend fun selectPack(slug: String) {
         settings.edit { it[stringPreferencesKey("selectedPack")] = slug }
+    }
+
+    /**
+     * The "Skin sounds" toggle (docs/ROADMAP-v3.md Phase 16): opt-in playback
+     * of the active pack's bundled SFX. Persisted app-level (not per pack) —
+     * it is a user preference about sound, not game progress. Default off.
+     */
+    fun skinSounds(): Flow<Boolean> =
+        settings.data.map { it[booleanPreferencesKey("skinSounds")] ?: false }
+
+    suspend fun setSkinSounds(enabled: Boolean) {
+        settings.edit { it[booleanPreferencesKey("skinSounds")] = enabled }
     }
 
     /**

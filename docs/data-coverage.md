@@ -46,6 +46,7 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `theme.style` | Closed-set scheme-character token (tonalSpot/vibrant/expressive/content) → scheme variant in Theme.kt | Served |
 | `theme.motif` | Reserved decorative slug token — declared + lint-validated, no surface consumes it yet | Intentionally not served (reserved for future motif-driven decoration; ROADMAP-v3 Phase 12 promotes it) |
 | `theme.art` | Named art slots: `card` → onboarding carousel cover, `icon` → Settings/PackIcon tiles; unknown slots ride along for future surfaces. packlint validates every declared file | Served (card, icon) |
+| `theme.sfx` | Named sound moments (`tap`/`advance`/`complete`, closed set) → SkinFx playback on mark-toggle/End-Day/perfect-day, only while the user enables "Skin sounds" in Settings; never on the widget. packlint validates slot, .ogg extension, and the ≤100 KB per-file budget. Optional — no bundled pack ships audio yet (v0.11.0 lands the engine capability; files need an OGG encoder to author) | Served when declared |
 
 ## media.json (`MediaFile`, `MediaItem`) — docs/ROADMAP-v3.md Phase 11
 

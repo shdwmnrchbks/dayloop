@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -51,6 +52,7 @@ import com.shadowmonarchbooks.dayloop.ui.onboarding.OnboardingScreen
 import com.shadowmonarchbooks.dayloop.ui.search.SearchScreen
 import com.shadowmonarchbooks.dayloop.ui.settings.SettingsScreen
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.navMotion
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
@@ -107,7 +109,11 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
         if (state.selectedSlug == null) "onboarding" else "today"
     }
 
-    Scaffold(
+    // The feedback layer (docs/ROADMAP-v3.md Phase 16) is app-wide: mark
+    // buttons, End-Day, and the perfect-day splash reach it through
+    // [LocalSkinFx]; the widget never touches it, so it can never sound there.
+    CompositionLocalProvider(LocalSkinFx provides vm.skinFx) {
+        Scaffold(
         topBar = {
             if (route != "onboarding") {
                 DayloopTopBar(
@@ -245,6 +251,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 MediaScreen(vm = vm)
             }
         }
+    }
     }
 }
 
