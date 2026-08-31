@@ -36,6 +36,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -183,7 +184,12 @@ private fun GameCard(
         ?: MaterialTheme.colorScheme.primary
     // …and each card wears its own pack's card silhouette (ROADMAP-v3 Phase
     // 13) — shape-only resolution, no font loading per preview card.
-    val packCardShape = packShape(pack.pack.theme, "card", RoundedCornerShape(24.dp))
+    val packCardShape = packShape(
+        theme = pack.pack.theme,
+        slot = "card",
+        fallback = RoundedCornerShape(24.dp),
+        density = LocalDensity.current,
+    )
     Surface(
         onClick = onSelect,
         shape = packCardShape,

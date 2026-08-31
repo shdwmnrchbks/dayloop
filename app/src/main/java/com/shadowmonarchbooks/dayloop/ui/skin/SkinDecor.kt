@@ -41,10 +41,19 @@ fun Modifier.skinDecor(slot: String, accent: Color = Unspecified): Modifier = co
     val bitmap = rememberDecorBitmap(asset)
     when {
         bitmap != null -> drawBehind {
-            // Stretch the declared art across the decorated area; packs ship
-            // decor sized for the slot, so plain scaling is the honest default.
+            // Draw the declared art aspect-preserving, center-cropped to the
+            // decorated area (ContentScale.Crop semantics). Naive stretching
+            // turned halftone dots into ovals and warped slash bands on
+            // differently-proportioned surfaces (Phase 13 polish).
+            val scale = maxOf(size.width / bitmap.width, size.height / bitmap.height)
+            val cropW = (size.width / scale).toInt().coerceIn(1, bitmap.width)
+            val cropH = (size.height / scale).toInt().coerceIn(1, bitmap.height)
+            val srcX = ((bitmap.width - cropW) / 2f).toInt()
+            val srcY = ((bitmap.height - cropH) / 2f).toInt()
             drawImage(
                 image = bitmap.asImageBitmap(),
+                srcOffset = IntOffset(srcX, srcY),
+                srcSize = IntSize(cropW, cropH),
                 dstOffset = IntOffset.Zero,
                 dstSize = IntSize(size.width.toInt(), size.height.toInt()),
             )

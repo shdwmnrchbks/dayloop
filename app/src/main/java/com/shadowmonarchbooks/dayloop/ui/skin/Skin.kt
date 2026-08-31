@@ -34,13 +34,16 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.theme.SkinTokens
+import kotlin.math.hypot
 import kotlin.random.Random
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -160,7 +163,8 @@ val LocalSkin = staticCompositionLocalOf { SkinSpec.Engine }
 @Composable
 fun rememberSkin(theme: PackTheme?, packSlug: String?): SkinSpec {
     val context = LocalContext.current
-    val base = remember(theme, packSlug) { resolveSkinBase(theme, packSlug) }
+    val density = LocalDensity.current
+    val base = remember(theme, packSlug, density) { resolveSkinBase(theme, packSlug, density) }
     val display = rememberPackFontFamily(theme?.typography?.display?.let { assetPathOf(packSlug, it.file) })
     val title = rememberPackFontFamily(theme?.typography?.title?.let { assetPathOf(packSlug, it.file) })
     val body = rememberPackFontFamily(theme?.typography?.body?.let { assetPathOf(packSlug, it.file) })
@@ -187,17 +191,17 @@ private fun rememberPackFontFamily(assetPath: String?): FontFamily? {
 }
 
 /** Synchronous resolution of everything except font families. */
-private fun resolveSkinBase(theme: PackTheme?, packSlug: String?): SkinSpec {
+private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Density): SkinSpec {
     if (theme == null) return SkinSpec.Engine
     val motif = theme.motif?.takeIf { it in SkinTokens.MOTIFS }
 
     val slots = listOf("card", "chip", "header", "frame")
     val tokens = slots.associateWith { SkinTokens.resolveShape(theme.shapes, motif, it) }
     val shapes = SkinShapes(
-        card = tokens["card"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.card,
-        chip = tokens["chip"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.chip,
-        header = tokens["header"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.header,
-        frame = tokens["frame"]?.let(::shapeFor) ?: SkinSpec.Engine.shapes.frame,
+        card = tokens["card"]?.let { shapeFor(it, density) } ?: SkinSpec.Engine.shapes.card,
+        chip = tokens["chip"]?.let { shapeFor(it, density) } ?: SkinSpec.Engine.shapes.chip,
+        header = tokens["header"]?.let { shapeFor(it, density) } ?: SkinSpec.Engine.shapes.header,
+        frame = tokens["frame"]?.let { shapeFor(it, density) } ?: SkinSpec.Engine.shapes.frame,
     )
 
     fun styleOf(font: com.shadowmonarchbooks.dayloop.pack.schema.SkinFont?): SkinFontStyle? = font?.let {
@@ -237,60 +241,74 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?): SkinSpec {
  * Cheap shape-only resolution for previews (the onboarding carousel renders
  * every installed pack's card silhouette without loading its fonts).
  */
-fun packShape(theme: PackTheme?, slot: String, fallback: Shape): Shape {
+fun packShape(theme: PackTheme?, slot: String, fallback: Shape, density: Density): Shape {
     if (theme == null) return fallback
     val motif = theme.motif?.takeIf { it in SkinTokens.MOTIFS }
-    return SkinTokens.resolveShape(theme.shapes, motif, slot)?.let(::shapeFor) ?: fallback
+    return SkinTokens.resolveShape(theme.shapes, motif, slot)?.let { shapeFor(it, density) } ?: fallback
 }
 
 // ---- Silhouette primitives (closed set: new look = new token, never a screen) ----
 
 /**
- * Maps a silhouette token to a [Shape]. All parameters are size-relative and
- * deterministic (seeded jitter) so a shape scales cleanly from chips to panels
- * and renders identically every frame.
+ * Maps a silhouette token to a [Shape]. Geometry is dp-based (captured
+ * [Density]) so teeth and slants stay crisp at any surface size, and
+ * deterministic (seeded jitter) so a shape renders identically every frame.
  */
-fun shapeFor(token: String): Shape = when (token) {
-    "jagged" -> jaggedShape()
-    "slash" -> slashShape()
-    "cut" -> cutShape()
-    "ribbon" -> ribbonShape()
+fun shapeFor(token: String, density: Density): Shape = when (token) {
+    "jagged" -> jaggedShape(density)
+    "slash" -> slashShape(density)
+    "cut" -> cutShape(density)
+    "ribbon" -> ribbonShape(density)
     "diamond" -> diamondShape()
     else -> SkinSpec.Engine.shapes.card
 }
 
 /** Irregular sawtooth silhouette — uneven peaks pushed outward beyond each edge. */
-private fun jaggedShape(): Shape = GenericShape { size, _ ->
-    val p = this
+private fun jaggedShape(density: Density): Shape = GenericShape { size, _ ->
+    val pts = jaggedVertices(size, density)
+    moveTo(pts.first().x, pts.first().y)
+    for (i in 1 until pts.size) lineTo(pts[i].x, pts[i].y)
+    close()
+}
+
+/**
+ * Vertices of the jagged silhouette. Tooth pitch is absolute (dp) so teeth
+ * stay tight at any surface size, and depth is bounded so large panels get
+ * the same crisp torn paper as chips (docs/ROADMAP-v3.md Phase 13 polish:
+ * no stretched spikes). Deterministic (seeded jitter).
+ */
+internal fun jaggedVertices(size: Size, density: Density): List<Offset> {
     val rng = Random(0x5EED)
-    val depth = minOf(size.width, size.height) * 0.06f
-    fun edge(from: Offset, to: Offset, normal: Offset, spikes: Int, scale: Float) {
+    val pitch = with(density) { 14.dp.toPx() }
+    val depth = with(density) {
+        (minOf(size.width, size.height) * 0.06f).coerceIn(2.5.dp.toPx(), 7.dp.toPx())
+    }
+    val pts = mutableListOf<Offset>()
+    fun edge(from: Offset, to: Offset, normalX: Float, normalY: Float) {
+        val dx = to.x - from.x
+        val dy = to.y - from.y
+        val len = hypot(dx, dy)
+        val spikes = (len / pitch).toInt().coerceIn(3, 26)
         for (i in 0 until spikes) {
             val t0 = i / spikes.toFloat()
-            p.lineTo(
-                from.x + (to.x - from.x) * t0,
-                from.y + (to.y - from.y) * t0,
-            )
+            pts += Offset(from.x + dx * t0, from.y + dy * t0)
             val tm = (i + 0.5f) / spikes
-            val d = depth * scale * (0.6f + rng.nextFloat() * 0.8f)
-            p.lineTo(
-                from.x + (to.x - from.x) * tm + normal.x * d,
-                from.y + (to.y - from.y) * tm + normal.y * d,
-            )
+            val d = depth * (0.6f + rng.nextFloat() * 0.8f)
+            pts += Offset(from.x + dx * tm + normalX * d, from.y + dy * tm + normalY * d)
         }
-        p.lineTo(to.x, to.y)
+        pts += to
     }
-    p.moveTo(0f, 0f)
-    edge(Offset(0f, 0f), Offset(size.width, 0f), Offset(0f, -depth), spikes = 8, scale = 1f)
-    edge(Offset(size.width, 0f), Offset(size.width, size.height), Offset(depth, 0f), spikes = 5, scale = 0.8f)
-    edge(Offset(size.width, size.height), Offset(0f, size.height), Offset(0f, depth), spikes = 8, scale = 1f)
-    edge(Offset(0f, size.height), Offset(0f, 0f), Offset(-depth, 0f), spikes = 5, scale = 0.8f)
-    p.close()
+    pts += Offset(0f, 0f)
+    edge(Offset(0f, 0f), Offset(size.width, 0f), 0f, -1f)
+    edge(Offset(size.width, 0f), Offset(size.width, size.height), 1f, 0f)
+    edge(Offset(size.width, size.height), Offset(0f, size.height), 0f, 1f)
+    edge(Offset(0f, size.height), Offset(0f, 0f), -1f, 0f)
+    return pts
 }
 
 /** Both vertical edges slant the same way — a diagonally sheared panel. */
-private fun slashShape(): Shape = GenericShape { size, _ ->
-    val skew = size.width * 0.07f
+private fun slashShape(density: Density): Shape = GenericShape { size, _ ->
+    val skew = minOf(size.width * 0.07f, with(density) { 14.dp.toPx() })
     moveTo(skew, 0f)
     lineTo(size.width, 0f)
     lineTo(size.width - skew, size.height)
@@ -299,8 +317,9 @@ private fun slashShape(): Shape = GenericShape { size, _ ->
 }
 
 /** Corners chamfered at 45° — the cut-out look. */
-private fun cutShape(): Shape = GenericShape { size, _ ->
-    val c = minOf(size.width, size.height) * 0.18f
+private fun cutShape(density: Density): Shape = GenericShape { size, _ ->
+    val cap = with(density) { 18.dp.toPx() }
+    val c = minOf(minOf(size.width, size.height) * 0.18f, cap)
     moveTo(c, 0f)
     lineTo(size.width, 0f)
     lineTo(size.width, size.height - c)
@@ -311,9 +330,12 @@ private fun cutShape(): Shape = GenericShape { size, _ ->
 }
 
 /** A banner band: opposing corners beveled into angled ribbon ends. */
-private fun ribbonShape(): Shape = GenericShape { size, _ ->
-    val sx = size.width * 0.045f
-    val sy = size.height * 0.35f
+private fun ribbonShape(density: Density): Shape = GenericShape { size, _ ->
+    // End slants are bounded by dp so a wide header keeps crisp flag ends
+    // instead of the bevel stretching with the band's width.
+    val cap = with(density) { 14.dp.toPx() }
+    val sy = minOf(size.height * 0.35f, cap)
+    val sx = minOf(size.width * 0.045f, sy * 0.8f)
     moveTo(0f, sy)
     lineTo(sx, 0f)
     lineTo(size.width, 0f)
