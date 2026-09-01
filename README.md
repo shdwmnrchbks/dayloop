@@ -27,27 +27,35 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-| Phase | Deliverable |
-|---|---|
-| 0 | Repo skeleton, Gradle version catalog, CI (build + test + packlint) |
-| 1 | Pack schema + `packlint` validator + cross-game fit checks (mini-packs: Metaphor `dayCounter` model, P3R `weekdayGrid` model) |
-| 2 | Read-only app: renders seeded P5R April–May days, calendar, confidant screens |
-| 3 | Progress layer: checkboxes, End-Day advancement, profiles/reset |
-| 4 | Full P5R pack authoring (template + override days) |
-| 5 | Polish: routes/profiles, Glance widget, exam answers, search, icon |
-| 6 | Second complete pack (P3R or Metaphor) proving drop-in claim, then the third to complete the first-release trio |
-| 7 | First-run onboarding carousel & pack selection relocated to Settings ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
-| 8 | Capability-driven UI: pack-tailored tabs & screens ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
-| 9 | Data completeness: every pack fact served — audit matrix in [docs/data-coverage.md](docs/data-coverage.md) |
-| 10 | Per-pack theme & visual identity: pack.json `theme` drives full Material 3 skins ([docs/ROADMAP-v2.md](docs/ROADMAP-v2.md)) |
-| 11 | One game picker + every guide graphic bundled & served ([docs/ROADMAP-v3.md](docs/ROADMAP-v3.md)) |
-| 12–18 | Full per-game UI/UX imitation: skins, shapes, type, motion, sound ([docs/ROADMAP-v3.md](docs/ROADMAP-v3.md)) |
+| Phase | Deliverable | Status |
+|---|---|---|
+| 0 | Repo skeleton, Gradle version catalog, CI (build + test + packlint) | ✅ |
+| 1 | Pack schema + `packlint` validator + cross-game fit checks | ✅ |
+| 2 | Read-only app: seeded P5R days, calendar, confidant screens | ✅ |
+| 3 | Progress layer: checkboxes, End-Day advancement, profiles/reset | ✅ |
+| 4 | Full P5R pack authoring | ✅ |
+| 5 | Routes/profiles, Glance widget, exam answers, search, icon | ✅ |
+| 6 | Complete P3R + Metaphor packs; pack-generic calendar engines | ✅ |
+| 7 | First-run onboarding carousel & pack selection moved to Settings ([ROADMAP-v2](docs/ROADMAP-v2.md)) | ✅ |
+| 8 | Capability-driven UI: pack-tailored tabs & screens ([ROADMAP-v2](docs/ROADMAP-v2.md)) | ✅ |
+| 9 | Data completeness: every pack fact served ([data coverage](docs/data-coverage.md)) | ✅ |
+| 10 | Per-pack theme & visual identity ([ROADMAP-v2](docs/ROADMAP-v2.md)) | ✅ |
+| 11 | One game picker + every guide graphic bundled & served ([ROADMAP-v3](docs/ROADMAP-v3.md)) | ✅ v0.6.0 |
+| 12 | Skin DSL engine foundation | ✅ v0.7.0 |
+| 13 | P5R “Phantom” skin | ✅ v0.8.0 |
+| 14 | P3R “Moonlight” skin | ✅ v0.9.0 |
+| 15 | Metaphor “Royal” skin | ✅ v0.10.0 |
+| 16 | Motion, feedback & sound | ✅ v0.11.1 |
+| 17 | Widget, icon & cold-start skin parity | ⏭️ next |
+| 18 | Screenshot verification, budgets, strip pipeline & performance hardening | ⏳ pending |
 
-See [docs/PLAN.md](docs/PLAN.md) for the full architecture plan.
+See [docs/PLAN.md](docs/PLAN.md) for the architecture plan and [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md) for the remaining skin-parity work.
 
 ## Status
 
-🚧 **Phase 0–11 done — v0.6.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets with a pack switcher, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
+🚧 **Phase 0–16 done — current release v0.11.1** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). The first-release trio is complete, all three packs have distinct data-driven skins, and the latest CI/release validation is green. **Phase 17 is next; Phase 18 is the final release-hardening pass.**
+
+Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
@@ -57,38 +65,65 @@ Phase 5 added:
 - **Launcher icon** — original adaptive artwork (sun + day-loop arrow), no game assets.
 
 Phase 6:
-- **Default-pack selection is now pack-agnostic** — the last engine hardcode (`PackStore` defaulting to P5R) is gone: the app opens on the most complete installed pack and persists the user's choice in DataStore.
+- **Default-pack selection is pack-agnostic** — the last engine hardcode (`PackStore` defaulting to P5R) is gone: the app opens on the most complete installed pack and persists the user's choice in DataStore.
 - **Complete P3R pack** — every playable calendar day 2009-04-08 → 2010-03-05 authored and packlint-clean (0 errors, 0 warnings; story-skipped February 2010 and March 1–3 are non-playable), with 301 walkthrough days across 11 months, all 22 Social Links full-ladder (203 rank entries), Link Episodes woven into the walkthrough days, 15 deadlines (full-moon operations + all 4 exam windows + one-day sales), and 53 answer sheets (17 exam days, 36 class questions).
-- **`dayCounter` time model** — the engine now supports pack-declared game calendars (`monthLengths`, `weekdayCycle`, `weekdayAnchor`): `GameCalendar` in core/pack, lint cross-checks for cycle weekdays and game-month coverage, progress-clock stepping, and cycle-aware date formatting, day arithmetic, and month grids throughout the app (today/deadlines/bonds/answers/search/settings/widget/month views).
-
-- **Complete Metaphor: ReFantazio pack** — the first-release trio is complete: every playable in-game day 2100-06-02 → 2100-10-26 authored and packlint-clean (0 errors; 140 walkthrough days across five 30-day game months; June 3–9's story-only dates non-playable), all 14 Follower bonds full-ladder (109 dated rank entries), 11 deadlines (nine story missions including the Charadrius window and the story-locked 10/26 final battle, plus missable inn-cooking and book windows), and 16 activities (7 books, ranked league + gauntlet challenge, inn/runner cooking, fishing, Gold Beetles, Akademeia study, podium debates, bounty requests). Facts curated from the HayateButler Metaphor guide (docs/sources.md).
+- **`dayCounter` time model** — the engine supports pack-declared game calendars (`monthLengths`, `weekdayCycle`, `weekdayAnchor`): `GameCalendar` in core/pack, lint cross-checks for cycle weekdays and game-month coverage, progress-clock stepping, and cycle-aware date formatting, day arithmetic, and month grids throughout the app.
+- **Complete Metaphor: ReFantazio pack** — every playable in-game day 2100-06-02 → 2100-10-26 authored and packlint-clean (140 walkthrough days across five 30-day game months), all 14 Follower bonds full-ladder (109 dated rank entries), 11 deadlines, and 16 activities.
 
 Phase 7 (v0.2.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
-- **First-run onboarding** — a fresh install (or a legacy install that never picked a game) opens on a swipeable carousel of game cards with per-pack cover art (`art/card.png|jpg`, monogram fallback until more art lands); tapping a card starts tracking that game.
-- **Pack switching moved to Settings** — the top-bar hot-swap dropdown is gone; the title is now a static label, and the new "Game" section lists installed packs with saved-profile counts.
+- **First-run onboarding** — a fresh install opens on a swipeable carousel of game cards with per-pack cover art; tapping a card starts tracking that game.
+- **Pack switching moved to Settings** — the top-bar hot-swap dropdown is gone; the title is static and game selection lives in the picker flow.
 - Cold-start loading shell so returning users never see the picker flash before their saved game reopens.
 
 Phase 8 (v0.3.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
-- **Pack-tailored navigation** — the bottom bar is derived from the active pack: Metaphor shows 4 tabs (Today/Calendar/Bonds/Deadlines), P5R/P3R show 5 (plus Answers). Bonds/Deadlines tabs appear only when the pack ships those files; all destinations stay registered so navigation never dead-ends.
-- **`capabilities.answers`** — a new closed-set capability flag declares that a pack ships structured answer sheets; packlint now fails any pack that declares it without shipping answers.json (or ships the file without declaring it).
-- **Guarded entry points** — the day-page answer-sheet affordance and search's answer results render only for packs with the capability; the onboarding card feature line follows the same flag.
+- **Pack-tailored navigation** — the bottom bar derives from the active pack; Answers appears only for packs declaring answer capability.
+- **`capabilities.answers`** — a closed-set capability flag ties structured answer data to the UI and packlint contract.
+- **Guarded entry points** — answer affordances and search results render only when the capability is present.
 
 Phase 9 (v0.4.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md), matrix in [docs/data-coverage.md](docs/data-coverage.md):
-- **Data-completeness audit** — every field in the pack schema is mapped to its serving surface in docs/data-coverage.md with an explicit status (served / intentionally not served); a checklist at the bottom keeps it honest with future schema changes.
-- **Served gaps closed** — activity browsing (new Activities list + detail screens; entry points from Today, tappable step references, and search), slot pills on step rows (Metaphor's afternoon/night steps), bond rank gates rendered as spoiler-safe "Requires: …" text (the PLAN.md §3.3 promise), rank availability windows ("Until <date>"), deadline kind chips, answer-sheet ⇄ deadline cross-links, and search results for activities/deadlines now navigate instead of dead-ending.
-- **CI-ready JVM tests** — PackContentTest pins the cross-references the UI resolves (answer→deadline, step→activity, step→slot, gate→stat/bond) over all three bundled packs; PackTextTest covers the gate text renderer.
+- **Data-completeness audit** — every field in the pack schema is mapped to its serving surface with an explicit status.
+- **Served gaps closed** — activity browsing, slot pills, bond gates/windows, deadline kind chips, answer/deadline links, and navigable search results.
+- **CI-ready JVM tests** — cross-reference and text-rendering tests cover the data the UI resolves.
 
 Phase 10 (v0.5.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
-- **Per-pack themes** — each pack declares a `theme` block (accent/accentDark seeds, a closed-set `style` token, reserved `motif`, and named `art` slots); Theme.kt maps the active pack's theme to full hand-tuned Material 3 dark *and* light schemes via the material color system. Switching packs in Settings recolors the whole app in place — no restart, no game names or colors in Kotlin.
-- **Pack art slots formalized** — the onboarding covers (Phase 7) plus new per-pack icon tiles are declared in `theme.art` and lint-validated (pack-relative path, image file exists); swapping art is a content change, never code.
-- **Vocabulary extended** — deadline kind chips are now pack-supplied (`labels.deadlineKinds`; Metaphor's dungeon deadlines read "Mission", not "Palace").
-- **Widget inherits the accent** — the home-screen widget picks up the active pack's dark-scheme primary so the home screen matches the app.
+- **Per-pack themes** — pack `theme` data drives hand-tuned Material 3 light/dark schemes.
+- **Pack art slots formalized** — pack-relative art is declared and lint-validated.
+- **Vocabulary extended** — deadline kind labels are pack-supplied.
+- **Widget inherits the accent** — the home-screen widget follows the active pack's dark-scheme primary.
 
 Phase 11 (v0.6.0) — [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md):
-- **One game picker** — Settings' Game section no longer switches packs inline; it shows the active game and redirects to the first-run carousel (back arrow, current game preselected, saved-profile counts on cards). The carousel is the single place in the app that picks a game, and switching never drops saves.
-- **All 116 guide graphics bundled & served** — every image from the three guide packages now ships under `content/packs/<slug>/images/` (P5R 53, P3R 16, Metaphor 47) with a per-pack `media.json` manifest: engine-neutral kinds (achievement/month/section/day/portrait/banner/guide), pack-supplied titles, and month/date/bond anchors.
-- **packlint enforces "all art ships and serves"** — orphaned images fail, undecodable/missing files fail, ids and anchors are validated; JVM tests pin the same contract.
-- **Serving surfaces** — day-anchored art on Day pages (P3R's full-moon marker on all nine full-moon dates + the Promised Day), month-anchored art + section markers + per-month achievement icons on the Calendar (all 94 achievement icons across P5R/Metaphor), character portraits on Bond detail (Lovers/Magician/Empress/Priestess/Aeon), and a new Media gallery (Settings → Pack media) browsing everything with captions and anchors.
+- **One game picker** — Settings redirects to the same carousel used on first run; switching keeps saves.
+- **All 116 guide graphics bundled & served** — P5R 53, P3R 16, Metaphor 47, declared through per-pack `media.json` manifests.
+- **packlint enforces “all art ships and serves”** — orphaned/missing/invalid media and bad anchors fail validation.
+- **Serving surfaces** — Day, Calendar, Bond detail, and the Pack Media gallery resolve media through engine-neutral anchors.
+
+Phase 12 (v0.7.0) — [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md):
+- **Skin DSL foundation** — pack data now controls closed-set shape, typography, decoration, motif, and motion tokens.
+- **Engine primitives** — shared Compose skin rendering, pack-bundled fonts, procedural decoration painters, and transition grammar remain game-neutral.
+- **Hardening** — WCAG AA contrast lint and engine-neutrality tests guard the skin socket.
+
+Phase 13 (v0.8.0):
+- **P5R Phantom skin** — jagged/slash/ribbon/cut geometry, condensed display type, halftone/slash decoration, and per-surface comic-language treatments.
+
+Phase 14 (v0.9.0):
+- **P3R Moonlight skin** — diamond tags/caps, geometric display type, glass treatment, moon media integration, and soft fade motion.
+
+Phase 15 (v0.10.0):
+- **Metaphor Royal skin** — plaque/seal geometry, engraved serif type, parchment/filigree decoration, gold-rule calendar treatments, and page-turn motion.
+
+Phase 16 (v0.11.1) — [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md):
+- **Per-skin day-advance sequences** — slash/results tick, moon-phase cross-fade, or parchment page turn; all bounded to ≤400 ms, skippable, and disabled under system remove-animations.
+- **Perfect-day and mark feedback** — non-blocking celebratory cards plus skin-specific Done micro-animations.
+- **Skin SFX engine** — closed-set `theme.sfx` slots (`tap`, `advance`, `complete`), ≤100 KB `.ogg`, packlint-validated; muted by default and never used by widget surfaces.
+- **Haptics** — light platform-respecting tick on mark toggles and day advance.
+- **Usability fixes** — calendar month achievements now list vertically, and authored exam/class answers render directly on Today with a route to the Answers tab.
+- **Verification** — full build/JVM suite and all three packlint runs green for the signed v0.11.1 release.
+
+### Next
+
+**Phase 17 — Widget, icon & launch parity:** extend the active skin to Glance widget layouts, add the planned pack-declared launcher badge treatment, and make the cold-start shell inherit the active skin before the first app frame.
+
+**Phase 18 — Verification, budgets & release hardening:** screenshot/parity tests, pack asset budgets, GIF → animated WebP conversion, the public-release `strip-art` pipeline, and a Macrobenchmark frame-time gate.
 
 Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
 
