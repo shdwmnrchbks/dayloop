@@ -69,8 +69,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/** Phase 17a shell exposed internally so Phase 17d/18 can render the exact startup surface. */
 @Composable
-private fun StartupShell() {
+internal fun StartupShell() {
     Box(
         modifier = Modifier
             .fillMaxSize()
