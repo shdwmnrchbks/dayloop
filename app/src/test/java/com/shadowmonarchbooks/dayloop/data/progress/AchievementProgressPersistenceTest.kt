@@ -67,4 +67,34 @@ class AchievementProgressPersistenceTest {
             ),
         )
     }
+
+    @Test
+    fun `choice entries decode by shared state key`() {
+        assertEquals(
+            mapOf(
+                "p3r.choice.ryoji-fate" to "spare",
+                "fixture.choice" to "option-two",
+            ),
+            decodeAchievementChoices(
+                setOf(
+                    "p3r.choice.ryoji-fate=spare",
+                    "fixture.choice=option-two",
+                ),
+            ),
+        )
+    }
+
+    @Test
+    fun `malformed choice entries are ignored`() {
+        assertEquals(
+            emptyMap(),
+            decodeAchievementChoices(
+                setOf(
+                    "missing-item=",
+                    "missing-separator",
+                    "=missing-state-key",
+                ),
+            ),
+        )
+    }
 }
