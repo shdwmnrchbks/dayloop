@@ -5,10 +5,11 @@ accent colors. Roadmap v3 goes further: **when you pick P5R, the app should look
 like Persona 5 Royal's own UI — the graphic language, not just the palette** —
 while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 
-> **Current state (v0.11.1): Phases 11–16 are shipped. Phase 17 is next; Phase
-> 18 is the final verification/release-hardening pass.** Historical implementation
-> detail for completed phases remains available in git history and release notes;
-> this file now keeps the shipped contracts plus the actionable remaining plan.
+> **Current state: v0.11.1 is the latest released build; Phases 11–17 are complete
+> on `main`. Phase 18 is next and is the final verification/release-hardening
+> pass.** Historical implementation detail for completed phases remains available
+> in git history and release notes; this file keeps the shipped contracts plus
+> the actionable remaining plan.
 
 | # | Ask | Phase | Status |
 |---|-----|-------|--------|
@@ -16,8 +17,8 @@ while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 | 2 | Every guide-package graphic bundled, declared, and served | Phase 11 | ✅ v0.6.0 |
 | 3 | Skin DSL + three per-game visual languages | Phases 12–15 | ✅ v0.7.0–v0.10.0 |
 | 4 | Motion, feedback, sound and accessibility hardening | Phase 16 | ✅ v0.11.1 |
-| 5 | Widget, icon and cold-start parity | Phase 17 | ⏭️ next |
-| 6 | Screenshot verification, budgets and release hardening | Phase 18 | ⏳ pending |
+| 5 | Widget, icon and cold-start parity | Phase 17 | ✅ complete on `main` |
+| 6 | Screenshot verification, budgets and release hardening | Phase 18 | ⏭️ next |
 
 Architecture rules from `docs/PLAN.md` §3 still bind everything below: the engine
 never knows a game's name; every look is pack data (`pack.json` `theme` + bundled
@@ -29,8 +30,9 @@ art); packs without a skin keep the engine look; anything that says "Palace" or
 ## The core idea: skins, not repaints
 
 A **skin** is the pack's complete visual language. Phase 10 introduced per-pack
-Material 3 color schemes; Phases 12–16 expanded that into data-driven shape,
-type, decoration, motion, feedback and sound.
+Material 3 color schemes; Phases 12–17 expanded that into data-driven shape,
+type, decoration, motion, feedback, sound, widget chrome, launcher decoration
+and startup parity.
 
 | Layer | What it carries | Pack data home |
 |---|---|---|
@@ -40,6 +42,7 @@ type, decoration, motion, feedback and sound.
 | **Motion** | Transition grammar — slash wipes, soft fades, page turns | `theme.motion` token |
 | **Feedback** | Day-advance sequence, Done micro-animation, perfect-day treatment | engine primitives selected by skin tokens |
 | **Sound** | Optional tap/advance/complete moments | `theme.sfx` |
+| **Outside-app parity** | Widget chrome, launcher shortcut motif, cold-start shell | existing theme tokens + optional `theme.art["launcherBadge"]` |
 
 The engine implements a small closed set of primitives and the pack *composes*
 them. New games add data + art, not game-named Kotlin. Everything stays
@@ -178,52 +181,57 @@ Acceptance carried forward:
 
 ---
 
-## Phase 17 — Widget, icon & launch parity ⏭️
+## Phase 17 — Widget, icon & launch parity ✅
 
-**Status: next.**
+**Status: complete on `main`.** Detailed slice history and acceptance live in
+`docs/ROADMAP-v3-phase17.md`.
 
-**Goal:** the skin does not stop at the app's edge.
+What landed:
 
-- **Widget:** per-skin widget layouts via Glance. Colors already inherit the
-  active pack's dark scheme; add a Glance-friendly approximation of the skin's
-  shape/decoration language (jagged ribbon / glass tile / gold frame).
-- **Widget constraints:** keep semantics identical across skins — title/date,
-  today's completion count and next deadline. No sound or app-only animation.
-- **Launcher badge:** allow a pack to declare `theme.art["launcherBadge"]`, a
-  small motif badge composited into dayloop-owned launcher/shortcut treatment.
-  The core sun/arrow identity remains dayloop-owned; do not ship game-owned
-  launcher icons.
-- **Cold-start parity:** the Phase 7 loading shell adopts the active skin's
-  background + motif mark so returning users do not see an engine-look flash
-  before the first app frame.
-- **Isolation:** theme-less packs and packs without `launcherBadge` keep the
-  current widget/icon/loading treatment.
+- **Cold-start parity (17a):** the system splash remains until persisted pack
+  selection resolves; the first Compose frame themes directly from `PackStore`,
+  and a skin-aware loading shell bridges the store → ViewModel handoff without
+  an engine-theme or onboarding flash for returning users.
+- **Widget parity (17b):** Glance resolves generic engine/angular/glass/framed
+  treatments from the existing skin DSL, inherits the active pack's full dark
+  palette, and responds across compact/standard/expanded sizes while preserving
+  title/date, completion and next-deadline semantics.
+- **Launcher treatment (17c):** packs may declare
+  `theme.art["launcherBadge"]`. The compiled Dayloop launcher icon remains
+  Dayloop-owned; Android-supported dynamic shortcuts composite the small pack
+  motif over that base. Missing/invalid refs fail packlint; absence/failure
+  falls back cleanly.
+- **Preview handoff (17d):** debug-only deterministic fixture matrices cover 12
+  widget cases (4 generic skin families × 3 sizes) and 8 cold-start cases (4 ×
+  light/dark). Production `DayloopWidgetContent` and `StartupShell` are reused by
+  the future capture harness. Stable fixture ids are regression-test pinned and
+  documented in `docs/preview-fixtures.md`.
 
-**Acceptance:**
+Acceptance carried forward:
 
-- Widget renders correctly at all supported Glance sizes for engine, Phantom,
-  Moonlight and Royal.
-- Widget content semantics and tap targets are unchanged by skin.
-- Cold start resolves the saved active skin before the first visible content
-  frame (no engine-theme flash for returning users).
-- Missing/invalid launcher badge references fail packlint; absent badges are a
-  clean fallback.
-- Widget/cold-start preview screenshots feed the Phase 18 parity matrix.
-
-**Size:** M.
+- Widget chrome covers engine/Phantom/Moonlight/Royal equivalents at every
+  supported Glance size without changing semantics or adding widget sound/app
+  animation.
+- Returning-user cold start resolves the saved skin before visible app content.
+- Launcher decoration stays optional, pack-driven, linted and subordinate to
+  Dayloop-owned identity.
+- Theme-less/missing-art fallbacks remain clean.
+- Widget/cold-start rows have canonical inputs ready for Phase 18 screenshot
+  pinning; no separate Phase 17 golden system was introduced.
 
 ---
 
-## Phase 18 — Verification, budgets & release hardening ⏳
+## Phase 18 — Verification, budgets & release hardening ⏭️
 
-**Status: pending after Phase 17.**
+**Status: next.**
 
 **Goal:** make the skins sustainable and produce a release-ready/public-flip
 pipeline.
 
 - **Screenshot tests** (JVM-rendered, e.g. Roborazzi) for the parity matrix:
   every surface × {engine, phantom, moonlight, royal} × {dark, light} becomes a
-  CI screenshot with an intentional-diff review flow.
+  CI screenshot with an intentional-diff review flow. Widget/cold-start tests
+  must consume the stable Phase 17d fixture ids rather than define a new matrix.
 - **Contrast + budget lint** extended with per-pack `images/` + fonts size
   budgets (warn > 8 MB, fail > 20 MB), font budgets and decoration dimensions.
 - **GIF → animated WebP conversion** for the four bundled GIFs (P3R ×3,
@@ -254,8 +262,8 @@ pipeline.
 
 ## Screen-by-screen parity matrix
 
-Phase 18 screenshot-pins this matrix after Phase 17 closes the widget/cold-start
-rows.
+Phase 18 screenshot-pins this matrix. The Widget and Cold start rows consume the
+canonical inputs in `docs/preview-fixtures.md` / `Phase17PreviewFixtures`.
 
 | Surface | Engine baseline | P5R Phantom | P3R Moonlight | Metaphor Royal |
 |---|---|---|---|---|
