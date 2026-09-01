@@ -104,14 +104,17 @@ internal fun achievementProgress(
         // Conditional/manual achievements may expose a manual target. Dayloop
         // tracks the user's explicit count but still never infers gameplay
         // results from passage of time alone.
-        else -> if (rule.target != null) {
-            manualProgress(rule.target, manualUnits, available)
-        } else {
-            AchievementProgress(
-                automatic = false,
-                completed = false,
-                available = available,
-            )
+        else -> {
+            val target = rule.target
+            if (target != null) {
+                manualProgress(target, manualUnits, available)
+            } else {
+                AchievementProgress(
+                    automatic = false,
+                    completed = false,
+                    available = available,
+                )
+            }
         }
     }
 }
