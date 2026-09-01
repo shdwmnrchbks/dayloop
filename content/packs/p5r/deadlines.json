@@ -88,7 +88,7 @@
       "id": "p5r.deadline.missable.keep-the-promise",
       "label": "After Justice rank 10, choose to keep the promise for optional Akechi content",
       "kind": "missable",
-      "window": { "start": "2016-11-24", "end": "2016-12-17" }
+      "window": { "start": "2016-11-25", "end": "2016-12-17" }
     },
     {
       "id": "p5r.deadline.missable.faith-rank5",
