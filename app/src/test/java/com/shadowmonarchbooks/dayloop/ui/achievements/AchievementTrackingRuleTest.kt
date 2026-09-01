@@ -83,8 +83,67 @@ class AchievementTrackingRuleTest {
         )
 
         assertTrue(progress.completed)
+        assertTrue(progress.automatic)
         assertEquals(5, progress.completedUnits)
         assertEquals(5, progress.totalUnits)
+    }
+
+    @Test
+    fun `manual target exposes explicit partial progress`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.MANUAL,
+            target = 10,
+        )
+
+        val progress = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = emptySet(),
+            manualUnits = 4,
+        )
+
+        assertFalse(progress.completed)
+        assertFalse(progress.automatic)
+        assertEquals(4, progress.completedUnits)
+        assertEquals(10, progress.totalUnits)
+    }
+
+    @Test
+    fun `conditional target completes from explicit progress without becoming automatic`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CONDITIONAL,
+            target = 9,
+        )
+
+        val progress = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = emptySet(),
+            manualUnits = 9,
+        )
+
+        assertTrue(progress.completed)
+        assertFalse(progress.automatic)
+        assertEquals(9, progress.completedUnits)
+        assertEquals(9, progress.totalUnits)
+    }
+
+    @Test
+    fun `manual progress is clamped to target`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.MANUAL,
+            target = 10,
+        )
+
+        val progress = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = emptySet(),
+            manualUnits = 99,
+        )
+
+        assertEquals(10, progress.completedUnits)
+        assertTrue(progress.completed)
     }
 
     @Test
@@ -103,7 +162,7 @@ class AchievementTrackingRuleTest {
     }
 
     @Test
-    fun `manual achievement is never inferred`() {
+    fun `manual achievement without target is never inferred`() {
         val achievement = achievement(type = AchievementTrackingTypes.MANUAL)
 
         assertFalse(achievementProgress(achievement, "2010-03-05", emptySet()).completed)
