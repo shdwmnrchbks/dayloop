@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.withTransaction
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
@@ -35,8 +36,9 @@ data class PackSeed(
 
 /**
  * Owns all mutable progress: profiles (per pack, docs/PLAN.md §3.7), the
- * End-Day clock, and step marks. Maps Room rows onto the pure semantics in
- * `core:progress`; the UI never touches the DAOs directly.
+ * End-Day clock, step marks, and profile-scoped earned-achievement ids. Maps
+ * Room/DataStore state onto the pure semantics in `core:progress`; the UI never
+ * touches persistence directly.
  */
 @Singleton
 class ProgressRepository @Inject constructor(
@@ -51,6 +53,10 @@ class ProgressRepository @Inject constructor(
 
     fun marksFor(profileId: Long): Flow<List<StepStateEntity>> =
         db.stepStateDao().observeForProfile(profileId)
+
+    /** Explicitly earned achievements for one profile. Availability is clock-derived in UI. */
+    fun earnedAchievements(profileId: Long): Flow<Set<String>> =
+        settings.data.map { it[achievementKey(profileId)] ?: emptySet() }
 
     /** Active profile id for [packId]; null until one is chosen or created. */
     fun activeProfileId(packId: String): Flow<Long?> =
@@ -117,6 +123,16 @@ class ProgressRepository @Inject constructor(
         }
     }
 
+    /** Persist manual earned state; the clock only controls due/upcoming status. */
+    suspend fun setAchievementEarned(profileId: Long, achievementId: String, earned: Boolean) {
+        val key = achievementKey(profileId)
+        settings.edit { prefs ->
+            val ids = prefs[key].orEmpty().toMutableSet()
+            if (earned) ids += achievementId else ids -= achievementId
+            if (ids.isEmpty()) prefs.remove(key) else prefs[key] = ids
+        }
+    }
+
     /** End Day: advance the clock to the next playable date; false at the end. */
     suspend fun endDay(profileId: Long, pack: PackSeed): Boolean =
         shiftClock(profileId, pack) { Clock.next(pack.span, it) }
@@ -125,7 +141,7 @@ class ProgressRepository @Inject constructor(
     suspend fun rerollDay(profileId: Long, pack: PackSeed): Boolean =
         shiftClock(profileId, pack) { Clock.previous(pack.span, it) }
 
-    /** Reset: wipe marks and return the clock to the pack's first day. */
+    /** Reset: wipe marks/achievements and return the clock to the pack's first day. */
     suspend fun resetProfile(profileId: Long, pack: PackSeed) {
         db.withTransaction {
             db.stepStateDao().deleteForProfile(profileId)
@@ -138,6 +154,7 @@ class ProgressRepository @Inject constructor(
                 )
             }
         }
+        settings.edit { it.remove(achievementKey(profileId)) }
     }
 
     suspend fun createProfile(pack: PackSeed, name: String): Long =
@@ -151,12 +168,13 @@ class ProgressRepository @Inject constructor(
         settings.edit { it[longPreferencesKey("activeProfile.$packId")] = profileId }
     }
 
-    /** Delete a profile and its marks; the active pointer falls back to the oldest remaining. */
+    /** Delete a profile and all profile-scoped progress; active pointer falls back safely. */
     suspend fun deleteProfile(profileId: Long, pack: PackSeed) {
         db.withTransaction {
             db.stepStateDao().deleteForProfile(profileId)
             db.profileDao().delete(profileId)
         }
+        settings.edit { it.remove(achievementKey(profileId)) }
         val key = longPreferencesKey("activeProfile.${pack.packId}")
         if (settings.data.first()[key] == profileId) {
             val fallback = db.profileDao().firstForPack(pack.packId)
@@ -202,6 +220,9 @@ class ProgressRepository @Inject constructor(
                 createdAt = System.currentTimeMillis(),
             ),
         )
+
+    private fun achievementKey(profileId: Long) =
+        stringSetPreferencesKey("earnedAchievements.$profileId")
 
     private suspend fun defaultName(packId: String): String =
         "Profile ${db.profileDao().countForPack(packId) + 1}"
