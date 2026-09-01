@@ -195,7 +195,7 @@ class PackContentTest {
         val activities = p5r.activities?.activities.orEmpty()
         val byId = activities.associateBy { it.id }
 
-        assertEquals(4, pack.contentVersion)
+        assertEquals(5, pack.contentVersion)
 
         val statBooks = activities.filter { it.id.startsWith("p5r.activity.book.") && it.statGains.isNotEmpty() }
         assertTrue(statBooks.isNotEmpty())
@@ -328,6 +328,53 @@ class PackContentTest {
         assertEquals(mapOf("charm" to 3), gain("2016-06-26", "Sun reaches rank 4"))
         assertEquals(mapOf("guts" to 3), gain("2016-06-28", "Star Forneus"))
         assertTrue(days.first { it.date == "2016-06-25" }.steps.any { it.activityRef == "p5r.activity.book.game-secrets" })
+    }
+
+    @Test
+    fun `p5r August route uses actual point values and active modifiers`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val days = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-08") }
+
+        fun gain(date: String, text: String): Map<String, Int> =
+            days.first { it.date == date }.steps
+                .first { it.label.contains(text) && it.statGains.isNotEmpty() }
+                .statGains
+
+        assertEquals(mapOf("charm" to 4), gain("2016-08-02", "Devil reaches rank 3"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-03", "Island"))
+        assertEquals(mapOf("knowledge" to 10), gain("2016-08-04", "Saraemon"))
+        assertEquals(mapOf("kindness" to 7), gain("2016-08-05", "flower shop"))
+        assertEquals(mapOf("kindness" to 10), gain("2016-08-05", "Le Misérables"))
+        assertEquals(mapOf("proficiency" to 2), gain("2016-08-07", "Sunday drink"))
+        assertEquals(mapOf("charm" to 7), gain("2016-08-07", "convenience store"))
+        assertEquals(mapOf("charm" to 4, "kindness" to 2), gain("2016-08-07", "Crossroads Bar"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-08", "Courage"))
+        assertEquals(mapOf("charm" to 3, "kindness" to 3), gain("2016-08-08", "Crossroads Bar"))
+        assertEquals(mapOf("kindness" to 7), gain("2016-08-10", "flower shop"))
+        assertEquals(mapOf("kindness" to 7), gain("2016-08-10", "Mega Fertilizer"))
+        assertEquals(mapOf("charm" to 3), gain("2016-08-11", "Sun reaches rank 7"))
+        assertEquals(mapOf("charm" to 4), gain("2016-08-12", "convenience store"))
+        assertEquals(mapOf("charm" to 4), gain("2016-08-12", "Devil reaches rank 4"))
+        assertEquals(mapOf("guts" to 2), gain("2016-08-14", "Sunday drink"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-16", "Star reaches rank 5"))
+        assertEquals(mapOf("guts" to 2), gain("2016-08-17", "Death reaches rank 8"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-17", "Sunburn"))
+        assertEquals(mapOf("proficiency" to 2), gain("2016-08-18", "batting cages"))
+        assertEquals(mapOf("charm" to 7), gain("2016-08-20", "Sun reaches rank 8"))
+        assertEquals(mapOf("charm" to 5), gain("2016-08-21", "D.Housewives"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-22", "Star reaches rank 6"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-24", "Star reaches rank 7"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-08-25", "Sweltering"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-08-26", "Mega Fertilizer"))
+        assertEquals(mapOf("kindness" to 2), gain("2016-08-28", "Sunday drink"))
+        assertEquals(mapOf("charm" to 7), gain("2016-08-28", "Sun reaches rank 10"))
+        assertEquals(mapOf("charm" to 5), gain("2016-08-30", "Devil reaches rank 7"))
+        assertEquals(mapOf("charm" to 5), gain("2016-08-31", "D.Housewives"))
+
+        val dHousewives = days.flatMap { it.steps }.filter { it.activityRef == "p5r.activity.dvd.d-housewives" }
+        assertEquals(2, dHousewives.size)
+        assertTrue(dHousewives[0].label.contains("first viewing"))
+        assertTrue(dHousewives[1].label.contains("second viewing"))
     }
 
     // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
