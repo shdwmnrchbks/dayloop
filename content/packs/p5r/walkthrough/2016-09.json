@@ -25,7 +25,7 @@
         { "label": "Buy the PC Tool Set in Akihabara and every game at the retro shop" },
         { "label": "Win the Jack Frost Doll at the Akihabara arcade (1/8)" },
         { "label": "Hang out with Futaba in front of LeBlanc (bring a Hermit Persona) — Hermit reaches rank 2" },
-        { "label": "Solve the LeBlanc crossword: 'Typhoon'", "statGains": { "knowledge": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Typhoon'", "statGains": { "knowledge": 2 } },
         { "label": "Fix the broken laptop at your desk", "statGains": { "proficiency": 3 } },
         { "label": "Tanaka's Shady Commodities unlocks on the laptop" }
       ]
@@ -35,7 +35,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Spend 10,000 yen at Shady Commodities to reach Black rank" },
         { "label": "Hang out with Akechi — Justice reaches rank 6" }
       ]
@@ -46,7 +46,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Receive the request 'Winners Don't Use Cheats'; confront the angry gamer in Shibuya Arcade", "spoiler": true },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Futaba — Hermit reaches rank 3" },
         { "label": "Give the Phantom Wafer to the Kichijoji alley man — Strength Up Ofuda x2 (7/16)" },
         { "label": "Hang out with Chihaya — Fortune reaches rank 6 (required answer for a later story event)" },
@@ -69,7 +69,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Ask Chihaya for a money reading" },
         { "label": "Explore Mementos — 4 requests; fight the 'Winners Don't Use Cheats' boss (auto-retreats, redo it later)", "spoiler": true },
@@ -122,7 +122,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } }
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } }
       ]
     },
     {
@@ -138,7 +138,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } }
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } }
       ]
     },
     {
@@ -162,7 +162,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Magician reaches rank 8", "spoiler": true }
       ]
     },
@@ -171,7 +171,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch 'Mouse M.D.'", "activityRef": "p5r.activity.dvd.mouse-md", "statGains": { "kindness": 3 } }
+        { "label": "Watch 'Mouse M.D.' (first viewing; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.mouse-md", "statGains": { "kindness": 5 } }
       ]
     },
     {
@@ -182,10 +182,10 @@
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Prove your support to the arcade King in Akihabara — have Futaba hack the Gun About site, then report back — Tower reaches rank 1", "statGains": { "kindness": 3 } },
         { "label": "Kindness reaches rank 5" },
-        { "label": "Solve the LeBlanc crossword: 'Festival'", "statGains": { "knowledge": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Festival'", "statGains": { "knowledge": 2 } },
         { "label": "Spend up to 50,000 yen at Shady Commodities; buy the Black Robe" },
         { "label": "Give the Thief Mask to the Kichijoji alley man — 2 Magic Up Ofuda (8/16)" },
-        { "label": "Watch 'Showtime Redemption' in Yongen-Jaya", "activityRef": "p5r.activity.movie.showtime-redemption", "statGains": { "charm": 3 } }
+        { "label": "Watch 'Showtime Redemption' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.showtime-redemption", "statGains": { "charm": 7 } }
       ]
     },
     {
@@ -194,7 +194,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with Maruki — Councilor reaches rank 6" },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 4", "statGains": { "kindness": 2 } }
+        { "label": "Hang out with Sojiro — Hierophant reaches rank 4", "statGains": { "kindness": 3 } }
       ]
     },
     {
@@ -202,9 +202,9 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
-        { "label": "Hang out with Maruki — Councilor reaches rank 7", "statGains": { "knowledge": 1 } },
-        { "label": "Hang out with Hifumi — Star reaches rank 8", "statGains": { "knowledge": 1 } }
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
+        { "label": "Hang out with Maruki — Councilor reaches rank 7" },
+        { "label": "Hang out with Hifumi — Star reaches rank 8", "statGains": { "knowledge": 2 } }
       ]
     },
     {
@@ -214,9 +214,9 @@
       "steps": [
         { "label": "Accept Hifumi's invitation (7 of 10)" },
         { "label": "Reach 100,000 yen spent at Shady Commodities — buy Black Kogatana and Black Robe toward Chaos rank; stock 10 of each Black item" },
-        { "label": "Answer the TV game show: 'Ten years in prison'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the TV game show: 'Ten years in prison'", "statGains": { "knowledge": 2 } },
         { "label": "Win the Bunguer-kun Doll at the Akihabara arcade (2/8)" },
-        { "label": "Hang out with Ohya — Devil reaches rank 8", "statGains": { "charm": 3 } }
+        { "label": "Hang out with Ohya — Devil reaches rank 8", "statGains": { "charm": 5 } }
       ]
     },
     {
@@ -235,10 +235,10 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Read 'Cry of Cthulhu' on the metro", "activityRef": "p5r.activity.book.cry-of-cthulhu", "statGains": { "guts": 3 } },
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Finish 'Cry of Cthulhu' on the metro", "activityRef": "p5r.activity.book.cry-of-cthulhu", "statGains": { "guts": 5 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Shinya (bring a Tower Persona) — Tower reaches rank 2", "statGains": { "kindness": 3 } },
-        { "label": "Save first, then order the Sincere Omelette at the maid cafe — send Clara to fix any mistake, reload if she is flawless", "statGains": { "charm": 2, "guts": 1 } }
+        { "label": "Save first, then order the Sincere Omelette at the maid cafe — have Clara fix a mistake, reload if she is flawless", "statGains": { "charm": 3, "guts": 2 } }
       ]
     },
     {
@@ -247,7 +247,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "TV Shopping Program: Phantom Thief sets (lock picks, Phantom Wafer, Calling Postcard)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 2 } },
         { "label": "Hang out with Makoto — Priestess reaches rank 6" },
         { "label": "Meet the Twins on Central Street (7/13)" },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
@@ -258,8 +258,8 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Shinya — Tower reaches rank 3", "statGains": { "kindness": 2 } },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 5", "statGains": { "kindness": 2 } }
+        { "label": "Hang out with Shinya — Tower reaches rank 3", "statGains": { "kindness": 3 } },
+        { "label": "Hang out with Sojiro — Hierophant reaches rank 5", "statGains": { "kindness": 3 } }
       ]
     },
     {
@@ -277,11 +277,11 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'Master Swordsman' on the metro", "activityRef": "p5r.activity.book.master-swordsman" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Hang out with Futaba — Hermit reaches rank 4" },
-        { "label": "Solve the LeBlanc crossword: 'Ranking'", "statGains": { "knowledge": 1 } },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
+        { "label": "Solve the LeBlanc crossword: 'Ranking'", "statGains": { "knowledge": 2 } },
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
         { "label": "Hang out with Hifumi — Star reaches rank 9 (romance choice available)" }
       ]
     },
@@ -290,9 +290,9 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Futaba — Hermit reaches rank 5" },
-        { "label": "Answer the TV game show: 'Divulging someone's crimes'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the TV game show: 'Divulging someone's crimes'", "statGains": { "knowledge": 2 } },
         { "label": "Ask Chihaya for an affinity reading for Ohya" },
         { "label": "Receive the request 'Debunking the Psychic!'", "spoiler": true }
       ]
@@ -302,7 +302,7 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Master Swordsman' during class", "activityRef": "p5r.activity.book.master-swordsman", "statGains": { "guts": 3 } },
+        { "label": "Finish 'Master Swordsman' during class", "activityRef": "p5r.activity.book.master-swordsman", "statGains": { "guts": 7 } },
         { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
         { "label": "Hang out with Yusuke — Emperor reaches rank 7" },
         { "label": "Ask Chihaya for an affinity reading for Ohya" },
