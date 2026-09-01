@@ -1,7 +1,7 @@
 {
   "packId": "p5r",
   "title": "Persona 5 Royal",
-  "contentVersion": 5,
+  "contentVersion": 6,
   "timeModel": "weekdayGrid",
   "calendar": {
     "startDate": "2016-04-09",
