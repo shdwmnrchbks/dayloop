@@ -4,106 +4,109 @@
       "id": "p5r.activity.book.great-thief",
       "label": "Read 'The Great Thief'",
       "kind": "book",
-      "statGains": { "knowledge": 3 },
+      "statGains": { "knowledge": 5 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.pirate-legend",
       "label": "Read 'Pirate Legend'",
       "kind": "book",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.medjed-menace",
       "label": "Read 'Medjed Menace'",
       "kind": "book",
-      "statGains": { "knowledge": 3 },
+      "statGains": { "knowledge": 5 },
       "location": "Central Street bookstore / home"
     },
     {
       "id": "p5r.activity.book.alluring-dancer",
       "label": "Read 'The Alluring Dancer'",
       "kind": "book",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 5 },
       "location": "School library / home"
     },
     {
       "id": "p5r.activity.book.art-of-charm",
       "label": "Read 'The Art of Charm'",
       "kind": "book",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 5 },
       "location": "Metro"
     },
     {
       "id": "p5r.activity.book.gallant-rogue",
       "label": "Read 'The Gallant Rogue'",
       "kind": "book",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.zorro",
-      "label": "Read 'Zorro the Outlaw'",
+      "label": "Read 'Zorro, the Outlaw'",
       "kind": "book",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "School library"
     },
     {
       "id": "p5r.activity.book.social-thought",
       "label": "Read 'Social Thought'",
       "kind": "book",
-      "statGains": { "knowledge": 3 },
+      "statGains": { "knowledge": 5 },
       "location": "Attic / metro"
     },
     {
       "id": "p5r.activity.dvd.x-folders",
-      "label": "Watch 'The X-Folders'",
+      "label": "Watch 'The X Folders'",
       "kind": "dvd",
-      "statGains": { "guts": 2 },
+      "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.wraith",
       "label": "Watch 'Wraith'",
       "kind": "dvd",
-      "statGains": { "kindness": 2 },
-      "location": "Attic TV"
+      "statGains": { "kindness": 3 },
+      "location": "Attic TV",
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.guy-mcver",
       "label": "Watch 'Guy McVer'",
       "kind": "dvd",
-      "statGains": { "proficiency": 2 },
-      "location": "Attic TV"
+      "statGains": { "proficiency": 3 },
+      "location": "Attic TV",
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.bubbly-hills",
       "label": "Watch 'Bubbly Hills, 90210'",
       "kind": "dvd",
-      "statGains": { "charm": 2 },
-      "location": "Attic TV"
+      "statGains": { "charm": 3 },
+      "location": "Attic TV",
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.movie.tanktop-millionaire",
       "label": "Watch 'Tanktop Millionaire'",
       "kind": "other",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "Central Street movie theater"
     },
     {
       "id": "p5r.activity.book.buchikos-story",
       "label": "Read 'Buchiko's Story'",
       "kind": "book",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "Metro / class"
     },
     {
       "id": "p5r.activity.book.wise-mens-words",
       "label": "Read 'Wise Men's Words'",
       "kind": "book",
-      "statGains": { "knowledge": 3 },
+      "statGains": { "knowledge": 5 },
       "location": "Metro / class"
     },
     {
@@ -111,30 +114,30 @@
       "label": "Read 'The Craft of Cinema'",
       "kind": "book",
       "location": "Shinjuku bookstore / metro",
-      "notes": "Reading it makes movies and DVDs grant bonus stats."
+      "notes": "Adds +2 social-stat points whenever you watch a movie or DVD."
     },
     {
       "id": "p5r.activity.book.game-secrets",
       "label": "Read 'Game Secrets'",
       "kind": "book",
       "location": "Shinjuku bookstore / class",
-      "notes": "Reading it unlocks 'the technique' for retro games."
+      "notes": "Enables cheat mode in retro games, making their minigames easier."
     },
     {
       "id": "p5r.activity.dvd.not-so-hot-betsy",
       "label": "Watch 'Not-so-hot Betsy'",
       "kind": "dvd",
-      "statGains": { "charm": 2 },
+      "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.the-running-dead",
       "label": "Watch 'The Running Dead'",
       "kind": "dvd",
-      "statGains": { "guts": 2 },
+      "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.icu",
@@ -142,20 +145,21 @@
       "kind": "dvd",
       "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.jail-break",
       "label": "Watch 'Jail Break'",
       "kind": "dvd",
+      "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player. Rented 06/29; watch from July."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.movie.cake-knight-rises",
       "label": "Watch 'The Cake Knight Rises'",
       "kind": "other",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "Central Street movie theater"
     },
     {
@@ -163,41 +167,41 @@
       "label": "Buy the Sunday fruit drink",
       "kind": "drink",
       "location": "Shibuya Underground Walkway",
-      "notes": "Sundays only; the stat it raises changes with each purchase."
+      "notes": "Sundays only and does not consume a time slot. Grants +2 points to the currently offered social stat; the same stat repeats on later Sundays until purchased."
     },
     {
       "id": "p5r.activity.book.speed-reader",
       "label": "Read 'Speed Reader'",
       "kind": "book",
       "location": "School library / class",
-      "notes": "Halves the time needed to finish other books."
+      "notes": "Lets you read two chapters in one reading session."
     },
     {
       "id": "p5r.activity.book.abc-of-crafting",
-      "label": "Read 'ABC of Crafting'",
+      "label": "Read 'ABCs of Crafting'",
       "kind": "book",
       "location": "Metro",
-      "notes": "Lets you craft more infiltration tools per session."
+      "notes": "Doubles the base number of infiltration-tool crafting attempts per session."
     },
     {
       "id": "p5r.activity.book.illusory-popess",
       "label": "Read 'The Illusory Popess'",
       "kind": "book",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.ghost-encounters",
       "label": "Read 'Ghost Encounters'",
       "kind": "book",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "Central Street bookstore / class"
     },
     {
       "id": "p5r.activity.book.tidying-the-heart",
       "label": "Read 'Tidying the Heart'",
       "kind": "book",
-      "statGains": { "proficiency": 3 },
+      "statGains": { "proficiency": 5 },
       "location": "Metro"
     },
     {
@@ -205,96 +209,97 @@
       "label": "Read 'Flowerpedia'",
       "kind": "book",
       "location": "Shinjuku bookstore / supermarket",
-      "notes": "Plant-care knowledge; no direct stat gain."
+      "notes": "Adds flower descriptions that help satisfy flower-shop customer requests; no direct stat gain."
     },
     {
       "id": "p5r.activity.book.learn-pro-darts",
       "label": "Read 'Learn Pro Darts'",
       "kind": "book",
       "location": "Shinjuku bookstore",
-      "notes": "Makes the darts minigame easier."
+      "notes": "Enables Third Eye while aiming in darts."
     },
     {
       "id": "p5r.activity.book.expert-billiards",
       "label": "Read 'Expert Billiards'",
       "kind": "book",
       "location": "Underground Mall sports store",
-      "notes": "Billiards practice; no direct stat gains listed."
+      "notes": "Unlocks billiards trick-shot progression used to raise Technical Rank."
     },
     {
       "id": "p5r.activity.book.billiards-magician",
       "label": "Read 'Billiards Magician'",
       "kind": "book",
-      "location": "Won at the billiards hall / class"
+      "location": "Won at the billiards hall / class",
+      "notes": "Teaches the Massé Shot used for Technical Rank 4 progression."
     },
     {
       "id": "p5r.activity.book.batting-science",
       "label": "Read 'Batting Science'",
       "kind": "book",
       "location": "Shinjuku bookstore / metro",
-      "notes": "Batting-cage technique; no direct stat gains listed."
+      "notes": "Enables Third Eye to slow pitches at the batting cages; no direct stat gain."
     },
     {
       "id": "p5r.activity.book.master-swordsman",
       "label": "Read 'Master Swordsman'",
       "kind": "book",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 7 },
       "location": "Jinbocho bookstore / metro"
     },
     {
       "id": "p5r.activity.book.cry-of-cthulhu",
       "label": "Read 'Cry of Cthulhu'",
       "kind": "book",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.art-of-automata",
       "label": "Read 'The Art of Automata'",
       "kind": "book",
-      "statGains": { "proficiency": 3 },
+      "statGains": { "proficiency": 7 },
       "location": "Jinbocho bookstore / class"
     },
     {
       "id": "p5r.activity.book.woman-in-the-dark",
       "label": "Read 'Woman in the Dark'",
       "kind": "book",
-      "statGains": { "proficiency": 3 },
+      "statGains": { "proficiency": 5 },
       "location": "School library"
     },
     {
       "id": "p5r.activity.book.heroic-revelations",
       "label": "Read 'Heroic Revelations'",
       "kind": "book",
-      "statGains": { "knowledge": 3 },
+      "statGains": { "knowledge": 7 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.hero-with-a-bow",
       "label": "Read 'The Hero with a Bow'",
       "kind": "book",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "School library / metro"
     },
     {
       "id": "p5r.activity.book.dressed-in-ashes",
       "label": "Read 'Dressed in Ashes'",
       "kind": "book",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 5 },
       "location": "School library / class"
     },
     {
       "id": "p5r.activity.book.call-me-chief",
       "label": "Read 'Call Me Chief'",
       "kind": "book",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 7 },
       "location": "Metro / class"
     },
     {
       "id": "p5r.activity.book.reckless-casanova",
       "label": "Read 'Reckless Casanova'",
       "kind": "book",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 7 },
       "location": "Metro / class"
     },
     {
@@ -302,57 +307,58 @@
       "label": "Read 'Knowing the Heart'",
       "kind": "book",
       "location": "Jinbocho bookstore / metro",
-      "notes": "Also used as a hang-out gift."
+      "notes": "Unlocks additional ailment/Technical combinations for Forget, Confusion, Fear, Rage and Brainwash."
     },
     {
       "id": "p5r.activity.book.essence-of-fishing",
       "label": "Read 'Essence of Fishing'",
       "kind": "book",
       "location": "Shinjuku bookstore / metro",
-      "notes": "Lets Third Eye spot Prize Tag fish at the fishing pond."
+      "notes": "Lets Third Eye identify fish and Prize Tag targets at the fishing pond."
     },
     {
       "id": "p5r.activity.book.chinese-sweets",
       "label": "Read 'Chinese Sweets'",
       "kind": "book",
       "location": "Jinbocho bookstore / class",
-      "notes": "Final book; unlocks the Chinatown hangout spot."
+      "notes": "Unlocks the Chinatown hangout spot; obtained from the 'Part-time Job, Full-time Hell' request."
     },
     {
       "id": "p5r.activity.book.factorization-guide",
       "label": "Read 'Factorization Guide'",
       "kind": "book",
-      "location": "Kichijoji alley trade / class"
+      "location": "Kichijoji alley trade / class",
+      "notes": "Adds +2 Knowledge points when studying."
     },
     {
       "id": "p5r.activity.movie.over-the-pigeons-nest",
       "label": "Watch 'Over the Pigeon's Nest'",
       "kind": "other",
-      "statGains": { "kindness": 3 },
-      "location": "Central Street movie theater"
+      "statGains": { "kindness": 5 },
+      "location": "Yongen-Jaya movie theater"
     },
     {
       "id": "p5r.activity.movie.clean-hard",
       "label": "Watch 'Clean Hard'",
       "kind": "other",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "Central Street movie theater"
     },
     {
       "id": "p5r.activity.dvd.d-housewives",
-      "label": "Watch 'D.Housewives'",
+      "label": "Watch 'D Housewives'",
       "kind": "dvd",
       "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.mouse-md",
-      "label": "Watch 'Mouse M.D.'",
+      "label": "Watch 'Mouse MD'",
       "kind": "dvd",
       "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.31",
@@ -360,7 +366,7 @@
       "kind": "dvd",
       "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.tee",
@@ -368,166 +374,166 @@
       "kind": "dvd",
       "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "12-part rental series; needs the DVD player."
+      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.movie.love-possibly",
       "label": "Watch 'Love Possibly'",
       "kind": "other",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 5 },
       "location": "Central Street movie theater",
-      "notes": "Invited via text message; also grants Lovers points."
+      "notes": "The 7/17 Ann invitation also grants Lovers affinity."
     },
     {
       "id": "p5r.activity.movie.like-a-dragon",
       "label": "Watch 'Like a Dragon'",
       "kind": "other",
-      "statGains": { "guts": 3 },
-      "location": "Central Street movie theater",
-      "notes": "Invited via text message; also grants Priestess points."
+      "statGains": { "guts": 5 },
+      "location": "Shinjuku movie theater",
+      "notes": "The 7/28 Makoto invitation also grants Priestess affinity."
     },
     {
       "id": "p5r.activity.movie.saraemon",
       "label": "Watch 'Saraemon'",
       "kind": "other",
-      "statGains": { "knowledge": 3 },
+      "statGains": { "knowledge": 5 },
       "location": "Shinjuku movie theater"
     },
     {
       "id": "p5r.activity.movie.le-miserable",
-      "label": "Watch 'Le Misérables'",
+      "label": "Watch 'Le Miserable'",
       "kind": "other",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "Central Street movie theater",
-      "notes": "Invited via text message; also grants Emperor points."
+      "notes": "The 8/5 Yusuke invitation also grants Emperor affinity."
     },
     {
       "id": "p5r.activity.movie.showtime-redemption",
       "label": "Watch 'Showtime Redemption'",
       "kind": "other",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 5 },
       "location": "Yongen-Jaya movie theater"
     },
     {
       "id": "p5r.activity.movie.back-to-the-ninja",
       "label": "Watch 'Back to the Ninja'",
       "kind": "other",
-      "statGains": { "knowledge": 3 },
-      "location": "Central Street movie theater",
-      "notes": "Invited via text message; also grants Hermit points."
+      "statGains": { "knowledge": 5 },
+      "location": "Yongen-Jaya movie theater",
+      "notes": "The 10/2 Futaba invitation also grants Hermit affinity."
     },
     {
       "id": "p5r.activity.movie.duhvengers",
-      "label": "Watch 'Duhvengers'",
+      "label": "Watch 'Duh-vengers'",
       "kind": "other",
-      "statGains": { "kindness": 3 },
+      "statGains": { "kindness": 5 },
       "location": "Shinjuku movie theater"
     },
     {
       "id": "p5r.activity.movie.admission-impossible",
       "label": "Watch 'Admission Impossible'",
       "kind": "other",
-      "statGains": { "proficiency": 3 },
+      "statGains": { "proficiency": 5 },
       "location": "Central Street movie theater"
     },
     {
       "id": "p5r.activity.movie.pach-saw",
-      "label": "Watch 'Pach Saw'",
+      "label": "Watch 'Pach-Saw'",
       "kind": "other",
-      "statGains": { "guts": 3 },
-      "location": "Central Street movie theater",
-      "notes": "Invited via text message; also grants Empress points."
+      "statGains": { "guts": 5 },
+      "location": "Shinjuku movie theater",
+      "notes": "The 11/13 Haru invitation also grants Empress affinity."
     },
     {
       "id": "p5r.activity.movie.merry-christmess",
       "label": "Watch 'Merry Christmess'",
       "kind": "other",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "Yongen-Jaya movie theater"
     },
     {
       "id": "p5r.activity.movie.march-of-the-lambs",
       "label": "Watch 'March of the Lambs'",
       "kind": "other",
-      "statGains": { "proficiency": 3 },
+      "statGains": { "proficiency": 5 },
       "location": "Yongen-Jaya movie theater"
     },
     {
       "id": "p5r.activity.movie.bite-club",
       "label": "Watch 'Bite Club'",
       "kind": "other",
-      "statGains": { "guts": 3 },
+      "statGains": { "guts": 5 },
       "location": "Shinjuku movie theater"
     },
     {
       "id": "p5r.activity.movie.finding-beemo",
       "label": "Watch 'Finding Beemo'",
       "kind": "other",
-      "statGains": { "charm": 3 },
+      "statGains": { "charm": 5 },
       "location": "Central Street movie theater"
     },
     {
       "id": "p5r.activity.movie.the-goodfather",
       "label": "Watch 'The Goodfather'",
       "kind": "other",
-      "statGains": { "kindness": 2 },
+      "statGains": { "kindness": 5 },
       "location": "Yongen-Jaya movie theater"
     },
     {
       "id": "p5r.activity.videoGame.star-forneus",
       "label": "Play 'Star Forneus'",
       "kind": "videoGame",
-      "statGains": { "guts": 2 },
+      "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' from 'Game Secrets' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.gambla-goemon",
       "label": "Play 'Gambla Goemon'",
       "kind": "videoGame",
-      "statGains": { "charm": 2 },
+      "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.punch-ouch",
       "label": "Play 'Punch Ouch'",
       "kind": "videoGame",
-      "statGains": { "charm": 2 },
+      "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.featherman-seeker",
       "label": "Play 'Featherman Seeker'",
       "kind": "videoGame",
-      "statGains": { "knowledge": 2 },
+      "statGains": { "knowledge": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.train-of-life",
       "label": "Play 'Train of Life'",
       "kind": "videoGame",
-      "statGains": { "kindness": 2 },
+      "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.power-intuition",
       "label": "Play 'Power Intuition'",
       "kind": "videoGame",
-      "statGains": { "guts": 2 },
+      "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.golfer-sarutahiko",
       "label": "Play 'Golfer Sarutahiko'",
       "kind": "videoGame",
-      "statGains": { "proficiency": 2 },
+      "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; 'the technique' guarantees a win — reload if lost."
+      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
     }
   ]
 }
