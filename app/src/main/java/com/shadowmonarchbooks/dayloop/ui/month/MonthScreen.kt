@@ -95,14 +95,10 @@ fun MonthScreen(
             IconButton(onClick = { if (index > 0) index-- }, enabled = index > 0) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous month")
             }
-            // Pack-supplied month opener art + section markers
-            // (docs/ROADMAP-v3.md Phase 11), when this pack declares them.
             val monthMedia = pack.mediaForMonth(month)
             monthMedia.firstOrNull { it.kind == "month" }?.let { opener ->
                 MediaImage(assetPath = pack.assetOf(opener), title = opener.title, size = 40.dp)
             }
-            // Skinned packs render the month as a ribbon header in display
-            // type (docs/ROADMAP-v3.md Phase 13); engine look keeps title text.
             SkinHeader(text = formatMonth(month), modifier = Modifier.weight(1f))
             monthMedia.filter { it.kind == "section" }.forEach { marker ->
                 MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 22.dp)
@@ -114,10 +110,6 @@ fun MonthScreen(
 
         CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay, dateMarkers = dateMarkers)
 
-        // Achievements the guide ties to this month (facts, spoiler-safe):
-        // pack-supplied icon + title chips (docs/ROADMAP-v3.md Phase 11),
-        // listed vertically under the grid and scrolling within a bounded
-        // region so long lists never push the calendar off screen.
         val monthAchievements = pack.mediaForMonth(month).filter { it.kind == "achievement" }
         if (monthAchievements.isNotEmpty()) {
             Text(
@@ -145,9 +137,6 @@ private fun CalendarGrid(
 ) {
     val deadlineDates = deadlines.mapNotNull { deadlineStart(it) }.toSet()
 
-    // Cycle-aware grid: dayCounter packs may declare an in-game week of any
-    // length; the columns follow the pack's cycle order. weekdayGrid packs
-    // (no cycle) keep the real 7-column Monday-first grid.
     val cycle = calendar?.cycleTokens.orEmpty()
     if (cycle.isEmpty() || calendar == null) {
         RealMonthGrid(days, deadlineDates, month, clockDate, onOpenDay, dateMarkers)
@@ -210,7 +199,7 @@ private fun RealMonthGrid(
 ) {
     val first = parseDateOrNull("$month-01") ?: return
     val daysInMonth = first.lengthOfMonth()
-    val leadDays = (first.dayOfWeek.value + 6) % 7 // Monday-first grid
+    val leadDays = (first.dayOfWeek.value + 6) % 7
 
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -266,12 +255,8 @@ private fun DayCell(
     marker: Pair<String, String>? = null,
 ) {
     val skin = LocalSkin.current
-    // Crown language (docs/ROADMAP-v3.md Phase 15): authored cells become
-    // gold-ruled itinerary tiles (hairline border; fills stay kind-colored),
-    // and deadline dates wear a wax-stamp mark instead of the generic dot.
     val crown = skin.hasSkin && skin.motif == "crown"
-    // Moon-language packs: Dark-Hour block days invert to a darker glass
-    // (docs/ROADMAP-v3.md Phase 14) — the cell uses the inverse roles.
+    val slash = skin.hasSkin && skin.motion == "slash"
     val inverted = skin.motif == "moon" && day?.dayKind == "forced"
     val container = when (day?.dayKind) {
         "school" -> MaterialTheme.colorScheme.surfaceVariant
@@ -279,33 +264,31 @@ private fun DayCell(
         "exam" -> MaterialTheme.colorScheme.errorContainer
         "forced" -> if (inverted) MaterialTheme.colorScheme.inverseSurface else MaterialTheme.colorScheme.tertiaryContainer
         "free" -> MaterialTheme.colorScheme.secondaryContainer
-        else -> null // authored months may skip a day; render it dimmed
+        else -> null
     }
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         Surface(
-            // Skinned packs: the clock date is a solid accent burst
-            // (ROADMAP-v3 Phase 13); the engine look keeps the border ring.
-            shape = if (isClockDate && skin.hasSkin) skin.shapes.card else RoundedCornerShape(10.dp),
+            shape = if (skin.hasSkin) skin.shapes.card else RoundedCornerShape(10.dp),
             color = if (isClockDate && skin.hasSkin && container != null) {
                 MaterialTheme.colorScheme.primary
             } else {
                 container ?: MaterialTheme.colorScheme.surface
             },
-            tonalElevation = if (container == null) 0.dp else 2.dp,
+            tonalElevation = if (slash || container == null) 0.dp else 2.dp,
             border = when {
                 isClockDate && !skin.hasSkin -> BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
+                slash && day != null -> BorderStroke(
+                    if (isClockDate) 1.5.dp else 0.8.dp,
+                    MaterialTheme.colorScheme.onBackground.copy(alpha = if (isClockDate) 1f else 0.55f),
+                )
                 crown && day != null -> BorderStroke(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f))
                 else -> null
             },
             modifier = Modifier
                 .fillMaxSize()
                 .then(
-                    if (day != null) {
-                        Modifier.clickable { onOpenDay(iso) }
-                    } else {
-                        Modifier
-                    },
+                    if (day != null) Modifier.clickable { onOpenDay(iso) } else Modifier,
                 ),
         ) {
             Box(contentAlignment = Alignment.Center) {
@@ -321,8 +304,6 @@ private fun DayCell(
                     },
                 )
                 if (marker != null) {
-                    // The pack's own moon marker art replaces the generic
-                    // deadline dot on exactly the dates it anchors.
                     MediaImage(
                         assetPath = marker.first,
                         title = marker.second,
@@ -330,25 +311,31 @@ private fun DayCell(
                         modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 2.dp),
                     )
                 } else if (hasDeadline) {
-                    if (crown) {
-                        // Wax-stamp mark (Phase 15): a ringed crimson disc —
-                        // the mission-stamp read — instead of the plain dot.
-                        Box(
+                    when {
+                        slash -> Box(
                             modifier = Modifier
                                 .align(Alignment.BottomCenter)
-                                .padding(bottom = 2.dp)
+                                .padding(bottom = 3.dp)
                                 .size(9.dp)
-                                .border(1.dp, MaterialTheme.colorScheme.error, CircleShape),
-                            contentAlignment = Alignment.Center,
-                        ) {
+                                .background(MaterialTheme.colorScheme.primary, skin.shapes.chip),
+                        )
+                        crown -> {
                             Box(
                                 modifier = Modifier
-                                    .size(3.5.dp)
-                                    .background(MaterialTheme.colorScheme.error, CircleShape),
-                            )
+                                    .align(Alignment.BottomCenter)
+                                    .padding(bottom = 2.dp)
+                                    .size(9.dp)
+                                    .border(1.dp, MaterialTheme.colorScheme.error, CircleShape),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(3.5.dp)
+                                        .background(MaterialTheme.colorScheme.error, CircleShape),
+                                )
+                            }
                         }
-                    } else {
-                        Box(
+                        else -> Box(
                             modifier = Modifier
                                 .align(Alignment.BottomCenter)
                                 .padding(bottom = 3.dp)
