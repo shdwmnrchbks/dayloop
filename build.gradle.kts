@@ -21,11 +21,11 @@ plugins {
 // Validate content packs: ./gradlew packlint [-Ppack=content/packs/p5r]
 tasks.register<JavaExec>("packlint") {
     group = "verification"
-    description = "Validate content packs (schema, calendar, cross-refs, ID immutability)."
+    description = "Validate content packs (schema, calendar, cross-refs, launcher art, ID immutability)."
     classpath = project(":tools:pack").extensions
         .getByType(org.gradle.api.plugins.JavaPluginExtension::class.java)
         .sourceSets["main"].runtimeClasspath
-    mainClass = "com.shadowmonarchbooks.dayloop.tools.pack.PackLintKt"
+    mainClass = "com.shadowmonarchbooks.dayloop.tools.pack.PackLintAllKt"
     args(
         listOf("validate", "--pack", (findProperty("pack") ?: "content/packs/p5r").toString()) +
             (findProperty("packlintExtra")?.toString()?.split(" ")?.filter { it.isNotBlank() } ?: emptyList()),
