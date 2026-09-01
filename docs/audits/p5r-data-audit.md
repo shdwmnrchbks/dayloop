@@ -90,11 +90,12 @@ route-specific stat.
 therefore require pre-6/23 DVD gains to equal the 3-point base and post-read DVD
 viewings to include the +2 modifier (for example ICU on 6/25 and 6/27 = 5).
 
-July through September received targeted **point-unit and active-modifier**
-passes. The route order was preserved, while user-visible totals were normalized
-where the mechanics are independently checkable. Examples include:
+July through December received targeted **point-unit and active-modifier**
+passes. The route order was preserved where flexible, while user-visible totals
+and fixed calendar facts were normalized where the mechanics are independently
+checkable. Examples include:
 
-- July–September crosswords, class questions, TV quizzes and Aojiru use their
+- July–December crosswords, class questions, TV quizzes and Aojiru use their
   actual +2 values rather than one-note shorthand.
 - Craft of Cinema adds +2 to movie/DVD base rewards; Luck Reading then applies
   its 50% boost to the resulting selected-stat gain, rounded down. That is why
@@ -103,8 +104,9 @@ where the mechanics are independently checkable. Examples include:
   barcode/order bonus, then apply Luck when active.
 - Crossroads shifts include the bar's base Charm gain **and** the selected
   patron's secondary-stat reward; earlier data kept only the patron reward.
-- Royal Confidant stat rewards such as Devil, Sun, Star, Death, Tower and
-  Hierophant use actual hidden points rather than displayed notes.
+- Royal Confidant stat rewards such as Devil, Sun, Star, Death, Tower,
+  Hierophant and Hanged Man use actual hidden points rather than displayed
+  notes.
 - August `D.Housewives` is explicitly two viewings, each using the 3-point DVD
   base plus the already-read Craft of Cinema bonus.
 - September's `Mouse M.D.` and `Showtime Redemption` include the active Craft of
@@ -116,11 +118,26 @@ where the mechanics are independently checkable. Examples include:
   rank grants Confidant/SP effects, not a Knowledge social-stat reward.
 - A normal batting-cage session remains +2 Proficiency; the home-run target is
   an item/achievement condition, not an extra hidden-point tier for that visit.
+- October normalizes the recurring Aojiru, class/crossword, media, books,
+  fertilizer, retro-game, darts and Confidant values. The Shinya
+  Destinyland/Balloons hangout no longer invents Kindness, and its same-day Mega
+  Fertilizer reward is restored. See `p5r-october-2016-audit.md`.
+- November removes a duplicate Strength rank-9 ritual, a bogus Moon rank-7
+  Kindness reward and a bogus Hanged rank-9 stat reward. It also corrects stale
+  route copy that claimed Justice/Akechi ranks 7/8 unlock the third semester;
+  they gate optional Akechi content, while Councilor/Maruki is the semester
+  unlock path. See `p5r-november-2016-audit.md`.
+- December normalizes fishing, Maid Cafe, fertilizer, Aojiru, crosswords/TV,
+  movies/games and high-rank Tower/Hanged rewards. It moves Sojiro's final-exam
+  reward to December 23, keeps the independently supported December 24 result
+  date, and records the conflicting secondary source rather than hiding it.
+  See `p5r-december-2016-audit.md`.
 
-These July–September corrections are regression-tested for the highest-risk
-point and modifier cases, but they are **not** a claim that every flexible route
-step on those months has been independently reproduced day-for-day from a second
-walkthrough. October onward has not yet received the same point-unit pass.
+These July–December corrections are regression-tested for the highest-risk
+point, modifier and fixed-calendar cases, but they are **not** a claim that every
+flexible route step in those months has been independently reproduced day-for-day
+from a second walkthrough. January–February 2017 have not yet received the same
+point-unit pass.
 
 ### Confidants
 
@@ -179,6 +196,11 @@ and Samurai Gamers) place the question on **May 7**, with May 6 containing a
 lecture/chalk sequence. The pack now uses May 7 and keeps the stable
 `p5r.answers.class.2016-05-07` id. This is recorded explicitly so a later audit
 does not reintroduce the off-by-one date merely by switching source tables.
+
+The December audit found a second date conflict: one Royal completion schedule
+places final exam results on December 23, while the marendarade Royal walkthrough
+and Royal calendar references place them on **December 24**. The pack keeps
+December 24 and records the disagreement in `p5r-december-2016-audit.md`.
 
 ## Regression rules
 
