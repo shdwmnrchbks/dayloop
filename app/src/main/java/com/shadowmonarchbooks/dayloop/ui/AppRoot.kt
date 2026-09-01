@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,6 +40,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.ui.achievements.AchievementsScreen
 import com.shadowmonarchbooks.dayloop.ui.activities.ActivitiesScreen
 import com.shadowmonarchbooks.dayloop.ui.activities.ActivityDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.answers.AnswersScreen
@@ -59,21 +61,21 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
 /** Every top-level destination stays registered, whatever the active pack ships. */
-private val TopLevelRoutes = setOf("today", "calendar", "bonds", "deadlines", "answers")
+private val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "deadlines", "answers")
 
 /** One bottom-bar entry; the list is derived from the active pack (Phase 8). */
 private data class TopTab(val route: String, val label: String, val icon: ImageVector)
 
 /**
- * Tabs the active pack earns (docs/ROADMAP-v2.md Phase 8): Bonds/Deadlines
- * appear when the pack ships their files, the Answers tab only when the pack
- * declares `capabilities.answers` (packlint guarantees the data exists).
- * Tab count and order are pack data, never hardcoded; a null pack falls back
- * to the full set so navigation never strands.
+ * Tabs the active pack earns. Achievements is a first-class tracker for every
+ * pack; packs without achievement data show an explicit empty state rather
+ * than falling back to the old Activities browser. Activities stay reachable
+ * through authored step references and Search, where they have context.
  */
 private fun topLevelTabs(pack: LoadedPack?): List<TopTab> = buildList {
     add(TopTab("today", "Today", Icons.Filled.Home))
     add(TopTab("calendar", "Calendar", Icons.Filled.DateRange))
+    add(TopTab("achievements", "Achievements", Icons.Filled.Star))
     if (pack == null || pack.hasBondsFile) {
         add(TopTab("bonds", pack?.pack?.labels?.bond?.let { it + "s" } ?: "Bonds", Icons.Filled.Person))
     }
@@ -178,7 +180,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     onOpenDay = { date -> nav.navigate("day/$date") },
                     onOpenCalendar = { nav.navigate("calendar") { launchSingleTop = true } },
                     onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
-                    onOpenActivities = { nav.navigate("activities") { launchSingleTop = true } },
+                    onOpenAchievements = { nav.navigate("achievements") { launchSingleTop = true } },
                     // The Today answer-sheet card taps through to the full
                     // Answers tab (exam answers now surface on the tracker).
                     onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
@@ -202,6 +204,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             composable("calendar") {
                 MonthScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
             }
+            composable("achievements") {
+                AchievementsScreen(vm = vm)
+            }
             composable("bonds") {
                 BondsScreen(
                     pack = pack,
@@ -220,6 +225,8 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             composable("answers") {
                 AnswersScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
             }
+            // Activities are still a valid detail/browse destination for search
+            // and authored activity references, but no longer occupy top-level UI.
             composable("activities") {
                 ActivitiesScreen(
                     vm = vm,
