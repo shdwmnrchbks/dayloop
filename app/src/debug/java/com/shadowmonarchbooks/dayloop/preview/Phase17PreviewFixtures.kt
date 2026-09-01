@@ -48,9 +48,9 @@ object Phase17PreviewFixtures {
         PreviewSkinFixture(
             id = "masks",
             theme = PackTheme(
-                accent = "#C01800",
+                accent = "#D81800",
                 accentDark = "#D81800",
-                style = "vibrant",
+                style = "ink",
                 motif = "masks",
                 shapes = SkinShapes(card = "jagged", chip = "slash", header = "ribbon", frame = "cut"),
             ),
