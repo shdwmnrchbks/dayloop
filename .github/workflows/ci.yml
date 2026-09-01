@@ -5,24 +5,55 @@ on:
     branches: [ main ]
   pull_request:
 
+concurrency:
+  group: dayloop-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    # Dayloop's toolchain is provisioned by the workflow and supports both of
-    # the org's current x64 self-hosted pools (Windows and Linux). GitHub can
-    # therefore dispatch to whichever compatible x64 runner is available.
+    # Dayloop supports the org's Windows and Linux x64 self-hosted pools.
+    # GitHub dispatches to whichever compatible runner is available.
     runs-on: [self-hosted, X64]
     timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Detect persistent JDK 17 (Linux)
+        if: runner.os == 'Linux'
+        id: linux-jdk
+        shell: bash
+        run: |
+          JAVA17=/usr/lib/jvm/java-17-openjdk
+          if [[ -x "$JAVA17/bin/java" ]]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "JAVA_HOME=$JAVA17" >> "$GITHUB_ENV"
+            echo "$JAVA17/bin" >> "$GITHUB_PATH"
+            "$JAVA17/bin/java" -version
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up JDK 17 when host JDK is unavailable
+        if: runner.os != 'Linux' || steps.linux-jdk.outputs.available != 'true'
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK for self-hosted runner
+      - name: Reuse persistent Android SDK (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          chmod +x .github/scripts/ensure-persistent-android-sdk-linux.sh
+          .github/scripts/ensure-persistent-android-sdk-linux.sh
+          echo "ANDROID_SDK_ROOT=$HOME/.local/share/android-sdk" >> "$GITHUB_ENV"
+          echo "ANDROID_HOME=$HOME/.local/share/android-sdk" >> "$GITHUB_ENV"
+          echo "$HOME/.local/share/android-sdk/platform-tools" >> "$GITHUB_PATH"
+          echo "$HOME/.local/share/android-sdk/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+
+      - name: Set up Android SDK (Windows)
+        if: runner.os == 'Windows'
         uses: amyu/setup-android@09345fc2cbed5b3a92beea84d843a22eac6cc841 # v6.0
         with:
           sdk-version: '35'
@@ -31,9 +62,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          # Self-hosted runners persist ~/.gradle between jobs already. Avoid
-          # the remote cache post-job upload/cleanup path, which can leave a
-          # persistent runner stuck busy after the build itself has finished.
+          # Self-hosted runners persist ~/.gradle between jobs already.
           cache-disabled: true
 
       - name: Build and test (Linux/macOS)
