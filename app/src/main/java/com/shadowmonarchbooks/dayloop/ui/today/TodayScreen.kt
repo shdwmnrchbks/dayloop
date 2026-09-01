@@ -76,7 +76,7 @@ fun TodayScreen(
     onOpenDay: (String) -> Unit,
     onOpenCalendar: () -> Unit,
     onOpenSettings: () -> Unit,
-    onOpenActivities: () -> Unit = {},
+    onOpenAchievements: () -> Unit = {},
     onOpenActivity: (String) -> Unit = {},
     onOpenAnswers: () -> Unit = {},
 ) {
@@ -315,12 +315,8 @@ fun TodayScreen(
             TextButton(onClick = { onOpenDay(date) }) {
                 Text("Open full day page")
             }
-            // Activities browsing (docs/ROADMAP-v2.md Phase 9): shown when the
-            // pack ships an activity catalog.
-            if (pack.activities.isNotEmpty()) {
-                TextButton(onClick = onOpenActivities) {
-                    Text("Activities")
-                }
+            TextButton(onClick = onOpenAchievements) {
+                Text("Achievements")
             }
         }
         }
