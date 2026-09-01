@@ -3,6 +3,7 @@ package com.shadowmonarchbooks.dayloop.ui.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -13,6 +14,7 @@ import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.theme.schemeArgb
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTypography
 
@@ -166,6 +168,26 @@ fun packColorScheme(theme: PackTheme, dark: Boolean): ColorScheme {
 }
 
 /**
+ * Material components still consume [Shapes] even when a pack supplies custom
+ * silhouettes. For the slash family, map those generic skin silhouettes into
+ * Material's size roles so AlertDialog, TextField, Button and any remaining
+ * stock components stop reintroducing rounded Material pills/cards. Other
+ * skins keep Material defaults to avoid changing their established look.
+ */
+private fun materialShapesFor(skin: SkinSpec): Shapes =
+    if (skin.hasSkin && skin.motion == "slash") {
+        Shapes(
+            extraSmall = skin.shapes.chip,
+            small = skin.shapes.chip,
+            medium = skin.shapes.card,
+            large = skin.shapes.frame,
+            extraLarge = skin.shapes.frame,
+        )
+    } else {
+        Shapes()
+    }
+
+/**
  * The app's theme root: resolves the active pack's scheme (Phase 10) and its
  * skin (docs/ROADMAP-v3.md Phase 12) and provides both to every surface. A
  * pack declaring nothing renders exactly the engine look.
@@ -184,6 +206,7 @@ fun DayloopTheme(
             darkTheme -> DarkColors
             else -> LightColors
         },
+        shapes = materialShapesFor(skin),
         typography = skinTypography(Typography(), skin.type),
         content = {
             CompositionLocalProvider(LocalSkin provides skin) {
