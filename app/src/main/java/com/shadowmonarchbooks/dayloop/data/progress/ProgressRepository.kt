@@ -34,11 +34,28 @@ data class PackSeed(
     val routeId: String = Routes.DEFAULT,
 )
 
+/** Profile-scoped manual progress for achievement rules the walkthrough cannot infer. */
+data class AchievementManualProgress(
+    val counts: Map<String, Int> = emptyMap(),
+)
+
+/** Decode the compact DataStore representation used for achievement counters. */
+internal fun decodeAchievementCounts(entries: Set<String>): Map<String, Int> =
+    entries.mapNotNull { entry ->
+        val separator = entry.lastIndexOf('=')
+        if (separator <= 0) return@mapNotNull null
+        val id = entry.substring(0, separator)
+        val count = entry.substring(separator + 1).toIntOrNull()?.takeIf { it > 0 }
+            ?: return@mapNotNull null
+        id to count
+    }.toMap()
+
 /**
  * Owns all mutable progress: profiles (per pack, docs/PLAN.md §3.7), the
- * End-Day clock, step marks, and profile-scoped earned-achievement ids. Maps
- * Room/DataStore state onto the pure semantics in `core:progress`; the UI never
- * touches persistence directly.
+ * End-Day clock, step marks, profile-scoped earned-achievement ids, and
+ * explicit counters for achievement conditions that cannot be inferred from
+ * authored walkthrough state. Maps Room/DataStore state onto the pure
+ * semantics in `core:progress`; the UI never touches persistence directly.
  */
 @Singleton
 class ProgressRepository @Inject constructor(
@@ -57,6 +74,14 @@ class ProgressRepository @Inject constructor(
     /** Explicitly earned achievements for one profile. Availability is clock-derived in UI. */
     fun earnedAchievements(profileId: Long): Flow<Set<String>> =
         settings.data.map { it[achievementKey(profileId)] ?: emptySet() }
+
+    /** Manual achievement counters for one profile. */
+    fun achievementProgress(profileId: Long): Flow<AchievementManualProgress> =
+        settings.data.map { prefs ->
+            AchievementManualProgress(
+                counts = decodeAchievementCounts(prefs[achievementProgressKey(profileId)].orEmpty()),
+            )
+        }
 
     /** Active profile id for [packId]; null until one is chosen or created. */
     fun activeProfileId(packId: String): Flow<Long?> =
@@ -133,6 +158,21 @@ class ProgressRepository @Inject constructor(
         }
     }
 
+    /** Persist one explicit achievement counter. Zero removes the stored entry. */
+    suspend fun setAchievementCount(profileId: Long, achievementId: String, count: Int) {
+        require('=' !in achievementId) { "Achievement ids cannot contain '='" }
+        val key = achievementProgressKey(profileId)
+        val normalized = count.coerceAtLeast(0)
+        val prefix = "$achievementId="
+        settings.edit { prefs ->
+            val entries = prefs[key].orEmpty()
+                .filterNot { it.startsWith(prefix) }
+                .toMutableSet()
+            if (normalized > 0) entries += "$achievementId=$normalized"
+            if (entries.isEmpty()) prefs.remove(key) else prefs[key] = entries
+        }
+    }
+
     /** End Day: advance the clock to the next playable date; false at the end. */
     suspend fun endDay(profileId: Long, pack: PackSeed): Boolean =
         shiftClock(profileId, pack) { Clock.next(pack.span, it) }
@@ -154,7 +194,10 @@ class ProgressRepository @Inject constructor(
                 )
             }
         }
-        settings.edit { it.remove(achievementKey(profileId)) }
+        settings.edit {
+            it.remove(achievementKey(profileId))
+            it.remove(achievementProgressKey(profileId))
+        }
     }
 
     suspend fun createProfile(pack: PackSeed, name: String): Long =
@@ -174,7 +217,10 @@ class ProgressRepository @Inject constructor(
             db.stepStateDao().deleteForProfile(profileId)
             db.profileDao().delete(profileId)
         }
-        settings.edit { it.remove(achievementKey(profileId)) }
+        settings.edit {
+            it.remove(achievementKey(profileId))
+            it.remove(achievementProgressKey(profileId))
+        }
         val key = longPreferencesKey("activeProfile.${pack.packId}")
         if (settings.data.first()[key] == profileId) {
             val fallback = db.profileDao().firstForPack(pack.packId)
@@ -223,6 +269,9 @@ class ProgressRepository @Inject constructor(
 
     private fun achievementKey(profileId: Long) =
         stringSetPreferencesKey("earnedAchievements.$profileId")
+
+    private fun achievementProgressKey(profileId: Long) =
+        stringSetPreferencesKey("achievementProgress.$profileId")
 
     private suspend fun defaultName(packId: String): String =
         "Profile ${db.profileDao().countForPack(packId) + 1}"
