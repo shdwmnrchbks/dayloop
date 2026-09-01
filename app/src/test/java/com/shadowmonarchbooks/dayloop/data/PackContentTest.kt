@@ -195,7 +195,7 @@ class PackContentTest {
         val activities = p5r.activities?.activities.orEmpty()
         val byId = activities.associateBy { it.id }
 
-        assertEquals(5, pack.contentVersion)
+        assertEquals(6, pack.contentVersion)
 
         val statBooks = activities.filter { it.id.startsWith("p5r.activity.book.") && it.statGains.isNotEmpty() }
         assertTrue(statBooks.isNotEmpty())
@@ -375,6 +375,52 @@ class PackContentTest {
         assertEquals(2, dHousewives.size)
         assertTrue(dHousewives[0].label.contains("first viewing"))
         assertTrue(dHousewives[1].label.contains("second viewing"))
+    }
+
+    @Test
+    fun `p5r September route uses actual point values and removes bogus stat rewards`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val days = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-09") }
+
+        fun gain(date: String, text: String): Map<String, Int> =
+            days.first { it.date == date }.steps
+                .first { it.label.contains(text) && it.statGains.isNotEmpty() }
+                .statGains
+
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-02", "Typhoon"))
+        assertEquals(mapOf("proficiency" to 3), gain("2016-09-02", "broken laptop"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-03", "class question"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-04", "Sunday drink"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-06", "class question"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-09-12", "Mega Fertilizer"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-14", "class question"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-17", "class question"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-09-18", "Mouse M.D."))
+        assertEquals(mapOf("kindness" to 3), gain("2016-09-19", "Tower reaches rank 1"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-19", "Festival"))
+        assertEquals(mapOf("charm" to 7), gain("2016-09-19", "Showtime Redemption"))
+        assertEquals(mapOf("kindness" to 3), gain("2016-09-20", "Hierophant reaches rank 4"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-21", "class question"))
+        assertTrue(
+            days.first { it.date == "2016-09-21" }.steps.first { it.label.contains("Councilor reaches rank 7") }.statGains.isEmpty(),
+            "Maruki rank 7 must not invent a Knowledge social-stat reward",
+        )
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-21", "Star reaches rank 8"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-22", "TV game show"))
+        assertEquals(mapOf("charm" to 5), gain("2016-09-22", "Devil reaches rank 8"))
+        assertEquals(mapOf("guts" to 5), gain("2016-09-24", "Cry of Cthulhu"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-24", "class question"))
+        assertEquals(mapOf("kindness" to 3), gain("2016-09-24", "Tower reaches rank 2"))
+        assertEquals(mapOf("charm" to 3, "guts" to 2), gain("2016-09-24", "Sincere Omelette"))
+        assertEquals(mapOf("charm" to 2), gain("2016-09-25", "Sunday drink"))
+        assertEquals(mapOf("kindness" to 3), gain("2016-09-26", "Tower reaches rank 3"))
+        assertEquals(mapOf("kindness" to 3), gain("2016-09-26", "Hierophant reaches rank 5"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-28", "class question"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-28", "Ranking"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-09-28", "Mega Fertilizer"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-29", "class question"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-09-29", "TV game show"))
+        assertEquals(mapOf("guts" to 7), gain("2016-09-30", "Master Swordsman"))
     }
 
     // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
