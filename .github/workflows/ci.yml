@@ -28,8 +28,13 @@ jobs:
           sdk-version: '35'
           build-tools-version: '35.0.0'
 
-      - name: Set up Gradle (with caching)
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          # Self-hosted runners persist ~/.gradle between jobs already. Avoid
+          # the remote cache post-job upload/cleanup path, which can leave a
+          # persistent runner stuck busy after the build itself has finished.
+          cache-disabled: true
 
       - name: Build and test (Linux/macOS)
         if: runner.os != 'Windows'
