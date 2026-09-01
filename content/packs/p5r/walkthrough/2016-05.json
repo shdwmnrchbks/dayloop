@@ -8,7 +8,8 @@
       "steps": [
         { "label": "Buy the Sunday drink in the Shibuya Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "proficiency": 2 } },
         { "label": "Buy a Bio Nutrient at the Underground Mall flower shop" },
-        { "label": "Hang out with Ryuji — Chariot reaches rank 2" }
+        { "label": "Hang out with Ryuji — Chariot reaches rank 2" },
+        { "label": "Watch 'Guy McVer' (first viewing)", "activityRef": "p5r.activity.dvd.guy-mcver", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -51,9 +52,10 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
+        { "label": "Class lecture", "statGains": { "knowledge": 2 } },
         { "label": "Chalk throw today — no need to dodge" },
         { "label": "Moon reaches rank 1 (story)" },
-        { "label": "Buy SP-recovery drinks; grab a Yakisoba Pan at the school store" },
+        { "label": "Buy SP-recovery drinks from the vending machines; grab a Yakisoba Pan at the school store" },
         { "label": "Hang out with Takemi — Death reaches rank 5", "statGains": { "guts": 2 } },
         { "label": "Talk to the politician in Shibuya Station Square" },
         { "label": "Buy 'Medjed Menace' at the bookstore; get the Riot Police E gun from Iwai" },
@@ -76,8 +78,9 @@
       "dayKind": "free",
       "steps": [
         { "label": "Automatic Mishima hang-out — Moon reaches rank 2" },
-        { "label": "Check the TV Shopping Program" },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 2" }
+        { "label": "Check the TV Shopping Program — Bio Nutrients Set" },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
+        { "label": "Hang out with Sojiro — Hierophant reaches rank 2", "statGains": { "kindness": 3 } }
       ]
     },
     {
@@ -132,7 +135,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch 'Guy McVer' (first viewing)", "activityRef": "p5r.activity.dvd.guy-mcver", "statGains": { "proficiency": 3 } }
+        { "label": "Watch 'Guy McVer' (second viewing)", "activityRef": "p5r.activity.dvd.guy-mcver", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -214,7 +217,7 @@
       "steps": [
         { "label": "TV Shopping Program: Muscle Plus Set and Outdoors Kit" },
         { "label": "Ryuji hang-out — Chariot reaches rank 3" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "kindness": 2 } },
         { "label": "Talk to the politician in Shibuya Station Square" }
       ]
     },
@@ -293,6 +296,7 @@
       "steps": [
         { "label": "Accept Ryuji's Harajuku invitation (track 1 of 10)" },
         { "label": "TV Shopping Program: Folding Screen Set" },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "knowledge": 2 } },
         { "label": "Watch the movie 'The Cake Knight Rises' with Ryuji", "activityRef": "p5r.activity.movie.cake-knight-rises", "statGains": { "kindness": 5 } }
       ]
     },
