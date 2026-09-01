@@ -7,7 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, Linux, X64, steamdeck]
+    # Dayloop's toolchain is provisioned by the workflow and supports both of
+    # the org's current x64 self-hosted pools (Windows and Linux). GitHub can
+    # therefore dispatch to whichever compatible x64 runner is available.
+    runs-on: [self-hosted, X64]
     timeout-minutes: 60
     steps:
       - name: Checkout
@@ -28,11 +31,26 @@ jobs:
       - name: Set up Gradle (with caching)
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build and test
+      - name: Build and test (Linux/macOS)
+        if: runner.os != 'Windows'
         run: ./gradlew assembleDebug :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
 
-      - name: Validate content packs (packlint)
+      - name: Build and test (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: .\gradlew.bat assembleDebug :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
+
+      - name: Validate content packs (Linux/macOS)
+        if: runner.os != 'Windows'
         run: |
           ./gradlew packlint
           ./gradlew packlint "-Ppack=content/packs/p3r"
           ./gradlew packlint "-Ppack=content/packs/metaphor"
+
+      - name: Validate content packs (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          .\gradlew.bat packlint
+          .\gradlew.bat packlint "-Ppack=content/packs/p3r"
+          .\gradlew.bat packlint "-Ppack=content/packs/metaphor"
