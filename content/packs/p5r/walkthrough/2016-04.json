@@ -39,7 +39,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Second infiltration — follow tutorials up to the first mini-boss" },
         { "label": "Reach the Treasure security level needed, then leave", "spoiler": true },
         { "label": "Check the LeBlanc storage box for DLC items, then sleep" }
@@ -89,7 +89,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Follow Ryuji to Shibuya Central Street" },
-        { "label": "Visit the Airsoft shop, buy nothing; clean your desk and craft one lock pick", "statGains": { "proficiency": 2 } }
+        { "label": "Visit the Airsoft shop, buy nothing; clean your desk and craft one lock pick", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -100,7 +100,7 @@
         { "label": "Borrow 'The Great Thief' from the school library", "activityRef": "p5r.activity.book.great-thief" },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Buy Silk Yarn and Tin Clasp at the Second-hand Shop (2 of each)" },
-        { "label": "First Takemi hang-out — answer 'Please go easy on me'", "statGains": { "guts": 1 } },
+        { "label": "First Takemi hang-out — answer 'Please go easy on me'", "statGains": { "guts": 2 } },
         { "label": "Clean the attic floor — recovers two books and a CRT TV" }
       ]
     },
@@ -109,9 +109,9 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
-        { "label": "Study in a library booth", "statGains": { "knowledge": 1, "guts": 1 } },
-        { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 2 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
+        { "label": "Study in a library booth", "statGains": { "knowledge": 2, "guts": 2 } },
+        { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 3 } },
         { "label": "Chat with the café customers, then read 'The Great Thief'", "activityRef": "p5r.activity.book.great-thief" }
       ]
     },
@@ -120,9 +120,9 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'The Great Thief' on the train (seated day — no slot used)", "activityRef": "p5r.activity.book.great-thief", "statGains": { "knowledge": 3 } },
+        { "label": "Read 'The Great Thief' on the train (seated day — no slot used)", "activityRef": "p5r.activity.book.great-thief", "statGains": { "knowledge": 5 } },
         { "label": "Borrow 'Pirate Legend' from the school library" },
-        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 3 } }
+        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 5 } }
       ]
     },
     {
@@ -131,10 +131,10 @@
       "dayKind": "school",
       "steps": [
         { "label": "Buy the DVD player at the Second-hand Shop" },
-        { "label": "Pay the annual DVD rental subscription on Central Street" },
-        { "label": "Rent 'The X-Folders'", "activityRef": "p5r.activity.dvd.x-folders" },
-        { "label": "Study in the school library (rainy-day bonus)", "statGains": { "knowledge": 3 } },
-        { "label": "Watch 'The X-Folders' part 1", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 2 } }
+        { "label": "Pay the DVD rental subscription on Central Street" },
+        { "label": "Rent 'The X Folders'", "activityRef": "p5r.activity.dvd.x-folders" },
+        { "label": "Study in the school library (rainy-day bonus)", "statGains": { "knowledge": 5 } },
+        { "label": "Watch 'The X Folders' part 1", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 3 } }
       ]
     },
     {
@@ -143,8 +143,8 @@
       "dayKind": "school",
       "steps": [
         { "label": "Grab a Yakisoba Pan at the school store" },
-        { "label": "Study in the school library", "statGains": { "knowledge": 1, "guts": 1 } },
-        { "label": "Watch 'The X-Folders' — Guts reaches rank 2", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 2 } }
+        { "label": "Study in the school library", "statGains": { "knowledge": 2, "guts": 2 } },
+        { "label": "Watch 'The X Folders' — Guts reaches rank 2", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 3 } }
       ]
     },
     {
@@ -152,9 +152,9 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Rent 'Wraith'", "activityRef": "p5r.activity.dvd.wraith" },
-        { "label": "Hang out with Takemi — Death reaches rank 2", "statGains": { "guts": 1 } },
+        { "label": "Hang out with Takemi — Death reaches rank 2", "statGains": { "guts": 2 } },
         { "label": "Craft lock picks at the attic table (reload trick for a bonus item)", "statGains": { "proficiency": 3 } }
       ]
     },
@@ -164,7 +164,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Exit the forced team meeting" },
-        { "label": "Buy the Sunday fruit drink in the Shibuya Underground Walkway", "statGains": { "charm": 1 } },
+        { "label": "Buy the Sunday fruit drink in the Shibuya Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "charm": 2 } },
         { "label": "Infiltrate the castle — secure the route to the Treasure today", "spoiler": true },
         { "label": "Collect all three Will Seeds while inside", "spoiler": true },
         { "label": "Leave at level 9 with about 20000 yen", "spoiler": true },
@@ -177,12 +177,12 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Pirate Legend' on the train", "activityRef": "p5r.activity.book.pirate-legend", "statGains": { "guts": 3 } },
-        { "label": "Answer the class question", "statGains": { "charm": 1 } },
+        { "label": "Read 'Pirate Legend' on the train", "activityRef": "p5r.activity.book.pirate-legend" },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Sell loot at the Airsoft shop; buy 2 Takemedic-All and 2 Revivadrin at the clinic" },
         { "label": "Send the Calling Card from the hideout", "spoiler": true },
-        { "label": "Read 'Pirate Legend' again in the evening", "activityRef": "p5r.activity.book.pirate-legend" }
+        { "label": "Finish 'Pirate Legend' in the evening", "activityRef": "p5r.activity.book.pirate-legend", "statGains": { "guts": 5 } }
       ]
     },
     {
@@ -192,7 +192,7 @@
       "steps": [
         { "label": "Heist: steal the Treasure (keep Tarunda up in the fight)", "spoiler": true },
         { "label": "Magician reaches rank 2 afterwards", "spoiler": true },
-        { "label": "Watch 'Wraith' on the TV in the evening", "activityRef": "p5r.activity.dvd.wraith", "statGains": { "kindness": 2 } }
+        { "label": "Watch 'Wraith' on the TV in the evening", "activityRef": "p5r.activity.dvd.wraith", "statGains": { "kindness": 3 } }
       ]
     },
     {
@@ -200,11 +200,11 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Carry Death, Hierophant, Lovers, and Chariot Personas today" },
-        { "label": "Hang out with Takemi — Death reaches rank 3", "statGains": { "guts": 1 } },
-        { "label": "Solve the LeBlanc crossword: 'Blossom'", "statGains": { "knowledge": 1 } },
-        { "label": "Watch 'Wraith' part 2", "activityRef": "p5r.activity.dvd.wraith", "statGains": { "kindness": 2 } }
+        { "label": "Hang out with Takemi — Death reaches rank 3", "statGains": { "guts": 2 } },
+        { "label": "Solve the LeBlanc crossword: 'Blossom'", "statGains": { "knowledge": 2 } },
+        { "label": "Watch 'Wraith' part 2", "activityRef": "p5r.activity.dvd.wraith", "statGains": { "kindness": 3 } }
       ]
     },
     {
@@ -213,9 +213,9 @@
       "dayKind": "school",
       "steps": [
         { "label": "Rent 'Guy McVer'", "activityRef": "p5r.activity.dvd.guy-mcver" },
-        { "label": "Borrow 'Zorro the Outlaw' from the school library", "activityRef": "p5r.activity.book.zorro" },
-        { "label": "Study in the school library", "statGains": { "knowledge": 1, "guts": 1 } },
-        { "label": "Read 'Zorro the Outlaw'", "activityRef": "p5r.activity.book.zorro" }
+        { "label": "Borrow 'Zorro, the Outlaw' from the school library", "activityRef": "p5r.activity.book.zorro" },
+        { "label": "Study in the school library", "statGains": { "knowledge": 2, "guts": 2 } },
+        { "label": "Read 'Zorro, the Outlaw'", "activityRef": "p5r.activity.book.zorro" }
       ]
     },
     {
@@ -223,8 +223,8 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the movie 'Tanktop Millionaire' in Shibuya", "activityRef": "p5r.activity.movie.tanktop-millionaire", "statGains": { "guts": 3 } },
-        { "label": "Read 'Zorro the Outlaw' (Kindness reaches rank 2)", "activityRef": "p5r.activity.book.zorro", "statGains": { "kindness": 3 } }
+        { "label": "Watch the movie 'Tanktop Millionaire' in Shibuya", "activityRef": "p5r.activity.movie.tanktop-millionaire", "statGains": { "guts": 5 } },
+        { "label": "Finish 'Zorro, the Outlaw' (Kindness reaches rank 2)", "activityRef": "p5r.activity.book.zorro", "statGains": { "kindness": 5 } }
       ]
     },
     {
@@ -233,10 +233,10 @@
       "dayKind": "free",
       "steps": [
         { "label": "Read 'Social Thought' on the train", "activityRef": "p5r.activity.book.social-thought" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Borrow 'The Alluring Dancer' from the school library", "activityRef": "p5r.activity.book.alluring-dancer" },
-        { "label": "Hang out with Takemi — Death reaches rank 4", "statGains": { "guts": 1 } },
-        { "label": "Read 'Social Thought' in the evening", "activityRef": "p5r.activity.book.social-thought", "statGains": { "knowledge": 3 } }
+        { "label": "Hang out with Takemi — Death reaches rank 4", "statGains": { "guts": 2 } },
+        { "label": "Finish 'Social Thought' in the evening", "activityRef": "p5r.activity.book.social-thought", "statGains": { "knowledge": 7 } }
       ]
     }
   ]
