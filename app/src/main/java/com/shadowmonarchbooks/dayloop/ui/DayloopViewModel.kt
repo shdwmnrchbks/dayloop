@@ -59,6 +59,8 @@ data class DayloopUiState(
     /** Authored days for the active route, keyed by ISO date. */
     val days: Map<String, Day> = emptyMap(),
     val marks: Map<StepKey, StepMark> = emptyMap(),
+    /** Explicit earned checks for achievement ids in the active profile. */
+    val earnedAchievements: Set<String> = emptySet(),
     /** Saved marks whose (date, index) no longer resolves in current content. */
     val orphans: Set<StepKey> = emptySet(),
 ) {
@@ -131,8 +133,17 @@ class DayloopViewModel @Inject constructor(
                             ?: profiles.firstOrNull()
                         val marksFlow = active?.let { repo.marksFor(it.id) }
                             ?: flowOf(emptyList())
-                        marksFlow.map { rows ->
-                            buildUiState(packs, pack, profiles, active, rows)
+                        val achievementsFlow = active?.let { repo.earnedAchievements(it.id) }
+                            ?: flowOf(emptySet())
+                        combine(marksFlow, achievementsFlow) { rows, earnedAchievements ->
+                            buildUiState(
+                                packsState = packs,
+                                pack = pack,
+                                profiles = profiles,
+                                active = active,
+                                rows = rows,
+                                earnedAchievements = earnedAchievements,
+                            )
                         }
                     }
             }
@@ -210,6 +221,12 @@ class DayloopViewModel @Inject constructor(
         repo.discardOrphans(id, state.value.orphans)
     }
 
+    // ---- Achievements ----
+
+    fun setAchievementEarned(achievementId: String, earned: Boolean) = withActiveProfile { id ->
+        repo.setAchievementEarned(id, achievementId, earned)
+    }
+
     // ---- Profiles ----
 
     fun createProfile(name: String, routeId: String = Routes.DEFAULT) = withSelectedSeed { seed ->
@@ -239,6 +256,7 @@ class DayloopViewModel @Inject constructor(
         profiles: List<ProfileEntity>,
         active: ProfileEntity?,
         rows: List<StepStateEntity>,
+        earnedAchievements: Set<String>,
     ): DayloopUiState {
         val marks = rows.mapNotNull { row ->
             StepMark.entries.firstOrNull { it.name == row.mark }
@@ -261,6 +279,7 @@ class DayloopViewModel @Inject constructor(
             routeLabel = pack.routeLabel(routeId),
             days = days,
             marks = marks,
+            earnedAchievements = earnedAchievements,
             orphans = if (active != null) ProgressLogic.orphans(marks, stepCounts) else emptySet(),
         )
     }
