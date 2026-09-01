@@ -1,6 +1,12 @@
 name: Release candidate
 
 on:
+  pull_request:
+    paths:
+      - 'app/build.gradle.kts'
+      - '.github/workflows/release-candidate.yml'
+      - '.github/release-requests/v0.12.0-rc1.md'
+      - 'docs/LOCAL_BUILD.md'
   push:
     branches: [ main ]
     paths:
@@ -19,8 +25,10 @@ env:
   APK_NAME: 'dayloop-v0.12.0-rc1-candidate.apk'
 
 jobs:
-  publish:
-    runs-on: [self-hosted, X64]
+  candidate:
+    # Keep prerelease delivery independent from the optional self-hosted CI pool.
+    # The same tests and packlint gates run here before the APK is retained or published.
+    runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
@@ -33,8 +41,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Prepare persistent Android SDK (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Prepare Android SDK
         run: |
           set -euo pipefail
 
@@ -73,89 +80,22 @@ jobs:
             "platforms;android-${DAYLOOP_ANDROID_SDK_VERSION}" \
             "build-tools;${DAYLOOP_ANDROID_BUILD_TOOLS}"
 
-      - name: Prepare persistent Android SDK (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          $ErrorActionPreference = 'Stop'
-
-          $SdkRoot = Join-Path $env:USERPROFILE 'android-sdk'
-          $CmdlineToolsVersion = $env:DAYLOOP_ANDROID_CMDLINE_TOOLS
-          $ZipName = "commandlinetools-win-$CmdlineToolsVersion`_latest.zip"
-          $Url = "https://dl.google.com/android/repository/$ZipName"
-          $ToolsDir = Join-Path $SdkRoot 'cmdline-tools'
-          $LatestDir = Join-Path $ToolsDir 'latest'
-          $SdkManager = Join-Path $LatestDir 'bin\sdkmanager.bat'
-
-          New-Item -ItemType Directory -Force -Path $ToolsDir | Out-Null
-
-          if (-not (Test-Path $SdkManager)) {
-            $TempDir = Join-Path $env:RUNNER_TEMP 'android-cmdline-tools'
-            Remove-Item -Recurse -Force $TempDir -ErrorAction SilentlyContinue
-            New-Item -ItemType Directory -Force -Path $TempDir | Out-Null
-            $Archive = Join-Path $TempDir $ZipName
-            Invoke-WebRequest -Uri $Url -OutFile $Archive
-            $UnpackDir = Join-Path $TempDir 'unpacked'
-            Expand-Archive -Path $Archive -DestinationPath $UnpackDir -Force
-            Remove-Item -Recurse -Force $LatestDir -ErrorAction SilentlyContinue
-            New-Item -ItemType Directory -Force -Path $LatestDir | Out-Null
-            Get-ChildItem (Join-Path $UnpackDir 'cmdline-tools') | Move-Item -Destination $LatestDir -Force
-          }
-
-          "ANDROID_SDK_ROOT=$SdkRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "ANDROID_HOME=$SdkRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          $LatestBin = Join-Path $LatestDir 'bin'
-          $PlatformTools = Join-Path $SdkRoot 'platform-tools'
-          $LatestBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          $PlatformTools | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-
-          cmd /c "echo y | `"$SdkManager`" --licenses" | Out-Null
-          & $SdkManager `
-            'platform-tools' `
-            "platforms;android-$env:DAYLOOP_ANDROID_SDK_VERSION" `
-            "build-tools;$env:DAYLOOP_ANDROID_BUILD_TOOLS"
-
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-disabled: true
 
-      - name: Build candidate and test (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Build candidate and test
         run: ./gradlew assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
 
-      - name: Build candidate and test (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: .\gradlew.bat assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
-
-      - name: Validate content packs (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Validate content packs
         run: |
           ./gradlew packlint
           ./gradlew packlint "-Ppack=content/packs/p3r"
           ./gradlew packlint "-Ppack=content/packs/metaphor"
 
-      - name: Validate content packs (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          .\gradlew.bat packlint
-          .\gradlew.bat packlint "-Ppack=content/packs/p3r"
-          .\gradlew.bat packlint "-Ppack=content/packs/metaphor"
-
-      - name: Prepare APK asset (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Prepare APK asset
         run: |
           mkdir -p release-out
           cp app/build/outputs/apk/candidate/app-candidate.apk "release-out/${APK_NAME}"
-
-      - name: Prepare APK asset (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          New-Item -ItemType Directory -Force -Path release-out | Out-Null
-          Copy-Item app\build\outputs\apk\candidate\app-candidate.apk "release-out\$env:APK_NAME" -Force
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
@@ -165,6 +105,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish GitHub prerelease
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/github-script@v7
         env:
           ASSET_PATH: release-out/${{ env.APK_NAME }}
@@ -195,12 +136,12 @@ jobs:
               })).data;
             }
 
-            const assets = (await github.paginate(github.rest.repos.listReleaseAssets, {
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
               owner,
               repo,
               release_id: release.id,
               per_page: 100,
-            }));
+            });
             if (assets.some(asset => asset.name === apkName)) {
               core.info(`${apkName} is already attached; nothing to upload.`);
               return;
