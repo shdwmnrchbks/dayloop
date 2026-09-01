@@ -72,6 +72,10 @@ High-risk gates were independently checked and encoded or called out, including:
 Automatic Fool, Magician and Judgement ranks were also rechecked against
 structured Royal references. This corrected the old Fool rank-1 4/9 value to
 4/12 and separates Palace-progress-dependent automatic ranks from fixed dates.
+Palace-triggered Fool/Magician ranks now keep the completion route's chosen day
+only in `scheduledFor`; they deliberately do **not** carry synthetic
+`availableFrom`/`availableUntil` windows because the trigger is Palace/story
+progress rather than an ordinary calendar availability window.
 
 ### Deadlines
 
@@ -93,13 +97,16 @@ had been flattened or omitted.
 
 1. Never put a completion-route-selected Confidant day in `availableFrom` merely
    because the route used that day. Use `scheduledFor`.
-2. Never label a route cleanup target as a game deadline without an independent
+2. Story/Palace-progress automatic ranks must not invent calendar availability
+   windows just to bound a route date; describe the trigger and keep the route
+   day in `scheduledFor`.
+3. Never label a route cleanup target as a game deadline without an independent
    game-rule source.
-3. Any new P5R universal gate/deadline should have an independent verifier in
+4. Any new P5R universal gate/deadline should have an independent verifier in
    this ledger or `docs/sources.md`.
-4. Structural validation (`packlint`) proves references and schema integrity;
+5. Structural validation (`packlint`) proves references and schema integrity;
    it does not by itself prove gameplay facts. Fact provenance remains a content
    responsibility.
-5. When independent guides disagree only on *when a flexible action is done*,
+6. When independent guides disagree only on *when a flexible action is done*,
    preserve the authored route and label it as route-specific instead of
    "correcting" it into another guide's route.
