@@ -123,12 +123,12 @@ jobs:
 
       - name: Build and test (Linux/macOS)
         if: runner.os != 'Windows'
-        run: ./gradlew assembleDebug :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
+        run: ./gradlew assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
 
       - name: Build and test (Windows)
         if: runner.os == 'Windows'
         shell: powershell
-        run: .\gradlew.bat assembleDebug :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
+        run: .\gradlew.bat assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
 
       - name: Validate content packs (Linux/macOS)
         if: runner.os != 'Windows'
