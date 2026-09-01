@@ -12,7 +12,7 @@ Scope:
 
 - Hold the platform splash until the persisted pack selection has been resolved.
 - Theme the first Compose frame from the resolved `PackStore` selection rather than from a slower UI projection.
-- Make unresolved UI state explicitly `selectionReady = false` so startup cannot accidentally route to onboarding.
+- Gate first content until the richer UI projection agrees with the resolved pack, so startup cannot accidentally route to onboarding.
 - Keep the in-app loading shell skin-aware for the small handoff window between store resolution and the full screen state.
 - Preserve clean fallback behavior for fresh installs, invalid persisted slugs, and single-pack installs.
 - Add regression coverage for startup-ready state contracts where practical.
