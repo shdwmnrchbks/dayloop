@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# One-time host bootstrap for the shdwmnrchbks Steam Deck/CachyOS runner.
-# Dayloop provisions JDK 17 and Android SDK 35 inside its workflow; the host
-# only needs common archive/network tools. Docker is also installed so the
-# same runner can execute ShadowGarden's pinned Playwright container.
+# One-time host bootstrap for a CachyOS/Arch Linux x64 runner in shdwmnrchbks.
+# Workflows should target capabilities (self-hosted/Linux/X64), not this machine's
+# custom name. Dayloop provisions JDK 17 and Android SDK 35 inside the workflow.
+# Docker is installed so the same Linux runner can execute ShadowGarden E2E.
 
 log() { printf '\n\033[1;34m==>\033[0m %s\n' "$*"; }
 ok() { printf '\033[1;32m✓\033[0m %s\n' "$*"; }
@@ -40,9 +40,6 @@ if ! id -nG "$USER" | tr ' ' '\n' | grep -Fxq docker; then
   ok "Added $USER to the docker group"
 fi
 
-# A systemd service resolves supplementary groups when it starts, so restarting
-# the Actions service is enough for it to pick up docker-group membership even
-# before the interactive desktop session is restarted.
 RUNNER_SERVICE="$(systemctl list-unit-files --type=service --no-legend 'actions.runner.*.service' 2>/dev/null | awk 'NR==1 {print $1}')"
 if [[ -n "$RUNNER_SERVICE" ]]; then
   log "Restarting GitHub Actions runner service"
@@ -61,19 +58,18 @@ cat <<EOF
 
 CachyOS runner host dependencies are ready.
 
-Dayloop CI will provision:
-  - JDK 17
-  - Android SDK platform 35
-  - Android Build Tools 35.0.0
-  - Gradle dependencies/caches
+Dayloop CI provisions its own JDK 17, Android SDK 35, Build Tools 35.0.0,
+and Gradle dependencies. Dayloop's main CI is cross-platform and may run on
+any x64 self-hosted runner.
 
-ShadowGarden CI will provision:
-  - Node.js 22
-  - npm dependencies
-  - Playwright 1.62.1 browsers and Linux libraries through its pinned container
+ShadowGarden verify is also cross-platform. Its Playwright E2E and release
+jobs require a Linux x64 self-hosted runner; this host satisfies that pool.
 
-The GitHub runner itself must have these labels:
-  self-hosted, Linux, X64, steamdeck
+Required built-in labels for this host:
+  self-hosted, Linux, X64
+
+Custom labels such as steamdeck/cachyos are fine, but the repos no longer
+require them for dispatch.
 EOF
 
 if (( GROUP_CHANGED )); then
