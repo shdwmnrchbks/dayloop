@@ -174,7 +174,21 @@
       "availableFrom": "2009-06-13",
       "expectedBy": "2009-10-01",
       "missable": true,
-      "tracking": { "type": "conditional", "target": 9 }
+      "tracking": {
+        "type": "checklist",
+        "target": 9,
+        "items": [
+          { "id": "yukari", "label": "Yukari" },
+          { "id": "junpei", "label": "Junpei" },
+          { "id": "akihiko", "label": "Akihiko" },
+          { "id": "mitsuru", "label": "Mitsuru" },
+          { "id": "fuuka", "label": "Fuuka" },
+          { "id": "aigis", "label": "Aigis" },
+          { "id": "koromaru", "label": "Koromaru" },
+          { "id": "ken", "label": "Ken" },
+          { "id": "shinjiro", "label": "Shinjiro" }
+        ]
+      }
     },
     {
       "id": "p3r.achievement.extracurricular-excellence",
