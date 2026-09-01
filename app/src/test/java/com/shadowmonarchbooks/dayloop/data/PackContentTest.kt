@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.data
 
+import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.AllOf
 import com.shadowmonarchbooks.dayloop.pack.schema.AnyOf
@@ -13,6 +14,7 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -24,7 +26,6 @@ import kotlin.test.assertTrue
  */
 class PackContentTest {
 
-    /** The repo's content/packs directory, or null when not running in a checkout. */
     private fun contentPacksDir(): Path? {
         var dir: Path? = Paths.get(System.getProperty("user.dir")).toAbsolutePath()
         repeat(5) {
@@ -35,7 +36,6 @@ class PackContentTest {
         return null
     }
 
-    /** Loads every pack under content/packs; asserts the checkout ships some. */
     private fun loadPacks(): List<Triple<String, Path, com.shadowmonarchbooks.dayloop.pack.PackLoadResult>> {
         val root = contentPacksDir() ?: return emptyList()
         val results = Files.list(root).use { stream ->
@@ -66,10 +66,7 @@ class PackContentTest {
             val deadlineIds = loaded.deadlines?.deadlines?.map { it.id }?.toSet().orEmpty()
             loaded.answers?.answers?.forEach { sheet ->
                 sheet.deadlineRef?.let { ref ->
-                    assertTrue(
-                        ref in deadlineIds,
-                        "$slug: answer sheet '${sheet.id}' references unknown deadline '$ref'",
-                    )
+                    assertTrue(ref in deadlineIds, "$slug: answer sheet '${sheet.id}' references unknown deadline '$ref'")
                 }
             }
         }
@@ -103,10 +100,7 @@ class PackContentTest {
                 wt.file.days.forEach { day ->
                     day.steps.forEach { step ->
                         step.slot?.let { slot ->
-                            assertTrue(
-                                slot in slotIds,
-                                "$slug: ${wt.location} day '${day.date}' uses undeclared slot '$slot'",
-                            )
+                            assertTrue(slot in slotIds, "$slug: ${wt.location} day '${day.date}' uses undeclared slot '$slot'")
                         }
                     }
                 }
@@ -145,6 +139,44 @@ class PackContentTest {
         }
     }
 
+    @Test
+    fun `bond route dates are calendar dates and respect explicit availability windows`() {
+        loadPacks().forEach { (slug, _, loaded) ->
+            val pack = loaded.pack ?: return@forEach
+            val calendar = GameCalendar.of(pack.calendar) ?: return@forEach
+            loaded.bonds?.bonds?.forEach { bond ->
+                bond.ranks.forEach { step ->
+                    step.scheduledFor?.let { routeDate ->
+                        assertTrue(routeDate in calendar, "$slug: ${bond.id} rank ${step.rank} route date $routeDate is outside the calendar")
+                        step.availableFrom?.let { from ->
+                            assertTrue(routeDate >= from, "$slug: ${bond.id} rank ${step.rank} route date $routeDate is before $from")
+                        }
+                        step.availableUntil?.let { until ->
+                            assertTrue(routeDate <= until, "$slug: ${bond.id} rank ${step.rank} route date $routeDate is after $until")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `p5r keeps route-selected confidant dates separate from game availability`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val bonds = p5r.bonds?.bonds?.associateBy { it.id }.orEmpty()
+        val fool = bonds.getValue("p5r.bond.fool")
+        val chariot = bonds.getValue("p5r.bond.chariot")
+        val justice = bonds.getValue("p5r.bond.justice")
+        val councilor = bonds.getValue("p5r.bond.councilor")
+
+        assertEquals("Igor", fool.characterLabel)
+        assertEquals("2016-04-12", fool.ranks.first { it.rank == 1 }.availableFrom)
+        assertEquals("2016-04-24", fool.ranks.first { it.rank == 2 }.scheduledFor)
+        assertNull(chariot.ranks.first { it.rank == 2 }.availableFrom, "route-selected Chariot rank date must not masquerade as availability")
+        assertTrue(justice.ranks.first { it.rank == 8 }.notes.orEmpty().contains("not Akechi"), "Justice copy must not claim Akechi unlocks third semester")
+        assertEquals("2016-11-17", councilor.ranks.first { it.rank == 9 }.availableUntil)
+    }
+
     // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
 
     @Test
@@ -158,10 +190,7 @@ class PackContentTest {
             }
             assertTrue(bundled.isNotEmpty(), "$slug ships no images but has an images/ dir")
             bundled.forEach { file ->
-                assertTrue(
-                    file in declared,
-                    "$slug: $file is bundled but not declared in media.json",
-                )
+                assertTrue(file in declared, "$slug: $file is bundled but not declared in media.json")
             }
             assertEquals(bundled.size, declared.size, "$slug: media.json must declare exactly the bundled images")
         }
@@ -173,10 +202,7 @@ class PackContentTest {
             val bondIds = loaded.bonds?.bonds?.map { it.id }?.toSet().orEmpty()
             loaded.media?.media?.forEach { item ->
                 item.bonds.forEach { bond ->
-                    assertTrue(
-                        bond in bondIds,
-                        "$slug: media '${item.id}' references unknown bond '$bond'",
-                    )
+                    assertTrue(bond in bondIds, "$slug: media '${item.id}' references unknown bond '$bond'")
                 }
             }
         }
