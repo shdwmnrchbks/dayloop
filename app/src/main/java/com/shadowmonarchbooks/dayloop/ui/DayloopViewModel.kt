@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.PackStore
 import com.shadowmonarchbooks.dayloop.data.PacksState
+import com.shadowmonarchbooks.dayloop.data.progress.AchievementManualProgress
 import com.shadowmonarchbooks.dayloop.data.progress.PackSeed
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
 import com.shadowmonarchbooks.dayloop.data.progress.ProfileEntity
@@ -61,6 +62,8 @@ data class DayloopUiState(
     val marks: Map<StepKey, StepMark> = emptyMap(),
     /** Explicit earned checks for achievement ids in the active profile. */
     val earnedAchievements: Set<String> = emptySet(),
+    /** Explicit counters for achievement conditions the walkthrough cannot infer. */
+    val achievementCounts: Map<String, Int> = emptyMap(),
     /** Saved marks whose (date, index) no longer resolves in current content. */
     val orphans: Set<StepKey> = emptySet(),
 ) {
@@ -135,7 +138,13 @@ class DayloopViewModel @Inject constructor(
                             ?: flowOf(emptyList())
                         val achievementsFlow = active?.let { repo.earnedAchievements(it.id) }
                             ?: flowOf(emptySet())
-                        combine(marksFlow, achievementsFlow) { rows, earnedAchievements ->
+                        val achievementProgressFlow = active?.let { repo.achievementProgress(it.id) }
+                            ?: flowOf(AchievementManualProgress())
+                        combine(
+                            marksFlow,
+                            achievementsFlow,
+                            achievementProgressFlow,
+                        ) { rows, earnedAchievements, achievementProgress ->
                             buildUiState(
                                 packsState = packs,
                                 pack = pack,
@@ -143,6 +152,7 @@ class DayloopViewModel @Inject constructor(
                                 active = active,
                                 rows = rows,
                                 earnedAchievements = earnedAchievements,
+                                achievementCounts = achievementProgress.counts,
                             )
                         }
                     }
@@ -227,6 +237,10 @@ class DayloopViewModel @Inject constructor(
         repo.setAchievementEarned(id, achievementId, earned)
     }
 
+    fun setAchievementCount(achievementId: String, count: Int) = withActiveProfile { id ->
+        repo.setAchievementCount(id, achievementId, count)
+    }
+
     // ---- Profiles ----
 
     fun createProfile(name: String, routeId: String = Routes.DEFAULT) = withSelectedSeed { seed ->
@@ -257,6 +271,7 @@ class DayloopViewModel @Inject constructor(
         active: ProfileEntity?,
         rows: List<StepStateEntity>,
         earnedAchievements: Set<String>,
+        achievementCounts: Map<String, Int>,
     ): DayloopUiState {
         val marks = rows.mapNotNull { row ->
             StepMark.entries.firstOrNull { it.name == row.mark }
@@ -280,6 +295,7 @@ class DayloopViewModel @Inject constructor(
             days = days,
             marks = marks,
             earnedAchievements = earnedAchievements,
+            achievementCounts = achievementCounts,
             orphans = if (active != null) ProgressLogic.orphans(marks, stepCounts) else emptySet(),
         )
     }
