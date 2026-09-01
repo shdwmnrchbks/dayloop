@@ -88,19 +88,23 @@ private fun RuleBasedAchievements(
         completedEvents,
         state.earnedAchievements,
         state.achievementCounts,
+        state.achievementChecklist,
         currentDate,
     ) {
         pack.achievements.map { achievement ->
+            val checkedItems = state.achievementChecklist[achievement.id].orEmpty()
             val progress = achievementProgress(
                 achievement = achievement,
                 currentDate = currentDate,
                 completedEvents = completedEvents,
                 manualUnits = state.achievementCounts[achievement.id] ?: 0,
+                checkedItems = checkedItems,
             )
             AchievementRowState(
                 achievement = achievement,
                 progress = progress,
                 manualEarned = achievement.id in state.earnedAchievements,
+                checkedItems = checkedItems,
             )
         }.sortedWith(
             compareBy<AchievementRowState> {
@@ -129,7 +133,7 @@ private fun RuleBasedAchievements(
                 due = actionableCount,
                 upcoming = upcomingCount,
                 currentDate = currentDate,
-                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative gameplay goals keep profile-scoped counters, while choices and uncertain results stay confirmable.",
+                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative gameplay goals keep profile-scoped counters/checklists, while choices and uncertain results stay confirmable.",
             )
         }
         items(rows, key = { it.achievement.id }) { row ->
@@ -143,6 +147,9 @@ private fun RuleBasedAchievements(
                 onProgressChange = { count ->
                     vm.setAchievementCount(row.achievement.id, count)
                 },
+                onChecklistItemChange = { itemId, checked ->
+                    vm.setAchievementChecklistItem(row.achievement.id, itemId, checked)
+                },
             )
         }
     }
@@ -152,6 +159,7 @@ private data class AchievementRowState(
     val achievement: AchievementDefinition,
     val progress: AchievementProgress,
     val manualEarned: Boolean,
+    val checkedItems: Set<String> = emptySet(),
 ) {
     val earned: Boolean get() = manualEarned || progress.completed
 }
@@ -163,6 +171,7 @@ private fun RuleAchievementRow(
     currentDate: String,
     onEarnedChange: (Boolean) -> Unit,
     onProgressChange: (Int) -> Unit,
+    onChecklistItemChange: (String, Boolean) -> Unit,
 ) {
     val achievement = row.achievement
     val progress = row.progress
@@ -223,11 +232,21 @@ private fun RuleAchievementRow(
                     color = if (earned) MaterialTheme.colorScheme.onSecondaryContainer
                     else MaterialTheme.colorScheme.secondary,
                 )
-                if (!progress.automatic && progress.totalUnits > 1) {
-                    AchievementCounterControls(
-                        progress = progress,
-                        onProgressChange = onProgressChange,
-                    )
+                when {
+                    achievement.tracking.type == AchievementTrackingTypes.CHECKLIST -> {
+                        AchievementChecklistControls(
+                            achievement = achievement,
+                            checkedItems = row.checkedItems,
+                            enabled = progress.available && !row.manualEarned,
+                            onItemChange = onChecklistItemChange,
+                        )
+                    }
+                    !progress.automatic && progress.totalUnits > 1 -> {
+                        AchievementCounterControls(
+                            progress = progress,
+                            onProgressChange = onProgressChange,
+                        )
+                    }
                 }
             }
             Checkbox(
@@ -235,6 +254,31 @@ private fun RuleAchievementRow(
                 enabled = !progress.completed,
                 onCheckedChange = if (progress.completed) null else onEarnedChange,
             )
+        }
+    }
+}
+
+@Composable
+private fun AchievementChecklistControls(
+    achievement: AchievementDefinition,
+    checkedItems: Set<String>,
+    enabled: Boolean,
+    onItemChange: (String, Boolean) -> Unit,
+) {
+    Spacer(Modifier.height(4.dp))
+    Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
+        achievement.tracking.items.distinctBy { it.id }.forEach { item ->
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = item.id in checkedItems,
+                    enabled = enabled,
+                    onCheckedChange = { checked -> onItemChange(item.id, checked) },
+                )
+                Text(
+                    text = item.label,
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
         }
     }
 }
