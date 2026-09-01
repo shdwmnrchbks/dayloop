@@ -165,6 +165,7 @@ class PackContentTest {
         val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
         val bonds = p5r.bonds?.bonds?.associateBy { it.id }.orEmpty()
         val fool = bonds.getValue("p5r.bond.fool")
+        val magician = bonds.getValue("p5r.bond.magician")
         val chariot = bonds.getValue("p5r.bond.chariot")
         val justice = bonds.getValue("p5r.bond.justice")
         val councilor = bonds.getValue("p5r.bond.councilor")
@@ -172,6 +173,16 @@ class PackContentTest {
         assertEquals("Igor", fool.characterLabel)
         assertEquals("2016-04-12", fool.ranks.first { it.rank == 1 }.availableFrom)
         assertEquals("2016-04-24", fool.ranks.first { it.rank == 2 }.scheduledFor)
+        listOf(2, 4, 6).forEach { rank ->
+            val step = fool.ranks.first { it.rank == rank }
+            assertNull(step.availableFrom, "Palace-triggered Fool rank $rank must not masquerade as calendar availability")
+            assertNull(step.availableUntil, "Palace-triggered Fool rank $rank must not invent a calendar cutoff")
+        }
+        listOf(2, 3, 5, 9).forEach { rank ->
+            val step = magician.ranks.first { it.rank == rank }
+            assertNull(step.availableFrom, "Palace-triggered Magician rank $rank must not masquerade as calendar availability")
+            assertNull(step.availableUntil, "Palace-triggered Magician rank $rank must not invent a calendar cutoff")
+        }
         assertNull(chariot.ranks.first { it.rank == 2 }.availableFrom, "route-selected Chariot rank date must not masquerade as availability")
         assertTrue(justice.ranks.first { it.rank == 8 }.notes.orEmpty().contains("not Akechi"), "Justice copy must not claim Akechi unlocks third semester")
         assertEquals("2016-11-17", councilor.ranks.first { it.rank == 9 }.availableUntil)
