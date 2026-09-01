@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.deadlines
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -58,16 +59,25 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         items(sorted, key = { it.id }) { deadline ->
-            // Crown language (docs/ROADMAP-v3.md Phase 15): mission stamps —
-            // plaque cards with panel decor, the kind chip as a wax-seal tag
-            // (pack-supplied label), and the countdown as a plaque ribbon.
-            // Other looks keep the engine card unchanged.
             val skin = LocalSkin.current
             val crown = skin.hasSkin && skin.motif == "crown"
+            val slash = skin.hasSkin && skin.motion == "slash"
+            val skinnedCard = crown || slash
+            val cardShape = if (skinnedCard) skin.shapes.card else RoundedCornerShape(12.dp)
+            val cardColor = if (slash) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceVariant
             Surface(
-                shape = if (crown) skin.shapes.card else RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                modifier = Modifier.fillMaxWidth(),
+                shape = cardShape,
+                color = cardColor,
+                shadowElevation = 0.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .then(
+                        if (slash) Modifier.border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.onBackground,
+                            shape = cardShape,
+                        ) else Modifier,
+                    ),
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -79,13 +89,10 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = if (crown) {
-                                skin.cased(deadline.label, "display")
-                            } else {
-                                deadline.label
-                            },
-                            style = if (crown) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
+                            text = if (skinnedCard) skin.cased(deadline.label, "display") else deadline.label,
+                            style = if (skinnedCard) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.SemiBold,
+                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                         )
                         val start = deadlineStart(deadline)
                         val end = deadlineEnd(deadline)
@@ -93,14 +100,18 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            if (crown) {
-                                SkinTag(
+                            when {
+                                slash -> SkinTag(
+                                    text = skin.cased(pack.pack.labels.deadlineKind(deadline.kind), "display"),
+                                    container = MaterialTheme.colorScheme.primary,
+                                    content = MaterialTheme.colorScheme.onPrimary,
+                                )
+                                crown -> SkinTag(
                                     text = pack.pack.labels.deadlineKind(deadline.kind),
                                     container = MaterialTheme.colorScheme.tertiaryContainer,
                                     content = MaterialTheme.colorScheme.onTertiaryContainer,
                                 )
-                            } else {
-                                DeadlineKindChip(pack.pack.labels.deadlineKind(deadline.kind))
+                                else -> DeadlineKindChip(pack.pack.labels.deadlineKind(deadline.kind))
                             }
                             Text(
                                 text = when {
@@ -110,21 +121,27 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                                     else -> "Unscheduled"
                                 },
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                color = if (slash) {
+                                    MaterialTheme.colorScheme.onBackground
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
+                                },
                             )
                         }
                     }
                     current?.let {
                         val days = daysUntil(it, deadline, pack.calendar)
                         if (days != null) {
-                            if (crown) {
+                            if (skinnedCard) {
+                                val urgent = days in 0..3
                                 Surface(
-                                    shape = skin.shapes.header,
-                                    color = if (days in 0..3) {
-                                        MaterialTheme.colorScheme.error
-                                    } else {
-                                        MaterialTheme.colorScheme.primaryContainer
+                                    shape = if (slash) skin.shapes.chip else skin.shapes.header,
+                                    color = when {
+                                        urgent -> MaterialTheme.colorScheme.error
+                                        slash -> MaterialTheme.colorScheme.primary
+                                        else -> MaterialTheme.colorScheme.primaryContainer
                                     },
+                                    shadowElevation = 0.dp,
                                 ) {
                                     Text(
                                         text = skin.cased(
@@ -136,10 +153,10 @@ fun DeadlinesScreen(vm: DayloopViewModel = hiltViewModel()) {
                                             "display",
                                         ),
                                         style = MaterialTheme.typography.labelMedium,
-                                        color = if (days in 0..3) {
-                                            MaterialTheme.colorScheme.onError
-                                        } else {
-                                            MaterialTheme.colorScheme.onPrimaryContainer
+                                        color = when {
+                                            urgent -> MaterialTheme.colorScheme.onError
+                                            slash -> MaterialTheme.colorScheme.onPrimary
+                                            else -> MaterialTheme.colorScheme.onPrimaryContainer
                                         },
                                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
                                     )
