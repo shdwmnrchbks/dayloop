@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
@@ -10,6 +11,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.theme.schemeArgb
@@ -168,20 +170,33 @@ fun packColorScheme(theme: PackTheme, dark: Boolean): ColorScheme {
 }
 
 /**
- * Material components still consume [Shapes] even when a pack supplies custom
- * silhouettes. For the slash family, map those generic skin silhouettes into
- * Material's size roles so AlertDialog, TextField, Button and any remaining
- * stock components stop reintroducing rounded Material pills/cards. Other
- * skins keep Material defaults to avoid changing their established look.
+ * Material's global [Shapes] API only accepts [androidx.compose.foundation.shape.CornerBasedShape],
+ * while the skin DSL deliberately supports arbitrary silhouettes such as
+ * jagged/ribbon/slash. Keep those exact silhouettes on explicit skin surfaces,
+ * and give remaining stock Material controls angular cut-corner approximations
+ * so slash-family packs do not fall back to rounded pills and dialogs.
  */
 private fun materialShapesFor(skin: SkinSpec): Shapes =
     if (skin.hasSkin && skin.motion == "slash") {
+        val shard = CutCornerShape(
+            topStart = 8.dp,
+            topEnd = 1.dp,
+            bottomEnd = 8.dp,
+            bottomStart = 1.dp,
+        )
+        val panel = CutCornerShape(
+            topStart = 12.dp,
+            topEnd = 3.dp,
+            bottomEnd = 12.dp,
+            bottomStart = 3.dp,
+        )
+        val frame = CutCornerShape(14.dp)
         Shapes(
-            extraSmall = skin.shapes.chip,
-            small = skin.shapes.chip,
-            medium = skin.shapes.card,
-            large = skin.shapes.frame,
-            extraLarge = skin.shapes.frame,
+            extraSmall = shard,
+            small = shard,
+            medium = panel,
+            large = frame,
+            extraLarge = frame,
         )
     } else {
         Shapes()
