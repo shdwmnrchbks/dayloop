@@ -25,27 +25,38 @@ data class AchievementDefinition(
     val tracking: AchievementTrackingRule = AchievementTrackingRule(),
 )
 
-/** One user-confirmable item in a pack-authored achievement checklist. */
+/** One user-confirmable item in a pack-authored checklist or choice. */
 @Serializable
 data class AchievementTrackingItem(
     val id: String,
     val label: String,
+    /** Optional deadline for a missable checklist item. */
+    val dueBy: String? = null,
 )
 
 /**
  * Engine-neutral tracking rule. Event-backed rules resolve semantic anchors
  * against the current walkthrough and only count events whose step is DONE.
- * Checklist items are authored here while their checked state belongs to the
- * active player profile.
+ * Checklist/choice definitions are authored here while their mutable state
+ * belongs to the active player profile.
  */
 @Serializable
 data class AchievementTrackingRule(
     val type: String = AchievementTrackingTypes.MANUAL,
+    /** Story date, or earliest date a manual choice/confirmation can be finalized. */
     val date: String? = null,
     val event: String? = null,
     val events: List<String> = emptyList(),
     val target: Int? = null,
     val items: List<AchievementTrackingItem> = emptyList(),
+    /** Shared persistence key for a choice used by more than one achievement. */
+    val stateKey: String? = null,
+    /** Choice item ids that keep this achievement attainable. */
+    val acceptedItems: List<String> = emptyList(),
+    /** User-facing confirmation/choice guidance. */
+    val prompt: String? = null,
+    /** Optional display unit for a manual counter, e.g. "¥". */
+    val unit: String? = null,
 )
 
 /**
@@ -68,6 +79,8 @@ object AchievementTrackingTypes {
     const val ANY_EVENT = "anyEvent"
     const val COUNTER = "counter"
     const val CHECKLIST = "checklist"
+    const val CHOICE = "choice"
+    const val CONFIRMATION = "confirmation"
     const val CONDITIONAL = "conditional"
     const val MANUAL = "manual"
 
@@ -78,6 +91,8 @@ object AchievementTrackingTypes {
         ANY_EVENT,
         COUNTER,
         CHECKLIST,
+        CHOICE,
+        CONFIRMATION,
         CONDITIONAL,
         MANUAL,
     )
