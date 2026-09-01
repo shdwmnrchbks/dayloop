@@ -17,14 +17,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.runtime.collectAsState
-import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.byId
+import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
@@ -32,16 +32,17 @@ import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
-import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
+import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
+import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
+import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
+import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
+import com.shadowmonarchbooks.dayloop.ui.components.StepsList
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
-import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
-import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
-import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
-import com.shadowmonarchbooks.dayloop.ui.components.StepsList
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinRouteBadge
 
 /**
  * Day detail: every step with its checkbox marks, plus prev/next browsing
@@ -78,96 +79,91 @@ fun DayScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
-            // Moon-language packs (Phase 14): the bundled moon marker renders
-            // at the header for dates the pack anchors media to.
-            if (LocalSkin.current.motif == "moon") {
-                pack.mediaForDate(date).firstOrNull { it.kind == "day" }?.let { marker ->
-                    MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 30.dp)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
+                if (LocalSkin.current.motif == "moon") {
+                    pack.mediaForDate(date).firstOrNull { it.kind == "day" }?.let { marker ->
+                        MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 30.dp)
+                    }
+                }
+                DayKindChip(day.dayKind)
+            }
+
+            // Walkthrough dates are route instructions, so the active route is
+            // always visible on the page instead of being implied by a profile.
+            SkinRouteBadge("Route · ${pack.routeLabel(state.activeRouteId)}")
+
+            MediaStrip(items = pack.mediaForDate(date).map { pack.assetOf(it) to it.title })
+
+            if (state.currentDate == date) {
+                Text(
+                    text = "Current in-game day",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+
+            day.notes?.let { notes ->
+                Text(
+                    text = notes,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+
+            state.currentDate?.let { current ->
+                nextDeadline(pack.deadlines, current, pack.calendar)?.let { (deadline, days) ->
+                    DeadlineBanner(
+                        deadline = deadline,
+                        daysLeft = days,
+                        kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
+                    )
                 }
             }
-            DayKindChip(day.dayKind)
-        }
 
-        // Pack-supplied day art (docs/ROADMAP-v3.md Phase 11): graphics
-        // media.json anchors to this exact date (e.g. a full-moon marker).
-        MediaStrip(items = pack.mediaForDate(date).map { pack.assetOf(it) to it.title })
+            if (pack.pack.capabilities.answers) {
+                pack.answersByDate[date]?.let { sheet ->
+                    AnswerSheetCard(
+                        sheet = sheet,
+                        onOpenAnswers = onOpenAnswers,
+                        deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
+                    )
+                }
+            }
 
-        // Highlight when this page is the profile's current in-game day.
-        if (state.currentDate == date) {
-            Text(
-                text = "Current in-game day",
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.primary,
+            DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+
+            Text("Steps", style = MaterialTheme.typography.titleMedium)
+            StepsList(
+                steps = day.steps,
+                markAt = { index -> state.markAt(date, index) },
+                onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
+                statLabels = pack.pack.statLabels(),
+                activityLabels = pack.activities.mapValues { it.value.label },
+                slotLabels = pack.pack.slotLabels(),
+                onOpenActivity = onOpenActivity,
             )
-        }
 
-        day.notes?.let { notes ->
-            Text(
-                text = notes,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-
-        state.currentDate?.let { current ->
-            nextDeadline(pack.deadlines, current, pack.calendar)?.let { (deadline, days) ->
-                DeadlineBanner(
-                    deadline = deadline,
-                    daysLeft = days,
-                    kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                IconButton(onClick = { prevDate?.let(onOpenDay) }, enabled = prevDate != null) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous authored day")
+                }
+                Text(
+                    text = "Browse authored days",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.weight(1f),
                 )
+                IconButton(onClick = { nextDate?.let(onOpenDay) }, enabled = nextDate != null) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next authored day")
+                }
             }
         }
 
-        // Guarded entry point (docs/ROADMAP-v2.md Phase 8): the affordance
-        // exists only on days with a sheet, in packs declaring the capability.
-        if (pack.pack.capabilities.answers) {
-            pack.answersByDate[date]?.let { sheet ->
-                AnswerSheetCard(
-                    sheet = sheet,
-                    onOpenAnswers = onOpenAnswers,
-                    deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
-                )
-            }
-        }
-
-        DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
-
-        Text("Steps", style = MaterialTheme.typography.titleMedium)
-        StepsList(
-            steps = day.steps,
-            markAt = { index -> state.markAt(date, index) },
-            onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
-            statLabels = pack.pack.statLabels(),
-            activityLabels = pack.activities.mapValues { it.value.label },
-            slotLabels = pack.pack.slotLabels(),
-            onOpenActivity = onOpenActivity,
-        )
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            IconButton(onClick = { prevDate?.let(onOpenDay) }, enabled = prevDate != null) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous authored day")
-            }
-            Text(
-                text = "Browse authored days",
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.weight(1f),
-            )
-            IconButton(onClick = { nextDate?.let(onOpenDay) }, enabled = nextDate != null) {
-                Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next authored day")
-            }
-        }
-        }
-
-        // Perfect-day splash (docs/ROADMAP-v3.md Phase 16): fires here too —
-        // the final tick may happen on the full day page. Never blocking.
         PerfectDaySplash(
             allDone = day.steps.isNotEmpty() &&
                 day.steps.indices.all { state.markAt(date, it) == StepMark.DONE },
