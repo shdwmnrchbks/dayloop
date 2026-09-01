@@ -188,6 +188,44 @@ class PackContentTest {
         assertEquals("2016-11-17", councilor.ranks.first { it.rank == 9 }.availableUntil)
     }
 
+    @Test
+    fun `p5r activity gains use actual stat points rather than displayed note counts`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val pack = p5r.pack ?: return
+        val activities = p5r.activities?.activities.orEmpty()
+        val byId = activities.associateBy { it.id }
+
+        assertEquals(4, pack.contentVersion)
+
+        val statBooks = activities.filter { it.id.startsWith("p5r.activity.book.") && it.statGains.isNotEmpty() }
+        assertTrue(statBooks.isNotEmpty())
+        assertTrue(
+            statBooks.all { activity -> activity.statGains.values.all { it == 5 || it == 7 } },
+            "P5R stat books must store actual 5/7-point rewards, not displayed note counts",
+        )
+
+        val dvds = activities.filter { it.id.startsWith("p5r.activity.dvd.") }
+        assertTrue(dvds.isNotEmpty())
+        assertTrue(dvds.all { it.statGains.values.singleOrNull() == 3 }, "every Royal DVD viewing grants 3 base stat points")
+        assertTrue(dvds.all { it.notes.orEmpty().contains("Two viewings") }, "Royal DVDs require two viewings")
+        assertTrue(dvds.all { it.notes.orEmpty().contains("no return deadline") }, "Royal DVD subscription has no return deadline")
+
+        val movies = activities.filter { it.id.startsWith("p5r.activity.movie.") }
+        assertTrue(movies.isNotEmpty())
+        assertTrue(movies.all { it.statGains.values.singleOrNull() == 5 }, "first-time Royal movie viewings grant 5 base stat points")
+
+        val games = activities.filter { it.id.startsWith("p5r.activity.videoGame.") }
+        assertTrue(games.isNotEmpty())
+        assertTrue(games.all { it.statGains.values.singleOrNull() == 3 }, "Royal retro-game clears grant 3 stat points")
+        assertTrue(games.all { it.notes.orEmpty().contains("makes the minigame easier") }, "Game Secrets must be described as an assist, not a guaranteed win")
+
+        assertEquals(7, byId.getValue("p5r.activity.book.master-swordsman").statGains.getValue("guts"))
+        assertTrue(byId.getValue("p5r.activity.book.craft-of-cinema").notes.orEmpty().contains("+2"))
+        assertTrue(byId.getValue("p5r.activity.book.knowing-the-heart").notes.orEmpty().contains("Technical"))
+        assertEquals("Yongen-Jaya movie theater", byId.getValue("p5r.activity.movie.back-to-the-ninja").location)
+        assertEquals("Shinjuku movie theater", byId.getValue("p5r.activity.movie.pach-saw").location)
+    }
+
     // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
 
     @Test
