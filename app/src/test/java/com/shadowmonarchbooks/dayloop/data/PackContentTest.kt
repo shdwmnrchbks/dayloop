@@ -244,7 +244,9 @@ class PackContentTest {
         }
 
         fun gain(date: String, text: String): Map<String, Int> =
-            days.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+            days.first { it.date == date }.steps
+                .first { it.label.contains(text) && it.statGains.isNotEmpty() }
+                .statGains
 
         assertEquals(mapOf("knowledge" to 2), gain("2016-04-12", "class question"))
         assertEquals(mapOf("proficiency" to 3), gain("2016-04-17", "craft one lock pick"))
@@ -271,7 +273,9 @@ class PackContentTest {
         }
 
         fun gain(date: String, text: String): Map<String, Int> =
-            days.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+            days.first { it.date == date }.steps
+                .first { it.label.contains(text) && it.statGains.isNotEmpty() }
+                .statGains
 
         assertEquals(mapOf("proficiency" to 3), gain("2016-05-01", "Guy McVer"))
         assertEquals(mapOf("guts" to 2), gain("2016-05-08", "Sunday drink"))
@@ -308,7 +312,9 @@ class PackContentTest {
         }
 
         fun gain(date: String, text: String): Map<String, Int> =
-            days.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+            days.first { it.date == date }.steps
+                .first { it.label.contains(text) && it.statGains.isNotEmpty() }
+                .statGains
 
         assertEquals(mapOf("charm" to 3), gain("2016-06-01", "Not-so-hot Betsy"))
         assertEquals(mapOf("charm" to 2), gain("2016-06-05", "Sunday drink"))
