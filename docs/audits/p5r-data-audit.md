@@ -61,36 +61,59 @@ mixed those units. The September audit normalized the reusable definitions:
 - Retro-game clears use 3 points. `Game Secrets` enables an assist/cheat mode;
   it is not represented as a universal guaranteed win.
 - Route-only DVD rental counters were not treated as "12-part rental series";
-  walkthrough labels now identify a title's first/second viewing instead.
+  walkthrough labels identify a title's first/second viewing instead.
 - `Knowing the Heart` now describes its real Technical-combination effect;
   `Factorization Guide`, billiards books and several movie-theater locations
   were corrected at the same time.
 
 The game maps several different hidden point totals to the same displayed note
-count, so future audits must compare actual point values rather than counting
-note icons in screenshots.
+count: 2 actual points display one note, 3–4 display two, and 5/7/10 display
+three. Future audits must therefore compare actual point values rather than
+copying the `+1/+2/+3` shorthand printed by a route guide.
 
 #### Route point audit status
 
-April, May and June 2016 have been normalized from note-count shorthand to
-actual points and have regression coverage. Confirmed examples include class
-answers, crosswords/TV quizzes, studying, plant nutrients, Death/Sun bonus stat
-rewards, Aojiru, books, DVDs, movies, retro games, darts, the rainy bathhouse,
-chalk dodges and the first Big Bang Burger challenge.
+April, May and June 2016 received the first comprehensive point-unit pass and
+have regression coverage. Confirmed examples include class answers,
+crosswords/TV quizzes, studying, plant nutrients, Death/Sun bonus stat rewards,
+Aojiru, books, DVDs, movies, retro games, darts, the rainy bathhouse, chalk
+dodges and the first Big Bang Burger challenge.
 
 The month-by-month audit also found route steps lost during the original import,
-not merely bad numbers. May now restores the first `Guy McVer` viewing and the
-5/8, 5/22 and 5/29 Aojiru purchases. June restores the 6/25 `Game Secrets`
-reading. The restored Aojiru sequence is important because the drink stand
-keeps offering the current stat until it is purchased; omitting a purchase
-shifts every later route-specific stat.
+not merely bad numbers. May restores the first `Guy McVer` viewing and the 5/8,
+5/22 and 5/29 Aojiru purchases. June restores the 6/25 `Game Secrets` reading.
+The restored Aojiru sequence is important because the drink stand keeps offering
+the current stat until it is purchased; omitting a purchase shifts every later
+route-specific stat.
 
 `The Craft of Cinema` is read on 2016-06-23 in this route. Regression tests
 therefore require pre-6/23 DVD gains to equal the 3-point base and post-read DVD
 viewings to include the +2 modifier (for example ICU on 6/25 and 6/27 = 5).
 
-July onward has **not** yet received the same exhaustive point-unit pass, so the
-ledger does not claim the full walkthrough is independently verified yet.
+July and August received targeted **point-unit and active-modifier** passes. The
+route order was preserved, while user-visible totals were normalized where the
+mechanics are independently checkable. Examples include:
+
+- July/August crosswords and Aojiru use +2 actual points rather than one-note
+  shorthand.
+- Craft of Cinema adds +2 to movie/DVD base rewards; Luck Reading then applies
+  its 50% boost to the resulting selected-stat gain, rounded down. That is why
+  a 7-point movie reward becomes 10 with an active matching Luck Reading.
+- Triple Seven and Rafflesia retain their base job reward plus the successful
+  barcode/order bonus, then apply Luck when active.
+- Crossroads shifts include the bar's base Charm gain **and** the selected
+  patron's secondary-stat reward; earlier data kept only the patron reward.
+- Royal Confidant stat rewards such as Devil, Sun, Star and Death use actual
+  hidden points rather than the number of displayed notes.
+- August `D.Housewives` is explicitly two viewings, each using the 3-point DVD
+  base plus the already-read Craft of Cinema bonus.
+- A normal batting-cage session remains +2 Proficiency; the home-run target is
+  an item/achievement condition, not an extra hidden-point tier for that visit.
+
+These July/August corrections are regression-tested for the highest-risk point
+and modifier cases, but they are **not** a claim that every flexible route step
+on those months has been independently reproduced day-for-day from a second
+walkthrough. September onward has not yet received the same point-unit pass.
 
 ### Confidants
 
@@ -159,21 +182,24 @@ does not reintroduce the off-by-one date merely by switching source tables.
    day in `scheduledFor`.
 3. `Activity.statGains` and walkthrough `statGains` are actual hidden social-stat
    points, not displayed music notes. Do not copy note counts into the schema.
-4. Conditional bonuses such as `The Craft of Cinema` or `Factorization Guide`
-   belong in effect/condition wording and route-specific totals rather than
-   being silently folded into a reusable activity's base `statGains`.
-5. For stateful route activities such as Aojiru, audit omitted steps as well as
+4. Conditional bonuses such as `The Craft of Cinema`, Luck Reading or
+   `Factorization Guide` belong in effect/condition wording and route-specific
+   totals rather than being silently folded into a reusable activity's base
+   `statGains`.
+5. Multi-stat jobs must preserve every actual component: for example Crossroads
+   has a base Charm gain plus the chosen patron's secondary-stat reward.
+6. For stateful route activities such as Aojiru, audit omitted steps as well as
    values: a missing purchase changes the later state/rotation.
-6. Never label a route cleanup target as a game deadline without an independent
+7. Never label a route cleanup target as a game deadline without an independent
    game-rule source.
-7. When answer/date sources conflict, prefer multiple date-specific Royal
+8. When answer/date sources conflict, prefer multiple date-specific Royal
    walkthroughs over a single undifferentiated answer table and record the
    conflict here.
-8. Any new P5R universal gate/deadline should have an independent verifier in
+9. Any new P5R universal gate/deadline should have an independent verifier in
    this ledger or `docs/sources.md`.
-9. Structural validation (`packlint`) proves references and schema integrity;
-   it does not by itself prove gameplay facts. Fact provenance remains a content
-   responsibility.
-10. When independent guides disagree only on *when a flexible action is done*,
+10. Structural validation (`packlint`) proves references and schema integrity;
+    it does not by itself prove gameplay facts. Fact provenance remains a content
+    responsibility.
+11. When independent guides disagree only on *when a flexible action is done*,
     preserve the authored route and label it as route-specific instead of
     "correcting" it into another guide's route.
