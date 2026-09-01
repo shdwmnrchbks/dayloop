@@ -23,7 +23,7 @@ jobs:
       runner: ${{ steps.select.outputs.runner }}
       kind: ${{ steps.select.outputs.kind }}
     steps:
-      - name: Prefer online self-hosted x64 runner
+      - name: Prefer idle self-hosted x64 runner
         id: select
         shell: bash
         env:
@@ -62,12 +62,15 @@ jobs:
             exit 0
           fi
 
-          if jq -e '[.runners[] | select(.status == "online") | [.labels[].name] | select(index("self-hosted") != null and index("X64") != null)] | length > 0' >/dev/null <<<"$runners"; then
+          # Online is not enough: GitHub reports a runner as online while it is
+          # executing another job. Only route to self-hosted when a compatible
+          # runner is both online and idle; otherwise fall back immediately.
+          if jq -e '[.runners[] | select(.status == "online" and .busy == false) | [.labels[].name] | select(index("self-hosted") != null and index("X64") != null)] | length > 0' >/dev/null <<<"$runners"; then
             echo 'runner=["self-hosted","X64"]' >> "$GITHUB_OUTPUT"
             echo 'kind=self-hosted' >> "$GITHUB_OUTPUT"
-            echo "Using an online self-hosted x64 runner."
+            echo "Using an idle self-hosted x64 runner."
           else
-            echo "No compatible self-hosted x64 runner is online; using GitHub-hosted fallback."
+            echo "No compatible idle self-hosted x64 runner is available; using GitHub-hosted fallback."
             use_hosted
           fi
 
