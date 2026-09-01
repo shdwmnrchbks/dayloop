@@ -119,7 +119,7 @@ class AchievementTrackingRuleTest {
     private fun day(vararg labels: String) = Day(
         date = DATE,
         weekday = "fri",
-        steps = labels.map(::Step),
+        steps = labels.map { label -> Step(label = label) },
     )
 
     private fun achievement(
