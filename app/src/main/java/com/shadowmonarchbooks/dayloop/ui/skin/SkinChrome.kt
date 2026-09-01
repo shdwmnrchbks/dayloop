@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -46,17 +45,18 @@ private fun SkinSpec.isSlashChrome(): Boolean = hasSkin && motion == "slash"
  * sparse red and white diagonal print marks instead of Material tonal surface
  * elevation. Other skins are intentionally untouched.
  */
-fun Modifier.skinBackdrop(skin: SkinSpec): Modifier = if (!skin.isSlashChrome()) {
-    this
-} else {
-    this
-        .background(MaterialTheme.colorScheme.background)
+@Composable
+fun Modifier.skinBackdrop(skin: SkinSpec): Modifier {
+    if (!skin.isSlashChrome()) return this
+    val background = MaterialTheme.colorScheme.background
+    val red = MaterialTheme.colorScheme.primary.copy(alpha = 0.20f)
+    val white = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.16f)
+    return this
+        .background(background)
         .drawBehind {
-            val red = MaterialTheme.colorScheme.primary
-            val white = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.16f)
             val band = size.width * 0.20f
             drawLine(
-                color = red.copy(alpha = 0.20f),
+                color = red,
                 start = Offset(size.width - band, 0f),
                 end = Offset(size.width, size.height * 0.18f),
                 strokeWidth = 28f,
@@ -85,10 +85,11 @@ fun SkinTopBar(
     onOpenSettings: () -> Unit,
 ) {
     val skin = LocalSkin.current
+    val colors = MaterialTheme.colorScheme
     if (!skin.isSlashChrome()) {
         TopAppBar(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.surface)
+                .background(colors.surface)
                 .skinDecor("header"),
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
             navigationIcon = {
@@ -111,7 +112,7 @@ fun SkinTopBar(
         return
     }
 
-    Surface(color = MaterialTheme.colorScheme.background, shadowElevation = 0.dp) {
+    Surface(color = colors.background, shadowElevation = 0.dp) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -120,7 +121,7 @@ fun SkinTopBar(
                 .heightIn(min = 64.dp)
                 .drawBehind {
                     drawLine(
-                        color = MaterialTheme.colorScheme.onBackground,
+                        color = colors.onBackground,
                         start = Offset(0f, size.height - 1f),
                         end = Offset(size.width, size.height - 1f),
                         strokeWidth = 2f,
@@ -133,39 +134,31 @@ fun SkinTopBar(
                     Icon(
                         Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Back",
-                        tint = MaterialTheme.colorScheme.onBackground,
+                        tint = colors.onBackground,
                     )
                 }
             }
             Surface(
                 shape = skin.shapes.header,
-                color = MaterialTheme.colorScheme.primary,
+                color = colors.primary,
                 shadowElevation = 0.dp,
                 modifier = Modifier
                     .weight(1f)
-                    .border(1.dp, MaterialTheme.colorScheme.onBackground, skin.shapes.header),
+                    .border(1.dp, colors.onBackground, skin.shapes.header),
             ) {
                 Text(
                     text = skin.cased(title, "display"),
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimary,
+                    color = colors.onPrimary,
                     maxLines = 1,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 )
             }
             IconButton(onClick = onOpenSearch) {
-                Icon(
-                    Icons.Filled.Search,
-                    contentDescription = "Search",
-                    tint = MaterialTheme.colorScheme.onBackground,
-                )
+                Icon(Icons.Filled.Search, contentDescription = "Search", tint = colors.onBackground)
             }
             IconButton(onClick = onOpenSettings) {
-                Icon(
-                    Icons.Filled.Settings,
-                    contentDescription = "Settings",
-                    tint = MaterialTheme.colorScheme.onBackground,
-                )
+                Icon(Icons.Filled.Settings, contentDescription = "Settings", tint = colors.onBackground)
             }
         }
     }
@@ -183,6 +176,7 @@ fun SkinBottomBar(
     onSelect: (String) -> Unit,
 ) {
     val skin = LocalSkin.current
+    val colors = MaterialTheme.colorScheme
     if (!skin.isSlashChrome()) {
         NavigationBar {
             items.forEach { item ->
@@ -198,13 +192,13 @@ fun SkinBottomBar(
     }
 
     Surface(
-        color = MaterialTheme.colorScheme.background,
+        color = colors.background,
         shadowElevation = 0.dp,
         modifier = Modifier
             .fillMaxWidth()
             .drawBehind {
                 drawLine(
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = colors.onBackground,
                     start = Offset(0f, 1f),
                     end = Offset(size.width, 1f),
                     strokeWidth = 2f,
@@ -220,8 +214,8 @@ fun SkinBottomBar(
         ) {
             items.forEach { item ->
                 val selected = selectedRoute == item.route
-                val container = if (selected) MaterialTheme.colorScheme.primary else Color.Transparent
-                val content = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onBackground
+                val container = if (selected) colors.primary else Color.Transparent
+                val content = if (selected) colors.onPrimary else colors.onBackground
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
@@ -229,7 +223,7 @@ fun SkinBottomBar(
                         .heightIn(min = 54.dp)
                         .background(container, skin.shapes.chip)
                         .then(
-                            if (selected) Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground, skin.shapes.chip)
+                            if (selected) Modifier.border(1.dp, colors.onBackground, skin.shapes.chip)
                             else Modifier
                         )
                         .clickable { onSelect(item.route) }
@@ -259,13 +253,14 @@ fun SkinBottomBar(
 @Composable
 fun SkinRouteBadge(text: String, modifier: Modifier = Modifier) {
     val skin = LocalSkin.current
+    val colors = MaterialTheme.colorScheme
     Surface(
         shape = if (skin.hasSkin) skin.shapes.chip else MaterialTheme.shapes.small,
-        color = if (skin.isSlashChrome()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-        contentColor = if (skin.isSlashChrome()) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+        color = if (skin.isSlashChrome()) colors.primary else colors.surfaceVariant,
+        contentColor = if (skin.isSlashChrome()) colors.onPrimary else colors.onSurfaceVariant,
         shadowElevation = 0.dp,
         modifier = modifier.then(
-            if (skin.isSlashChrome()) Modifier.border(1.dp, MaterialTheme.colorScheme.outline, skin.shapes.chip)
+            if (skin.isSlashChrome()) Modifier.border(1.dp, colors.outline, skin.shapes.chip)
             else Modifier
         ),
     ) {
