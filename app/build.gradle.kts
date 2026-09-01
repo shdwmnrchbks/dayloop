@@ -26,8 +26,8 @@ android {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
         targetSdk = 35
-        versionCode = 13
-        versionName = "0.11.1"
+        versionCode = 14
+        versionName = "0.12.0-rc1"
     }
 
     signingConfigs {
@@ -47,6 +47,16 @@ android {
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.getByName("release")
             }
+        }
+
+        // Installable test channel for prereleases. It intentionally uses the
+        // standard Android debug key and a separate application id so testers
+        // can keep the production-signed app installed at the same time.
+        create("candidate") {
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            applicationIdSuffix = ".candidate"
+            isDebuggable = true
         }
     }
 
