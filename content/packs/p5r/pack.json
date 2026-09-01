@@ -56,7 +56,8 @@
     "motion": "slash",
     "art": {
       "card": "art/card.jpg",
-      "icon": "art/icon.png"
+      "icon": "art/icon.png",
+      "launcherBadge": "art/launcher-badge.png"
     }
   }
 }

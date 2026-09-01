@@ -4,7 +4,7 @@ This document expands `docs/ROADMAP-v3.md` Phase 17 into reviewable implementati
 
 ## Delivery order
 
-### Phase 17a — Cold-start skin resolution
+### Phase 17a — Cold-start skin resolution ✅
 
 **Goal:** a returning user must never see an engine-look or onboarding flash while the persisted active pack is still resolving.
 
@@ -25,7 +25,7 @@ Acceptance:
 - Single-pack installs still auto-select their only pack.
 - Pack switching during an active session still re-skins in place.
 
-### Phase 17b — Glance skin primitives and widget parity
+### Phase 17b — Glance skin primitives and widget parity ✅
 
 **Goal:** extend the active skin’s visual language to the home-screen widget without changing widget semantics.
 
@@ -42,7 +42,7 @@ Acceptance:
 - Engine, Phantom, Moonlight, and Royal render correctly across supported widget sizes.
 - Content and navigation behavior are identical across skins.
 
-### Phase 17c — Launcher badge schema, serving, and lint
+### Phase 17c — Launcher badge schema, serving, and lint ✅
 
 **Goal:** allow packs to decorate Dayloop-owned launcher/shortcut identity without replacing it with game-owned launcher art.
 
@@ -53,6 +53,13 @@ Scope:
 - Composite the small motif badge into Dayloop-owned launcher/shortcut treatment where Android permits.
 - Add packlint validation for missing/invalid badge references and dimensions as appropriate.
 - Keep absence of a badge as a clean engine fallback.
+
+Implementation note:
+
+- Android's primary installed-app icon remains the compiled Dayloop adaptive icon; arbitrary pack assets cannot safely replace it at runtime.
+- The supported runtime surface is one dynamic launcher shortcut. Its base icon is always Dayloop-owned, with the optional pack badge composited into the lower-right corner.
+- Bundled masks/moon/crown skins ship original abstract 96×96 PNG badge motifs; these are not official game launcher icons.
+- Badge authoring and lint rules live in `docs/launcher-badges.md`.
 
 Acceptance:
 
