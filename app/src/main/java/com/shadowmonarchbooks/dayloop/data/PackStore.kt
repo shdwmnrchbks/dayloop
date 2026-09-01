@@ -5,6 +5,8 @@ import android.content.res.AssetManager
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
 import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementDefinition
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementEventAnchor
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
@@ -65,6 +67,10 @@ data class LoadedPack(
      * ships no media.json — packlint guarantees declared files exist.
      */
     val media: List<MediaItem> = emptyList(),
+    /** Optional first-class achievement catalog; media achievements remain a legacy fallback. */
+    val achievements: List<AchievementDefinition> = emptyList(),
+    /** Semantic event anchors used to derive achievement progress from DONE walkthrough steps. */
+    val achievementEvents: List<AchievementEventAnchor> = emptyList(),
 ) {
     /** The pack's game calendar (cycle/weekday lookups, deadline day math). */
     val calendar: GameCalendar? by lazy { GameCalendar.of(pack.calendar) }
@@ -200,6 +206,11 @@ class PackStore @Inject constructor(
                 } else {
                     emptyList()
                 }
+                val achievementFile = if ("achievements.json" in files) {
+                    PackLoader.decodeAchievements(readAsset(assets, "$slug/achievements.json"))
+                } else {
+                    null
+                }
                 // walkthrough/*.json is the default route; walkthrough/<routeId>/*.json
                 // are additional declared routes (docs/PLAN.md Phase 5).
                 val daysByRoute = mutableMapOf<String, Map<String, Day>>()
@@ -248,6 +259,8 @@ class PackStore @Inject constructor(
                     iconAsset = iconAsset,
                     cardAsset = cardAsset,
                     media = media,
+                    achievements = achievementFile?.achievements.orEmpty(),
+                    achievementEvents = achievementFile?.events.orEmpty(),
                 )
             } catch (_: Exception) {
                 // A broken pack must never take the app down; lint guards content quality.
