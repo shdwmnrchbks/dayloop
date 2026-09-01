@@ -8,8 +8,8 @@
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 4" },
         { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 10", "statGains": { "proficiency": 2 } }
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 10", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -18,7 +18,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 5" },
-        { "label": "Solve the LeBlanc crossword: 'Influenza'", "statGains": { "knowledge": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Influenza'", "statGains": { "knowledge": 2 } },
         { "label": "Buy the Blaring Alarm Clock at the Akihabara electronics store" },
         { "label": "Call Kawakami, then give her the alarm clock — Night Pennant (room decoration 10/20)" }
       ]
@@ -28,7 +28,7 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Shinya — Tower reaches rank 10", "statGains": { "kindness": 1 } },
+        { "label": "Hang out with Shinya — Tower reaches rank 10", "statGains": { "kindness": 2 } },
         { "label": "Meet the Twins on Central Street (12/13) — Heat Riser skill card" }
       ]
     },
@@ -40,7 +40,7 @@
         { "label": "Buy items from the Kanda priest" },
         { "label": "Buy the Uji Matcha Flan at the Underground Mall supermarket" },
         { "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
         { "label": "Bring someone to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75; Futaba also gains Support Plus)" }
       ]
@@ -52,7 +52,7 @@
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 6" },
         { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Save your game, then fish at Ichigaya — use the free small boilies and don't miss a cast; buy 7 Medium Boilies", "statGains": { "proficiency": 1 } }
+        { "label": "Save your game, then fish at Ichigaya — use the free small boilies and don't miss a cast; buy 7 Medium Boilies", "statGains": { "proficiency": 2 } }
       ]
     },
     {
@@ -73,8 +73,8 @@
       "steps": [
         { "label": "Buy the Heart Ring at the Underground Mall jewelry store" },
         { "label": "Hang out with Futaba in Asakusa — I <3 Tokyo Shirt (room decoration 12/20)" },
-        { "label": "Solve the LeBlanc crossword: 'Illuminate'", "statGains": { "knowledge": 1 } },
-        { "label": "Watch 'Clean Hard' on Central Street", "activityRef": "p5r.activity.movie.clean-hard", "statGains": { "kindness": 3 } }
+        { "label": "Solve the LeBlanc crossword: 'Illuminate'", "statGains": { "knowledge": 2 } },
+        { "label": "Watch 'Clean Hard' on Central Street (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.clean-hard", "statGains": { "kindness": 7 } }
       ]
     },
     {
@@ -82,7 +82,7 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the TV game show: 'Attempted murder'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the TV game show: 'Attempted murder'", "statGains": { "knowledge": 2 } },
         { "label": "Ask Chihaya for a money reading and a celestial reading" },
         { "label": "Second cruise-ship infiltration — capture the Emperor's Amulet and grab all three Will Seeds", "spoiler": true },
         { "label": "Boss fights: the two guardians, then Akechi (Robin Hood, then Loki) — Justice reaches rank 10", "spoiler": true },
@@ -95,7 +95,7 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Send the Calling Card and steal Shido's Heart — phase 1 is magic-only, phase 2 physical-only, then finish Sido solo by countering the spell order (fire, ice, elec, wind)", "spoiler": true },
+        { "label": "Send the Calling Card and steal Shido's Heart — phase 1 is magic-only, phase 2 physical-only, then finish Shido solo by countering the spell order (fire, ice, elec, wind)", "spoiler": true },
         { "label": "Read 'Essence of Fishing'", "activityRef": "p5r.activity.book.essence-of-fishing" }
       ]
     },
@@ -106,7 +106,7 @@
       "steps": [
         { "label": "Receive the requests 'The Head Honcho in Showbiz' and 'Lady-Killer's Ballad'", "spoiler": true },
         { "label": "Hang out with Haru — Empress reaches rank 8" },
-        { "label": "Order the Sincere Omelette at the maid cafe (mistakes are fine now)" }
+        { "label": "Order the Sincere Omelette at the maid cafe (mistakes are fine now)", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -114,7 +114,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 2 } },
         { "label": "Buy items from the Kanda priest" },
         { "label": "Give the Angel Tart to the Kichijoji alley man — Fervent Bat (14/16)" },
         { "label": "Ask Chihaya for a money reading and a celestial reading" },
@@ -131,7 +131,7 @@
       "steps": [
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Hang out with Haru — Empress reaches rank 9 (romance choice available)" },
-        { "label": "Solve the LeBlanc crossword: 'Approval'", "statGains": { "knowledge": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Approval'", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Mishima — Moon reaches rank 9" }
       ]
     },
@@ -142,7 +142,7 @@
       "steps": [
         { "label": "Buy the Hi-Tech Rod at the Underground Mall sports shop" },
         { "label": "Hang out with Ryuji in Nakano — Featherman Dolls (room decoration 14/20)" },
-        { "label": "Save, then fish at Ichigaya — prioritize medium boilies and Third Eye the glowing fish for Prize Tags; buy 1 Suspicious Boilie plus 6 total", "statGains": { "proficiency": 1 } }
+        { "label": "Save, then fish at Ichigaya — prioritize medium boilies and Third Eye the glowing fish for Prize Tags; buy 1 Suspicious Boilie plus 6 total", "statGains": { "proficiency": 2 } }
       ]
     },
     {
@@ -151,7 +151,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with Kasumi in Shinagawa — Sea Slug Doll (room decoration 15/20)" },
-        { "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 2 } }
+        { "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -159,7 +159,7 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the TV game show: 'Can't be done by wanted criminals'", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the TV game show: 'Can't be done by wanted criminals'", "statGains": { "knowledge": 2 } },
         { "label": "Buy the Designer Perfume at the Underground Mall cosmetics shop" },
         { "label": "Hang out with Makoto in Suidobashi — Gi-Nyant Doll (room decoration 16/20)" },
         { "label": "Win the Black Frost Doll at the Akihabara arcade (6/8)" },
@@ -172,7 +172,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 10" },
-        { "label": "Save, then fish at Ichigaya — lead with the Suspicious Boilie, Third Eye the gold glow, and catch the Ichigaya Guardian (reload on a miss); buy 1 Suspicious Boilie plus 6 total again", "statGains": { "proficiency": 1 } }
+        { "label": "Save, then fish at Ichigaya — lead with the Suspicious Boilie, Third Eye the gold glow, and catch the Ichigaya Guardian (reload on a miss); buy 1 Suspicious Boilie plus 6 total again", "statGains": { "proficiency": 2 } }
       ]
     },
     {
@@ -182,8 +182,8 @@
       "steps": [
         { "label": "Buy the Watercolor Postcard at the Kichijoji stationery store" },
         { "label": "Hang out with Yusuke at Meiji Shrine — Hamaya (room decoration 17/20)" },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
-        { "label": "Order the Sincere Omelette at the maid cafe" }
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
+        { "label": "Order the Sincere Omelette at the maid cafe", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -191,7 +191,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Save first, then beat 'Punch Ouch' (4/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 2 } }
+        { "label": "Save first, then beat 'Punch Ouch' (4/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -200,8 +200,8 @@
       "dayKind": "school",
       "steps": [
         { "label": "Study with the team", "statGains": { "knowledge": 3 } },
-        { "label": "Solve the LeBlanc crossword: 'Christmas'", "statGains": { "knowledge": 1 } },
-        { "label": "Watch 'Merry Christmess' in Yongen-Jaya", "activityRef": "p5r.activity.movie.merry-christmess", "statGains": { "guts": 3 } }
+        { "label": "Solve the LeBlanc crossword: 'Christmas'", "statGains": { "knowledge": 2 } },
+        { "label": "Watch 'Merry Christmess' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.merry-christmess", "statGains": { "guts": 7 } }
       ]
     },
     {
@@ -228,17 +228,17 @@
         { "label": "Exams day 3" },
         { "label": "Buy the Castella at the Underground Mall supermarket" },
         { "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)" },
-        { "label": "Receive the Boss Undies from Sojiro (exam reward)" },
-        { "label": "Visit the maid cafe — Photo of Clara after 20 stamps" }
+        { "label": "Visit the maid cafe — order the special menu after 20 stamps and receive the Photo of Clara", "statGains": { "charm": 5 } }
       ]
     },
     {
       "date": "2016-12-23",
       "weekday": "fri",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
-        { "label": "Save first, then beat 'Train of Life' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 2 } },
-        { "label": "Magician reaches rank 10" }
+        { "label": "Receive the Boss Undies from Sojiro (exam reward)" },
+        { "label": "Save first, then beat 'Train of Life' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 3 } },
+        { "label": "Magician reaches rank 10", "spoiler": true }
       ]
     },
     {
@@ -246,7 +246,7 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Exam results", "statGains": { "charm": 3 } },
+        { "label": "Exam results", "statGains": { "charm": 5 } },
         { "label": "Descend to the depths of Mementos — capture Hope Diamond and Crystal Skull if you run into them", "spoiler": true },
         { "label": "Fool reaches rank 10 — refuse Igor's deal", "spoiler": true },
         { "label": "Boss: Yaldabaoth, God of Control — debuff, buff, and kill each summoned weapon fast; guard on the charged final attack", "spoiler": true }
