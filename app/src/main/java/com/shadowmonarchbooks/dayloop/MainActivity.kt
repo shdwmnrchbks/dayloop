@@ -29,6 +29,9 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
     @Inject lateinit var packStore: PackStore
 
+    /** Once the first matching UI projection renders, later pack switches use the normal in-app path. */
+    private var startupCommitted = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Phase 17a: keep the platform-owned splash visible while DataStore
         // resolves the saved pack. Compose may initialize behind it, but no
@@ -39,9 +42,10 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            // Theme directly from PackStore instead of the ViewModel's richer
-            // projection. This is the earliest resolved source of truth for
-            // the selected pack and prevents an engine-theme first frame.
+            // Theme directly from PackStore during the initial handoff. This is
+            // the earliest resolved source of truth for the selected pack and
+            // prevents an engine-theme first frame. Once startup commits, the
+            // normal ViewModel projection owns in-session pack changes again.
             val packsState by packStore.state.collectAsState()
             val vm: DayloopViewModel = hiltViewModel()
             val uiState by vm.state.collectAsState()
@@ -51,9 +55,11 @@ class MainActivity : ComponentActivity() {
                 uiSelectionReady = uiState.selectionReady,
                 uiSelectedSlug = uiState.selectedSlug,
             )
+            if (contentReady) startupCommitted = true
+            val themePack = if (startupCommitted) uiState.selected else packsState.selected
 
-            DayloopTheme(pack = packsState.selected) {
-                if (contentReady) {
+            DayloopTheme(pack = themePack) {
+                if (startupCommitted) {
                     AppRoot(vm = vm)
                 } else {
                     StartupShell()
