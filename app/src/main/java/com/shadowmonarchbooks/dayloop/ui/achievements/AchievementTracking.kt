@@ -42,6 +42,7 @@ internal fun achievementProgress(
     currentDate: String,
     completedEvents: Set<String>,
     manualUnits: Int = 0,
+    checkedItems: Set<String> = emptySet(),
 ): AchievementProgress {
     val rule = achievement.tracking
     val available = achievement.availableFrom?.let { currentDate >= it } ?: true
@@ -100,6 +101,19 @@ internal fun achievementProgress(
             } else {
                 manualProgress(target, manualUnits, available)
             }
+        }
+        AchievementTrackingTypes.CHECKLIST -> {
+            val authored = rule.items.distinctBy { it.id }
+            val target = (rule.target ?: authored.size).coerceAtMost(authored.size)
+            val authoredIds = authored.mapTo(mutableSetOf()) { it.id }
+            val done = checkedItems.count { it in authoredIds }
+            AchievementProgress(
+                automatic = false,
+                completed = target > 0 && done >= target,
+                completedUnits = done.coerceAtMost(target.coerceAtLeast(0)),
+                totalUnits = target.coerceAtLeast(0),
+                available = available,
+            )
         }
         // Conditional/manual achievements may expose a manual target. Dayloop
         // tracks the user's explicit count but still never infers gameplay
