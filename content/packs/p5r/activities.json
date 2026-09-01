@@ -53,7 +53,7 @@
       "id": "p5r.activity.book.social-thought",
       "label": "Read 'Social Thought'",
       "kind": "book",
-      "statGains": { "knowledge": 5 },
+      "statGains": { "knowledge": 7 },
       "location": "Attic / metro"
     },
     {
