@@ -66,6 +66,8 @@ data class DayloopUiState(
     val achievementCounts: Map<String, Int> = emptyMap(),
     /** Checked item ids for pack-authored manual achievement checklists. */
     val achievementChecklist: Map<String, Set<String>> = emptyMap(),
+    /** Shared state-key selections for pack-authored achievement choices. */
+    val achievementChoices: Map<String, String> = emptyMap(),
     /** Saved marks whose (date, index) no longer resolves in current content. */
     val orphans: Set<StepKey> = emptySet(),
 ) {
@@ -156,6 +158,7 @@ class DayloopViewModel @Inject constructor(
                                 earnedAchievements = earnedAchievements,
                                 achievementCounts = achievementProgress.counts,
                                 achievementChecklist = achievementProgress.checkedItems,
+                                achievementChoices = achievementProgress.choices,
                             )
                         }
                     }
@@ -249,6 +252,10 @@ class DayloopViewModel @Inject constructor(
             repo.setAchievementChecklistItem(id, achievementId, itemId, checked)
         }
 
+    fun setAchievementChoice(stateKey: String, itemId: String?) = withActiveProfile { id ->
+        repo.setAchievementChoice(id, stateKey, itemId)
+    }
+
     // ---- Profiles ----
 
     fun createProfile(name: String, routeId: String = Routes.DEFAULT) = withSelectedSeed { seed ->
@@ -281,6 +288,7 @@ class DayloopViewModel @Inject constructor(
         earnedAchievements: Set<String>,
         achievementCounts: Map<String, Int>,
         achievementChecklist: Map<String, Set<String>>,
+        achievementChoices: Map<String, String>,
     ): DayloopUiState {
         val marks = rows.mapNotNull { row ->
             StepMark.entries.firstOrNull { it.name == row.mark }
@@ -306,6 +314,7 @@ class DayloopViewModel @Inject constructor(
             earnedAchievements = earnedAchievements,
             achievementCounts = achievementCounts,
             achievementChecklist = achievementChecklist,
+            achievementChoices = achievementChoices,
             orphans = if (active != null) ProgressLogic.orphans(marks, stepCounts) else emptySet(),
         )
     }
