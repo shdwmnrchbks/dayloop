@@ -9,20 +9,22 @@ chosen date is not automatically a universal game availability date.
 
 - **Alyookid 100% schedule** — primary source for the authored completion route:
   the action order, route-selected Confidant rank-ups, stat-building sequence,
-  and completion targets.
+  and completion targets. Its `+1/+2/+3` social-stat annotations frequently
+  describe the game's displayed music-note count, not hidden point totals.
 - **sdarkpaladin GameFAQs 100% walkthrough** — independent route/date spot-check
   for the calendar plan and Palace/Confidant progression.
-- **GameFAQs Royal Social Stats guide / megaten-database Royal overworld data** —
-  structured checks for actual hidden social-stat point gains, movie/DVD/game
-  rewards and activity-enhancing book effects.
+- **GameFAQs Royal Social Stats guides / megaten-database Royal overworld data** —
+  structured checks for actual hidden social-stat point gains, rank thresholds,
+  movie/DVD/game rewards and activity-enhancing book effects.
 - **Raidramon0 GameFAQs Royal Confidant guide (2026)** — current structured check
   for Confidant stat gates, time gates, automatic ranks, request gates and
   recurring availability.
-- **RPG Site Royal Confidant guides** — independent check for unlock conditions,
-  weather restrictions, stat thresholds and request gates.
+- **RPG Site / Samurai Gamers Royal guides** — independent checks for unlock
+  conditions, recurring activity effects, school-question dates and stat gains.
 - **Sentovibes/persona-companion-app** — structured independent check for Royal
   automatic-rank timing and Confidant schedules/requirements.
-- **Push Square** — school and exam answers.
+- **Push Square** — broad school/exam answer cross-check; where its date conflicts
+  with multiple date-specific Royal walkthroughs, the date-specific sources win.
 - **Megami Tensei Wiki / calendar references** — Palace story deadlines and
   secondary checks for Royal item/book effects.
 
@@ -46,20 +48,20 @@ reference means "do this activity here in this plan"; it does not claim the
 activity is available only on that date.
 
 The activity schema defines `statGains` as **actual social-stat points**, not the
-music-note icons displayed by the game. The original P5R catalog mixed those
-units. The September audit normalized the reusable activity definitions:
+music-note icons displayed by the game. The original P5R catalog and walkthrough
+mixed those units. The September audit normalized the reusable definitions:
 
-- Shujin-library and Shibuya stat books use their actual 5-point rewards.
-- Jinbocho stat books use their actual 7-point rewards.
+- Standard Shujin-library/Shibuya stat books use their actual 5-point rewards;
+  Jinbocho stat books use 7. `Social Thought` is also a special 7-point book.
 - Royal DVDs use 3 base points per viewing, require two viewings, and use the
   subscription model with no return deadline. `The Craft of Cinema` is a
   separate +2-point modifier per viewing.
 - First-time movie viewings use 5 base points; `The Craft of Cinema` again adds
-  +2 when it has been read.
+  +2 once it has been read.
 - Retro-game clears use 3 points. `Game Secrets` enables an assist/cheat mode;
   it is not represented as a universal guaranteed win.
-- Route-only DVD rental dates and the incorrect "12-part rental series" wording
-  were removed from the reusable activity catalog.
+- Route-only DVD rental counters were not treated as "12-part rental series";
+  walkthrough labels now identify a title's first/second viewing instead.
 - `Knowing the Heart` now describes its real Technical-combination effect;
   `Factorization Guide`, billiards books and several movie-theater locations
   were corrected at the same time.
@@ -67,6 +69,28 @@ units. The September audit normalized the reusable activity definitions:
 The game maps several different hidden point totals to the same displayed note
 count, so future audits must compare actual point values rather than counting
 note icons in screenshots.
+
+#### Route point audit status
+
+April, May and June 2016 have been normalized from note-count shorthand to
+actual points and have regression coverage. Confirmed examples include class
+answers, crosswords/TV quizzes, studying, plant nutrients, Death/Sun bonus stat
+rewards, Aojiru, books, DVDs, movies, retro games, darts, the rainy bathhouse,
+chalk dodges and the first Big Bang Burger challenge.
+
+The month-by-month audit also found route steps lost during the original import,
+not merely bad numbers. May now restores the first `Guy McVer` viewing and the
+5/8, 5/22 and 5/29 Aojiru purchases. June restores the 6/25 `Game Secrets`
+reading. The restored Aojiru sequence is important because the drink stand
+keeps offering the current stat until it is purchased; omitting a purchase
+shifts every later route-specific stat.
+
+`The Craft of Cinema` is read on 2016-06-23 in this route. Regression tests
+therefore require pre-6/23 DVD gains to equal the 3-point base and post-read DVD
+viewings to include the +2 modifier (for example ICU on 6/25 and 6/27 = 5).
+
+July onward has **not** yet received the same exhaustive point-unit pass, so the
+ledger does not claim the full walkthrough is independently verified yet.
 
 ### Confidants
 
@@ -116,9 +140,15 @@ additional Royal content they gate without claiming they unlock the semester.
 ### School and exam answers
 
 The answer table was cross-checked as a Royal table rather than inherited from
-one route. The audit filled omitted April 25, April 30 and May 23 questions,
-corrected the Royal May 6 question date, and restored multi-part answers that
-had been flattened or omitted.
+one route. The audit filled omitted April 25, April 30 and May 23 questions and
+restored multi-part answers that had been flattened or omitted.
+
+A source conflict was found for `Fatal woman`: Push Square places it on May 6,
+but multiple date-specific Royal walkthroughs (including GameFAQs, Neoseeker
+and Samurai Gamers) place the question on **May 7**, with May 6 containing a
+lecture/chalk sequence. The pack now uses May 7 and keeps the stable
+`p5r.answers.class.2016-05-07` id. This is recorded explicitly so a later audit
+does not reintroduce the off-by-one date merely by switching source tables.
 
 ## Regression rules
 
@@ -127,18 +157,23 @@ had been flattened or omitted.
 2. Story/Palace-progress automatic ranks must not invent calendar availability
    windows just to bound a route date; describe the trigger and keep the route
    day in `scheduledFor`.
-3. `Activity.statGains` is actual hidden social-stat points, not displayed music
-   notes. Do not copy note counts into the schema.
+3. `Activity.statGains` and walkthrough `statGains` are actual hidden social-stat
+   points, not displayed music notes. Do not copy note counts into the schema.
 4. Conditional bonuses such as `The Craft of Cinema` or `Factorization Guide`
-   belong in effect/condition wording rather than being silently folded into a
-   reusable activity's base `statGains`.
-5. Never label a route cleanup target as a game deadline without an independent
+   belong in effect/condition wording and route-specific totals rather than
+   being silently folded into a reusable activity's base `statGains`.
+5. For stateful route activities such as Aojiru, audit omitted steps as well as
+   values: a missing purchase changes the later state/rotation.
+6. Never label a route cleanup target as a game deadline without an independent
    game-rule source.
-6. Any new P5R universal gate/deadline should have an independent verifier in
+7. When answer/date sources conflict, prefer multiple date-specific Royal
+   walkthroughs over a single undifferentiated answer table and record the
+   conflict here.
+8. Any new P5R universal gate/deadline should have an independent verifier in
    this ledger or `docs/sources.md`.
-7. Structural validation (`packlint`) proves references and schema integrity;
+9. Structural validation (`packlint`) proves references and schema integrity;
    it does not by itself prove gameplay facts. Fact provenance remains a content
    responsibility.
-8. When independent guides disagree only on *when a flexible action is done*,
-   preserve the authored route and label it as route-specific instead of
-   "correcting" it into another guide's route.
+10. When independent guides disagree only on *when a flexible action is done*,
+    preserve the authored route and label it as route-specific instead of
+    "correcting" it into another guide's route.
