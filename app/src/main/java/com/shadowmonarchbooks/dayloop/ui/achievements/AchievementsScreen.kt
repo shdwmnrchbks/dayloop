@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -24,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
@@ -89,22 +93,27 @@ private fun RuleBasedAchievements(
         state.earnedAchievements,
         state.achievementCounts,
         state.achievementChecklist,
+        state.achievementChoices,
         currentDate,
     ) {
         pack.achievements.map { achievement ->
             val checkedItems = state.achievementChecklist[achievement.id].orEmpty()
+            val choiceKey = achievement.tracking.stateKey ?: achievement.id
+            val selectedChoice = state.achievementChoices[choiceKey]
             val progress = achievementProgress(
                 achievement = achievement,
                 currentDate = currentDate,
                 completedEvents = completedEvents,
                 manualUnits = state.achievementCounts[achievement.id] ?: 0,
                 checkedItems = checkedItems,
+                selectedChoice = selectedChoice,
             )
             AchievementRowState(
                 achievement = achievement,
                 progress = progress,
                 manualEarned = achievement.id in state.earnedAchievements,
                 checkedItems = checkedItems,
+                selectedChoice = selectedChoice,
             )
         }.sortedWith(
             compareBy<AchievementRowState> {
@@ -133,10 +142,11 @@ private fun RuleBasedAchievements(
                 due = actionableCount,
                 upcoming = upcomingCount,
                 currentDate = currentDate,
-                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative gameplay goals keep profile-scoped counters/checklists, while choices and uncertain results stay confirmable.",
+                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
             )
         }
         items(rows, key = { it.achievement.id }) { row ->
+            val choiceKey = row.achievement.tracking.stateKey ?: row.achievement.id
             RuleAchievementRow(
                 pack = pack,
                 row = row,
@@ -150,6 +160,9 @@ private fun RuleBasedAchievements(
                 onChecklistItemChange = { itemId, checked ->
                     vm.setAchievementChecklistItem(row.achievement.id, itemId, checked)
                 },
+                onChoiceChange = { itemId ->
+                    vm.setAchievementChoice(choiceKey, itemId)
+                },
             )
         }
     }
@@ -160,6 +173,7 @@ private data class AchievementRowState(
     val progress: AchievementProgress,
     val manualEarned: Boolean,
     val checkedItems: Set<String> = emptySet(),
+    val selectedChoice: String? = null,
 ) {
     val earned: Boolean get() = manualEarned || progress.completed
 }
@@ -172,12 +186,19 @@ private fun RuleAchievementRow(
     onEarnedChange: (Boolean) -> Unit,
     onProgressChange: (Int) -> Unit,
     onChecklistItemChange: (String, Boolean) -> Unit,
+    onChoiceChange: (String) -> Unit,
 ) {
     val achievement = row.achievement
     val progress = row.progress
     val earned = row.earned
     val icon = achievement.iconMediaRef?.let { id -> pack.media.firstOrNull { it.id == id } }
-    val status = achievementStatus(achievement, progress, row.manualEarned, currentDate)
+    val status = achievementStatus(
+        achievement = achievement,
+        progress = progress,
+        manualEarned = row.manualEarned,
+        currentDate = currentDate,
+        selectedChoice = row.selectedChoice,
+    )
     val skin = LocalSkin.current
 
     Surface(
@@ -232,26 +253,49 @@ private fun RuleAchievementRow(
                     color = if (earned) MaterialTheme.colorScheme.onSecondaryContainer
                     else MaterialTheme.colorScheme.secondary,
                 )
+                achievement.tracking.prompt?.let { prompt ->
+                    Spacer(Modifier.height(2.dp))
+                    Text(
+                        text = prompt,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
                 when {
                     achievement.tracking.type == AchievementTrackingTypes.CHECKLIST -> {
                         AchievementChecklistControls(
                             achievement = achievement,
                             checkedItems = row.checkedItems,
+                            currentDate = currentDate,
                             enabled = progress.available && !row.manualEarned,
                             onItemChange = onChecklistItemChange,
+                        )
+                    }
+                    achievement.tracking.type == AchievementTrackingTypes.CHOICE -> {
+                        AchievementChoiceControls(
+                            achievement = achievement,
+                            selectedChoice = row.selectedChoice,
+                            enabled = progress.available && !row.manualEarned,
+                            onChoiceChange = onChoiceChange,
                         )
                     }
                     !progress.automatic && progress.totalUnits > 1 -> {
                         AchievementCounterControls(
                             progress = progress,
+                            unit = achievement.tracking.unit,
                             onProgressChange = onProgressChange,
                         )
                     }
                 }
             }
+            val confirmEnabled = when (achievement.tracking.type) {
+                AchievementTrackingTypes.CHOICE,
+                AchievementTrackingTypes.CONFIRMATION -> progress.available && progress.conditionReady
+                else -> progress.available
+            }
             Checkbox(
                 checked = earned,
-                enabled = !progress.completed,
+                enabled = !progress.completed && (row.manualEarned || confirmEnabled),
                 onCheckedChange = if (progress.completed) null else onEarnedChange,
             )
         }
@@ -262,20 +306,25 @@ private fun RuleAchievementRow(
 private fun AchievementChecklistControls(
     achievement: AchievementDefinition,
     checkedItems: Set<String>,
+    currentDate: String,
     enabled: Boolean,
     onItemChange: (String, Boolean) -> Unit,
 ) {
     Spacer(Modifier.height(4.dp))
     Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
         achievement.tracking.items.distinctBy { it.id }.forEach { item ->
+            val checked = item.id in checkedItems
+            val deadline = item.dueBy?.takeIf { !checked }?.let { dueBy ->
+                if (currentDate > dueBy) " · deadline passed $dueBy" else " · by $dueBy"
+            }.orEmpty()
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Checkbox(
-                    checked = item.id in checkedItems,
+                    checked = checked,
                     enabled = enabled,
-                    onCheckedChange = { checked -> onItemChange(item.id, checked) },
+                    onCheckedChange = { selected -> onItemChange(item.id, selected) },
                 )
                 Text(
-                    text = item.label,
+                    text = item.label + deadline,
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
@@ -284,11 +333,49 @@ private fun AchievementChecklistControls(
 }
 
 @Composable
+private fun AchievementChoiceControls(
+    achievement: AchievementDefinition,
+    selectedChoice: String?,
+    enabled: Boolean,
+    onChoiceChange: (String) -> Unit,
+) {
+    Spacer(Modifier.height(4.dp))
+    Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
+        achievement.tracking.items.distinctBy { it.id }.forEach { item ->
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = selectedChoice == item.id,
+                    enabled = enabled,
+                    onClick = { onChoiceChange(item.id) },
+                )
+                Text(item.label, style = MaterialTheme.typography.bodySmall)
+            }
+        }
+    }
+}
+
+@Composable
 private fun AchievementCounterControls(
     progress: AchievementProgress,
+    unit: String?,
     onProgressChange: (Int) -> Unit,
 ) {
     Spacer(Modifier.height(2.dp))
+    if (progress.totalUnits >= 1_000) {
+        OutlinedTextField(
+            value = progress.completedUnits.toString(),
+            onValueChange = { raw ->
+                val digits = raw.filter { it.isDigit() }.take(9)
+                onProgressChange((digits.toIntOrNull() ?: 0).coerceAtMost(progress.totalUnits))
+            },
+            enabled = progress.available && !progress.completed,
+            singleLine = true,
+            label = { Text(unit?.let { "Current total ($it)" } ?: "Current total") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth(),
+        )
+        return
+    }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(2.dp),
@@ -300,7 +387,7 @@ private fun AchievementCounterControls(
             Text("−1")
         }
         Text(
-            text = "${progress.completedUnits} / ${progress.totalUnits}",
+            text = "${formatTrackedUnits(progress.completedUnits, unit)} / ${formatTrackedUnits(progress.totalUnits, unit)}",
             style = MaterialTheme.typography.labelLarge,
         )
         TextButton(
@@ -317,6 +404,7 @@ private fun achievementStatus(
     progress: AchievementProgress,
     manualEarned: Boolean,
     currentDate: String,
+    selectedChoice: String?,
 ): String {
     if (manualEarned) return "Earned"
     if (progress.completed) {
@@ -324,27 +412,62 @@ private fun achievementStatus(
     }
     if (!progress.available) return "Upcoming · ${achievement.availableFrom}"
 
+    val rule = achievement.tracking
     val progressText = if (progress.totalUnits > 1) {
-        "${progress.completedUnits} / ${progress.totalUnits} tracked"
+        "${formatTrackedUnits(progress.completedUnits, rule.unit)} / ${formatTrackedUnits(progress.totalUnits, rule.unit)} tracked"
     } else null
     val expected = achievement.expectedBy?.let { date ->
         if (currentDate >= date) "check now" else "expected by $date"
     }
-    val base = when {
-        progressText != null && !progress.automatic ->
-            listOfNotNull(progressText, expected).joinToString(" · ")
-        achievement.tracking.type in setOf(
-            AchievementTrackingTypes.EVENT,
-            AchievementTrackingTypes.ALL_EVENTS,
-            AchievementTrackingTypes.ANY_EVENT,
-            AchievementTrackingTypes.COUNTER,
-            AchievementTrackingTypes.STORY_DATE,
-        ) -> progressText ?: expected ?: "Tracked automatically"
-        achievement.tracking.type == AchievementTrackingTypes.CONDITIONAL ->
-            expected?.let { "Confirmation needed · $it" } ?: "Confirmation needed"
-        else -> expected?.let { "Manual tracking · $it" } ?: "Manual tracking"
+    val base = when (rule.type) {
+        AchievementTrackingTypes.CHOICE -> {
+            val selectedLabel = rule.items.firstOrNull { it.id == selectedChoice }?.label
+            val accepted = rule.acceptedItems.toSet().ifEmpty { rule.items.map { it.id }.toSet() }
+            when {
+                selectedChoice == null -> "Choice needed"
+                selectedChoice !in accepted -> "Selected: ${selectedLabel ?: selectedChoice} · does not qualify"
+                !progress.conditionReady -> rule.date?.let { "Selected: ${selectedLabel ?: selectedChoice} · confirm on/after $it" }
+                    ?: "Selected: ${selectedLabel ?: selectedChoice} · confirmation pending"
+                else -> "Selected: ${selectedLabel ?: selectedChoice} · ready to confirm"
+            }
+        }
+        AchievementTrackingTypes.CONFIRMATION -> {
+            val prerequisite = when (progress.prerequisiteTracked) {
+                true -> "Walkthrough prerequisite tracked"
+                false -> "Walkthrough prerequisite not marked DONE"
+                null -> null
+            }
+            val readiness = if (progress.conditionReady) {
+                "Confirmation ready"
+            } else {
+                rule.date?.let { "Confirmation available $it" } ?: "Confirmation needed"
+            }
+            listOfNotNull(prerequisite, readiness).joinToString(" · ")
+        }
+        AchievementTrackingTypes.EVENT,
+        AchievementTrackingTypes.ALL_EVENTS,
+        AchievementTrackingTypes.ANY_EVENT,
+        AchievementTrackingTypes.COUNTER,
+        AchievementTrackingTypes.STORY_DATE -> progressText ?: expected ?: "Tracked automatically"
+        AchievementTrackingTypes.CONDITIONAL -> expected?.let { "Confirmation needed · $it" } ?: "Confirmation needed"
+        else -> progressText ?: expected?.let { "Manual tracking · $it" } ?: "Manual tracking"
     }
-    return if (achievement.missable) "$base · Missable" else base
+    val withExpected = if (
+        expected != null &&
+        rule.type !in setOf(AchievementTrackingTypes.CHOICE, AchievementTrackingTypes.CONFIRMATION) &&
+        expected !in base
+    ) {
+        "$base · $expected"
+    } else {
+        base
+    }
+    return if (achievement.missable) "$withExpected · Missable" else withExpected
+}
+
+private fun formatTrackedUnits(value: Int, unit: String?): String = when (unit) {
+    null, "" -> value.toString()
+    "¥" -> "¥$value"
+    else -> "$value $unit"
 }
 
 @Composable
