@@ -7,10 +7,10 @@
       "dayKind": "free",
       "steps": [
         { "label": "Buy a Black Kogatana at the second-hand shop (monthly)" },
-        { "label": "Hang out with Shinya — Tower reaches rank 4 (give the first answer wrong on purpose)", "statGains": { "kindness": 2 } },
+        { "label": "Hang out with Shinya — Tower reaches rank 4 (give the first answer wrong on purpose)", "statGains": { "kindness": 3 } },
         { "label": "Buy all the new books in Jinbocho and on Central Street" },
         { "label": "Ask Chihaya for a luck reading about Proficiency" },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 2", "statGains": { "proficiency": 2 } }
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 2", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -20,12 +20,12 @@
       "steps": [
         { "label": "Buy items from the Kanda priest" },
         { "label": "Buy a Calling Postcard at the Discount Store Rocinante" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 2 } },
         { "label": "Hang out with Makoto — Priestess reaches rank 7" },
         { "label": "TV Shopping Program: Pumpkin Ghost and Haunted Repel sets" },
         { "label": "Give the Calling Postcard to the Kichijoji alley man — Strawberry Daifuku x2 (9/16)" },
         { "label": "Browse the Kichijoji second-hand shop's point exchange" },
-        { "label": "Watch 'Back to the Ninja' with Futaba", "activityRef": "p5r.activity.movie.back-to-the-ninja", "statGains": { "knowledge": 3 } },
+        { "label": "Watch 'Back to the Ninja' with Futaba (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.back-to-the-ninja", "statGains": { "knowledge": 7 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
       ]
     },
@@ -34,7 +34,7 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Enter the unknown palace and defeat the guardian (exploit bless with Yoshizawa)", "spoiler": true }
       ]
     },
@@ -50,7 +50,7 @@
         { "label": "Twins ritual — Strength reaches rank 8", "spoiler": true },
         { "label": "Call Kawakami for the special massage" },
         { "label": "Ask Chihaya for a luck reading about Proficiency" },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 3", "statGains": { "proficiency": 2 } }
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 3", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -61,7 +61,7 @@
         { "label": "Read 'The Art of Automata' during class", "activityRef": "p5r.activity.book.art-of-automata" },
         { "label": "Borrow 'Woman in the Dark' from the school library" },
         { "label": "Send the Calling Card", "spoiler": true },
-        { "label": "Watch 'Mouse M.D.' (10/12)", "activityRef": "p5r.activity.dvd.mouse-md", "statGains": { "kindness": 3 } }
+        { "label": "Watch 'Mouse M.D.' (10/12; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.mouse-md", "statGains": { "kindness": 5 } }
       ]
     },
     {
@@ -69,8 +69,8 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Read 'The Art of Automata' on the metro — Proficiency reaches rank 5", "activityRef": "p5r.activity.book.art-of-automata", "statGains": { "proficiency": 3 } },
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Finish 'The Art of Automata' on the metro — Proficiency reaches rank 5", "activityRef": "p5r.activity.book.art-of-automata", "statGains": { "proficiency": 7 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Heist: steal Okumura's Treasure — beat the 10-minute reach timer, then wear the robots down with AoE and Baton Passes; guard the Big Bang", "spoiler": true },
         { "label": "Magician reaches rank 9", "spoiler": true },
         { "label": "Hierophant reaches rank 6", "spoiler": true }
@@ -93,7 +93,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Hang out with Shinya (no rank-up; first requirement for his room decoration)" },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 4", "statGains": { "proficiency": 2 } }
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 4", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -103,8 +103,8 @@
       "steps": [
         { "label": "Accept Futaba's invitation" },
         { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 1 } },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 5", "statGains": { "proficiency": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 2 } },
+        { "label": "Hang out with Iwai — Hanged Man reaches rank 5", "statGains": { "proficiency": 3 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
       ]
     },
@@ -113,8 +113,8 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Shinya — Tower reaches rank 5", "statGains": { "kindness": 2 } },
-        { "label": "Solve the LeBlanc crossword: 'Halloween'", "statGains": { "knowledge": 1 } },
+        { "label": "Hang out with Shinya — Tower reaches rank 5", "statGains": { "kindness": 3 } },
+        { "label": "Solve the LeBlanc crossword: 'Halloween'", "statGains": { "knowledge": 2 } },
         { "label": "Ask Chihaya for an affinity reading for Hifumi" },
         { "label": "Hang out with Hifumi — Star reaches rank 10" }
       ]
@@ -124,7 +124,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Fool reaches rank 9", "spoiler": true }
       ]
     },
@@ -134,7 +134,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Judgement reaches rank 5", "spoiler": true },
-        { "label": "Watch '31'", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 3 } }
+        { "label": "Watch '31' (Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 5 } }
       ]
     },
     {
@@ -142,7 +142,7 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch '31' (11/12)", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 3 } },
+        { "label": "Watch '31' (11/12; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 5 } },
         { "label": "Guts reaches rank 5" }
       ]
     },
@@ -157,7 +157,7 @@
         { "label": "Rent 'Tee' — the last DVD rental of the game" },
         { "label": "Win the Wanna-kun Doll at the Akihabara arcade (3/8)" },
         { "label": "Play billiards (Technical) for rank 4" },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
         { "label": "Hang out with Sojiro — Hierophant reaches rank 7", "statGains": { "kindness": 3 } }
       ]
     },
@@ -167,7 +167,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Last chalk throw of the game — no need to dodge" },
-        { "label": "Hang out with Shinya — Tower reaches rank 6 (answer wrong on purpose)", "statGains": { "kindness": 2 } },
+        { "label": "Hang out with Shinya — Tower reaches rank 6 (answer wrong on purpose)", "statGains": { "kindness": 3 } },
         { "label": "Hang out with Iwai — Swan Boat (room decoration 3/20)" }
       ]
     },
@@ -176,7 +176,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 2 } },
         { "label": "Buy items from the Kanda priest" },
         { "label": "Play the Akihabara capsule machines until you win the Gear Girimehkala" },
         { "label": "Hang out with Futaba — Hermit reaches rank 6" },
@@ -214,7 +214,7 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch 'Tee'", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 3 } }
+        { "label": "Watch 'Tee' (Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 5 } }
       ]
     },
     {
@@ -222,7 +222,7 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch 'Tee' (12/12)", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 3 } }
+        { "label": "Watch 'Tee' (12/12; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 5 } }
       ]
     },
     {
@@ -230,8 +230,8 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
-        { "label": "Watch 'Duhvengers' at the Shinjuku movie theater", "activityRef": "p5r.activity.movie.duhvengers", "statGains": { "kindness": 3 } }
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
+        { "label": "Watch 'Duhvengers' at the Shinjuku movie theater (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.duhvengers", "statGains": { "kindness": 7 } }
       ]
     },
     {
@@ -239,7 +239,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
         { "label": "Return your DVDs — no more rentals from here on" },
         { "label": "Meet the Twins on Shibuya Central Street (10/13)" },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
@@ -250,8 +250,8 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 1 } },
-        { "label": "Exam results", "statGains": { "charm": 3 } },
+        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
+        { "label": "Exam results", "statGains": { "charm": 5 } },
         { "label": "Receive the LeBlanc Charm from Sojiro (exam reward)" },
         { "label": "Hang out with Mishima (no rank-up today)" }
       ]
@@ -261,7 +261,7 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 2 } }
+        { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -277,7 +277,7 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 2 } }
+        { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -294,7 +294,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "First infiltration of the casino — take the guided path", "spoiler": true },
-        { "label": "Read 'Woman in the Dark'", "activityRef": "p5r.activity.book.woman-in-the-dark", "statGains": { "proficiency": 3 } }
+        { "label": "Finish 'Woman in the Dark'", "activityRef": "p5r.activity.book.woman-in-the-dark", "statGains": { "proficiency": 5 } }
       ]
     },
     {
@@ -304,10 +304,10 @@
       "steps": [
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 2 } },
         { "label": "Buy a Mystery Stew from an Akihabara vending machine" },
-        { "label": "Hang out with Shinya — Balloons (room decoration 4/20)", "statGains": { "kindness": 3 } },
-        { "label": "Use the Mega Fertilizer on the plant" },
+        { "label": "Hang out with Shinya at Destinyland — receive Balloons (room decoration 4/20)" },
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
         { "label": "Give the Mystery Stew to the Kichijoji alley man — Angel Badge (11/16)" },
         { "label": "Hang out with Iwai — Hanged Man reaches rank 6" }
       ]
@@ -318,11 +318,11 @@
       "dayKind": "school",
       "steps": [
         { "label": "Read 'Heroic Revelations' during class", "activityRef": "p5r.activity.book.heroic-revelations" },
-        { "label": "Draw the Phantom Thieves logo on the blackboard", "statGains": { "guts": 1 } },
+        { "label": "Draw the Phantom Thieves logo on the blackboard", "statGains": { "guts": 2 } },
         { "label": "Borrow 'The Hero with a Bow' from the school library" },
         { "label": "Hang out with Haru on the school rooftop — Empress reaches rank 1" },
-        { "label": "Solve the LeBlanc crossword: 'Stalls'", "statGains": { "knowledge": 1 } },
-        { "label": "Save your game, then play darts with Akechi at the Penguin Sniper Lounge — Baton Pass reaches rank 2", "statGains": { "proficiency": 2 } }
+        { "label": "Solve the LeBlanc crossword: 'Stalls'", "statGains": { "knowledge": 2 } },
+        { "label": "Save your game, then play darts with Akechi at the Penguin Sniper Lounge — Baton Pass reaches rank 2", "statGains": { "proficiency": 3 } }
       ]
     }
   ]
