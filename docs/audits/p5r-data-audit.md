@@ -90,12 +90,12 @@ route-specific stat.
 therefore require pre-6/23 DVD gains to equal the 3-point base and post-read DVD
 viewings to include the +2 modifier (for example ICU on 6/25 and 6/27 = 5).
 
-July and August received targeted **point-unit and active-modifier** passes. The
-route order was preserved, while user-visible totals were normalized where the
-mechanics are independently checkable. Examples include:
+July through September received targeted **point-unit and active-modifier**
+passes. The route order was preserved, while user-visible totals were normalized
+where the mechanics are independently checkable. Examples include:
 
-- July/August crosswords and Aojiru use +2 actual points rather than one-note
-  shorthand.
+- July–September crosswords, class questions, TV quizzes and Aojiru use their
+  actual +2 values rather than one-note shorthand.
 - Craft of Cinema adds +2 to movie/DVD base rewards; Luck Reading then applies
   its 50% boost to the resulting selected-stat gain, rounded down. That is why
   a 7-point movie reward becomes 10 with an active matching Luck Reading.
@@ -103,17 +103,24 @@ mechanics are independently checkable. Examples include:
   barcode/order bonus, then apply Luck when active.
 - Crossroads shifts include the bar's base Charm gain **and** the selected
   patron's secondary-stat reward; earlier data kept only the patron reward.
-- Royal Confidant stat rewards such as Devil, Sun, Star and Death use actual
-  hidden points rather than the number of displayed notes.
+- Royal Confidant stat rewards such as Devil, Sun, Star, Death, Tower and
+  Hierophant use actual hidden points rather than displayed notes.
 - August `D.Housewives` is explicitly two viewings, each using the 3-point DVD
   base plus the already-read Craft of Cinema bonus.
+- September's `Mouse M.D.` and `Showtime Redemption` include the active Craft of
+  Cinema bonus; `Cry of Cthulhu` and `Master Swordsman` award their actual book
+  completion totals.
+- The September maid-cafe route keeps the base Charm gain plus the Guts reward
+  from making Clara correct a mistake.
+- A bogus Knowledge `statGains` entry was removed from Councilor rank 7; Maruki's
+  rank grants Confidant/SP effects, not a Knowledge social-stat reward.
 - A normal batting-cage session remains +2 Proficiency; the home-run target is
   an item/achievement condition, not an extra hidden-point tier for that visit.
 
-These July/August corrections are regression-tested for the highest-risk point
-and modifier cases, but they are **not** a claim that every flexible route step
-on those months has been independently reproduced day-for-day from a second
-walkthrough. September onward has not yet received the same point-unit pass.
+These July–September corrections are regression-tested for the highest-risk
+point and modifier cases, but they are **not** a claim that every flexible route
+step on those months has been independently reproduced day-for-day from a second
+walkthrough. October onward has not yet received the same point-unit pass.
 
 ### Confidants
 
