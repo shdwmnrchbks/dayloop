@@ -1,0 +1,514 @@
+{
+  "achievements": [
+    {
+      "id": "p3r.achievement.awakened-power",
+      "title": "Awakened Power",
+      "description": "Obtained Orpheus.",
+      "availableFrom": "2009-04-09",
+      "expectedBy": "2009-04-09",
+      "tracking": { "type": "storyDate", "date": "2009-04-09" }
+    },
+    {
+      "id": "p3r.achievement.sees-the-day",
+      "title": "SEES the Day",
+      "description": "Joined S.E.E.S.",
+      "availableFrom": "2009-04-18",
+      "expectedBy": "2009-04-18",
+      "tracking": { "type": "storyDate", "date": "2009-04-18" }
+    },
+    {
+      "id": "p3r.achievement.back-on-track",
+      "title": "Back on Track",
+      "description": "Defeated the Priestess Shadow.",
+      "availableFrom": "2009-05-09",
+      "expectedBy": "2009-05-09",
+      "tracking": { "type": "storyDate", "date": "2009-05-09" }
+    },
+    {
+      "id": "p3r.achievement.empowered-protector",
+      "title": "Empowered Protector",
+      "description": "Defeated the Empress and Emperor Shadows.",
+      "availableFrom": "2009-06-08",
+      "expectedBy": "2009-06-08",
+      "tracking": { "type": "storyDate", "date": "2009-06-08" }
+    },
+    {
+      "id": "p3r.achievement.never-toy",
+      "title": "Never Toy with Matters of the Heart",
+      "description": "Defeated the Hierophant and Lovers Shadows.",
+      "availableFrom": "2009-07-07",
+      "expectedBy": "2009-07-07",
+      "tracking": { "type": "storyDate", "date": "2009-07-07" }
+    },
+    {
+      "id": "p3r.achievement.armor-disarmed",
+      "title": "Armor Disarmed",
+      "description": "Defeated the Chariot and Justice Shadows.",
+      "availableFrom": "2009-08-06",
+      "expectedBy": "2009-08-06",
+      "tracking": { "type": "storyDate", "date": "2009-08-06" }
+    },
+    {
+      "id": "p3r.achievement.dodging-lightning",
+      "title": "Dodging Lightning",
+      "description": "Defeated the Hermit Shadow.",
+      "availableFrom": "2009-09-05",
+      "expectedBy": "2009-09-05",
+      "tracking": { "type": "storyDate", "date": "2009-09-05" }
+    },
+    {
+      "id": "p3r.achievement.twist-of-fate",
+      "title": "Twist of Fate",
+      "description": "Defeated the Fortune and Strength Shadows.",
+      "availableFrom": "2009-10-04",
+      "expectedBy": "2009-10-04",
+      "tracking": { "type": "storyDate", "date": "2009-10-04" }
+    },
+    {
+      "id": "p3r.achievement.sense-of-finality",
+      "title": "A Sense of Finality",
+      "description": "Defeated the Hanged Man Shadow.",
+      "availableFrom": "2009-11-03",
+      "expectedBy": "2009-11-03",
+      "tracking": { "type": "storyDate", "date": "2009-11-03" }
+    },
+    {
+      "id": "p3r.achievement.great-seal",
+      "title": "The Great Seal",
+      "description": "Sealed Nyx on the good-ending route.",
+      "availableFrom": "2010-01-31",
+      "expectedBy": "2010-01-31",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.shadows-into-light",
+      "title": "From Shadows into Light",
+      "description": "Reached the good ending.",
+      "availableFrom": "2009-12-31",
+      "expectedBy": "2010-03-05",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.fools-journey",
+      "title": "The Fool's Journey",
+      "description": "Obtained 10 Major Arcana cards during Shuffle Time.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual", "target": 10 }
+    },
+    {
+      "id": "p3r.achievement.distinguished-visitor",
+      "title": "Distinguished Visitor",
+      "description": "Invited Elizabeth to your room.",
+      "availableFrom": "2009-11-06",
+      "expectedBy": "2009-11-06",
+      "tracking": { "type": "event", "event": "p3r.event.elizabeth-room" }
+    },
+    {
+      "id": "p3r.achievement.top-of-class",
+      "title": "Top of the Class",
+      "description": "Aced an exam.",
+      "availableFrom": "2009-07-14",
+      "expectedBy": "2009-07-24",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.legacy-of-friendships",
+      "title": "A Legacy of Friendships",
+      "description": "Maxed every Social Link.",
+      "availableFrom": "2010-01-29",
+      "expectedBy": "2010-01-29",
+      "missable": true,
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.people-person",
+      "title": "People Person",
+      "description": "Unlocked every Social Link.",
+      "availableFrom": "2010-01-08",
+      "expectedBy": "2010-01-08",
+      "missable": true,
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.special-someone",
+      "title": "That Special Someone",
+      "description": "Entered a romantic relationship through a Social Link.",
+      "availableFrom": "2009-09-01",
+      "missable": true,
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.unbreakable-link",
+      "title": "Unbreakable Link",
+      "description": "Maxed one Social Link.",
+      "availableFrom": "2009-09-01",
+      "expectedBy": "2009-09-01",
+      "tracking": { "type": "event", "event": "p3r.event.social-max-devil" }
+    },
+    {
+      "id": "p3r.achievement.newfound-strength",
+      "title": "A Newfound Strength",
+      "description": "Awakened every teammate's ultimate Persona.",
+      "availableFrom": "2009-12-30",
+      "expectedBy": "2009-12-30",
+      "tracking": { "type": "storyDate", "date": "2009-12-30" }
+    },
+    {
+      "id": "p3r.achievement.power-of-choice",
+      "title": "The Power of Choice",
+      "description": "Obtained 10 Personas during Shuffle Time.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual", "target": 10 }
+    },
+    {
+      "id": "p3r.achievement.no-i-in-team",
+      "title": "There's No “I” in “Team”",
+      "description": "Performed a Shift in battle.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.strength-of-hearts",
+      "title": "The Strength of Our Hearts",
+      "description": "Used every teammate's Theurgy at least once.",
+      "availableFrom": "2009-06-13",
+      "expectedBy": "2009-10-01",
+      "missable": true,
+      "tracking": { "type": "conditional", "target": 9 }
+    },
+    {
+      "id": "p3r.achievement.extracurricular-excellence",
+      "title": "Extracurricular Excellence",
+      "description": "Rescued a missing person from Tartarus.",
+      "availableFrom": "2009-06-18",
+      "expectedBy": "2009-06-27",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.load-of-numbers",
+      "title": "Get a Load of Those Numbers!",
+      "description": "Dealt more than 999 damage in one attack that was not an All-Out Attack.",
+      "availableFrom": "2009-06-13",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.shrouded-assassin",
+      "title": "Shrouded Assassin",
+      "description": "Initiated 50 Chance Encounters.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual", "target": 50 }
+    },
+    {
+      "id": "p3r.achievement.thrill-of-hunt",
+      "title": "The Thrill of the Hunt",
+      "description": "Defeated a rare golden enemy.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.dream-work",
+      "title": "Making the Dream Work",
+      "description": "Performed 50 All-Out Attacks.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual", "target": 50 }
+    },
+    {
+      "id": "p3r.achievement.glimpse-of-depths",
+      "title": "Glimpse of the Depths",
+      "description": "Discovered and conquered 10 Monad Doors.",
+      "availableFrom": "2009-08-03",
+      "tracking": { "type": "manual", "target": 10 }
+    },
+    {
+      "id": "p3r.achievement.briefcase-burglar",
+      "title": "Briefcase Burglar",
+      "description": "Opened 50 treasure chests.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual", "target": 50 }
+    },
+    {
+      "id": "p3r.achievement.shattered-plumes",
+      "title": "Shattered Plumes",
+      "description": "Used 50 Twilight Fragments.",
+      "availableFrom": "2009-04-23",
+      "tracking": { "type": "manual", "target": 50 }
+    },
+    {
+      "id": "p3r.achievement.horror-of-shade",
+      "title": "The Horror of the Shade",
+      "description": "Encountered a Dark Zone in Tartarus.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.reaper-reaped",
+      "title": "Reaper Reaped",
+      "description": "Defeated the Reaper.",
+      "availableFrom": "2010-01-21",
+      "expectedBy": "2010-01-31",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.first-of-many",
+      "title": "The First of Many",
+      "description": "Performed a Dyad Fusion.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.fusion-artisan",
+      "title": "Fusion Artisan",
+      "description": "Performed a fusion using three or more Personas.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.birthday-present",
+      "title": "Birthday Present",
+      "description": "Obtained an item from a Persona Conception.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.path-to-salvation",
+      "title": "Path to Salvation",
+      "description": "Fused Messiah.",
+      "availableFrom": "2010-01-31",
+      "expectedBy": "2010-01-31",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.tempting-fate",
+      "title": "Tempting Fate",
+      "description": "Triggered a skill change during fusion.",
+      "availableFrom": "2009-04-20",
+      "tracking": { "type": "manual" }
+    },
+    {
+      "id": "p3r.achievement.eat-your-veggies",
+      "title": "Eat Your Veggies, Peas!",
+      "description": "Harvested a crop grown with a teammate.",
+      "availableFrom": "2009-07-18",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.grindset-mindset",
+      "title": "The Grindset Mindset",
+      "description": "Earned more than ¥50,000 total from part-time jobs.",
+      "availableFrom": "2009-06-09",
+      "expectedBy": "2009-12-29",
+      "tracking": { "type": "conditional" }
+    },
+    {
+      "id": "p3r.achievement.specialist",
+      "title": "Specialist",
+      "description": "Maxed one Social Stat.",
+      "availableFrom": "2009-06-19",
+      "expectedBy": "2009-06-19",
+      "tracking": { "type": "event", "event": "p3r.event.stat-max-courage" }
+    },
+    {
+      "id": "p3r.achievement.peak-performance",
+      "title": "Peak Performance",
+      "description": "Maxed all Social Stats.",
+      "availableFrom": "2009-06-19",
+      "expectedBy": "2009-10-29",
+      "tracking": {
+        "type": "allEvents",
+        "events": [
+          "p3r.event.stat-max-courage",
+          "p3r.event.stat-max-charm",
+          "p3r.event.stat-max-academics"
+        ]
+      }
+    },
+    {
+      "id": "p3r.achievement.dorm-life",
+      "title": "Dorm Life",
+      "description": "Spent an evening in the dorm with a teammate.",
+      "availableFrom": "2009-06-16",
+      "expectedBy": "2009-06-16",
+      "tracking": { "type": "event", "event": "p3r.event.dorm-hangout" }
+    },
+    {
+      "id": "p3r.achievement.gourmand",
+      "title": "Gourmand",
+      "description": "Ordered from a secret menu at the Iwatodai strip mall at night.",
+      "availableFrom": "2009-06-28",
+      "expectedBy": "2009-06-28",
+      "tracking": { "type": "event", "event": "p3r.event.gourmand" }
+    },
+    {
+      "id": "p3r.achievement.benevolent-purr-tector",
+      "title": "Benevolent Purr-tector",
+      "description": "Nursed the weak cat back to full health.",
+      "availableFrom": "2009-07-09",
+      "expectedBy": "2009-07-13",
+      "tracking": {
+        "type": "allEvents",
+        "events": [
+          "p3r.event.cat-1",
+          "p3r.event.cat-2",
+          "p3r.event.cat-3",
+          "p3r.event.cat-4"
+        ]
+      }
+    },
+    {
+      "id": "p3r.achievement.in-high-demand",
+      "title": "In High Demand",
+      "description": "Accepted five phone hangout invitations.",
+      "availableFrom": "2009-05-24",
+      "expectedBy": "2009-10-25",
+      "tracking": {
+        "type": "counter",
+        "target": 5,
+        "events": [
+          "p3r.event.invitation-1",
+          "p3r.event.invitation-2",
+          "p3r.event.invitation-3",
+          "p3r.event.invitation-4",
+          "p3r.event.invitation-5"
+        ]
+      }
+    },
+    {
+      "id": "p3r.achievement.beyond-darkness",
+      "title": "Beyond the Darkness",
+      "description": "Unlocked the remaining Major Arcana cards.",
+      "availableFrom": "2009-08-03",
+      "expectedBy": "2009-08-03",
+      "tracking": { "type": "event", "event": "p3r.event.beyond-darkness" }
+    },
+    {
+      "id": "p3r.achievement.thick-and-thin",
+      "title": "Through Thick and Thin",
+      "description": "Unlocked a teammate's Combat Characteristic.",
+      "availableFrom": "2009-07-01",
+      "expectedBy": "2009-07-01",
+      "tracking": { "type": "event", "event": "p3r.event.combat-characteristic" }
+    },
+    {
+      "id": "p3r.achievement.eagle-eye",
+      "title": "Eagle Eye",
+      "description": "Acquired every Twilight Fragment in town.",
+      "availableFrom": "2009-04-23",
+      "expectedBy": "2009-05-25",
+      "tracking": {
+        "type": "allEvents",
+        "events": [
+          "p3r.event.fragments-city",
+          "p3r.event.fragments-dorm",
+          "p3r.event.fragments-remaining"
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "p3r.event.fragments-city",
+      "date": "2009-04-23",
+      "labelContains": "Collect the Twilight Fragments hidden around the city"
+    },
+    {
+      "id": "p3r.event.fragments-dorm",
+      "date": "2009-04-23",
+      "labelContains": "Collect the Twilight Fragments hidden inside the dorm"
+    },
+    {
+      "id": "p3r.event.fragments-remaining",
+      "date": "2009-05-25",
+      "labelContains": "collect the remaining Twinkling Fragments"
+    },
+    {
+      "id": "p3r.event.invitation-1",
+      "date": "2009-05-24",
+      "labelContains": "phone invitation"
+    },
+    {
+      "id": "p3r.event.invitation-2",
+      "date": "2009-05-31",
+      "labelContains": "Accept Yuko's phone invitation"
+    },
+    {
+      "id": "p3r.event.invitation-3",
+      "date": "2009-06-14",
+      "labelContains": "Accept Kazushi's phone invitation"
+    },
+    {
+      "id": "p3r.event.dorm-hangout",
+      "date": "2009-06-16",
+      "labelContains": "join Junpei's reading hangout"
+    },
+    {
+      "id": "p3r.event.stat-max-courage",
+      "date": "2009-06-19",
+      "labelContains": "Courage reaches rank 6"
+    },
+    {
+      "id": "p3r.event.invitation-4",
+      "date": "2009-06-21",
+      "labelContains": "Accept Chihiro's phone invitation"
+    },
+    {
+      "id": "p3r.event.gourmand",
+      "date": "2009-06-28",
+      "labelContains": "Seafood Full Course"
+    },
+    {
+      "id": "p3r.event.combat-characteristic",
+      "date": "2009-07-01",
+      "labelContains": "Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.cat-1",
+      "date": "2009-07-09",
+      "labelContains": "feed the weak cat"
+    },
+    {
+      "id": "p3r.event.cat-2",
+      "date": "2009-07-10",
+      "labelContains": "Feed the weak cat again"
+    },
+    {
+      "id": "p3r.event.cat-3",
+      "date": "2009-07-11",
+      "labelContains": "Feed the weak cat a third time"
+    },
+    {
+      "id": "p3r.event.cat-4",
+      "date": "2009-07-13",
+      "labelContains": "Feed the weak cat a final time"
+    },
+    {
+      "id": "p3r.event.stat-max-charm",
+      "date": "2009-07-24",
+      "labelContains": "Charm reaches rank 6"
+    },
+    {
+      "id": "p3r.event.beyond-darkness",
+      "date": "2009-08-03",
+      "labelContains": "91F Monad Passage"
+    },
+    {
+      "id": "p3r.event.social-max-devil",
+      "date": "2009-09-01",
+      "labelContains": "Devil reaches rank 10"
+    },
+    {
+      "id": "p3r.event.invitation-5",
+      "date": "2009-10-25",
+      "labelContains": "Accept Yukari's phone invitation"
+    },
+    {
+      "id": "p3r.event.stat-max-academics",
+      "date": "2009-10-29",
+      "labelContains": "Academics reaches rank 6"
+    },
+    {
+      "id": "p3r.event.elizabeth-room",
+      "date": "2009-11-06",
+      "labelContains": "Invite Elizabeth to your room"
+    }
+  ]
+}
