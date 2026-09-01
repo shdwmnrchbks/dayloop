@@ -228,27 +228,23 @@ class PackContentTest {
     }
 
     @Test
-    fun `p5r April route duplicates audited activity gains exactly`() {
+    fun `p5r April route uses audited actual point values`() {
         val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
         val activities = p5r.activities?.activities?.associateBy { it.id }.orEmpty()
-        val aprilDays = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-04") }
+        val days = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-04") }
 
-        aprilDays.forEach { day ->
-            day.steps.forEach { step ->
-                val ref = step.activityRef ?: return@forEach
+        for (day in days) {
+            for (step in day.steps) {
+                val ref = step.activityRef ?: continue
                 val base = activities[ref]?.statGains.orEmpty()
                 if (base.isNotEmpty() && step.statGains.isNotEmpty()) {
-                    assertEquals(
-                        base,
-                        step.statGains,
-                        "P5R ${day.date}: '${step.label}' must use the activity's actual base stat points",
-                    )
+                    assertEquals(base, step.statGains, "P5R ${day.date}: '${step.label}' must use the activity's actual base stat points")
                 }
             }
         }
 
         fun gain(date: String, text: String): Map<String, Int> =
-            aprilDays.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+            days.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
 
         assertEquals(mapOf("knowledge" to 2), gain("2016-04-12", "class question"))
         assertEquals(mapOf("proficiency" to 3), gain("2016-04-17", "craft one lock pick"))
@@ -256,6 +252,76 @@ class PackContentTest {
         assertEquals(mapOf("knowledge" to 2, "guts" to 2), gain("2016-04-22", "school library"))
         assertEquals(mapOf("charm" to 2), gain("2016-04-25", "class question"))
         assertEquals(mapOf("knowledge" to 7), gain("2016-04-30", "Social Thought"))
+    }
+
+    @Test
+    fun `p5r May route restores source activities and actual point values`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val activities = p5r.activities?.activities?.associateBy { it.id }.orEmpty()
+        val days = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-05") }
+
+        for (day in days) {
+            for (step in day.steps) {
+                val ref = step.activityRef ?: continue
+                val base = activities[ref]?.statGains.orEmpty()
+                if (base.isNotEmpty() && step.statGains.isNotEmpty()) {
+                    assertEquals(base, step.statGains, "P5R ${day.date}: '${step.label}' must match the pre-Craft activity base points")
+                }
+            }
+        }
+
+        fun gain(date: String, text: String): Map<String, Int> =
+            days.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+
+        assertEquals(mapOf("proficiency" to 3), gain("2016-05-01", "Guy McVer"))
+        assertEquals(mapOf("guts" to 2), gain("2016-05-08", "Sunday drink"))
+        assertEquals(mapOf("kindness" to 3), gain("2016-05-08", "Hierophant reaches rank 2"))
+        assertEquals(mapOf("proficiency" to 5), gain("2016-05-21", "Beef Bowl"))
+        assertEquals(mapOf("kindness" to 2), gain("2016-05-22", "Sunday drink"))
+        assertEquals(mapOf("knowledge" to 2), gain("2016-05-29", "Sunday drink"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-05-29", "Cake Knight"))
+        assertEquals(mapOf("knowledge" to 2, "guts" to 2, "proficiency" to 2, "charm" to 2), gain("2016-05-31", "Big Bang Burger"))
+
+        val fatalWoman = p5r.answers?.answers?.single { it.id == "p5r.answers.class.2016-05-07" }
+        assertEquals("2016-05-07", fatalWoman?.date)
+    }
+
+    @Test
+    fun `p5r June route applies Craft of Cinema only after it is read`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val activities = p5r.activities?.activities?.associateBy { it.id }.orEmpty()
+        val days = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-06") }
+
+        for (day in days) {
+            for (step in day.steps) {
+                val ref = step.activityRef ?: continue
+                val base = activities[ref]?.statGains.orEmpty()
+                if (base.isEmpty() || step.statGains.isEmpty()) continue
+
+                val expected = if (day.date > "2016-06-23" && ref.startsWith("p5r.activity.dvd.")) {
+                    base.mapValues { (_, value) -> value + 2 }
+                } else {
+                    base
+                }
+                assertEquals(expected, step.statGains, "P5R ${day.date}: '${step.label}' has the wrong activity point total")
+            }
+        }
+
+        fun gain(date: String, text: String): Map<String, Int> =
+            days.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+
+        assertEquals(mapOf("charm" to 3), gain("2016-06-01", "Not-so-hot Betsy"))
+        assertEquals(mapOf("charm" to 2), gain("2016-06-05", "Sunday drink"))
+        assertEquals(mapOf("charm" to 3), gain("2016-06-05", "Sun reaches rank 2"))
+        assertEquals(mapOf("proficiency" to 3), gain("2016-06-07", "Baton Pass rank 3"))
+        assertEquals(mapOf("guts" to 3), gain("2016-06-20", "Star Forneus"))
+        assertEquals(mapOf("charm" to 3, "guts" to 2), gain("2016-06-21", "bathhouse"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-06-22", "Mega Fertilizer"))
+        assertEquals(mapOf("kindness" to 5), gain("2016-06-25", "ICU"))
+        assertEquals(mapOf("guts" to 2), gain("2016-06-26", "Sunday drink"))
+        assertEquals(mapOf("charm" to 3), gain("2016-06-26", "Sun reaches rank 4"))
+        assertEquals(mapOf("guts" to 3), gain("2016-06-28", "Star Forneus"))
+        assertTrue(days.first { it.date == "2016-06-25" }.steps.any { it.activityRef == "p5r.activity.book.game-secrets" })
     }
 
     // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
