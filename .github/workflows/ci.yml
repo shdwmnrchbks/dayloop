@@ -7,7 +7,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, steamdeck]
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,6 +18,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+      - name: Set up Android SDK for self-hosted runner
+        uses: amyu/setup-android@09345fc2cbed5b3a92beea84d843a22eac6cc841 # v6.0
+        with:
+          sdk-version: '35'
+          build-tools-version: '35.0.0'
 
       - name: Set up Gradle (with caching)
         uses: gradle/actions/setup-gradle@v4
