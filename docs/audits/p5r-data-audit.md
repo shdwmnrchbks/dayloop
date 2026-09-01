@@ -12,6 +12,9 @@ chosen date is not automatically a universal game availability date.
   and completion targets.
 - **sdarkpaladin GameFAQs 100% walkthrough** — independent route/date spot-check
   for the calendar plan and Palace/Confidant progression.
+- **GameFAQs Royal Social Stats guide / megaten-database Royal overworld data** —
+  structured checks for actual hidden social-stat point gains, movie/DVD/game
+  rewards and activity-enhancing book effects.
 - **Raidramon0 GameFAQs Royal Confidant guide (2026)** — current structured check
   for Confidant stat gates, time gates, automatic ranks, request gates and
   recurring availability.
@@ -20,7 +23,8 @@ chosen date is not automatically a universal game availability date.
 - **Sentovibes/persona-companion-app** — structured independent check for Royal
   automatic-rank timing and Confidant schedules/requirements.
 - **Push Square** — school and exam answers.
-- **Megami Tensei Wiki / calendar references** — Palace story deadlines.
+- **Megami Tensei Wiki / calendar references** — Palace story deadlines and
+  secondary checks for Royal item/book effects.
 
 ## Audit decisions
 
@@ -40,6 +44,29 @@ stat gates, unlock windows) require independent support.
 `activities.json` records the activity outcomes used by that route. A route
 reference means "do this activity here in this plan"; it does not claim the
 activity is available only on that date.
+
+The activity schema defines `statGains` as **actual social-stat points**, not the
+music-note icons displayed by the game. The original P5R catalog mixed those
+units. The September audit normalized the reusable activity definitions:
+
+- Shujin-library and Shibuya stat books use their actual 5-point rewards.
+- Jinbocho stat books use their actual 7-point rewards.
+- Royal DVDs use 3 base points per viewing, require two viewings, and use the
+  subscription model with no return deadline. `The Craft of Cinema` is a
+  separate +2-point modifier per viewing.
+- First-time movie viewings use 5 base points; `The Craft of Cinema` again adds
+  +2 when it has been read.
+- Retro-game clears use 3 points. `Game Secrets` enables an assist/cheat mode;
+  it is not represented as a universal guaranteed win.
+- Route-only DVD rental dates and the incorrect "12-part rental series" wording
+  were removed from the reusable activity catalog.
+- `Knowing the Heart` now describes its real Technical-combination effect;
+  `Factorization Guide`, billiards books and several movie-theater locations
+  were corrected at the same time.
+
+The game maps several different hidden point totals to the same displayed note
+count, so future audits must compare actual point values rather than counting
+note icons in screenshots.
 
 ### Confidants
 
@@ -100,13 +127,18 @@ had been flattened or omitted.
 2. Story/Palace-progress automatic ranks must not invent calendar availability
    windows just to bound a route date; describe the trigger and keep the route
    day in `scheduledFor`.
-3. Never label a route cleanup target as a game deadline without an independent
+3. `Activity.statGains` is actual hidden social-stat points, not displayed music
+   notes. Do not copy note counts into the schema.
+4. Conditional bonuses such as `The Craft of Cinema` or `Factorization Guide`
+   belong in effect/condition wording rather than being silently folded into a
+   reusable activity's base `statGains`.
+5. Never label a route cleanup target as a game deadline without an independent
    game-rule source.
-4. Any new P5R universal gate/deadline should have an independent verifier in
+6. Any new P5R universal gate/deadline should have an independent verifier in
    this ledger or `docs/sources.md`.
-5. Structural validation (`packlint`) proves references and schema integrity;
+7. Structural validation (`packlint`) proves references and schema integrity;
    it does not by itself prove gameplay facts. Fact provenance remains a content
    responsibility.
-6. When independent guides disagree only on *when a flexible action is done*,
+8. When independent guides disagree only on *when a flexible action is done*,
    preserve the authored route and label it as route-specific instead of
    "correcting" it into another guide's route.
