@@ -41,6 +41,7 @@ internal fun achievementProgress(
     achievement: AchievementDefinition,
     currentDate: String,
     completedEvents: Set<String>,
+    manualUnits: Int = 0,
 ): AchievementProgress {
     val rule = achievement.tracking
     val available = achievement.availableFrom?.let { currentDate >= it } ?: true
@@ -87,21 +88,42 @@ internal fun achievementProgress(
         AchievementTrackingTypes.COUNTER -> {
             val required = rule.events.distinct()
             val target = rule.target ?: required.size
-            val done = required.count { it in completedEvents }.coerceAtMost(target.coerceAtLeast(0))
+            if (required.isNotEmpty()) {
+                val done = required.count { it in completedEvents }.coerceAtMost(target.coerceAtLeast(0))
+                AchievementProgress(
+                    automatic = target > 0,
+                    completed = target > 0 && done >= target,
+                    completedUnits = done,
+                    totalUnits = target.coerceAtLeast(0),
+                    available = available,
+                )
+            } else {
+                manualProgress(target, manualUnits, available)
+            }
+        }
+        // Conditional/manual achievements may expose a manual target. Dayloop
+        // tracks the user's explicit count but still never infers gameplay
+        // results from passage of time alone.
+        else -> if (rule.target != null) {
+            manualProgress(rule.target, manualUnits, available)
+        } else {
             AchievementProgress(
-                automatic = required.isNotEmpty() && target > 0,
-                completed = target > 0 && done >= target,
-                completedUnits = done,
-                totalUnits = target.coerceAtLeast(0),
+                automatic = false,
+                completed = false,
                 available = available,
             )
         }
-        // Conditional/manual achievements may still expose an expected date,
-        // but Dayloop must not infer the in-game result from passage of time.
-        else -> AchievementProgress(
-            automatic = false,
-            completed = false,
-            available = available,
-        )
     }
+}
+
+private fun manualProgress(target: Int, manualUnits: Int, available: Boolean): AchievementProgress {
+    val total = target.coerceAtLeast(0)
+    val done = if (total > 0) manualUnits.coerceIn(0, total) else 0
+    return AchievementProgress(
+        automatic = false,
+        completed = total > 0 && done >= total,
+        completedUnits = done,
+        totalUnits = total,
+        available = available,
+    )
 }
