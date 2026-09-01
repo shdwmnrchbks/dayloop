@@ -36,6 +36,26 @@ class P3rAchievementCatalogTest {
             "Unknown achievement tracking type",
         )
 
+        catalog.achievements.forEach { achievement ->
+            val items = achievement.tracking.items
+            assertEquals(items.size, items.map { it.id }.toSet().size, "${achievement.id}: duplicate checklist item id")
+            if (achievement.tracking.type == AchievementTrackingTypes.CHECKLIST) {
+                assertTrue(items.isNotEmpty(), "${achievement.id}: checklist must declare items")
+                assertTrue(
+                    achievement.tracking.target == null || achievement.tracking.target in 1..items.size,
+                    "${achievement.id}: checklist target must fit authored items",
+                )
+            }
+        }
+
+        val strength = assertNotNull(catalog.achievements.firstOrNull { it.id == "p3r.achievement.strength-of-hearts" })
+        assertEquals(AchievementTrackingTypes.CHECKLIST, strength.tracking.type)
+        assertEquals(9, strength.tracking.items.size)
+        assertEquals(
+            setOf("yukari", "junpei", "akihiko", "mitsuru", "fuuka", "aigis", "koromaru", "ken", "shinjiro"),
+            strength.tracking.items.map { it.id }.toSet(),
+        )
+
         val start = pack.calendar.startDate
         val end = pack.calendar.endDate
         catalog.achievements.forEach { achievement ->

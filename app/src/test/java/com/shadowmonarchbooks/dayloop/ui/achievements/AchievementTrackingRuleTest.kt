@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.achievements
 
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementDefinition
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementEventAnchor
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingItem
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingRule
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingTypes
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
@@ -129,6 +130,59 @@ class AchievementTrackingRuleTest {
     }
 
     @Test
+    fun `checklist exposes authored partial progress`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CHECKLIST,
+            items = listOf(
+                AchievementTrackingItem("yukari", "Yukari"),
+                AchievementTrackingItem("junpei", "Junpei"),
+                AchievementTrackingItem("akihiko", "Akihiko"),
+            ),
+        )
+
+        val progress = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = emptySet(),
+            checkedItems = setOf("yukari", "akihiko"),
+        )
+
+        assertFalse(progress.completed)
+        assertFalse(progress.automatic)
+        assertEquals(2, progress.completedUnits)
+        assertEquals(3, progress.totalUnits)
+    }
+
+    @Test
+    fun `checklist ignores stale item ids and completes when all authored items are checked`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CHECKLIST,
+            items = listOf(
+                AchievementTrackingItem("yukari", "Yukari"),
+                AchievementTrackingItem("junpei", "Junpei"),
+            ),
+        )
+
+        val partial = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = emptySet(),
+            checkedItems = setOf("yukari", "removed-item"),
+        )
+        val complete = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = emptySet(),
+            checkedItems = setOf("yukari", "junpei", "removed-item"),
+        )
+
+        assertEquals(1, partial.completedUnits)
+        assertFalse(partial.completed)
+        assertEquals(2, complete.completedUnits)
+        assertTrue(complete.completed)
+    }
+
+    @Test
     fun `manual progress is clamped to target`() {
         val achievement = achievement(
             type = AchievementTrackingTypes.MANUAL,
@@ -185,10 +239,16 @@ class AchievementTrackingRuleTest {
         type: String,
         events: List<String> = emptyList(),
         target: Int? = null,
+        items: List<AchievementTrackingItem> = emptyList(),
     ) = AchievementDefinition(
         id = "fixture",
         title = "Fixture",
-        tracking = AchievementTrackingRule(type = type, events = events, target = target),
+        tracking = AchievementTrackingRule(
+            type = type,
+            events = events,
+            target = target,
+            items = items,
+        ),
     )
 
     private companion object {

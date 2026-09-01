@@ -25,9 +25,18 @@ data class AchievementDefinition(
     val tracking: AchievementTrackingRule = AchievementTrackingRule(),
 )
 
+/** One user-confirmable item in a pack-authored achievement checklist. */
+@Serializable
+data class AchievementTrackingItem(
+    val id: String,
+    val label: String,
+)
+
 /**
  * Engine-neutral tracking rule. Event-backed rules resolve semantic anchors
  * against the current walkthrough and only count events whose step is DONE.
+ * Checklist items are authored here while their checked state belongs to the
+ * active player profile.
  */
 @Serializable
 data class AchievementTrackingRule(
@@ -36,6 +45,7 @@ data class AchievementTrackingRule(
     val event: String? = null,
     val events: List<String> = emptyList(),
     val target: Int? = null,
+    val items: List<AchievementTrackingItem> = emptyList(),
 )
 
 /**
@@ -57,6 +67,7 @@ object AchievementTrackingTypes {
     const val ALL_EVENTS = "allEvents"
     const val ANY_EVENT = "anyEvent"
     const val COUNTER = "counter"
+    const val CHECKLIST = "checklist"
     const val CONDITIONAL = "conditional"
     const val MANUAL = "manual"
 
@@ -66,6 +77,7 @@ object AchievementTrackingTypes {
         ALL_EVENTS,
         ANY_EVENT,
         COUNTER,
+        CHECKLIST,
         CONDITIONAL,
         MANUAL,
     )
