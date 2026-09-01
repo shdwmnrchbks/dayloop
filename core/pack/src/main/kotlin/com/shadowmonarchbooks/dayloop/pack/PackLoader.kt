@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.pack
 
 import kotlinx.serialization.json.Json
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
@@ -45,6 +46,8 @@ class PackLoadResult(
     val answers: AnswersFile?,
     /** Graphic manifest (docs/ROADMAP-v3.md Phase 11); null when the pack ships none. */
     val media: MediaFile?,
+    /** Pack-native achievement rules and semantic walkthrough anchors. */
+    val achievements: AchievementsFile?,
     val parseIssues: List<LintIssue>,
 )
 
@@ -81,6 +84,9 @@ object PackLoader {
 
     fun decodeMedia(jsonText: String): MediaFile? =
         runCatching { json.decodeFromString(MediaFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeAchievements(jsonText: String): AchievementsFile? =
+        runCatching { json.decodeFromString(AchievementsFile.serializer(), jsonText) }.getOrNull()
 
     fun decodeWalkthrough(jsonText: String): WalkthroughFile? =
         runCatching { json.decodeFromString(WalkthroughFile.serializer(), jsonText) }.getOrNull()
@@ -152,6 +158,16 @@ object PackLoader {
         issues += mediaJson.second
         val media = parse(mediaJson.first, mediaFile, "media.json", MediaFile.serializer())
 
+        val achievementsFile = packDir.resolve("achievements.json")
+        val achievementsJson = decode(achievementsFile, "achievements.json")
+        issues += achievementsJson.second
+        val achievements = parse(
+            achievementsJson.first,
+            achievementsFile,
+            "achievements.json",
+            AchievementsFile.serializer(),
+        )
+
         val walkthroughs = mutableListOf<LoadedWalkthrough>()
         fun parseWalkthrough(file: Path, routeId: String, monthKey: String, location: String) {
             val j = decode(file, location)
@@ -184,6 +200,16 @@ object PackLoader {
             }
         }
 
-        return PackLoadResult(pack, bonds, activities, deadlines, walkthroughs, answers, media, issues)
+        return PackLoadResult(
+            pack,
+            bonds,
+            activities,
+            deadlines,
+            walkthroughs,
+            answers,
+            media,
+            achievements,
+            issues,
+        )
     }
 }
