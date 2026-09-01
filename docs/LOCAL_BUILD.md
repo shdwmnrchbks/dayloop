@@ -38,10 +38,18 @@ Licenses were pre-accepted via the standard license-hash files in
 
 ```powershell
 cd C:\Users\airenz1202\Desktop\dayloop
-.\gradlew.bat assembleDebug     # debug APK -> app\build\outputs\apk\debug\
-.\gradlew.bat test              # unit tests
-.\gradlew.bat lint              # Android lint
+.\gradlew.bat assembleDebug       # debug APK -> app\build\outputs\apk\debug\
+.\gradlew.bat assembleCandidate   # prerelease test APK -> app\build\outputs\apk\candidate\
+.\gradlew.bat test                # unit tests
+.\gradlew.bat lint                # Android lint
 ```
+
+The `candidate` build type is for hands-on prerelease testing. It uses the
+standard Android debug signing key and application-id suffix `.candidate`, so
+it can coexist with a production-signed Dayloop install. Candidate profiles,
+progress, widgets and settings are therefore isolated from the stable app.
+Production `release` signing is unchanged and still uses the gitignored
+`keystore.properties` setup when those credentials are present.
 
 First build downloads all dependencies (several hundred MB) and takes a
 while; later builds are incremental and much faster.
@@ -52,5 +60,5 @@ while; later builds are incremental and much faster.
   (gitignored) is machine-specific.
 - If Android Studio is installed later, point it at the SDK path above and it
   will reuse everything.
-- An emulator/AVD is **not** installed yet — `adb install` the debug APK to a
-  physical device with USB debugging enabled, or ask for an AVD setup.
+- An emulator/AVD is **not** installed yet — `adb install` the candidate/debug
+  APK to a physical device with USB debugging enabled, or ask for an AVD setup.
