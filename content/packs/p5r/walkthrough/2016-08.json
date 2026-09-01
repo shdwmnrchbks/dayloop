@@ -22,7 +22,7 @@
         { "label": "Buy 'Master Swordsman' in Jinbocho" },
         { "label": "Hang out with Ryuji — Chariot reaches rank 8" },
         { "label": "Ask Chihaya for a luck reading about Charm" },
-        { "label": "Hang out with Ohya — Devil reaches rank 3", "statGains": { "charm": 2 } }
+        { "label": "Hang out with Ohya — Devil reaches rank 3 (Luck Reading active)", "statGains": { "charm": 4 } }
       ]
     },
     {
@@ -32,7 +32,7 @@
       "steps": [
         { "label": "Receive the request 'Who's Been Assaulting People?'" },
         { "label": "Hang out with Yusuke — Emperor reaches rank 5" },
-        { "label": "Solve the LeBlanc crossword: 'Island'", "statGains": { "knowledge": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Island'", "statGains": { "knowledge": 2 } },
         { "label": "Meet the Twins on Shibuya Central Street (5/13)" }
       ]
     },
@@ -43,7 +43,7 @@
       "steps": [
         { "label": "Receive the request 'Calling for Justice for Cats'" },
         { "label": "Ask Chihaya for a Luck Reading about Knowledge" },
-        { "label": "Watch 'Saraemon' at the Shinjuku movie theater", "activityRef": "p5r.activity.movie.saraemon", "statGains": { "knowledge": 3 } },
+        { "label": "Watch 'Saraemon' at the Shinjuku movie theater (Craft of Cinema + Luck Reading active)", "activityRef": "p5r.activity.movie.saraemon", "statGains": { "knowledge": 10 } },
         { "label": "Answer the TV game show: 'Joyride, but return the car'", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Chihaya — Fortune reaches rank 4" }
       ]
@@ -54,8 +54,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Ask Chihaya for a Luck Reading about Kindness" },
-        { "label": "Save first, then work at the flower shop — get every order right, reload on a miss", "statGains": { "kindness": 3 } },
-        { "label": "Watch 'Le Misérables' with Yusuke — Kindness reaches rank 4", "activityRef": "p5r.activity.movie.le-miserable", "statGains": { "kindness": 3 } }
+        { "label": "Save first, then work at the flower shop — get every order right, reload on a miss (Luck Reading active)", "statGains": { "kindness": 7 } },
+        { "label": "Watch 'Le Misérables' with Yusuke — Kindness reaches rank 4 (Craft of Cinema + Luck Reading active)", "activityRef": "p5r.activity.movie.le-miserable", "statGains": { "kindness": 10 } }
       ]
     },
     {
@@ -74,12 +74,12 @@
       "steps": [
         { "label": "TV Shopping Program: Phantom Thief Set and Heroic Set" },
         { "label": "Buy an Exorcism Water from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 2 } },
         { "label": "Ask Chihaya for a luck reading about Charm" },
-        { "label": "Save first, then work at the convenience store — get the barcode right, reload on a miss", "statGains": { "charm": 3 } },
+        { "label": "Save first, then work at the convenience store — get the barcode right, reload on a miss (Luck Reading active)", "statGains": { "charm": 7 } },
         { "label": "Charm reaches rank 4" },
         { "label": "Give the Exorcism Water to the Kichijoji alley man — Model Gun (5/16)" },
-        { "label": "Work at the Crossroads Bar in Shinjuku", "statGains": { "kindness": 2 } }
+        { "label": "Work at the Crossroads Bar in Shinjuku — talk to the downcast woman (Luck Reading boosts the base Charm)", "statGains": { "charm": 4, "kindness": 2 } }
       ]
     },
     {
@@ -90,8 +90,8 @@
         { "label": "Buy SP-recovery drinks and the summer-only items" },
         { "label": "Visit Takemi at the clinic (no rank-up)" },
         { "label": "Receive the request 'Bad Medicine'", "spoiler": true },
-        { "label": "Solve the LeBlanc crossword: 'Courage'", "statGains": { "knowledge": 1 } },
-        { "label": "Work at the Crossroads Bar again", "statGains": { "kindness": 2 } }
+        { "label": "Solve the LeBlanc crossword: 'Courage'", "statGains": { "knowledge": 2 } },
+        { "label": "Work at the Crossroads Bar again — talk to the downcast woman (Kindness Luck Reading active)", "statGains": { "charm": 3, "kindness": 3 } }
       ]
     },
     {
@@ -109,8 +109,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Ask Chihaya for a luck reading about Kindness" },
-        { "label": "Save first, then work at the flower shop — get the order right, reload on a miss", "statGains": { "kindness": 3 } },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
+        { "label": "Save first, then work at the flower shop — get the order right, reload on a miss (Luck Reading active)", "statGains": { "kindness": 7 } },
+        { "label": "Use the Mega Fertilizer on the plant (Luck Reading active)", "statGains": { "kindness": 7 } },
         { "label": "Talk to Iwai at the Airsoft shop — Hanged Man reaches rank 1" }
       ]
     },
@@ -122,7 +122,7 @@
         { "label": "Customize a gun at Iwai's (achievement)" },
         { "label": "Hang out with Makoto — Priestess reaches rank 4" },
         { "label": "Ask Chihaya for an affinity reading for Sojiro" },
-        { "label": "Hang out with Yoshida — Sun reaches rank 7", "statGains": { "charm": 2 } }
+        { "label": "Hang out with Yoshida — Sun reaches rank 7", "statGains": { "charm": 3 } }
       ]
     },
     {
@@ -131,8 +131,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Ask Chihaya for a luck reading about Charm" },
-        { "label": "Work at the convenience store", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Ohya — Devil reaches rank 4", "statGains": { "charm": 2 } }
+        { "label": "Work at the convenience store (Luck Reading active)", "statGains": { "charm": 4 } },
+        { "label": "Hang out with Ohya — Devil reaches rank 4 (Luck Reading active)", "statGains": { "charm": 4 } }
       ]
     },
     {
@@ -150,7 +150,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 1 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 2 } },
         { "label": "Hang out with Ryuji — Chariot reaches rank 10" },
         { "label": "TV Shopping Program: Drink Set and Floral Gift Set" },
         { "label": "Hang out with Mishima in Shinjuku — Moon reaches rank 5" },
@@ -177,7 +177,7 @@
         { "label": "Collect all Stamps; raise Jose's Items to x11 and Money to 130%", "spoiler": true },
         { "label": "Carry Death, Devil, Emperor, Star, Fortune, Hermit, and Justice Personas" },
         { "label": "Call Kawakami for the special massage" },
-        { "label": "Hang out with Hifumi — Star reaches rank 5 (Knowledge reaches rank 5)", "statGains": { "knowledge": 1 } }
+        { "label": "Hang out with Hifumi — Star reaches rank 5 (Knowledge reaches rank 5)", "statGains": { "knowledge": 2 } }
       ]
     },
     {
@@ -185,8 +185,8 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Takemi — Death reaches rank 8", "statGains": { "guts": 1 } },
-        { "label": "Solve the LeBlanc crossword: 'Sunburn'", "statGains": { "knowledge": 1 } },
+        { "label": "Hang out with Takemi — Death reaches rank 8", "statGains": { "guts": 2 } },
+        { "label": "Solve the LeBlanc crossword: 'Sunburn'", "statGains": { "knowledge": 2 } },
         { "label": "Save your game, then play billiards at the Penguin Sniper Lounge" }
       ]
     },
@@ -220,7 +220,7 @@
       "steps": [
         { "label": "Hang out with Takemi — Death reaches rank 9 (romance choice available)" },
         { "label": "Ask Chihaya for a luck reading about Charm" },
-        { "label": "Hang out with Yoshida — Sun reaches rank 8", "statGains": { "charm": 3 } }
+        { "label": "Hang out with Yoshida — Sun reaches rank 8 (Luck Reading active)", "statGains": { "charm": 7 } }
       ]
     },
     {
@@ -228,7 +228,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch 'D.Housewives'", "activityRef": "p5r.activity.dvd.d-housewives", "statGains": { "charm": 3 } }
+        { "label": "Watch 'D.Housewives' (first viewing; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.d-housewives", "statGains": { "charm": 5 } }
       ]
     },
     {
@@ -237,7 +237,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Judgement reaches rank 3", "spoiler": true },
-        { "label": "Hang out with Hifumi — Star reaches rank 6", "statGains": { "knowledge": 1 } },
+        { "label": "Hang out with Hifumi — Star reaches rank 6", "statGains": { "knowledge": 2 } },
         { "label": "Fool reaches rank 7", "spoiler": true }
       ]
     },
@@ -257,7 +257,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Ask Chihaya for an affinity reading for Hifumi" },
-        { "label": "Hang out with Hifumi — Star reaches rank 7", "statGains": { "knowledge": 1 } }
+        { "label": "Hang out with Hifumi — Star reaches rank 7", "statGains": { "knowledge": 2 } }
       ]
     },
     {
@@ -265,7 +265,7 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Solve the LeBlanc crossword: 'Sweltering'", "statGains": { "knowledge": 1 } },
+        { "label": "Solve the LeBlanc crossword: 'Sweltering'", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Yoshida — Sun reaches rank 9" }
       ]
     },
@@ -274,7 +274,7 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 3 } },
+        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
         { "label": "Buy SP-recovery drinks and the summer-only items" },
         { "label": "Save your game, then play billiards (Technical) at the Penguin Sniper Lounge" }
       ]
@@ -295,8 +295,8 @@
       "steps": [
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
         { "label": "Ask Chihaya for a luck reading about Charm" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 1 } },
-        { "label": "Hang out with Yoshida — Sun reaches rank 10", "statGains": { "charm": 3 } }
+        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 2 } },
+        { "label": "Hang out with Yoshida — Sun reaches rank 10 (Luck Reading active)", "statGains": { "charm": 7 } }
       ]
     },
     {
@@ -316,7 +316,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Solve the LeBlanc crossword: 'Hacking'", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Ohya — Devil reaches rank 7 (required answer for a later story event)", "statGains": { "charm": 3 } }
+        { "label": "Hang out with Ohya — Devil reaches rank 7 (required answer for a later story event)", "statGains": { "charm": 5 } }
       ]
     },
     {
@@ -325,7 +325,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Hermit reaches rank 1", "spoiler": true },
-        { "label": "Watch 'D.Housewives' (9/12)", "activityRef": "p5r.activity.dvd.d-housewives", "statGains": { "charm": 3 } },
+        { "label": "Watch 'D.Housewives' (second viewing; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.d-housewives", "statGains": { "charm": 5 } },
         { "label": "Charm reaches rank 5" },
         { "label": "Fool reaches rank 8", "spoiler": true }
       ]
