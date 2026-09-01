@@ -219,11 +219,43 @@ class PackContentTest {
         assertTrue(games.all { it.statGains.values.singleOrNull() == 3 }, "Royal retro-game clears grant 3 stat points")
         assertTrue(games.all { it.notes.orEmpty().contains("makes the minigame easier") }, "Game Secrets must be described as an assist, not a guaranteed win")
 
+        assertEquals(7, byId.getValue("p5r.activity.book.social-thought").statGains.getValue("knowledge"))
         assertEquals(7, byId.getValue("p5r.activity.book.master-swordsman").statGains.getValue("guts"))
         assertTrue(byId.getValue("p5r.activity.book.craft-of-cinema").notes.orEmpty().contains("+2"))
         assertTrue(byId.getValue("p5r.activity.book.knowing-the-heart").notes.orEmpty().contains("Technical"))
         assertEquals("Yongen-Jaya movie theater", byId.getValue("p5r.activity.movie.back-to-the-ninja").location)
         assertEquals("Shinjuku movie theater", byId.getValue("p5r.activity.movie.pach-saw").location)
+    }
+
+    @Test
+    fun `p5r April route duplicates audited activity gains exactly`() {
+        val p5r = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val activities = p5r.activities?.activities?.associateBy { it.id }.orEmpty()
+        val aprilDays = p5r.walkthroughs.flatMap { it.file.days }.filter { it.date.startsWith("2016-04") }
+
+        aprilDays.forEach { day ->
+            day.steps.forEach { step ->
+                val ref = step.activityRef ?: return@forEach
+                val base = activities[ref]?.statGains.orEmpty()
+                if (base.isNotEmpty() && step.statGains.isNotEmpty()) {
+                    assertEquals(
+                        base,
+                        step.statGains,
+                        "P5R ${day.date}: '${step.label}' must use the activity's actual base stat points",
+                    )
+                }
+            }
+        }
+
+        fun gain(date: String, text: String): Map<String, Int> =
+            aprilDays.first { it.date == date }.steps.first { it.label.contains(text) }.statGains
+
+        assertEquals(mapOf("knowledge" to 2), gain("2016-04-12", "class question"))
+        assertEquals(mapOf("proficiency" to 3), gain("2016-04-17", "craft one lock pick"))
+        assertEquals(mapOf("knowledge" to 5), gain("2016-04-20", "rainy-day bonus"))
+        assertEquals(mapOf("knowledge" to 2, "guts" to 2), gain("2016-04-22", "school library"))
+        assertEquals(mapOf("charm" to 2), gain("2016-04-25", "class question"))
+        assertEquals(mapOf("knowledge" to 7), gain("2016-04-30", "Social Thought"))
     }
 
     // ---- Media (docs/ROADMAP-v3.md Phase 11): bundled graphics all serve ----
