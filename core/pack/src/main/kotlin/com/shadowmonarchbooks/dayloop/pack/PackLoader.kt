@@ -1,6 +1,5 @@
 package com.shadowmonarchbooks.dayloop.pack
 
-import kotlinx.serialization.json.Json
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
@@ -18,6 +17,7 @@ import kotlin.io.path.isRegularFile
 import kotlin.io.path.name
 import kotlin.io.path.readText
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 
 data class LintIssue(val severity: Severity, val location: String, val message: String) {
     enum class Severity { ERROR, WARN }
@@ -52,7 +52,9 @@ class PackLoadResult(
 )
 
 /**
- * Loads and JSON-decodes a pack directory; structural rules live in PackLint.
+ * Loads and JSON-decodes a pack directory; most structural rules live in
+ * PackLint. Cross-field invariants needed by every filesystem consumer are
+ * checked here too, so PackLint receives them through [PackLoadResult.parseIssues].
  *
  * Two entry points share one JSON configuration:
  *  - [load] reads a filesystem directory (lint tooling).
@@ -185,7 +187,6 @@ object PackLoader {
                             val monthKey = entry.name.removeSuffix(".json")
                             parseWalkthrough(entry, Routes.DEFAULT, monthKey, "walkthrough/$monthKey.json")
                         }
-                        // Additional routes live one level deep: walkthrough/<routeId>/<month>.json
                         entry.isDirectory() -> {
                             val routeId = entry.name
                             Files.list(entry).use { inner ->
@@ -193,6 +194,39 @@ object PackLoader {
                                     val monthKey = file.name.removeSuffix(".json")
                                     parseWalkthrough(file, routeId, monthKey, "walkthrough/$routeId/$monthKey.json")
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Route-selected bond dates are a cross-field invariant: they must be
+        // valid pack dates and must not contradict any explicit game
+        // availability window. PackLint consumes these load issues, while the
+        // Android JVM content test independently pins the same contract.
+        if (pack != null && bonds != null) {
+            val calendar = GameCalendar.of(pack.calendar)
+            if (calendar != null) {
+                bonds.bonds.forEach { bond ->
+                    bond.ranks.forEach { step ->
+                        step.scheduledFor?.let { routeDate ->
+                            when {
+                                routeDate !in calendar -> issues += LintIssue(
+                                    LintIssue.Severity.ERROR,
+                                    "confidants.json",
+                                    "bond '${bond.id}' rank ${step.rank} route date '$routeDate' is not a date in this pack's calendar",
+                                )
+                                step.availableFrom != null && routeDate < step.availableFrom -> issues += LintIssue(
+                                    LintIssue.Severity.ERROR,
+                                    "confidants.json",
+                                    "bond '${bond.id}' rank ${step.rank} route date '$routeDate' is before availability '${step.availableFrom}'",
+                                )
+                                step.availableUntil != null && routeDate > step.availableUntil -> issues += LintIssue(
+                                    LintIssue.Severity.ERROR,
+                                    "confidants.json",
+                                    "bond '${bond.id}' rank ${step.rank} route date '$routeDate' is after availability '${step.availableUntil}'",
+                                )
                             }
                         }
                     }
