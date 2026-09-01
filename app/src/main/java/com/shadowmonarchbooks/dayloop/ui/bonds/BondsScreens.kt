@@ -8,12 +8,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -41,6 +41,7 @@ import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
+import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
@@ -67,25 +68,39 @@ fun BondsScreen(
         items(pack.bonds, key = { it.id }) { bond ->
             val skin = LocalSkin.current
             if (skin.hasSkin) {
-                // Arcana-card rows (docs/ROADMAP-v3.md Phase 13): each bond is
-                // a card in the pack's card silhouette; dividers go away.
-                // Crown language (Phase 15): the row's panel decor (parchment
-                // fill + filigree frame) renders behind the list content.
+                // Arcana-card rows: the pack owns the silhouette. Ink/slash
+                // skins add a hard keyline instead of Material elevation.
                 Surface(
                     shape = skin.shapes.card,
                     color = MaterialTheme.colorScheme.surfaceVariant,
+                    tonalElevation = 0.dp,
+                    shadowElevation = 0.dp,
                     modifier = Modifier
                         .fillMaxWidth()
+                        .then(
+                            if (skin.shapeTokens["card"] == "jagged") {
+                                Modifier.border(1.dp, MaterialTheme.colorScheme.outline, skin.shapes.card)
+                            } else {
+                                Modifier
+                            },
+                        )
                         .clickable { onOpenBond(bond.id) },
                 ) {
                     ListItem(
-                        headlineContent = { Text(bond.label, style = MaterialTheme.typography.titleMedium) },
+                        headlineContent = {
+                            Text(
+                                text = if (skin.motion == "slash") skin.cased(bond.label, "display") else bond.label,
+                                style = if (skin.motion == "slash") MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,
+                            )
+                        },
                         supportingContent = {
-                            val lastFrom = bond.ranks.lastOrNull()?.availableFrom
+                            val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
                             Text(
                                 buildString {
                                     append("${bond.ranks.size} rank(s)")
-                                    if (lastFrom != null) append(" · latest from ${formatDate(lastFrom, pack.calendar)}")
+                                    if (lastRouteDate != null) {
+                                        append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
+                                    }
                                 },
                             )
                         },
@@ -97,11 +112,13 @@ fun BondsScreen(
                 ListItem(
                     headlineContent = { Text(bond.label, style = MaterialTheme.typography.titleMedium) },
                     supportingContent = {
-                        val lastFrom = bond.ranks.lastOrNull()?.availableFrom
+                        val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
                         Text(
                             buildString {
                                 append("${bond.ranks.size} rank(s)")
-                                if (lastFrom != null) append(" · latest from ${formatDate(lastFrom, pack.calendar)}")
+                                if (lastRouteDate != null) {
+                                    append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
+                                }
                             },
                         )
                     },
@@ -113,7 +130,7 @@ fun BondsScreen(
     }
 }
 
-/** Bond detail: rank ladder with availability, gates, and location; character and notes behind taps. */
+/** Bond detail: route date, real availability, gates, and location are kept distinct. */
 @Composable
 fun BondDetailScreen(
     bondId: String,
@@ -125,10 +142,9 @@ fun BondDetailScreen(
     }
     val bondLabels = pack.bonds.associate { it.id to it.label }
     val statLabels = pack.pack.statLabels()
-    // Crown language (docs/ROADMAP-v3.md Phase 15): follower ranks render as
-    // embossed medallions — a filled crest with a double ring and the rank
-    // number at its center.
-    val crown = LocalSkin.current.hasSkin && LocalSkin.current.motif == "crown"
+    val skin = LocalSkin.current
+    val crown = skin.hasSkin && skin.motif == "crown"
+    val slash = skin.hasSkin && skin.motion == "slash"
 
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -137,10 +153,6 @@ fun BondDetailScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
-        // Pack-supplied portrait art (docs/ROADMAP-v3.md Phase 11): media.json
-        // items anchored to this bond render beside the arcana label. Skinned
-        // packs frame it as a tarot-card slip at the native 145×205 portrait
-        // ratio (docs/ROADMAP-v3.md Phase 14).
         val portraits = pack.mediaForBond(bondId)
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -148,14 +160,18 @@ fun BondDetailScreen(
             modifier = Modifier.fillMaxWidth(),
         ) {
             portraits.firstOrNull()?.let { portrait ->
-                val skin = LocalSkin.current
                 if (skin.hasSkin) {
                     Surface(
                         shape = skin.shapes.card,
                         color = MaterialTheme.colorScheme.surfaceVariant,
+                        tonalElevation = 0.dp,
                         modifier = Modifier
                             .width(96.dp)
-                            .aspectRatio(145f / 205f),
+                            .aspectRatio(145f / 205f)
+                            .then(
+                                if (slash) Modifier.border(1.dp, MaterialTheme.colorScheme.outline, skin.shapes.card)
+                                else Modifier
+                            ),
                     ) {
                         MediaImage(
                             assetPath = pack.assetOf(portrait),
@@ -175,7 +191,10 @@ fun BondDetailScreen(
                     }
                 }
             }
-            Text(bond.label, style = MaterialTheme.typography.headlineSmall)
+            Text(
+                text = if (slash) skin.cased(bond.label, "display") else bond.label,
+                style = if (slash) MaterialTheme.typography.displaySmall else MaterialTheme.typography.headlineSmall,
+            )
         }
 
         bond.characterLabel?.let { character ->
@@ -189,7 +208,7 @@ fun BondDetailScreen(
             } else {
                 Surface(
                     onClick = { shown = true },
-                    shape = RoundedCornerShape(8.dp),
+                    shape = if (skin.hasSkin) skin.shapes.chip else RoundedCornerShape(8.dp),
                     color = MaterialTheme.colorScheme.surfaceVariant,
                 ) {
                     Text(
@@ -201,52 +220,76 @@ fun BondDetailScreen(
             }
         }
 
+        if (bond.ranks.any { it.scheduledFor != null }) {
+            Text(
+                text = "Route dates are the authored completion plan; they are not the same thing as general availability.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+
         bond.ranks.sortedBy { it.rank }.forEach { step ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                if (crown) {
-                    // Embossed medallion (Phase 15): filled crest, double ring,
-                    // the rank number in the center of the crest.
-                    Box(
-                        modifier = Modifier.size(34.dp),
-                        contentAlignment = Alignment.Center,
-                    ) {
+                when {
+                    crown -> {
                         Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
-                                .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape),
-                        )
-                        Box(
-                            modifier = Modifier
-                                .size(26.dp)
-                                .border(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.55f), CircleShape),
-                        )
-                        Text(
-                            text = "${step.rank}",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        )
+                            modifier = Modifier.size(34.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                                    .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape),
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .size(26.dp)
+                                    .border(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.55f), CircleShape),
+                            )
+                            Text(
+                                text = "${step.rank}",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            )
+                        }
                     }
-                } else {
-                    Text(
+                    slash -> {
+                        Surface(
+                            shape = skin.shapes.chip,
+                            color = MaterialTheme.colorScheme.primary,
+                        ) {
+                            Text(
+                                text = "${step.rank}",
+                                style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                modifier = Modifier.padding(horizontal = 11.dp, vertical = 3.dp),
+                            )
+                        }
+                    }
+                    else -> Text(
                         text = "${step.rank}",
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.primary,
                     )
                 }
-                Column {
-                    listOfNotNull(
-                        step.availableFrom?.let { "From ${formatDate(it, pack.calendar)}" },
-                        step.availableUntil?.let { "Until ${formatDate(it, pack.calendar)}" },
-                    ).joinToString(" · ").takeIf { it.isNotEmpty() }?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.bodyMedium,
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    step.scheduledFor?.let {
+                        SkinTag(
+                            text = "Route · ${formatDate(it, pack.calendar)}",
+                            container = MaterialTheme.colorScheme.primary,
+                            content = MaterialTheme.colorScheme.onPrimary,
                         )
+                    }
+                    listOfNotNull(
+                        step.availableFrom?.let { "Available from ${formatDate(it, pack.calendar)}" },
+                        step.availableUntil?.let { "Available until ${formatDate(it, pack.calendar)}" },
+                    ).joinToString(" · ").takeIf { it.isNotEmpty() }?.let {
+                        Text(text = it, style = MaterialTheme.typography.bodyMedium)
                     }
                     step.location?.let {
                         Text(
@@ -255,9 +298,6 @@ fun BondDetailScreen(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    // The §3.3 promise ("why is this locked today?") rendered as
-                    // pack-supplied predicates → one spoiler-safe line
-                    // (docs/ROADMAP-v2.md Phase 9).
                     step.gates?.let { gate ->
                         Text(
                             text = "Requires: " + describeCondition(gate, statLabels, bondLabels),
@@ -278,6 +318,7 @@ fun BondDetailScreen(
                                 text = "Note — tap to show",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.clickable { revealed = true },
                             )
                         }
                     }
