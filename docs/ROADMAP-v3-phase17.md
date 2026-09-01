@@ -42,7 +42,7 @@ Acceptance:
 - Engine, Phantom, Moonlight, and Royal render correctly across supported widget sizes.
 - Content and navigation behavior are identical across skins.
 
-### Phase 17c — Launcher badge schema, serving, and lint 🚧
+### Phase 17c — Launcher badge schema, serving, and lint ✅
 
 **Goal:** allow packs to decorate Dayloop-owned launcher/shortcut identity without replacing it with game-owned launcher art.
 
