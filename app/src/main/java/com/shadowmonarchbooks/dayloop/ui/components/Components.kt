@@ -329,7 +329,7 @@ fun StepRow(
                 if (hidden) {
                     Surface(
                         onClick = { revealed = true },
-                        shape = RoundedCornerShape(8.dp),
+                        shape = skin.shapes.chip,
                         color = MaterialTheme.colorScheme.surfaceVariant,
                     ) {
                         Text(
@@ -747,7 +747,7 @@ fun AnswerKindChip(kind: String, modifier: Modifier = Modifier) {
         "exam" -> MaterialTheme.colorScheme.errorContainer to MaterialTheme.colorScheme.onErrorContainer
         else -> MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer
     }
-    Surface(shape = RoundedCornerShape(50), color = colors.first, modifier = modifier) {
+    Surface(shape = LocalSkin.current.shapes.chip, color = colors.first, modifier = modifier) {
         Text(
             text = when (kind) {
                 "exam" -> "Exam"
