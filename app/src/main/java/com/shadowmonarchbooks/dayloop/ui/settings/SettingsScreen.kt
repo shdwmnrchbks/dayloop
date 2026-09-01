@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
@@ -42,6 +41,7 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
@@ -82,7 +82,7 @@ fun SettingsScreen(
         SectionTitle("Game")
         Surface(
             onClick = onSwitchGame,
-            shape = RoundedCornerShape(12.dp),
+            shape = MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.surfaceVariant,
             modifier = Modifier.fillMaxWidth(),
         ) {
@@ -120,7 +120,7 @@ fun SettingsScreen(
             SectionTitle("Pack media")
             Surface(
                 onClick = onOpenMedia,
-                shape = RoundedCornerShape(12.dp),
+                shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -141,7 +141,7 @@ fun SettingsScreen(
 
         // ---- In-game clock ----
         SectionTitle("In-game clock")
-        Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+        Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 state.activeProfile?.let { profile ->
                     Text(profile.name, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)
@@ -188,7 +188,7 @@ fun SettingsScreen(
         if (pack.pack.theme?.sfx?.isNotEmpty() == true) {
             val soundsEnabled by vm.soundsEnabled.collectAsState()
             SectionTitle("Skin sounds")
-            Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+            Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
@@ -217,7 +217,7 @@ fun SettingsScreen(
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             state.profiles.forEach { profile ->
                 val active = profile.id == state.activeProfile?.id
-                Surface(shape = RoundedCornerShape(10.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+                Surface(shape = MaterialTheme.shapes.small, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
                         RadioButton(selected = active, onClick = { vm.switchProfile(profile.id) })
                         Column(modifier = Modifier.weight(1f)) {
@@ -249,10 +249,10 @@ fun SettingsScreen(
         // ---- Orphaned marks review (docs/PLAN.md §3.6) ----
         if (state.orphans.isNotEmpty()) {
             SectionTitle("Saved marks no longer in content")
-            Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.errorContainer, modifier = Modifier.fillMaxWidth()) {
+            Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.errorContainer, modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack ” content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
+                        text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack — content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onErrorContainer,
                     )
@@ -391,7 +391,14 @@ private fun CreateProfileDialog(
 
 @Composable
 private fun SectionTitle(text: String, modifier: Modifier = Modifier) {
-    Text(text = text, style = MaterialTheme.typography.titleMedium, modifier = modifier)
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
+    Text(
+        text = if (slash) skin.cased(text, "display") else text,
+        style = if (slash) MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,
+        color = if (slash) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+        modifier = modifier,
+    )
 }
 
 @Composable
