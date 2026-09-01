@@ -13,6 +13,10 @@ internal data class AchievementProgress(
     val completedUnits: Int = 0,
     val totalUnits: Int = 0,
     val available: Boolean = true,
+    /** Whether a manual achievement has reached a safe confirmation state. */
+    val conditionReady: Boolean = true,
+    /** Optional deterministic prerequisite signal for a manual confirmation. */
+    val prerequisiteTracked: Boolean? = null,
 )
 
 /**
@@ -43,6 +47,7 @@ internal fun achievementProgress(
     completedEvents: Set<String>,
     manualUnits: Int = 0,
     checkedItems: Set<String> = emptySet(),
+    selectedChoice: String? = null,
 ): AchievementProgress {
     val rule = achievement.tracking
     val available = achievement.availableFrom?.let { currentDate >= it } ?: true
@@ -115,10 +120,34 @@ internal fun achievementProgress(
                 available = available,
             )
         }
-        // Conditional/manual achievements may expose a manual target. Dayloop
-        // tracks the user's explicit count but still never infers gameplay
-        // results from passage of time alone.
-        else -> {
+        AchievementTrackingTypes.CHOICE -> {
+            val authoredIds = rule.items.mapTo(linkedSetOf()) { it.id }
+            val accepted = rule.acceptedItems.toSet().ifEmpty { authoredIds }
+            val acceptedChoice = selectedChoice != null && selectedChoice in authoredIds && selectedChoice in accepted
+            val dateReady = rule.date?.let { currentDate >= it } ?: true
+            AchievementProgress(
+                automatic = false,
+                completed = false,
+                completedUnits = if (acceptedChoice) 1 else 0,
+                totalUnits = if (authoredIds.isNotEmpty()) 1 else 0,
+                available = available,
+                conditionReady = acceptedChoice && dateReady,
+            )
+        }
+        AchievementTrackingTypes.CONFIRMATION -> {
+            val dateReady = rule.date?.let { currentDate >= it } ?: true
+            val prerequisite = rule.event?.let { it in completedEvents }
+            AchievementProgress(
+                automatic = false,
+                completed = false,
+                available = available,
+                conditionReady = dateReady,
+                prerequisiteTracked = prerequisite,
+            )
+        }
+        // Legacy conditional/manual rules may still expose a manual target.
+        AchievementTrackingTypes.CONDITIONAL,
+        AchievementTrackingTypes.MANUAL -> {
             val target = rule.target
             if (target != null) {
                 manualProgress(target, manualUnits, available)
@@ -130,6 +159,11 @@ internal fun achievementProgress(
                 )
             }
         }
+        else -> AchievementProgress(
+            automatic = false,
+            completed = false,
+            available = available,
+        )
     }
 }
 

@@ -35,34 +35,85 @@ class P3rAchievementCatalogTest {
             catalog.achievements.all { it.tracking.type in AchievementTrackingTypes.ALL },
             "Unknown achievement tracking type",
         )
+        assertTrue(
+            catalog.achievements.none { it.tracking.type == AchievementTrackingTypes.CONDITIONAL },
+            "P3R should use explicit choice/confirmation/checklist rules instead of legacy conditional tracking",
+        )
 
+        val start = pack.calendar.startDate
+        val end = pack.calendar.endDate
         catalog.achievements.forEach { achievement ->
-            val items = achievement.tracking.items
-            assertEquals(items.size, items.map { it.id }.toSet().size, "${achievement.id}: duplicate checklist item id")
-            if (achievement.tracking.type == AchievementTrackingTypes.CHECKLIST) {
-                assertTrue(items.isNotEmpty(), "${achievement.id}: checklist must declare items")
-                assertTrue(
-                    achievement.tracking.target == null || achievement.tracking.target in 1..items.size,
-                    "${achievement.id}: checklist target must fit authored items",
-                )
+            val rule = achievement.tracking
+            val items = rule.items
+            assertEquals(items.size, items.map { it.id }.toSet().size, "${achievement.id}: duplicate tracking item id")
+            achievement.availableFrom?.let { assertTrue(it in start..end, "${achievement.id}: availableFrom outside calendar") }
+            achievement.expectedBy?.let { assertTrue(it in start..end, "${achievement.id}: expectedBy outside calendar") }
+            rule.date?.let { assertTrue(it in start..end, "${achievement.id}: tracking date outside calendar") }
+            items.forEach { item ->
+                item.dueBy?.let { assertTrue(it in start..end, "${achievement.id}/${item.id}: dueBy outside calendar") }
+            }
+            when (rule.type) {
+                AchievementTrackingTypes.CHECKLIST -> {
+                    assertTrue(items.isNotEmpty(), "${achievement.id}: checklist must declare items")
+                    assertTrue(
+                        rule.target == null || rule.target in 1..items.size,
+                        "${achievement.id}: checklist target must fit authored items",
+                    )
+                }
+                AchievementTrackingTypes.CHOICE -> {
+                    assertTrue(items.size >= 2, "${achievement.id}: choice must declare at least two options")
+                    assertTrue(!rule.stateKey.isNullOrBlank(), "${achievement.id}: choice must declare a stateKey")
+                    val itemIds = items.map { it.id }.toSet()
+                    assertTrue(rule.acceptedItems.isNotEmpty(), "${achievement.id}: choice must declare qualifying items")
+                    assertTrue(
+                        rule.acceptedItems.all { it in itemIds },
+                        "${achievement.id}: accepted choice references unknown item",
+                    )
+                }
+                AchievementTrackingTypes.CONFIRMATION -> {
+                    assertTrue(!rule.prompt.isNullOrBlank(), "${achievement.id}: confirmation should explain what to confirm")
+                }
             }
         }
 
-        val strength = assertNotNull(catalog.achievements.firstOrNull { it.id == "p3r.achievement.strength-of-hearts" })
+        val strength = achievement(catalog.achievements, "p3r.achievement.strength-of-hearts")
         assertEquals(AchievementTrackingTypes.CHECKLIST, strength.tracking.type)
         assertEquals(9, strength.tracking.items.size)
         assertEquals(
             setOf("yukari", "junpei", "akihiko", "mitsuru", "fuuka", "aigis", "koromaru", "ken", "shinjiro"),
             strength.tracking.items.map { it.id }.toSet(),
         )
+        assertEquals(
+            "2009-10-03",
+            strength.tracking.items.first { it.id == "shinjiro" }.dueBy,
+        )
 
-        val start = pack.calendar.startDate
-        val end = pack.calendar.endDate
-        catalog.achievements.forEach { achievement ->
-            achievement.availableFrom?.let { assertTrue(it in start..end, "${achievement.id}: availableFrom outside calendar") }
-            achievement.expectedBy?.let { assertTrue(it in start..end, "${achievement.id}: expectedBy outside calendar") }
-            achievement.tracking.date?.let { assertTrue(it in start..end, "${achievement.id}: story date outside calendar") }
-        }
+        val greatSeal = achievement(catalog.achievements, "p3r.achievement.great-seal")
+        val goodEnding = achievement(catalog.achievements, "p3r.achievement.shadows-into-light")
+        assertEquals(AchievementTrackingTypes.CHOICE, greatSeal.tracking.type)
+        assertEquals(AchievementTrackingTypes.CHOICE, goodEnding.tracking.type)
+        assertEquals("p3r.choice.ryoji-fate", greatSeal.tracking.stateKey)
+        assertEquals(greatSeal.tracking.stateKey, goodEnding.tracking.stateKey)
+        assertEquals(listOf("spare"), greatSeal.tracking.acceptedItems)
+        assertEquals(listOf("spare"), goodEnding.tracking.acceptedItems)
+        assertEquals("2010-01-31", greatSeal.tracking.date)
+        assertEquals("2010-03-05", goodEnding.tracking.date)
+
+        val people = achievement(catalog.achievements, "p3r.achievement.people-person")
+        val legacy = achievement(catalog.achievements, "p3r.achievement.legacy-of-friendships")
+        assertEquals(AchievementTrackingTypes.EVENT, people.tracking.type)
+        assertEquals("p3r.event.social-all-unlocked", people.tracking.event)
+        assertEquals(AchievementTrackingTypes.EVENT, legacy.tracking.type)
+        assertEquals("p3r.event.social-all-max", legacy.tracking.event)
+
+        val veggies = achievement(catalog.achievements, "p3r.achievement.eat-your-veggies")
+        assertEquals(AchievementTrackingTypes.CONFIRMATION, veggies.tracking.type)
+        assertEquals("p3r.event.teammate-gardening", veggies.tracking.event)
+
+        val grindset = achievement(catalog.achievements, "p3r.achievement.grindset-mindset")
+        assertEquals(AchievementTrackingTypes.MANUAL, grindset.tracking.type)
+        assertEquals(50_001, grindset.tracking.target)
+        assertEquals("¥", grindset.tracking.unit)
 
         val defaultDays = loaded.walkthroughs
             .filter { it.routeId == Routes.DEFAULT }
@@ -81,6 +132,11 @@ class P3rAchievementCatalogTest {
             assertEquals(1, matches, "${event.id}: '${event.labelContains}' must match exactly one step on ${event.date}")
         }
     }
+
+    private fun achievement(
+        achievements: List<com.shadowmonarchbooks.dayloop.pack.schema.AchievementDefinition>,
+        id: String,
+    ) = assertNotNull(achievements.firstOrNull { it.id == id })
 
     private fun p3rDir(): Path {
         val candidates = listOf(

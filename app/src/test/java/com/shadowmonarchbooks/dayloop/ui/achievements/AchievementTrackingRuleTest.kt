@@ -110,7 +110,7 @@ class AchievementTrackingRuleTest {
     }
 
     @Test
-    fun `conditional target completes from explicit progress without becoming automatic`() {
+    fun `conditional target remains supported for legacy packs`() {
         val achievement = achievement(
             type = AchievementTrackingTypes.CONDITIONAL,
             target = 9,
@@ -183,6 +183,104 @@ class AchievementTrackingRuleTest {
     }
 
     @Test
+    fun `accepted choice becomes confirmable only at its checkpoint`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CHOICE,
+            date = "2009-12-31",
+            acceptedItems = listOf("spare"),
+            items = listOf(
+                AchievementTrackingItem("spare", "Spare"),
+                AchievementTrackingItem("kill", "Kill"),
+            ),
+        )
+
+        val before = achievementProgress(
+            achievement = achievement,
+            currentDate = "2009-12-30",
+            completedEvents = emptySet(),
+            selectedChoice = "spare",
+        )
+        val ready = achievementProgress(
+            achievement = achievement,
+            currentDate = "2009-12-31",
+            completedEvents = emptySet(),
+            selectedChoice = "spare",
+        )
+
+        assertFalse(before.conditionReady)
+        assertTrue(ready.conditionReady)
+        assertFalse(ready.completed)
+        assertEquals(1, ready.completedUnits)
+        assertEquals(1, ready.totalUnits)
+    }
+
+    @Test
+    fun `non qualifying choice never becomes confirmable`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CHOICE,
+            acceptedItems = listOf("spare"),
+            items = listOf(
+                AchievementTrackingItem("spare", "Spare"),
+                AchievementTrackingItem("kill", "Kill"),
+            ),
+        )
+
+        val progress = achievementProgress(
+            achievement = achievement,
+            currentDate = "2010-03-05",
+            completedEvents = emptySet(),
+            selectedChoice = "kill",
+        )
+
+        assertFalse(progress.conditionReady)
+        assertFalse(progress.completed)
+        assertEquals(0, progress.completedUnits)
+    }
+
+    @Test
+    fun `confirmation tracks deterministic prerequisite without auto earning`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CONFIRMATION,
+            date = DATE,
+            event = "gardening",
+        )
+
+        val progress = achievementProgress(
+            achievement = achievement,
+            currentDate = DATE,
+            completedEvents = setOf("gardening"),
+        )
+
+        assertTrue(progress.conditionReady)
+        assertEquals(true, progress.prerequisiteTracked)
+        assertFalse(progress.completed)
+        assertFalse(progress.automatic)
+    }
+
+    @Test
+    fun `confirmation waits for result date`() {
+        val achievement = achievement(
+            type = AchievementTrackingTypes.CONFIRMATION,
+            date = "2009-07-24",
+        )
+
+        assertFalse(
+            achievementProgress(
+                achievement,
+                "2009-07-23",
+                emptySet(),
+            ).conditionReady,
+        )
+        assertTrue(
+            achievementProgress(
+                achievement,
+                "2009-07-24",
+                emptySet(),
+            ).conditionReady,
+        )
+    }
+
+    @Test
     fun `manual progress is clamped to target`() {
         val achievement = achievement(
             type = AchievementTrackingTypes.MANUAL,
@@ -237,17 +335,23 @@ class AchievementTrackingRuleTest {
 
     private fun achievement(
         type: String,
+        date: String? = null,
+        event: String? = null,
         events: List<String> = emptyList(),
         target: Int? = null,
         items: List<AchievementTrackingItem> = emptyList(),
+        acceptedItems: List<String> = emptyList(),
     ) = AchievementDefinition(
         id = "fixture",
         title = "Fixture",
         tracking = AchievementTrackingRule(
             type = type,
+            date = date,
+            event = event,
             events = events,
             target = target,
             items = items,
+            acceptedItems = acceptedItems,
         ),
     )
 

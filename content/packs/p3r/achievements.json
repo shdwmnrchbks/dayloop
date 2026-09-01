@@ -78,7 +78,17 @@
       "description": "Sealed Nyx on the good-ending route.",
       "availableFrom": "2010-01-31",
       "expectedBy": "2010-01-31",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "choice",
+        "date": "2010-01-31",
+        "stateKey": "p3r.choice.ryoji-fate",
+        "acceptedItems": ["spare"],
+        "prompt": "Record the December 31 story decision here, then confirm after sealing Nyx on The Promised Day.",
+        "items": [
+          { "id": "spare", "label": "Spare Ryoji — pursue the good ending" },
+          { "id": "kill", "label": "Kill Ryoji — end the story early" }
+        ]
+      }
     },
     {
       "id": "p3r.achievement.shadows-into-light",
@@ -86,7 +96,17 @@
       "description": "Reached the good ending.",
       "availableFrom": "2009-12-31",
       "expectedBy": "2010-03-05",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "choice",
+        "date": "2010-03-05",
+        "stateKey": "p3r.choice.ryoji-fate",
+        "acceptedItems": ["spare"],
+        "prompt": "Record the December 31 story decision here, then confirm after watching the good ending on Graduation Day.",
+        "items": [
+          { "id": "spare", "label": "Spare Ryoji — pursue the good ending" },
+          { "id": "kill", "label": "Kill Ryoji — end the story early" }
+        ]
+      }
     },
     {
       "id": "p3r.achievement.fools-journey",
@@ -109,7 +129,11 @@
       "description": "Aced an exam.",
       "availableFrom": "2009-07-14",
       "expectedBy": "2009-07-24",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "confirmation",
+        "date": "2009-07-24",
+        "prompt": "Confirm when the exam results show that you placed at the top of the class."
+      }
     },
     {
       "id": "p3r.achievement.legacy-of-friendships",
@@ -118,7 +142,7 @@
       "availableFrom": "2010-01-29",
       "expectedBy": "2010-01-29",
       "missable": true,
-      "tracking": { "type": "conditional" }
+      "tracking": { "type": "event", "event": "p3r.event.social-all-max" }
     },
     {
       "id": "p3r.achievement.people-person",
@@ -127,7 +151,7 @@
       "availableFrom": "2010-01-08",
       "expectedBy": "2010-01-08",
       "missable": true,
-      "tracking": { "type": "conditional" }
+      "tracking": { "type": "event", "event": "p3r.event.social-all-unlocked" }
     },
     {
       "id": "p3r.achievement.special-someone",
@@ -135,7 +159,10 @@
       "description": "Entered a romantic relationship through a Social Link.",
       "availableFrom": "2009-09-01",
       "missable": true,
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after choosing a romance branch in any eligible Social Link."
+      }
     },
     {
       "id": "p3r.achievement.unbreakable-link",
@@ -165,7 +192,10 @@
       "title": "There's No “I” in “Team”",
       "description": "Performed a Shift in battle.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after performing a Shift in battle."
+      }
     },
     {
       "id": "p3r.achievement.strength-of-hearts",
@@ -186,7 +216,7 @@
           { "id": "aigis", "label": "Aigis" },
           { "id": "koromaru", "label": "Koromaru" },
           { "id": "ken", "label": "Ken" },
-          { "id": "shinjiro", "label": "Shinjiro" }
+          { "id": "shinjiro", "label": "Shinjiro", "dueBy": "2009-10-03" }
         ]
       }
     },
@@ -196,14 +226,21 @@
       "description": "Rescued a missing person from Tartarus.",
       "availableFrom": "2009-06-18",
       "expectedBy": "2009-06-27",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "confirmation",
+        "date": "2009-06-27",
+        "prompt": "Confirm after rescuing at least one missing person from Tartarus."
+      }
     },
     {
       "id": "p3r.achievement.load-of-numbers",
       "title": "Get a Load of Those Numbers!",
       "description": "Dealt more than 999 damage in one attack that was not an All-Out Attack.",
       "availableFrom": "2009-06-13",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after dealing more than 999 damage with one non-All-Out attack."
+      }
     },
     {
       "id": "p3r.achievement.shrouded-assassin",
@@ -217,7 +254,10 @@
       "title": "The Thrill of the Hunt",
       "description": "Defeated a rare golden enemy.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after defeating a rare golden enemy in Tartarus."
+      }
     },
     {
       "id": "p3r.achievement.dream-work",
@@ -252,7 +292,10 @@
       "title": "The Horror of the Shade",
       "description": "Encountered a Dark Zone in Tartarus.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after encountering a Dark Zone in Tartarus."
+      }
     },
     {
       "id": "p3r.achievement.reaper-reaped",
@@ -260,28 +303,41 @@
       "description": "Defeated the Reaper.",
       "availableFrom": "2010-01-21",
       "expectedBy": "2010-01-31",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "confirmation",
+        "date": "2010-01-21",
+        "prompt": "Confirm after defeating the Reaper; the route starts dedicated preparation here."
+      }
     },
     {
       "id": "p3r.achievement.first-of-many",
       "title": "The First of Many",
       "description": "Performed a Dyad Fusion.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after performing a Dyad Fusion."
+      }
     },
     {
       "id": "p3r.achievement.fusion-artisan",
       "title": "Fusion Artisan",
       "description": "Performed a fusion using three or more Personas.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after performing a fusion using three or more Personas."
+      }
     },
     {
       "id": "p3r.achievement.birthday-present",
       "title": "Birthday Present",
       "description": "Obtained an item from a Persona Conception.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after receiving an item from a Persona Conception."
+      }
     },
     {
       "id": "p3r.achievement.path-to-salvation",
@@ -289,21 +345,32 @@
       "description": "Fused Messiah.",
       "availableFrom": "2010-01-31",
       "expectedBy": "2010-01-31",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "confirmation",
+        "date": "2010-01-31",
+        "prompt": "Confirm after fusing Messiah; the route notes the Orpheus + Thanatos opportunity on The Promised Day."
+      }
     },
     {
       "id": "p3r.achievement.tempting-fate",
       "title": "Tempting Fate",
       "description": "Triggered a skill change during fusion.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual" }
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after a skill changes during fusion."
+      }
     },
     {
       "id": "p3r.achievement.eat-your-veggies",
       "title": "Eat Your Veggies, Peas!",
       "description": "Harvested a crop grown with a teammate.",
       "availableFrom": "2009-07-18",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "confirmation",
+        "event": "p3r.event.teammate-gardening",
+        "prompt": "The route tracks your first teammate gardening hangout; confirm after you later harvest a crop grown with a teammate."
+      }
     },
     {
       "id": "p3r.achievement.grindset-mindset",
@@ -311,7 +378,12 @@
       "description": "Earned more than ¥50,000 total from part-time jobs.",
       "availableFrom": "2009-06-09",
       "expectedBy": "2009-12-29",
-      "tracking": { "type": "conditional" }
+      "tracking": {
+        "type": "manual",
+        "target": 50001,
+        "unit": "¥",
+        "prompt": "Enter your cumulative earnings from part-time jobs; the route expects this to cross the threshold by the December 29 Be Blue V shift."
+      }
     },
     {
       "id": "p3r.achievement.specialist",
@@ -495,6 +567,11 @@
       "labelContains": "Feed the weak cat a final time"
     },
     {
+      "id": "p3r.event.teammate-gardening",
+      "date": "2009-07-18",
+      "labelContains": "join Junpei's gardening hangout"
+    },
+    {
       "id": "p3r.event.stat-max-charm",
       "date": "2009-07-24",
       "labelContains": "Charm reaches rank 6"
@@ -523,6 +600,16 @@
       "id": "p3r.event.elizabeth-room",
       "date": "2009-11-06",
       "labelContains": "Invite Elizabeth to your room"
+    },
+    {
+      "id": "p3r.event.social-all-unlocked",
+      "date": "2010-01-08",
+      "labelContains": "Aeon reaches rank 1"
+    },
+    {
+      "id": "p3r.event.social-all-max",
+      "date": "2010-01-29",
+      "labelContains": "Aeon reaches rank 10 (MAX)"
     }
   ]
 }
