@@ -51,126 +51,127 @@ class DayloopWidget : GlanceAppWidget() {
             .fromApplication(context.applicationContext, WidgetEntryPoint::class.java)
             .snapshotter()
         val snapshot = snapshotter.snapshot()
-        provideContent { Content(snapshot) }
+        provideContent { DayloopWidgetContent(snapshot) }
+    }
+}
+
+/** Exact Glance content surface exposed internally for Phase 17d/18 preview capture. */
+@Composable
+internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
+    val size = LocalSize.current
+    val layoutClass = widgetLayoutClass(size.width.value, size.height.value)
+    val palette = snapshot.skin.palette
+    val background = Color(palette.backgroundArgb)
+    val primary = Color(palette.primaryArgb)
+    val surface = Color(palette.surfaceArgb)
+    val surfaceAlt = Color(palette.surfaceAltArgb)
+    val outline = Color(palette.outlineArgb)
+
+    if (snapshot.isEmpty) {
+        Box(
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(background)
+                .appWidgetBackground()
+                .padding(12.dp),
+            contentAlignment = Alignment.CenterStart,
+        ) {
+            Text(
+                "dayloop",
+                style = TextStyle(
+                    color = ColorProvider(Color(palette.onSurfaceVariantArgb)),
+                    fontSize = 13.sp,
+                ),
+            )
+        }
+        return
     }
 
-    @Composable
-    private fun Content(snapshot: WidgetSnapshot) {
-        val size = LocalSize.current
-        val layoutClass = widgetLayoutClass(size.width.value, size.height.value)
-        val palette = snapshot.skin.palette
-        val background = Color(palette.backgroundArgb)
-        val primary = Color(palette.primaryArgb)
-        val surface = Color(palette.surfaceArgb)
-        val surfaceAlt = Color(palette.surfaceAltArgb)
-        val outline = Color(palette.outlineArgb)
+    when (snapshot.skin.treatment) {
+        WidgetTreatment.ENGINE -> Box(
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(background)
+                .appWidgetBackground()
+                .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 8.dp else 12.dp),
+        ) {
+            WidgetBody(snapshot, layoutClass, accentHeader = false)
+        }
 
-        if (snapshot.isEmpty) {
+        WidgetTreatment.ANGULAR -> Row(
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(background)
+                .appWidgetBackground()
+                .cornerRadius(2.dp),
+        ) {
+            // Glance cannot clip arbitrary paths. A hard accent rail plus a
+            // full-width header band preserves the skin's ribbon/angular
+            // hierarchy without game-specific bitmap resources.
+            Box(
+                modifier = GlanceModifier
+                    .width(if (layoutClass == WidgetLayoutClass.COMPACT) 5.dp else 7.dp)
+                    .fillMaxHeight()
+                    .background(primary),
+            ) {}
+            Box(
+                modifier = GlanceModifier
+                    .defaultWeight()
+                    .fillMaxHeight()
+                    .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 6.dp else 9.dp),
+            ) {
+                WidgetBody(snapshot, layoutClass, accentHeader = true)
+            }
+        }
+
+        WidgetTreatment.GLASS -> Box(
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(background)
+                .appWidgetBackground()
+                .cornerRadius(20.dp)
+                .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 4.dp else 6.dp),
+        ) {
+            Box(
+                modifier = GlanceModifier
+                    .fillMaxSize()
+                    .background(surfaceAlt)
+                    .cornerRadius(18.dp)
+                    .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 7.dp else 10.dp),
+            ) {
+                WidgetBody(snapshot, layoutClass, accentHeader = false)
+            }
+        }
+
+        WidgetTreatment.FRAMED -> Box(
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(primary)
+                .appWidgetBackground()
+                .cornerRadius(3.dp)
+                .padding(2.dp),
+        ) {
+            // Nested backgrounds are a RemoteViews-safe double-rule frame:
+            // the closest Glance approximation to a plaque/filigree edge.
             Box(
                 modifier = GlanceModifier
                     .fillMaxSize()
                     .background(background)
-                    .appWidgetBackground()
-                    .padding(12.dp),
-                contentAlignment = Alignment.CenterStart,
-            ) {
-                Text(
-                    "dayloop",
-                    style = TextStyle(
-                        color = ColorProvider(Color(palette.onSurfaceVariantArgb)),
-                        fontSize = 13.sp,
-                    ),
-                )
-            }
-            return
-        }
-
-        when (snapshot.skin.treatment) {
-            WidgetTreatment.ENGINE -> Box(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .background(background)
-                    .appWidgetBackground()
-                    .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 8.dp else 12.dp),
-            ) {
-                WidgetBody(snapshot, layoutClass, accentHeader = false)
-            }
-
-            WidgetTreatment.ANGULAR -> Row(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .background(background)
-                    .appWidgetBackground()
-                    .cornerRadius(2.dp),
-            ) {
-                // Glance cannot clip arbitrary paths. A hard accent rail plus a
-                // full-width header band preserves the skin's ribbon/angular
-                // hierarchy without game-specific bitmap resources.
-                Box(
-                    modifier = GlanceModifier
-                        .width(if (layoutClass == WidgetLayoutClass.COMPACT) 5.dp else 7.dp)
-                        .fillMaxHeight()
-                        .background(primary),
-                ) {}
-                Box(
-                    modifier = GlanceModifier
-                        .defaultWeight()
-                        .fillMaxHeight()
-                        .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 6.dp else 9.dp),
-                ) {
-                    WidgetBody(snapshot, layoutClass, accentHeader = true)
-                }
-            }
-
-            WidgetTreatment.GLASS -> Box(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .background(background)
-                    .appWidgetBackground()
-                    .cornerRadius(20.dp)
-                    .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 4.dp else 6.dp),
-            ) {
-                Box(
-                    modifier = GlanceModifier
-                        .fillMaxSize()
-                        .background(surfaceAlt)
-                        .cornerRadius(18.dp)
-                        .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 7.dp else 10.dp),
-                ) {
-                    WidgetBody(snapshot, layoutClass, accentHeader = false)
-                }
-            }
-
-            WidgetTreatment.FRAMED -> Box(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .background(primary)
-                    .appWidgetBackground()
-                    .cornerRadius(3.dp)
                     .padding(2.dp),
             ) {
-                // Nested backgrounds are a RemoteViews-safe double-rule frame:
-                // the closest Glance approximation to a plaque/filigree edge.
                 Box(
                     modifier = GlanceModifier
                         .fillMaxSize()
-                        .background(background)
-                        .padding(2.dp),
+                        .background(outline)
+                        .padding(1.dp),
                 ) {
                     Box(
                         modifier = GlanceModifier
                             .fillMaxSize()
-                            .background(outline)
-                            .padding(1.dp),
+                            .background(surface)
+                            .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 6.dp else 9.dp),
                     ) {
-                        Box(
-                            modifier = GlanceModifier
-                                .fillMaxSize()
-                                .background(surface)
-                                .padding(if (layoutClass == WidgetLayoutClass.COMPACT) 6.dp else 9.dp),
-                        ) {
-                            WidgetBody(snapshot, layoutClass, accentHeader = false)
-                        }
+                        WidgetBody(snapshot, layoutClass, accentHeader = false)
                     }
                 }
             }

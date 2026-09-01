@@ -1,6 +1,6 @@
-# Phase 17 — Widget, icon & launch parity
+# Phase 17 — Widget, icon & launch parity ✅
 
-This document expands `docs/ROADMAP-v3.md` Phase 17 into reviewable implementation slices. The parent roadmap remains authoritative for the overall goal and acceptance criteria; this file defines delivery order and ownership boundaries.
+This document expands `docs/ROADMAP-v3.md` Phase 17 into reviewable implementation slices. Phase 17 is complete on `main`; Phase 18 is now the active roadmap phase.
 
 ## Delivery order
 
@@ -67,26 +67,32 @@ Acceptance:
 - Packs without a badge retain current launcher treatment.
 - No game-specific launcher logic or literals enter engine Kotlin.
 
-### Phase 17d — Widget/cold-start preview fixtures
+### Phase 17d — Widget/cold-start preview fixtures ✅
 
 **Goal:** produce stable preview inputs for the Phase 18 screenshot parity matrix.
 
-Scope:
+Landed:
 
-- Add representative widget previews/fixtures for engine, Phantom, Moonlight, and Royal.
-- Add cold-start/loading-shell preview fixtures for the same skin set and light/dark modes where supported.
-- Document any platform-only pieces that cannot be deterministically screenshot-tested on JVM.
-- Feed these fixtures into the Phase 18 screenshot-test rollout instead of introducing a second visual baseline system.
+- A debug-only canonical fixture matrix in `Phase17PreviewFixtures`: four generic skin families (`engine`, `masks`, `moon`, `crown`) × the three responsive widget sizes.
+- One identical widget semantic payload across every skin, so screenshot diffs isolate visual chrome rather than content changes.
+- Four skin families × light/dark cold-start fixtures plus Android Studio Compose previews of the exact production `StartupShell()`.
+- The exact production `DayloopWidgetContent(...)` and `StartupShell()` surfaces are internally reusable by the future screenshot harness instead of being copied into preview-only UI.
+- Stable fixture ids are unit-test pinned so Phase 18 can attach golden screenshots to a durable naming contract.
+- Platform boundaries and handoff rules are documented in `docs/preview-fixtures.md`: the Android system splash and Glance host are platform-backed; Phase 18 adds capture/goldens rather than a second fixture matrix.
 
 Acceptance:
 
 - Widget and cold-start rows have deterministic fixtures ready for Phase 18 screenshot pinning.
-- Preview data contains no game-specific branching in engine code.
+- Preview data uses only generic skin DSL tokens; no game-specific branching entered engine code.
 
-## Sequencing rules
+## Phase 17 closeout
 
-- 17a lands first because every later preview depends on stable startup skin resolution.
-- 17b may add only generic Glance primitives; it must not introduce launcher concerns.
-- 17c owns launcher-badge schema/lint so widget work does not become coupled to launcher resources.
-- 17d is verification preparation, not the full screenshot regression system; the latter remains Phase 18.
-- Phase 17 is complete only when the parent roadmap’s widget, launcher, cold-start, fallback, and preview acceptance criteria are all satisfied.
+All four slices are complete. The parent Phase 17 acceptance criteria are now represented by shipped runtime behavior, lint/tests, and deterministic Phase 18 inputs:
+
+- startup resolves the persisted skin before first visible app content;
+- widget chrome is responsive and skin-driven while semantics remain invariant;
+- launcher badge decoration is optional, validated, Dayloop-owned at the base, and fail-closed;
+- engine/theme-less fallbacks remain intact;
+- widget/cold-start fixture rows are ready for screenshot pinning.
+
+Phase 18 owns screenshot goldens, budgets, animated WebP conversion, `strip-art`, macrobenchmark smoke, and final release hardening.
