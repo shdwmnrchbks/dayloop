@@ -16,6 +16,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -82,9 +83,20 @@ private fun RuleBasedAchievements(
             routeId = state.activeRouteId,
         )
     }
-    val rows = remember(pack.achievements, completedEvents, state.earnedAchievements, currentDate) {
+    val rows = remember(
+        pack.achievements,
+        completedEvents,
+        state.earnedAchievements,
+        state.achievementCounts,
+        currentDate,
+    ) {
         pack.achievements.map { achievement ->
-            val progress = achievementProgress(achievement, currentDate, completedEvents)
+            val progress = achievementProgress(
+                achievement = achievement,
+                currentDate = currentDate,
+                completedEvents = completedEvents,
+                manualUnits = state.achievementCounts[achievement.id] ?: 0,
+            )
             AchievementRowState(
                 achievement = achievement,
                 progress = progress,
@@ -104,7 +116,7 @@ private fun RuleBasedAchievements(
     val earnedCount = rows.count { it.earned }
     val actionableCount = rows.count { !it.earned && it.progress.available }
     val upcomingCount = rows.size - earnedCount - actionableCount
-    val autoCount = rows.count { it.progress.completed && !it.manualEarned }
+    val autoCount = rows.count { it.progress.completed && it.progress.automatic && !it.manualEarned }
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -117,7 +129,7 @@ private fun RuleBasedAchievements(
                 due = actionableCount,
                 upcoming = upcomingCount,
                 currentDate = currentDate,
-                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; combat, choices, and uncertain results stay confirmable.",
+                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative gameplay goals keep profile-scoped counters, while choices and uncertain results stay confirmable.",
             )
         }
         items(rows, key = { it.achievement.id }) { row ->
@@ -127,6 +139,9 @@ private fun RuleBasedAchievements(
                 currentDate = currentDate,
                 onEarnedChange = { earned ->
                     vm.setAchievementEarned(row.achievement.id, earned)
+                },
+                onProgressChange = { count ->
+                    vm.setAchievementCount(row.achievement.id, count)
                 },
             )
         }
@@ -147,6 +162,7 @@ private fun RuleAchievementRow(
     row: AchievementRowState,
     currentDate: String,
     onEarnedChange: (Boolean) -> Unit,
+    onProgressChange: (Int) -> Unit,
 ) {
     val achievement = row.achievement
     val progress = row.progress
@@ -207,12 +223,47 @@ private fun RuleAchievementRow(
                     color = if (earned) MaterialTheme.colorScheme.onSecondaryContainer
                     else MaterialTheme.colorScheme.secondary,
                 )
+                if (!progress.automatic && progress.totalUnits > 1) {
+                    AchievementCounterControls(
+                        progress = progress,
+                        onProgressChange = onProgressChange,
+                    )
+                }
             }
             Checkbox(
                 checked = earned,
                 enabled = !progress.completed,
                 onCheckedChange = if (progress.completed) null else onEarnedChange,
             )
+        }
+    }
+}
+
+@Composable
+private fun AchievementCounterControls(
+    progress: AchievementProgress,
+    onProgressChange: (Int) -> Unit,
+) {
+    Spacer(Modifier.height(2.dp))
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+    ) {
+        TextButton(
+            enabled = progress.available && progress.completedUnits > 0,
+            onClick = { onProgressChange(progress.completedUnits - 1) },
+        ) {
+            Text("−1")
+        }
+        Text(
+            text = "${progress.completedUnits} / ${progress.totalUnits}",
+            style = MaterialTheme.typography.labelLarge,
+        )
+        TextButton(
+            enabled = progress.available && progress.completedUnits < progress.totalUnits,
+            onClick = { onProgressChange(progress.completedUnits + 1) },
+        ) {
+            Text("+1")
         }
     }
 }
@@ -224,7 +275,9 @@ private fun achievementStatus(
     currentDate: String,
 ): String {
     if (manualEarned) return "Earned"
-    if (progress.completed) return "Earned automatically"
+    if (progress.completed) {
+        return if (progress.automatic) "Earned automatically" else "Earned by tracked progress"
+    }
     if (!progress.available) return "Upcoming · ${achievement.availableFrom}"
 
     val progressText = if (progress.totalUnits > 1) {
@@ -233,13 +286,18 @@ private fun achievementStatus(
     val expected = achievement.expectedBy?.let { date ->
         if (currentDate >= date) "check now" else "expected by $date"
     }
-    val base = when (achievement.tracking.type) {
-        AchievementTrackingTypes.EVENT,
-        AchievementTrackingTypes.ALL_EVENTS,
-        AchievementTrackingTypes.ANY_EVENT,
-        AchievementTrackingTypes.COUNTER,
-        AchievementTrackingTypes.STORY_DATE -> progressText ?: expected ?: "Tracked automatically"
-        AchievementTrackingTypes.CONDITIONAL -> expected?.let { "Confirmation needed · $it" } ?: "Confirmation needed"
+    val base = when {
+        progressText != null && !progress.automatic ->
+            listOfNotNull(progressText, expected).joinToString(" · ")
+        achievement.tracking.type in setOf(
+            AchievementTrackingTypes.EVENT,
+            AchievementTrackingTypes.ALL_EVENTS,
+            AchievementTrackingTypes.ANY_EVENT,
+            AchievementTrackingTypes.COUNTER,
+            AchievementTrackingTypes.STORY_DATE,
+        ) -> progressText ?: expected ?: "Tracked automatically"
+        achievement.tracking.type == AchievementTrackingTypes.CONDITIONAL ->
+            expected?.let { "Confirmation needed · $it" } ?: "Confirmation needed"
         else -> expected?.let { "Manual tracking · $it" } ?: "Manual tracking"
     }
     return if (achievement.missable) "$base · Missable" else base
