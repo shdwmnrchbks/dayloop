@@ -79,7 +79,8 @@ jobs:
 
     steps:
       - name: Report runner selection
-        run: echo "Runner route: ${{ needs.select-runner.outputs.kind }}"
+        run: |
+          echo "Runner route: ${{ needs.select-runner.outputs.kind }}"
 
       - name: Checkout
         uses: actions/checkout@v4
