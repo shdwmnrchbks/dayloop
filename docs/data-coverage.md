@@ -17,14 +17,14 @@ vibes. Every field in the pack schema is either rendered somewhere, reachable in
 Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 (list + detail), **Deadlines**, **Answers**, **Activities** (list + detail),
 **Search**, **Settings**, **Media** (pack graphic gallery), **Onboarding**,
-**Widget**.
+**Widget**, **Cold start**, **Launcher shortcut**.
 
 ## pack.json (`Pack`)
 
 | Field | Served by | Status |
 |---|---|---|
 | `packId` | Settings (save-stamp line); identity in Room saves | Served |
-| `title` | Top bar, Onboarding cards, Settings game list, Widget | Served |
+| `title` | Top bar, Onboarding cards, Settings game list, Widget, launcher shortcut label | Served |
 | `contentVersion` | Settings (save-stamp + "content was updated" notice) | Served |
 | `timeModel` | Engine: calendar construction + Clock stepping | Intentionally not served (engine dimension; no user-facing distinction) |
 | `calendar.startDate` / `endDate` | Clock bounds (End-Day enablement); Onboarding range | Served |
@@ -42,11 +42,19 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `labels.bond` | Bottom-bar tab label ("Confidants"/"Social Links"/"Followers"), Search section header | Served |
 | `labels.stat` | Activities detail section header ("<Stat label> gains") | Served |
 | `labels.deadlineKinds` | Deadline kind chips ("Palace"/"Mission"/…), pack override per kind token (⟂ packlint-validated closed set) | Served |
-| `theme.accent` / `theme.accentDark` | Seed colors: Theme.kt builds the full Material 3 light/dark schemes for the active pack (whole app recolors on pack switch); dark seed also drives the widget accent | Served |
+| `theme.accent` / `theme.accentDark` | Theme.kt builds the full Material 3 light/dark schemes for the active pack; the dark scheme also supplies the full Phase 17 widget palette and the saved skin is used before first visible app content | Served |
 | `theme.style` | Closed-set scheme-character token (tonalSpot/vibrant/expressive/content) → scheme variant in Theme.kt | Served |
-| `theme.motif` | Reserved decorative slug token — declared + lint-validated, no surface consumes it yet | Intentionally not served (reserved for future motif-driven decoration; ROADMAP-v3 Phase 12 promotes it) |
-| `theme.art` | Named art slots: `card` → onboarding carousel cover, `icon` → Settings/PackIcon tiles; unknown slots ride along for future surfaces. packlint validates every declared file | Served (card, icon) |
+| `theme.motif` | Closed-set decorative family (`masks`/`moon`/`crown`) → skin painter/family defaults across app surfaces; Phase 17b maps the same generic family into Glance-safe widget treatments and cold-start uses the resolved skin | Served |
+| `theme.art` | Named art slots: `card` → onboarding cover, `icon` → Settings tiles, `launcherBadge` → optional Dayloop-owned dynamic launcher-shortcut decoration. Every declared file is packlint-validated; unknown valid slots may ride along for future surfaces | Served for known slots |
+| `theme.shapes` | Closed-set card/chip/header/frame silhouettes consumed by Compose skin primitives; Phase 17b also resolves generic shape families into widget angular/framed treatment | Served |
+| `theme.typography` | Bundled display/title/body font roles + case/italic/tracking consumed by the app theme; invalid/missing declarations fail packlint and unreadable runtime fonts fall back to engine type | Served when declared |
+| `theme.decor` | Header/panel/divider decoration art consumed by skin surfaces; `StartupShell` uses the resolved panel decoration, with motif procedural painters as fallback | Served when declared |
+| `theme.motion` | Closed-set navigation/reveal motion grammar and skin feedback selection; remove-animations disables it. Widget/launcher surfaces intentionally do not consume app-only motion | Served |
 | `theme.sfx` | Named sound moments (`tap`/`advance`/`complete`, closed set) → SkinFx playback on mark-toggle/End-Day/perfect-day, only while the user enables "Skin sounds" in Settings; never on the widget. packlint validates slot, .ogg extension, and the ≤100 KB per-file budget. Optional — no bundled pack ships audio yet (v0.11.0 lands the engine capability; files need an OGG encoder to author) | Served when declared |
+
+Phase 17 launcher-badge-specific dimensions/format rules are documented in
+`docs/launcher-badges.md`. Stable widget/cold-start verification inputs are
+documented in `docs/preview-fixtures.md` and are debug-only, not pack schema.
 
 ## media.json (`MediaFile`, `MediaItem`) — docs/ROADMAP-v3.md Phase 11
 
