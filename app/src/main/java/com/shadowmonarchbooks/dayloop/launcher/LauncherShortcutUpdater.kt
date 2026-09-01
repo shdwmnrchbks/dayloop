@@ -54,7 +54,12 @@ class LauncherShortcutUpdater @Inject constructor(
                 .filter { it.selectionReady }
                 .map { it.selected }
                 .distinctUntilChangedBy { it?.slug to it?.launcherBadgeAsset }
-                .collect { pack -> sync(pack) }
+                .collect { pack ->
+                    // Launcher implementations differ. Any platform/launcher
+                    // failure must degrade to the unchanged primary app icon,
+                    // never escape this app-lifetime background sync.
+                    runCatching { sync(pack) }
+                }
         }
     }
 
