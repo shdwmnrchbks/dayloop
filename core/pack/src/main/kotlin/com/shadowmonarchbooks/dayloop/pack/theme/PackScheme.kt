@@ -76,10 +76,10 @@ private val SCHEME_ROLES: List<Pair<String, (com.materialkolor.dynamiccolor.Mate
     "surfaceContainerHighest" to { m -> m.surfaceContainerHighest() },
 )
 
-private const val INK_BLACK: Int = 0xFF000000.toInt()
-private const val INK_NEAR_BLACK: Int = 0xFF181818.toInt()
-private const val INK_PAPER: Int = 0xFFF0F0F0.toInt()
-private const val INK_WHITE: Int = 0xFFFFFFFF.toInt()
+private val INK_BLACK: Int = 0xFF000000.toInt()
+private val INK_NEAR_BLACK: Int = 0xFF181818.toInt()
+private val INK_PAPER: Int = 0xFFF0F0F0.toInt()
+private val INK_WHITE: Int = 0xFFFFFFFF.toInt()
 
 private fun shade(argb: Int, factor: Double): Int {
     fun channel(shift: Int): Int = ((((argb shr shift) and 0xFF) * factor).roundToInt()).coerceIn(0, 255)
