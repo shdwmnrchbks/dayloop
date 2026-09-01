@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,8 +23,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementDefinition
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingTypes
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
@@ -35,10 +39,9 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 /**
  * Profile-scoped achievement tracker.
  *
- * The pack's achievement media is the source of truth for what can be tracked.
- * Date/month anchors drive availability automatically as the persisted in-game
- * clock advances; earning is explicit because reaching a date never proves the
- * player actually satisfied an achievement condition.
+ * New packs can ship achievements.json rules that derive progress from the
+ * in-game clock and DONE walkthrough steps. Packs that only ship achievement
+ * media keep the legacy date/month availability tracker.
  */
 @Composable
 fun AchievementsScreen(vm: DayloopViewModel) {
@@ -47,6 +50,12 @@ fun AchievementsScreen(vm: DayloopViewModel) {
         EmptyState("No pack selected.")
         return
     }
+
+    if (pack.achievements.isNotEmpty()) {
+        RuleBasedAchievements(pack, vm, state.currentDate ?: pack.pack.calendar.startDate)
+        return
+    }
+
     val achievements = remember(pack) {
         pack.media.filter { it.kind == MediaKinds.ACHIEVEMENT }
     }
@@ -55,7 +64,195 @@ fun AchievementsScreen(vm: DayloopViewModel) {
         return
     }
 
-    val currentDate = state.currentDate ?: pack.pack.calendar.startDate
+    LegacyMediaAchievements(pack, vm, state.currentDate ?: pack.pack.calendar.startDate, achievements)
+}
+
+@Composable
+private fun RuleBasedAchievements(
+    pack: LoadedPack,
+    vm: DayloopViewModel,
+    currentDate: String,
+) {
+    val state by vm.state.collectAsState()
+    val completedEvents = remember(pack.achievementEvents, state.days, state.marks, state.activeRouteId) {
+        completedAchievementEvents(
+            anchors = pack.achievementEvents,
+            days = state.days,
+            marks = state.marks,
+            routeId = state.activeRouteId,
+        )
+    }
+    val rows = remember(pack.achievements, completedEvents, state.earnedAchievements, currentDate) {
+        pack.achievements.map { achievement ->
+            val progress = achievementProgress(achievement, currentDate, completedEvents)
+            AchievementRowState(
+                achievement = achievement,
+                progress = progress,
+                manualEarned = achievement.id in state.earnedAchievements,
+            )
+        }.sortedWith(
+            compareBy<AchievementRowState> {
+                when {
+                    it.earned -> 1
+                    it.progress.available -> 0
+                    else -> 2
+                }
+            }.thenBy { it.achievement.expectedBy ?: it.achievement.availableFrom ?: "9999-99-99" }
+                .thenBy { it.achievement.title },
+        )
+    }
+    val earnedCount = rows.count { it.earned }
+    val actionableCount = rows.count { !it.earned && it.progress.available }
+    val upcomingCount = rows.size - earnedCount - actionableCount
+    val autoCount = rows.count { it.progress.completed && !it.manualEarned }
+
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+    ) {
+        item(key = "summary") {
+            AchievementSummary(
+                earned = earnedCount,
+                total = rows.size,
+                due = actionableCount,
+                upcoming = upcomingCount,
+                currentDate = currentDate,
+                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; combat, choices, and uncertain results stay confirmable.",
+            )
+        }
+        items(rows, key = { it.achievement.id }) { row ->
+            RuleAchievementRow(
+                pack = pack,
+                row = row,
+                currentDate = currentDate,
+                onEarnedChange = { earned ->
+                    vm.setAchievementEarned(row.achievement.id, earned)
+                },
+            )
+        }
+    }
+}
+
+private data class AchievementRowState(
+    val achievement: AchievementDefinition,
+    val progress: AchievementProgress,
+    val manualEarned: Boolean,
+) {
+    val earned: Boolean get() = manualEarned || progress.completed
+}
+
+@Composable
+private fun RuleAchievementRow(
+    pack: LoadedPack,
+    row: AchievementRowState,
+    currentDate: String,
+    onEarnedChange: (Boolean) -> Unit,
+) {
+    val achievement = row.achievement
+    val progress = row.progress
+    val earned = row.earned
+    val icon = achievement.iconMediaRef?.let { id -> pack.media.firstOrNull { it.id == id } }
+    val status = achievementStatus(achievement, progress, row.manualEarned, currentDate)
+    val skin = LocalSkin.current
+
+    Surface(
+        shape = skin.shapes.card,
+        color = if (earned) MaterialTheme.colorScheme.secondaryContainer
+        else MaterialTheme.colorScheme.surfaceVariant,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.skinDecor("panel").padding(10.dp),
+        ) {
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = MaterialTheme.colorScheme.surface,
+                modifier = Modifier.size(56.dp),
+            ) {
+                if (icon != null) {
+                    MediaImage(
+                        assetPath = pack.assetOf(icon),
+                        title = achievement.title,
+                        size = 56.dp,
+                        modifier = Modifier.padding(5.dp),
+                    )
+                } else {
+                    Text(
+                        text = "★",
+                        style = MaterialTheme.typography.headlineMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(top = 10.dp),
+                    )
+                }
+            }
+            Column(Modifier.weight(1f)) {
+                Text(
+                    text = achievement.title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.SemiBold,
+                )
+                achievement.description?.let { description ->
+                    Text(
+                        text = description,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Spacer(Modifier.height(2.dp))
+                }
+                Text(
+                    text = status,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = if (earned) MaterialTheme.colorScheme.onSecondaryContainer
+                    else MaterialTheme.colorScheme.secondary,
+                )
+            }
+            Checkbox(
+                checked = earned,
+                enabled = !progress.completed,
+                onCheckedChange = if (progress.completed) null else onEarnedChange,
+            )
+        }
+    }
+}
+
+private fun achievementStatus(
+    achievement: AchievementDefinition,
+    progress: AchievementProgress,
+    manualEarned: Boolean,
+    currentDate: String,
+): String {
+    if (manualEarned) return "Earned"
+    if (progress.completed) return "Earned automatically"
+    if (!progress.available) return "Upcoming · ${achievement.availableFrom}"
+
+    val progressText = if (progress.totalUnits > 1) {
+        "${progress.completedUnits} / ${progress.totalUnits} tracked"
+    } else null
+    val expected = achievement.expectedBy?.let { date ->
+        if (currentDate >= date) "check now" else "expected by $date"
+    }
+    val base = when (achievement.tracking.type) {
+        AchievementTrackingTypes.EVENT,
+        AchievementTrackingTypes.ALL_EVENTS,
+        AchievementTrackingTypes.ANY_EVENT,
+        AchievementTrackingTypes.COUNTER,
+        AchievementTrackingTypes.STORY_DATE -> progressText ?: expected ?: "Tracked automatically"
+        AchievementTrackingTypes.CONDITIONAL -> expected?.let { "Confirmation needed · $it" } ?: "Confirmation needed"
+        else -> expected?.let { "Manual tracking · $it" } ?: "Manual tracking"
+    }
+    return if (achievement.missable) "$base · Missable" else base
+}
+
+@Composable
+private fun LegacyMediaAchievements(
+    pack: LoadedPack,
+    vm: DayloopViewModel,
+    currentDate: String,
+    achievements: List<MediaItem>,
+) {
+    val state by vm.state.collectAsState()
     val earnedIds = state.earnedAchievements
     val earnedCount = achievements.count { it.id in earnedIds }
     val dueCount = achievements.count { it.id !in earnedIds && achievementIsDue(it, currentDate) }
@@ -83,10 +280,11 @@ fun AchievementsScreen(vm: DayloopViewModel) {
                 due = dueCount,
                 upcoming = upcomingCount,
                 currentDate = currentDate,
+                detail = "Availability advances with End Day; earned status is confirmed manually for this pack.",
             )
         }
         items(ordered, key = { it.id }) { item ->
-            AchievementRow(
+            LegacyAchievementRow(
                 pack = pack,
                 item = item,
                 currentDate = currentDate,
@@ -104,6 +302,7 @@ private fun AchievementSummary(
     due: Int,
     upcoming: Int,
     currentDate: String,
+    detail: String,
 ) {
     val skin = LocalSkin.current
     Surface(
@@ -126,7 +325,7 @@ private fun AchievementSummary(
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
             Text(
-                text = "Tracked against in-game date $currentDate. Availability advances with End Day; Earned stays manual.",
+                text = "In-game date $currentDate. $detail",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.78f),
             )
@@ -135,7 +334,7 @@ private fun AchievementSummary(
 }
 
 @Composable
-private fun AchievementRow(
+private fun LegacyAchievementRow(
     pack: LoadedPack,
     item: MediaItem,
     currentDate: String,
