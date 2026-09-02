@@ -6,6 +6,7 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class P5RActivityCatalogAuditTest {
@@ -157,5 +158,77 @@ class P5RActivityCatalogAuditTest {
             assertTrue(game.acquisition in notes, "${game.id}: missing audited acquisition source")
             assertTrue("Game Secrets enables a cheat" in notes, "${game.id}: Game Secrets should affect difficulty, not point value")
         }
+    }
+
+    @Test
+    fun `p5r Royal book metadata distinguishes real sources from route reading locations`() {
+        val root = contentPacksDir() ?: return
+        val p5r = PackLoader.load(root.resolve("p5r"))
+        assertEquals(emptyList(), p5r.parseIssues)
+
+        val books = p5r.activities?.activities.orEmpty()
+            .filter { it.kind == "book" }
+            .associateBy { it.id }
+
+        fun book(id: String) = books.getValue("p5r.activity.book.$id")
+
+        // Royal moved Speed Reader out of the old Jinbocho chain and into the
+        // school library; this is an easy vanilla/Royal regression to reintroduce.
+        assertTrue(book("speed-reader").location.orEmpty().contains("School library"))
+        assertTrue(book("speed-reader").notes.orEmpty().contains("7/1"))
+        assertFalse(book("speed-reader").location.orEmpty().contains("Jinbocho"))
+
+        // Taiheido stat books: source plus route reading contexts stay visible.
+        listOf("medjed-menace", "art-of-charm", "buchikos-story", "wise-mens-words", "ghost-encounters", "tidying-the-heart").forEach { id ->
+            assertTrue(book(id).location.orEmpty().contains("Central Street bookstore"), "$id must retain its Taiheido source")
+        }
+        assertTrue(book("social-thought").location.orEmpty().contains("Central Street bookstore"))
+        assertTrue(book("social-thought").notes.orEmpty().contains("Knowledge reaches rank 2"))
+
+        // Activity-gated Shinjuku technique books should say what exposes them.
+        val shinjukuUnlocks = mapOf(
+            "flowerpedia" to "after working at the flower shop",
+            "craft-of-cinema" to "after watching a movie or DVD",
+            "game-secrets" to "after playing a retro game",
+            "learn-pro-darts" to "after playing darts",
+            "abc-of-crafting" to "after crafting an infiltration tool",
+            "batting-science" to "after using the batting cages",
+            "essence-of-fishing" to "after fishing at Ichigaya",
+        )
+        shinjukuUnlocks.forEach { (id, unlock) ->
+            val actual = book(id)
+            assertTrue(actual.location.orEmpty().contains("Shinjuku bookstore"), "$id must identify its bookstore source")
+            assertTrue(actual.notes.orEmpty().contains(unlock), "$id must identify its activity unlock")
+        }
+
+        // Royal Jinbocho: Master Swordsman unlocks the other four stat books;
+        // Knowing the Heart appears after all five stat books are read.
+        val jinbochoStats = mapOf(
+            "master-swordsman" to mapOf("guts" to 7),
+            "call-me-chief" to mapOf("kindness" to 7),
+            "reckless-casanova" to mapOf("charm" to 7),
+            "heroic-revelations" to mapOf("knowledge" to 7),
+            "art-of-automata" to mapOf("proficiency" to 7),
+        )
+        jinbochoStats.forEach { (id, gain) ->
+            val actual = book(id)
+            assertTrue(actual.location.orEmpty().contains("Jinbocho bookstore"), "$id must identify its Jinbocho source")
+            assertEquals(gain, actual.statGains, id)
+        }
+        assertFalse(book("heroic-revelations").location.orEmpty().contains("School library"))
+        assertTrue(book("master-swordsman").notes.orEmpty().contains("unlocks Call Me Chief"))
+        assertTrue(book("heroic-revelations").notes.orEmpty().contains("after finishing Master Swordsman"))
+        assertTrue(book("knowing-the-heart").notes.orEmpty().contains("after reading all five Jinbocho stat books"))
+
+        // Request/trader rewards are not bookstore purchases.
+        assertTrue(book("chinese-sweets").location.orEmpty().contains("Mementos request reward"))
+        assertTrue(book("chinese-sweets").notes.orEmpty().contains("Part-time Job, Full-time Hell"))
+        assertTrue(book("factorization-guide").location.orEmpty().contains("Kichijoji alley trade"))
+        assertTrue(book("factorization-guide").notes.orEmpty().contains("7/26–7/30"))
+
+        // Royal billiards technique books use the sports/club progression.
+        assertTrue(book("expert-billiards").location.orEmpty().contains("Underground Mall sports store"))
+        assertTrue(book("expert-billiards").notes.orEmpty().contains("after playing billiards"))
+        assertTrue(book("billiards-magician").notes.orEmpty().contains("Technical Rank 3"))
     }
 }
