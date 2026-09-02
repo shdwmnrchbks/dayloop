@@ -66,5 +66,11 @@ class P5RDecemberAuditTest {
         assertTrue(day("2016-12-23").steps.any { it.label.contains("Boss Undies") })
         assertEquals(mapOf("kindness" to 3), gain("2016-12-23", "Train of Life"))
         assertEquals(mapOf("charm" to 5), gain("2016-12-24", "Exam results"))
+
+        val promise = p5r.deadlines?.deadlines?.single { it.id == "p5r.deadline.missable.keep-the-promise" }
+        assertEquals("2016-12-08", promise?.date)
+        assertEquals(null, promise?.window)
+        assertTrue(promise?.label.orEmpty().contains("Completion-route reminder"))
+        assertTrue(promise?.label.orEmpty().contains("after Justice rank 10"))
     }
 }
