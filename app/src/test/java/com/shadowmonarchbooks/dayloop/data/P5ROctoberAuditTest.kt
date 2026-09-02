@@ -80,6 +80,8 @@ class P5ROctoberAuditTest {
         val dvdTarget = p5r.deadlines?.deadlines?.single { it.id == "p5r.deadline.missable.dvd-rentals" }
         assertEquals("2016-10-23", dvdTarget?.date)
         assertEquals(null, dvdTarget?.window)
+        assertEquals("routeTarget", dvdTarget?.kind)
+        assertEquals("Route target", p5r.pack?.labels?.deadlineKind("routeTarget"))
         assertTrue(dvdTarget?.label.orEmpty().contains("Completion-route target"))
         assertTrue(dvdTarget?.label.orEmpty().contains("no rental return deadline"))
     }
