@@ -43,6 +43,13 @@ class P5RAchievementCatalogAuditTest {
         assertEquals(53, byId.size, "Royal trophy ids must be unique")
         assertEquals(50, legacyTrophyIds.size, "the imported guide art covers 50 of Royal's 53 trophies")
         assertTrue(byId.keys.containsAll(legacyTrophyIds), "legacy media trophy ids must remain achievement ids so existing checked state survives")
+        legacyTrophyIds.forEach { id ->
+            assertEquals(
+                mediaById.getValue(id).title,
+                byId.getValue(id).title,
+                "$id must keep the same visible trophy identity when migrating from media fallback to achievements.json",
+            )
+        }
 
         val addedWithoutGuideArt = mapOf(
             "p5r.achievement.its-showtime" to "It's Showtime!",
