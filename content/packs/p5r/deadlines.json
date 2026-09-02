@@ -92,9 +92,9 @@
     },
     {
       "id": "p5r.deadline.missable.keep-the-promise",
-      "label": "After Justice rank 10, choose to keep the promise for optional Akechi content",
+      "label": "Completion-route reminder after Justice rank 10 — choose to keep the promise for optional Akechi content",
       "kind": "missable",
-      "window": { "start": "2016-11-25", "end": "2016-12-17" }
+      "date": "2016-12-08"
     },
     {
       "id": "p5r.deadline.missable.faith-rank5",
