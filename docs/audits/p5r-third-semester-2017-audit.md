@@ -16,6 +16,10 @@ Royal route.
 - **marendarade, GameFAQs Persona 5 Royal Social Stats**: reusable Royal activity
   mechanics for first-time movies, The Craft of Cinema, retro games, Sunday
   drinks, fishing and Big Bang Burger challenge tiers.
+- **Neoseeker Royal January / final-Palace walkthrough** and **GameFAQs Royal
+  deadline discussions**: independent checks that February 3 is the final
+  Palace/story confrontation date but the Treasure route must be secured by
+  February 2.
 - **Samurai Gamers Royal walkthrough/social-stat pages**: secondary check for
   darts execution, movie categories, retro-game categories and Big Bang Burger
   challenge tiers.
@@ -83,14 +87,32 @@ minigame easier:
   +3 to Knowledge/Guts/Proficiency/Charm for the Gravity tier on 1/19 and +5 to
   those four stats for the Cosmic tier on 1/23.
 
+### Final Palace deadline semantics
+
+Royal presents **February 3** as the final Palace/story deadline, but the
+Treasure route must already be secured by **February 2**. The calling-card/final
+sequence is then story-controlled. A single February 3 deadline caused Dayloop's
+countdown to imply that February 2 was still a spare day for route preparation.
+
+The pack now represents the two independently checkable facts separately:
+
+- `p5r.deadline.missable.palace8-route` — February 2, actionable deadline to
+  secure the Treasure route.
+- `p5r.deadline.palace8` — February 3, Palace story/final-confrontation date.
+
+This is deliberately not a route-selected date: the February 2 route-security
+requirement is a universal failure condition for the Royal final Palace.
+
 ## Verification boundary
 
 This pass completes the targeted hidden-point/modifier audit through February 1,
-2017. It does **not** assert that the completion route's chosen Faith rank dates,
+2017 and corrects the final Palace's actionable deadline semantics. It does
+**not** assert that the completion route's chosen Faith rank dates,
 third-awakening order, cleanup activities or free-time choices are the only
 possible Royal schedule. Those remain route selections unless separately
 encoded as universal gates or story timing.
 
 `P5RThirdSemesterAuditTest` pins the corrected January–February values, active
-Craft of Cinema labels, and January classroom answers so future imports cannot
-silently reintroduce note counts or flattened answers.
+Craft of Cinema labels, January classroom answers, and the February 2/3 deadline
+split so future imports cannot silently reintroduce note counts, flattened
+answers or the off-by-one actionable deadline.
