@@ -68,9 +68,15 @@
     },
     {
       "id": "p5r.deadline.palace8",
-      "label": "Royal final palace deadline — finish the heist beforehand",
+      "label": "Royal final Palace story deadline — final confrontation",
       "kind": "palace",
       "date": "2017-02-03"
+    },
+    {
+      "id": "p5r.deadline.missable.palace8-route",
+      "label": "Royal final Palace — secure the Treasure route by February 2",
+      "kind": "missable",
+      "date": "2017-02-02"
     },
     {
       "id": "p5r.deadline.missable.councilor-rank9",
