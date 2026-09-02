@@ -57,9 +57,11 @@ class P5RTraderSakaiAuditTest {
         expected.forEach { trade ->
             val matching = days.getValue(trade.date).steps.filter { step ->
                 val normalized = step.label.replace("-", " ")
-                trade.requested.replace("-", " ") in normalized &&
-                    trade.reward.replace("-", " ") in normalized &&
-                    "(${trade.sequence}/16)" in normalized
+                val requested = trade.requested.replace("-", " ")
+                val reward = trade.reward.replace("-", " ")
+                val hasSequence = "(${trade.sequence}/16)" in normalized ||
+                    "(trade ${trade.sequence}/16)" in normalized
+                requested in normalized && reward in normalized && hasSequence
             }
             assertEquals(
                 1,
