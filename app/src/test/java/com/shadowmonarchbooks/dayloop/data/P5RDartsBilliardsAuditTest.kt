@@ -29,9 +29,9 @@ class P5RDartsBilliardsAuditTest {
         val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
         fun step(date: String, marker: String) = days.getValue(date).steps.single { marker in it.label }
 
-        // Darts: the source route uses the tutorial session for Ryuji rank 2,
+        // Darts: the source route uses the mandatory tutorial session for Ryuji rank 2,
         // then two later sessions to push pairs of teammates directly to rank 3.
-        val ryuji = step("2016-06-05", "Play darts with Ryuji")
+        val ryuji = step("2016-06-05", "Mandatory darts tutorial with Ryuji")
         assertTrue("Penguin Sniper Lounge" in ryuji.label)
         assertTrue("Baton Pass reaches rank 2" in ryuji.label)
 
