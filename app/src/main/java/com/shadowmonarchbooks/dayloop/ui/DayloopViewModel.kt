@@ -41,6 +41,15 @@ data class ProfileUi(
     val contentVersion: Int,
 )
 
+/** Unmarked tasks that End Day must persist as skipped before moving the clock. */
+internal fun tasksToAutoSkip(
+    date: String,
+    taskCount: Int,
+    marks: Map<StepKey, StepMark>,
+): List<StepKey> = (0 until taskCount.coerceAtLeast(0))
+    .map { index -> StepKey(date, index) }
+    .filterNot(marks::containsKey)
+
 /**
  * Everything the screens render: the pack registry merged with the active
  * profile's progress. `currentDate` is the persisted in-game clock (End-Day),
@@ -221,7 +230,27 @@ class DayloopViewModel @Inject constructor(
 
     // ---- End-Day clock ----
 
-    fun endDay() = withActivePack { id, seed -> repo.endDay(id, seed) }
+    fun endDay() {
+        val snapshot = state.value
+        val pack = snapshot.selected ?: return
+        val profile = snapshot.activeProfile ?: return
+        val date = snapshot.currentDate ?: return
+        val seed = PackSeed(
+            packId = pack.slug,
+            contentVersion = pack.pack.contentVersion,
+            span = spanOf(pack),
+            routeId = profile.routeId,
+        )
+        val unchecked = tasksToAutoSkip(
+            date = date,
+            taskCount = snapshot.day(date)?.steps?.size ?: 0,
+            marks = snapshot.marks,
+        )
+        viewModelScope.launch {
+            unchecked.forEach { key -> repo.setMark(profile.id, key, StepMark.SKIP) }
+            repo.endDay(profile.id, seed)
+        }
+    }
 
     fun rerollDay() = withActivePack { id, seed -> repo.rerollDay(id, seed) }
 

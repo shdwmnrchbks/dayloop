@@ -79,7 +79,7 @@ object SkinFxTiming {
     const val ADVANCE_REVEAL_MS = 140
     const val ADVANCE_TOTAL_MS = ADVANCE_COVER_MS + ADVANCE_REVEAL_MS
     /** Readable results hold after the clock commits; a tap still dismisses immediately. */
-    const val ADVANCE_LINGER_MS = 4_000L
+    const val ADVANCE_LINGER_MS = 3_000L
 
     /**
      * Perfect-day splash. Only the entrance/exit transitions block; the card
@@ -88,7 +88,7 @@ object SkinFxTiming {
      */
     const val SPLASH_IN_MS = 220
     const val SPLASH_OUT_MS = 160
-    const val SPLASH_LINGER_MS = 5_000L
+    const val SPLASH_LINGER_MS = 3_000L
 
     /** Mark micro-animations (selection plate, moon fill, seal stamp). */
     const val MARK_MS = 180
@@ -389,7 +389,7 @@ private fun CrownAdvancePanel(progress: Float) {
 // ---- Perfect-day splash (docs/ROADMAP-v3.md Phase 16) ----
 
 /**
- * Engine-triggered, skin-styled celebration: when every authored step of the
+ * Engine-triggered, skin-styled celebration: when every authored task of the
  * day is Done, a celebratory card rises for [SkinFxTiming.SPLASH_LINGER_MS],
  * plays the pack's `complete` sound (only if Skin sounds are enabled), and
  * never blocks the screen — only the card itself is tappable. [key] should
@@ -469,16 +469,16 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = when {
-                        slash -> MaterialTheme.colorScheme.inverseOnSurface
+                        slash -> MaterialTheme.colorScheme.primary
                         skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer
                         else -> MaterialTheme.colorScheme.onSecondaryContainer
                     },
                 )
                 Text(
-                    text = "Every step of this day is done.",
+                    text = "Every task of this day is done.",
                     style = MaterialTheme.typography.bodySmall,
                     color = when {
-                        slash -> MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.75f)
+                        slash -> MaterialTheme.colorScheme.primary.copy(alpha = 0.82f)
                         skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f)
                         else -> MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
                     },

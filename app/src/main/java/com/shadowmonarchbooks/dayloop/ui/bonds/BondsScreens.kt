@@ -92,7 +92,19 @@ fun BondsScreen(
                         headlineContent = {
                             Text(
                                 text = if (skin.motion == "slash") skin.cased(bond.label, "display") else bond.label,
-                                style = if (skin.motion == "slash") MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,
+                                style = if (skin.motion == "slash") {
+                                    MaterialTheme.typography.displaySmall.copy(
+                                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                                        lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+                                    )
+                                } else {
+                                    MaterialTheme.typography.titleMedium
+                                },
+                                color = if (skin.motion == "slash") {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onSurface
+                                },
                             )
                         },
                         supportingContent = {

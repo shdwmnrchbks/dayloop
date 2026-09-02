@@ -26,7 +26,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -187,9 +186,11 @@ fun EmptyState(message: String, modifier: Modifier = Modifier) {
 }
 
 /**
- * The Done / Skip / Later triad (docs/PLAN.md §6.1). Tapping the active mark
+ * The Done / Skip controls (docs/PLAN.md §6.1). Tapping the active mark
  * clears it. Deviating is always available and never destructive.
  */
+internal val taskActionMarks = listOf(StepMark.DONE, StepMark.SKIP)
+
 @Composable
 fun MarkActions(
     selected: StepMark?,
@@ -197,9 +198,20 @@ fun MarkActions(
     modifier: Modifier = Modifier,
 ) {
     Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-        MarkButton(mark = StepMark.DONE, icon = { Icon(Icons.Filled.Check, "Done", Modifier.size(18.dp)) }, selected = selected, onToggle = onToggle)
-        MarkButton(mark = StepMark.SKIP, icon = { Icon(Icons.Filled.Close, "Skip", Modifier.size(18.dp)) }, selected = selected, onToggle = onToggle)
-        MarkButton(mark = StepMark.LATER, icon = { Icon(Icons.Filled.Refresh, "Later", Modifier.size(18.dp)) }, selected = selected, onToggle = onToggle)
+        taskActionMarks.forEach { mark ->
+            MarkButton(
+                mark = mark,
+                icon = {
+                    when (mark) {
+                        StepMark.DONE -> Icon(Icons.Filled.Check, "Done", Modifier.size(18.dp))
+                        StepMark.SKIP -> Icon(Icons.Filled.Close, "Skip", Modifier.size(18.dp))
+                        StepMark.LATER -> Unit
+                    }
+                },
+                selected = selected,
+                onToggle = onToggle,
+            )
+        }
     }
 }
 
@@ -593,7 +605,7 @@ fun DeadlineBanner(
                 Text(
                     text = skin.cased(deadline.label, "display"),
                     style = MaterialTheme.typography.displaySmall,
-                    color = MaterialTheme.colorScheme.inverseOnSurface,
+                    color = MaterialTheme.colorScheme.primary,
                 )
             }
         }

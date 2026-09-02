@@ -53,8 +53,8 @@ class SkinFxTimingTest {
         assertTrue(SkinFxTiming.SPLASH_IN_MS <= SkinFxTiming.MAX_TRANSITION_MS)
         assertTrue(SkinFxTiming.SPLASH_OUT_MS <= SkinFxTiming.MAX_TRANSITION_MS)
         assertTrue(SkinFxTiming.MARK_MS <= SkinFxTiming.MAX_TRANSITION_MS)
-        assertTrue(SkinFxTiming.ADVANCE_LINGER_MS >= 4_000, "day-complete results must be readable")
-        assertTrue(SkinFxTiming.SPLASH_LINGER_MS >= 5_000, "perfect-day splash must be readable")
+        assertTrue(SkinFxTiming.ADVANCE_LINGER_MS == 3_000L, "day-complete results must last exactly three seconds")
+        assertTrue(SkinFxTiming.SPLASH_LINGER_MS == 3_000L, "perfect-day splash must last exactly three seconds")
     }
 
     @Test
