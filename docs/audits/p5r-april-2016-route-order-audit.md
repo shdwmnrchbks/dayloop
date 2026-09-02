@@ -42,7 +42,7 @@ The daytime rainy Shujin-library study remains +5 Knowledge.
 
 With the restored no-time crossword and rainy evening slot:
 
-- authored Knowledge gains total **34 points through Apr 27**, reaching Royal Knowledge rank 2 by the Apr 27 `Blossom` crossword;
+- the Apr 27 class answer brings authored Knowledge gains to **34 points**, reaching Royal Knowledge rank 2; the same day's `Blossom` crossword then brings the end-of-day total to **36**;
 - authored Guts gains are already at least the **11-point rank-2 threshold by Apr 22**, so the Apr 23 Death rank-2 visit is legal;
 - the route's Castle sequence remains internally ordered as **Apr 24 secure Treasure route -> Apr 25 send Calling Card -> Apr 26 steal the Treasure**.
 
@@ -56,7 +56,7 @@ This does not require Dayloop to copy another guide's flexible Confidant/book ch
 2. the Apr 18 `Semesters` +2 Knowledge crossword;
 3. Bio Nutrient sourcing before the Apr 19 plant use;
 4. both Apr 20 rainy +5 Knowledge study actions;
-5. the 34-point Knowledge-rank-2 threshold through Apr 27;
+5. Knowledge at **34 before** and **36 after** the Apr 27 `Blossom` crossword;
 6. the Guts-rank-2 prerequisite before Death rank 2; and
 7. the Apr 24/25/26 Castle route / Calling Card / boss order.
 
