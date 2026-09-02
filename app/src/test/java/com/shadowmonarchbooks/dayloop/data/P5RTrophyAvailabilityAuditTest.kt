@@ -55,6 +55,8 @@ class P5RTrophyAvailabilityAuditTest {
         available("Let's Blow It Up", "2016-04-18")
         available("You'd Better Hang On!", "2016-04-18")
         available("Technician", "2016-04-18")
+        available("Punch That Clock!", "2016-04-18")
+        available("Easy Money", "2016-04-25")
         available("Phantom Thieves: Assemble!", "2016-05-05")
         available("Leblanc Buffer", "2016-05-05")
         available("One Step at a Time", "2016-05-07")
@@ -80,6 +82,12 @@ class P5RTrophyAvailabilityAuditTest {
         assertEquals("2016-04-18", achievements.getValue("Let's Blow It Up").availableFrom)
         assertEquals("2016-04-18", achievements.getValue("You'd Better Hang On!").availableFrom)
         assertEquals("2016-04-18", achievements.getValue("Technician").availableFrom)
+
+        // Jobs and the weekly lottery both unlock with the first free-roam week.
+        // Easy Money is still RNG; Apr 25 is merely the first possible posted
+        // result from an Apr 18 ordinary ticket, never a guaranteed completion date.
+        assertEquals("2016-04-18", achievements.getValue("Punch That Clock!").availableFrom)
+        assertEquals("2016-04-25", achievements.getValue("Easy Money").availableFrom)
 
         // The 5/7 tutorial Mementos request is mandatory and is the first
         // deterministic One Step at a Time trophy point.
