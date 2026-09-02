@@ -53,8 +53,9 @@ class P5RBattingCageAuditTest {
         // Royal's separate Thieves' Den Home Run King award requires 30 home
         // runs. Dayloop's first-class trophy catalog should not inflate the much
         // simpler Batter Up! requirement into that unrelated completion grind.
-        assertTrue(achievement.description.contains("Hit a ball"))
-        assertTrue(!achievement.description.contains("home run", ignoreCase = true))
+        val description = achievement.description.orEmpty()
+        assertTrue(description.contains("Hit a ball"))
+        assertTrue(!description.contains("home run", ignoreCase = true))
         assertTrue(!loaded.deadlines?.deadlines.orEmpty().any { it.label.contains("30 home runs", ignoreCase = true) })
     }
 }
