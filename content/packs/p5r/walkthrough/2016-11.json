@@ -32,7 +32,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Accept Mishima's invitation (can he join us?)" },
-        { "label": "Win the Protective Lexy Doll at the Akihabara arcade (4/8)" },
+        { "label": "Win the Lexy Doll at the Akihabara arcade (4/8)" },
         { "label": "Hang out with Mishima — Moon reaches rank 7" }
       ]
     },
@@ -282,7 +282,7 @@
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Hang out with Yusuke — Emperor reaches rank 8" },
         { "label": "Claim your retro-game accessory at the Akihabara retro store" },
-        { "label": "Win the Lost Sheep Man Doll at the Akihabara arcade (5/8)" },
+        { "label": "Win the Sheep Man Doll at the Akihabara arcade (5/8)" },
         { "label": "Meet the Twins on Central Street (11/13)" }
       ]
     },
