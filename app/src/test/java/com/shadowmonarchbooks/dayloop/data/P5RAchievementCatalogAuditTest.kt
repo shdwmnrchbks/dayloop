@@ -64,8 +64,8 @@ class P5RAchievementCatalogAuditTest {
             assertNull(achievement.iconMediaRef, "$title should use the built-in no-image fallback until matching art is bundled")
         }
 
-        assertEquals("2016-06-25", byId.getValue("p5r.achievement.its-showtime").availableFrom)
-        assertEquals("2016-06-25", byId.getValue("p5r.achievement.accident-prone").availableFrom)
+        assertEquals("2016-06-21", byId.getValue("p5r.achievement.its-showtime").availableFrom)
+        assertEquals("2016-06-21", byId.getValue("p5r.achievement.accident-prone").availableFrom)
         assertEquals("2016-08-31", byId.getValue("p5r.achievement.master-of-akihabara").availableFrom)
 
         achievements.forEach { achievement ->
