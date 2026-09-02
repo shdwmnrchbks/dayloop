@@ -5,6 +5,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -25,10 +26,25 @@ class P5RRetroGameRewardAuditTest {
         val root = contentPacksDir() ?: return
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
-        val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
+        val allDays = loaded.walkthroughs.flatMap { it.file.days }
+        val days = allDays.associateBy { it.date }
 
         fun label(date: String, marker: String): String =
             days.getValue(date).steps.single { marker in it.label }.label
+
+        val expectedSessions = mapOf(
+            "p5r.activity.videoGame.star-forneus" to 3,
+            "p5r.activity.videoGame.gambla-goemon" to 2,
+            "p5r.activity.videoGame.featherman-seeker" to 3,
+            "p5r.activity.videoGame.punch-ouch" to 3,
+            "p5r.activity.videoGame.train-of-life" to 3,
+            "p5r.activity.videoGame.power-intuition" to 3,
+            "p5r.activity.videoGame.golfer-sarutahiko" to 3,
+        )
+        expectedSessions.forEach { (activityRef, sessions) ->
+            val actual = allDays.sumOf { day -> day.steps.count { it.activityRef == activityRef } }
+            assertEquals(sessions, actual, "$activityRef must keep the Royal number of successful sessions needed for its completion card")
+        }
 
         val fiveGameClaim = label("2017-01-23", "five completed retro games")
         listOf(
