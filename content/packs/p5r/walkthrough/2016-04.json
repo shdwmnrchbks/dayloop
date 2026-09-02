@@ -48,7 +48,7 @@
     {
       "date": "2016-04-13",
       "weekday": "wed",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
         { "label": "Talk to the injured volleyball player in the classroom" },
         { "label": "Speak with the students outside Classrooms 3C and 1B" }
@@ -57,7 +57,7 @@
     {
       "date": "2016-04-14",
       "weekday": "thu",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
         { "label": "Ride to school, then follow Ann into the Shibuya Underground Walkway and talk to her" }
       ]
@@ -77,7 +77,7 @@
     {
       "date": "2016-04-16",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
         { "label": "Chalk throw today — no need to dodge" },
         { "label": "Visit the clinic but buy nothing (money plan depends on it)" }
@@ -86,7 +86,7 @@
     {
       "date": "2016-04-17",
       "weekday": "sun",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
         { "label": "Follow Ryuji to Shibuya Central Street" },
         { "label": "Visit the Airsoft shop, buy nothing; clean your desk and craft one lock pick", "statGains": { "proficiency": 3 } }
@@ -101,6 +101,7 @@
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Buy Silk Yarn and Tin Clasp at the Second-hand Shop (2 of each)" },
         { "label": "First Takemi hang-out — answer 'Please go easy on me'", "statGains": { "guts": 2 } },
+        { "label": "Solve the LeBlanc crossword: 'Semesters'", "statGains": { "knowledge": 2 } },
         { "label": "Clean the attic floor — recovers two books and a CRT TV" }
       ]
     },
@@ -110,6 +111,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
+        { "label": "Buy a Bio Nutrient at the Underground Mall flower shop if your storage/DLC items did not provide one" },
         { "label": "Study in a library booth", "statGains": { "knowledge": 2, "guts": 2 } },
         { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 3 } },
         { "label": "Chat with the café customers, then read 'The Great Thief'", "activityRef": "p5r.activity.book.great-thief" }
@@ -122,7 +124,8 @@
       "steps": [
         { "label": "Read 'The Great Thief' on the train (seated day — no slot used)", "activityRef": "p5r.activity.book.great-thief", "statGains": { "knowledge": 5 } },
         { "label": "Borrow 'Pirate Legend' from the school library" },
-        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 5 } }
+        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 5 } },
+        { "label": "Study at LeBlanc in the evening (rainy-day bonus)", "statGains": { "knowledge": 5 } }
       ]
     },
     {
