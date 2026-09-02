@@ -111,37 +111,37 @@
     {
       "id": "p5r.deadline.missable.dvd-rentals",
       "label": "Completion-route target — finish the planned Royal DVD viewings (no rental return deadline)",
-      "kind": "missable",
+      "kind": "routeTarget",
       "date": "2016-10-23"
     },
     {
       "id": "p5r.deadline.missable.library-borrowing",
       "label": "Completion-route last school-library borrowing",
-      "kind": "missable",
+      "kind": "routeTarget",
       "date": "2016-11-07"
     },
     {
       "id": "p5r.deadline.missable.books-complete",
       "label": "Completion-route target — finish all 46 books",
-      "kind": "missable",
+      "kind": "routeTarget",
       "date": "2017-01-25"
     },
     {
       "id": "p5r.deadline.missable.sooty-scale-armor",
       "label": "Completion-route farming window — Sooty Scale Armor",
-      "kind": "missable",
+      "kind": "routeTarget",
       "window": { "start": "2017-01-12", "end": "2017-01-26" }
     },
     {
       "id": "p5r.deadline.missable.mementos-finale",
       "label": "Completion-route final Mementos cleanup visit",
-      "kind": "missable",
+      "kind": "routeTarget",
       "date": "2017-01-28"
     },
     {
       "id": "p5r.deadline.missable.retro-games",
       "label": "Completion-route target — finish all seven retro games",
-      "kind": "missable",
+      "kind": "routeTarget",
       "date": "2017-01-30"
     }
   ]
