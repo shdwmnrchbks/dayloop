@@ -56,10 +56,11 @@ class P5RRoomDecorationAuditTest {
             Decoration("2017-01-29", "Shumai Cushion", 20),
         )
 
+        val numberedMarker = Regex("""room decoration \d+/20""")
         val numberedSteps = loaded.walkthroughs
             .flatMap { it.file.days }
             .flatMap { day -> day.steps.map { day.date to it.label } }
-            .filter { (_, label) -> "room decoration" in label }
+            .filter { (_, label) -> numberedMarker.containsMatchIn(label) }
 
         assertEquals(20, expected.size)
         assertEquals(20, numberedSteps.size, "completion route must expose exactly 20 numbered Confidant room decorations")
