@@ -44,6 +44,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.MediaList
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import java.time.LocalDate
 
 private val WeekHeaders = listOf("M", "T", "W", "T", "F", "S", "S")
@@ -112,11 +113,7 @@ fun MonthScreen(
 
         val monthAchievements = pack.mediaForMonth(month).filter { it.kind == "achievement" }
         if (monthAchievements.isNotEmpty()) {
-            Text(
-                text = "Achievements this month",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.SemiBold,
-            )
+            SkinSectionHeader("Achievements this month")
             MediaList(
                 items = monthAchievements.map { pack.assetOf(it) to it.title },
                 modifier = Modifier.heightIn(max = 220.dp),
