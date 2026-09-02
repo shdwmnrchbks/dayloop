@@ -68,8 +68,9 @@ class P5RMaidCafeAuditTest {
 
         val master = loaded.achievements?.achievements.orEmpty()
             .single { it.title == "Master of Akihabara" }
-        assertTrue(master.description.contains("special menu", ignoreCase = true))
-        assertTrue(master.description.contains("20 stamps", ignoreCase = true))
+        val description = master.description.orEmpty()
+        assertTrue(description.contains("special menu", ignoreCase = true))
+        assertTrue(description.contains("20 stamps", ignoreCase = true))
         assertEquals("2016-12-22", master.expectedBy)
     }
 }
