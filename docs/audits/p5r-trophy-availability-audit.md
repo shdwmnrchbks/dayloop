@@ -6,7 +6,8 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 ## Sources checked
 
-- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed story timing, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed story timing, fusion availability, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation and mandatory May 7 first Mementos request.
 - Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story check.
 - Samurai Gamers Old Temple guide — explicit Jun 6 temple unlock.
 - Samurai Gamers June walkthrough — independent early Kichijoji darts/billiards usage examples.
@@ -16,6 +17,18 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 ### Spirit of Rebellion — 2016-04-11
 
 Royal's first Persona awakening is a fixed story event in the Castle Palace on Apr 11. The previous Apr 9 value was the pack calendar start, not the trophy event.
+
+### A Deadly Debut — 2016-04-18
+
+Normal Guillotine fusion becomes available in the Velvet Room by Apr 18, and Royal's fusion tutorial can award the trophy that day. The old Apr 9 value again represented the pack calendar start rather than the mechanic being available.
+
+### Phantom Thieves: Assemble! — 2016-05-05
+
+This trophy is fixed story progression: the group formally names the Phantom Thieves during the May 5 hotel sequence. The old May 1 month anchor was several days early.
+
+### One Step at a Time — 2016-05-07
+
+The mandatory first Mementos request, `Beware the Clingy Ex-boyfriend!`, is completed during the May 7 introduction. It is the first deterministic trophy point. The previous May 1 value predated Mementos request completion.
 
 ### Talent Thief — 2016-05-07
 
@@ -57,4 +70,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` pins the seven corrected fixed availability anchors, confirms they remain manual/no-deadline trophies, and explicitly checks that the route's later billiards, temple and crane choices do not overwrite real facility availability.
+`P5RTrophyAvailabilityAuditTest` pins the ten corrected fixed availability anchors, confirms they remain manual/no-deadline trophies, checks the mandatory May 7 Mementos introduction, and explicitly verifies that the route's later billiards, temple and crane choices do not overwrite real facility availability.
