@@ -75,6 +75,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("A Serene Experience", "2016-06-06")
         available("It's Showtime!", "2016-06-21")
         available("Accident-Prone", "2016-06-21")
+        available("A Night in Kichijoji", "2016-06-26")
         available("Angler's Debut", "2016-07-04")
         available("The Search for Power", "2016-07-12")
         available("Success Built on Sacrifice", "2016-07-26")
@@ -122,6 +123,11 @@ class P5RTrophyAvailabilityAuditTest {
         assertTrue(days.getValue("2016-06-02").steps.any { "Strength reaches rank 3" in it.label })
         assertTrue(days.getValue("2016-06-05").steps.any { "Kichijoji" in it.label })
         assertEquals("2016-06-05", achievements.getValue("Intensive Training").availableFrom)
+
+        // Optimized Royal routing can unlock Jazz Jin with Justice rank 4 on Jun
+        // 25; the trophy requires a separate subsequent visit. This completion
+        // route schedules Justice rank 4 much later and must not leak that date.
+        assertEquals("2016-06-26", achievements.getValue("A Night in Kichijoji").availableFrom)
 
         // Royal unlocks Ichigaya through Ryuji's Jul 3 fishing hangout. That
         // introductory visit unlocks the location but does not award Angler's
