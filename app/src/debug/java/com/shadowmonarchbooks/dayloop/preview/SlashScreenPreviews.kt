@@ -31,7 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerKindChip
+import com.shadowmonarchbooks.dayloop.ui.components.MarkActions
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
@@ -278,6 +280,10 @@ private fun SlashStep(number: String, title: String, meta: String, done: Boolean
                 Text(title, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
                 Text(meta, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
             }
+            MarkActions(
+                selected = if (done) StepMark.DONE else null,
+                onToggle = {},
+            )
         }
     }
 }
