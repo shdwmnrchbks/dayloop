@@ -23,7 +23,6 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,9 +36,13 @@ import com.shadowmonarchbooks.dayloop.ui.components.MarkActions
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinBottomBar
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinNavItem
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinOutlinedActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinRouteBadge
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTopBar
 import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.theme.DayloopTheme
@@ -182,12 +185,18 @@ private fun SlashDeadlinesPreview() {
 @Composable
 private fun SlashSettingsPreview() {
     SlashPreviewFrame(title = "Settings", selectedRoute = "settings") {
-        SkinHeader("Settings")
-        SlashSettingRow("ACTIVE ROUTE", "100% Completion Route")
-        SlashSettingRow("PACK THEME", "Ink · masks · slash")
-        SlashSettingToggle("SKIN MOTION", "Use slash transitions", checked = true)
-        SlashSettingToggle("SKIN SOUNDS", "Play pack interaction sounds", checked = false)
-        SlashSettingRow("CONTENT VERSION", "7")
+        SkinSectionHeader("Game")
+        SlashSettingRow("ACTIVE GAME", "Active · 1 saved profile")
+        SkinSectionHeader("In-game clock")
+        SlashSettingRow("CURRENT DAY", "Wednesday, September 2")
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            SkinActionButton(text = "Advance a day", onClick = {})
+            SkinOutlinedActionButton(text = "Reroll", onClick = {})
+        }
+        SkinOutlinedActionButton(text = "Reset profile", onClick = {})
+        SkinSectionHeader("Profiles")
+        SlashSettingRow("MAIN", "Day Sep 2 · 100% Completion Route")
+        SkinTextActionButton(text = "+ New profile", onClick = {})
     }
 }
 
@@ -372,22 +381,5 @@ private fun SlashSettingRow(label: String, value: String) {
             color = MaterialTheme.colorScheme.primary,
         )
         Text(value, style = MaterialTheme.typography.bodyLarge)
-    }
-}
-
-@Composable
-private fun SlashSettingToggle(label: String, description: String, checked: Boolean) {
-    SlashCard {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Column(Modifier.weight(1f)) {
-                Text(
-                    LocalSkin.current.cased(label, "display"),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(description, style = MaterialTheme.typography.bodyMedium)
-            }
-            Switch(checked = checked, onCheckedChange = null)
-        }
     }
 }
