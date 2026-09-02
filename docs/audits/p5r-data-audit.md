@@ -136,7 +136,9 @@ are independently checkable. Examples include:
   fishing, darts, Big Bang Burger tiers, retro games and all final theater
   viewings. `March of the Lambs`, `Bite Club`, `Finding Beemo` and
   `The Goodfather` explicitly include the already-active Craft of Cinema bonus.
-  See `p5r-third-semester-2017-audit.md`.
+  The Royal final Palace now separates the February 2 Treasure-route gate from
+  the February 3 story/final-confrontation date. See
+  `p5r-third-semester-2017-audit.md`.
 
 These July–February corrections are regression-tested for the highest-risk
 point, modifier and fixed-calendar cases, but they are **not** a claim that every
@@ -189,6 +191,12 @@ are labeled as completion-route targets rather than universal missables.
 
 Councilor is the third-semester requirement. Justice/Faith entries describe the
 additional Royal content they gate without claiming they unlock the semester.
+
+The Royal final Palace has two distinct, independently supported dates that the
+single original entry had collapsed: the Treasure route must be secured by
+**February 2**, while **February 3** is the final Palace/story confrontation.
+Dayloop now exposes both so its countdown is actionable instead of one day too
+permissive.
 
 ### School and exam answers
 
