@@ -6,6 +6,7 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RFishingAuditTest {
@@ -21,7 +22,7 @@ class P5RFishingAuditTest {
     }
 
     @Test
-    fun `p5r fishing route keeps Royal Guardian to Kingpin progression and bait semantics`() {
+    fun `p5r fishing route keeps Royal unlock and Guardian to Kingpin progression semantics`() {
         val root = contentPacksDir() ?: return
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
@@ -29,6 +30,14 @@ class P5RFishingAuditTest {
         val allDays = loaded.walkthroughs.flatMap { it.file.days }
         val days = allDays.associateBy { it.date }
         fun step(date: String, marker: String) = days.getValue(date).steps.single { marker in it.label }
+
+        // Royal's Ryuji fishing hangout is Jul 3. It unlocks Ichigaya, but the
+        // introductory hangout itself does not award Angler's Debut; an
+        // independent visit can first earn the trophy from Jul 4 onward.
+        assertTrue(days.getValue("2016-07-03").steps.any { "Ryuji's invitation" in it.label })
+        val angler = loaded.achievements?.achievements.orEmpty().single { it.title == "Angler's Debut" }
+        assertEquals("2016-07-04", angler.availableFrom)
+        assertNull(angler.expectedBy, "the completion route deliberately fishes later and must not turn that choice into a deadline")
 
         val firstFishing = step("2016-12-05", "fish at Ichigaya")
         assertEquals(mapOf("proficiency" to 2), firstFishing.statGains)
