@@ -4,8 +4,9 @@
     {
       "date": "2016-12-01",
       "weekday": "thu",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
+        { "label": "Still presumed dead — no school until December 19; normal route free time continues from LeBlanc", "spoiler": true },
         { "label": "Hang out with Haru — Empress reaches rank 4" },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
@@ -15,7 +16,7 @@
     {
       "date": "2016-12-02",
       "weekday": "fri",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 5" },
         { "label": "Solve the LeBlanc crossword: 'Influenza'", "statGains": { "knowledge": 2 } },
@@ -40,7 +41,7 @@
         { "label": "Buy items from the Kanda priest" },
         { "label": "Buy the Uji Matcha Flan at the Underground Mall supermarket" },
         { "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "knowledge": 2 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
         { "label": "Bring a non-Futaba party member to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75); alternatively invite Futaba for Support Plus 1 instead" }
       ]
@@ -48,7 +49,7 @@
     {
       "date": "2016-12-05",
       "weekday": "mon",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 6" },
         { "label": "Buy SP-recovery drinks from the vending machines" },
@@ -58,7 +59,7 @@
     {
       "date": "2016-12-06",
       "weekday": "tue",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 7" },
         { "label": "Buy 'Essence of Fishing' at the Shinjuku bookstore" },
@@ -69,7 +70,7 @@
     {
       "date": "2016-12-07",
       "weekday": "wed",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Buy the Heart Ring at the Underground Mall jewelry store" },
         { "label": "Hang out with Futaba in Asakusa — I <3 Tokyo Shirt (room decoration 12/20)" },
@@ -80,7 +81,7 @@
     {
       "date": "2016-12-08",
       "weekday": "thu",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Answer the TV game show: 'Attempted murder'", "statGains": { "knowledge": 2 } },
         { "label": "Ask Chihaya for a money reading and a celestial reading" },
@@ -117,7 +118,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "charm": 2 } },
         { "label": "Buy items from the Kanda priest" },
         { "label": "Give the Angel Tart to the Kichijoji alley man — Fervent Bat (14/16)" },
         { "label": "Ask Chihaya for a money reading and a celestial reading" },
@@ -130,7 +131,7 @@
     {
       "date": "2016-12-12",
       "weekday": "mon",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Hang out with Haru — Empress reaches rank 9 (romance choice available)" },
@@ -141,7 +142,7 @@
     {
       "date": "2016-12-13",
       "weekday": "tue",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Buy the Hi-Tech Rod at the Underground Mall sports shop" },
         { "label": "Hang out with Ryuji in Nakano — Featherman Dolls (room decoration 14/20)" },
@@ -151,7 +152,7 @@
     {
       "date": "2016-12-14",
       "weekday": "wed",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Hang out with Kasumi in Shinagawa — Sea Slug Doll (room decoration 15/20)" },
         { "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
@@ -160,7 +161,7 @@
     {
       "date": "2016-12-15",
       "weekday": "thu",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Answer the TV game show: 'Can't be done by wanted criminals'", "statGains": { "knowledge": 2 } },
         { "label": "Buy the Designer Perfume at the Underground Mall cosmetics shop" },
@@ -172,7 +173,7 @@
     {
       "date": "2016-12-16",
       "weekday": "fri",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
         { "label": "Hang out with Haru — Empress reaches rank 10" },
         { "label": "Save, then fish at Ichigaya — lead with the Suspicious Boilie, Third Eye the gold glow, and catch the Ichigaya Guardian (reload on a miss); buy 1 Suspicious Boilie plus 6 total again", "statGains": { "proficiency": 2 } }
@@ -192,8 +193,9 @@
     {
       "date": "2016-12-18",
       "weekday": "sun",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
+        { "label": "Election Day / Shido aftermath occupies the daytime; the evening is confined to LeBlanc", "spoiler": true },
         { "label": "Save first, then beat 'Punch Ouch' (4/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
       ]
     },
@@ -202,6 +204,7 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
+        { "label": "Joker returns to school today; the mandatory team study session occupies after school", "spoiler": true },
         { "label": "Study with the team", "statGains": { "knowledge": 3 } },
         { "label": "Solve the LeBlanc crossword: 'Christmas'", "statGains": { "knowledge": 2 } },
         { "label": "Watch 'Merry Christmess' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.merry-christmess", "statGains": { "guts": 7 } }
@@ -228,7 +231,7 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 3" },
+        { "label": "Exams day 3 — year-end free time resumes after the exam" },
         { "label": "Buy the Castella at the Underground Mall supermarket" },
         { "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)" },
         { "label": "Visit the maid cafe — order the special menu after 20 stamps and receive the Photo of Clara", "statGains": { "charm": 5 } }
@@ -239,6 +242,7 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
+        { "label": "Automatic Morgana/story progression occupies the daytime; the evening is confined to LeBlanc", "spoiler": true },
         { "label": "Receive the Boss Undies from Sojiro (exam reward)" },
         { "label": "Save first, then beat 'Train of Life' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 3 } },
         { "label": "Magician reaches rank 10", "spoiler": true }
