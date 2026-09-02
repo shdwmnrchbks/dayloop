@@ -6,7 +6,7 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched", "activityRef": "p5r.activity.movie.the-goodfather", "statGains": { "kindness": 2 } },
+        { "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.the-goodfather", "statGains": { "kindness": 7 } },
         { "label": "Optional: fuse every confidant's ultimate Persona for easy NG+ access", "spoiler": true }
       ]
     },
