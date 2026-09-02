@@ -11,9 +11,9 @@ This pass audits route text that depends on **player choice or conditional state
   - Futaba / Hermit: https://www.rpgsite.net/feature/9382-persona-5-royal-futaba-confidant-guide-hermit-choices-romance-gifts
   - Takemi / Death: https://www.rpgsite.net/feature/9384-persona-5-royal-takemi-confidant-guide-death-choices-romance-gifts
   - Hifumi / Star: https://www.rpgsite.net/feature/9388-persona-5-royal-hifumi-confidant-guide-star-choices-romance-unlock-gifts
-  - Ohya / Devil: https://www.rpgsite.net/feature/9387-persona-5-royal-ohya-confidant-guide-devil-choices-romance-gifts
-  - Chihaya / Fortune: https://www.rpgsite.net/feature/5472-persona-5-royal-chihaya-confidant-guide-fortune-choices-romance
-  - Kawakami / Temperance: https://www.rpgsite.net/feature/5473-persona-5-royal-kawakami-confidant-guide-temperance-choices-romance-gifts
+  - Ohya / Devil: https://www.rpgsite.net/feature/9387/persona-5-royal-ohya-confidant-guide-devil-choices-romance-gifts
+  - Chihaya / Fortune: https://www.rpgsite.net/feature/5472/persona-5-royal-chihaya-confidant-guide-fortune-choices-romance
+  - Kawakami / Temperance: https://www.rpgsite.net/feature/5473/persona-5-royal-kawakami-confidant-guide-temperance-choices-romance-gifts
   - Royal Confidant index (including Faith/Kasumi): https://www.rpgsite.net/feature/5479/persona-5-royal-confidant-guide-conversation-choices-answers-romance-options-gifts-skill-unlocks
 - The existing P5R activity audit/source set for Royal DVD subscription semantics; see `p5r-dvd-game-audit.md` and `p5r-october-2016-audit.md`.
 - Alyookid's completion schedule remains the route source. Its selected actions are preserved as route instructions, not promoted into universal availability rules.
@@ -71,6 +71,6 @@ The same principle applies to save/reload instructions for retro games, darts, b
 
 ## Verification boundary
 
-This closes the currently identified high-risk **choice / weather / RNG / route-cleanup wording** regressions. It does not claim every flexible hangout or every item acquisition date is universal. Those remain route-selected unless independently supported as fixed game rules.
+This closes the identified high-risk **choice / weather / RNG / route-cleanup wording** regressions. Flexible hangout or acquisition dates remain route-selected unless independently supported as fixed game rules.
 
-Issue #12 should remain open until the remaining one-off gameplay facts and route-only action ordering have either been independently checked or explicitly classified as source-specific route instructions.
+The later April–February route-order reproduction independently checked the complete authored action sequence, and `P5RUncertainTrophyAvailabilityAuditTest` removes false exact dates from achievements whose gates remain player-state, RNG, progression, or ending dependent. Together those later passes satisfy the remaining issue #12 conditional/state boundary without pretending the app can automatically evaluate profile bond/stat state it does not yet track.
