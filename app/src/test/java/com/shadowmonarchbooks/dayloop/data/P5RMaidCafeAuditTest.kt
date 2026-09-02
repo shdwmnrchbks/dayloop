@@ -67,7 +67,9 @@ class P5RMaidCafeAuditTest {
         assertEquals(mapOf("charm" to 5), special.statGains, "Royal special menu gives three displayed Charm notes = five hidden points")
 
         val master = loaded.achievements?.achievements.orEmpty()
-            .single { it.name == "Master of Akihabara" }
-        assertTrue(master.description.contains("maid", ignoreCase = true) || master.description.contains("special menu", ignoreCase = true))
+            .single { it.title == "Master of Akihabara" }
+        assertTrue(master.description.contains("special menu", ignoreCase = true))
+        assertTrue(master.description.contains("20 stamps", ignoreCase = true))
+        assertEquals("2016-12-22", master.expectedBy)
     }
 }
