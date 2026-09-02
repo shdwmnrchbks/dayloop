@@ -19,7 +19,8 @@
       "label": "Read 'Medjed Menace'",
       "kind": "book",
       "statGains": { "knowledge": 5 },
-      "location": "Central Street bookstore / home"
+      "location": "Central Street bookstore / home",
+      "notes": "Taiheido stock from 5/6."
     },
     {
       "id": "p5r.activity.book.alluring-dancer",
@@ -33,7 +34,8 @@
       "label": "Read 'The Art of Charm'",
       "kind": "book",
       "statGains": { "charm": 5 },
-      "location": "Metro"
+      "location": "Central Street bookstore / metro",
+      "notes": "Initial Taiheido stock."
     },
     {
       "id": "p5r.activity.book.gallant-rogue",
@@ -54,7 +56,8 @@
       "label": "Read 'Social Thought'",
       "kind": "book",
       "statGains": { "knowledge": 7 },
-      "location": "Attic / metro"
+      "location": "Attic find / Central Street bookstore / metro",
+      "notes": "Found while cleaning Joker's room; also sold by Taiheido once Knowledge reaches rank 2."
     },
     {
       "id": "p5r.activity.dvd.x-folders",
@@ -100,28 +103,30 @@
       "label": "Read 'Buchiko's Story'",
       "kind": "book",
       "statGains": { "kindness": 5 },
-      "location": "Metro / class"
+      "location": "Central Street bookstore / metro / class",
+      "notes": "Initial Taiheido stock."
     },
     {
       "id": "p5r.activity.book.wise-mens-words",
       "label": "Read 'Wise Men's Words'",
       "kind": "book",
       "statGains": { "knowledge": 5 },
-      "location": "Metro / class"
+      "location": "Central Street bookstore / metro / class",
+      "notes": "Taiheido stock from 6/1."
     },
     {
       "id": "p5r.activity.book.craft-of-cinema",
       "label": "Read 'The Craft of Cinema'",
       "kind": "book",
       "location": "Shinjuku bookstore / metro",
-      "notes": "Adds +2 social-stat points whenever you watch a movie or DVD."
+      "notes": "Appears after watching a movie or DVD. Adds +2 social-stat points whenever you watch a movie or DVD."
     },
     {
       "id": "p5r.activity.book.game-secrets",
       "label": "Read 'Game Secrets'",
       "kind": "book",
       "location": "Shinjuku bookstore / class",
-      "notes": "Enables cheat mode in retro games, making their minigames easier."
+      "notes": "Appears after playing a retro game. Enables cheat mode in retro games, making their minigames easier without increasing the stat reward."
     },
     {
       "id": "p5r.activity.dvd.not-so-hot-betsy",
@@ -174,14 +179,14 @@
       "label": "Read 'Speed Reader'",
       "kind": "book",
       "location": "School library / class",
-      "notes": "Lets you read two chapters in one reading session."
+      "notes": "Available from the Shujin library on 7/1 in Royal. Lets you read two chapters in one reading session."
     },
     {
       "id": "p5r.activity.book.abc-of-crafting",
       "label": "Read 'ABCs of Crafting'",
       "kind": "book",
-      "location": "Metro",
-      "notes": "Doubles the base number of infiltration-tool crafting attempts per session."
+      "location": "Shinjuku bookstore / metro",
+      "notes": "Appears after crafting an infiltration tool. Doubles the base number of infiltration-tool crafting attempts per session."
     },
     {
       "id": "p5r.activity.book.illusory-popess",
@@ -195,56 +200,59 @@
       "label": "Read 'Ghost Encounters'",
       "kind": "book",
       "statGains": { "guts": 5 },
-      "location": "Central Street bookstore / class"
+      "location": "Central Street bookstore / class",
+      "notes": "Taiheido stock from 7/1."
     },
     {
       "id": "p5r.activity.book.tidying-the-heart",
       "label": "Read 'Tidying the Heart'",
       "kind": "book",
       "statGains": { "proficiency": 5 },
-      "location": "Metro"
+      "location": "Central Street bookstore / metro",
+      "notes": "Initial Taiheido stock."
     },
     {
       "id": "p5r.activity.book.flowerpedia",
       "label": "Read 'Flowerpedia'",
       "kind": "book",
       "location": "Shinjuku bookstore / supermarket",
-      "notes": "Adds flower descriptions that help satisfy flower-shop customer requests; no direct stat gain."
+      "notes": "Appears after working at the flower shop. Adds flower descriptions that help satisfy flower-shop customer requests; no direct stat gain."
     },
     {
       "id": "p5r.activity.book.learn-pro-darts",
       "label": "Read 'Learn Pro Darts'",
       "kind": "book",
       "location": "Shinjuku bookstore",
-      "notes": "Enables Third Eye while aiming in darts."
+      "notes": "Appears after playing darts. Enables Third Eye while aiming in darts."
     },
     {
       "id": "p5r.activity.book.expert-billiards",
       "label": "Read 'Expert Billiards'",
       "kind": "book",
       "location": "Underground Mall sports store",
-      "notes": "Unlocks billiards trick-shot progression used to raise Technical Rank."
+      "notes": "Appears after playing billiards. Unlocks billiards trick-shot progression used to raise Technical Rank."
     },
     {
       "id": "p5r.activity.book.billiards-magician",
       "label": "Read 'Billiards Magician'",
       "kind": "book",
       "location": "Won at the billiards hall / class",
-      "notes": "Teaches the Massé Shot used for Technical Rank 4 progression."
+      "notes": "Obtained after reaching Technical Rank 3. Teaches the Massé Shot used for Technical Rank 4 progression."
     },
     {
       "id": "p5r.activity.book.batting-science",
       "label": "Read 'Batting Science'",
       "kind": "book",
       "location": "Shinjuku bookstore / metro",
-      "notes": "Enables Third Eye to slow pitches at the batting cages; no direct stat gain."
+      "notes": "Appears after using the batting cages. Enables Third Eye to slow pitches; no direct stat gain."
     },
     {
       "id": "p5r.activity.book.master-swordsman",
       "label": "Read 'Master Swordsman'",
       "kind": "book",
       "statGains": { "guts": 7 },
-      "location": "Jinbocho bookstore / metro"
+      "location": "Jinbocho bookstore / metro",
+      "notes": "First Jinbocho stat book. Finishing it unlocks Call Me Chief, Reckless Casanova, Heroic Revelations and The Art of Automata in Royal."
     },
     {
       "id": "p5r.activity.book.cry-of-cthulhu",
@@ -258,7 +266,8 @@
       "label": "Read 'The Art of Automata'",
       "kind": "book",
       "statGains": { "proficiency": 7 },
-      "location": "Jinbocho bookstore / class"
+      "location": "Jinbocho bookstore / class",
+      "notes": "Royal Jinbocho stock unlocked after finishing Master Swordsman."
     },
     {
       "id": "p5r.activity.book.woman-in-the-dark",
@@ -272,7 +281,8 @@
       "label": "Read 'Heroic Revelations'",
       "kind": "book",
       "statGains": { "knowledge": 7 },
-      "location": "School library / metro"
+      "location": "Jinbocho bookstore / metro / class",
+      "notes": "Royal Jinbocho stock unlocked after finishing Master Swordsman."
     },
     {
       "id": "p5r.activity.book.hero-with-a-bow",
@@ -293,42 +303,44 @@
       "label": "Read 'Call Me Chief'",
       "kind": "book",
       "statGains": { "kindness": 7 },
-      "location": "Metro / class"
+      "location": "Jinbocho bookstore / metro / class",
+      "notes": "Royal Jinbocho stock unlocked after finishing Master Swordsman."
     },
     {
       "id": "p5r.activity.book.reckless-casanova",
       "label": "Read 'Reckless Casanova'",
       "kind": "book",
       "statGains": { "charm": 7 },
-      "location": "Metro / class"
+      "location": "Jinbocho bookstore / metro / class",
+      "notes": "Royal Jinbocho stock unlocked after finishing Master Swordsman."
     },
     {
       "id": "p5r.activity.book.knowing-the-heart",
       "label": "Read 'Knowing the Heart'",
       "kind": "book",
       "location": "Jinbocho bookstore / metro",
-      "notes": "Unlocks additional ailment/Technical combinations for Forget, Confusion, Fear, Rage and Brainwash."
+      "notes": "Appears after reading all five Jinbocho stat books. Unlocks additional ailment/Technical combinations for Forget, Confusion, Fear, Rage and Brainwash."
     },
     {
       "id": "p5r.activity.book.essence-of-fishing",
       "label": "Read 'Essence of Fishing'",
       "kind": "book",
       "location": "Shinjuku bookstore / metro",
-      "notes": "Lets Third Eye identify fish and Prize Tag targets at the fishing pond."
+      "notes": "Appears after fishing at Ichigaya. Lets Third Eye identify fish and Prize Tag targets at the fishing pond."
     },
     {
       "id": "p5r.activity.book.chinese-sweets",
       "label": "Read 'Chinese Sweets'",
       "kind": "book",
-      "location": "Jinbocho bookstore / class",
-      "notes": "Unlocks the Chinatown hangout spot; obtained from the 'Part-time Job, Full-time Hell' request."
+      "location": "Mementos request reward / class",
+      "notes": "Reward for clearing 'Part-time Job, Full-time Hell'. Unlocks the Chinatown hangout spot."
     },
     {
       "id": "p5r.activity.book.factorization-guide",
       "label": "Read 'Factorization Guide'",
       "kind": "book",
       "location": "Kichijoji alley trade / class",
-      "notes": "Adds +2 Knowledge points when studying."
+      "notes": "Trader Sakai exchange available 7/26–7/30. Adds +2 Knowledge points when studying."
     },
     {
       "id": "p5r.activity.movie.over-the-pigeons-nest",
