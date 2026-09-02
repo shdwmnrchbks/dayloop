@@ -57,13 +57,13 @@ class P5RRetroGameRewardAuditTest {
             assertTrue(badge in fiveGameClaim, "Jan 23 completed-game redemption should identify $badge")
         }
 
-        val powerCompletion = label("2017-01-26", "Power Intuition (6/7)")
+        val powerCompletion = label("2017-01-26", "(6/7)")
         assertTrue("Power Intuition" in powerCompletion)
         val powerReward = label("2017-01-28", "PI Badge")
         assertTrue("Power Intuition" in powerReward)
         assertFalse(powerReward.contains("final retro-game accessory", ignoreCase = true))
 
-        val golferCompletion = label("2017-01-30", "Golfer Sarutahiko (7/7)")
+        val golferCompletion = label("2017-01-30", "(7/7)")
         assertTrue("Golfer Sarutahiko" in golferCompletion)
         val golferReward = label("2017-01-31", "Golfer Badge")
         assertTrue("Golfer Sarutahiko" in golferReward)
