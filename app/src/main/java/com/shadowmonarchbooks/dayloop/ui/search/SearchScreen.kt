@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.search
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -17,6 +17,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,11 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.searchPack
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
  * In-app search across the selected pack (docs/PLAN.md Phase 5): walkthrough
@@ -51,6 +54,8 @@ fun SearchScreen(
     }
 
     var query by remember { mutableStateOf("") }
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
     // Guarded surface (docs/ROADMAP-v2.md Phase 8): answer hits only exist for
     // packs declaring the capability, so results can never point at one the
     // pack lacks.
@@ -108,8 +113,6 @@ fun SearchScreen(
             if (hits.activities.isNotEmpty()) {
                 item { SectionHeader("Activities") }
                 items(hits.activities, key = { "act-" + it.activityId }) { hit ->
-                    // Phase 9: activity hits open the activity detail instead
-                    // of dead-ending.
                     ResultRow(
                         title = hit.label,
                         snippet = null,
@@ -120,7 +123,6 @@ fun SearchScreen(
             if (hits.deadlines.isNotEmpty()) {
                 item { SectionHeader("Deadlines") }
                 items(hits.deadlines, key = { "dl-" + it.deadlineId }) { hit ->
-                    // Phase 9: deadline hits open the Deadlines tab.
                     ResultRow(
                         title = hit.label,
                         snippet = null,
@@ -148,11 +150,17 @@ private fun com.shadowmonarchbooks.dayloop.data.LoadedPack.id(): String =
 
 @Composable
 private fun SectionHeader(text: String) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier.padding(top = 6.dp, bottom = 2.dp),
-    )
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
+    if (slash) {
+        SkinHeader(text, modifier = Modifier.padding(top = 6.dp, bottom = 2.dp))
+    } else {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(top = 6.dp, bottom = 2.dp),
+        )
+    }
 }
 
 @Composable
@@ -161,20 +169,33 @@ private fun ResultRow(
     snippet: String?,
     onClick: (() -> Unit)?,
 ) {
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
+    val cardShape = skin.shapes.card
     Surface(
-        shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant,
+        shape = cardShape,
+        color = if (slash) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceVariant,
+        shadowElevation = 0.dp,
         modifier = Modifier
             .fillMaxWidth()
+            .then(
+                if (slash) Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground, cardShape)
+                else Modifier,
+            )
             .then(if (onClick != null) Modifier.clickable { onClick() } else Modifier),
     ) {
-        Column(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
-            Text(text = title, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+        Column(Modifier.skinDecor("panel").padding(horizontal = 12.dp, vertical = 8.dp)) {
+            Text(
+                text = if (slash) skin.cased(title, "display") else title,
+                style = if (slash) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
+            )
             snippet?.let {
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 2,
                 )
             }
