@@ -72,7 +72,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Finish 'Ghost Encounters' during class", "activityRef": "p5r.activity.book.ghost-encounters", "statGains": { "guts": 5 } },
-        { "label": "Hang out with Ann in Shibuya — give her the bouquet (room decoration 1/20)" },
+        { "label": "Hang out with Ann in Shibuya — give her the bouquet and receive the Choco Fountain (room decoration 1/20)" },
         { "label": "Call Kawakami — Temperance reaches rank 9 (romance choice available)" }
       ]
     },
