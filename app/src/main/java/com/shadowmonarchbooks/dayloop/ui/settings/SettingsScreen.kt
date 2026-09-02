@@ -13,11 +13,9 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
@@ -41,8 +39,11 @@ import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.SkinPackIcon
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinOutlinedActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
@@ -162,23 +163,25 @@ fun SettingsScreen(
                     // Day advance here gets the same light haptic tick + the
                     // pack's `advance` sound (if Skin sounds are on) as the
                     // End-Day button (docs/ROADMAP-v3.md Phase 16).
-                    Button(
+                    SkinActionButton(
+                        text = "Advance a day",
                         onClick = {
                             view.skinTick()
                             vm.skinFx.play("advance")
                             vm.endDay()
                         },
                         enabled = state.hasNextDay(),
-                    ) {
-                        Text("Advance a day")
-                    }
-                    OutlinedButton(onClick = vm::rerollDay, enabled = state.hasPreviousDay()) {
-                        Text("Reroll")
-                    }
+                    )
+                    SkinOutlinedActionButton(
+                        text = "Reroll",
+                        onClick = vm::rerollDay,
+                        enabled = state.hasPreviousDay(),
+                    )
                 }
-                OutlinedButton(onClick = { resetConfirmOpen = true }) {
-                    Text("Reset profile")
-                }
+                SkinOutlinedActionButton(
+                    text = "Reset profile",
+                    onClick = { resetConfirmOpen = true },
+                )
                 if (state.activeProfile != null && state.activeProfile!!.contentVersion != pack.pack.contentVersion) {
                     Text(
                         text = "Pack content was updated after this save was made.",
@@ -256,9 +259,10 @@ fun SettingsScreen(
                     }
                 }
             }
-            TextButton(onClick = { createOpen = true }) {
-                Text("+ New profile")
-            }
+            SkinTextActionButton(
+                text = "+ New profile",
+                onClick = { createOpen = true },
+            )
         }
 
         // ---- Orphaned marks review (docs/PLAN.md §3.6) ----
@@ -289,9 +293,10 @@ fun SettingsScreen(
                             color = MaterialTheme.colorScheme.onErrorContainer,
                         )
                     }
-                    OutlinedButton(onClick = vm::discardOrphans) {
-                        Text("Discard these marks")
-                    }
+                    SkinOutlinedActionButton(
+                        text = "Discard these marks",
+                        onClick = vm::discardOrphans,
+                    )
                 }
             }
         }
