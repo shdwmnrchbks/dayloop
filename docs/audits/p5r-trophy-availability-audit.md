@@ -8,6 +8,7 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 - PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed story timing, fusion availability, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
 - TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation and mandatory May 7 first Mementos request.
+- GameFAQs and Samurai Gamers Royal walkthroughs — independent May 5 LeBlanc cleaning/trophy checks plus route-date comparisons.
 - Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story check.
 - Samurai Gamers Old Temple guide — explicit Jun 6 temple unlock.
 - Samurai Gamers June walkthrough — independent early Kichijoji darts/billiards usage examples.
@@ -25,6 +26,10 @@ Normal Guillotine fusion becomes available in the Velvet Room by Apr 18, and Roy
 ### Phantom Thieves: Assemble! — 2016-05-05
 
 This trophy is fixed story progression: the group formally names the Phantom Thieves during the May 5 hotel sequence. The old May 1 month anchor was several days early.
+
+### Leblanc Buffer — 2016-05-05
+
+Royal allows the protagonist to clean Café LeBlanc on the evening of May 5, and independent completion walkthroughs explicitly award `Leblanc Buffer` for that visit. The old July 1 value reflected a much later route cleanup rather than the first confirmed trophy opportunity.
 
 ### One Step at a Time — 2016-05-07
 
@@ -56,6 +61,14 @@ Akihabara and its crane game unlock on Aug 31. The route starts its crane-prize 
 
 ## Deliberately excluded from this pass
 
+### Jose's Favorite Customer / The Phantom Philatelist
+
+Jose is introduced on May 7, but independent guides distinguish that mandatory tutorial encounter from the later freely explorable Mementos session where flowers/stamps can be collected and traded. Optimized completion routes commonly place the first shop/stamp trophy run on May 31, while other references only state `after meeting Jose`. Until the exact free-exploration gate is independently pinned, the audit does not replace the existing broad anchors with false precision.
+
+### Punch That Clock!
+
+Part-time jobs open in late April, but route references differ on the first schedulable workday because the player can spend those early after-school slots on Palace progress or other activities. The current month-level anchor should be replaced only after the feature-availability rule is separated cleanly from a route-selected first shift.
+
 ### A Night in Kichijoji
 
 The jazz club is gated by Justice/Akechi rank 4, not merely the Kichijoji district unlock. Independent references disagree on the exact earliest calendar date achievable for rank 4 (and optimized routes can move it), so this pass does not replace the current metadata with a falsely precise fixed day. The condition should be modeled or separately audited before changing it.
@@ -70,4 +83,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` pins the ten corrected fixed availability anchors, confirms they remain manual/no-deadline trophies, checks the mandatory May 7 Mementos introduction, and explicitly verifies that the route's later billiards, temple and crane choices do not overwrite real facility availability.
+`P5RTrophyAvailabilityAuditTest` pins the eleven corrected fixed availability anchors, confirms they remain manual/no-deadline trophies, checks the mandatory May 7 Mementos introduction, and explicitly verifies that the route's later billiards, temple and crane choices do not overwrite real facility availability.
