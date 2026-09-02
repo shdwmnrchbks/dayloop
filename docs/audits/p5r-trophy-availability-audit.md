@@ -7,12 +7,12 @@ Scope: Royal trophy `availableFrom` metadata that had inherited broad month anch
 ## Sources checked
 
 - PlayStationTrophies / TrueAchievements / Xbox achievement guides — Royal trophy requirements and first-opportunity mechanics.
-- GameFAQs Royal walkthroughs and mechanics guides — exact story dates, Palace mechanic gates, Mementos/Jose progression, Apr 28 Ryuji/Ogikubo trophy routing, Royal-specific July fishing timing, Strength/Lockdown progression, and route-vs-unlock comparisons.
-- Samurai Gamers Royal walkthroughs / facility guides — independent checks for Castle mechanics, Kichijoji facilities, Ryuji/Ogikubo progression, Ryuji's Jul 3 Ichigaya hangout, and other calendar gates.
+- GameFAQs Royal walkthroughs and mechanics guides — exact story dates, Palace mechanic gates, Mementos/Jose progression, Apr 28 Ryuji/Ogikubo trophy routing, optimized Justice/Jazz Jin timing, Royal-specific July fishing timing, Strength/Lockdown progression, and route-vs-unlock comparisons.
+- Samurai Gamers Royal walkthroughs / facility guides — independent checks for Castle mechanics, Kichijoji facilities, Jazz Jin, Ryuji/Ogikubo progression, Ryuji's Jul 3 Ichigaya hangout, and other calendar gates.
 - Persona 5 Royal Japanese strategy references — lottery timing, Mementos path/stamp counts, Palace route-security windows, and Royal-specific Velvet Room unlocks.
 - Neoseeker Royal walkthrough — additional Jose, Kichijoji incense, and Futaba/Gallows timing checks.
 
-Where two valid Royal schedules earn a trophy on adjacent dates, `availableFrom` uses the earliest independently demonstrated legal opportunity rather than the completion route's chosen date.
+Where two valid Royal schedules earn a trophy on adjacent dates, `availableFrom` uses the earliest independently demonstrated legal opportunity rather than the completion route's chosen date. Cross-version or route-specific date conflicts are recorded instead of silently flattened.
 
 ## Corrected anchors
 
@@ -54,6 +54,7 @@ Where two valid Royal schedules earn a trophy on adjacent dates, `availableFrom`
 | A Serene Experience | 2016-06-06 | Kichijoji temple becomes usable |
 | It's Showtime! | 2016-06-21 | First trophy-eligible Showtime after the forced tutorial |
 | Accident-Prone | 2016-06-21 | Earliest Kaneshiro Treasure-route security / Fusion Alarm availability |
+| A Night in Kichijoji | 2016-06-26 | Optimized Justice rank 4 can unlock Jazz Jin on Jun 25; trophy requires a separate subsequent Jazz visit |
 | Angler's Debut | 2016-07-04 | Jul 3 Royal Ryuji hangout unlocks Ichigaya; initial visit does not count, so next day is first possible independent catch |
 | The Search for Power | 2016-07-12 | First Kaitul visit can supply enough stamps to max the cheapest cognition line |
 | Success Built on Sacrifice | 2016-07-26 | Earliest Futaba Treasure-route security / Gallows availability |
@@ -86,6 +87,14 @@ Lockdown requires Strength rank 3. Dayloop's own route reaches Strength rank 3 o
 
 The route later buys the Jul 3 Calm Mind Set for incense, but that shopping-channel purchase is not the mechanic's unlock and must not determine `availableFrom`.
 
+### A Night in Kichijoji
+
+Justice rank 4 introduces Jazz Jin, but the introduction itself only unlocks the venue. Trophy guides consistently require a **separate later Jazz visit** for `A Night in Kichijoji`.
+
+Royal timing references conflict because ordinary completion schedules reach Akechi rank 4 much later, while optimized routing compresses his early ranks. A recent GameFAQs optimization guide explicitly identifies **Jun 25** as the earliest Justice rank-4 / Jazz Jin unlock if Palace timing is rearranged; Jun 23–24 are also rain-constrained for rank 4 in the relevant Royal calendar window. The first separate Jazz visit is therefore **Jun 26**.
+
+Dayloop's own completion route schedules Justice rank 4 on **Aug 6**. That remains a route choice, not game availability, and `P5RJazzJinAuditTest` now pins the distinction alongside the late-Sunday skill semantics.
+
 ### Angler's Debut source conflict
 
 Several cross-version trophy pages still say Ryuji unlocks Ichigaya on Jul 6. Royal-specific walkthroughs from GameFAQs, Samurai Gamers and the current P5R route consistently place the Ryuji/Kawakami fishing hangout on **Jul 3**. Separate achievement reports agree that the invitation visit itself does **not** award `Angler's Debut`; the player must return and actually catch a fish.
@@ -100,13 +109,12 @@ Secondary tables disagree on the exact total needed for the cheapest cognition c
 
 - **The Path Chosen** — multiple qualifying ending branches occur on different dates; an ending condition should be modeled rather than assigned one universal day.
 - **Unsurpassed Rebel** — the Reaper can spawn from Aiyatsbus, but `encounter available` is not the same as a realistic fresh-file defeat date.
-- **A Night in Kichijoji** — Jazz Jin depends on Justice/Akechi rank 4, which is player-state dependent.
 - **Professional Modification** — depends on Guts rank 4 plus Hanged Man/Iwai progression and a return visit.
 
 These remain separate gate-model audit items instead of receiving false calendar precision.
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` pins **41** corrected fixed/first-opportunity anchors and keeps them manual/no-deadline unless a separately modeled route target exists. It also guards key route/global distinctions: Apr 28 Tokyo Tourist vs the route's Jun 1 Chariot rank, Jun 2 Strength rank 3 + Jun 5 incense availability, Jul 3 Ichigaya unlock vs Jul 4 first possible fishing trophy, May 9 free-Mementos behavior, flexible Palace security gates, and late route choices such as billiards/temple/crane not overwriting real facility availability.
+`P5RTrophyAvailabilityAuditTest` pins **42** corrected fixed/first-opportunity anchors and keeps them manual/no-deadline unless a separately modeled route target exists. It also guards key route/global distinctions: Apr 28 Tokyo Tourist vs the route's Jun 1 Chariot rank, Jun 2 Strength rank 3 + Jun 5 incense availability, Jun 25 Jazz unlock vs Jun 26 first trophy visit, Jul 3 Ichigaya unlock vs Jul 4 first possible fishing trophy, May 9 free-Mementos behavior, flexible Palace security gates, and late route choices such as billiards/temple/crane not overwriting real facility availability.
 
-Dedicated activity tests (`P5RFishingAuditTest`, `P5RLotteryAuditTest`, `P5RBathhouseAuditTest`, `P5RBattingCageAuditTest`, and others) pin the higher-risk mechanic semantics behind these dates.
+Dedicated activity tests (`P5RJazzJinAuditTest`, `P5RFishingAuditTest`, `P5RLotteryAuditTest`, `P5RBathhouseAuditTest`, `P5RBattingCageAuditTest`, and others) pin the higher-risk mechanic semantics behind these dates.
