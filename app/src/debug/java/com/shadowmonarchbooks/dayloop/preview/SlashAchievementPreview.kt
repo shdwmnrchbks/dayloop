@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -23,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinCheckboxIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTopBar
 import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
@@ -151,7 +151,7 @@ private fun SlashAchievementPreviewRow(
                 Text(description, style = MaterialTheme.typography.bodySmall)
                 Text(status, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
             }
-            Checkbox(checked = checked, onCheckedChange = {})
+            SkinCheckboxIndicator(checked = checked, onCheckedChange = {})
         }
     }
 }
