@@ -44,15 +44,14 @@ class P5RMayRouteOrderAuditTest {
             mapOf("knowledge" to 2),
             may10.steps.single { "Malaise" in it.label }.statGains,
         )
-        assertEquals(
-            mapOf("knowledge" to 5),
-            may10.steps.single { "study with Ryuji" in it.label }.statGains,
-        )
+        val ryujiStudy = may10.steps.single { "study with Ryuji" in it.label }
+        assertEquals(mapOf("knowledge" to 5), ryujiStudy.statGains)
 
         val knowledgeThroughMay10 = (april.days + may.days.filter { it.date <= "2016-05-10" })
             .flatMap { it.steps }
             .sumOf { it.statGains["knowledge"] ?: 0 }
-        assertEquals(82, knowledgeThroughMay10, "Royal Knowledge rank 3 / top-10 midterm threshold")
+        assertEquals(84, knowledgeThroughMay10, "the route crosses Royal's 82-point Knowledge rank-3 threshold during the May 10 Ryuji study")
+        assertEquals(79, knowledgeThroughMay10 - (ryujiStudy.statGains["knowledge"] ?: 0))
 
         val may7Book = days.getValue("2016-05-07").steps.single { "Medjed Menace" in it.label }
         assertTrue("rank 2" !in may7Book.label.lowercase(), "Knowledge rank 2 was already reached in April")
@@ -60,6 +59,19 @@ class P5RMayRouteOrderAuditTest {
         val may8Shopping = days.getValue("2016-05-08").steps.single { "Bio Nutrients Set" in it.label }
         assertTrue("Buy" in may8Shopping.label)
         assertTrue("Mega Fertilizer" in may8Shopping.label)
+
+        assertEquals(
+            mapOf("knowledge" to 2),
+            days.getValue("2016-05-18").steps.single { "Gallery" in it.label }.statGains,
+        )
+        assertEquals(
+            mapOf("knowledge" to 2),
+            days.getValue("2016-05-31").steps.single { "Japanese" in it.label }.statGains,
+        )
+        val knowledgeThroughMay31 = (april.days + may.days)
+            .flatMap { it.steps }
+            .sumOf { it.statGains["knowledge"] ?: 0 }
+        assertEquals(110, knowledgeThroughMay31, "the full May no-time crossword chain preserves the state used by June")
 
         val may15Craft = days.getValue("2016-05-15").steps.single { "craft 3 lock picks" in it.label.lowercase() }
         assertEquals(mapOf("proficiency" to 3), may15Craft.statGains)
