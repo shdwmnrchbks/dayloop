@@ -110,9 +110,9 @@
     },
     {
       "id": "p5r.deadline.missable.dvd-rentals",
-      "label": "Completion-route DVD rentals — final series and return window",
+      "label": "Completion-route target — finish the planned Royal DVD viewings (no rental return deadline)",
       "kind": "missable",
-      "window": { "start": "2016-06-29", "end": "2016-10-23" }
+      "date": "2016-10-23"
     },
     {
       "id": "p5r.deadline.missable.library-borrowing",
