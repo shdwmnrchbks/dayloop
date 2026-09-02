@@ -38,10 +38,13 @@ possible. The route is now named and described that way in `pack.json`, and the
 app surfaces the route identity with the active profile rather than silently
 presenting the plan as universal availability.
 
-The route has been spot-checked against an independent Royal 100% walkthrough.
-When two valid routes choose different days, dayloop keeps its authored route
-instead of treating the difference as an error. Universal claims (deadlines,
-stat gates, unlock windows) require independent support.
+The complete authored route has now been reproduced month-by-month against
+independent Royal calendar/walkthrough references from **2016-04-09 through
+2017-02-03**. Dedicated April–February tests/docs distinguish fixed story,
+school, exam, holiday and confinement state from flexible route choices, and
+pin Palace route / Calling Card / heist chronology without replacing one valid
+completion-route choice merely to mirror another guide. Universal claims
+(deadlines, stat gates, unlock windows) still require independent support.
 
 `activities.json` records the activity outcomes used by that route. A route
 reference means "do this activity here in this plan"; it does not claim the
@@ -140,12 +143,14 @@ are independently checkable. Examples include:
   the February 3 story/final-confrontation date. See
   `p5r-third-semester-2017-audit.md`.
 
-These July–February corrections are regression-tested for the highest-risk
-point, modifier and fixed-calendar cases, but they are **not** a claim that every
-flexible route step in those months has been independently reproduced day-for-day
-from a second walkthrough. The targeted hidden-point/modifier pass now reaches
-the route's last stat-bearing activity on February 1, 2017; full fact-by-fact
-secondary verification remains tracked separately in issue #12.
+The targeted hidden-point/modifier pass reaches the route's last stat-bearing
+activity on February 1, 2017, and the later month-specific route-order audits
+independently reproduce the full authored calendar through February 3. Flexible
+choices remain explicitly route-selected rather than universalized. High-risk
+one-off activities, item/completion chains, conditional wording, media metadata
+and trophy availability now have dedicated audit/source coverage; player-state
+or branch-dependent trophies that cannot support one universal date are
+intentionally undated instead of carrying synthetic month-start placeholders.
 
 ### Confidants
 
@@ -246,3 +251,6 @@ December 24 and records the disagreement in `p5r-december-2016-audit.md`.
 11. When independent guides disagree only on *when a flexible action is done*,
     preserve the authored route and label it as route-specific instead of
     "correcting" it into another guide's route.
+12. If an achievement's first completion date depends on player state, route
+    branch, RNG readiness or flexible progression, omit `availableFrom` rather
+    than substituting a convenient completion-route or first-of-month date.
