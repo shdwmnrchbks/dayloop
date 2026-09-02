@@ -57,6 +57,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("Technician", "2016-04-18")
         available("Punch That Clock!", "2016-04-18")
         available("Easy Money", "2016-04-25")
+        available("Tokyo Tourist", "2016-04-28")
         available("Phantom Thieves: Assemble!", "2016-05-05")
         available("Leblanc Buffer", "2016-05-05")
         available("One Step at a Time", "2016-05-07")
@@ -98,6 +99,13 @@ class P5RTrophyAvailabilityAuditTest {
         // result from an Apr 18 ordinary ticket, never a guaranteed completion date.
         assertEquals("2016-04-18", achievements.getValue("Punch That Clock!").availableFrom)
         assertEquals("2016-04-25", achievements.getValue("Easy Money").availableFrom)
+
+        // Independent Royal schedules demonstrate Chariot rank 4 and Ogikubo on
+        // Apr 28, which immediately awards Tokyo Tourist. This completion route
+        // delays the same rank to Jun 1; that route choice must not become the
+        // trophy's availability metadata.
+        assertEquals("2016-04-28", achievements.getValue("Tokyo Tourist").availableFrom)
+        assertTrue(days.getValue("2016-06-01").steps.any { "Chariot reaches rank 4" in it.label })
 
         // Aiyatsbus opens on May 9. This is the first free Mementos exploration
         // state where Jose's flowers/stamps are usable and random deviations can
