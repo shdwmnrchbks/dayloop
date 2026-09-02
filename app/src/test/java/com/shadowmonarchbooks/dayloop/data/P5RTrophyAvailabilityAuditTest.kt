@@ -68,6 +68,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("Efficient Executioner", "2016-05-18")
         available("A Grand Experiment", "2016-05-20")
         available("Trash Into Treasure", "2016-06-05")
+        available("Intensive Training", "2016-06-05")
         available("Dartslinger", "2016-06-06")
         available("A Hustler's Journey", "2016-06-06")
         available("A Serene Experience", "2016-06-06")
@@ -106,6 +107,13 @@ class P5RTrophyAvailabilityAuditTest {
         assertEquals("2016-05-09", achievements.getValue("Jose's Favorite Customer").availableFrom)
         assertEquals("2016-05-09", achievements.getValue("The Phantom Philatelist").availableFrom)
         assertEquals("2016-05-09", achievements.getValue("The Deviated Cognition").availableFrom)
+
+        // The route reaches Strength rank 3 on Jun 2. Kichijoji and Mantra Ganda
+        // open on Jun 5, so incense can be bought and used in Lockdown from that
+        // date even though this route waits for a later shopping-channel set.
+        assertTrue(days.getValue("2016-06-02").steps.any { "Strength reaches rank 3" in it.label })
+        assertTrue(days.getValue("2016-06-05").steps.any { "Kichijoji" in it.label })
+        assertEquals("2016-06-05", achievements.getValue("Intensive Training").availableFrom)
 
         // Royal unlocks Ichigaya through Ryuji's Jul 3 fishing hangout. That
         // introductory visit unlocks the location but does not award Angler's
