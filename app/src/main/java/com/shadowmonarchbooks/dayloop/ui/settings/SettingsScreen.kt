@@ -42,6 +42,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
@@ -409,14 +410,7 @@ private fun CreateProfileDialog(
 
 @Composable
 private fun SectionTitle(text: String, modifier: Modifier = Modifier) {
-    val skin = LocalSkin.current
-    val slash = skin.hasSkin && skin.motion == "slash"
-    Text(
-        text = if (slash) skin.cased(text, "display") else text,
-        style = if (slash) MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,
-        color = if (slash) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
-        modifier = modifier,
-    )
+    SkinSectionHeader(text = text, modifier = modifier)
 }
 
 @Composable
