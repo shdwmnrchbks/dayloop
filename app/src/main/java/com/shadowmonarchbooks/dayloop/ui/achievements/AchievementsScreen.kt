@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
@@ -213,7 +212,7 @@ private fun RuleAchievementRow(
             modifier = Modifier.skinDecor("panel").padding(10.dp),
         ) {
             Surface(
-                shape = RoundedCornerShape(10.dp),
+                shape = skin.shapes.chip,
                 color = MaterialTheme.colorScheme.surface,
                 modifier = Modifier.size(56.dp),
             ) {
@@ -585,7 +584,7 @@ private fun LegacyAchievementRow(
             modifier = Modifier.skinDecor("panel").padding(10.dp),
         ) {
             Surface(
-                shape = RoundedCornerShape(10.dp),
+                shape = skin.shapes.chip,
                 color = MaterialTheme.colorScheme.surface,
             ) {
                 MediaImage(
