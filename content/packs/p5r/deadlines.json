@@ -122,7 +122,7 @@
     },
     {
       "id": "p5r.deadline.missable.books-complete",
-      "label": "Completion-route target — finish all 46 books",
+      "label": "Completion-route target — finish the full 46-book catalog (Bookworm award requires 40)",
       "kind": "routeTarget",
       "date": "2017-01-25"
     },
