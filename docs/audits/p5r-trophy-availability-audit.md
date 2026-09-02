@@ -6,10 +6,11 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 ## Sources checked
 
-- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, lottery result semantics, part-time-job behavior, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, lottery result semantics, part-time-job behavior, Showtime/Fusion Alarm behavior, Velvet Room execution mechanics, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
 - TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, May 18 Strength-rank-1 / Group Guillotine availability, and exact Palace/Mementos story-trophy dates.
-- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, early part-time-job availability, May 5 LeBlanc cleaning, May 18 Museum first-free-exploration checks, Palace-resolution dates, and route-date comparisons.
-- Persona 5 Royal strategy references — Triple Seven job availability from Apr 18 and the ordinary lottery's Apr 18 sale start / seven-day result delay.
+- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, early part-time-job availability, May 5 LeBlanc cleaning, May 18 Museum first-free-exploration checks, earliest Palace-route security windows, Palace-resolution dates, and route-date comparisons.
+- Persona 5 Royal strategy references — Triple Seven job availability from Apr 18, ordinary lottery's Apr 18 sale start / seven-day result delay, earliest Madarame route security on May 20, and Fusion Alarm gating after Kaneshiro route security.
+- Neoseeker Royal walkthrough — independent Jul 26 earliest Futaba Palace Treasure-route security check for Gallows availability.
 - Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story and Apr 18 Castle tutorial checks.
 - Samurai Gamers Old Temple guide — explicit Jun 6 temple unlock.
 - Samurai Gamers June walkthrough — independent early Kichijoji darts/billiards usage examples.
@@ -94,6 +95,10 @@ The first Treasure Demon is Regent in the Museum Palace's scripted golden-pot en
 
 Group Guillotine unlocks at Strength rank 1. The first opportunity to start/complete that rank is May 18 by presenting Jack Frost with Mabufu, after which a three-Persona Group Guillotine can award the trophy. The old Jun 1 value was only a month-level route approximation.
 
+### A Grand Experiment — 2016-05-20
+
+Electric Chair itemization unlocks after securing the Museum Palace Treasure route. Royal references place the earliest legal Madarame route-security day on May 20, making that the first possible Electric Chair trophy date. This replaces the previous May 1 placeholder, which predated the mechanic entirely.
+
 ### Trash Into Treasure — 2016-06-05
 
 Kichijoji unlocks on Jun 5 and Furugi no Neuchi can accept Sooty clothing from that point. Dayloop's own route already sells Sooty clothes in Kichijoji on Jun 5; the old Jun 1 month anchor predated the facility.
@@ -109,6 +114,18 @@ Billiards is available at Penguin Sniper once Kichijoji's introduction has occur
 ### A Serene Experience — 2016-06-06
 
 The Kichijoji temple becomes usable on Jun 6. Dayloop's completion route intentionally postpones its temple visit until Jan 30; the old Jan 1 metadata incorrectly turned that late route choice into trophy availability.
+
+### It's Showtime! — 2016-06-21
+
+Showtime is introduced during the Bank Palace arc. The forced tutorial itself does not award the trophy, but subsequent Showtime activations are eligible from Jun 21 onward. The prior Jun 25 date reflected a particular route's progress rather than first trophy eligibility.
+
+### Accident-Prone — 2016-06-21
+
+Fusion Alarms become available only after securing Kaneshiro's Treasure route. Jun 21 is the earliest legal route-security date, and an execution performed during an alarm can award `Accident-Prone` from that point. This replaces the previous Jun 25 route-specific anchor.
+
+### Success Built on Sacrifice — 2016-07-26
+
+Gallows execution becomes available after securing the Futaba Palace Treasure route. Jul 26 is the earliest legal day to secure that route; Jul 25 is still investigation/story setup. The old Jul 1 value was a month placeholder before Gallows exists.
 
 ### Going Against the Crane — 2016-08-31
 
@@ -128,10 +145,6 @@ Unlike the fixed Palace-resolution trophies, this trophy is awarded for reaching
 
 Jose is introduced on May 7, but independent guides distinguish that mandatory tutorial encounter from the later freely explorable Mementos session where flowers/stamps can be collected and traded. Optimized completion routes commonly place the first shop/stamp trophy run on May 31, while other references only state `after meeting Jose`. Until the exact free-exploration gate is independently pinned, the audit does not replace the existing broad anchors with false precision.
 
-### A Grand Experiment
-
-Electric Chair itemization unlocks after securing the Museum Treasure route, but flexible Royal routes can secure that route on different days. The exact earliest legal calendar date should be pinned separately from one guide's chosen infiltration day before replacing the current coarse metadata.
-
 ### A Night in Kichijoji
 
 The jazz club is gated by Justice/Akechi rank 4, not merely the Kichijoji district unlock. Independent references disagree on the exact earliest calendar date achievable for rank 4 (and optimized routes can move it), so this pass does not replace the current metadata with a falsely precise fixed day. The condition should be modeled or separately audited before changing it.
@@ -146,4 +159,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` now pins **30** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, the Apr 15 negotiation trophy, Apr 18 Castle combat/mechanic and job trophies, the first possible Apr 25 lottery result, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
+`P5RTrophyAvailabilityAuditTest` now pins **34** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, Apr 15 negotiation, Apr 18 Castle combat/mechanic/job trophies, the first possible Apr 25 lottery result, earliest Electric Chair/Fusion Alarm/Showtime/Gallows trophy availability, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
