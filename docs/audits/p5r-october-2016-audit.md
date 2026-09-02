@@ -11,7 +11,7 @@ This pass independently checks mechanics that can be verified without replacing
 that route with another guide's preferred order: hidden social-stat points,
 Craft of Cinema totals, reusable activity rewards, Confidant stat rewards,
 Aojiru, plant fertilizer, exam-result rewards, the classroom blackboard bonus,
-and darts.
+darts, and Royal DVD-return semantics.
 
 ## Independent references
 
@@ -52,15 +52,23 @@ The 10/30 Shinya Destinyland/Balloons hangout was also corrected semantically:
 it grants the room decoration/affinity event but does **not** invent a Kindness
 reward. Mega Fertilizer on that date now carries the missing +5 Kindness instead.
 
+Royal's Scarlet DVD shop uses a one-time membership and has **no set return
+date**. The old deadline entry incorrectly described June–October as a rental
+return window. October 23 is now explicitly a **completion-route target** for
+finishing the planned DVD viewings, with no claim that Royal requires the disc
+to be returned by that date.
+
 ## Regression coverage
 
-`P5ROctoberAuditTest` pins the corrected high-risk values and explicitly checks
-that the Craft of Cinema labels remain active for October media. The broader
+`P5ROctoberAuditTest` pins the corrected high-risk values, explicitly checks
+that the Craft of Cinema labels remain active for October media, and prevents
+the Royal DVD target from regressing into a fake return window. The broader
 `PackContentTest` continues to pin the reusable activity catalog and the current
 P5R content version.
 
 ## Remaining audit work
 
-November 2016 onward still needs the same point-unit/conditional-modifier pass.
-The broader issue remains open until every user-visible P5R gameplay fact has an
-independent verifier or an explicit completion-route/source-specific designation.
+The targeted point-unit/conditional-modifier pass has since continued through
+February 1, 2017. The broader issue remains open until every user-visible P5R
+gameplay fact has an independent verifier or an explicit
+completion-route/source-specific designation.
