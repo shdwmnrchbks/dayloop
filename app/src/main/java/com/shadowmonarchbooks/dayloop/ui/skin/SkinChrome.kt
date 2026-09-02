@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
@@ -44,8 +48,8 @@ private fun SkinSpec.isSlashChrome(): Boolean = hasSkin && motion == "slash"
 
 /**
  * App-wide background treatment. Slash-language skins use a black field with
- * broad asymmetric red/white print fields, a diagonal guide line, and a small
- * halftone corner instead of Material tonal surface elevation. Other skins are
+ * broad asymmetric red/white print fields and a diagonal guide line instead
+ * of Material tonal surface elevation. Other skins are
  * intentionally untouched.
  *
  * The content itself stays on the ordinary layout grid: these shapes are a
@@ -102,26 +106,12 @@ fun Modifier.skinBackdrop(skin: SkinSpec): Modifier {
                 strokeWidth = 2.dp.toPx(),
             )
 
-            // Sparse print dots, limited to one corner so the effect stays
-            // decorative rather than becoming a noisy background texture.
-            val dotColor = colors.onBackground.copy(alpha = 0.10f)
-            val spacing = 12.dp.toPx()
-            val radius = 1.25.dp.toPx()
-            for (row in 0..5) {
-                for (column in 0..7) {
-                    val x = size.width - 6.dp.toPx() - column * spacing - if (row % 2 == 0) 0f else spacing / 2f
-                    val y = 10.dp.toPx() + row * spacing
-                    if (x >= size.width * 0.69f) {
-                        drawCircle(dotColor, radius = radius, center = Offset(x, y))
-                    }
-                }
-            }
         }
 }
 
 /**
  * Top app chrome. The slash family intentionally stops looking like a stock
- * Material toolbar: black field, layered red torn/ribbon title plate, offset
+ * Material toolbar: black field, layered red cut title plate, offset
  * white paper edge, and hard icon treatment. All other skins keep the previous
  * Material bar.
  */
@@ -136,92 +126,99 @@ fun SkinTopBar(
 ) {
     val skin = LocalSkin.current
     val colors = MaterialTheme.colorScheme
-    if (!skin.isSlashChrome()) {
-        TopAppBar(
-            modifier = Modifier
-                .background(colors.surface)
-                .skinDecor("header"),
-            colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
-            navigationIcon = {
-                if (canGoBack) {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            },
-            title = { Text(title, style = MaterialTheme.typography.titleMedium) },
-            actions = {
-                IconButton(onClick = onOpenSearch) {
-                    Icon(Icons.Filled.Search, contentDescription = "Search")
-                }
-                IconButton(onClick = onOpenSettings) {
-                    Icon(Icons.Filled.Settings, contentDescription = "Settings")
-                }
-            },
-        )
-        return
-    }
-
-    Surface(color = colors.background, shadowElevation = 0.dp) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+    Column(modifier = Modifier.background(colors.surface)) {
+        Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 64.dp)
-                .drawBehind {
-                    drawLine(
-                        color = colors.onBackground,
-                        start = Offset(0f, size.height - 1f),
-                        end = Offset(size.width, size.height - 1f),
-                        strokeWidth = 2f,
-                    )
-                }
-                .padding(horizontal = 8.dp, vertical = 7.dp),
-        ) {
-            if (canGoBack) {
-                IconButton(onClick = onBack) {
-                    Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back",
-                        tint = colors.onBackground,
-                    )
-                }
-            }
-            Box(
+                .windowInsetsTopHeight(WindowInsets.statusBars),
+        )
+        if (!skin.isSlashChrome()) {
+            TopAppBar(
                 modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 3.dp, bottom = 3.dp),
-            ) {
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .offset(x = 3.dp, y = 3.dp)
-                        .background(colors.onBackground, skin.shapes.header),
-                )
-                Surface(
-                    shape = skin.shapes.header,
-                    color = colors.primary,
-                    shadowElevation = 0.dp,
+                    .background(colors.surface)
+                    .skinDecor("header"),
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+                windowInsets = WindowInsets(0, 0, 0, 0),
+                navigationIcon = {
+                    if (canGoBack) {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        }
+                    }
+                },
+                title = { Text(title, style = MaterialTheme.typography.titleMedium) },
+                actions = {
+                    IconButton(onClick = onOpenSearch) {
+                        Icon(Icons.Filled.Search, contentDescription = "Search")
+                    }
+                    IconButton(onClick = onOpenSettings) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                    }
+                },
+            )
+        } else {
+            Surface(color = colors.background, shadowElevation = 0.dp) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .graphicsLayer { rotationZ = -1.2f }
-                        .border(1.dp, colors.background, skin.shapes.header),
+                        .heightIn(min = 64.dp)
+                        .drawBehind {
+                            drawLine(
+                                color = colors.onBackground,
+                                start = Offset(0f, size.height - 1f),
+                                end = Offset(size.width, size.height - 1f),
+                                strokeWidth = 2f,
+                            )
+                        }
+                        .padding(horizontal = 8.dp, vertical = 7.dp),
                 ) {
-                    Text(
-                        text = skin.cased(title, "display"),
-                        style = MaterialTheme.typography.titleLarge,
-                        color = colors.onPrimary,
-                        maxLines = 1,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                    )
+                    if (canGoBack) {
+                        IconButton(onClick = onBack) {
+                            Icon(
+                                Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Back",
+                                tint = colors.onBackground,
+                            )
+                        }
+                    }
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(end = 3.dp, bottom = 3.dp),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .offset(x = 3.dp, y = 3.dp)
+                                .background(colors.onBackground, skin.shapes.header),
+                        )
+                        Surface(
+                            shape = skin.shapes.header,
+                            color = colors.primary,
+                            shadowElevation = 0.dp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .graphicsLayer { rotationZ = -1.2f }
+                                .border(1.dp, colors.background, skin.shapes.header),
+                        ) {
+                            Text(
+                                text = skin.cased(title, "display"),
+                                style = MaterialTheme.typography.titleLarge,
+                                color = colors.onPrimary,
+                                maxLines = 1,
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                            )
+                        }
+                    }
+                    IconButton(onClick = onOpenSearch) {
+                        Icon(Icons.Filled.Search, contentDescription = "Search", tint = colors.onBackground)
+                    }
+                    IconButton(onClick = onOpenSettings) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Settings", tint = colors.onBackground)
+                    }
                 }
-            }
-            IconButton(onClick = onOpenSearch) {
-                Icon(Icons.Filled.Search, contentDescription = "Search", tint = colors.onBackground)
-            }
-            IconButton(onClick = onOpenSettings) {
-                Icon(Icons.Filled.Settings, contentDescription = "Settings", tint = colors.onBackground)
             }
         }
     }
@@ -247,8 +244,9 @@ fun SkinBottomBar(
                 NavigationBarItem(
                     selected = selectedRoute == item.route,
                     onClick = { onSelect(item.route) },
-                    icon = { Icon(item.icon, contentDescription = null) },
-                    label = { Text(item.label) },
+                    icon = { Icon(item.icon, contentDescription = item.label) },
+                    label = null,
+                    alwaysShowLabel = false,
                 )
             }
         }
@@ -297,20 +295,12 @@ fun SkinBottomBar(
                                 .border(1.dp, colors.onBackground, skin.shapes.chip),
                         )
                     }
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.label,
-                            tint = content,
-                            modifier = Modifier.size(21.dp),
-                        )
-                        Text(
-                            text = skin.cased(item.label, "display"),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = content,
-                            maxLines = 1,
-                        )
-                    }
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = item.label,
+                        tint = content,
+                        modifier = Modifier.size(23.dp),
+                    )
                 }
             }
         }

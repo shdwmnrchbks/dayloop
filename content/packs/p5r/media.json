@@ -373,6 +373,160 @@
       "kind": "achievement",
       "title": "Efficient Executioner",
       "months": ["2016-06"]
+    },
+    {
+      "id": "p5r.media.confidant.igor",
+      "file": "images/confidant_igor.png",
+      "kind": "banner",
+      "title": "Igor",
+      "bonds": ["p5r.bond.fool"]
+    },
+    {
+      "id": "p5r.media.confidant.ryuji",
+      "file": "images/confidant_ryuji.png",
+      "kind": "banner",
+      "title": "Ryuji",
+      "bonds": ["p5r.bond.chariot"]
+    },
+    {
+      "id": "p5r.media.confidant.morgana",
+      "file": "images/confidant_morgana.png",
+      "kind": "banner",
+      "title": "Morgana",
+      "bonds": ["p5r.bond.magician"]
+    },
+    {
+      "id": "p5r.media.confidant.ann",
+      "file": "images/confidant_ann.png",
+      "kind": "banner",
+      "title": "Ann",
+      "bonds": ["p5r.bond.lovers"]
+    },
+    {
+      "id": "p5r.media.confidant.takemi",
+      "file": "images/confidant_takemi.png",
+      "kind": "banner",
+      "title": "Takemi",
+      "bonds": ["p5r.bond.death"]
+    },
+    {
+      "id": "p5r.media.confidant.sojiro",
+      "file": "images/confidant_sojiro.png",
+      "kind": "banner",
+      "title": "Sojiro",
+      "bonds": ["p5r.bond.hierophant"]
+    },
+    {
+      "id": "p5r.media.confidant.mishima",
+      "file": "images/confidant_mishima.png",
+      "kind": "banner",
+      "title": "Mishima",
+      "bonds": ["p5r.bond.moon"]
+    },
+    {
+      "id": "p5r.media.confidant.maruki",
+      "file": "images/confidant_maruki.png",
+      "kind": "banner",
+      "title": "Maruki",
+      "bonds": ["p5r.bond.councilor"]
+    },
+    {
+      "id": "p5r.media.confidant.caroline-justine",
+      "file": "images/confidant_caroline_justine.png",
+      "kind": "banner",
+      "title": "Caroline and Justine",
+      "bonds": ["p5r.bond.strength"]
+    },
+    {
+      "id": "p5r.media.confidant.yoshida",
+      "file": "images/confidant_yoshida.png",
+      "kind": "banner",
+      "title": "Yoshida",
+      "bonds": ["p5r.bond.sun"]
+    },
+    {
+      "id": "p5r.media.confidant.kawakami",
+      "file": "images/confidant_kawakami.png",
+      "kind": "banner",
+      "title": "Kawakami",
+      "bonds": ["p5r.bond.temperance"]
+    },
+    {
+      "id": "p5r.media.confidant.akechi",
+      "file": "images/confidant_akechi.png",
+      "kind": "banner",
+      "title": "Akechi",
+      "bonds": ["p5r.bond.justice"]
+    },
+    {
+      "id": "p5r.media.confidant.yusuke",
+      "file": "images/confidant_yusuke.png",
+      "kind": "banner",
+      "title": "Yusuke",
+      "bonds": ["p5r.bond.emperor"]
+    },
+    {
+      "id": "p5r.media.confidant.makoto",
+      "file": "images/confidant_makoto.png",
+      "kind": "banner",
+      "title": "Makoto",
+      "bonds": ["p5r.bond.priestess"]
+    },
+    {
+      "id": "p5r.media.confidant.haru",
+      "file": "images/confidant_haru.png",
+      "kind": "banner",
+      "title": "Haru",
+      "bonds": ["p5r.bond.empress"]
+    },
+    {
+      "id": "p5r.media.confidant.futaba",
+      "file": "images/confidant_futaba.png",
+      "kind": "banner",
+      "title": "Futaba",
+      "bonds": ["p5r.bond.hermit"]
+    },
+    {
+      "id": "p5r.media.confidant.chihaya",
+      "file": "images/confidant_chihaya.png",
+      "kind": "banner",
+      "title": "Chihaya",
+      "bonds": ["p5r.bond.fortune"]
+    },
+    {
+      "id": "p5r.media.confidant.iwai",
+      "file": "images/confidant_iwai.png",
+      "kind": "banner",
+      "title": "Iwai",
+      "bonds": ["p5r.bond.hanged-man"]
+    },
+    {
+      "id": "p5r.media.confidant.ohya",
+      "file": "images/confidant_ohya.png",
+      "kind": "banner",
+      "title": "Ohya",
+      "bonds": ["p5r.bond.devil"]
+    },
+    {
+      "id": "p5r.media.confidant.shinya",
+      "file": "images/confidant_shinya.png",
+      "kind": "banner",
+      "title": "Shinya",
+      "bonds": ["p5r.bond.tower"]
+    },
+    {
+      "id": "p5r.media.confidant.hifumi",
+      "file": "images/confidant_hifumi.png",
+      "kind": "banner",
+      "title": "Hifumi",
+      "bonds": ["p5r.bond.star"]
+    },
+    {
+      "id": "p5r.media.confidant.sae",
+      "file": "images/confidant_sae.png",
+      "kind": "banner",
+      "title": "Sae",
+      "bonds": ["p5r.bond.judgement"]
     }
   ]
 }

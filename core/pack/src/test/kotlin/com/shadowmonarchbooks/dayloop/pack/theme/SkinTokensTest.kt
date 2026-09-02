@@ -27,7 +27,7 @@ class SkinTokensTest {
         assertEquals(100L * 1024, SkinTokens.MAX_SFX_BYTES)
         assertEquals(setOf("upper"), SkinTokens.FONT_CASES)
         assertEquals(setOf("header", "panel", "divider"), SkinTokens.DECOR_SLOTS)
-        assertEquals(setOf("halftone", "grain", "glass", "filigree"), SkinTokens.DECOR_PAINTERS)
+        assertEquals(setOf("cutline", "halftone", "grain", "glass", "filigree"), SkinTokens.DECOR_PAINTERS)
     }
 
     @Test
@@ -48,9 +48,9 @@ class SkinTokensTest {
 
     @Test
     fun `masks family fills unspecified slots`() {
-        assertEquals("jagged", SkinTokens.resolveShape(null, "masks", "card"))
+        assertEquals("cut", SkinTokens.resolveShape(null, "masks", "card"))
         assertEquals("slash", SkinTokens.resolveShape(null, "masks", "chip"))
-        assertEquals("ribbon", SkinTokens.resolveShape(null, "masks", "header"))
+        assertEquals("slash", SkinTokens.resolveShape(null, "masks", "header"))
         assertNull(SkinTokens.resolveShape(null, "masks", "frame"))
     }
 
@@ -71,7 +71,7 @@ class SkinTokensTest {
 
     @Test
     fun `motif maps to its painter family`() {
-        assertEquals("halftone", SkinTokens.painterForMotif("masks"))
+        assertEquals("cutline", SkinTokens.painterForMotif("masks"))
         assertEquals("glass", SkinTokens.painterForMotif("moon"))
         assertEquals("filigree", SkinTokens.painterForMotif("crown"))
         assertNull(SkinTokens.painterForMotif("unknown"))

@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.bonds
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,21 +29,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.describeCondition
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.statLabels
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
+import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
@@ -130,7 +132,7 @@ fun BondsScreen(
     }
 }
 
-/** Bond detail: route date, real availability, gates, and location are kept distinct. */
+/** Bond detail: route date, availability, gates, location, and anchored character art. */
 @Composable
 fun BondDetailScreen(
     bondId: String,
@@ -145,15 +147,34 @@ fun BondDetailScreen(
     val skin = LocalSkin.current
     val crown = skin.hasSkin && skin.motif == "crown"
     val slash = skin.hasSkin && skin.motion == "slash"
+    val bondMedia = pack.mediaForBond(bondId)
+    val background = bondMedia.firstOrNull { it.kind == MediaKinds.BANNER }
+    val portraits = bondMedia.filter { it.kind == MediaKinds.PORTRAIT }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-    ) {
-        val portraits = pack.mediaForBond(bondId)
+    Box(modifier = Modifier.fillMaxSize()) {
+        background?.let { art ->
+            rememberAssetImage(pack.assetOf(art))?.let { bitmap ->
+                Image(
+                    bitmap = bitmap,
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    alignment = Alignment.BottomEnd,
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .fillMaxWidth(0.76f)
+                        .fillMaxHeight(0.58f)
+                        .alpha(0.58f),
+                )
+            }
+        }
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -198,26 +219,11 @@ fun BondDetailScreen(
         }
 
         bond.characterLabel?.let { character ->
-            var shown by remember(bond.id) { mutableStateOf(false) }
-            if (shown) {
-                Text(
-                    text = character,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.secondary,
-                )
-            } else {
-                Surface(
-                    onClick = { shown = true },
-                    shape = if (skin.hasSkin) skin.shapes.chip else RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                ) {
-                    Text(
-                        text = "Show character",
-                        style = MaterialTheme.typography.labelLarge,
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                    )
-                }
-            }
+            Text(
+                text = character,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.secondary,
+            )
         }
 
         if (bond.ranks.any { it.scheduledFor != null }) {
@@ -306,24 +312,15 @@ fun BondDetailScreen(
                         )
                     }
                     step.notes?.let { notes ->
-                        var revealed by remember(bond.id, step.rank) { mutableStateOf(false) }
-                        if (revealed) {
-                            Text(
-                                text = notes,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        } else {
-                            Text(
-                                text = "Note — tap to show",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.clickable { revealed = true },
-                            )
-                        }
+                        Text(
+                            text = notes,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                     }
                 }
             }
         }
+    }
     }
 }

@@ -2,8 +2,6 @@ package com.shadowmonarchbooks.dayloop.ui.skin
 
 import android.content.Context
 import android.provider.Settings
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.CubicBezierEasing
@@ -16,7 +14,6 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -516,33 +513,6 @@ fun SkinSpec.navMotion(animationsDisabled: Boolean): SkinMotion {
             popExit = slideOutHorizontally(targetOffsetX = { it }, animationSpec = tween(DURATION)),
         )
         else -> SkinMotion.EngineDefault
-    }
-}
-
-/**
- * The step-list/spoiler reveal grammar (docs/PLAN.md §6.2: the reveal is
- * presentation, never information). Returns the content transform for an
- * [androidx.compose.animation.AnimatedContent] keyed on the hidden/revealed
- * state. Engine look and `none` snap (no animation), honoring the system
- * remove-animations setting.
- */
-fun <T> SkinSpec.revealTransform(animationsDisabled: Boolean): AnimatedContentTransitionScope<T>.() -> ContentTransform {
-    val token = if (animationsDisabled) "none" else motion
-    return when (token) {
-        "slash" -> ({
-            (expandHorizontally(expandFrom = Alignment.Start, animationSpec = tween(200)) + fadeIn(tween(200)))
-                .togetherWith(shrinkHorizontally(shrinkTowards = Alignment.Start, animationSpec = tween(160)) + fadeOut(tween(120)))
-        })
-        "flip" -> ({
-            (scaleIn(initialScale = 0.92f, animationSpec = tween(220)) + fadeIn(tween(220)))
-                .togetherWith(fadeOut(tween(140)))
-        })
-        "fade" -> ({
-            (fadeIn(tween(180))).togetherWith(fadeOut(tween(140)))
-        })
-        else -> ({
-            EnterTransition.None.togetherWith(ExitTransition.None)
-        })
     }
 }
 

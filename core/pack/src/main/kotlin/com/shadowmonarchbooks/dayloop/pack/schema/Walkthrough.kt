@@ -33,5 +33,6 @@ data class Step(
     val activityRef: String? = null,
     /** stat id -> points gained by this step, if any. */
     val statGains: Map<String, Int> = emptyMap(),
+    /** Legacy authoring metadata; walkthrough steps are rendered directly in the app. */
     val spoiler: Boolean = false,
 )

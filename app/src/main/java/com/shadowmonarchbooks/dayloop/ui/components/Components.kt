@@ -1,7 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.components
 
 import android.graphics.BitmapFactory
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.tween
@@ -39,10 +38,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,7 +48,6 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
@@ -68,13 +64,12 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
-import com.shadowmonarchbooks.dayloop.ui.skin.revealTransform
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinStrike
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/** Vocabulary-free day-kind chip, spoiler-gated step rows, and deadline banner. */
+/** Vocabulary-free day-kind chip, step rows, and deadline banner. */
 
 @Composable
 fun DayKindChip(kind: String) {
@@ -311,9 +306,8 @@ private fun MarkButton(
 }
 
 /**
- * One walkthrough step with its persisted mark. Spoiler steps still collapse
- * behind a tap (docs/PLAN.md §6.2); marks render on top of the reveal state.
- * The step's [slotLabel] (pack-supplied, e.g. "Afternoon") and a tappable
+ * One walkthrough step with its persisted mark. Every authored step is shown
+ * immediately; the step's [slotLabel] (pack-supplied, e.g. "Afternoon") and a tappable
  * activity reference render as metadata lines (docs/ROADMAP-v2.md Phase 9:
  * fields the walkthrough carries get surfaced, not flattened).
  */
@@ -328,7 +322,6 @@ fun StepRow(
     slotLabel: String? = null,
     onOpenActivity: (() -> Unit)? = null,
 ) {
-    var revealed by remember(step.label, index) { mutableStateOf(false) }
     val skin = LocalSkin.current
     val animationsDisabled = rememberAnimationsDisabled()
     // Phase 16 mark micro-animation (slash language): the rising strike
@@ -351,112 +344,84 @@ fun StepRow(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Column(modifier = Modifier.weight(1f)) {
-            // Spoiler reveal rides the skin's motion grammar (ROADMAP-v3
-            // Phase 12); the engine look snaps with no animation.
-            AnimatedContent(
-                targetState = step.spoiler && !revealed,
-                transitionSpec = skin.revealTransform(animationsDisabled),
-                label = "stepReveal",
-            ) { hidden ->
-                if (hidden) {
-                    Surface(
-                        onClick = { revealed = true },
-                        shape = skin.shapes.chip,
-                        color = MaterialTheme.colorScheme.surfaceVariant,
+            if (slotLabel != null) {
+                SkinTag(
+                    text = slotLabel,
+                    container = MaterialTheme.colorScheme.surfaceVariant,
+                    content = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(bottom = 3.dp),
+                )
+            }
+            Text(
+                text = step.label,
+                style = MaterialTheme.typography.bodyLarge,
+                // Slash-language packs: a rising slash strike (ROADMAP-v3
+                // Phase 13); other skins keep a plain strikethrough.
+                textDecoration = if (mark == StepMark.DONE && skin.motion != "slash") {
+                    TextDecoration.LineThrough
+                } else {
+                    null
+                },
+                color = when (mark) {
+                    StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
+                    StepMark.LATER -> MaterialTheme.colorScheme.tertiary
+                    else -> MaterialTheme.colorScheme.onSurface
+                },
+                modifier = Modifier.skinStrike(
+                    enabled = mark == StepMark.DONE && skin.motion == "slash",
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                    progress = strikeProgress,
+                ),
+            )
+            step.activityRef?.let {
+                activityLabel?.let { label ->
+                    Text(
+                        text = label,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.secondary,
+                        modifier = if (onOpenActivity != null) {
+                            Modifier
+                                .padding(top = 1.dp)
+                                .clickable(onClick = onOpenActivity)
+                        } else {
+                            Modifier.padding(top = 1.dp)
+                        },
+                    )
+                }
+            }
+            if (step.statGains.isNotEmpty()) {
+                val gains = step.statGains.entries.joinToString(" · ") { (stat, gain) ->
+                    "${statLabels[stat] ?: stat} +$gain"
+                }
+                if (skin.hasSkin && skin.motif == "crown") {
+                    // Crown language (Phase 15): follower-step gains framed
+                    // as a small laurel medallion with flanking leaf marks.
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(top = 2.dp),
                     ) {
+                        LaurelLeaf(mirrored = true)
                         Text(
-                            text = "Spoiler — tap to reveal",
-                            style = MaterialTheme.typography.labelLarge,
-                            fontStyle = FontStyle.Italic,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+                            text = gains,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.tertiary,
+                            modifier = Modifier
+                                .padding(horizontal = 5.dp)
+                                .border(
+                                    1.dp,
+                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.45f),
+                                    RoundedCornerShape(9.dp),
+                                )
+                                .padding(horizontal = 8.dp, vertical = 2.dp),
                         )
+                        LaurelLeaf(mirrored = false)
                     }
                 } else {
-                    Column {
-                        if (slotLabel != null) {
-                            SkinTag(
-                                text = slotLabel,
-                                container = MaterialTheme.colorScheme.surfaceVariant,
-                                content = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(bottom = 3.dp),
-                            )
-                        }
-                        Text(
-                            text = step.label,
-                            style = MaterialTheme.typography.bodyLarge,
-                            // Slash-language packs: a rising slash strike
-                            // (ROADMAP-v3 Phase 13); everyone else — engine
-                            // look and calm skins — keeps plain strikethrough.
-                            textDecoration = if (mark == StepMark.DONE && skin.motion != "slash") {
-                                TextDecoration.LineThrough
-                            } else {
-                                null
-                            },
-                            color = when (mark) {
-                                StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
-                                StepMark.LATER -> MaterialTheme.colorScheme.tertiary
-                                else -> MaterialTheme.colorScheme.onSurface
-                            },
-                            modifier = Modifier.skinStrike(
-                                enabled = mark == StepMark.DONE && skin.motion == "slash",
-                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                                progress = strikeProgress,
-                            ),
-                        )
-                        step.activityRef?.let { ref ->
-                            activityLabel?.let { label ->
-                                Text(
-                                    text = label,
-                                    style = MaterialTheme.typography.labelMedium,
-                                    color = MaterialTheme.colorScheme.secondary,
-                                    modifier = if (onOpenActivity != null) {
-                                        Modifier
-                                            .padding(top = 1.dp)
-                                            .clickable(onClick = onOpenActivity)
-                                    } else {
-                                        Modifier.padding(top = 1.dp)
-                                    },
-                                )
-                            }
-                        }
-                        if (step.statGains.isNotEmpty()) {
-                            val gains = step.statGains.entries.joinToString(" · ") { (stat, gain) ->
-                                "${statLabels[stat] ?: stat} +$gain"
-                            }
-                            if (skin.hasSkin && skin.motif == "crown") {
-                                // Crown language (Phase 15): follower-step gains
-                                // framed as a small laurel medallion — gold
-                                // hairline ring flanked by two leaf marks.
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.padding(top = 2.dp),
-                                ) {
-                                    LaurelLeaf(mirrored = true)
-                                    Text(
-                                        text = gains,
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = MaterialTheme.colorScheme.tertiary,
-                                        modifier = Modifier
-                                            .padding(horizontal = 5.dp)
-                                            .border(
-                                                1.dp,
-                                                MaterialTheme.colorScheme.primary.copy(alpha = 0.45f),
-                                                RoundedCornerShape(9.dp),
-                                            )
-                                            .padding(horizontal = 8.dp, vertical = 2.dp),
-                                    )
-                                    LaurelLeaf(mirrored = false)
-                                }
-                            } else {
-                                Text(
-                                    text = gains,
-                                    style = MaterialTheme.typography.labelMedium,
-                                    color = MaterialTheme.colorScheme.tertiary,
-                                )
-                            }
-                        }
-                    }
+                    Text(
+                        text = gains,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.tertiary,
+                    )
                 }
             }
         }

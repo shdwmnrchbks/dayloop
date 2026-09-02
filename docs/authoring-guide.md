@@ -98,9 +98,9 @@ engine look.
 "theme": {
   "motif": "masks",
   "shapes": {                          // per-slot silhouettes, closed set
-    "card": "jagged",                  // step rows, dossier, banners
+    "card": "cut",                     // step rows, dossier, banners
     "chip": "slash",                   // day-kind chips, slot tags
-    "header": "ribbon",                // section/page headers
+    "header": "slash",                 // section/page headers
     "frame": "cut"                     // bordered emphasis containers
   },
   "typography": {
@@ -133,8 +133,8 @@ engine look.
   slants, `tracking` adds letter spacing in em (−0.05 … 0.30 — negative
   tracking is valid for condensed display type). A missing font file fails
   lint; an unreadable one degrades that role to the engine type at runtime.
-- **Motif families**: `masks` → jagged card/chip/header silhouettes +
-  halftone painter; `moon` → glass painter; `crown` → filigree painter.
+- **Motif families**: `masks` → cut/slash silhouettes + sparse cut-line
+  painter; `moon` → glass painter; `crown` → filigree painter.
   Painter-driven families change no silhouettes — readability never shifts
   by motif alone. Phase 17b also resolves these generic families into the
   Glance-safe widget treatments; no game id is consulted.
@@ -144,14 +144,14 @@ engine look.
   it as an exact-size frame), `divider` (gold-rule slot dividers on Day
   pages); other lowercase-slug slots ride along for future surfaces. A
   declared decor file draws behind the slot's content; without one, the
-  motif family's procedural painter (halftone/grain/glass/filigree)
+  motif family's procedural painter (cut-line/halftone/grain/glass/filigree)
   renders instead; with neither, the engine look applies. The Phase 17
   cold-start shell consumes the same resolved `panel` decoration/fallback.
   Apply decor modifiers to the content root *inside* a Surface — an outer
   modifier draws behind the opaque container and never shows.
 - **Motion**: `slash` (hard diagonal wipe + skew-in, ~240 ms), `fade`
   (180 ms cross-fade), `flip` (page-turn slide + scale), `none` (engine
-  default). Applies to screen navigation and the spoiler/step reveal; all of
+  default). Applies to screen navigation; all of
   it collapses to no animation when the system remove-animations setting is
   on. Widgets and launcher shortcuts intentionally do not consume app-only
   animation or sound.
@@ -163,7 +163,7 @@ engine look.
   pinned by JVM tests (`SkinTokensTest`, `PackLintTest` skin rules). Design
   references for tuning a skin's parameters live in `docs/references/`.
 - **Worked example**: `content/packs/p5r/` is the reference skin (docs/
-  ROADMAP-v3.md Phase 13) — jagged/slash/ribbon/cut shapes, a bundled OFL
+  ROADMAP-v3.md Phase 13) — cut/slash shapes, a bundled OFL
   display font (`art/fonts/` with its license), decor art, `slash` motion,
   and hand-tuned seeds that pass the AA rule in both modes. Start there.
   `content/packs/metaphor/` (Phase 15) shows the crown vocabulary end to
@@ -277,7 +277,7 @@ must point at an existing file — orphaned or unresolvable art fails lint, so
 
 - Steps are short imperatives in **our own words** — never guide prose
   (docs/sources.md).
-- `spoiler: true` hides story context behind a tap (docs/PLAN.md §6).
+- Walkthrough `spoiler` remains accepted for pack compatibility, but daily step text renders directly. Activity-level `spoiler: true` still hides detail behind a tap (docs/PLAN.md §6).
 - Coverage warnings are expected while a pack grows; aim to retire them one
   month at a time.
 

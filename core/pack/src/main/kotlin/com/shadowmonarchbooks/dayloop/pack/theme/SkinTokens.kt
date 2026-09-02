@@ -55,7 +55,7 @@ object SkinTokens {
     val DECOR_SLOTS = setOf("header", "panel", "divider")
 
     /** Procedural decoration painters (engine-drawn; closed set). */
-    val DECOR_PAINTERS = setOf("halftone", "grain", "glass", "filigree")
+    val DECOR_PAINTERS = setOf("cutline", "halftone", "grain", "glass", "filigree")
 
     /** Shape slot names ([SkinShapes] fields). */
     val SHAPE_SLOTS = setOf("card", "chip", "header", "frame")
@@ -79,7 +79,7 @@ object SkinTokens {
      * consumed (null when the pack declares no known motif).
      */
     fun painterForMotif(motif: String?): String? = when (motif) {
-        "masks" -> "halftone"
+        "masks" -> "cutline"
         "moon" -> "glass"
         "crown" -> "filigree"
         else -> null
@@ -95,9 +95,9 @@ object SkinTokens {
         if (slot !in SHAPE_SLOTS) return null
         return when (motif) {
             "masks" -> when (slot) {
-                "card" -> "jagged"
+                "card" -> "cut"
                 "chip" -> "slash"
-                "header" -> "ribbon"
+                "header" -> "slash"
                 else -> null
             }
             else -> null

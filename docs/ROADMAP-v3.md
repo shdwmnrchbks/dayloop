@@ -54,7 +54,7 @@ swappable, lint-validated, accessible, and strippable before any public flip
 1. **Engine neutrality.** No game titles, character names, or per-game colors in
    Kotlin. CI guards engine sources against game-specific literals.
 2. **Spoiler safety & anti-deviation UX survive the skin.** Done/Skip/Later and
-   spoiler-collapse behavior are semantic engine behavior, never skin behavior.
+   activity spoiler-collapse behavior are semantic engine behavior, never skin behavior.
 3. **Both dark and light mode** for every skin.
 4. **Performance budget.** 60fps target on a mid-tier device; decorative effects
    degrade gracefully and animation is not load-bearing.
@@ -74,7 +74,7 @@ swappable, lint-validated, accessible, and strippable before any public flip
 - Settings redirects to the same onboarding carousel used on first run; it is
   the single game picker and switching keeps saved profiles.
 - All 116 guide-package graphics ship under per-pack `images/` directories
-  (P5R 53, P3R 16, Metaphor 47) and are declared by `media.json`.
+  (P5R 75, P3R 16, Metaphor 47) and are declared by `media.json`.
 - Media uses engine-neutral kinds/anchors and is served on Day, Calendar, Bonds
   and the Pack Media gallery.
 - packlint rejects orphaned/missing/invalid media and invalid anchors.

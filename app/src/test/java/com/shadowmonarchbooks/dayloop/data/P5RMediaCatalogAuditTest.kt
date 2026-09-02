@@ -29,11 +29,15 @@ class P5RMediaCatalogAuditTest {
 
         val media = p5r.media?.media.orEmpty()
         val trophyArt = media.filter { it.kind == MediaKinds.ACHIEVEMENT }
-        val guideGraphics = media.filterNot { it.kind == MediaKinds.ACHIEVEMENT }
+        val confidantBackgrounds = media.filter { it.kind == MediaKinds.BANNER }
+        val guideGraphics = media.filter {
+            it.kind != MediaKinds.ACHIEVEMENT && it.kind != MediaKinds.BANNER
+        }
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
 
-        assertEquals(53, media.size)
+        assertEquals(75, media.size)
         assertEquals(50, trophyArt.size, "the imported P5R guide archive contributes 50 trophy images")
+        assertEquals(22, confidantBackgrounds.size, "the supplied Confidants archive contributes 22 backgrounds")
         assertEquals(
             setOf(
                 "p5r.media.month-opener",
@@ -45,6 +49,14 @@ class P5RMediaCatalogAuditTest {
         )
         assertEquals(1, guideGraphics.count { it.kind == MediaKinds.MONTH })
         assertEquals(2, guideGraphics.count { it.kind == MediaKinds.SECTION })
+
+        assertEquals(22, confidantBackgrounds.flatMap { it.bonds }.distinct().size)
+        confidantBackgrounds.forEach { item ->
+            assertEquals(1, item.bonds.size, "${item.id}: each background must target one Confidant")
+            assertTrue(item.file.startsWith("images/confidant_"), "${item.id}: unexpected Confidant asset path")
+            assertTrue(item.months.isEmpty(), "${item.id}: Confidant art must not masquerade as month art")
+            assertTrue(item.dates.isEmpty(), "${item.id}: Confidant art must not masquerade as date art")
+        }
 
         guideGraphics.forEach { item ->
             assertTrue(

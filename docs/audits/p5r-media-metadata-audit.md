@@ -28,7 +28,7 @@ The ordinary month/section guide graphics keep neutral placement labels in the m
 
 `P5RMediaCatalogAuditTest` pins the provenance boundary:
 
-- exactly 53 P5R media records,
+- exactly 53 audited guide/trophy media records, plus 22 supplied Confidant backgrounds (75 total),
 - exactly 50 trophy images,
 - exactly the three known non-trophy guide graphics,
 - one `month` graphic and two `section` markers,

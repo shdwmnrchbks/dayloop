@@ -73,6 +73,20 @@ private fun topLevelTabs(pack: LoadedPack?): List<SkinNavItem> = buildList {
     }
 }
 
+/** The banner carries the active destination name now that tab labels are icon-only. */
+private fun bannerTitle(route: String?, tabs: List<SkinNavItem>, pack: LoadedPack?): String {
+    tabs.firstOrNull { it.route == route }?.let { return it.label }
+    return when (route?.substringBefore('/')) {
+        "day" -> "Day"
+        "bond" -> pack?.pack?.labels?.bond ?: "Bond"
+        "activity", "activities" -> "Activities"
+        "search" -> "Search"
+        "settings" -> "Settings"
+        "media" -> "Media"
+        else -> pack?.pack?.title ?: "dayloop"
+    }
+}
+
 @Composable
 fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val state by vm.state.collectAsState()
@@ -90,6 +104,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val backStackEntry by nav.currentBackStackEntryAsState()
     val route = backStackEntry?.destination?.route
     val pack = state.selected
+    val tabs = remember(pack) { topLevelTabs(pack) }
 
     val startDestination = remember(state.selectionReady) {
         if (state.selectedSlug == null) "onboarding" else "today"
@@ -101,7 +116,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             topBar = {
                 if (route != "onboarding") {
                     SkinTopBar(
-                        title = pack?.pack?.title ?: "dayloop",
+                        title = bannerTitle(route, tabs, pack),
                         canGoBack = route != null && route !in TopLevelRoutes,
                         onBack = { nav.popBackStack() },
                         onOpenSearch = { nav.navigate("search") { launchSingleTop = true } },
@@ -112,7 +127,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             bottomBar = {
                 if (route in TopLevelRoutes) {
                     SkinBottomBar(
-                        items = topLevelTabs(pack),
+                        items = tabs,
                         selectedRoute = route,
                         onSelect = { destination ->
                             nav.navigate(destination) { launchSingleTop = true }

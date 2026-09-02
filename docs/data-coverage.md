@@ -88,7 +88,7 @@ contract JVM-side.
 | `steps[].slot` | Slot pill per step row, pack-supplied label | Served |
 | `steps[].activityRef` | Activity label on the step row (tap → Activity detail); packlint ref check | Served |
 | `steps[].statGains` | Step-row gain line ("Knowledge +3") | Served |
-| `steps[].spoiler` | Spoiler-gated step row ("tap to reveal", §6.2) | Served |
+| `steps[].spoiler` | Legacy authoring metadata; daily step text always renders directly | Intentionally presentation-neutral |
 
 Walkthrough dates are route facts: Day always renders the active `routes[].label`
 so a completion plan is never silently presented as universal availability.
@@ -99,14 +99,14 @@ so a completion plan is never silently presented as universal availability.
 |---|---|---|
 | `bond.id` | Navigation (`bond/{id}`), search keys | Served |
 | `bond.label` | Bonds list/detail, search | Served |
-| `bond.characterLabel` | Bond detail "Show character" reveal; search | Served |
+| `bond.characterLabel` | Bond detail heading; search | Served |
 | `rank.rank` | Numbered ladder in Bond detail | Served |
 | `rank.gates` | Bond detail "Requires: …" line via `describeCondition` (packlint validates gate refs; JVM test pins them) | Served |
 | `rank.scheduledFor` | Bond detail red/skin route tag; Bonds list route-max summary. JVM tests require route dates to be valid calendar dates and inside any explicit availability window | Served |
 | `rank.availableFrom` | Bond detail explicit "Available from <date>" line; reserved for game availability/fixed story timing, not route-selected rank dates | Served |
 | `rank.availableUntil` | Bond detail explicit "Available until <date>" line; route-date regression tests enforce the window | Served |
 | `rank.location` | Bond detail location line; search | Served |
-| `rank.notes` | Bond detail tap-to-reveal note (§6.2) | Served |
+| `rank.notes` | Bond detail note, rendered directly | Served |
 
 ## activities.json (`ActivitiesFile`, `Activity`)
 
