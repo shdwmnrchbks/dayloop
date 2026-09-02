@@ -47,7 +47,7 @@ class P5RAprilRouteOrderAuditTest {
         val apr20 = days.getValue("2016-04-20")
         assertEquals(
             mapOf("knowledge" to 5, "guts" to 2),
-            apr20.steps.single { "library (rainy-day bonus)" in it.label }.statGains,
+            apr20.steps.single { "library during rain" in it.label }.statGains,
         )
         assertEquals(
             mapOf("knowledge" to 5),
