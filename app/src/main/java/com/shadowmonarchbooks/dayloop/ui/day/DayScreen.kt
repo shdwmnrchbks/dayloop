@@ -43,6 +43,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.StepsList
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinRouteBadge
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 
 /**
  * Day detail: every step with its checkbox marks, plus prev/next browsing
@@ -133,7 +134,7 @@ fun DayScreen(
 
             DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
 
-            Text("Steps", style = MaterialTheme.typography.titleMedium)
+            SkinSectionHeader("Steps")
             StepsList(
                 steps = day.steps,
                 markAt = { index -> state.markAt(date, index) },
