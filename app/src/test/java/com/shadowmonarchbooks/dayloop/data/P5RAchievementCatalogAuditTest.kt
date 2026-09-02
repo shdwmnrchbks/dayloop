@@ -4,6 +4,7 @@ import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingTypes
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
+import com.shadowmonarchbooks.dayloop.ui.media.anchorText
 import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.isDirectory
@@ -37,7 +38,8 @@ class P5RAchievementCatalogAuditTest {
         val legacyTrophyIds = media
             .filter { it.kind == MediaKinds.ACHIEVEMENT }
             .mapTo(linkedSetOf()) { it.id }
-        val calendar = GameCalendar.of(p5r.pack?.calendar ?: return) ?: return
+        val packDef = p5r.pack ?: return
+        val calendar = GameCalendar.of(packDef.calendar) ?: return
 
         assertEquals(53, achievements.size)
         assertEquals(53, byId.size, "Royal trophy ids must be unique")
@@ -83,6 +85,23 @@ class P5RAchievementCatalogAuditTest {
                 assertEquals(achievement.id, ref, "legacy trophy ids and icon refs should stay aligned for progress compatibility")
             }
         }
+
+        val loadedPack = LoadedPack(
+            slug = "p5r",
+            pack = packDef,
+            media = media,
+            achievements = achievements,
+        )
+        val trophyArt = media.first { it.kind == MediaKinds.ACHIEVEMENT && it.months.isNotEmpty() }
+        assertTrue(
+            anchorText(loadedPack, trophyArt).startsWith("guide placement months:"),
+            "achievement art month anchors must be presented as guide placement, not trophy unlock timing",
+        )
+        val monthArt = media.first { it.kind == MediaKinds.MONTH && it.months.isNotEmpty() }
+        assertTrue(
+            anchorText(loadedPack, monthArt).startsWith("months:"),
+            "ordinary media anchors should keep their neutral placement label",
+        )
 
         assertEquals(50, achievements.count { it.iconMediaRef != null })
         assertEquals(3, achievements.count { it.iconMediaRef == null })
