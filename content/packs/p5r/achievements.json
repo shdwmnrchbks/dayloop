@@ -51,7 +51,7 @@
     { "id": "p5r.media.achievement.a-night-in-kichijoji", "title": "A Night in Kichijoji", "description": "Visit the Kichijoji jazz club.", "availableFrom": "2016-12-01", "iconMediaRef": "p5r.media.achievement.a-night-in-kichijoji", "tracking": { "type": "manual" } },
     { "id": "p5r.media.achievement.a-serene-experience", "title": "A Serene Experience", "description": "Meditate at the Kichijoji temple.", "availableFrom": "2016-06-06", "iconMediaRef": "p5r.media.achievement.a-serene-experience", "tracking": { "type": "manual" } },
     { "id": "p5r.media.achievement.professional-modification", "title": "Professional Modification", "description": "Customize a gun at the airsoft shop.", "availableFrom": "2016-08-01", "iconMediaRef": "p5r.media.achievement.professional-modification", "tracking": { "type": "manual" } },
-    { "id": "p5r.media.achievement.anglers-debut", "title": "Angler's Debut", "description": "Catch a fish at the fishing pond.", "availableFrom": "2016-12-01", "iconMediaRef": "p5r.media.achievement.anglers-debut", "tracking": { "type": "manual" } },
+    { "id": "p5r.media.achievement.anglers-debut", "title": "Angler's Debut", "description": "Catch a fish at the fishing pond.", "availableFrom": "2016-07-04", "iconMediaRef": "p5r.media.achievement.anglers-debut", "tracking": { "type": "manual" } },
     { "id": "p5r.achievement.master-of-akihabara", "title": "Master of Akihabara", "description": "Order the Maid Café special menu after earning 20 stamps.", "availableFrom": "2016-08-31", "expectedBy": "2016-12-22", "tracking": { "type": "manual" } }
   ],
   "events": []
