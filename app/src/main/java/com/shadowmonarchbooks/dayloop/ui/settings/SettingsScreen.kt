@@ -24,6 +24,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,12 +35,11 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
-import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
+import com.shadowmonarchbooks.dayloop.ui.components.SkinPackIcon
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
@@ -94,7 +94,7 @@ fun SettingsScreen(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.padding(10.dp),
             ) {
-                PackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
+                SkinPackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
                 Column(Modifier.weight(1f)) {
                     Text(
                         text = pack.pack.title,
