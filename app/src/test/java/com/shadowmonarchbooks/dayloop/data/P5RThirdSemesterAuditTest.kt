@@ -81,5 +81,11 @@ class P5RThirdSemesterAuditTest {
         assertEquals(listOf("A snake"), answers.getValue("2017-01-21").answers)
         assertEquals(listOf("Kind-hearted", "Negative", "Resentful"), answers.getValue("2017-01-24").answers)
         assertEquals(listOf("To friends of friends of friends"), answers.getValue("2017-01-27").answers)
+
+        val deadlines = p5r.deadlines?.deadlines?.associateBy { it.id }.orEmpty()
+        assertEquals("2017-02-02", deadlines.getValue("p5r.deadline.missable.palace8-route").date)
+        assertTrue(deadlines.getValue("p5r.deadline.missable.palace8-route").label.contains("secure the Treasure route"))
+        assertEquals("2017-02-03", deadlines.getValue("p5r.deadline.palace8").date)
+        assertTrue(deadlines.getValue("p5r.deadline.palace8").label.contains("final confrontation"))
     }
 }
