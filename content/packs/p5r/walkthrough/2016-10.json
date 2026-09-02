@@ -154,7 +154,7 @@
         { "label": "Receive the request 'The Killer Who Cleans Up Trash'", "spoiler": true },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
-        { "label": "Rent 'Tee' — the last DVD rental of the game" },
+        { "label": "Completion-route final rental: rent 'Tee' (Royal's subscription has no return deadline)" },
         { "label": "Win the Wanna-kun Doll at the Akihabara arcade (3/8)" },
         { "label": "Play billiards (Technical) for rank 4" },
         { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
@@ -240,7 +240,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
-        { "label": "Return your DVDs — no more rentals from here on" },
+        { "label": "Completion-route cleanup: return the DVDs now; Royal's subscription has no return deadline and this route makes no more rentals" },
         { "label": "Meet the Twins on Shibuya Central Street (10/13)" },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
       ]
