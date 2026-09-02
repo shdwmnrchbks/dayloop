@@ -19,7 +19,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -42,6 +41,7 @@ import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
@@ -70,6 +70,8 @@ fun SettingsScreen(
     var createOpen by remember { mutableStateOf(false) }
     val hasMultipleRoutes = pack.routes.size > 1
     val view = LocalView.current
+    val skin = LocalSkin.current
+    val slashPanels = skin.hasSkin && skin.motion == "slash"
 
     Column(
         verticalArrangement = Arrangement.spacedBy(18.dp),
@@ -82,7 +84,7 @@ fun SettingsScreen(
         SectionTitle("Game")
         Surface(
             onClick = onSwitchGame,
-            shape = MaterialTheme.shapes.medium,
+            shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.surfaceVariant,
             modifier = Modifier.fillMaxWidth(),
         ) {
@@ -120,7 +122,7 @@ fun SettingsScreen(
             SectionTitle("Pack media")
             Surface(
                 onClick = onOpenMedia,
-                shape = MaterialTheme.shapes.medium,
+                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -141,7 +143,11 @@ fun SettingsScreen(
 
         // ---- In-game clock ----
         SectionTitle("In-game clock")
-        Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+        Surface(
+            shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 state.activeProfile?.let { profile ->
                     Text(profile.name, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)
@@ -188,7 +194,11 @@ fun SettingsScreen(
         if (pack.pack.theme?.sfx?.isNotEmpty() == true) {
             val soundsEnabled by vm.soundsEnabled.collectAsState()
             SectionTitle("Skin sounds")
-            Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+            Surface(
+                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
@@ -217,9 +227,13 @@ fun SettingsScreen(
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             state.profiles.forEach { profile ->
                 val active = profile.id == state.activeProfile?.id
-                Surface(shape = MaterialTheme.shapes.small, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+                Surface(
+                    shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.small,
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
-                        RadioButton(selected = active, onClick = { vm.switchProfile(profile.id) })
+                        SkinChoiceIndicator(selected = active, onClick = { vm.switchProfile(profile.id) })
                         Column(modifier = Modifier.weight(1f)) {
                             Text(profile.name, style = MaterialTheme.typography.bodyLarge, fontWeight = if (active) FontWeight.SemiBold else null)
                             val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
@@ -249,7 +263,11 @@ fun SettingsScreen(
         // ---- Orphaned marks review (docs/PLAN.md §3.6) ----
         if (state.orphans.isNotEmpty()) {
             SectionTitle("Saved marks no longer in content")
-            Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.errorContainer, modifier = Modifier.fillMaxWidth()) {
+            Surface(
+                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.errorContainer,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack — content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
@@ -361,7 +379,7 @@ private fun CreateProfileDialog(
                     Text("Route", style = MaterialTheme.typography.labelLarge)
                     routes.forEach { route ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            RadioButton(
+                            SkinChoiceIndicator(
                                 selected = routeId == route.id,
                                 onClick = { routeId = route.id },
                             )
