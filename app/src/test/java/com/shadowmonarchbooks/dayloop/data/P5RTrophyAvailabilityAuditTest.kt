@@ -39,6 +39,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("Spirit of Rebellion", "2016-04-11")
         available("A Deadly Debut", "2016-04-18")
         available("Phantom Thieves: Assemble!", "2016-05-05")
+        available("Leblanc Buffer", "2016-05-05")
         available("One Step at a Time", "2016-05-07")
         available("Talent Thief", "2016-05-07")
         available("Trash Into Treasure", "2016-06-05")
