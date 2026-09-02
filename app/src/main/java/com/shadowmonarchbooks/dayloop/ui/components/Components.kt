@@ -2,7 +2,6 @@ package com.shadowmonarchbooks.dayloop.ui.components
 
 import android.graphics.BitmapFactory
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -62,10 +61,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.MoonFillBadge
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
-import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
-import com.shadowmonarchbooks.dayloop.ui.skin.skinStrike
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -219,9 +216,8 @@ private fun MarkButton(
     // and — only when the user enabled Skin sounds — the pack's `tap` blip.
     val feedback = rememberMarkFeedback()
     // Done-mark micro-animation, per motif family: the moon language fills a
-    // disc like a moon phase, the crown language stamps a wax seal; the slash
-    // language's sweep runs on the step label itself (StepRow). Engine look:
-    // instant color swap, unchanged.
+    // disc like a moon phase and the crown language stamps a wax seal. Task
+    // labels use an ordinary strikethrough in every skin.
     val fx by animateFloatAsState(
         targetValue = if (active && mark == StepMark.DONE && skin.hasSkin) 1f else 0f,
         animationSpec = tween(SkinFxTiming.MARK_MS),
@@ -307,9 +303,8 @@ private fun MarkButton(
 
 /**
  * One walkthrough step with its persisted mark. Every authored step is shown
- * immediately; the step's [slotLabel] (pack-supplied, e.g. "Afternoon") and a tappable
- * activity reference render as metadata lines (docs/ROADMAP-v2.md Phase 9:
- * fields the walkthrough carries get surfaced, not flattened).
+ * immediately. Time-slot labels are rendered once by [TasksList], while a
+ * tappable activity reference remains inline with its task.
  */
 @Composable
 fun StepRow(
@@ -319,20 +314,9 @@ fun StepRow(
     onToggleMark: (StepMark) -> Unit,
     statLabels: Map<String, String>,
     activityLabel: String?,
-    slotLabel: String? = null,
     onOpenActivity: (() -> Unit)? = null,
 ) {
     val skin = LocalSkin.current
-    val animationsDisabled = rememberAnimationsDisabled()
-    // Phase 16 mark micro-animation (slash language): the rising strike
-    // sweeps in at mark speed instead of snapping. Skins without the slash
-    // grammar keep the plain strikethrough; the system remove-animations
-    // setting collapses the sweep to an instant jump.
-    val strikeProgress by animateFloatAsState(
-        targetValue = if (mark == StepMark.DONE && skin.motion == "slash") 1f else 0f,
-        animationSpec = if (animationsDisabled) snap() else tween(SkinFxTiming.MARK_MS),
-        label = "strikeSweep",
-    )
     Row(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -344,34 +328,15 @@ fun StepRow(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Column(modifier = Modifier.weight(1f)) {
-            if (slotLabel != null) {
-                SkinTag(
-                    text = slotLabel,
-                    container = MaterialTheme.colorScheme.surfaceVariant,
-                    content = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(bottom = 3.dp),
-                )
-            }
             Text(
                 text = step.label,
                 style = MaterialTheme.typography.bodyLarge,
-                // Slash-language packs: a rising slash strike (ROADMAP-v3
-                // Phase 13); other skins keep a plain strikethrough.
-                textDecoration = if (mark == StepMark.DONE && skin.motion != "slash") {
-                    TextDecoration.LineThrough
-                } else {
-                    null
-                },
+                textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
                 color = when (mark) {
                     StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                     StepMark.LATER -> MaterialTheme.colorScheme.tertiary
                     else -> MaterialTheme.colorScheme.onSurface
                 },
-                modifier = Modifier.skinStrike(
-                    enabled = mark == StepMark.DONE && skin.motion == "slash",
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                    progress = strikeProgress,
-                ),
             )
             step.activityRef?.let {
                 activityLabel?.let { label ->
@@ -429,9 +394,21 @@ fun StepRow(
     }
 }
 
-/** Checkbox-aware step list shared by Today and Day detail. */
+/** One time-of-day group, preserving each task's original day index. */
+internal data class TaskGroup(
+    val slotId: String?,
+    val tasks: List<IndexedValue<Step>>,
+)
+
+/** Group authored tasks by slot while retaining pack order and progress keys. */
+internal fun groupTasksBySlot(steps: List<Step>): List<TaskGroup> =
+    steps.withIndex()
+        .groupByTo(linkedMapOf()) { it.value.slot }
+        .map { (slotId, tasks) -> TaskGroup(slotId, tasks) }
+
+/** Checkbox-aware, time-grouped task list shared by Today and Day detail. */
 @Composable
-fun StepsList(
+fun TasksList(
     steps: List<Step>,
     markAt: (Int) -> StepMark?,
     onToggleMark: (Int, StepMark) -> Unit,
@@ -452,28 +429,31 @@ fun StepsList(
     }
     val skin = LocalSkin.current
     val crown = skin.hasSkin && skin.motif == "crown"
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = modifier) {
-        var previousSlot: String? = null
-        steps.forEachIndexed { i, step ->
-            // Crown language (docs/ROADMAP-v3.md Phase 15): slot rows are
-            // separated by a filigree divider when the slot changes.
-            val slot = step.slot
-            if (crown && i > 0 && slot != null && slot != previousSlot) {
-                FiligreeDivider()
-            }
-            previousSlot = slot
-            StepRow(
-                index = i,
-                step = step,
-                mark = markAt(i),
-                onToggleMark = { mark -> onToggleMark(i, mark) },
-                statLabels = statLabels,
-                activityLabel = step.activityRef?.let(activityLabels::get),
-                slotLabel = step.slot?.let(slotLabels::get),
-                onOpenActivity = step.activityRef?.let { ref ->
-                    onOpenActivity?.let { open -> { open(ref) } }
-                },
+    Column(verticalArrangement = Arrangement.spacedBy(14.dp), modifier = modifier) {
+        groupTasksBySlot(steps).forEachIndexed { groupIndex, group ->
+            if (crown && groupIndex > 0) FiligreeDivider()
+            Text(
+                text = group.slotId?.let(slotLabels::get) ?: "Any time",
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.secondary,
             )
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                group.tasks.forEach { indexed ->
+                    val i = indexed.index
+                    val step = indexed.value
+                    StepRow(
+                        index = i,
+                        step = step,
+                        mark = markAt(i),
+                        onToggleMark = { mark -> onToggleMark(i, mark) },
+                        statLabels = statLabels,
+                        activityLabel = step.activityRef?.let(activityLabels::get),
+                        onOpenActivity = step.activityRef?.let { ref ->
+                            onOpenActivity?.let { open -> { open(ref) } }
+                        },
+                    )
+                }
+            }
         }
     }
 }

@@ -6,11 +6,30 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Leave the metro into the Backstreets" },
-        { "label": "Examine the doorbell at Sojiro's house" },
-        { "label": "Enter Café LeBlanc" },
-        { "label": "Check your room, clean up, then sleep" },
-        { "label": "During the flashback, just follow the road" }
+        {
+          "label": "Leave the metro into the Backstreets",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Examine the doorbell at Sojiro's house",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Enter Café LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check your room and clean it up",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Examine the bed and go to sleep",
+          "slot": "evening"
+        },
+        {
+          "label": "During the flashback, just follow the road",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -18,8 +37,14 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Go downstairs and answer the pay phone" },
-        { "label": "Step outside, then go back in and flip the sign to CLOSED" }
+        {
+          "label": "Go downstairs and answer the pay phone",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Step outside, then go back in and flip the sign to CLOSED",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -27,11 +52,26 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Talk to Sojiro, then ride the train toward Shibuya" },
-        { "label": "Enter the Ginza Line gate and ride to school" },
-        { "label": "First infiltration of the castle — follow the tutorials only" },
-        { "label": "Visit the Faculty Office on Shujin's second floor" },
-        { "label": "Meet the others on the rooftop" }
+        {
+          "label": "Talk to Sojiro, then ride the train toward Shibuya",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Enter the Ginza Line gate and ride to school",
+          "slot": "afternoon"
+        },
+        {
+          "label": "First infiltration of the castle — follow the tutorials only",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the Faculty Office on Shujin's second floor",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the others on the rooftop",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -39,10 +79,26 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Second infiltration — follow tutorials up to the first mini-boss" },
-        { "label": "Reach the Treasure security level needed, then leave", "spoiler": true },
-        { "label": "Check the LeBlanc storage box for DLC items, then sleep" }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Second infiltration — follow tutorials up to the first mini-boss",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Reach the Treasure security level needed, then leave",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check the LeBlanc storage box for DLC items, then sleep",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -50,8 +106,14 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Talk to the injured volleyball player in the classroom" },
-        { "label": "Speak with the students outside Classrooms 3C and 1B" }
+        {
+          "label": "Talk to the injured volleyball player in the classroom",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Speak with the students outside Classrooms 3C and 1B",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -59,7 +121,10 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Ride to school, then follow Ann into the Shibuya Underground Walkway and talk to her" }
+        {
+          "label": "Ride to school, then follow Ann into the Shibuya Underground Walkway and talk to her",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -67,11 +132,28 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Enter the practice building and start the mission cutscene" },
-        { "label": "Follow Ryuji into the PE Faculty Office" },
-        { "label": "Third infiltration — capture Personas as you go", "spoiler": true },
-        { "label": "Advance to the story event — Lovers reaches rank 1", "spoiler": true },
-        { "label": "Talk to the punk-rock woman at LeBlanc — Magician reaches rank 1" }
+        {
+          "label": "Enter the practice building and start the mission cutscene",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Follow Ryuji into the PE Faculty Office",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Third infiltration — capture Personas as you go",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Advance to the story event — Lovers reaches rank 1",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to the punk-rock woman at LeBlanc — Magician reaches rank 1",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -79,8 +161,14 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Chalk throw today — no need to dodge" },
-        { "label": "Visit the clinic but buy nothing (money plan depends on it)" }
+        {
+          "label": "Chalk throw today — no need to dodge",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the clinic but buy nothing (money plan depends on it)",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -88,8 +176,21 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Follow Ryuji to Shibuya Central Street" },
-        { "label": "Visit the Airsoft shop, buy nothing; clean your desk and craft one lock pick", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Follow Ryuji to Shibuya Central Street",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the Airsoft shop and buy nothing",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Clean your desk and craft one lock pick",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -97,12 +198,37 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Borrow 'The Great Thief' from the school library", "activityRef": "p5r.activity.book.great-thief" },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Buy Silk Yarn and Tin Clasp at the Second-hand Shop (2 of each)" },
-        { "label": "First Takemi hang-out — answer 'Please go easy on me'", "statGains": { "guts": 2 } },
-        { "label": "Solve the LeBlanc crossword: 'Semesters'", "statGains": { "knowledge": 2 } },
-        { "label": "Clean the attic floor — recovers two books and a CRT TV" }
+        {
+          "label": "Borrow 'The Great Thief' from the school library",
+          "activityRef": "p5r.activity.book.great-thief",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy Silk Yarn and Tin Clasp at the Second-hand Shop (2 of each)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "First Takemi hang-out — answer 'Please go easy on me'",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Semesters'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Clean the attic floor — recovers two books and a CRT TV",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -110,11 +236,37 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Buy a Bio Nutrient at the Underground Mall flower shop if your storage/DLC items did not provide one" },
-        { "label": "Study in a library booth", "statGains": { "knowledge": 2, "guts": 2 } },
-        { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 3 } },
-        { "label": "Chat with the café customers, then read 'The Great Thief'", "activityRef": "p5r.activity.book.great-thief" }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy a Bio Nutrient at the Underground Mall flower shop if your storage/DLC items did not provide one",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study in a library booth",
+          "statGains": {
+            "knowledge": 2,
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Bio Nutrient on your plant",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Chat with the café customers, then read 'The Great Thief'",
+          "activityRef": "p5r.activity.book.great-thief",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -122,10 +274,33 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'The Great Thief' on the train (seated day — no slot used)", "activityRef": "p5r.activity.book.great-thief", "statGains": { "knowledge": 5 } },
-        { "label": "Borrow 'Pirate Legend' from the school library" },
-        { "label": "Study in the library during rain (pre-Kamoshida Guts bonus)", "statGains": { "knowledge": 5, "guts": 2 } },
-        { "label": "Study at LeBlanc in the evening (rainy-day bonus)", "statGains": { "knowledge": 5 } }
+        {
+          "label": "Read 'The Great Thief' on the train (seated day — no slot used)",
+          "activityRef": "p5r.activity.book.great-thief",
+          "statGains": {
+            "knowledge": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'Pirate Legend' from the school library",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study in the library during rain (pre-Kamoshida Guts bonus)",
+          "statGains": {
+            "knowledge": 5,
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study at LeBlanc in the evening (rainy-day bonus)",
+          "statGains": {
+            "knowledge": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -133,11 +308,35 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Buy the DVD player at the Second-hand Shop" },
-        { "label": "Pay the DVD rental subscription on Central Street" },
-        { "label": "Rent 'The X Folders'", "activityRef": "p5r.activity.dvd.x-folders" },
-        { "label": "Study in the school library (rainy-day bonus)", "statGains": { "knowledge": 5, "guts": 2 } },
-        { "label": "Watch 'The X Folders' part 1", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 3 } }
+        {
+          "label": "Buy the DVD player at the Second-hand Shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Pay the DVD rental subscription on Central Street",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Rent 'The X Folders'",
+          "activityRef": "p5r.activity.dvd.x-folders",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study in the school library (rainy-day bonus)",
+          "statGains": {
+            "knowledge": 5,
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'The X Folders' part 1",
+          "activityRef": "p5r.activity.dvd.x-folders",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -145,9 +344,26 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Grab a Yakisoba Pan at the school store" },
-        { "label": "Study in the school library", "statGains": { "knowledge": 2, "guts": 2 } },
-        { "label": "Watch 'The X Folders' — Guts reaches rank 2", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 3 } }
+        {
+          "label": "Grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study in the school library",
+          "statGains": {
+            "knowledge": 2,
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'The X Folders' — Guts reaches rank 2",
+          "activityRef": "p5r.activity.dvd.x-folders",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -155,10 +371,32 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Rent 'Wraith'", "activityRef": "p5r.activity.dvd.wraith" },
-        { "label": "Hang out with Takemi — Death reaches rank 2", "statGains": { "guts": 2 } },
-        { "label": "Craft lock picks at the attic table (reload trick for a bonus item)", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Rent 'Wraith'",
+          "activityRef": "p5r.activity.dvd.wraith",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 2",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Craft lock picks at the attic table (reload trick for a bonus item)",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -166,13 +404,41 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Exit the forced team meeting" },
-        { "label": "Buy the Sunday fruit drink in the Shibuya Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "charm": 2 } },
-        { "label": "Infiltrate the castle — secure the route to the Treasure today", "spoiler": true },
-        { "label": "Collect all three Will Seeds while inside", "spoiler": true },
-        { "label": "Leave at level 9 with about 20000 yen", "spoiler": true },
-        { "label": "Check the TV Shopping Program in the evening" },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 1" }
+        {
+          "label": "Exit the forced team meeting",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday fruit drink in the Shibuya Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Infiltrate the castle — secure the route to the Treasure today",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Collect all three Will Seeds while inside",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Leave at level 9 with about 20000 yen",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check the TV Shopping Program in the evening",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 1",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -180,12 +446,39 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Pirate Legend' on the train", "activityRef": "p5r.activity.book.pirate-legend" },
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Sell loot at the Airsoft shop; buy 2 Takemedic-All and 2 Revivadrin at the clinic" },
-        { "label": "Send the Calling Card from the hideout", "spoiler": true },
-        { "label": "Finish 'Pirate Legend' in the evening", "activityRef": "p5r.activity.book.pirate-legend", "statGains": { "guts": 5 } }
+        {
+          "label": "Read 'Pirate Legend' on the train",
+          "activityRef": "p5r.activity.book.pirate-legend",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Sell loot at the Airsoft shop; buy 2 Takemedic-All and 2 Revivadrin at the clinic",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Send the Calling Card from the hideout",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'Pirate Legend' in the evening",
+          "activityRef": "p5r.activity.book.pirate-legend",
+          "statGains": {
+            "guts": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -193,9 +486,24 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Heist: steal the Treasure (keep Tarunda up in the fight)", "spoiler": true },
-        { "label": "Magician reaches rank 2 afterwards", "spoiler": true },
-        { "label": "Watch 'Wraith' on the TV in the evening", "activityRef": "p5r.activity.dvd.wraith", "statGains": { "kindness": 3 } }
+        {
+          "label": "Heist: steal the Treasure (keep Tarunda up in the fight)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Magician reaches rank 2 afterwards",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Wraith' on the TV in the evening",
+          "activityRef": "p5r.activity.dvd.wraith",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -203,11 +511,39 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Carry Death, Hierophant, Lovers, and Chariot Personas today" },
-        { "label": "Hang out with Takemi — Death reaches rank 3", "statGains": { "guts": 2 } },
-        { "label": "Solve the LeBlanc crossword: 'Blossom'", "statGains": { "knowledge": 2 } },
-        { "label": "Watch 'Wraith' part 2", "activityRef": "p5r.activity.dvd.wraith", "statGains": { "kindness": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Death, Hierophant, Lovers, and Chariot Personas today",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 3",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Blossom'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Wraith' part 2",
+          "activityRef": "p5r.activity.dvd.wraith",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -215,10 +551,29 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Rent 'Guy McVer'", "activityRef": "p5r.activity.dvd.guy-mcver" },
-        { "label": "Borrow 'Zorro, the Outlaw' from the school library", "activityRef": "p5r.activity.book.zorro" },
-        { "label": "Study in the school library", "statGains": { "knowledge": 2, "guts": 2 } },
-        { "label": "Read 'Zorro, the Outlaw'", "activityRef": "p5r.activity.book.zorro" }
+        {
+          "label": "Rent 'Guy McVer'",
+          "activityRef": "p5r.activity.dvd.guy-mcver",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'Zorro, the Outlaw' from the school library",
+          "activityRef": "p5r.activity.book.zorro",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study in the school library",
+          "statGains": {
+            "knowledge": 2,
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read 'Zorro, the Outlaw'",
+          "activityRef": "p5r.activity.book.zorro",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -226,8 +581,22 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the movie 'Tanktop Millionaire' in Shibuya", "activityRef": "p5r.activity.movie.tanktop-millionaire", "statGains": { "guts": 5 } },
-        { "label": "Finish 'Zorro, the Outlaw' (Kindness reaches rank 2)", "activityRef": "p5r.activity.book.zorro", "statGains": { "kindness": 5 } }
+        {
+          "label": "Watch the movie 'Tanktop Millionaire' in Shibuya",
+          "activityRef": "p5r.activity.movie.tanktop-millionaire",
+          "statGains": {
+            "guts": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'Zorro, the Outlaw' (Kindness reaches rank 2)",
+          "activityRef": "p5r.activity.book.zorro",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -235,11 +604,38 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Read 'Social Thought' on the train", "activityRef": "p5r.activity.book.social-thought" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Borrow 'The Alluring Dancer' from the school library", "activityRef": "p5r.activity.book.alluring-dancer" },
-        { "label": "Hang out with Takemi — Death reaches rank 4", "statGains": { "guts": 2 } },
-        { "label": "Finish 'Social Thought' in the evening", "activityRef": "p5r.activity.book.social-thought", "statGains": { "knowledge": 7 } }
+        {
+          "label": "Read 'Social Thought' on the train",
+          "activityRef": "p5r.activity.book.social-thought",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'The Alluring Dancer' from the school library",
+          "activityRef": "p5r.activity.book.alluring-dancer",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 4",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'Social Thought' in the evening",
+          "activityRef": "p5r.activity.book.social-thought",
+          "statGains": {
+            "knowledge": 7
+          },
+          "slot": "evening"
+        }
       ]
     }
   ]

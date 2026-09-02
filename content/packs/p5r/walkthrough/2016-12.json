@@ -6,11 +6,33 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Still presumed dead — no school until December 19; normal route free time continues from LeBlanc", "spoiler": true },
-        { "label": "Hang out with Haru — Empress reaches rank 4" },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 10", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Still presumed dead — no school until December 19; normal route free time continues from LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru — Empress reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "evening"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Iwai — Hanged Man reaches rank 10",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -18,10 +40,25 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Haru — Empress reaches rank 5" },
-        { "label": "Solve the LeBlanc crossword: 'Influenza'", "statGains": { "knowledge": 2 } },
-        { "label": "Buy the Blaring Alarm Clock at the Akihabara electronics store" },
-        { "label": "Call Kawakami, then give her the alarm clock — Night Pennant (room decoration 10/20)" }
+        {
+          "label": "Hang out with Haru — Empress reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Influenza'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Blaring Alarm Clock at the Akihabara electronics store",
+          "slot": "evening"
+        },
+        {
+          "label": "Call Kawakami, then give her the alarm clock — Night Pennant (room decoration 10/20)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -29,8 +66,17 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Shinya — Tower reaches rank 10", "statGains": { "kindness": 2 } },
-        { "label": "Meet the Twins on Central Street (12/13) — Heat Riser skill card" }
+        {
+          "label": "Hang out with Shinya — Tower reaches rank 10",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the Twins on Central Street (12/13) — Heat Riser skill card",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -38,12 +84,34 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Uji Matcha Flan at the Underground Mall supermarket" },
-        { "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "knowledge": 2 } },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
-        { "label": "Bring a non-Futaba party member to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75); alternatively invite Futaba for Support Plus 1 instead" }
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Uji Matcha Flan at the Underground Mall supermarket",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Bring a non-Futaba party member to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75); alternatively invite Futaba for Support Plus 1 instead",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -51,9 +119,21 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Haru — Empress reaches rank 6" },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Save your game, then fish at Ichigaya — use the free small boilies and don't miss a cast; buy 7 Medium Boilies", "statGains": { "proficiency": 2 } }
+        {
+          "label": "Hang out with Haru — Empress reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "evening"
+        },
+        {
+          "label": "Save your game, then fish at Ichigaya — use the free small boilies and don't miss a cast; buy 7 Medium Boilies",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -61,10 +141,22 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Haru — Empress reaches rank 7" },
-        { "label": "Buy 'Essence of Fishing' at the Shinjuku bookstore" },
-        { "label": "Buy the Star Mirror at the Shinjuku general store" },
-        { "label": "Hang out with Chihaya — give her the Star Mirror" }
+        {
+          "label": "Hang out with Haru — Empress reaches rank 7",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 'Essence of Fishing' at the Shinjuku bookstore",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Star Mirror at the Shinjuku general store",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — give her the Star Mirror",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -72,10 +164,29 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Heart Ring at the Underground Mall jewelry store" },
-        { "label": "Hang out with Futaba in Asakusa — I <3 Tokyo Shirt (room decoration 12/20)" },
-        { "label": "Solve the LeBlanc crossword: 'Illuminate'", "statGains": { "knowledge": 2 } },
-        { "label": "Watch 'Clean Hard' on Central Street (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.clean-hard", "statGains": { "kindness": 7 } }
+        {
+          "label": "Buy the Heart Ring at the Underground Mall jewelry store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba in Asakusa — I <3 Tokyo Shirt (room decoration 12/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Illuminate'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Clean Hard' on Central Street (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.clean-hard",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -83,15 +194,48 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the TV game show: 'Attempted murder'", "statGains": { "knowledge": 2 } },
-        { "label": "Ask Chihaya for a money reading and a celestial reading" },
-        { "label": "Second cruise-ship infiltration — capture the Emperor's Amulet and grab all three Will Seeds", "spoiler": true },
-        { "label": "Boss fights: the two guardians, then Akechi (Robin Hood, then Loki) — Justice reaches rank 10", "spoiler": true },
-        { "label": "Leave the palace with an Empress Persona" },
-        { "label": "Call Kawakami for the special massage" },
-        { "label": "Buy the Glass Vase at the Underground Mall sundries shop" },
-        { "label": "Hang out with Chihaya at Skytree — Skytree Lamp (room decoration 13/20); give her the Glass Vase" },
-        { "label": "Before sleeping, choose 'I want to keep our promise' for optional Akechi/Royal content", "spoiler": true }
+        {
+          "label": "Answer the TV game show: 'Attempted murder'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a money reading and a celestial reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Second cruise-ship infiltration — capture the Emperor's Amulet and grab all three Will Seeds",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Boss fights: the two guardians, then Akechi (Robin Hood, then Loki) — Justice reaches rank 10",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Leave the palace with an Empress Persona",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami for the special massage",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Glass Vase at the Underground Mall sundries shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihaya at Skytree — Skytree Lamp (room decoration 13/20); give her the Glass Vase",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Before sleeping, choose 'I want to keep our promise' for optional Akechi/Royal content",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -99,8 +243,16 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Send the Calling Card and steal Shido's Heart — phase 1 is magic-only, phase 2 physical-only, then finish Shido solo by countering the spell order (fire, ice, elec, wind)", "spoiler": true },
-        { "label": "Read 'Essence of Fishing'", "activityRef": "p5r.activity.book.essence-of-fishing" }
+        {
+          "label": "Send the Calling Card and steal Shido's Heart — phase 1 is magic-only, phase 2 physical-only, then finish Shido solo by countering the spell order (fire, ice, elec, wind)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read 'Essence of Fishing'",
+          "activityRef": "p5r.activity.book.essence-of-fishing",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -108,9 +260,22 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Receive the requests 'The Head Honcho in Showbiz' and 'Lady-Killer's Ballad'", "spoiler": true },
-        { "label": "Hang out with Haru — Empress reaches rank 8" },
-        { "label": "Order the Sincere Omelette at the maid cafe (mistakes are fine now)", "statGains": { "charm": 3 } }
+        {
+          "label": "Receive the requests 'The Head Honcho in Showbiz' and 'Lady-Killer's Ballad'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru — Empress reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Order the Sincere Omelette at the maid cafe (mistakes are fine now)",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -118,14 +283,43 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "charm": 2 } },
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Give the Angel Tart to the Kichijoji alley man — Fervent Bat (14/16)" },
-        { "label": "Ask Chihaya for a money reading and a celestial reading" },
-        { "label": "Explore Mementos — all 4 requests and every Stamp; open every chest with the Perma-Pick; raise Jose's EXP to 160%", "spoiler": true },
-        { "label": "Call Kawakami for the special massage" },
-        { "label": "TV Shopping Program: Super Detox and Fancy Magatama sets" },
-        { "label": "Bring a non-Futaba party member to the jazz club to learn Debilitate; alternatively invite Futaba for Support Plus 2 instead" }
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the Angel Tart to the Kichijoji alley man — Fervent Bat (14/16)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a money reading and a celestial reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Explore Mementos — all 4 requests and every Stamp; open every chest with the Perma-Pick; raise Jose's EXP to 160%",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami for the special massage",
+          "slot": "evening"
+        },
+        {
+          "label": "TV Shopping Program: Super Detox and Fancy Magatama sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Bring a non-Futaba party member to the jazz club to learn Debilitate; alternatively invite Futaba for Support Plus 2 instead",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -133,10 +327,25 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Hang out with Haru — Empress reaches rank 9 (romance choice available)" },
-        { "label": "Solve the LeBlanc crossword: 'Approval'", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Mishima — Moon reaches rank 9" }
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru — Empress reaches rank 9 (romance choice available)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Approval'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Mishima — Moon reaches rank 9",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -144,9 +353,21 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Hi-Tech Rod at the Underground Mall sports shop" },
-        { "label": "Hang out with Ryuji in Nakano — Featherman Dolls (room decoration 14/20)" },
-        { "label": "Save, then fish at Ichigaya — prioritize medium boilies and Third Eye the glowing fish for Prize Tags; buy 1 Suspicious Boilie plus 6 total", "statGains": { "proficiency": 2 } }
+        {
+          "label": "Buy the Hi-Tech Rod at the Underground Mall sports shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ryuji in Nakano — Featherman Dolls (room decoration 14/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save, then fish at Ichigaya — prioritize medium boilies and Third Eye the glowing fish for Prize Tags; buy 1 Suspicious Boilie plus 6 total",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -154,8 +375,18 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Kasumi in Shinagawa — Sea Slug Doll (room decoration 15/20)" },
-        { "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
+        {
+          "label": "Hang out with Kasumi in Shinagawa — Sea Slug Doll (room decoration 15/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.punch-ouch",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -163,11 +394,29 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Answer the TV game show: 'Can't be done by wanted criminals'", "statGains": { "knowledge": 2 } },
-        { "label": "Buy the Designer Perfume at the Underground Mall cosmetics shop" },
-        { "label": "Hang out with Makoto in Suidobashi — Gi-Nyant Doll (room decoration 16/20)" },
-        { "label": "Win the Black Frost Doll at the Akihabara arcade (6/8)" },
-        { "label": "Hang out with Mishima — Moon reaches rank 10" }
+        {
+          "label": "Answer the TV game show: 'Can't be done by wanted criminals'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Designer Perfume at the Underground Mall cosmetics shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto in Suidobashi — Gi-Nyant Doll (room decoration 16/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Win the Black Frost Doll at the Akihabara arcade (6/8)",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Mishima — Moon reaches rank 10",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -175,8 +424,17 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Haru — Empress reaches rank 10" },
-        { "label": "Save, then fish at Ichigaya — lead with the Suspicious Boilie, Third Eye the gold glow, and catch the Ichigaya Guardian (reload on a miss); buy 1 Suspicious Boilie plus 6 total again", "statGains": { "proficiency": 2 } }
+        {
+          "label": "Hang out with Haru — Empress reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save, then fish at Ichigaya — lead with the Suspicious Boilie, Third Eye the gold glow, and catch the Ichigaya Guardian (reload on a miss); buy 1 Suspicious Boilie plus 6 total again",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -184,10 +442,28 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Watercolor Postcard at the Kichijoji stationery store" },
-        { "label": "Hang out with Yusuke at Meiji Shrine — Hamaya (room decoration 17/20)" },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
-        { "label": "Order the Sincere Omelette at the maid cafe", "statGains": { "charm": 3 } }
+        {
+          "label": "Buy the Watercolor Postcard at the Kichijoji stationery store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke at Meiji Shrine — Hamaya (room decoration 17/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Order the Sincere Omelette at the maid cafe",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -195,8 +471,19 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Election Day / Shido aftermath occupies the daytime; the evening is confined to LeBlanc", "spoiler": true },
-        { "label": "Save first, then beat 'Punch Ouch' (4/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
+        {
+          "label": "Election Day / Shido aftermath occupies the daytime; the evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Punch Ouch' (4/7) with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.punch-ouch",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -204,10 +491,33 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Joker returns to school today; the mandatory team study session occupies after school", "spoiler": true },
-        { "label": "Study with the team", "statGains": { "knowledge": 3 } },
-        { "label": "Solve the LeBlanc crossword: 'Christmas'", "statGains": { "knowledge": 2 } },
-        { "label": "Watch 'Merry Christmess' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.merry-christmess", "statGains": { "guts": 7 } }
+        {
+          "label": "Joker returns to school today; the mandatory team study session occupies after school",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study with the team",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Christmas'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Merry Christmess' in Yongen-Jaya (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.merry-christmess",
+          "statGains": {
+            "guts": 7
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -215,7 +525,10 @@
       "weekday": "tue",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 1" }
+        {
+          "label": "Exams day 1",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -223,7 +536,10 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 2" }
+        {
+          "label": "Exams day 2",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -231,10 +547,25 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 3 — year-end free time resumes after the exam" },
-        { "label": "Buy the Castella at the Underground Mall supermarket" },
-        { "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)" },
-        { "label": "Visit the maid cafe — order the special menu after 20 stamps and receive the Photo of Clara", "statGains": { "charm": 5 } }
+        {
+          "label": "Exams day 3 — year-end free time resumes after the exam",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Castella at the Underground Mall supermarket",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the maid cafe — order the special menu after 20 stamps and receive the Photo of Clara",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -242,10 +573,28 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Automatic Morgana/story progression occupies the daytime; the evening is confined to LeBlanc", "spoiler": true },
-        { "label": "Receive the Boss Undies from Sojiro (exam reward)" },
-        { "label": "Save first, then beat 'Train of Life' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 3 } },
-        { "label": "Magician reaches rank 10", "spoiler": true }
+        {
+          "label": "Automatic Morgana/story progression occupies the daytime; the evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the Boss Undies from Sojiro (exam reward)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Train of Life' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.train-of-life",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Magician reaches rank 10",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -253,10 +602,28 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Exam results", "statGains": { "charm": 5 } },
-        { "label": "Descend to the depths of Mementos — capture Hope Diamond and Crystal Skull if you run into them", "spoiler": true },
-        { "label": "Fool reaches rank 10 — refuse Igor's deal", "spoiler": true },
-        { "label": "Boss: Yaldabaoth, God of Control — debuff, buff, and kill each summoned weapon fast; guard on the charged final attack", "spoiler": true }
+        {
+          "label": "Exam results",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Descend to the depths of Mementos — capture Hope Diamond and Crystal Skull if you run into them",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fool reaches rank 10 — refuse Igor's deal",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Boss: Yaldabaoth, God of Control — debuff, buff, and kill each summoned weapon fast; guard on the charged final attack",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -264,7 +631,11 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -272,7 +643,11 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -280,7 +655,11 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -288,7 +667,11 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -296,7 +679,11 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -304,7 +691,11 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -312,7 +703,11 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     }
   ]

@@ -6,11 +6,26 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Plant a vegetable on the school rooftop (check it before each Haru hang-out)" },
-        { "label": "Hang out with Shinya — Tower reaches rank 7" },
-        { "label": "Buy a Black Kogatana at the second-hand shop (monthly)" },
-        { "label": "Buy the Fountain Pen at the Kichijoji stationery store" },
-        { "label": "Hang out with Ohya — Sushi Teacup (room decoration 5/20)" }
+        {
+          "label": "Plant a vegetable on the school rooftop (check it before each Haru hang-out)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Shinya — Tower reaches rank 7",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy a Black Kogatana at the second-hand shop (monthly)",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Fountain Pen at the Kichijoji stationery store",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Ohya — Sushi Teacup (room decoration 5/20)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -18,12 +33,38 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Finish 'The Hero with a Bow' on the metro", "activityRef": "p5r.activity.book.hero-with-a-bow", "statGains": { "guts": 5 } },
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Borrow 'Dressed in Ashes' from the school library" },
-        { "label": "Hang out with Futaba — Hermit reaches rank 7" },
-        { "label": "Receive the request 'Daughter's Just a Meal Ticket'", "spoiler": true },
-        { "label": "Hang out with Akechi — Justice reaches rank 7 (accept the rivalry for optional Akechi/Royal content)" }
+        {
+          "label": "Finish 'The Hero with a Bow' on the metro",
+          "activityRef": "p5r.activity.book.hero-with-a-bow",
+          "statGains": {
+            "guts": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'Dressed in Ashes' from the school library",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 7",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Daughter's Just a Meal Ticket'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Akechi — Justice reaches rank 7 (accept the rivalry for optional Akechi/Royal content)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -31,10 +72,22 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Culture Day — no school today" },
-        { "label": "Accept Mishima's invitation (can he join us?)" },
-        { "label": "Win the Lexy Doll at the Akihabara arcade (4/8)" },
-        { "label": "Hang out with Mishima — Moon reaches rank 7" }
+        {
+          "label": "Culture Day — no school today",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Accept Mishima's invitation (can he join us?)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Win the Lexy Doll at the Akihabara arcade (4/8)",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Mishima — Moon reaches rank 7",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -42,14 +95,46 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
-        { "label": "Ask Chihaya for a money reading" },
-        { "label": "Second casino infiltration — buy the High Limit Card, leave with a Justice Persona", "spoiler": true },
-        { "label": "Call Kawakami for the special massage" },
-        { "label": "Solve the LeBlanc crossword: 'Reward'", "statGains": { "knowledge": 2 } },
-        { "label": "Save first, then duel Akechi at the Penguin Sniper Lounge and win — reflect Physical with Girimehkala, block Curse and Bless", "spoiler": true },
-        { "label": "Hang out with Akechi — Justice reaches rank 8 (accept the challenge for optional Akechi/Royal content)" }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a money reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Second casino infiltration — buy the High Limit Card, leave with a Justice Persona",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami for the special massage",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Reward'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then duel Akechi at the Penguin Sniper Lounge and win — reflect Physical with Girimehkala, block Curse and Bless",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Akechi — Justice reaches rank 8 (accept the challenge for optional Akechi/Royal content)",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -57,12 +142,40 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Finish 'Heroic Revelations' on the metro", "activityRef": "p5r.activity.book.heroic-revelations", "statGains": { "knowledge": 7 } },
-        { "label": "Finish 'Dressed in Ashes' during class", "activityRef": "p5r.activity.book.dressed-in-ashes", "statGains": { "charm": 5 } },
-        { "label": "Third casino infiltration — clear the high-limit floor", "spoiler": true },
-        { "label": "Fuse Hariti (Tam Lin + Anzu, Samarecarm at level 41), then Bugs — Twins ritual — Strength reaches rank 9", "spoiler": true },
-        { "label": "Ask Chihaya for an affinity reading for Iwai" },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 7" }
+        {
+          "label": "Finish 'Heroic Revelations' on the metro",
+          "activityRef": "p5r.activity.book.heroic-revelations",
+          "statGains": {
+            "knowledge": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'Dressed in Ashes' during class",
+          "activityRef": "p5r.activity.book.dressed-in-ashes",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Third casino infiltration — clear the high-limit floor",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fuse Hariti (Tam Lin + Anzu, Samarecarm at level 41), then Bugs — Twins ritual — Strength reaches rank 9",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for an affinity reading for Iwai",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Iwai — Hanged Man reaches rank 7",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -70,13 +183,39 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Accept Haru's invitation — Kumade (room decoration 6/20)" },
-        { "label": "TV Shopping Program: Sturdy Ointment and Inner Muscle sets" },
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "proficiency": 2 } },
-        { "label": "Hang out with Iwai (no rank-up today)" },
-        { "label": "Receive the request 'Shady Deal in the Shadows'", "spoiler": true },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
+        {
+          "label": "Accept Haru's invitation — Kumade (room decoration 6/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Sturdy Ointment and Inner Muscle sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Iwai (no rank-up today)",
+          "slot": "evening"
+        },
+        {
+          "label": "Receive the request 'Shady Deal in the Shadows'",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -84,11 +223,29 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Return your library book — no more borrowing from here on" },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Hang out with Shinya — Tower reaches rank 8", "statGains": { "kindness": 5 } },
-        { "label": "Receive the request 'A Mother's Aggression'; buy the Sakura Fan at the Japanese Sundries Shop" },
-        { "label": "Hang out with Hifumi — give her the Sakura Fan" }
+        {
+          "label": "Return your library book — no more borrowing from here on",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Shinya — Tower reaches rank 8",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'A Mother's Aggression'; buy the Sakura Fan at the Japanese Sundries Shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Hifumi — give her the Sakura Fan",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -96,9 +253,24 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Makoto — Priestess reaches rank 8" },
-        { "label": "Save first, then play darts with Akechi — Baton Pass reaches rank 3", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then play darts with Akechi — Baton Pass reaches rank 3",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -106,13 +278,41 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Ask Chihaya for a money reading" },
-        { "label": "Explore Mementos — all 6 requests and every Stamp; collect 20 Aluminum Sheets and 10 Liquid Mercury", "spoiler": true },
-        { "label": "Hand the High Counter card from 'The Killer Who Cleans Up Trash' to Seth — Strength reaches rank 10", "spoiler": true },
-        { "label": "Raise Jose's Money to 200% and EXP to 120%", "spoiler": true },
-        { "label": "Carry Hermit, Hierophant, Empress, Priestess, and Fortune Personas" },
-        { "label": "Ask Kawakami for the special massage, then to craft the Perma-Pick" },
-        { "label": "Watch 'Admission Impossible' on Central Street (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.admission-impossible", "statGains": { "proficiency": 7 } }
+        {
+          "label": "Ask Chihaya for a money reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Explore Mementos — all 6 requests and every Stamp; collect 20 Aluminum Sheets and 10 Liquid Mercury",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hand the High Counter card from 'The Killer Who Cleans Up Trash' to Seth — Strength reaches rank 10",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Raise Jose's Money to 200% and EXP to 120%",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Hermit, Hierophant, Empress, Priestess, and Fortune Personas",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Kawakami for the special massage, then to craft the Perma-Pick",
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Admission Impossible' on Central Street (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.admission-impossible",
+          "statGains": {
+            "proficiency": 7
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -120,12 +320,38 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Call Me Chief' on the metro", "activityRef": "p5r.activity.book.call-me-chief" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Futaba — Hermit reaches rank 8" },
-        { "label": "Answer the TV game show: 'Me in front of the TV'", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 8" },
-        { "label": "Receive the request 'The Money-Grubbing Uncle'", "spoiler": true }
+        {
+          "label": "Read 'Call Me Chief' on the metro",
+          "activityRef": "p5r.activity.book.call-me-chief",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the TV game show: 'Me in front of the TV'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 8",
+          "slot": "evening"
+        },
+        {
+          "label": "Receive the request 'The Money-Grubbing Uncle'",
+          "spoiler": true,
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -133,10 +359,27 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Finish 'Call Me Chief' during class", "activityRef": "p5r.activity.book.call-me-chief", "statGains": { "kindness": 7 } },
-        { "label": "Grab a Yakisoba Pan or Autumn Bread at the school store" },
-        { "label": "Save first, then clear the 'Money-Grubbing Uncle' boss with Futaba outside LeBlanc", "spoiler": true },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 9" }
+        {
+          "label": "Finish 'Call Me Chief' during class",
+          "activityRef": "p5r.activity.book.call-me-chief",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then clear the 'Money-Grubbing Uncle' boss with Futaba outside LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 9",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -144,10 +387,25 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Futaba — Hermit reaches rank 9 (romance choice available)" },
-        { "label": "Buy the Book Cover at the Underground Mall sundries shop" },
-        { "label": "Hang out with Hifumi — King Piece (room decoration 7/20)" }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 9 (romance choice available)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Book Cover at the Underground Mall sundries shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Hifumi — King Piece (room decoration 7/20)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -155,13 +413,42 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Moon Dango at the Backstreet supermarket" },
-        { "label": "Give the Moon Dango to the Kichijoji alley man — Kintaro Axe (12/16)" },
-        { "label": "Hang out with Futaba — Hermit reaches rank 10" },
-        { "label": "TV Shopping Program: Instant Spray and Meditative sets" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
-        { "label": "Watch 'Pach Saw' with Haru (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.pach-saw", "statGains": { "guts": 7 } },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
+        {
+          "label": "Buy the Moon Dango at the Backstreet supermarket",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the Moon Dango to the Kichijoji alley man — Kintaro Axe (12/16)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Instant Spray and Meditative sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Pach Saw' with Haru (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.pach-saw",
+          "statGains": {
+            "guts": 7
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -169,11 +456,33 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Reckless Casanova' on the metro", "activityRef": "p5r.activity.book.reckless-casanova" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Haru (check the rooftop vegetables first) — Empress reaches rank 2" },
-        { "label": "Solve the LeBlanc crossword: 'Bashing'", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 10" }
+        {
+          "label": "Read 'Reckless Casanova' on the metro",
+          "activityRef": "p5r.activity.book.reckless-casanova",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru (check the rooftop vegetables first) — Empress reaches rank 2",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Bashing'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 10",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -181,10 +490,28 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Makoto — Priestess reaches rank 9 (romance choice available)" },
-        { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
-        { "label": "Hang out with Chihaya — Fortune reaches rank 8" }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 9 (romance choice available)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 8",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -192,12 +519,34 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Finish 'Reckless Casanova' during class", "activityRef": "p5r.activity.book.reckless-casanova", "statGains": { "charm": 7 } },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Buy the Katana Keychain at the Akihabara Otaku Goods Store" },
-        { "label": "Hang out with Ryuji in Ogikubo — Ramen Bowl (room decoration 8/20)" },
-        { "label": "Buy 'Knowing the Heart' in Jinbocho" },
-        { "label": "Hang out with Mishima — Moon reaches rank 8" }
+        {
+          "label": "Finish 'Reckless Casanova' during class",
+          "activityRef": "p5r.activity.book.reckless-casanova",
+          "statGains": {
+            "charm": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Katana Keychain at the Akihabara Otaku Goods Store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ryuji in Ogikubo — Ramen Bowl (room decoration 8/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 'Knowing the Heart' in Jinbocho",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Mishima — Moon reaches rank 8",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -205,11 +554,31 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Knowing the Heart' on the metro", "activityRef": "p5r.activity.book.knowing-the-heart" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Receive the request 'Man of Many Faces and Debts'", "spoiler": true },
-        { "label": "Hang out with Makoto — Priestess reaches rank 10" },
-        { "label": "Hang out with Chihaya — Fortune reaches rank 9 (romance choice available)" }
+        {
+          "label": "Read 'Knowing the Heart' on the metro",
+          "activityRef": "p5r.activity.book.knowing-the-heart",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Man of Many Faces and Debts'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 9 (romance choice available)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -217,9 +586,29 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Councilor reaches rank 10 and the Casino Calling Card sequence occupies the daytime; evening is confined to LeBlanc", "spoiler": true },
-        { "label": "Send the Calling Card, then save your game", "spoiler": true },
-        { "label": "Beat 'Featherman Seeker' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.featherman-seeker", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Councilor reaches rank 10 and the Casino Calling Card sequence occupies the daytime; evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Send the Calling Card",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save your game",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Beat 'Featherman Seeker' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.featherman-seeker",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -227,7 +616,11 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Heist: steal Sae's Treasure — call the cheat, break the glass lid, then unload everything on Leviathan Niijima", "spoiler": true }
+        {
+          "label": "Heist: steal Sae's Treasure — call the cheat, break the glass lid, then unload everything on Leviathan Niijima",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -235,8 +628,16 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Save when prompted — wrong answers here trigger the bad ending", "spoiler": true },
-        { "label": "Interrogation — deny everything: 'Never heard of them' and 'There were no such people' — Judgement reaches rank 10", "spoiler": true }
+        {
+          "label": "Save when prompted — wrong answers here trigger the bad ending",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Interrogation — deny everything: 'Never heard of them' and 'There were no such people' — Judgement reaches rank 10",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -244,7 +645,11 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -252,8 +657,19 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Automatic investigation/story occupies the daytime; Kawakami covers school and the evening is confined to LeBlanc", "spoiler": true },
-        { "label": "Save first, then beat 'Featherman Seeker' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.featherman-seeker", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Automatic investigation/story occupies the daytime; Kawakami covers school and the evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Featherman Seeker' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.featherman-seeker",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -261,8 +677,19 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Shido election-speech/story events occupy the daytime; the evening is confined to LeBlanc", "spoiler": true },
-        { "label": "Save first, then beat 'Featherman Seeker' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.featherman-seeker", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Shido election-speech/story events occupy the daytime; the evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Featherman Seeker' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.featherman-seeker",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -270,11 +697,35 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Automatic Diet Building investigation leads directly into the first cruise-ship infiltration; the evening is confined to LeBlanc", "spoiler": true },
-        { "label": "First cruise-ship infiltration — follow the fixed path to the Representatives Chamber", "spoiler": true },
-        { "label": "Answer the TV game show: 'The Speaker of the House decides'", "statGains": { "knowledge": 2 } },
-        { "label": "Carry Emperor, Tower, Hanged Man, and Empress Personas" },
-        { "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.punch-ouch", "statGains": { "charm": 3 } }
+        {
+          "label": "Automatic Diet Building investigation leads directly into the first cruise-ship infiltration; the evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "First cruise-ship infiltration — follow the fixed path to the Representatives Chamber",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the TV game show: 'The Speaker of the House decides'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Emperor, Tower, Hanged Man, and Empress Personas",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.punch-ouch",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -282,13 +733,36 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Joker is still presumed dead and cannot attend school; normal daytime route freedom resumes from LeBlanc", "spoiler": true },
-        { "label": "Receive the request 'Swindling Old Folk is Pretty Low'", "spoiler": true },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Hang out with Yusuke — Emperor reaches rank 8" },
-        { "label": "Claim your retro-game accessory at the Akihabara retro store" },
-        { "label": "Win the Sheep Man Doll at the Akihabara arcade (5/8)" },
-        { "label": "Meet the Twins on Central Street (11/13)" }
+        {
+          "label": "Joker is still presumed dead and cannot attend school; normal daytime route freedom resumes from LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Swindling Old Folk is Pretty Low'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Claim your retro-game accessory at the Akihabara retro store",
+          "slot": "evening"
+        },
+        {
+          "label": "Win the Sheep Man Doll at the Akihabara arcade (5/8)",
+          "slot": "evening"
+        },
+        {
+          "label": "Meet the Twins on Central Street (11/13)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -296,8 +770,20 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Shinya — Tower reaches rank 9", "statGains": { "kindness": 5 } },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 8", "statGains": { "proficiency": 5 } }
+        {
+          "label": "Hang out with Shinya — Tower reaches rank 9",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Iwai — Hanged Man reaches rank 8",
+          "statGains": {
+            "proficiency": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -305,14 +791,42 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Legendary Yaki-imo from the vendor in front of Takemi's clinic" },
-        { "label": "Give the Legendary Yaki-imo to the Kichijoji alley man — Empowering Ofuda x3 (13/16)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "kindness": 2 } },
-        { "label": "Hang out with Yusuke — Emperor reaches rank 9" },
-        { "label": "TV Shopping Program: Yaki-Imo and Limited Sweets sets" },
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Hang out with Iwai — Hanged Man reaches rank 9" },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
+        {
+          "label": "Buy the Legendary Yaki-imo from the vendor in front of Takemi's clinic",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the Legendary Yaki-imo to the Kichijoji alley man — Empowering Ofuda x3 (13/16)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 9",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Yaki-Imo and Limited Sweets sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Iwai — Hanged Man reaches rank 9",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -320,10 +834,30 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots", "spoiler": true },
-        { "label": "Hang out with Yusuke — Emperor reaches rank 10" },
-        { "label": "Solve the LeBlanc crossword: 'Charisma'", "statGains": { "knowledge": 2 } },
-        { "label": "Watch 'Over the Pigeon's Nest' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.over-the-pigeons-nest", "statGains": { "kindness": 7 } }
+        {
+          "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Charisma'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Over the Pigeon's Nest' in Yongen-Jaya (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.over-the-pigeons-nest",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -331,9 +865,19 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots", "spoiler": true },
-        { "label": "Hang out with Haru — Empress reaches rank 3" },
-        { "label": "Hang out with Chihaya — Fortune reaches rank 10" }
+        {
+          "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru — Empress reaches rank 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 10",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -341,11 +885,27 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots", "spoiler": true },
-        { "label": "Buy the Local Mascot Set at the Akihabara Otaku Goods Shop" },
-        { "label": "Hang out with Futaba in Akihabara — Hero Figure (room decoration 9/20)" },
-        { "label": "Buy the Robot Vacuum at the Akihabara electronics shop" },
-        { "label": "Call Kawakami, then give her the Robot Vacuum" }
+        {
+          "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Local Mascot Set at the Akihabara Otaku Goods Shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba in Akihabara — Hero Figure (room decoration 9/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Robot Vacuum at the Akihabara electronics shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Call Kawakami, then give her the Robot Vacuum",
+          "slot": "evening"
+        }
       ]
     }
   ]

@@ -233,6 +233,13 @@ class DayloopViewModel @Inject constructor(
         repo.setMark(id, StepKey(date, index), if (current == mark) null else mark)
     }
 
+    /** Mark every authored task on a day Done without toggling existing marks off. */
+    fun markAllDone(date: String, taskCount: Int) = withActiveProfile { id ->
+        repeat(taskCount.coerceAtLeast(0)) { index ->
+            repo.setMark(id, StepKey(date, index), StepMark.DONE)
+        }
+    }
+
     fun discardOrphans() = withActiveProfile { id ->
         repo.discardOrphans(id, state.value.orphans)
     }

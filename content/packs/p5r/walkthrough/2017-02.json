@@ -6,8 +6,19 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.the-goodfather", "statGains": { "kindness": 7 } },
-        { "label": "Optional: fuse every confidant's ultimate Persona for easy NG+ access", "spoiler": true }
+        {
+          "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.the-goodfather",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Optional: fuse every confidant's ultimate Persona for easy NG+ access",
+          "spoiler": true,
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -15,11 +26,31 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "After school: answer Sumire's message and hang out with her — her third awakening", "spoiler": true },
-        { "label": "Tonight is the fixed final Calling Card / ending branch; the Laboratory Treasure route must already be secured", "spoiler": true },
-        { "label": "Refuse Maruki's deal when he visits LeBlanc", "spoiler": true },
-        { "label": "Send Maruki the final Calling Card at night", "spoiler": true },
-        { "label": "Answer Akechi: 'We're stopping Maruki' — his third awakening", "spoiler": true }
+        {
+          "label": "After school: answer Sumire's message and hang out with her — her third awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tonight is the fixed final Calling Card / ending branch; the Laboratory Treasure route must already be secured",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Refuse Maruki's deal when he visits LeBlanc",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Send Maruki the final Calling Card at night",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Answer Akechi: 'We're stopping Maruki' — his third awakening",
+          "spoiler": true,
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -27,9 +58,21 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Final battle phase 1: Maruki and Azathoth — clear the tentacles and baton pass into Maruki", "spoiler": true },
-        { "label": "Phase 2: Adam Kadmon — burst him down fast; Revitalize Soul and Grand Palm punish a slow fight", "spoiler": true },
-        { "label": "Phase 3: scripted survival — heal, guard, and debuff until the ending", "spoiler": true }
+        {
+          "label": "Final battle phase 1: Maruki and Azathoth — clear the tentacles and baton pass into Maruki",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Phase 2: Adam Kadmon — burst him down fast; Revitalize Soul and Grand Palm punish a slow fight",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Phase 3: scripted survival — heal, guard, and debuff until the ending",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     }
   ]

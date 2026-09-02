@@ -6,10 +6,30 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Shibuya Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "proficiency": 2 } },
-        { "label": "Buy a Bio Nutrient at the Underground Mall flower shop" },
-        { "label": "Hang out with Ryuji — Chariot reaches rank 2" },
-        { "label": "Watch 'Guy McVer' (first viewing)", "activityRef": "p5r.activity.dvd.guy-mcver", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Buy the Sunday drink in the Shibuya Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy a Bio Nutrient at the Underground Mall flower shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ryuji — Chariot reaches rank 2",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Guy McVer' (first viewing)",
+          "activityRef": "p5r.activity.dvd.guy-mcver",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -17,8 +37,20 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Solve the LeBlanc crossword: 'Golden'", "statGains": { "knowledge": 2 } },
-        { "label": "Study at LeBlanc", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Solve the LeBlanc crossword: 'Golden'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study at LeBlanc",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -26,7 +58,13 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Study at LeBlanc", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Study at LeBlanc",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -34,8 +72,17 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit the Airsoft shop and look inside the bag Iwai gives you" },
-        { "label": "Study at LeBlanc", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Visit the Airsoft shop and look inside the bag Iwai gives you",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study at LeBlanc",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -43,8 +90,20 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 3 } },
-        { "label": "Study at LeBlanc — Fool reaches rank 3", "statGains": { "knowledge": 3 } }
+        {
+          "label": "Use the Bio Nutrient on your plant",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study at LeBlanc — Fool reaches rank 3",
+          "statGains": {
+            "knowledge": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -52,14 +111,45 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Class lecture", "statGains": { "knowledge": 2 } },
-        { "label": "Chalk throw today — no need to dodge" },
-        { "label": "Moon reaches rank 1 (story)" },
-        { "label": "Buy SP-recovery drinks from the vending machines; grab a Yakisoba Pan at the school store" },
-        { "label": "Hang out with Takemi — Death reaches rank 5", "statGains": { "guts": 2 } },
-        { "label": "Talk to the politician in Shibuya Station Square" },
-        { "label": "Buy 'Medjed Menace' at the bookstore; get the Riot Police E gun from Iwai" },
-        { "label": "Read 'Medjed Menace' in the evening", "activityRef": "p5r.activity.book.medjed-menace" }
+        {
+          "label": "Class lecture",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Chalk throw today — no need to dodge",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Moon reaches rank 1 (story)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines; grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 5",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to the politician in Shibuya Station Square",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy 'Medjed Menace' at the bookstore; get the Riot Police E gun from Iwai",
+          "slot": "evening"
+        },
+        {
+          "label": "Read 'Medjed Menace' in the evening",
+          "activityRef": "p5r.activity.book.medjed-menace",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -67,9 +157,26 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Forced Mementos run (first request) — leave at level 12", "spoiler": true },
-        { "label": "Finish 'Medjed Menace'", "activityRef": "p5r.activity.book.medjed-menace", "statGains": { "knowledge": 5 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Forced Mementos run (first request) — leave at level 12",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'Medjed Menace'",
+          "activityRef": "p5r.activity.book.medjed-menace",
+          "statGains": {
+            "knowledge": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -77,10 +184,29 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Automatic Mishima hang-out — Moon reaches rank 2" },
-        { "label": "Buy the TV Shopping Program's Bio Nutrients Set (includes Mega Fertilizer)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
-        { "label": "Hang out with Sojiro — Hierophant reaches rank 2", "statGains": { "kindness": 3 } }
+        {
+          "label": "Automatic Mishima hang-out — Moon reaches rank 2",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the TV Shopping Program's Bio Nutrients Set (includes Mega Fertilizer)",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 2",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -88,10 +214,28 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Receive the request 'The Bark and Bite of a Bully'" },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Hang out with Takemi — Death reaches rank 6", "statGains": { "guts": 2 } },
-        { "label": "Evening: study with Ann (text message)", "statGains": { "knowledge": 5 } }
+        {
+          "label": "Receive the request 'The Bark and Bite of a Bully'",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 6",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Evening: study with Ann (text message)",
+          "statGains": {
+            "knowledge": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -99,11 +243,35 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Have 3 Tin Clasps and 3 Silk Yarn ready for crafting" },
-        { "label": "Hang out with Ann — Lovers reaches rank 2" },
-        { "label": "Solve the LeBlanc crossword: 'Malaise'", "statGains": { "knowledge": 2 } },
-        { "label": "Evening: study with Ryuji — Knowledge reaches rank 3", "statGains": { "knowledge": 5 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Have 3 Tin Clasps and 3 Silk Yarn ready for crafting",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann — Lovers reaches rank 2",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Malaise'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Evening: study with Ryuji — Knowledge reaches rank 3",
+          "statGains": {
+            "knowledge": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -111,7 +279,10 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 1" }
+        {
+          "label": "Exams day 1",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -119,7 +290,10 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 2" }
+        {
+          "label": "Exams day 2",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -127,8 +301,15 @@
       "weekday": "fri",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exams day 3" },
-        { "label": "Councilor reaches rank 1, then rank 2 (story)", "spoiler": true }
+        {
+          "label": "Exams day 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Councilor reaches rank 1, then rank 2 (story)",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -136,8 +317,18 @@
       "weekday": "sat",
       "dayKind": "exam",
       "steps": [
-        { "label": "Final midterm exam day" },
-        { "label": "Watch 'Guy McVer' (second viewing)", "activityRef": "p5r.activity.dvd.guy-mcver", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Final midterm exam day",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Guy McVer' (second viewing)",
+          "activityRef": "p5r.activity.dvd.guy-mcver",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -145,9 +336,22 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Forced museum-exhibit trip during the day", "spoiler": true },
-        { "label": "Buy the TV Shopping Program's Allergy Relief Pack (x20 Wide Eye Drops)" },
-        { "label": "Save first, then craft 3 lock picks and reload for the bonus result — finish with 5 lock picks total", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Forced museum-exhibit trip during the day",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the TV Shopping Program's Allergy Relief Pack (x20 Wide Eye Drops)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then craft 3 lock picks and reload for the bonus result — finish with 5 lock picks total",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -155,8 +359,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "First infiltration of the museum — path is linear, follow it", "spoiler": true }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "First infiltration of the museum — path is linear, follow it",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -164,7 +378,11 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'The Alluring Dancer'", "activityRef": "p5r.activity.book.alluring-dancer" }
+        {
+          "label": "Read 'The Alluring Dancer'",
+          "activityRef": "p5r.activity.book.alluring-dancer",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -172,12 +390,40 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Buy all the books at the Central Street bookstore" },
-        { "label": "Rent 'Bubbly Hills, 90210'", "activityRef": "p5r.activity.dvd.bubbly-hills" },
-        { "label": "Hang out with Takemi — Death reaches rank 7", "statGains": { "guts": 2 } },
-        { "label": "Solve the LeBlanc crossword: 'Gallery'", "statGains": { "knowledge": 2 } },
-        { "label": "Apply at the Beef Bowl Shop job flyer, then work the evening shift", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy all the books at the Central Street bookstore",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Rent 'Bubbly Hills, 90210'",
+          "activityRef": "p5r.activity.dvd.bubbly-hills",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 7",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Gallery'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Apply at the Beef Bowl Shop job flyer, then work the evening shift",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -185,12 +431,42 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Second infiltration — reach the blockade, grab the Treasure Demon if it appears", "spoiler": true },
-        { "label": "Twins ritual — Strength reaches rank 1", "spoiler": true },
-        { "label": "Carry Chariot and Lovers Personas for later hang-outs" },
-        { "label": "Evening: answer the TV game show 'Using noise to cause distress'", "statGains": { "knowledge": 2 } },
-        { "label": "Finish 'The Alluring Dancer' — Charm reaches rank 2", "activityRef": "p5r.activity.book.alluring-dancer", "statGains": { "charm": 5 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Second infiltration — reach the blockade, grab the Treasure Demon if it appears",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Twins ritual — Strength reaches rank 1",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Chariot and Lovers Personas for later hang-outs",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Evening: answer the TV game show 'Using noise to cause distress'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'The Alluring Dancer' — Charm reaches rank 2",
+          "activityRef": "p5r.activity.book.alluring-dancer",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -198,10 +474,30 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Exam results — this route places in the top 10", "statGains": { "charm": 5 } },
-        { "label": "Third museum infiltration — scripted Palace combat sequence; this is not the final Madarame boss", "spoiler": true },
-        { "label": "Talk to Sojiro at LeBlanc for the Tough Belt exam reward" },
-        { "label": "Watch 'Bubbly Hills, 90210' (first viewing)", "activityRef": "p5r.activity.dvd.bubbly-hills", "statGains": { "charm": 3 } }
+        {
+          "label": "Exam results — this route places in the top 10",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Third museum infiltration — scripted Palace combat sequence; this is not the final Madarame boss",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to Sojiro at LeBlanc for the Tough Belt exam reward",
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Bubbly Hills, 90210' (first viewing)",
+          "activityRef": "p5r.activity.dvd.bubbly-hills",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -209,12 +505,41 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Read 'The Art of Charm' on the train", "activityRef": "p5r.activity.book.art-of-charm" },
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Borrow 'The Gallant Rogue' from the school library", "activityRef": "p5r.activity.book.gallant-rogue" },
-        { "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 3" },
-        { "label": "Use the Mega Fertilizer from the May 8 shopping set on the plant", "statGains": { "kindness": 5 } },
-        { "label": "Work at the Beef Bowl Shop (get every order right)", "statGains": { "proficiency": 5 } }
+        {
+          "label": "Read 'The Art of Charm' on the train",
+          "activityRef": "p5r.activity.book.art-of-charm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'The Gallant Rogue' from the school library",
+          "activityRef": "p5r.activity.book.gallant-rogue",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer from the May 8 shopping set on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Work at the Beef Bowl Shop (get every order right)",
+          "statGains": {
+            "proficiency": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -222,10 +547,26 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "TV Shopping Program: Muscle Plus Set and Outdoors Kit" },
-        { "label": "Ryuji hang-out — Chariot reaches rank 3" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "kindness": 2 } },
-        { "label": "Talk to the politician in Shibuya Station Square" }
+        {
+          "label": "TV Shopping Program: Muscle Plus Set and Outdoors Kit",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ryuji hang-out — Chariot reaches rank 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Talk to the politician in Shibuya Station Square",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -233,12 +574,40 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Fourth infiltration — secure the Treasure route, grab all Will Seeds", "spoiler": true },
-        { "label": "Unlock the Persona sacrifice ritual; sacrifice for the Frei card", "spoiler": true },
-        { "label": "Twins ritual — Strength reaches rank 2", "spoiler": true },
-        { "label": "Watch 'Bubbly Hills, 90210' (second viewing)", "activityRef": "p5r.activity.dvd.bubbly-hills", "statGains": { "charm": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fourth infiltration — secure the Treasure route, grab all Will Seeds",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Unlock the Persona sacrifice ritual; sacrifice for the Frei card",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Twins ritual — Strength reaches rank 2",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Bubbly Hills, 90210' (second viewing)",
+          "activityRef": "p5r.activity.dvd.bubbly-hills",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -246,10 +615,28 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Finish 'The Art of Charm' on the train", "activityRef": "p5r.activity.book.art-of-charm", "statGains": { "charm": 5 } },
-        { "label": "Buy 2 Revivadrin, 2 Recov-R 100mg, 2 Takemedic-All V at the clinic" },
-        { "label": "Send the Calling Card", "spoiler": true },
-        { "label": "Read 'The Gallant Rogue' in the evening", "activityRef": "p5r.activity.book.gallant-rogue" }
+        {
+          "label": "Finish 'The Art of Charm' on the train",
+          "activityRef": "p5r.activity.book.art-of-charm",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 2 Revivadrin, 2 Recov-R 100mg, 2 Takemedic-All V at the clinic",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Send the Calling Card",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read 'The Gallant Rogue' in the evening",
+          "activityRef": "p5r.activity.book.gallant-rogue",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -257,9 +644,24 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Heist: steal the Treasure (bring all four single-target elements)", "spoiler": true },
-        { "label": "Magician reaches rank 3; Fool reaches rank 4", "spoiler": true },
-        { "label": "Finish 'The Gallant Rogue'", "activityRef": "p5r.activity.book.gallant-rogue", "statGains": { "guts": 5 } }
+        {
+          "label": "Heist: steal the Treasure (bring all four single-target elements)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Magician reaches rank 3; Fool reaches rank 4",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Finish 'The Gallant Rogue'",
+          "activityRef": "p5r.activity.book.gallant-rogue",
+          "statGains": {
+            "guts": 5
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -267,12 +669,40 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Receive the request 'If Cats Disappeared from the City'", "spoiler": true },
-        { "label": "Hang out with Ann — Lovers reaches rank 4" },
-        { "label": "Answer the TV game show: '\"Queen\" of evidence'", "statGains": { "knowledge": 2 } },
-        { "label": "Solve the LeBlanc crossword: 'Pollenosis'", "statGains": { "knowledge": 2 } },
-        { "label": "Talk to the politician, then hang out with Yoshida — Sun reaches rank 1" }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'If Cats Disappeared from the City'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann — Lovers reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the TV game show: '\"Queen\" of evidence'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Pollenosis'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Talk to the politician, then hang out with Yoshida — Sun reaches rank 1",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -280,9 +710,19 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Grab a Yakisoba Pan at the school store" },
-        { "label": "Hang out with Maruki at the practice building" },
-        { "label": "Evening: 'operation Maidwatch' event with Ryuji (Chariot +3)", "spoiler": true }
+        {
+          "label": "Grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Maruki at the practice building",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Evening: 'operation Maidwatch' event with Ryuji (Chariot +3)",
+          "spoiler": true,
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -290,10 +730,22 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Talk to Kawakami at the Faculty Office" },
-        { "label": "Listen to the woman and girl near Sojiro's house" },
-        { "label": "Hang out with Ann — Lovers reaches rank 5" },
-        { "label": "Call Kawakami from the yellow phone — Temperance reaches rank 1" }
+        {
+          "label": "Talk to Kawakami at the Faculty Office",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Listen to the woman and girl near Sojiro's house",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann — Lovers reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami from the yellow phone — Temperance reaches rank 1",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -301,10 +753,30 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Accept Ryuji's Harajuku invitation (track 1 of 10)" },
-        { "label": "TV Shopping Program: Folding Screen Set" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "knowledge": 2 } },
-        { "label": "Watch the movie 'The Cake Knight Rises' with Ryuji", "activityRef": "p5r.activity.movie.cake-knight-rises", "statGains": { "kindness": 5 } }
+        {
+          "label": "Accept Ryuji's Harajuku invitation (track 1 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Folding Screen Set",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch the movie 'The Cake Knight Rises' with Ryuji",
+          "activityRef": "p5r.activity.movie.cake-knight-rises",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -312,8 +784,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Faith reaches rank 1 (story)", "spoiler": true },
-        { "label": "Brew coffee at LeBlanc", "statGains": { "charm": 2 } }
+        {
+          "label": "Faith reaches rank 1 (story)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Brew coffee at LeBlanc",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -321,11 +803,38 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Buy SP-recovery drinks from the vending machines" },
-        { "label": "Hang out with Ann — Lovers reaches rank 6" },
-        { "label": "Solve the LeBlanc crossword: 'Japanese'", "statGains": { "knowledge": 2 } },
-        { "label": "Take the Big Bang Burger challenge (1 of 3)", "statGains": { "knowledge": 2, "guts": 2, "proficiency": 2, "charm": 2 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann — Lovers reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Japanese'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Take the Big Bang Burger challenge (1 of 3)",
+          "statGains": {
+            "knowledge": 2,
+            "guts": 2,
+            "proficiency": 2,
+            "charm": 2
+          },
+          "slot": "evening"
+        }
       ]
     }
   ]

@@ -34,6 +34,7 @@ class P5RMediaCatalogAuditTest {
             it.kind != MediaKinds.ACHIEVEMENT && it.kind != MediaKinds.BANNER
         }
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
+        val achievementIds = p5r.achievements?.achievements.orEmpty().mapTo(linkedSetOf()) { it.id }
 
         assertEquals(75, media.size)
         assertEquals(50, trophyArt.size, "the imported P5R guide archive contributes 50 trophy images")
@@ -49,6 +50,11 @@ class P5RMediaCatalogAuditTest {
         )
         assertEquals(1, guideGraphics.count { it.kind == MediaKinds.MONTH })
         assertEquals(2, guideGraphics.count { it.kind == MediaKinds.SECTION })
+        assertEquals(49, trophyArt.count { it.months.isNotEmpty() })
+        assertTrue(
+            trophyArt.all { it.id in achievementIds },
+            "every monthly trophy image must resolve to persisted achievement progress",
+        )
 
         assertEquals(22, confidantBackgrounds.flatMap { it.bonds }.distinct().size)
         confidantBackgrounds.forEach { item ->

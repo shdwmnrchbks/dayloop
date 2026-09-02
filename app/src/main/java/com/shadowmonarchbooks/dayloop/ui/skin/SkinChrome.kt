@@ -126,6 +126,12 @@ fun SkinTopBar(
 ) {
     val skin = LocalSkin.current
     val colors = MaterialTheme.colorScheme
+    // Banner destinations use the same pack display face as date headers,
+    // scaled to toolbar metrics so longer active-tab names still fit.
+    val bannerTitleStyle = MaterialTheme.typography.displaySmall.copy(
+        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+        lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+    )
     Column(modifier = Modifier.background(colors.surface)) {
         Spacer(
             modifier = Modifier
@@ -146,7 +152,7 @@ fun SkinTopBar(
                         }
                     }
                 },
-                title = { Text(title, style = MaterialTheme.typography.titleMedium) },
+                title = { Text(title, style = bannerTitleStyle, maxLines = 1) },
                 actions = {
                     IconButton(onClick = onOpenSearch) {
                         Icon(Icons.Filled.Search, contentDescription = "Search")
@@ -205,7 +211,7 @@ fun SkinTopBar(
                         ) {
                             Text(
                                 text = skin.cased(title, "display"),
-                                style = MaterialTheme.typography.titleLarge,
+                                style = bannerTitleStyle,
                                 color = colors.onPrimary,
                                 maxLines = 1,
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),

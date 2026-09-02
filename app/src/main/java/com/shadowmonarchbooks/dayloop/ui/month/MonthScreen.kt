@@ -11,9 +11,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -39,9 +40,9 @@ import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.formatMonth
 import com.shadowmonarchbooks.dayloop.data.parseDateOrNull
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
+import com.shadowmonarchbooks.dayloop.ui.achievements.MonthlyAchievementChecklist
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
-import com.shadowmonarchbooks.dayloop.ui.components.MediaList
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
@@ -86,7 +87,10 @@ fun MonthScreen(
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -114,9 +118,11 @@ fun MonthScreen(
         val monthAchievements = pack.mediaForMonth(month).filter { it.kind == "achievement" }
         if (monthAchievements.isNotEmpty()) {
             SkinSectionHeader("Achievements this month")
-            MediaList(
-                items = monthAchievements.map { pack.assetOf(it) to it.title },
-                modifier = Modifier.heightIn(max = 220.dp),
+            MonthlyAchievementChecklist(
+                pack = pack,
+                state = state,
+                month = month,
+                onEarnedChange = vm::setAchievementEarned,
             )
         }
     }

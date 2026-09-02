@@ -6,7 +6,11 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -14,8 +18,16 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "First laboratory infiltration — follow the fixed path", "spoiler": true },
-        { "label": "Boss: Warped Abyss — Joker and Akechi only; avoid wind-weak Personas and stay above half HP", "spoiler": true }
+        {
+          "label": "First laboratory infiltration — follow the fixed path",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Boss: Warped Abyss — Joker and Akechi only; avoid wind-weak Personas and stay above half HP",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -23,7 +35,11 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit Ann in the Shibuya Underground Mall (blue card on the map)", "spoiler": true }
+        {
+          "label": "Visit Ann in the Shibuya Underground Mall (blue card on the map)",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -31,7 +47,11 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit Makoto in the Shibuya Underground Walkway", "spoiler": true }
+        {
+          "label": "Visit Makoto in the Shibuya Underground Walkway",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -39,7 +59,11 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit Futaba in Akihabara", "spoiler": true }
+        {
+          "label": "Visit Futaba in Akihabara",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -47,7 +71,11 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit Haru in Kichijoji", "spoiler": true }
+        {
+          "label": "Visit Haru in Kichijoji",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -55,7 +83,11 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit Ryuji at Shujin Academy", "spoiler": true }
+        {
+          "label": "Visit Ryuji at Shujin Academy",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -63,7 +95,11 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Visit Yusuke in Ueno", "spoiler": true }
+        {
+          "label": "Visit Yusuke in Ueno",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -71,8 +107,16 @@
       "weekday": "mon",
       "dayKind": "story",
       "steps": [
-        { "label": "Second laboratory infiltration — refuse Maruki's deal", "spoiler": true },
-        { "label": "Bosses: Sumire Yoshizawa (Joker solo — physical-resistant Persona), then Cendrillon and the Synthetic Organism — break the heal combo with nuclear or ice", "spoiler": true }
+        {
+          "label": "Second laboratory infiltration — refuse Maruki's deal",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Bosses: Sumire Yoshizawa (Joker solo — physical-resistant Persona), then Cendrillon and the Synthetic Organism — break the heal combo with nuclear or ice",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -80,7 +124,11 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Morgana's awakening", "spoiler": true }
+        {
+          "label": "Morgana's awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -88,7 +136,13 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -96,9 +150,21 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Third laboratory infiltration — the Faith arcana is reborn and can now advance to rank 10", "spoiler": true },
-        { "label": "Kill the Ravenous Dragon red shadow for the Sooty Scale Armor — laundry can roll the Dragon Scale Scarf, Morgana's strongest Sooty Scale Armor result", "spoiler": true },
-        { "label": "Boss: The Shadowed One and Spear-Wielding General — the Elec wall keeps returning; break them with a Technical", "spoiler": true }
+        {
+          "label": "Third laboratory infiltration — the Faith arcana is reborn and can now advance to rank 10",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Kill the Ravenous Dragon red shadow for the Sooty Scale Armor — laundry can roll the Dragon Scale Scarf, Morgana's strongest Sooty Scale Armor result",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Boss: The Shadowed One and Spear-Wielding General — the Elec wall keeps returning; break them with a Technical",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -106,12 +172,32 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Grab a Yakisoba Pan at the school store" },
-        { "label": "Win the Buchimaru Doll at the Akihabara arcade (7/8)" },
-        { "label": "Hang out with Ann — her awakening", "spoiler": true },
-        { "label": "Receive the request 'A Small Cry for Help'", "spoiler": true },
-        { "label": "Give the Special Chimaki to the Kichijoji alley man — Strength Belt (15/16)" },
-        { "label": "Meet Lavenza on Central Street (13/13) — Enduring Soul skill card" }
+        {
+          "label": "Grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Win the Buchimaru Doll at the Akihabara arcade (7/8)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann — her awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'A Small Cry for Help'",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Give the Special Chimaki to the Kichijoji alley man — Strength Belt (15/16)",
+          "slot": "evening"
+        },
+        {
+          "label": "Meet Lavenza on Central Street (13/13) — Enduring Soul skill card",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -119,12 +205,42 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Ryuji — his awakening", "spoiler": true },
-        { "label": "Receive the request 'O My Younger Sister, I Cry For You'", "spoiler": true },
-        { "label": "Solve the LeBlanc crossword: 'Resolution'", "statGains": { "knowledge": 2 } },
-        { "label": "Save first, then have Kawakami wash the Sooty Scale Armor — reload until you get the Dragon Scale Scarf" },
-        { "label": "Watch 'March of the Lambs' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.march-of-the-lambs", "statGains": { "proficiency": 7 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ryuji — his awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'O My Younger Sister, I Cry For You'",
+          "spoiler": true,
+          "slot": "evening"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Resolution'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Save first, then have Kawakami wash the Sooty Scale Armor — reload until you get the Dragon Scale Scarf",
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'March of the Lambs' in Yongen-Jaya (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.march-of-the-lambs",
+          "statGains": {
+            "proficiency": 7
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -132,12 +248,35 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "proficiency": 2 } },
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Hang out with Futaba — her awakening", "spoiler": true },
-        { "label": "TV Shopping Program: Lucky Worker Bag and Lucky Muscle sets" },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
-        { "label": "Bring a non-Futaba party member to the jazz club to learn Ali Dance; alternatively invite Futaba for Support Plus 3 instead" }
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — her awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Lucky Worker Bag and Lucky Muscle sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Bring a non-Futaba party member to the jazz club to learn Ali Dance; alternatively invite Futaba for Support Plus 3 instead",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -145,8 +284,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yusuke — his awakening", "spoiler": true },
-        { "label": "Save, then fish at Ichigaya — snow warning puts the rare fish on the first cast; Suspicious Boilie for the Ichigaya Kingpin (reload on a miss)", "statGains": { "proficiency": 2 } }
+        {
+          "label": "Hang out with Yusuke — his awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save, then fish at Ichigaya — snow warning puts the rare fish on the first cast; Suspicious Boilie for the Ichigaya Kingpin (reload on a miss)",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -154,8 +303,18 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Makoto — her awakening", "spoiler": true },
-        { "label": "Save, then play darts with Sumire (answer 'Trust your instincts') and Haru (answer 'Have fun with it') — Baton Pass reaches rank 3 for everyone", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Hang out with Makoto — her awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save, then play darts with Sumire (answer 'Trust your instincts') and Haru (answer 'Have fun with it') — Baton Pass reaches rank 3 for everyone",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -163,10 +322,30 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Haru — her awakening", "spoiler": true },
-        { "label": "Buy a Black Kogatana at the Yongen-Jaya second-hand shop" },
-        { "label": "Watch 'Bite Club' in Shinjuku (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.bite-club", "statGains": { "guts": 7 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru — her awakening",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy a Black Kogatana at the Yongen-Jaya second-hand shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Bite Club' in Shinjuku (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.bite-club",
+          "statGains": {
+            "guts": 7
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -174,12 +353,40 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Batting Science' on the metro", "activityRef": "p5r.activity.book.batting-science" },
-        { "label": "Carry a Faith Persona" },
-        { "label": "Hang out with Sumire — Faith reaches rank 6" },
-        { "label": "Solve the LeBlanc crossword: 'Dionysus'", "statGains": { "knowledge": 2 } },
-        { "label": "Have Kawakami craft 4 Treasure Traps (need at least 2)" },
-        { "label": "Take the Big Bang Challenge (2 of 3)", "statGains": { "knowledge": 3, "guts": 3, "proficiency": 3, "charm": 3 } }
+        {
+          "label": "Read 'Batting Science' on the metro",
+          "activityRef": "p5r.activity.book.batting-science",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry a Faith Persona",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sumire — Faith reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Dionysus'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Have Kawakami craft 4 Treasure Traps (need at least 2)",
+          "slot": "evening"
+        },
+        {
+          "label": "Take the Big Bang Challenge (2 of 3)",
+          "statGains": {
+            "knowledge": 3,
+            "guts": 3,
+            "proficiency": 3,
+            "charm": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -187,12 +394,36 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Read 'Factorization Guide' during class", "activityRef": "p5r.activity.book.factorization-guide" },
-        { "label": "Grab a Yakisoba Pan at the school store" },
-        { "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop" },
-        { "label": "Explore Mementos — 2 requests; set Treasure Traps for any missing Treasure Demons; reach the Cognitive Control Room", "spoiler": true },
-        { "label": "Leave with a Faith Persona" },
-        { "label": "Beat 'Train of Life' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 3 } }
+        {
+          "label": "Read 'Factorization Guide' during class",
+          "activityRef": "p5r.activity.book.factorization-guide",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Explore Mementos — 2 requests; set Treasure Traps for any missing Treasure Demons; reach the Cognitive Control Room",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Leave with a Faith Persona",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Beat 'Train of Life' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.train-of-life",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -200,9 +431,25 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Sumire — Faith reaches rank 7" },
-        { "label": "Beat 'Train of Life' (5/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.train-of-life", "statGains": { "kindness": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sumire — Faith reaches rank 7",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Beat 'Train of Life' (5/7) with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.train-of-life",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -210,14 +457,42 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Supernova Burger at the Central Street Big Bang Burger" },
-        { "label": "Give the Supernova Burger to the Kichijoji alley man — Old Man's Elixir (16/16)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Hang out with Sumire — Faith reaches rank 8" },
-        { "label": "TV Shopping Program: Talisman and Sweet Delight sets" },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
-        { "label": "Bring a non-Futaba party member to the jazz club to learn Arms Master; alternatively invite Futaba for Support Rate Up instead" }
+        {
+          "label": "Buy the Supernova Burger at the Central Street Big Bang Burger",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the Supernova Burger to the Kichijoji alley man — Old Man's Elixir (16/16)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sumire — Faith reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Talisman and Sweet Delight sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Bring a non-Futaba party member to the jazz club to learn Arms Master; alternatively invite Futaba for Support Rate Up instead",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -225,12 +500,39 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Win the Jagao Doll at the Akihabara arcade (8/8)" },
-        { "label": "Claim any outstanding badges for the five completed retro games at the Akihabara Retro Game Shop: Forneus Badge, Gambla Badge, Featherman Badge, Punch Badge, and Train Badge" },
-        { "label": "Hang out with Sumire — Faith reaches rank 9 (romance choice available)" },
-        { "label": "Solve the LeBlanc crossword: 'Lachesis'", "statGains": { "knowledge": 2 } },
-        { "label": "Buy the Flower Basket at the Shinjuku flower shop" },
-        { "label": "Take the Big Bang Challenge (3 of 3) — the challenge is cleared", "statGains": { "knowledge": 5, "guts": 5, "proficiency": 5, "charm": 5 } }
+        {
+          "label": "Win the Jagao Doll at the Akihabara arcade (8/8)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Claim any outstanding badges for the five completed retro games at the Akihabara Retro Game Shop: Forneus Badge, Gambla Badge, Featherman Badge, Punch Badge, and Train Badge",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sumire — Faith reaches rank 9 (romance choice available)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Lachesis'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Flower Basket at the Shinjuku flower shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Take the Big Bang Challenge (3 of 3) — the challenge is cleared",
+          "statGains": {
+            "knowledge": 5,
+            "guts": 5,
+            "proficiency": 5,
+            "charm": 5
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -238,9 +540,25 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Hang out with Haru in Tsukishima — Giant Spatula (room decoration 19/20)" },
-        { "label": "Save first, then beat 'Power Intuition' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.power-intuition", "statGains": { "guts": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Haru in Tsukishima — Giant Spatula (room decoration 19/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Power Intuition' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.power-intuition",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -248,9 +566,23 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Read every remaining book during class, finishing with 'Chinese Sweets' — the book list and all city locations are complete", "activityRef": "p5r.activity.book.chinese-sweets" },
-        { "label": "Hang out with Sumire — Faith reaches rank 10" },
-        { "label": "Beat 'Power Intuition' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.power-intuition", "statGains": { "guts": 3 } }
+        {
+          "label": "Read every remaining book during class, finishing with 'Chinese Sweets' — the book list and all city locations are complete",
+          "activityRef": "p5r.activity.book.chinese-sweets",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sumire — Faith reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Beat 'Power Intuition' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.power-intuition",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -258,11 +590,34 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "After school: final laboratory infiltration — use Treasure Traps to find Orichalcum; this is the last visit for any palace-side objectives", "spoiler": true },
-        { "label": "Query gates: 'His lover', 'Evidence', 'By wishing to be that person', 'His Persona fully awakened'", "spoiler": true },
-        { "label": "Elevators: 'B, Go get help', 'C, Give up for a new dream', 'D, Steal evil hearts to fix society'", "spoiler": true },
-        { "label": "Reach the Treasure and leave the palace", "spoiler": true },
-        { "label": "Beat 'Power Intuition' (6/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.power-intuition", "statGains": { "guts": 3 } }
+        {
+          "label": "After school: final laboratory infiltration — use Treasure Traps to find Orichalcum; this is the last visit for any palace-side objectives",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Query gates: 'His lover', 'Evidence', 'By wishing to be that person', 'His Persona fully awakened'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Elevators: 'B, Go get help', 'C, Give up for a new dream', 'D, Steal evil hearts to fix society'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Reach the Treasure and leave the palace",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Beat 'Power Intuition' (6/7) with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.power-intuition",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -270,14 +625,53 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Receive the request 'Fake-Man Show'", "spoiler": true },
-        { "label": "Listen to the two Kichijoji natives near the Velvet Room" },
-        { "label": "Listen to the two students next to the incense shop" },
-        { "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop" },
-        { "label": "Watch 'Finding Beemo' on Central Street (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.finding-beemo", "statGains": { "charm": 7 } },
-        { "label": "Solve the LeBlanc crossword: 'Orochi'", "statGains": { "knowledge": 2 } },
-        { "label": "Beat 'Golfer Sarutahiko' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.golfer-sarutahiko", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Fake-Man Show'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Listen to the two Kichijoji natives near the Velvet Room",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Listen to the two students next to the incense shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Finding Beemo' on Central Street (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.finding-beemo",
+          "statGains": {
+            "charm": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Orochi'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Beat 'Golfer Sarutahiko' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.golfer-sarutahiko",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -285,14 +679,46 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Receive the request 'An Idol and a Unicorn'", "spoiler": true },
-        { "label": "Talk to the woman in the white coat in Akihabara, then with Anji Fuwa" },
-        { "label": "Claim the PI Badge for completing Power Intuition at the Akihabara Retro Game Shop" },
-        { "label": "Ask Chihaya for a money reading and a celestial reading" },
-        { "label": "After school: final Mementos visit — complete the requests, get all Stamps, raise Jose's EXP to 200%", "spoiler": true },
-        { "label": "Optional: let the Reaper catch you and defeat it — debuff it and spam charged Hassou Tobi with Yoshitsune", "spoiler": true },
-        { "label": "Optional: defeat Jose at the bottom of Da'at after all stamps", "spoiler": true },
-        { "label": "Beat 'Golfer Sarutahiko' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.golfer-sarutahiko", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Receive the request 'An Idol and a Unicorn'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to the woman in the white coat in Akihabara, then with Anji Fuwa",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Claim the PI Badge for completing Power Intuition at the Akihabara Retro Game Shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a money reading and a celestial reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "After school: final Mementos visit — complete the requests, get all Stamps, raise Jose's EXP to 200%",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Optional: let the Reaper catch you and defeat it — debuff it and spam charged Hassou Tobi with Yoshitsune",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Optional: defeat Jose at the bottom of Da'at after all stamps",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Beat 'Golfer Sarutahiko' with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.golfer-sarutahiko",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -300,13 +726,38 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "kindness": 2 } },
-        { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Motorcycle Figure at the Akihabara Otaku Goods Store" },
-        { "label": "Hang out with Makoto in Chinatown — Shumai Cushion (room decoration 20/20)" },
-        { "label": "TV Shopping Program: Energetic and Delicious Revival sets" },
-        { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
-        { "label": "Bring a non-Futaba party member to the jazz club to learn Spell Master; Futaba has no further Jazz Jin skill after Support Rate Up" }
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Motorcycle Figure at the Akihabara Otaku Goods Store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto in Chinatown — Shumai Cushion (room decoration 20/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Energetic and Delicious Revival sets",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Bring a non-Futaba party member to the jazz club to learn Spell Master; Futaba has no further Jazz Jin skill after Support Rate Up",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -314,8 +765,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Meditate at the Kichijoji temple to raise max SP" },
-        { "label": "Beat 'Golfer Sarutahiko' (7/7) with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.golfer-sarutahiko", "statGains": { "proficiency": 3 } }
+        {
+          "label": "Meditate at the Kichijoji temple to raise max SP",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Beat 'Golfer Sarutahiko' (7/7) with 'the technique' — reload until you win",
+          "activityRef": "p5r.activity.videoGame.golfer-sarutahiko",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -323,9 +784,18 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Claim the Golfer Badge for completing Golfer Sarutahiko at the Akihabara Retro Game Shop" },
-        { "label": "Talk to Star Lilina by the Machine Parts Shop for her new CD" },
-        { "label": "After-school/evening cleanup — optional Thieves Den grind, self-laundry, 30 home runs, or training at the Protein Lovers Gym" }
+        {
+          "label": "Claim the Golfer Badge for completing Golfer Sarutahiko at the Akihabara Retro Game Shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to Star Lilina by the Machine Parts Shop for her new CD",
+          "slot": "afternoon"
+        },
+        {
+          "label": "After-school/evening cleanup — optional Thieves Den grind, self-laundry, 30 home runs, or training at the Protein Lovers Gym",
+          "slot": "afternoon"
+        }
       ]
     }
   ]

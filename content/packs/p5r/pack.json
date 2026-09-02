@@ -1,15 +1,15 @@
 {
   "packId": "p5r",
   "title": "Persona 5 Royal",
-  "contentVersion": 7,
+  "contentVersion": 8,
   "timeModel": "weekdayGrid",
   "calendar": {
     "startDate": "2016-04-09",
     "endDate": "2017-02-03"
   },
   "slots": [
-    { "id": "afternoon", "label": "Afternoon" },
-    { "id": "evening", "label": "Evening" }
+    { "id": "afternoon", "label": "Day" },
+    { "id": "evening", "label": "Night" }
   ],
   "stats": [
     { "id": "knowledge", "label": "Knowledge" },

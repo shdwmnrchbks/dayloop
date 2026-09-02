@@ -5,12 +5,12 @@ on:
     paths:
       - 'app/build.gradle.kts'
       - '.github/workflows/release-candidate.yml'
-      - '.github/release-requests/v0.12.0-rc2.md'
+      - '.github/release-requests/v0.12.0-rc3.md'
       - 'docs/LOCAL_BUILD.md'
   push:
     branches: [ main ]
     paths:
-      - '.github/release-requests/v0.12.0-rc2.md'
+      - '.github/release-requests/v0.12.0-rc3.md'
 
 permissions:
   contents: write
@@ -19,10 +19,10 @@ env:
   DAYLOOP_ANDROID_SDK_VERSION: '35'
   DAYLOOP_ANDROID_BUILD_TOOLS: '35.0.0'
   DAYLOOP_ANDROID_CMDLINE_TOOLS: '13114758'
-  RELEASE_TAG: 'v0.12.0-rc2'
-  RELEASE_NAME: 'v0.12.0-rc2 — P5R UI review build'
-  RELEASE_NOTES_PATH: '.github/release-requests/v0.12.0-rc2.md'
-  APK_NAME: 'dayloop-v0.12.0-rc2-candidate.apk'
+  RELEASE_TAG: 'v0.12.0-rc3'
+  RELEASE_NAME: 'v0.12.0-rc3 — task workflow review build'
+  RELEASE_NOTES_PATH: '.github/release-requests/v0.12.0-rc3.md'
+  APK_NAME: 'dayloop-v0.12.0-rc3-candidate.apk'
 
 jobs:
   candidate:
@@ -99,7 +99,7 @@ jobs:
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dayloop-v0.12.0-rc2-candidate
+          name: dayloop-v0.12.0-rc3-candidate
           path: release-out/${{ env.APK_NAME }}
           if-no-files-found: error
 

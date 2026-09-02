@@ -1,1 +1,752 @@
-{"month":"2016-09","days":[{"date":"2016-09-01","weekday":"thu","dayKind":"school","steps":[{"label":"Buy the Broken Laptop and a Black Kogatana at the second-hand shop"},{"label":"Buy all the new books at the Central Street bookstore"},{"label":"Rent 'Mouse M.D.'"},{"label":"Buy Black Rocks at the Kichijoji crystal healing store"},{"label":"Hang out with Ohya (no rank-up today)"},{"label":"Receive the request 'Fighting for Truth in Journalism'","spoiler":true}]},{"date":"2016-09-02","weekday":"fri","dayKind":"school","steps":[{"label":"Welcome-back chalk throw — no need to dodge (Charm is maxed)"},{"label":"Borrow 'Cry of Cthulhu' from the school library"},{"label":"Grab a Yakisoba Pan; Autumn Bread is new at the school store"},{"label":"Buy the PC Tool Set in Akihabara and every game at the retro shop"},{"label":"Win the Jack Frost Doll at the Akihabara arcade (1/8)"},{"label":"Hang out with Futaba in front of LeBlanc (bring a Hermit Persona) — Hermit reaches rank 2"},{"label":"Solve the LeBlanc crossword: 'Typhoon'","statGains":{"knowledge":2}},{"label":"Fix the broken laptop at your desk","statGains":{"proficiency":3}},{"label":"Tanaka's Shady Commodities unlocks on the laptop"}]},{"date":"2016-09-03","weekday":"sat","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Spend 10,000 yen at Shady Commodities to reach Black rank"},{"label":"Hang out with Akechi — Justice reaches rank 6"}]},{"date":"2016-09-04","weekday":"sun","dayKind":"free","steps":[{"label":"Receive the request 'Winners Don't Use Cheats'; confront the angry gamer in Shibuya Arcade","spoiler":true},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"knowledge":2}},{"label":"Hang out with Futaba — Hermit reaches rank 3"},{"label":"Give the Phantom Wafer to the Kichijoji alley man — Strength Up Ofuda x2 (7/16)"},{"label":"Hang out with Chihaya — Fortune reaches rank 6 (required answer for a later story event)"},{"label":"Buy items from the Kanda priest"},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"}]},{"date":"2016-09-05","weekday":"mon","dayKind":"school","steps":[{"label":"Save your game, then play billiards (Technical, rank 3)"},{"label":"Receive 'Billiards Magician' at the billiards hall"},{"label":"Meet the Twins on Central Street (6/13)"}]},{"date":"2016-09-06","weekday":"tue","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Buy SP-recovery drinks from the vending machines"},{"label":"Ask Chihaya for a money reading"},{"label":"Explore Mementos — 4 requests; fight the 'Winners Don't Use Cheats' boss (auto-retreats, redo it later)","spoiler":true},{"label":"Raise Jose's Money bonus to 170%","spoiler":true},{"label":"Carry Councilor, Hierophant, Star, Devil, Tower, Priestess, Fortune, Hermit, Emperor, and Hanged Man Personas"}]},{"date":"2016-09-07","weekday":"wed","dayKind":"story","steps":[{"label":"School trip in Hawaii — no free time","spoiler":true}]},{"date":"2016-09-08","weekday":"thu","dayKind":"story","steps":[{"label":"School trip in Hawaii — no free time","spoiler":true}]},{"date":"2016-09-09","weekday":"fri","dayKind":"story","steps":[{"label":"School trip in Hawaii — no free time","spoiler":true}]},{"date":"2016-09-10","weekday":"sat","dayKind":"story","steps":[{"label":"School trip in Hawaii — no free time","spoiler":true}]},{"date":"2016-09-11","weekday":"sun","dayKind":"story","steps":[{"label":"School trip in Hawaii — return home","spoiler":true}]},{"date":"2016-09-12","weekday":"mon","dayKind":"story","steps":[{"label":"Return-from-Hawaii story occupies the daytime; the route only has the evening home slot"},{"label":"Use the Mega Fertilizer on the plant","statGains":{"kindness":5}}]},{"date":"2016-09-13","weekday":"tue","dayKind":"story","steps":[{"label":"Principal/Phantom Thieves story occupies the full day; Morgana leaves the party","spoiler":true},{"label":"Judgement reaches rank 4","spoiler":true}]},{"date":"2016-09-14","weekday":"wed","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Morgana/Haru search story occupies the rest of the day","spoiler":true}]},{"date":"2016-09-15","weekday":"thu","dayKind":"story","steps":[{"label":"First infiltration of the spaceport — the path is fixed, follow it","spoiler":true}]},{"date":"2016-09-16","weekday":"fri","dayKind":"story","steps":[{"label":"Story events only — investigate Haru/Okumura; no free time today","spoiler":true}]},{"date":"2016-09-17","weekday":"sat","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Mementos pursuit/reunion with Morgana and Haru occupies the rest of the day","spoiler":true},{"label":"Magician reaches rank 8","spoiler":true}]},{"date":"2016-09-18","weekday":"sun","dayKind":"story","steps":[{"label":"Haru/Okumura story occupies the daytime; the evening is confined to LeBlanc","spoiler":true},{"label":"Watch 'Mouse M.D.' (first viewing; Craft of Cinema bonus active)","activityRef":"p5r.activity.dvd.mouse-md","statGains":{"kindness":5}}]},{"date":"2016-09-19","weekday":"mon","dayKind":"free","steps":[{"label":"Respect for the Aged Day — no school; use the route's daytime activities"},{"label":"Buy SP-recovery drinks from the vending machines"},{"label":"Prove your support to the arcade King in Akihabara — have Futaba hack the Gun About site, then report back — Tower reaches rank 1","statGains":{"kindness":3}},{"label":"Kindness reaches rank 5"},{"label":"Solve the LeBlanc crossword: 'Festival'","statGains":{"knowledge":2}},{"label":"Spend up to 50,000 yen at Shady Commodities; buy the Black Robe"},{"label":"Give the Thief Mask to the Kichijoji alley man — 2 Magic Up Ofuda (8/16)"},{"label":"Watch 'Showtime Redemption' in Yongen-Jaya (Craft of Cinema bonus active)","activityRef":"p5r.activity.movie.showtime-redemption","statGains":{"charm":7}}]},{"date":"2016-09-20","weekday":"tue","dayKind":"school","steps":[{"label":"Hang out with Maruki — Councilor reaches rank 6"},{"label":"Hang out with Sojiro — Hierophant reaches rank 4","statGains":{"kindness":3}}]},{"date":"2016-09-21","weekday":"wed","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Hang out with Maruki — Councilor reaches rank 7"},{"label":"Hang out with Hifumi — Star reaches rank 8","statGains":{"knowledge":2}}]},{"date":"2016-09-22","weekday":"thu","dayKind":"free","steps":[{"label":"Autumnal Equinox Day — no school"},{"label":"Accept Hifumi's invitation (7 of 10)"},{"label":"Reach 100,000 yen spent at Shady Commodities — buy Black Kogatana and Black Robe toward Chaos rank; stock 10 of each Black item"},{"label":"Answer the TV game show: 'Ten years in prison'","statGains":{"knowledge":2}},{"label":"Win the Burger-kun Doll at the Akihabara arcade (2/8)"},{"label":"Hang out with Ohya — Devil reaches rank 8","statGains":{"charm":5}}]},{"date":"2016-09-23","weekday":"fri","dayKind":"school","steps":[{"label":"Read 'Billiards Magician' during class","activityRef":"p5r.activity.book.billiards-magician"},{"label":"Grab a Yakisoba Pan or Autumn Bread at the school store"},{"label":"Hang out with Maruki — Councilor reaches rank 8"},{"label":"Hang out with Ohya — Devil reaches rank 9 (romance choice available)"}]},{"date":"2016-09-24","weekday":"sat","dayKind":"school","steps":[{"label":"Finish 'Cry of Cthulhu' on the metro","activityRef":"p5r.activity.book.cry-of-cthulhu","statGains":{"guts":5}},{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Hang out with Shinya (bring a Tower Persona) — Tower reaches rank 2","statGains":{"kindness":3}},{"label":"Save first, then order the Sincere Omelette at the maid cafe — have Clara fix a mistake, reload if she is flawless","statGains":{"charm":3,"guts":2}}]},{"date":"2016-09-25","weekday":"sun","dayKind":"free","steps":[{"label":"TV Shopping Program: Phantom Thief sets (lock picks, Phantom Wafer, Calling Postcard)"},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"charm":2}},{"label":"Hang out with Makoto — Priestess reaches rank 6"},{"label":"Meet the Twins on Central Street (7/13)"},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"}]},{"date":"2016-09-26","weekday":"mon","dayKind":"school","steps":[{"label":"Hang out with Shinya — Tower reaches rank 3","statGains":{"kindness":3}},{"label":"Hang out with Sojiro — Hierophant reaches rank 5","statGains":{"kindness":3}}]},{"date":"2016-09-27","weekday":"tue","dayKind":"school","steps":[{"label":"Meet the Twins on Shibuya Central Street (8/13)"},{"label":"Hang out with Chihaya — Fortune reaches rank 7"}]},{"date":"2016-09-28","weekday":"wed","dayKind":"school","steps":[{"label":"Read 'Master Swordsman' on the metro","activityRef":"p5r.activity.book.master-swordsman"},{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Buy SP-recovery drinks from the vending machines"},{"label":"Hang out with Futaba — Hermit reaches rank 4"},{"label":"Solve the LeBlanc crossword: 'Ranking'","statGains":{"knowledge":2}},{"label":"Use the Mega Fertilizer on the plant","statGains":{"kindness":5}},{"label":"Hang out with Hifumi — Star reaches rank 9 (romance choice available)"}]},{"date":"2016-09-29","weekday":"thu","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Hang out with Futaba — Hermit reaches rank 5"},{"label":"Answer the TV game show: 'Divulging someone's crimes'","statGains":{"knowledge":2}},{"label":"Ask Chihaya for an affinity reading for Ohya"},{"label":"Receive the request 'Debunking the Psychic!'","spoiler":true}]},{"date":"2016-09-30","weekday":"fri","dayKind":"school","steps":[{"label":"Finish 'Master Swordsman' during class","activityRef":"p5r.activity.book.master-swordsman","statGains":{"guts":7}},{"label":"Grab a Yakisoba Pan or Autumn Bread at the school store"},{"label":"Hang out with Yusuke — Emperor reaches rank 7"},{"label":"Ask Chihaya for an affinity reading for Ohya"},{"label":"Hang out with Ohya — Devil reaches rank 10"}]}]}
+{
+  "month": "2016-09",
+  "days": [
+    {
+      "date": "2016-09-01",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Buy the Broken Laptop and a Black Kogatana at the second-hand shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy all the new books at the Central Street bookstore",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Rent 'Mouse M.D.'",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy Black Rocks at the Kichijoji crystal healing store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya (no rank-up today)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Fighting for Truth in Journalism'",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-02",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Welcome-back chalk throw — no need to dodge (Charm is maxed)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'Cry of Cthulhu' from the school library",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan; Autumn Bread is new at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the PC Tool Set in Akihabara and every game at the retro shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Win the Jack Frost Doll at the Akihabara arcade (1/8)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba in front of LeBlanc (bring a Hermit Persona) — Hermit reaches rank 2",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Typhoon'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Fix the broken laptop at your desk",
+          "statGains": {
+            "proficiency": 3
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Tanaka's Shady Commodities unlocks on the laptop",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-03",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Spend 10,000 yen at Shady Commodities to reach Black rank",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Akechi — Justice reaches rank 6",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-04",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Receive the request 'Winners Don't Use Cheats'; confront the angry gamer in Shibuya Arcade",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the Phantom Wafer to the Kichijoji alley man — Strength Up Ofuda x2 (7/16)",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 6 (required answer for a later story event)",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-05",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Save your game, then play billiards (Technical, rank 3)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive 'Billiards Magician' at the billiards hall",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the Twins on Central Street (6/13)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-06",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a money reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Explore Mementos — 4 requests; fight the 'Winners Don't Use Cheats' boss (auto-retreats, redo it later)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Raise Jose's Money bonus to 170%",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Councilor, Hierophant, Star, Devil, Tower, Priestess, Fortune, Hermit, Emperor, and Hanged Man Personas",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-07",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "School trip in Hawaii — no free time",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-08",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "School trip in Hawaii — no free time",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-09",
+      "weekday": "fri",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "School trip in Hawaii — no free time",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-10",
+      "weekday": "sat",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "School trip in Hawaii — no free time",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-11",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "School trip in Hawaii — return home",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-12",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Return-from-Hawaii story occupies the daytime; the route only has the evening home slot",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-13",
+      "weekday": "tue",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Principal/Phantom Thieves story occupies the full day; Morgana leaves the party",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Judgement reaches rank 4",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-14",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Morgana/Haru search story occupies the rest of the day",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-15",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "First infiltration of the spaceport — the path is fixed, follow it",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-16",
+      "weekday": "fri",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Story events only — investigate Haru/Okumura; no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-17",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Mementos pursuit/reunion with Morgana and Haru occupies the rest of the day",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Magician reaches rank 8",
+          "spoiler": true,
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-18",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Haru/Okumura story occupies the daytime; the evening is confined to LeBlanc",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Mouse M.D.' (first viewing; Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.dvd.mouse-md",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-19",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Respect for the Aged Day — no school; use the route's daytime activities",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Prove your support to the arcade King in Akihabara — have Futaba hack the Gun About site, then report back — Tower reaches rank 1",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Kindness reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Festival'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Spend up to 50,000 yen at Shady Commodities; buy the Black Robe",
+          "slot": "evening"
+        },
+        {
+          "label": "Give the Thief Mask to the Kichijoji alley man — 2 Magic Up Ofuda (8/16)",
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Showtime Redemption' in Yongen-Jaya (Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.movie.showtime-redemption",
+          "statGains": {
+            "charm": 7
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-20",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Hang out with Maruki — Councilor reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 4",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-21",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Maruki — Councilor reaches rank 7",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 8",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-22",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Autumnal Equinox Day — no school",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Accept Hifumi's invitation (7 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Reach 100,000 yen spent at Shady Commodities — buy Black Kogatana and Black Robe toward Chaos rank; stock 10 of each Black item",
+          "slot": "evening"
+        },
+        {
+          "label": "Answer the TV game show: 'Ten years in prison'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Win the Burger-kun Doll at the Akihabara arcade (2/8)",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 8",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-23",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Read 'Billiards Magician' during class",
+          "activityRef": "p5r.activity.book.billiards-magician",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Maruki — Councilor reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 9 (romance choice available)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-24",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Finish 'Cry of Cthulhu' on the metro",
+          "activityRef": "p5r.activity.book.cry-of-cthulhu",
+          "statGains": {
+            "guts": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Shinya (bring a Tower Persona) — Tower reaches rank 2",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then order the Sincere Omelette at the maid cafe — have Clara fix a mistake, reload if she is flawless",
+          "statGains": {
+            "charm": 3,
+            "guts": 2
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-25",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "TV Shopping Program: Phantom Thief sets (lock picks, Phantom Wafer, Calling Postcard)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the Twins on Central Street (7/13)",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-26",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Hang out with Shinya — Tower reaches rank 3",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Sojiro — Hierophant reaches rank 5",
+          "statGains": {
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-27",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Meet the Twins on Shibuya Central Street (8/13)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 7",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-28",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Read 'Master Swordsman' on the metro",
+          "activityRef": "p5r.activity.book.master-swordsman",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks from the vending machines",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Ranking'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 9 (romance choice available)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-29",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Futaba — Hermit reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the TV game show: 'Divulging someone's crimes'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Ask Chihaya for an affinity reading for Ohya",
+          "slot": "evening"
+        },
+        {
+          "label": "Receive the request 'Debunking the Psychic!'",
+          "spoiler": true,
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-09-30",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Finish 'Master Swordsman' during class",
+          "activityRef": "p5r.activity.book.master-swordsman",
+          "statGains": {
+            "guts": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 7",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for an affinity reading for Ohya",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 10",
+          "slot": "evening"
+        }
+      ]
+    }
+  ]
+}
