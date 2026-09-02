@@ -6,9 +6,10 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 ## Sources checked
 
-- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, lottery result semantics, part-time-job behavior, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
 - TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, May 18 Strength-rank-1 / Group Guillotine availability, and exact Palace/Mementos story-trophy dates.
-- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, May 5 LeBlanc cleaning, May 18 Museum first-free-exploration checks, Palace-resolution dates, and route-date comparisons.
+- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, early part-time-job availability, May 5 LeBlanc cleaning, May 18 Museum first-free-exploration checks, Palace-resolution dates, and route-date comparisons.
+- Persona 5 Royal strategy references — Triple Seven job availability from Apr 18 and the ordinary lottery's Apr 18 sale start / seven-day result delay.
 - Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story and Apr 18 Castle tutorial checks.
 - Samurai Gamers Old Temple guide — explicit Jun 6 temple unlock.
 - Samurai Gamers June walkthrough — independent early Kichijoji darts/billiards usage examples.
@@ -60,6 +61,14 @@ The opening Casino grappling-hook sequence does not award this trophy. The first
 ### Technician — 2016-04-18
 
 Royal introduces Technical attacks during the Apr 18 Castle run and provides a tutorial battle where the trophy can be earned. The previous Apr 9 anchor was before the mechanic exists in normal play.
+
+### Punch That Clock! — 2016-04-18
+
+Part-time-job listings become available on Apr 18. Triple Seven requires no social-stat prerequisite and can be worked during daytime, so this is the first possible trophy date. The previous May 1 value was a coarse route-month placeholder rather than feature availability.
+
+### Easy Money — 2016-04-25
+
+The ordinary weekly lottery begins selling tickets on Apr 18 and posts results seven in-game days later. Therefore Apr 25 is the earliest possible trophy result **if** the first ticket wins. This remains RNG-dependent: `availableFrom` means first possible result, while `expectedBy` stays absent because no completion date is guaranteed.
 
 ### Phantom Thieves: Assemble! — 2016-05-05
 
@@ -123,10 +132,6 @@ Jose is introduced on May 7, but independent guides distinguish that mandatory t
 
 Electric Chair itemization unlocks after securing the Museum Treasure route, but flexible Royal routes can secure that route on different days. The exact earliest legal calendar date should be pinned separately from one guide's chosen infiltration day before replacing the current coarse metadata.
 
-### Punch That Clock!
-
-Part-time jobs open in late April, but route references differ on the first schedulable workday because the player can spend those early after-school slots on Palace progress or other activities. The current month-level anchor should be replaced only after the feature-availability rule is separated cleanly from a route-selected first shift.
-
 ### A Night in Kichijoji
 
 The jazz club is gated by Justice/Akechi rank 4, not merely the Kichijoji district unlock. Independent references disagree on the exact earliest calendar date achievable for rank 4 (and optimized routes can move it), so this pass does not replace the current metadata with a falsely precise fixed day. The condition should be modeled or separately audited before changing it.
@@ -141,4 +146,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` now pins **28** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, the Apr 15 negotiation trophy, the Apr 18 Castle combat/mechanic trophies, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
+`P5RTrophyAvailabilityAuditTest` now pins **30** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, the Apr 15 negotiation trophy, Apr 18 Castle combat/mechanic and job trophies, the first possible Apr 25 lottery result, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
