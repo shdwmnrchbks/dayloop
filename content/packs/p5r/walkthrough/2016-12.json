@@ -42,7 +42,7 @@
         { "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)" },
         { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" },
-        { "label": "Bring someone to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75; Futaba also gains Support Plus)" }
+        { "label": "Bring a non-Futaba party member to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75); alternatively invite Futaba for Support Plus 1 instead" }
       ]
     },
     {
@@ -124,7 +124,7 @@
         { "label": "Explore Mementos — all 4 requests and every Stamp; open every chest with the Perma-Pick; raise Jose's EXP to 160%", "spoiler": true },
         { "label": "Call Kawakami for the special massage" },
         { "label": "TV Shopping Program: Super Detox and Fancy Magatama sets" },
-        { "label": "Bring someone to the jazz club to learn Debilitate (Futaba upgrades to Support Plus 2)" }
+        { "label": "Bring a non-Futaba party member to the jazz club to learn Debilitate; alternatively invite Futaba for Support Plus 2 instead" }
       ]
     },
     {
