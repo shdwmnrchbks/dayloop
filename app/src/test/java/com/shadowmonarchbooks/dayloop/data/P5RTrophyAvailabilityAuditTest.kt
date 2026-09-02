@@ -37,6 +37,9 @@ class P5RTrophyAvailabilityAuditTest {
         }
 
         available("Spirit of Rebellion", "2016-04-11")
+        available("A Deadly Debut", "2016-04-18")
+        available("Phantom Thieves: Assemble!", "2016-05-05")
+        available("One Step at a Time", "2016-05-07")
         available("Talent Thief", "2016-05-07")
         available("Trash Into Treasure", "2016-06-05")
         available("Dartslinger", "2016-06-06")
@@ -45,6 +48,11 @@ class P5RTrophyAvailabilityAuditTest {
         available("Going Against the Crane", "2016-08-31")
 
         val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
+
+        // The 5/7 tutorial Mementos request is mandatory and is the first
+        // deterministic One Step at a Time trophy point.
+        assertTrue(days.getValue("2016-05-07").steps.any { "Mementos" in it.label })
+        assertEquals("2016-05-07", achievements.getValue("One Step at a Time").availableFrom)
 
         // The forced 6/5 Penguin Sniper introduction is not a playable
         // Dartslinger trophy opportunity. Earliest free-time play is after it.
