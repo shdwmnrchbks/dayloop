@@ -73,6 +73,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("A Serene Experience", "2016-06-06")
         available("It's Showtime!", "2016-06-21")
         available("Accident-Prone", "2016-06-21")
+        available("Angler's Debut", "2016-07-04")
         available("The Search for Power", "2016-07-12")
         available("Success Built on Sacrifice", "2016-07-26")
         available("Going Against the Crane", "2016-08-31")
@@ -105,6 +106,12 @@ class P5RTrophyAvailabilityAuditTest {
         assertEquals("2016-05-09", achievements.getValue("Jose's Favorite Customer").availableFrom)
         assertEquals("2016-05-09", achievements.getValue("The Phantom Philatelist").availableFrom)
         assertEquals("2016-05-09", achievements.getValue("The Deviated Cognition").availableFrom)
+
+        // Royal unlocks Ichigaya through Ryuji's Jul 3 fishing hangout. That
+        // introductory visit unlocks the location but does not award Angler's
+        // Debut; the first independent fishing visit can happen the next day.
+        assertTrue(days.getValue("2016-07-03").steps.any { "Ryuji's invitation" in it.label })
+        assertEquals("2016-07-04", achievements.getValue("Angler's Debut").availableFrom)
 
         // Royal's Kaitul path becomes freely explorable on Jul 12. Earlier paths
         // contain 20 stamps total and Kaitul supplies enough additional fixed/
