@@ -25,7 +25,7 @@ route.
 - GameFAQs, marendarade, **Persona 5 Royal — Social Stats**:
   https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/social-stats
 - GameFAQs, Raidramon0, **Persona 5 Royal — Proficiency** (updated 2026-07-27):
-  https://gamefaqs.gamespot.com/ps4/260936/persona-5-royal/faqs/82334/proficiency
+  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/82334/proficiency
 - Megami Tensei Wiki, **Persona 5 Royal calendar**:
   https://megatenwiki.com/wiki/User:Desacredess/sandbox5
 - Samurai Gamers, **Persona 5 Royal December Walkthrough and Guide**:
