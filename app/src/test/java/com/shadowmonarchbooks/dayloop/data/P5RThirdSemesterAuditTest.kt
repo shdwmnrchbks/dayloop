@@ -73,5 +73,13 @@ class P5RThirdSemesterAuditTest {
         assertEquals(mapOf("proficiency" to 3), gain("2017-01-30", "Golfer Sarutahiko"))
         assertEquals(mapOf("kindness" to 7), gain("2017-02-01", "The Goodfather"))
         assertTrue(step("2017-02-01", "The Goodfather").label.contains("Craft of Cinema bonus active"))
+
+        val answers = p5r.answers?.answers?.associateBy { it.date }.orEmpty()
+        assertEquals(listOf("How numerous they are", "The Eight Million Gods"), answers.getValue("2017-01-11").answers)
+        assertEquals(listOf("Iwate"), answers.getValue("2017-01-14").answers)
+        assertEquals(listOf("Impressive"), answers.getValue("2017-01-18").answers)
+        assertEquals(listOf("A snake"), answers.getValue("2017-01-21").answers)
+        assertEquals(listOf("Kind-hearted", "Negative", "Resentful"), answers.getValue("2017-01-24").answers)
+        assertEquals(listOf("To friends of friends of friends"), answers.getValue("2017-01-27").answers)
     }
 }
