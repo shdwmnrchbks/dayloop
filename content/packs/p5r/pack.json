@@ -32,7 +32,10 @@
   },
   "labels": {
     "bond": "Confidant",
-    "stat": "Social Stat"
+    "stat": "Social Stat",
+    "deadlineKinds": {
+      "routeTarget": "Route target"
+    }
   },
   "theme": {
     "accent": "#D81800",
