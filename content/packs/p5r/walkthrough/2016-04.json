@@ -124,7 +124,7 @@
       "steps": [
         { "label": "Read 'The Great Thief' on the train (seated day — no slot used)", "activityRef": "p5r.activity.book.great-thief", "statGains": { "knowledge": 5 } },
         { "label": "Borrow 'Pirate Legend' from the school library" },
-        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 5 } },
+        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 5, "guts": 2 } },
         { "label": "Study at LeBlanc in the evening (rainy-day bonus)", "statGains": { "knowledge": 5 } }
       ]
     },
@@ -136,7 +136,7 @@
         { "label": "Buy the DVD player at the Second-hand Shop" },
         { "label": "Pay the DVD rental subscription on Central Street" },
         { "label": "Rent 'The X Folders'", "activityRef": "p5r.activity.dvd.x-folders" },
-        { "label": "Study in the school library (rainy-day bonus)", "statGains": { "knowledge": 5 } },
+        { "label": "Study in the school library (rainy-day bonus)", "statGains": { "knowledge": 5, "guts": 2 } },
         { "label": "Watch 'The X Folders' part 1", "activityRef": "p5r.activity.dvd.x-folders", "statGains": { "guts": 3 } }
       ]
     },
