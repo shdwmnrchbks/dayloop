@@ -12,10 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -38,6 +36,8 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinCheckboxIndicator
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
@@ -292,7 +292,7 @@ private fun RuleAchievementRow(
                 AchievementTrackingTypes.CONFIRMATION -> progress.available && progress.conditionReady
                 else -> progress.available
             }
-            Checkbox(
+            SkinCheckboxIndicator(
                 checked = earned,
                 enabled = !progress.completed && (row.manualEarned || confirmEnabled),
                 onCheckedChange = if (progress.completed) null else onEarnedChange,
@@ -317,7 +317,7 @@ private fun AchievementChecklistControls(
                 if (currentDate > dueBy) " · deadline passed $dueBy" else " · by $dueBy"
             }.orEmpty()
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Checkbox(
+                SkinCheckboxIndicator(
                     checked = checked,
                     enabled = enabled,
                     onCheckedChange = { selected -> onItemChange(item.id, selected) },
@@ -342,7 +342,7 @@ private fun AchievementChoiceControls(
     Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
         achievement.tracking.items.distinctBy { it.id }.forEach { item ->
             Row(verticalAlignment = Alignment.CenterVertically) {
-                RadioButton(
+                SkinChoiceIndicator(
                     selected = selectedChoice == item.id,
                     enabled = enabled,
                     onClick = { onChoiceChange(item.id) },
@@ -615,7 +615,7 @@ private fun LegacyAchievementRow(
                     else MaterialTheme.colorScheme.secondary,
                 )
             }
-            Checkbox(checked = earned, onCheckedChange = onEarnedChange)
+            SkinCheckboxIndicator(checked = earned, onCheckedChange = onEarnedChange)
         }
     }
 }
