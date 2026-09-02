@@ -61,6 +61,8 @@ class P5RTrophyAvailabilityAuditTest {
         available("Leblanc Buffer", "2016-05-05")
         available("One Step at a Time", "2016-05-07")
         available("Talent Thief", "2016-05-07")
+        available("Jose's Favorite Customer", "2016-05-09")
+        available("The Phantom Philatelist", "2016-05-09")
         available("The Deviated Cognition", "2016-05-09")
         available("The Purpose of a Thief", "2016-05-18")
         available("Efficient Executioner", "2016-05-18")
@@ -71,6 +73,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("A Serene Experience", "2016-06-06")
         available("It's Showtime!", "2016-06-21")
         available("Accident-Prone", "2016-06-21")
+        available("The Search for Power", "2016-07-12")
         available("Success Built on Sacrifice", "2016-07-26")
         available("Going Against the Crane", "2016-08-31")
         available("Awakening the Phantom Thieves", "2017-01-10")
@@ -94,11 +97,19 @@ class P5RTrophyAvailabilityAuditTest {
         assertEquals("2016-04-18", achievements.getValue("Punch That Clock!").availableFrom)
         assertEquals("2016-04-25", achievements.getValue("Easy Money").availableFrom)
 
-        // Aiyatsbus opens on May 9. Deviations are random floor-generation
-        // events and can already occur there, so this is a first-possible date,
-        // not a route milestone or guaranteed trophy day.
+        // Aiyatsbus opens on May 9. This is the first free Mementos exploration
+        // state where Jose's flowers/stamps are usable and random deviations can
+        // occur. All three remain manual because Jose/deviation encounters are
+        // not guaranteed by this completion route on May 9.
         assertTrue(days.getValue("2016-05-09").steps.any { "Bark and Bite of a Bully" in it.label })
+        assertEquals("2016-05-09", achievements.getValue("Jose's Favorite Customer").availableFrom)
+        assertEquals("2016-05-09", achievements.getValue("The Phantom Philatelist").availableFrom)
         assertEquals("2016-05-09", achievements.getValue("The Deviated Cognition").availableFrom)
+
+        // Royal's Kaitul path becomes freely explorable on Jul 12. Earlier paths
+        // contain 20 stamps total and Kaitul supplies enough additional fixed/
+        // random podiums on that first visit to max the cheapest cognition line.
+        assertEquals("2016-07-12", achievements.getValue("The Search for Power").availableFrom)
 
         // Earliest Palace-route security gates these Velvet Room mechanics. The
         // completion route can secure the same routes later without changing
