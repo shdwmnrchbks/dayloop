@@ -62,7 +62,7 @@
       "kind": "dvd",
       "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Initial Scarlet rental inventory after buying the DVD player and membership. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.wraith",
@@ -70,7 +70,7 @@
       "kind": "dvd",
       "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Initial Scarlet rental inventory after buying the DVD player and membership. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.guy-mcver",
@@ -78,7 +78,7 @@
       "kind": "dvd",
       "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Initial Scarlet rental inventory after buying the DVD player and membership. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.bubbly-hills",
@@ -86,7 +86,7 @@
       "kind": "dvd",
       "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Initial Scarlet rental inventory after buying the DVD player and membership. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.movie.tanktop-millionaire",
@@ -129,7 +129,7 @@
       "kind": "dvd",
       "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Scarlet rental inventory from 6/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.the-running-dead",
@@ -137,7 +137,7 @@
       "kind": "dvd",
       "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Scarlet rental inventory from 6/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.icu",
@@ -145,7 +145,7 @@
       "kind": "dvd",
       "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Scarlet rental inventory from 6/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.jail-break",
@@ -153,7 +153,7 @@
       "kind": "dvd",
       "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Scarlet rental inventory from 6/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.movie.cake-knight-rises",
@@ -350,7 +350,7 @@
       "kind": "dvd",
       "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Royal-only Scarlet rental inventory from 8/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.mouse-md",
@@ -358,7 +358,7 @@
       "kind": "dvd",
       "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Royal-only Scarlet rental inventory from 8/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.31",
@@ -366,7 +366,7 @@
       "kind": "dvd",
       "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Royal-only Scarlet rental inventory from 8/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.dvd.tee",
@@ -374,7 +374,7 @@
       "kind": "dvd",
       "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "Needs the DVD player. Two viewings; each grants the listed points. Royal uses a one-time rental subscription with no return deadline. The Craft of Cinema adds +2 stat points per viewing."
+      "notes": "Royal-only Scarlet rental inventory from 8/1. Two viewings; each grants the listed points. Royal's one-time subscription has no return deadline. The Craft of Cinema adds +2 stat points per viewing."
     },
     {
       "id": "p5r.activity.movie.love-possibly",
@@ -485,7 +485,7 @@
       "kind": "videoGame",
       "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Three-stage retro game bundled with the Retro Game Set from the Yongen-Jaya recycling shop. Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.gambla-goemon",
@@ -493,7 +493,7 @@
       "kind": "videoGame",
       "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Two-stage retro game available from the Yongen-Jaya recycling shop from 7/26. Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.punch-ouch",
@@ -501,7 +501,7 @@
       "kind": "videoGame",
       "statGains": { "charm": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Three-stage retro game sold by the Akihabara retro game shop after Akihabara opens. Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.featherman-seeker",
@@ -509,7 +509,7 @@
       "kind": "videoGame",
       "statGains": { "knowledge": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Royal-only three-stage retro game sold by the Akihabara retro game shop after Akihabara opens. Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.train-of-life",
@@ -517,7 +517,7 @@
       "kind": "videoGame",
       "statGains": { "kindness": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Three-stage retro game sold by the Akihabara retro game shop after Akihabara opens. Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.power-intuition",
@@ -525,7 +525,7 @@
       "kind": "videoGame",
       "statGains": { "guts": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Three-stage retro game sold by the Akihabara retro game shop. Game Secrets enables a cheat that makes the minigame easier."
     },
     {
       "id": "p5r.activity.videoGame.golfer-sarutahiko",
@@ -533,7 +533,7 @@
       "kind": "videoGame",
       "statGains": { "proficiency": 3 },
       "location": "Attic TV",
-      "notes": "Retro game; Game Secrets enables a cheat that makes the minigame easier."
+      "notes": "Three-stage retro game sold by the Akihabara retro game shop. Game Secrets enables a cheat that makes the minigame easier."
     }
   ]
 }
