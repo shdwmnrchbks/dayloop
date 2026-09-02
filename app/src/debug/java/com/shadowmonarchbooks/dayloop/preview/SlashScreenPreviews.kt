@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -192,7 +193,7 @@ private fun SlashSettingsPreview() {
 private fun SlashPreviewFrame(
     title: String,
     selectedRoute: String,
-    content: @Composable Column.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     val pack = Phase17PreviewFixtures.coldStarts
         .first { it.skinId == "masks" && it.dark }
@@ -240,7 +241,7 @@ private fun SlashPreviewFrame(
 }
 
 @Composable
-private fun SlashCard(content: @Composable Column.() -> Unit) {
+private fun SlashCard(content: @Composable ColumnScope.() -> Unit) {
     val skin = LocalSkin.current
     Surface(
         shape = skin.shapes.card,
