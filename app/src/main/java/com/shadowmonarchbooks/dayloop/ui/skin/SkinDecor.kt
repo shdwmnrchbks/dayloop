@@ -14,6 +14,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Unspecified
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -43,6 +44,7 @@ import kotlinx.coroutines.withContext
 fun Modifier.skinDecor(slot: String, accent: Color = Unspecified): Modifier = composed {
     val skin = LocalSkin.current
     val color = if (accent.isSpecified) accent else MaterialTheme.colorScheme.primary
+    val ink = MaterialTheme.colorScheme.onSurface
     val asset = skin.decor.art[slot]
     val bitmap = rememberDecorBitmap(asset)
     when {
@@ -67,10 +69,12 @@ fun Modifier.skinDecor(slot: String, accent: Color = Unspecified): Modifier = co
             // the family frame must follow the actual outline, so the painter
             // draws over the art at the node's true size (Phase 15).
             if (slot == "panel" && skin.decor.painter != null) {
-                paintDecoration(skin.decor.painter, color, size)
+                paintDecoration(skin.decor.painter, color, ink, size, slot)
             }
         }
-        skin.decor.painter != null -> drawBehind { paintDecoration(skin.decor.painter, color, size) }
+        skin.decor.painter != null -> drawBehind {
+            paintDecoration(skin.decor.painter, color, ink, size, slot)
+        }
         else -> Modifier
     }
 }
@@ -92,12 +96,99 @@ private fun rememberDecorBitmap(asset: String?): Bitmap? {
 }
 
 /** Procedural painters for the motif families (closed set in [SkinPainters]). */
-private fun DrawScope.paintDecoration(painter: String?, color: Color, size: Size) {
+private fun DrawScope.paintDecoration(
+    painter: String?,
+    color: Color,
+    ink: Color,
+    size: Size,
+    slot: String,
+) {
     when (painter) {
+        "cutline" -> cutline(color, ink, size, slot)
         "halftone" -> drawPath(halftonePath(size, density), color.copy(alpha = 0.10f))
         "grain" -> drawPath(grainPath(size, density), color.copy(alpha = 0.08f))
         "glass" -> drawRect(brush = glassBrush(color))
         "filigree" -> filigree(color, size)
+    }
+}
+
+/**
+ * Bold cut-paper geometry without noisy teeth or dot fields. Headers receive
+ * a solid accent blade with a white keyline; panels use two sparse corner
+ * shards and one diagonal rule so body copy always remains the loudest layer.
+ */
+private fun DrawScope.cutline(color: Color, ink: Color, size: Size, slot: String) {
+    if (size.width <= 0f || size.height <= 0f) return
+    when (slot) {
+        "header" -> {
+            // Leave the trailing action zone on the calm surface. The offset
+            // keyline gives the accent blade the layered collage construction
+            // without introducing another texture.
+            val actionReserve = 104.dp.toPx()
+            val bandEnd = (size.width - actionReserve)
+                .coerceIn(size.width * 0.58f, size.width * 0.80f)
+            val cut = minOf(size.height * 0.48f, 26.dp.toPx())
+            val offset = 4.dp.toPx()
+
+            val keyline = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(bandEnd + offset, 0f)
+                lineTo(bandEnd - cut + offset, size.height - offset)
+                lineTo(0f, size.height - offset)
+                close()
+            }
+            drawPath(keyline, ink.copy(alpha = 0.95f))
+
+            val blade = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(bandEnd, 0f)
+                lineTo(bandEnd - cut, size.height - offset * 2f)
+                lineTo(0f, size.height - offset * 2f)
+                close()
+            }
+            drawPath(blade, color)
+            drawLine(
+                color = ink.copy(alpha = 0.82f),
+                start = Offset(0f, size.height - offset * 2.5f),
+                end = Offset(bandEnd - cut, size.height - offset * 2.5f),
+                strokeWidth = 2.dp.toPx(),
+            )
+        }
+
+        "panel" -> {
+            val topShard = Path().apply {
+                moveTo(size.width * 0.70f, 0f)
+                lineTo(size.width, 0f)
+                lineTo(size.width, size.height * 0.32f)
+                close()
+            }
+            drawPath(topShard, color.copy(alpha = 0.16f))
+
+            val lowerShard = Path().apply {
+                moveTo(0f, size.height * 0.72f)
+                lineTo(size.width * 0.24f, size.height)
+                lineTo(0f, size.height)
+                close()
+            }
+            drawPath(lowerShard, ink.copy(alpha = 0.07f))
+
+            drawLine(
+                color = color.copy(alpha = 0.42f),
+                start = Offset(size.width * 0.72f, 0f),
+                end = Offset(size.width * 0.61f, size.height),
+                strokeWidth = 2.dp.toPx(),
+            )
+        }
+
+        else -> {
+            val rise = minOf(size.height, 8.dp.toPx())
+            drawLine(
+                color = color,
+                start = Offset(size.width * 0.08f, size.height),
+                end = Offset(size.width * 0.92f, size.height - rise),
+                strokeWidth = 2.dp.toPx(),
+            )
+        }
     }
 }
 

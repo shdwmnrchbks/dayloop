@@ -36,9 +36,9 @@
     "style": "vibrant",
     "motif": "masks",
     "shapes": {
-      "card": "jagged",
+      "card": "cut",
       "chip": "slash",
-      "header": "ribbon",
+      "header": "slash",
       "frame": "cut"
     },
     "typography": {
@@ -50,7 +50,6 @@
       }
     },
     "decor": {
-      "header": "art/decor-header.png",
       "divider": "art/decor-divider.png"
     },
     "motion": "slash",

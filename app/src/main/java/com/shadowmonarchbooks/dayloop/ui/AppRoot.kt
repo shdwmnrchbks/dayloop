@@ -27,6 +27,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -39,6 +40,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
@@ -111,6 +114,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val route = backStackEntry?.destination?.route
     val pack = state.selected
     val tabs = remember(pack) { topLevelTabs(pack) }
+    val skin = LocalSkin.current
 
     // Fixed for the session once selection is ready: installs with no persisted
     // choice start on the picker, everyone else lands on Today.
@@ -138,12 +142,18 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             if (route in TopLevelRoutes) {
                 NavigationBar {
                     tabs.forEach { tab ->
+                        val selected = route == tab.route
                         NavigationBarItem(
-                            selected = route == tab.route,
+                            selected = selected,
                             onClick = { nav.navigate(tab.route) { launchSingleTop = true } },
-                            icon = { Icon(tab.icon, contentDescription = tab.label) },
+                            icon = { TopTabIcon(tab, selected) },
                             label = null,
                             alwaysShowLabel = false,
+                            colors = if (skin.motif == "masks") {
+                                NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent)
+                            } else {
+                                NavigationBarItemDefaults.colors()
+                            },
                         )
                     }
                 }
@@ -153,7 +163,6 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
         // Skin motion grammar (docs/ROADMAP-v3.md Phase 12): the pack's
         // `theme.motion` token drives screen transitions; null = engine
         // defaults; the system remove-animations setting collapses everything.
-        val skin = LocalSkin.current
         val animationsDisabled = rememberAnimationsDisabled()
         val motion = remember(skin, animationsDisabled) { skin.navMotion(animationsDisabled) }
         NavHost(
@@ -274,6 +283,27 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     }
 }
 
+@Composable
+private fun TopTabIcon(tab: TopTab, selected: Boolean) {
+    val skin = LocalSkin.current
+    if (skin.motif == "masks" && selected) {
+        Box(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.primary, skin.shapes.chip)
+                .padding(horizontal = 10.dp, vertical = 5.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                tab.icon,
+                contentDescription = tab.label,
+                tint = MaterialTheme.colorScheme.onPrimary,
+            )
+        }
+    } else {
+        Icon(tab.icon, contentDescription = tab.label)
+    }
+}
+
 /**
  * The header identifies the current place while pack artwork supplies the
  * visual identity. Top-level names moved here from the icon-only navigation
@@ -301,6 +331,8 @@ private fun DayloopTopBar(
     onOpenSearch: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
+    val skin = LocalSkin.current
+    val cutlineHeader = skin.motif == "masks"
     // Keep system information on a calm surface instead of extending the
     // pack's decorated banner behind the status-bar icons.
     Column(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
@@ -313,7 +345,20 @@ private fun DayloopTopBar(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
                 .skinDecor("header"),
-            colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color.Transparent,
+                navigationIconContentColor = if (cutlineHeader) {
+                    MaterialTheme.colorScheme.onPrimary
+                } else {
+                    MaterialTheme.colorScheme.onSurface
+                },
+                titleContentColor = if (cutlineHeader) {
+                    MaterialTheme.colorScheme.onPrimary
+                } else {
+                    MaterialTheme.colorScheme.onSurface
+                },
+                actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+            ),
             windowInsets = WindowInsets(0, 0, 0, 0),
             navigationIcon = {
                 if (canGoBack) {
@@ -323,7 +368,15 @@ private fun DayloopTopBar(
                 }
             },
             title = {
-                Text(title, style = MaterialTheme.typography.titleMedium)
+                Text(
+                    text = if (cutlineHeader) skin.cased(title, "display") else title,
+                    style = if (cutlineHeader) {
+                        MaterialTheme.typography.displaySmall.copy(fontSize = 25.sp, lineHeight = 28.sp)
+                    } else {
+                        MaterialTheme.typography.titleMedium
+                    },
+                    maxLines = 1,
+                )
             },
             actions = {
                 IconButton(onClick = onOpenSearch) {
