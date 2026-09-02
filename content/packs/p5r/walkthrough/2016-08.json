@@ -1,1 +1,834 @@
-{"month":"2016-08","days":[{"date":"2016-08-01","weekday":"mon","dayKind":"free","steps":[{"label":"Buy a Black Kogatana at the second-hand shop (monthly stock)"},{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Itemize a Persona in the Velvet Room's electric chair (achievement check)","spoiler":true},{"label":"Hang out with Makoto — Priestess reaches rank 3"},{"label":"Hang out with Hifumi — Star reaches rank 4"}]},{"date":"2016-08-02","weekday":"tue","dayKind":"free","steps":[{"label":"Receive the request 'We Aren't Just Your Slaves'","spoiler":true},{"label":"Buy 'Master Swordsman' in Jinbocho"},{"label":"Hang out with Ryuji — Chariot reaches rank 8"},{"label":"Ask Chihaya for a luck reading about Charm"},{"label":"Hang out with Ohya — Devil reaches rank 3 (Luck Reading active)","statGains":{"charm":4}}]},{"date":"2016-08-03","weekday":"wed","dayKind":"free","steps":[{"label":"Receive the request 'Who's Been Assaulting People?'"},{"label":"Hang out with Yusuke — Emperor reaches rank 5"},{"label":"Solve the LeBlanc crossword: 'Island'","statGains":{"knowledge":2}},{"label":"Meet the Twins on Shibuya Central Street (5/13)"}]},{"date":"2016-08-04","weekday":"thu","dayKind":"free","steps":[{"label":"Receive the request 'Calling for Justice for Cats'"},{"label":"Ask Chihaya for a Luck Reading about Knowledge"},{"label":"Watch 'Saraemon' at the Shinjuku movie theater (Craft of Cinema + Luck Reading active)","activityRef":"p5r.activity.movie.saraemon","statGains":{"knowledge":10}},{"label":"Answer the TV game show: 'Joyride, but return the car'","statGains":{"knowledge":2}},{"label":"Hang out with Chihaya — Fortune reaches rank 4"}]},{"date":"2016-08-05","weekday":"fri","dayKind":"free","steps":[{"label":"Ask Chihaya for a Luck Reading about Kindness"},{"label":"Save first, then work at the flower shop — get every order right, reload on a miss (Luck Reading active)","statGains":{"kindness":7}},{"label":"Watch 'Le Misérables' with Yusuke — Kindness reaches rank 4 (Craft of Cinema + Luck Reading active)","activityRef":"p5r.activity.movie.le-miserable","statGains":{"kindness":10}}]},{"date":"2016-08-06","weekday":"sat","dayKind":"free","steps":[{"label":"Accept Ann's invitation (5 of 10)"},{"label":"Hang out with Akechi — Justice reaches rank 4"}]},{"date":"2016-08-07","weekday":"sun","dayKind":"free","steps":[{"label":"TV Shopping Program: Phantom Thief Set and Heroic Set"},{"label":"Buy an Exorcism Water from the Kanda priest"},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"proficiency":2}},{"label":"Ask Chihaya for a luck reading about Charm"},{"label":"Save first, then work at the convenience store — get the barcode right, reload on a miss (Luck Reading active)","statGains":{"charm":7}},{"label":"Charm reaches rank 4"},{"label":"Give the Exorcism Water to the Kichijoji alley man — Model Gun (5/16)"},{"label":"Work at the Crossroads Bar in Shinjuku — talk to the downcast woman (Luck Reading boosts the base Charm)","statGains":{"charm":4,"kindness":2}}]},{"date":"2016-08-08","weekday":"mon","dayKind":"free","steps":[{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Visit Takemi at the clinic (no rank-up)"},{"label":"Receive the request 'Bad Medicine'","spoiler":true},{"label":"Solve the LeBlanc crossword: 'Courage'","statGains":{"knowledge":2}},{"label":"Work at the Crossroads Bar again — talk to the downcast woman (Kindness Luck Reading active)","statGains":{"charm":3,"kindness":3}}]},{"date":"2016-08-09","weekday":"tue","dayKind":"free","steps":[{"label":"Hang out with Ryuji — Chariot reaches rank 9"},{"label":"Hang out with Chihaya — Fortune reaches rank 5"}]},{"date":"2016-08-10","weekday":"wed","dayKind":"free","steps":[{"label":"Ask Chihaya for a luck reading about Kindness"},{"label":"Save first, then work at the flower shop — get the order right, reload on a miss (Luck Reading active)","statGains":{"kindness":7}},{"label":"Use the Mega Fertilizer on the plant (Luck Reading active)","statGains":{"kindness":7}},{"label":"Talk to Iwai at the Airsoft shop — Hanged Man reaches rank 1"}]},{"date":"2016-08-11","weekday":"thu","dayKind":"free","steps":[{"label":"Customize a gun at Iwai's (achievement)"},{"label":"Hang out with Makoto — Priestess reaches rank 4"},{"label":"Ask Chihaya for an affinity reading for Sojiro"},{"label":"Hang out with Yoshida — Sun reaches rank 7","statGains":{"charm":3}}]},{"date":"2016-08-12","weekday":"fri","dayKind":"free","steps":[{"label":"Ask Chihaya for a luck reading about Charm"},{"label":"Work at the convenience store (Luck Reading active)","statGains":{"charm":4}},{"label":"Hang out with Ohya — Devil reaches rank 4 (Luck Reading active)","statGains":{"charm":4}}]},{"date":"2016-08-13","weekday":"sat","dayKind":"free","steps":[{"label":"Hang out with Makoto — Priestess reaches rank 5"},{"label":"Hang out with Akechi — Justice reaches rank 5"}]},{"date":"2016-08-14","weekday":"sun","dayKind":"free","steps":[{"label":"Buy items from the Kanda priest"},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"guts":2}},{"label":"Hang out with Ryuji — Chariot reaches rank 10"},{"label":"TV Shopping Program: Drink Set and Floral Gift Set"},{"label":"Hang out with Mishima in Shinjuku — Moon reaches rank 5"},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"}]},{"date":"2016-08-15","weekday":"mon","dayKind":"free","steps":[{"label":"Accept Makoto's invitation (6 of 10)"},{"label":"Hang out with Ohya (no rank-up today)"}]},{"date":"2016-08-16","weekday":"tue","dayKind":"free","steps":[{"label":"Explore Mementos — clear all 5 requests, skip locked chests","spoiler":true},{"label":"Level Clotho to 28 for Tetraja, then fuse Lachesis with the Stone of Scone","spoiler":true},{"label":"Twins ritual — Strength reaches rank 7","spoiler":true},{"label":"Collect all Stamps; raise Jose's Items to x11 and Money to 130%","spoiler":true},{"label":"Carry Death, Devil, Emperor, Star, Fortune, Hermit, and Justice Personas"},{"label":"Call Kawakami for the special massage"},{"label":"Hang out with Hifumi — Star reaches rank 5 (Knowledge reaches rank 5)","statGains":{"knowledge":2}}]},{"date":"2016-08-17","weekday":"wed","dayKind":"free","steps":[{"label":"Hang out with Takemi — Death reaches rank 8","statGains":{"guts":2}},{"label":"Solve the LeBlanc crossword: 'Sunburn'","statGains":{"knowledge":2}},{"label":"Save your game, then play billiards at the Penguin Sniper Lounge"}]},{"date":"2016-08-18","weekday":"thu","dayKind":"free","steps":[{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Sell Mementos loot at the Airsoft shop"},{"label":"Buy 'Expert Billiards', the Dart Set, and the Jump Cue at the Underground Mall"},{"label":"Save first, then grind the batting cages for a home run — reload if needed","statGains":{"proficiency":2}},{"label":"Buy 'Batting Science' in Shinjuku"},{"label":"Hang out with Ohya — Devil reaches rank 5"}]},{"date":"2016-08-19","weekday":"fri","dayKind":"free","steps":[{"label":"Hang out with Yusuke — Emperor reaches rank 6"},{"label":"Rent 'D.Housewives' on Central Street"},{"label":"Read 'Expert Billiards'","activityRef":"p5r.activity.book.expert-billiards"}]},{"date":"2016-08-20","weekday":"sat","dayKind":"free","steps":[{"label":"Hang out with Takemi — Death reaches rank 9 (romance choice available)"},{"label":"Ask Chihaya for a luck reading about Charm"},{"label":"Hang out with Yoshida — Sun reaches rank 8 (Luck Reading active)","statGains":{"charm":7}}]},{"date":"2016-08-21","weekday":"sun","dayKind":"story","steps":[{"label":"Medjed deadline / cleanse story occupies the daytime; the evening is confined to LeBlanc"},{"label":"Watch 'D.Housewives' (first viewing; Craft of Cinema bonus active)","activityRef":"p5r.activity.dvd.d-housewives","statGains":{"charm":5}}]},{"date":"2016-08-22","weekday":"mon","dayKind":"story","steps":[{"label":"Medjed aftermath and Futaba story occupy the daytime; evening free time resumes"},{"label":"Judgement reaches rank 3","spoiler":true},{"label":"Hang out with Hifumi — Star reaches rank 6","statGains":{"knowledge":2}},{"label":"Fool reaches rank 7","spoiler":true}]},{"date":"2016-08-23","weekday":"tue","dayKind":"story","steps":[{"label":"Futaba socialization story occupies the daytime; evening free time resumes"},{"label":"Give a Melon Pan to the Kichijoji alley man — Old Man's Fist (6/16)"},{"label":"Ask Chihaya for an affinity reading for Ohya"},{"label":"Hang out with Takemi — Death reaches rank 10"}]},{"date":"2016-08-24","weekday":"wed","dayKind":"story","steps":[{"label":"Futaba socialization story occupies the daytime; evening free time resumes"},{"label":"Ask Chihaya for an affinity reading for Hifumi"},{"label":"Hang out with Hifumi — Star reaches rank 7","statGains":{"knowledge":2}}]},{"date":"2016-08-25","weekday":"thu","dayKind":"story","steps":[{"label":"Futaba socialization story occupies the daytime; evening free time resumes"},{"label":"Solve the LeBlanc crossword: 'Sweltering'","statGains":{"knowledge":2}},{"label":"Hang out with Yoshida — Sun reaches rank 9"}]},{"date":"2016-08-26","weekday":"fri","dayKind":"story","steps":[{"label":"Futaba socialization story occupies the daytime; evening free time resumes"},{"label":"Use the Mega Fertilizer on the plant","statGains":{"kindness":5}},{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Save your game, then play billiards (Technical) at the Penguin Sniper Lounge"}]},{"date":"2016-08-27","weekday":"sat","dayKind":"story","steps":[{"label":"Futaba socialization story occupies the daytime; evening free time resumes"},{"label":"Hang out with Hifumi (no rank-up today)"},{"label":"Receive the request 'Upstaging the Stage Mother'","spoiler":true}]},{"date":"2016-08-28","weekday":"sun","dayKind":"story","steps":[{"label":"Futaba socialization story occupies the daytime; evening free time resumes"},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"},{"label":"Ask Chihaya for a luck reading about Charm"},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"kindness":2}},{"label":"Hang out with Yoshida — Sun reaches rank 10 (Luck Reading active)","statGains":{"charm":7}}]},{"date":"2016-08-29","weekday":"mon","dayKind":"story","steps":[{"label":"Beach-trip story occupies the daytime; evening free time resumes"},{"label":"Receive the request 'Who's Muscling in Yongen-Jaya?'","spoiler":true},{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Hang out with Ohya — Devil reaches rank 6"},{"label":"Magician reaches rank 7","spoiler":true}]},{"date":"2016-08-30","weekday":"tue","dayKind":"story","steps":[{"label":"Team homework story occupies the daytime; evening free time resumes"},{"label":"Solve the LeBlanc crossword: 'Hacking'","statGains":{"knowledge":2}},{"label":"Hang out with Ohya — Devil reaches rank 7 (required answer for a later story event)","statGains":{"charm":5}}]},{"date":"2016-08-31","weekday":"wed","dayKind":"story","steps":[{"label":"Futaba/Akihabara story occupies the daytime; Hermit starts automatically and the evening is confined to LeBlanc"},{"label":"Hermit reaches rank 1","spoiler":true},{"label":"Watch 'D.Housewives' (second viewing; Craft of Cinema bonus active)","activityRef":"p5r.activity.dvd.d-housewives","statGains":{"charm":5}},{"label":"Charm reaches rank 5"},{"label":"Fool reaches rank 8","spoiler":true}]}]}
+{
+  "month": "2016-08",
+  "days": [
+    {
+      "date": "2016-08-01",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Buy a Black Kogatana at the second-hand shop (monthly stock)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Itemize a Persona in the Velvet Room's electric chair (achievement check)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 4",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-02",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Receive the request 'We Aren't Just Your Slaves'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 'Master Swordsman' in Jinbocho",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ryuji — Chariot reaches rank 8",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a luck reading about Charm",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 3 (Luck Reading active)",
+          "statGains": {
+            "charm": 4
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-03",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Receive the request 'Who's Been Assaulting People?'",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Island'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Meet the Twins on Shibuya Central Street (5/13)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-04",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Receive the request 'Calling for Justice for Cats'",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a Luck Reading about Knowledge",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Saraemon' at the Shinjuku movie theater (Craft of Cinema + Luck Reading active)",
+          "activityRef": "p5r.activity.movie.saraemon",
+          "statGains": {
+            "knowledge": 10
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the TV game show: 'Joyride, but return the car'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 4",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-05",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Ask Chihaya for a Luck Reading about Kindness",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then work at the flower shop — get every order right, reload on a miss (Luck Reading active)",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Le Misérables' with Yusuke — Kindness reaches rank 4 (Craft of Cinema + Luck Reading active)",
+          "activityRef": "p5r.activity.movie.le-miserable",
+          "statGains": {
+            "kindness": 10
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-06",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Accept Ann's invitation (5 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Akechi — Justice reaches rank 4",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-07",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "TV Shopping Program: Phantom Thief Set and Heroic Set",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy an Exorcism Water from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a luck reading about Charm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then work at the convenience store — get the barcode right, reload on a miss (Luck Reading active)",
+          "statGains": {
+            "charm": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Charm reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the Exorcism Water to the Kichijoji alley man — Model Gun (5/16)",
+          "slot": "evening"
+        },
+        {
+          "label": "Work at the Crossroads Bar in Shinjuku — talk to the downcast woman (Luck Reading boosts the base Charm)",
+          "statGains": {
+            "charm": 4,
+            "kindness": 2
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-08",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit Takemi at the clinic (no rank-up)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Bad Medicine'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Courage'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Work at the Crossroads Bar again — talk to the downcast woman (Kindness Luck Reading active)",
+          "statGains": {
+            "charm": 3,
+            "kindness": 3
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-09",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Hang out with Ryuji — Chariot reaches rank 9",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 5",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-10",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Ask Chihaya for a luck reading about Kindness",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then work at the flower shop — get the order right, reload on a miss (Luck Reading active)",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant (Luck Reading active)",
+          "statGains": {
+            "kindness": 7
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Talk to Iwai at the Airsoft shop — Hanged Man reaches rank 1",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-11",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Customize a gun at Iwai's (achievement)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for an affinity reading for Sojiro",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Yoshida — Sun reaches rank 7",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-12",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Ask Chihaya for a luck reading about Charm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work at the convenience store (Luck Reading active)",
+          "statGains": {
+            "charm": 4
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 4 (Luck Reading active)",
+          "statGains": {
+            "charm": 4
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-13",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Akechi — Justice reaches rank 5",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-14",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Buy items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ryuji — Chariot reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: Drink Set and Floral Gift Set",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Mishima in Shinjuku — Moon reaches rank 5",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-15",
+      "weekday": "mon",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Accept Makoto's invitation (6 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya (no rank-up today)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-16",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Explore Mementos — clear all 5 requests, skip locked chests",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Level Clotho to 28 for Tetraja, then fuse Lachesis with the Stone of Scone",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Twins ritual — Strength reaches rank 7",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Collect all Stamps; raise Jose's Items to x11 and Money to 130%",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Death, Devil, Emperor, Star, Fortune, Hermit, and Justice Personas",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami for the special massage",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 5 (Knowledge reaches rank 5)",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-17",
+      "weekday": "wed",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Hang out with Takemi — Death reaches rank 8",
+          "statGains": {
+            "guts": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Sunburn'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Save your game, then play billiards at the Penguin Sniper Lounge",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-18",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Sell Mementos loot at the Airsoft shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 'Expert Billiards', the Dart Set, and the Jump Cue at the Underground Mall",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then grind the batting cages for a home run — reload if needed",
+          "statGains": {
+            "proficiency": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 'Batting Science' in Shinjuku",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 5",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-19",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Rent 'D.Housewives' on Central Street",
+          "slot": "evening"
+        },
+        {
+          "label": "Read 'Expert Billiards'",
+          "activityRef": "p5r.activity.book.expert-billiards",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-20",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Hang out with Takemi — Death reaches rank 9 (romance choice available)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a luck reading about Charm",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Yoshida — Sun reaches rank 8 (Luck Reading active)",
+          "statGains": {
+            "charm": 7
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-21",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Medjed deadline / cleanse story occupies the daytime; the evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'D.Housewives' (first viewing; Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.dvd.d-housewives",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-22",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Medjed aftermath and Futaba story occupy the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Judgement reaches rank 3",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 6",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fool reaches rank 7",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-23",
+      "weekday": "tue",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba socialization story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give a Melon Pan to the Kichijoji alley man — Old Man's Fist (6/16)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for an affinity reading for Ohya",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Takemi — Death reaches rank 10",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-24",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba socialization story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for an affinity reading for Hifumi",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 7",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-25",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba socialization story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Sweltering'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yoshida — Sun reaches rank 9",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-26",
+      "weekday": "fri",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba socialization story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save your game, then play billiards (Technical) at the Penguin Sniper Lounge",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-27",
+      "weekday": "sat",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba socialization story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi (no rank-up today)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Upstaging the Stage Mother'",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-28",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba socialization story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a luck reading about Charm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yoshida — Sun reaches rank 10 (Luck Reading active)",
+          "statGains": {
+            "charm": 7
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-29",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Beach-trip story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'Who's Muscling in Yongen-Jaya?'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 6",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Magician reaches rank 7",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-30",
+      "weekday": "tue",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Team homework story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Hacking'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 7 (required answer for a later story event)",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-08-31",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Futaba/Akihabara story occupies the daytime; Hermit starts automatically and the evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hermit reaches rank 1",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'D.Housewives' (second viewing; Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.dvd.d-housewives",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Charm reaches rank 5",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fool reaches rank 8",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    }
+  ]
+}

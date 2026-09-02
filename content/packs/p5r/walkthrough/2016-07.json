@@ -1,1 +1,877 @@
-{"month":"2016-07","days":[{"date":"2016-07-01","weekday":"fri","dayKind":"school","steps":[{"label":"Read 'ABC of Crafting' on the metro","activityRef":"p5r.activity.book.abc-of-crafting"},{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Borrow 'Speed Reader' from the school library"},{"label":"Grab a Yakisoba Pan at the school store"},{"label":"Hang out with Ann — Lovers reaches rank 10"},{"label":"Start trying for Easy Money at Shibuya Station Square — the win is RNG and some ticket types (including Summer Mammoth) do not count, so keep buying qualifying tickets and check each result when due"},{"label":"Answer your phone and go with Ryuji"},{"label":"Hang out with Ryuji — Chariot reaches rank 7 (insta-kill unlocked)"}]},{"date":"2016-07-02","weekday":"sat","dayKind":"school","steps":[{"label":"Read 'Speed Reader' during class","activityRef":"p5r.activity.book.speed-reader"},{"label":"Borrow 'The Illusory Popess' — Makoto is waiting by the library door"},{"label":"Hang out with Makoto — Priestess reaches rank 1"},{"label":"Meet the Twins on Shibuya Central Street (4/13)"}]},{"date":"2016-07-03","weekday":"sun","dayKind":"free","steps":[{"label":"Accept Ryuji's invitation (2 of 10)"},{"label":"TV Shopping Program: buy the Calm Mind Set (incense for lockdown)"},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"kindness":2}},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"},{"label":"Hang out with Yoshida — Sun reaches rank 5 (Charm reaches rank 3)","statGains":{"charm":3}}]},{"date":"2016-07-04","weekday":"mon","dayKind":"school","steps":[{"label":"Finish 'The Illusory Popess' on the metro","activityRef":"p5r.activity.book.illusory-popess","statGains":{"kindness":5}},{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Explore Mementos — all 7 pending requests; leave locked chests alone","spoiler":true},{"label":"Fuse Suzaku, then Setanta; talk to the Twins — Strength reaches rank 5","spoiler":true},{"label":"Fuse Anzu and level it to 28 for Dekaja","spoiler":true},{"label":"Clear every request, collect all 10 Stamps, raise Jose's item buff to x9","spoiler":true},{"label":"Leave with Priestess, Temperance, Faith, Justice, Star, and Emperor Personas; Joker at level 27+","spoiler":true},{"label":"Watch 'Jail Break' (first viewing; Craft of Cinema bonus active)","activityRef":"p5r.activity.dvd.jail-break","statGains":{"proficiency":5}}]},{"date":"2016-07-05","weekday":"tue","dayKind":"school","steps":[{"label":"Buy 'Ghost Encounters' at the Central Street bookstore"},{"label":"Hang out with Makoto — Priestess reaches rank 2"},{"label":"Buy a Rose Bouquet or Bath of Roses at the Shinjuku flower shop"},{"label":"Hang out with Chihaya — Fortune reaches rank 1"}]},{"date":"2016-07-06","weekday":"wed","dayKind":"school","steps":[{"label":"Finish 'Ghost Encounters' during class","activityRef":"p5r.activity.book.ghost-encounters","statGains":{"guts":5}},{"label":"Hang out with Ann in Shibuya — give her the bouquet and receive the Choco Fountain (room decoration 1/20)"},{"label":"Call Kawakami — Temperance reaches rank 9 (romance choice available)"}]},{"date":"2016-07-07","weekday":"thu","dayKind":"school","steps":[{"label":"Answer Ann's class question","statGains":{"charm":2}},{"label":"Buy Black Rocks at the Kichijoji crystal shop"},{"label":"Hang out with Kasumi — Faith reaches rank 4"},{"label":"Solve the LeBlanc crossword: 'Narcotics'","statGains":{"knowledge":2}},{"label":"Buy 12 Mega Fertilizers at the Shinjuku flower shop"},{"label":"Hang out with Chihaya — Fortune reaches rank 2"}]},{"date":"2016-07-08","weekday":"fri","dayKind":"school","steps":[{"label":"Finish 'Tidying the Heart' on the metro","activityRef":"p5r.activity.book.tidying-the-heart","statGains":{"proficiency":5}},{"label":"Grab a Yakisoba Pan at the school store"},{"label":"Buy the Chocolate Truffles in the Underground Mall"},{"label":"Hang out with Ann in Harajuku — Idol Poster (room decoration 2/20)"},{"label":"Use the Mega Fertilizer on the plant","statGains":{"kindness":5}},{"label":"Call Kawakami — Temperance reaches rank 10 (special massage unlocked)"}]},{"date":"2016-07-09","weekday":"sat","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Hang out with Akechi — Justice reaches rank 3"},{"label":"Judgement reaches rank 1","spoiler":true}]},{"date":"2016-07-10","weekday":"sun","dayKind":"story","steps":[{"label":"Take care of LeBlanc during the daytime story; the evening is confined to LeBlanc"},{"label":"Receive the request 'The Lovesick Cyberstalking Girl'","spoiler":true},{"label":"Save your game first","spoiler":true},{"label":"Watch 'Jail Break' (second viewing; Craft of Cinema bonus active)","activityRef":"p5r.activity.dvd.jail-break","statGains":{"proficiency":5}}]},{"date":"2016-07-11","weekday":"mon","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Dodge the chalk throw — reload if you are hit","statGains":{"charm":3}},{"label":"Meet the shogi student in Kanda — Star reaches rank 1","statGains":{"knowledge":2}},{"label":"Browse the Kanda priest's healing items (Sundays)"}]},{"date":"2016-07-12","weekday":"tue","dayKind":"school","steps":[{"label":"Answer the class question","statGains":{"knowledge":2}},{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Hang out with Yusuke — Emperor reaches rank 4"},{"label":"Solve the LeBlanc crossword: 'Vacation'","statGains":{"knowledge":2}},{"label":"Give a Soothing Soba to the Kichijoji alley man — Koedo Sword (3/16)"},{"label":"Hang out with Chihaya — Fortune reaches rank 3"}]},{"date":"2016-07-13","weekday":"wed","dayKind":"exam","steps":[{"label":"Exams day 1"}]},{"date":"2016-07-14","weekday":"thu","dayKind":"exam","steps":[{"label":"Exams day 2"}]},{"date":"2016-07-15","weekday":"fri","dayKind":"exam","steps":[{"label":"Exams day 3"}]},{"date":"2016-07-16","weekday":"sat","dayKind":"story","steps":[{"label":"Story events only — no free time today","spoiler":true}]},{"date":"2016-07-17","weekday":"sun","dayKind":"story","steps":[{"label":"Summer festival / Ryuji-Yusuke Showtime story occupies the daytime; evening free time resumes"},{"label":"Buy the Sunday drink in the Underground Walkway","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"knowledge":2}},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"},{"label":"Ask Chihaya for a Luck Reading about Charm"},{"label":"Watch 'Love Possibly' with Ann (Craft of Cinema + Luck Reading active)","activityRef":"p5r.activity.movie.love-possibly","statGains":{"charm":10}}]},{"date":"2016-07-18","weekday":"mon","dayKind":"story","steps":[{"label":"Fireworks Festival and follow-up story occupy the day; afterward you are confined to LeBlanc"},{"label":"Save first, then beat 'Star Forneus' on the attic TV — reload until you win — Guts reaches rank 4","activityRef":"p5r.activity.videoGame.star-forneus","statGains":{"guts":3}}]},{"date":"2016-07-19","weekday":"tue","dayKind":"school","steps":[{"label":"Exam results","statGains":{"charm":5}},{"label":"Buy SP-recovery drinks and the summer-only items"},{"label":"Ask Chihaya for a Luck Reading about Kindness"},{"label":"Stock 8 Tin Clasps and 8 Silk Yarns for crafting"},{"label":"Apply at the Rafflesia flower shop (flyer shelf, Underground Walkway)"},{"label":"Work at the flower shop in the Underground Mall (Luck Reading active)","statGains":{"kindness":4}},{"label":"Receive the Dandy Mirror from Sojiro (exam reward)"},{"label":"Solve the LeBlanc crossword: 'Finals'","statGains":{"knowledge":2}},{"label":"Buy 'Flowerpedia' and 'Learn Pro Darts' in Shinjuku"},{"label":"Hang out with Hifumi (bring a Star Persona) — Star reaches rank 2","statGains":{"knowledge":2}}]},{"date":"2016-07-20","weekday":"wed","dayKind":"story","steps":[{"label":"First contact with Alibaba occupies the daytime; the evening is confined to LeBlanc"},{"label":"Save your game, then craft the full lock-pick batch — 10 total with Morgana's bonus","statGains":{"proficiency":5}},{"label":"Proficiency reaches rank 4"}]},{"date":"2016-07-21","weekday":"thu","dayKind":"story","steps":[{"label":"Second contact with Alibaba occupies the daytime; the evening is confined to LeBlanc"},{"label":"Read 'Learn Pro Darts' at LeBlanc","activityRef":"p5r.activity.book.learn-pro-darts"}]},{"date":"2016-07-22","weekday":"fri","dayKind":"story","steps":[{"label":"Investigate Futaba around Yongen-Jaya and the Backstreets, including the supermarket; evening is confined to LeBlanc"},{"label":"Read 'Flowerpedia' at LeBlanc","activityRef":"p5r.activity.book.flowerpedia"}]},{"date":"2016-07-23","weekday":"sat","dayKind":"story","steps":[{"label":"Third contact with Alibaba occupies the daytime; the evening is confined to LeBlanc"},{"label":"Clean the LeBlanc bathroom","statGains":{"kindness":2}}]},{"date":"2016-07-24","weekday":"sun","dayKind":"story","steps":[{"label":"Story events only — no free time today","spoiler":true},{"label":"Judgement reaches rank 2","spoiler":true}]},{"date":"2016-07-25","weekday":"mon","dayKind":"story","steps":[{"label":"Magician reaches rank 6","spoiler":true},{"label":"First infiltration of the pyramid — the path is fixed, follow it","spoiler":true},{"label":"Use the Mega Fertilizer on the plant","statGains":{"kindness":5}},{"label":"Clean the LeBlanc bathroom again","statGains":{"kindness":2}}]},{"date":"2016-07-26","weekday":"tue","dayKind":"free","steps":[{"label":"Buy 'Gambla Goemon' at the second-hand shop"},{"label":"Play the Airsoft ration machine until you win an MRE ration"},{"label":"Give the MRE Ration to the Kichijoji alley man — Factorization Guide (4/16)"},{"label":"Ask Chihaya for a money reading"},{"label":"Second infiltration — capture the Stone of Scone and grab all three Will Seeds","spoiler":true},{"label":"Fuse Neko Shogun (Advanced Fusion, pass on Dekaja)","spoiler":true},{"label":"Twins ritual — Strength reaches rank 6","spoiler":true}]},{"date":"2016-07-27","weekday":"wed","dayKind":"story","steps":[{"label":"Send the Calling Card","spoiler":true},{"label":"Heist: steal the Treasure — equip physical-repelling accessories; guard through Rapid Ascend, then fire the ballista","spoiler":true},{"label":"Call Kawakami for the special massage"},{"label":"Solve the LeBlanc crossword: 'Fireworks'","statGains":{"knowledge":2}},{"label":"Carry Faith, Devil, Star, Priestess, Chariot, Emperor, Fortune, and Justice Personas"},{"label":"Hang out with Ohya at the Crossroads Bar — Devil reaches rank 1","statGains":{"charm":3}}]},{"date":"2016-07-28","weekday":"thu","dayKind":"free","steps":[{"label":"Ask Chihaya for a Luck Reading about Guts"},{"label":"Sit on the blue couch in Kichijoji until Guts rises (Luck Reading active)","statGains":{"guts":3}},{"label":"Hang out with Kasumi — Faith reaches rank 5 (arcana locks until January)"},{"label":"Buy SP-recovery drinks and the summer-only items; at the donut shop answer '10' (Luck Reading active)","statGains":{"guts":3}},{"label":"Watch 'Like a Dragon' with Makoto (Craft of Cinema + Luck Reading active)","activityRef":"p5r.activity.movie.like-a-dragon","statGains":{"guts":10}}]},{"date":"2016-07-29","weekday":"fri","dayKind":"free","steps":[{"label":"Accept Akechi's invitation (3 of 10)"},{"label":"Hang out with Ohya — Devil reaches rank 2 (bring a Devil Persona)","statGains":{"charm":3}}]},{"date":"2016-07-30","weekday":"sat","dayKind":"free","steps":[{"label":"Accept Makoto's invitation (4 of 10)"},{"label":"Hang out with Hifumi — Star reaches rank 3","statGains":{"knowledge":2}}]},{"date":"2016-07-31","weekday":"sun","dayKind":"free","steps":[{"label":"Buy support items from the Kanda priest"},{"label":"Ask Chihaya for a Luck Reading about Charm"},{"label":"Buy the Sunday drink in the Underground Walkway (Luck Reading active)","activityRef":"p5r.activity.drink.fruit-drink","statGains":{"charm":3}},{"label":"Apply at the Triple Seven convenience store (flyer shelf)"},{"label":"Work at the Central Street convenience store (Luck Reading active)","statGains":{"charm":4}},{"label":"Hang out with Yoshida — Sun reaches rank 6"},{"label":"Grab Chunky Katsu at the Kichijoji fried food shop"}]}]}
+{
+  "month": "2016-07",
+  "days": [
+    {
+      "date": "2016-07-01",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Read 'ABC of Crafting' on the metro",
+          "activityRef": "p5r.activity.book.abc-of-crafting",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'Speed Reader' from the school library",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann — Lovers reaches rank 10",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Start trying for Easy Money at Shibuya Station Square — the win is RNG and some ticket types (including Summer Mammoth) do not count, so keep buying qualifying tickets and check each result when due",
+          "slot": "evening"
+        },
+        {
+          "label": "Answer your phone and go with Ryuji",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Ryuji — Chariot reaches rank 7 (insta-kill unlocked)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-02",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Read 'Speed Reader' during class",
+          "activityRef": "p5r.activity.book.speed-reader",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Borrow 'The Illusory Popess' — Makoto is waiting by the library door",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the Twins on Shibuya Central Street (4/13)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-03",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Accept Ryuji's invitation (2 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "TV Shopping Program: buy the Calm Mind Set (incense for lockdown)",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Yoshida — Sun reaches rank 5 (Charm reaches rank 3)",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-04",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Finish 'The Illusory Popess' on the metro",
+          "activityRef": "p5r.activity.book.illusory-popess",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Explore Mementos — all 7 pending requests; leave locked chests alone",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fuse Suzaku, then Setanta; talk to the Twins — Strength reaches rank 5",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fuse Anzu and level it to 28 for Dekaja",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Clear every request, collect all 10 Stamps, raise Jose's item buff to x9",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Leave with Priestess, Temperance, Faith, Justice, Star, and Emperor Personas; Joker at level 27+",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Jail Break' (first viewing; Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.dvd.jail-break",
+          "statGains": {
+            "proficiency": 5
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-05",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Buy 'Ghost Encounters' at the Central Street bookstore",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Makoto — Priestess reaches rank 2",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy a Rose Bouquet or Bath of Roses at the Shinjuku flower shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 1",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-06",
+      "weekday": "wed",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Finish 'Ghost Encounters' during class",
+          "activityRef": "p5r.activity.book.ghost-encounters",
+          "statGains": {
+            "guts": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann in Shibuya — give her the bouquet and receive the Choco Fountain (room decoration 1/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami — Temperance reaches rank 9 (romance choice available)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-07",
+      "weekday": "thu",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer Ann's class question",
+          "statGains": {
+            "charm": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy Black Rocks at the Kichijoji crystal shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Kasumi — Faith reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Narcotics'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Buy 12 Mega Fertilizers at the Shinjuku flower shop",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 2",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-08",
+      "weekday": "fri",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Finish 'Tidying the Heart' on the metro",
+          "activityRef": "p5r.activity.book.tidying-the-heart",
+          "statGains": {
+            "proficiency": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab a Yakisoba Pan at the school store",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Chocolate Truffles in the Underground Mall",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ann in Harajuku — Idol Poster (room decoration 2/20)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Call Kawakami — Temperance reaches rank 10 (special massage unlocked)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-09",
+      "weekday": "sat",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Akechi — Justice reaches rank 3",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Judgement reaches rank 1",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-10",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Take care of LeBlanc during the daytime story; the evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the request 'The Lovesick Cyberstalking Girl'",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save your game first",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Jail Break' (second viewing; Craft of Cinema bonus active)",
+          "activityRef": "p5r.activity.dvd.jail-break",
+          "statGains": {
+            "proficiency": 5
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-11",
+      "weekday": "mon",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Dodge the chalk throw — reload if you are hit",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the shogi student in Kanda — Star reaches rank 1",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Browse the Kanda priest's healing items (Sundays)",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-12",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Answer the class question",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yusuke — Emperor reaches rank 4",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Vacation'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Give a Soothing Soba to the Kichijoji alley man — Koedo Sword (3/16)",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Chihaya — Fortune reaches rank 3",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-13",
+      "weekday": "wed",
+      "dayKind": "exam",
+      "steps": [
+        {
+          "label": "Exams day 1",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-14",
+      "weekday": "thu",
+      "dayKind": "exam",
+      "steps": [
+        {
+          "label": "Exams day 2",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-15",
+      "weekday": "fri",
+      "dayKind": "exam",
+      "steps": [
+        {
+          "label": "Exams day 3",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-16",
+      "weekday": "sat",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-17",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Summer festival / Ryuji-Yusuke Showtime story occupies the daytime; evening free time resumes",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a Luck Reading about Charm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch 'Love Possibly' with Ann (Craft of Cinema + Luck Reading active)",
+          "activityRef": "p5r.activity.movie.love-possibly",
+          "statGains": {
+            "charm": 10
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-18",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Fireworks Festival and follow-up story occupy the day; afterward you are confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save first, then beat 'Star Forneus' on the attic TV — reload until you win — Guts reaches rank 4",
+          "activityRef": "p5r.activity.videoGame.star-forneus",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-19",
+      "weekday": "tue",
+      "dayKind": "school",
+      "steps": [
+        {
+          "label": "Exam results",
+          "statGains": {
+            "charm": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a Luck Reading about Kindness",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Stock 8 Tin Clasps and 8 Silk Yarns for crafting",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Apply at the Rafflesia flower shop (flyer shelf, Underground Walkway)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work at the flower shop in the Underground Mall (Luck Reading active)",
+          "statGains": {
+            "kindness": 4
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Receive the Dandy Mirror from Sojiro (exam reward)",
+          "slot": "evening"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Finals'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Buy 'Flowerpedia' and 'Learn Pro Darts' in Shinjuku",
+          "slot": "evening"
+        },
+        {
+          "label": "Hang out with Hifumi (bring a Star Persona) — Star reaches rank 2",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-20",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "First contact with Alibaba occupies the daytime; the evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Save your game, then craft the full lock-pick batch — 10 total with Morgana's bonus",
+          "statGains": {
+            "proficiency": 5
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Proficiency reaches rank 4",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-21",
+      "weekday": "thu",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Second contact with Alibaba occupies the daytime; the evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read 'Learn Pro Darts' at LeBlanc",
+          "activityRef": "p5r.activity.book.learn-pro-darts",
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-22",
+      "weekday": "fri",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Investigate Futaba around Yongen-Jaya and the Backstreets, including the supermarket; evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read 'Flowerpedia' at LeBlanc",
+          "activityRef": "p5r.activity.book.flowerpedia",
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-23",
+      "weekday": "sat",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Third contact with Alibaba occupies the daytime; the evening is confined to LeBlanc",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Clean the LeBlanc bathroom",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-24",
+      "weekday": "sun",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Story events only — no free time today",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Judgement reaches rank 2",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-25",
+      "weekday": "mon",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Magician reaches rank 6",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "First infiltration of the pyramid — the path is fixed, follow it",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the Mega Fertilizer on the plant",
+          "statGains": {
+            "kindness": 5
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Clean the LeBlanc bathroom again",
+          "statGains": {
+            "kindness": 2
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-26",
+      "weekday": "tue",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Buy 'Gambla Goemon' at the second-hand shop",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play the Airsoft ration machine until you win an MRE ration",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Give the MRE Ration to the Kichijoji alley man — Factorization Guide (4/16)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a money reading",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Second infiltration — capture the Stone of Scone and grab all three Will Seeds",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fuse Neko Shogun (Advanced Fusion, pass on Dekaja)",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Twins ritual — Strength reaches rank 6",
+          "spoiler": true,
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-27",
+      "weekday": "wed",
+      "dayKind": "story",
+      "steps": [
+        {
+          "label": "Send the Calling Card",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Heist: steal the Treasure — equip physical-repelling accessories; guard through Rapid Ascend, then fire the ballista",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Call Kawakami for the special massage",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Solve the LeBlanc crossword: 'Fireworks'",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Carry Faith, Devil, Star, Priestess, Chariot, Emperor, Fortune, and Justice Personas",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya at the Crossroads Bar — Devil reaches rank 1",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "afternoon"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-28",
+      "weekday": "thu",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Ask Chihaya for a Luck Reading about Guts",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Sit on the blue couch in Kichijoji until Guts rises (Luck Reading active)",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Kasumi — Faith reaches rank 5 (arcana locks until January)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP-recovery drinks and the summer-only items; at the donut shop answer '10' (Luck Reading active)",
+          "statGains": {
+            "guts": 3
+          },
+          "slot": "evening"
+        },
+        {
+          "label": "Watch 'Like a Dragon' with Makoto (Craft of Cinema + Luck Reading active)",
+          "activityRef": "p5r.activity.movie.like-a-dragon",
+          "statGains": {
+            "guts": 10
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-29",
+      "weekday": "fri",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Accept Akechi's invitation (3 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Ohya — Devil reaches rank 2 (bring a Devil Persona)",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-30",
+      "weekday": "sat",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Accept Makoto's invitation (4 of 10)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hifumi — Star reaches rank 3",
+          "statGains": {
+            "knowledge": 2
+          },
+          "slot": "evening"
+        }
+      ]
+    },
+    {
+      "date": "2016-07-31",
+      "weekday": "sun",
+      "dayKind": "free",
+      "steps": [
+        {
+          "label": "Buy support items from the Kanda priest",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Ask Chihaya for a Luck Reading about Charm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Sunday drink in the Underground Walkway (Luck Reading active)",
+          "activityRef": "p5r.activity.drink.fruit-drink",
+          "statGains": {
+            "charm": 3
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Apply at the Triple Seven convenience store (flyer shelf)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work at the Central Street convenience store (Luck Reading active)",
+          "statGains": {
+            "charm": 4
+          },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yoshida — Sun reaches rank 6",
+          "slot": "evening"
+        },
+        {
+          "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
+          "slot": "evening"
+        }
+      ]
+    }
+  ]
+}

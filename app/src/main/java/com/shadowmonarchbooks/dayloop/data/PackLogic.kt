@@ -13,7 +13,7 @@ fun parseDateOrNull(iso: String): LocalDate? = runCatching { LocalDate.parse(iso
 
 private val DateFmt: DateTimeFormatter = DateTimeFormatter.ofPattern("EEE, MMM d")
 private val MonthDayFmt: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM d")
-private val MonthFmt: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+private val MonthFmt: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
 
 /** "2016-06-01" -> "Wed, Jun 1"; falls back to the raw string when unparseable. */
 fun formatDate(iso: String): String =
@@ -37,7 +37,7 @@ fun formatDate(iso: String, calendar: GameCalendar?): String {
 private fun monthDayLabel(iso: String): String? =
     runCatching { LocalDate.parse(iso).format(MonthDayFmt) }.getOrNull()
 
-/** "2016-06" -> "June 2016"; falls back to the raw string. */
+/** "2016-06" -> "Jun 2016"; falls back to the raw string. */
 fun formatMonth(month: String): String =
     runCatching { LocalDate.parse("$month-01").format(MonthFmt) }.getOrDefault(month)
 

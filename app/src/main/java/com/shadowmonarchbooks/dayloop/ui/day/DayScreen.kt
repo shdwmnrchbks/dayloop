@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -30,7 +31,10 @@ import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
+import com.shadowmonarchbooks.dayloop.ui.achievements.MonthlyAchievementChecklist
+import com.shadowmonarchbooks.dayloop.ui.achievements.isLastAuthoredDayOfMonth
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
@@ -39,14 +43,16 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.MediaStrip
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
-import com.shadowmonarchbooks.dayloop.ui.components.StepsList
+import com.shadowmonarchbooks.dayloop.ui.components.TasksList
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinRouteBadge
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
- * Day detail: every step with its checkbox marks, plus prev/next browsing
+ * Day detail: every task with its checkbox marks, plus prev/next browsing
  * over authored days. Browsing never moves the in-game clock.
  */
 @Composable
@@ -71,6 +77,10 @@ fun DayScreen(
     val idx = dates.indexOf(date)
     val prevDate = if (idx > 0) dates[idx - 1] else null
     val nextDate = if (idx in 0 until dates.lastIndex) dates[idx + 1] else null
+    val allTasksDone = day.steps.isNotEmpty() &&
+        day.steps.indices.all { state.markAt(date, it) == StepMark.DONE }
+    val showMonthAchievements = isLastAuthoredDayOfMonth(date, state.days.keys) &&
+        pack.mediaForMonth(date.take(7)).any { it.kind == MediaKinds.ACHIEVEMENT }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -78,7 +88,7 @@ fun DayScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 94.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
@@ -134,8 +144,19 @@ fun DayScreen(
 
             DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
 
-            SkinSectionHeader("Steps")
-            StepsList(
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                SkinSectionHeader("Tasks", modifier = Modifier.weight(1f, fill = false))
+                SkinTextActionButton(
+                    text = if (allTasksDone) "All checked" else "Check all",
+                    onClick = { vm.markAllDone(date, day.steps.size) },
+                    enabled = day.steps.isNotEmpty() && !allTasksDone,
+                )
+            }
+            TasksList(
                 steps = day.steps,
                 markAt = { index -> state.markAt(date, index) },
                 onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
@@ -145,10 +166,30 @@ fun DayScreen(
                 onOpenActivity = onOpenActivity,
             )
 
+            if (showMonthAchievements) {
+                SkinSectionHeader("Monthly achievements")
+                MonthlyAchievementChecklist(
+                    pack = pack,
+                    state = state,
+                    month = date.take(7),
+                    onEarnedChange = vm::setAchievementEarned,
+                )
+            }
+        }
+
+        Surface(
+            shape = LocalSkin.current.shapes.card,
+            color = MaterialTheme.colorScheme.surface,
+            shadowElevation = 6.dp,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+        ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.skinDecor("panel").padding(horizontal = 8.dp, vertical = 4.dp),
             ) {
                 IconButton(onClick = { prevDate?.let(onOpenDay) }, enabled = prevDate != null) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous authored day")
@@ -166,8 +207,7 @@ fun DayScreen(
         }
 
         PerfectDaySplash(
-            allDone = day.steps.isNotEmpty() &&
-                day.steps.indices.all { state.markAt(date, it) == StepMark.DONE },
+            allDone = allTasksDone,
             key = date,
             modifier = Modifier
                 .align(Alignment.Center)

@@ -15,9 +15,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,6 +29,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.achievements.AchievementsScreen
 import com.shadowmonarchbooks.dayloop.ui.activities.ActivitiesScreen
 import com.shadowmonarchbooks.dayloop.ui.activities.ActivityDetailScreen
@@ -74,7 +78,13 @@ private fun topLevelTabs(pack: LoadedPack?): List<SkinNavItem> = buildList {
 }
 
 /** The banner carries the active destination name now that tab labels are icon-only. */
-private fun bannerTitle(route: String?, tabs: List<SkinNavItem>, pack: LoadedPack?): String {
+private fun bannerTitle(
+    route: String?,
+    tabs: List<SkinNavItem>,
+    pack: LoadedPack?,
+    pinnedTodayDate: String? = null,
+): String {
+    if (route == "today" && pinnedTodayDate != null) return "Today · $pinnedTodayDate"
     tabs.firstOrNull { it.route == route }?.let { return it.label }
     return when (route?.substringBefore('/')) {
         "day" -> "Day"
@@ -105,6 +115,10 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val route = backStackEntry?.destination?.route
     val pack = state.selected
     val tabs = remember(pack) { topLevelTabs(pack) }
+    var todayDatePinned by remember(pack?.slug) { mutableStateOf(false) }
+    LaunchedEffect(route) {
+        if (route != "today") todayDatePinned = false
+    }
 
     val startDestination = remember(state.selectionReady) {
         if (state.selectedSlug == null) "onboarding" else "today"
@@ -116,7 +130,14 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
             topBar = {
                 if (route != "onboarding") {
                     SkinTopBar(
-                        title = bannerTitle(route, tabs, pack),
+                        title = bannerTitle(
+                            route = route,
+                            tabs = tabs,
+                            pack = pack,
+                            pinnedTodayDate = state.currentDate
+                                ?.takeIf { route == "today" && todayDatePinned }
+                                ?.let { formatDate(it, pack?.calendar) },
+                        ),
                         canGoBack = route != null && route !in TopLevelRoutes,
                         onBack = { nav.popBackStack() },
                         onOpenSearch = { nav.navigate("search") { launchSingleTop = true } },
@@ -168,12 +189,10 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 composable("today") {
                     TodayScreen(
                         vm = vm,
-                        onOpenDay = { date -> nav.navigate("day/$date") },
-                        onOpenCalendar = { nav.navigate("calendar") { launchSingleTop = true } },
                         onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
-                        onOpenAchievements = { nav.navigate("achievements") { launchSingleTop = true } },
                         onOpenActivity = { ref -> nav.navigate("activity/$ref") },
                         onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
+                        onDatePinnedChange = { todayDatePinned = it },
                     )
                 }
                 composable("day/{date}") { entry ->

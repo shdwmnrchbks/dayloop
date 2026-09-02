@@ -4,34 +4,32 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.byId
@@ -40,9 +38,12 @@ import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.GameCalendar
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
+import com.shadowmonarchbooks.dayloop.ui.achievements.MonthlyAchievementChecklist
+import com.shadowmonarchbooks.dayloop.ui.achievements.isLastAuthoredDayOfMonth
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedOverCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedStep
@@ -52,33 +53,35 @@ import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
-import com.shadowmonarchbooks.dayloop.ui.components.StepsList
+import com.shadowmonarchbooks.dayloop.ui.components.TasksList
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.AdvanceFx
 import com.shadowmonarchbooks.dayloop.ui.skin.DayAdvanceOverlay
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinOutlinedActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
- * Hero screen: the persisted in-game clock (End-Day), today's checkbox steps,
+ * Hero screen: the persisted in-game clock (End-Day), today's checkbox tasks,
  * the carried-over queue, and the next deadline (docs/PLAN.md §5/§6). End-Day
  * plays the skin's day-advance sequence (docs/ROADMAP-v3.md Phase 16) —
  * skippable, ≤400 ms, nothing at all under remove-animations — and a
- * perfect-day splash rises when every authored step of the day is Done.
+ * perfect-day splash rises when every authored task of the day is Done.
  */
 @Composable
 fun TodayScreen(
     vm: DayloopViewModel,
-    onOpenDay: (String) -> Unit,
-    onOpenCalendar: () -> Unit,
     onOpenSettings: () -> Unit,
-    onOpenAchievements: () -> Unit = {},
     onOpenActivity: (String) -> Unit = {},
     onOpenAnswers: () -> Unit = {},
+    onDatePinnedChange: (Boolean) -> Unit = {},
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected
@@ -92,6 +95,12 @@ fun TodayScreen(
     val skinFx = LocalSkinFx.current
     val view = LocalView.current
     val animationsDisabled = rememberAnimationsDisabled()
+    val scrollState = rememberScrollState()
+    var dateBottomPx by remember(date) { mutableIntStateOf(Int.MAX_VALUE) }
+    val datePinned by remember(scrollState, dateBottomPx) {
+        derivedStateOf { scrollState.value >= dateBottomPx }
+    }
+    LaunchedEffect(date, datePinned) { onDatePinnedChange(datePinned) }
 
     val day = state.day(date)
     val upcoming = nextDeadline(pack.deadlines, date, pack.calendar)
@@ -100,6 +109,11 @@ fun TodayScreen(
             CarriedStep(key = key, label = step.label)
         }
     }
+    val allTasksDone = day != null && day.steps.isNotEmpty() &&
+        day.steps.indices.all { state.markAt(date, it) == StepMark.DONE }
+    val showMonthAchievements = day != null &&
+        isLastAuthoredDayOfMonth(date, state.days.keys) &&
+        pack.mediaForMonth(date.take(7)).any { it.kind == MediaKinds.ACHIEVEMENT }
 
     // Day-advance sequence state (docs/ROADMAP-v3.md Phase 16): null = the
     // instant path. Skinned packs with animations play the per-motif overlay;
@@ -127,8 +141,8 @@ fun TodayScreen(
             verticalArrangement = Arrangement.spacedBy(14.dp),
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+                .verticalScroll(scrollState)
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 100.dp),
         ) {
         state.activeProfile?.let { profile ->
             val routeSuffix = if (pack.routes.size > 1) " · ${pack.routeLabel(state.activeRouteId)}" else ""
@@ -139,10 +153,19 @@ fun TodayScreen(
             )
         }
 
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.onGloballyPositioned { coordinates ->
+                dateBottomPx = coordinates.positionInParent().y.toInt() + coordinates.size.height
+            },
+        ) {
             // Skinned packs render the date as a ribbon header in display type
             // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
-            SkinHeader(formatDate(date, pack.calendar), modifier = Modifier.weight(1f, fill = false))
+            SkinHeader(
+                formatDate(date, pack.calendar),
+                modifier = Modifier.weight(1f, fill = false),
+            )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
             if (LocalSkin.current.motif == "moon") {
@@ -209,8 +232,19 @@ fun TodayScreen(
 
         if (day != null) {
             DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
-            Text("Steps", style = MaterialTheme.typography.titleMedium)
-            StepsList(
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                SkinSectionHeader("Tasks", modifier = Modifier.weight(1f, fill = false))
+                SkinTextActionButton(
+                    text = if (allTasksDone) "All checked" else "Check all",
+                    onClick = { vm.markAllDone(date, day.steps.size) },
+                    enabled = !allTasksDone,
+                )
+            }
+            TasksList(
                 steps = day.steps,
                 markAt = { index -> state.markAt(date, index) },
                 onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
@@ -219,6 +253,15 @@ fun TodayScreen(
                 slotLabels = pack.pack.slotLabels(),
                 onOpenActivity = onOpenActivity,
             )
+            if (showMonthAchievements) {
+                SkinSectionHeader("Monthly achievements")
+                MonthlyAchievementChecklist(
+                    pack = pack,
+                    state = state,
+                    month = date.take(7),
+                    onEarnedChange = vm::setAchievementEarned,
+                )
+            }
         } else {
             Text(
                 text = "No authored content for this date yet — coverage grows month by month. The clock still advances.",
@@ -235,54 +278,6 @@ fun TodayScreen(
             )
         }
 
-        Spacer(Modifier.height(4.dp))
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Button(
-                onClick = ::advanceDay,
-                enabled = state.hasNextDay(),
-                // Skinned packs: the big advance button (ROADMAP-v3 Phase 13)
-                // wears the chip silhouette's slant — except tag-shaped chips
-                // (diamond, wax-seal), which are tags, never containers: those
-                // fall back to the card silhouette (Phase 14/15 calm packs).
-                shape = if (skin.hasSkin) {
-                    if (skin.shapeTokens["chip"] == "diamond" || skin.shapeTokens["chip"] == "seal") {
-                        skin.shapes.card
-                    } else {
-                        skin.shapes.chip
-                    }
-                } else {
-                    ButtonDefaults.shape
-                },
-                contentPadding = if (skin.hasSkin) {
-                    PaddingValues(horizontal = 22.dp, vertical = 12.dp)
-                } else {
-                    ButtonDefaults.ContentPadding
-                },
-                colors = if (skin.hasSkin) {
-                    ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
-                    )
-                } else {
-                    ButtonDefaults.buttonColors()
-                },
-                modifier = Modifier.weight(1f),
-            ) {
-                Text(
-                    text = if (skin.hasSkin) skin.cased("End day ›", "display") else "End day ›",
-                    style = if (skin.hasSkin) MaterialTheme.typography.titleLarge else MaterialTheme.typography.labelLarge,
-                )
-            }
-            OutlinedButton(
-                onClick = vm::rerollDay,
-                enabled = state.hasPreviousDay(),
-            ) {
-                Text("‹ Undo day")
-            }
-        }
         if (!state.hasNextDay()) {
             // Crown-language packs (Phase 15): the pack's post-game banner art
             // (Phase 11 media) decorates the end-of-calendar state.
@@ -308,17 +303,34 @@ fun TodayScreen(
             )
         }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            TextButton(onClick = onOpenCalendar) {
-                Text("Calendar")
-            }
-            TextButton(onClick = { onOpenDay(date) }) {
-                Text("Open full day page")
-            }
-            TextButton(onClick = onOpenAchievements) {
-                Text("Achievements")
-            }
         }
+
+        Surface(
+            shape = skin.shapes.card,
+            color = MaterialTheme.colorScheme.surface,
+            shadowElevation = 6.dp,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.skinDecor("panel").padding(horizontal = 10.dp, vertical = 8.dp),
+            ) {
+                SkinActionButton(
+                    text = "End day ›",
+                    onClick = ::advanceDay,
+                    enabled = state.hasNextDay(),
+                    modifier = Modifier.weight(1f),
+                )
+                SkinOutlinedActionButton(
+                    text = "‹ Undo day",
+                    onClick = vm::rerollDay,
+                    enabled = state.hasPreviousDay(),
+                    modifier = Modifier.weight(1f),
+                )
+            }
         }
 
         // Day-advance sequence (docs/ROADMAP-v3.md Phase 16): the per-skin
@@ -335,8 +347,7 @@ fun TodayScreen(
         // Perfect-day splash (Phase 16): engine-triggered, skin-styled, and
         // never blocking — only the card itself is tappable.
         PerfectDaySplash(
-            allDone = day != null && day.steps.isNotEmpty() &&
-                day.steps.indices.all { state.markAt(date, it) == StepMark.DONE },
+            allDone = allTasksDone,
             key = date,
             modifier = Modifier
                 .align(Alignment.Center)

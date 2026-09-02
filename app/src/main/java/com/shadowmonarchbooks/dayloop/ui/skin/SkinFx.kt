@@ -78,6 +78,8 @@ object SkinFxTiming {
     const val ADVANCE_COVER_MS = 180
     const val ADVANCE_REVEAL_MS = 140
     const val ADVANCE_TOTAL_MS = ADVANCE_COVER_MS + ADVANCE_REVEAL_MS
+    /** Readable results hold after the clock commits; a tap still dismisses immediately. */
+    const val ADVANCE_LINGER_MS = 4_000L
 
     /**
      * Perfect-day splash. Only the entrance/exit transitions block; the card
@@ -86,9 +88,9 @@ object SkinFxTiming {
      */
     const val SPLASH_IN_MS = 220
     const val SPLASH_OUT_MS = 160
-    const val SPLASH_LINGER_MS = 1_800L
+    const val SPLASH_LINGER_MS = 5_000L
 
-    /** Mark micro-animations (slash strike sweep, moon fill, seal stamp). */
+    /** Mark micro-animations (selection plate, moon fill, seal stamp). */
     const val MARK_MS = 180
 }
 
@@ -198,8 +200,9 @@ data class AdvanceFx(
  * The per-skin End-Day transition: masks slash a black results panel across
  * the screen (ticking the day's checklist), moon packs cross-fade the moon
  * phase to full, crown packs turn a parchment page. Cover → the caller
- * commits the clock → reveal. Whole sequence ≤ 400 ms ([SkinFxTiming]);
- * a tap anywhere skips straight to the commit. Engine look and
+ * commits the clock → a readable results hold → reveal. The animated parts
+ * remain ≤ 400 ms ([SkinFxTiming]); a tap anywhere skips the passive hold.
+ * Engine look and
  * remove-animations render nothing (callers fall back to the instant path).
  */
 @Composable
@@ -219,6 +222,7 @@ fun DayAdvanceOverlay(
         progress.animateTo(1f, tween(SkinFxTiming.ADVANCE_COVER_MS, easing = LinearEasing))
         covered = true
         onCovered()
+        delay(SkinFxTiming.ADVANCE_LINGER_MS)
         progress.animateTo(0f, tween(SkinFxTiming.ADVANCE_REVEAL_MS, easing = LinearEasing))
         onFinished()
     }
