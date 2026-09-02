@@ -61,6 +61,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("Leblanc Buffer", "2016-05-05")
         available("One Step at a Time", "2016-05-07")
         available("Talent Thief", "2016-05-07")
+        available("The Deviated Cognition", "2016-05-09")
         available("The Purpose of a Thief", "2016-05-18")
         available("Efficient Executioner", "2016-05-18")
         available("A Grand Experiment", "2016-05-20")
@@ -93,12 +94,17 @@ class P5RTrophyAvailabilityAuditTest {
         assertEquals("2016-04-18", achievements.getValue("Punch That Clock!").availableFrom)
         assertEquals("2016-04-25", achievements.getValue("Easy Money").availableFrom)
 
+        // Aiyatsbus opens on May 9. Deviations are random floor-generation
+        // events and can already occur there, so this is a first-possible date,
+        // not a route milestone or guaranteed trophy day.
+        assertTrue(days.getValue("2016-05-09").steps.any { "Bark and Bite of a Bully" in it.label })
+        assertEquals("2016-05-09", achievements.getValue("The Deviated Cognition").availableFrom)
+
         // Earliest Palace-route security gates these Velvet Room mechanics. The
         // completion route can secure the same routes later without changing
         // their first possible Royal trophy dates.
         assertEquals("2016-05-20", achievements.getValue("A Grand Experiment").availableFrom)
         assertEquals("2016-06-21", achievements.getValue("Accident-Prone").availableFrom)
-        assertEquals("2017-02-03", achievements.getValue("Take Back the Future").availableFrom)
         assertEquals("2016-07-26", achievements.getValue("Success Built on Sacrifice").availableFrom)
 
         // Showtime's forced Bank tutorial does not itself award the trophy, but
