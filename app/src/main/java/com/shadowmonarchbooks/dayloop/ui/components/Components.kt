@@ -937,7 +937,7 @@ fun MediaChip(
         modifier = modifier,
     ) {
         Surface(
-            shape = RoundedCornerShape(8.dp),
+            shape = LocalSkin.current.shapes.chip,
             color = MaterialTheme.colorScheme.surfaceVariant,
         ) {
             MediaImage(
