@@ -12,9 +12,9 @@ Scope: the Home/TV Shopping reminders that the P5R 100% Completion Route already
 
 ## Royal schedule vs Dayloop route reminders
 
-Royal has additional valid broadcasts that this completion route does not surface as reminders. In particular, **May 1** and **January 29** are real broadcasts but are optional for this route. Their omission must not be interpreted as a claim that the program is unavailable on those dates.
+Royal has additional valid broadcasts that this completion route does not surface as reminders. **May 1** is a real broadcast but optional for this route; its omission must not be interpreted as a claim that the program is unavailable that day.
 
-The route currently surfaces 18 Home/TV Shopping reminders, all on verified Royal Sundays:
+The route currently surfaces 19 Home/TV Shopping reminders, all on verified Royal Sundays:
 
 - Apr 24 — generic reminder only; neither optional opening set is presented as required.
 - May 8 — Bio Nutrients Set.
@@ -34,6 +34,7 @@ The route currently surfaces 18 Home/TV Shopping reminders, all on verified Roya
 - Dec 11 — Super Detox / Fancy Magatama sets.
 - Jan 15 — Lucky Worker / Lucky Muscle bags.
 - Jan 22 — Talisman / Sweet Delight sets.
+- Jan 29 — Energetic / Delicious Revival sets.
 
 This is intentionally a **route reminder list**, not a complete Home Shopping catalog.
 
@@ -69,9 +70,9 @@ Those are route-specific summaries, not false statements that the omitted bundle
 
 `P5RHomeShoppingAuditTest` pins:
 
-1. exactly the 18 broadcast dates that the current completion route chooses to remind the player about,
+1. exactly the 19 broadcast dates that the current completion route chooses to remind the player about,
 2. that every such reminder falls on a real Sunday,
-3. the audited set-name/item fragments Dayloop already exposes, and
+3. the audited set-name/item fragments Dayloop already exposes, including Jan 29's Energetic / Delicious Revival sets, and
 4. the explicit distinction between a route reminder list and Royal's fuller optional broadcast schedule.
 
-The test deliberately does **not** require May 1 or Jan 29 to appear in the completion route, because adding optional broadcasts would be route-design expansion rather than correcting an existing factual claim.
+The test deliberately does **not** require May 1 to appear in the completion route, because adding that optional broadcast would be route-design expansion rather than correcting an existing factual claim.
