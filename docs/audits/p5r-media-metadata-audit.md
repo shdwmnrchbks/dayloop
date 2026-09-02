@@ -44,4 +44,4 @@ This treats the three non-trophy media records as **source-specific presentation
 
 No claim is made that a particular guide graphic must appear in every gameplay month. The month lists are an imported-guide layout fact, not a Persona 5 Royal mechanic.
 
-Remaining issue #12 work is therefore concentrated in flexible route order / conditional state and one-off gameplay facts that are still represented directly to the user rather than in the reusable media catalog.
+The later month-by-month route reproduction, conditional-route audit, one-off activity audits and trophy-availability cleanup completed the remaining #12 verification surfaces. This media pass is therefore a closed audit category rather than a source of outstanding work.
