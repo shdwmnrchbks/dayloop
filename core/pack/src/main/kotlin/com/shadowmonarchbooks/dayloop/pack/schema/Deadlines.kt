@@ -2,7 +2,7 @@ package com.shadowmonarchbooks.dayloop.pack.schema
 
 import kotlinx.serialization.Serializable
 
-/** deadlines.json — hard time gates the UI surfaces prominently. */
+/** deadlines.json — hard time gates and authored route targets the UI surfaces prominently. */
 @Serializable
 data class DeadlinesFile(val deadlines: List<Deadline>)
 
@@ -11,11 +11,11 @@ data class Deadline(
     /** Immutable, pack-prefixed, e.g. "p5r.deadline.palace1.letter". */
     val id: String,
     val label: String,
-    /** palace | exam | missable | request | other */
+    /** palace | exam | missable | request | routeTarget | other */
     val kind: String,
-    /** Exact due date (ISO), if the deadline is a single day. */
+    /** Exact due/target date (ISO), if the entry is a single day. */
     val date: String? = null,
-    /** Inclusive open window, if the deadline spans days. */
+    /** Inclusive open/target window, if the entry spans days. */
     val window: DateWindow? = null,
 )
 

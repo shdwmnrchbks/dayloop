@@ -1,0 +1,162 @@
+name: P5R review APK
+
+on:
+  push:
+    branches:
+      - audit/p5r-data-theme
+    paths:
+      - '.github/workflows/p5r-review-apk.yml'
+
+permissions:
+  contents: write
+
+env:
+  DAYLOOP_ANDROID_SDK_VERSION: '35'
+  DAYLOOP_ANDROID_BUILD_TOOLS: '35.0.0'
+  DAYLOOP_ANDROID_CMDLINE_TOOLS: '13114758'
+  RELEASE_TAG: 'v0.12.0-p5r-review.1'
+  RELEASE_NAME: 'v0.12.0-p5r-review.1 — P5R visual QA build'
+  APK_NAME: 'dayloop-v0.12.0-p5r-review.1.apk'
+
+jobs:
+  p5r-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Prepare Android SDK
+        run: |
+          set -euo pipefail
+
+          SDK_ROOT="$HOME/android-sdk"
+          CMDLINE_TOOLS_VERSION="${DAYLOOP_ANDROID_CMDLINE_TOOLS}"
+          CMDLINE_TOOLS_ZIP="commandlinetools-linux-${CMDLINE_TOOLS_VERSION}_latest.zip"
+          CMDLINE_TOOLS_URL="https://dl.google.com/android/repository/${CMDLINE_TOOLS_ZIP}"
+          TOOLS_DIR="$SDK_ROOT/cmdline-tools"
+          LATEST_DIR="$TOOLS_DIR/latest"
+          export ANDROID_SDK_ROOT="$SDK_ROOT"
+          export ANDROID_HOME="$SDK_ROOT"
+          export PATH="$LATEST_DIR/bin:$SDK_ROOT/platform-tools:$PATH"
+
+          mkdir -p "$TOOLS_DIR"
+
+          if [ ! -x "$LATEST_DIR/bin/sdkmanager" ]; then
+            temp_dir="$(mktemp -d)"
+            trap 'rm -rf "$temp_dir"' EXIT
+            archive="$temp_dir/$CMDLINE_TOOLS_ZIP"
+            curl --fail --location --silent --show-error "$CMDLINE_TOOLS_URL" -o "$archive"
+            unzip -q "$archive" -d "$temp_dir/unpacked"
+            rm -rf "$LATEST_DIR"
+            mkdir -p "$LATEST_DIR"
+            mv "$temp_dir/unpacked/cmdline-tools"/* "$LATEST_DIR/"
+          fi
+
+          printf '%s\n' "$LATEST_DIR/bin" "$SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
+          {
+            echo "ANDROID_SDK_ROOT=$SDK_ROOT"
+            echo "ANDROID_HOME=$SDK_ROOT"
+          } >> "$GITHUB_ENV"
+
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager \
+            "platform-tools" \
+            "platforms;android-${DAYLOOP_ANDROID_SDK_VERSION}" \
+            "build-tools;${DAYLOOP_ANDROID_BUILD_TOOLS}"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build candidate and test
+        run: ./gradlew assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
+
+      - name: Validate content packs
+        run: |
+          ./gradlew packlint
+          ./gradlew packlint "-Ppack=content/packs/p3r"
+          ./gradlew packlint "-Ppack=content/packs/p5r"
+          ./gradlew packlint "-Ppack=content/packs/metaphor"
+
+      - name: Prepare APK asset
+        run: |
+          mkdir -p release-out
+          cp app/build/outputs/apk/candidate/app-candidate.apk "release-out/${APK_NAME}"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dayloop-v0.12.0-p5r-review.1
+          path: release-out/${{ env.APK_NAME }}
+          if-no-files-found: error
+
+      - name: Publish GitHub prerelease
+        uses: actions/github-script@v7
+        env:
+          ASSET_PATH: release-out/${{ env.APK_NAME }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const { owner, repo } = context.repo;
+            const tag = process.env.RELEASE_TAG;
+            const apkName = process.env.APK_NAME;
+            const body = [
+              'P5R visual QA build from PR #10.',
+              '',
+              `Source commit: ${context.sha}`,
+              '',
+              '- Candidate application id: `com.shadowmonarchbooks.dayloop.candidate`',
+              '- Debug-key signed and directly installable for testing',
+              '- Includes the completed P5R data audit and current ink/slash UI pass',
+              '- Built only after Android/JVM tests and packlint pass',
+            ].join('\n');
+
+            let release;
+            try {
+              release = (await github.rest.repos.getReleaseByTag({ owner, repo, tag })).data;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              release = (await github.rest.repos.createRelease({
+                owner,
+                repo,
+                tag_name: tag,
+                target_commitish: context.sha,
+                name: process.env.RELEASE_NAME,
+                body,
+                draft: false,
+                prerelease: true,
+              })).data;
+            }
+
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
+              owner,
+              repo,
+              release_id: release.id,
+              per_page: 100,
+            });
+            for (const asset of assets) {
+              if (asset.name === apkName) {
+                await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id: asset.id });
+              }
+            }
+
+            const data = fs.readFileSync(process.env.ASSET_PATH);
+            await github.rest.repos.uploadReleaseAsset({
+              owner,
+              repo,
+              release_id: release.id,
+              name: apkName,
+              data,
+              headers: {
+                'content-type': 'application/vnd.android.package-archive',
+                'content-length': data.length,
+              },
+            });

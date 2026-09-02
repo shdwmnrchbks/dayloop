@@ -6,18 +6,20 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched", "activityRef": "p5r.activity.movie.the-goodfather", "statGains": { "kindness": 2 } },
+        { "label": "Watch 'The Goodfather' in Yongen-Jaya — every movie is now watched (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.the-goodfather", "statGains": { "kindness": 7 } },
         { "label": "Optional: fuse every confidant's ultimate Persona for easy NG+ access", "spoiler": true }
       ]
     },
     {
       "date": "2017-02-02",
       "weekday": "thu",
-      "dayKind": "story",
+      "dayKind": "school",
       "steps": [
-        { "label": "Answer the phone message and hang out with Sumire — her awakening", "spoiler": true },
-        { "label": "Refuse Maruki's deal when he stops by LeBlanc", "spoiler": true },
-        { "label": "Answer Akechi: 'We're stopping Maruki' — his awakening", "spoiler": true }
+        { "label": "After school: answer Sumire's message and hang out with her — her third awakening", "spoiler": true },
+        { "label": "Tonight is the fixed final Calling Card / ending branch; the Laboratory Treasure route must already be secured", "spoiler": true },
+        { "label": "Refuse Maruki's deal when he visits LeBlanc", "spoiler": true },
+        { "label": "Send Maruki the final Calling Card at night", "spoiler": true },
+        { "label": "Answer Akechi: 'We're stopping Maruki' — his third awakening", "spoiler": true }
       ]
     },
     {

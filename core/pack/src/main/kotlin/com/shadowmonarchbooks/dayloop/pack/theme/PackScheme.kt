@@ -7,6 +7,7 @@ import com.materialkolor.scheme.SchemeExpressive
 import com.materialkolor.scheme.SchemeTonalSpot
 import com.materialkolor.scheme.SchemeVibrant
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
+import kotlin.math.roundToInt
 
 /**
  * Seed → Material tonal scheme mapping, shared by the app renderer and
@@ -20,9 +21,9 @@ import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
  */
 
 /** Closed-set scheme character tokens (pack.json `theme.style`). */
-val THEME_STYLES: Set<String> = setOf("tonalSpot", "vibrant", "expressive", "content")
+val THEME_STYLES: Set<String> = setOf("tonalSpot", "vibrant", "expressive", "content", "ink")
 
-/** Builds the dynamic scheme variant for a `theme.style` token (null = calm default). */
+/** Builds a Material dynamic scheme variant (null = calm default). */
 fun buildScheme(style: String?, seed: Hct, dark: Boolean): DynamicScheme = when (style) {
     "vibrant" -> SchemeVibrant(seed, dark, 0.0)
     "expressive" -> SchemeExpressive(seed, dark, 0.0)
@@ -75,6 +76,113 @@ private val SCHEME_ROLES: List<Pair<String, (com.materialkolor.dynamiccolor.Mate
     "surfaceContainerHighest" to { m -> m.surfaceContainerHighest() },
 )
 
+private val INK_BLACK: Int = 0xFF000000.toInt()
+private val INK_NEAR_BLACK: Int = 0xFF181818.toInt()
+private val INK_PAPER: Int = 0xFFF0F0F0.toInt()
+private val INK_WHITE: Int = 0xFFFFFFFF.toInt()
+
+private fun shade(argb: Int, factor: Double): Int {
+    fun channel(shift: Int): Int = ((((argb shr shift) and 0xFF) * factor).roundToInt()).coerceIn(0, 255)
+    return 0xFF000000.toInt() or (channel(16) shl 16) or (channel(8) shl 8) or channel(0)
+}
+
+private fun inkForeground(background: Int): Int =
+    if (Wcag.contrastRatio(INK_WHITE, background) >= Wcag.contrastRatio(INK_BLACK, background)) INK_WHITE else INK_BLACK
+
+/**
+ * A deliberately constrained black / white / accent scheme for packs whose UI
+ * is authored like printed ink rather than a Material tonal palette. Accent
+ * variants are same-hue RGB shades; no secondary/tertiary hue is synthesized.
+ */
+private fun inkSchemeArgb(seedArgb: Int, dark: Boolean): Map<String, Int> {
+    val accent = seedArgb or 0xFF000000.toInt()
+    val deepAccent = shade(accent, 0.66)
+    val brightAccent = shade(accent, 1.12)
+    val onAccent = inkForeground(accent)
+    val onDeepAccent = inkForeground(deepAccent)
+    val onBrightAccent = inkForeground(brightAccent)
+
+    return if (dark) {
+        mapOf(
+            "primary" to accent,
+            "onPrimary" to onAccent,
+            "primaryContainer" to deepAccent,
+            "onPrimaryContainer" to onDeepAccent,
+            "inversePrimary" to deepAccent,
+            "secondary" to INK_WHITE,
+            "onSecondary" to INK_BLACK,
+            "secondaryContainer" to INK_NEAR_BLACK,
+            "onSecondaryContainer" to INK_WHITE,
+            "tertiary" to brightAccent,
+            "onTertiary" to onBrightAccent,
+            "tertiaryContainer" to accent,
+            "onTertiaryContainer" to onAccent,
+            "error" to deepAccent,
+            "onError" to onDeepAccent,
+            "errorContainer" to accent,
+            "onErrorContainer" to onAccent,
+            "background" to INK_BLACK,
+            "onBackground" to INK_WHITE,
+            "surface" to INK_BLACK,
+            "onSurface" to INK_WHITE,
+            "surfaceVariant" to INK_NEAR_BLACK,
+            "onSurfaceVariant" to INK_WHITE,
+            "surfaceTint" to accent,
+            "inverseSurface" to INK_PAPER,
+            "inverseOnSurface" to INK_BLACK,
+            "outline" to INK_WHITE,
+            "outlineVariant" to INK_NEAR_BLACK,
+            "scrim" to INK_BLACK,
+            "surfaceDim" to INK_BLACK,
+            "surfaceBright" to INK_NEAR_BLACK,
+            "surfaceContainerLowest" to INK_BLACK,
+            "surfaceContainerLow" to INK_BLACK,
+            "surfaceContainer" to INK_NEAR_BLACK,
+            "surfaceContainerHigh" to INK_NEAR_BLACK,
+            "surfaceContainerHighest" to INK_NEAR_BLACK,
+        )
+    } else {
+        mapOf(
+            "primary" to accent,
+            "onPrimary" to onAccent,
+            "primaryContainer" to brightAccent,
+            "onPrimaryContainer" to onBrightAccent,
+            "inversePrimary" to brightAccent,
+            "secondary" to INK_BLACK,
+            "onSecondary" to INK_WHITE,
+            "secondaryContainer" to INK_WHITE,
+            "onSecondaryContainer" to INK_BLACK,
+            "tertiary" to deepAccent,
+            "onTertiary" to onDeepAccent,
+            "tertiaryContainer" to accent,
+            "onTertiaryContainer" to onAccent,
+            "error" to deepAccent,
+            "onError" to onDeepAccent,
+            "errorContainer" to brightAccent,
+            "onErrorContainer" to onBrightAccent,
+            "background" to INK_PAPER,
+            "onBackground" to INK_BLACK,
+            "surface" to INK_PAPER,
+            "onSurface" to INK_BLACK,
+            "surfaceVariant" to INK_WHITE,
+            "onSurfaceVariant" to INK_BLACK,
+            "surfaceTint" to accent,
+            "inverseSurface" to INK_BLACK,
+            "inverseOnSurface" to INK_WHITE,
+            "outline" to INK_BLACK,
+            "outlineVariant" to INK_WHITE,
+            "scrim" to INK_BLACK,
+            "surfaceDim" to INK_PAPER,
+            "surfaceBright" to INK_WHITE,
+            "surfaceContainerLowest" to INK_WHITE,
+            "surfaceContainerLow" to INK_PAPER,
+            "surfaceContainer" to INK_PAPER,
+            "surfaceContainerHigh" to INK_WHITE,
+            "surfaceContainerHighest" to INK_WHITE,
+        )
+    }
+}
+
 /**
  * Materializes a pack's scheme for [dark] mode into role name → ARGB int.
  * Returns null when the theme declares no parseable seed (the engine then
@@ -82,6 +190,8 @@ private val SCHEME_ROLES: List<Pair<String, (com.materialkolor.dynamiccolor.Mate
  */
 fun schemeArgb(theme: PackTheme, dark: Boolean): Map<String, Int>? {
     val seedArgb = theme.seedArgb(dark) ?: return null
+    if (theme.style == "ink") return inkSchemeArgb(seedArgb, dark)
+
     val scheme = buildScheme(theme.style, Hct.fromInt(seedArgb), dark)
     val m = com.materialkolor.dynamiccolor.MaterialDynamicColors()
     return SCHEME_ROLES.associate { (name, role) -> name to role(m).getArgb(scheme) }

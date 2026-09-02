@@ -1,7 +1,7 @@
 {
   "packId": "p5r",
   "title": "Persona 5 Royal",
-  "contentVersion": 1,
+  "contentVersion": 7,
   "timeModel": "weekdayGrid",
   "calendar": {
     "startDate": "2016-04-09",
@@ -19,7 +19,11 @@
     { "id": "charm", "label": "Charm" }
   ],
   "routes": [
-    { "id": "standard", "label": "Completion", "description": "Full-coverage route tracking every confidant rank, deadline, and missable." }
+    {
+      "id": "standard",
+      "label": "100% Completion Route",
+      "description": "Source-specific full-coverage plan. Route dates are the authored order for this completion route, not universal game availability or deadlines. The source route chooses romance at romanceable Confidant branches; choosing friendship is valid gameplay but can change later affinity, hangout, and romance-only decoration availability."
+    }
   ],
   "capabilities": {
     "exams": true,
@@ -28,12 +32,15 @@
   },
   "labels": {
     "bond": "Confidant",
-    "stat": "Social Stat"
+    "stat": "Social Stat",
+    "deadlineKinds": {
+      "routeTarget": "Route target"
+    }
   },
   "theme": {
-    "accent": "#C01800",
+    "accent": "#D81800",
     "accentDark": "#D81800",
-    "style": "vibrant",
+    "style": "ink",
     "motif": "masks",
     "shapes": {
       "card": "jagged",

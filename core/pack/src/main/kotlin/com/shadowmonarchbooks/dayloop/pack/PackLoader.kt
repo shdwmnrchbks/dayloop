@@ -1,7 +1,7 @@
 package com.shadowmonarchbooks.dayloop.pack
 
-import kotlinx.serialization.json.Json
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementsFile
+import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingTypes
 import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
@@ -18,6 +18,7 @@ import kotlin.io.path.isRegularFile
 import kotlin.io.path.name
 import kotlin.io.path.readText
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 
 data class LintIssue(val severity: Severity, val location: String, val message: String) {
     enum class Severity { ERROR, WARN }
@@ -52,7 +53,9 @@ class PackLoadResult(
 )
 
 /**
- * Loads and JSON-decodes a pack directory; structural rules live in PackLint.
+ * Loads and JSON-decodes a pack directory; most structural rules live in
+ * PackLint. Cross-field invariants needed by every filesystem consumer are
+ * checked here too, so PackLint receives them through [PackLoadResult.parseIssues].
  *
  * Two entry points share one JSON configuration:
  *  - [load] reads a filesystem directory (lint tooling).
@@ -185,7 +188,6 @@ object PackLoader {
                             val monthKey = entry.name.removeSuffix(".json")
                             parseWalkthrough(entry, Routes.DEFAULT, monthKey, "walkthrough/$monthKey.json")
                         }
-                        // Additional routes live one level deep: walkthrough/<routeId>/<month>.json
                         entry.isDirectory() -> {
                             val routeId = entry.name
                             Files.list(entry).use { inner ->
@@ -193,6 +195,164 @@ object PackLoader {
                                     val monthKey = file.name.removeSuffix(".json")
                                     parseWalkthrough(file, routeId, monthKey, "walkthrough/$routeId/$monthKey.json")
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Route-selected bond dates are a cross-field invariant: they must be
+        // valid pack dates and must not contradict any explicit game
+        // availability window. PackLint consumes these load issues, while the
+        // Android JVM content test independently pins the same contract.
+        if (pack != null && bonds != null) {
+            val calendar = GameCalendar.of(pack.calendar)
+            if (calendar != null) {
+                bonds.bonds.forEach { bond ->
+                    bond.ranks.forEach { step ->
+                        step.scheduledFor?.let { routeDate ->
+                            when {
+                                routeDate !in calendar -> issues += LintIssue(
+                                    LintIssue.Severity.ERROR,
+                                    "confidants.json",
+                                    "bond '${bond.id}' rank ${step.rank} route date '$routeDate' is not a date in this pack's calendar",
+                                )
+                                step.availableFrom != null && routeDate < step.availableFrom -> issues += LintIssue(
+                                    LintIssue.Severity.ERROR,
+                                    "confidants.json",
+                                    "bond '${bond.id}' rank ${step.rank} route date '$routeDate' is before availability '${step.availableFrom}'",
+                                )
+                                step.availableUntil != null && routeDate > step.availableUntil -> issues += LintIssue(
+                                    LintIssue.Severity.ERROR,
+                                    "confidants.json",
+                                    "bond '${bond.id}' rank ${step.rank} route date '$routeDate' is after availability '${step.availableUntil}'",
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // First-class achievement catalogs have cross-file contracts too. Keep
+        // these in the shared loader so packlint receives the same failures as
+        // every filesystem consumer: IDs/types/dates must be coherent, media
+        // icon refs must resolve, and semantic event anchors must match exactly
+        // one authored walkthrough step rather than silently auto-awarding on
+        // an ambiguous selector.
+        if (pack != null && achievements != null) {
+            val calendar = GameCalendar.of(pack.calendar)
+            val routeIds = Routes.effective(pack).mapTo(mutableSetOf()) { it.id }
+            val mediaIds = media?.media?.mapTo(mutableSetOf()) { it.id }.orEmpty()
+            val achievementIds = mutableSetOf<String>()
+            val eventIds = mutableSetOf<String>()
+
+            fun achievementError(message: String) {
+                issues += LintIssue(LintIssue.Severity.ERROR, "achievements.json", message)
+            }
+
+            achievements.events.forEach { event ->
+                if (!eventIds.add(event.id)) {
+                    achievementError("duplicate achievement event id '${event.id}'")
+                }
+                if (event.id.isBlank()) achievementError("achievement event id must not be blank")
+                if (event.labelContains.isBlank()) achievementError("achievement event '${event.id}' needs a non-blank labelContains selector")
+                if (calendar != null && event.date !in calendar) {
+                    achievementError("achievement event '${event.id}' date '${event.date}' is outside the pack calendar")
+                }
+                event.routeId?.let { routeId ->
+                    if (routeId !in routeIds) {
+                        achievementError("achievement event '${event.id}' references unknown route '$routeId'")
+                    }
+                }
+
+                val routeId = event.routeId ?: Routes.DEFAULT
+                val matches = walkthroughs
+                    .filter { it.routeId == routeId }
+                    .flatMap { it.file.days }
+                    .filter { it.date == event.date }
+                    .flatMap { it.steps }
+                    .count { it.label.contains(event.labelContains, ignoreCase = true) }
+                if (matches != 1) {
+                    achievementError(
+                        "achievement event '${event.id}' selector '${event.labelContains}' must match exactly one step on ${event.date} in route '$routeId' (found $matches)",
+                    )
+                }
+            }
+
+            achievements.achievements.forEach { achievement ->
+                if (!achievementIds.add(achievement.id)) {
+                    achievementError("duplicate achievement id '${achievement.id}'")
+                }
+                if (achievement.id.isBlank()) achievementError("achievement id must not be blank")
+                if (achievement.title.isBlank()) achievementError("achievement '${achievement.id}' needs a non-blank title")
+
+                val rule = achievement.tracking
+                if (rule.type !in AchievementTrackingTypes.ALL) {
+                    achievementError("achievement '${achievement.id}' has unknown tracking type '${rule.type}'")
+                }
+                listOfNotNull(achievement.availableFrom, achievement.expectedBy, rule.date).forEach { date ->
+                    if (calendar != null && date !in calendar) {
+                        achievementError("achievement '${achievement.id}' date '$date' is outside the pack calendar")
+                    }
+                }
+                achievement.iconMediaRef?.let { ref ->
+                    if (ref !in mediaIds) {
+                        achievementError("achievement '${achievement.id}' iconMediaRef '$ref' does not resolve to media.json")
+                    }
+                }
+
+                val itemIds = mutableSetOf<String>()
+                rule.items.forEach { item ->
+                    if (!itemIds.add(item.id)) {
+                        achievementError("achievement '${achievement.id}' has duplicate tracking item id '${item.id}'")
+                    }
+                    if (item.id.isBlank()) achievementError("achievement '${achievement.id}' has a blank tracking item id")
+                    if (item.label.isBlank()) achievementError("achievement '${achievement.id}' item '${item.id}' needs a non-blank label")
+                    item.dueBy?.let { date ->
+                        if (calendar != null && date !in calendar) {
+                            achievementError("achievement '${achievement.id}' item '${item.id}' dueBy '$date' is outside the pack calendar")
+                        }
+                    }
+                }
+
+                buildList {
+                    rule.event?.let(::add)
+                    addAll(rule.events)
+                }.forEach { ref ->
+                    if (ref !in eventIds) {
+                        achievementError("achievement '${achievement.id}' references unknown event '$ref'")
+                    }
+                }
+
+                when (rule.type) {
+                    AchievementTrackingTypes.STORY_DATE -> if (rule.date == null && achievement.expectedBy == null) {
+                        achievementError("achievement '${achievement.id}' storyDate tracking needs tracking.date or expectedBy")
+                    }
+                    AchievementTrackingTypes.EVENT -> if (rule.event == null) {
+                        achievementError("achievement '${achievement.id}' event tracking needs an event")
+                    }
+                    AchievementTrackingTypes.ALL_EVENTS,
+                    AchievementTrackingTypes.ANY_EVENT -> if (rule.events.isEmpty()) {
+                        achievementError("achievement '${achievement.id}' ${rule.type} tracking needs events")
+                    }
+                    AchievementTrackingTypes.COUNTER -> if (rule.events.isEmpty() && (rule.target == null || rule.target <= 0)) {
+                        achievementError("achievement '${achievement.id}' counter tracking needs events or a positive target")
+                    }
+                    AchievementTrackingTypes.CHECKLIST -> {
+                        if (rule.items.isEmpty()) achievementError("achievement '${achievement.id}' checklist tracking needs items")
+                        if (rule.target != null && rule.target !in 1..rule.items.size) {
+                            achievementError("achievement '${achievement.id}' checklist target must fit its authored items")
+                        }
+                    }
+                    AchievementTrackingTypes.CHOICE -> {
+                        if (rule.items.size < 2) achievementError("achievement '${achievement.id}' choice tracking needs at least two items")
+                        if (rule.stateKey.isNullOrBlank()) achievementError("achievement '${achievement.id}' choice tracking needs a stateKey")
+                        if (rule.acceptedItems.isEmpty()) achievementError("achievement '${achievement.id}' choice tracking needs acceptedItems")
+                        rule.acceptedItems.forEach { accepted ->
+                            if (accepted !in itemIds) {
+                                achievementError("achievement '${achievement.id}' accepted choice '$accepted' does not resolve to an authored item")
                             }
                         }
                     }

@@ -32,10 +32,12 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
@@ -230,6 +232,36 @@ private fun MarkButton(
         animationSpec = tween(SkinFxTiming.MARK_MS),
         label = "markFx",
     )
+
+    if (skin.hasSkin && skin.motion == "slash") {
+        val colors = MaterialTheme.colorScheme
+        val container = if (active) colors.primary else colors.background
+        val content = if (active) colors.onPrimary else colors.onBackground
+        val rotation = when (mark) {
+            StepMark.DONE -> -3.5f
+            StepMark.SKIP -> 2.5f
+            StepMark.LATER -> -1.5f
+        }
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .size(40.dp)
+                .clickable {
+                    feedback()
+                    onToggle(mark)
+                }
+                .padding(5.dp)
+                .graphicsLayer { rotationZ = rotation }
+                .background(container, skin.shapes.chip)
+                .border(1.dp, colors.onBackground, skin.shapes.chip),
+        ) {
+            CompositionLocalProvider(LocalContentColor provides content) {
+                icon()
+            }
+        }
+        return
+    }
+
     IconButton(
         onClick = {
             feedback()
@@ -329,7 +361,7 @@ fun StepRow(
                 if (hidden) {
                     Surface(
                         onClick = { revealed = true },
-                        shape = RoundedCornerShape(8.dp),
+                        shape = skin.shapes.chip,
                         color = MaterialTheme.colorScheme.surfaceVariant,
                     ) {
                         Text(
@@ -747,7 +779,7 @@ fun AnswerKindChip(kind: String, modifier: Modifier = Modifier) {
         "exam" -> MaterialTheme.colorScheme.errorContainer to MaterialTheme.colorScheme.onErrorContainer
         else -> MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer
     }
-    Surface(shape = RoundedCornerShape(50), color = colors.first, modifier = modifier) {
+    Surface(shape = LocalSkin.current.shapes.chip, color = colors.first, modifier = modifier) {
         Text(
             text = when (kind) {
                 "exam" -> "Exam"
@@ -937,7 +969,7 @@ fun MediaChip(
         modifier = modifier,
     ) {
         Surface(
-            shape = RoundedCornerShape(8.dp),
+            shape = LocalSkin.current.shapes.chip,
             color = MaterialTheme.colorScheme.surfaceVariant,
         ) {
             MediaImage(
