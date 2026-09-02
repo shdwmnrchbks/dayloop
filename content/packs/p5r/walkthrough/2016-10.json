@@ -4,7 +4,7 @@
     {
       "date": "2016-10-01",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "school",
       "steps": [
         { "label": "Buy a Black Kogatana at the second-hand shop (monthly)" },
         { "label": "Hang out with Shinya — Tower reaches rank 4 (give the first answer wrong on purpose)", "statGains": { "kindness": 3 } },
@@ -20,7 +20,7 @@
       "steps": [
         { "label": "Buy items from the Kanda priest" },
         { "label": "Buy a Calling Postcard at the Discount Store Rocinante" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "proficiency": 2 } },
         { "label": "Hang out with Makoto — Priestess reaches rank 7" },
         { "label": "TV Shopping Program: Pumpkin Ghost and Haunted Repel sets" },
         { "label": "Give the Calling Postcard to the Kichijoji alley man — Strawberry Daifuku x2 (9/16)" },
@@ -41,7 +41,7 @@
     {
       "date": "2016-10-04",
       "weekday": "tue",
-      "dayKind": "free",
+      "dayKind": "school",
       "steps": [
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Ask Chihaya for a money reading" },
@@ -90,7 +90,7 @@
     {
       "date": "2016-10-08",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "school",
       "steps": [
         { "label": "Hang out with Shinya (no rank-up; first requirement for his room decoration)" },
         { "label": "Hang out with Iwai — Hanged Man reaches rank 4", "statGains": { "proficiency": 3 } }
@@ -103,7 +103,7 @@
       "steps": [
         { "label": "Accept Futaba's invitation" },
         { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
         { "label": "Hang out with Iwai — Hanged Man reaches rank 5", "statGains": { "proficiency": 3 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
       ]
@@ -111,8 +111,9 @@
     {
       "date": "2016-10-10",
       "weekday": "mon",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
+        { "label": "Health and Sports Day — no school today" },
         { "label": "Hang out with Shinya — Tower reaches rank 5", "statGains": { "kindness": 3 } },
         { "label": "Solve the LeBlanc crossword: 'Halloween'", "statGains": { "knowledge": 2 } },
         { "label": "Ask Chihaya for an affinity reading for Hifumi" },
@@ -122,17 +123,19 @@
     {
       "date": "2016-10-11",
       "weekday": "tue",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
+        { "label": "Forced Destinyland celebration and Okumura press-conference story — no free time today", "spoiler": true },
         { "label": "Fool reaches rank 9", "spoiler": true }
       ]
     },
     {
       "date": "2016-10-12",
       "weekday": "wed",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
+        { "label": "Story events occupy the daytime; evening activity is confined to LeBlanc", "spoiler": true },
         { "label": "Judgement reaches rank 5", "spoiler": true },
         { "label": "Watch '31' (Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 5 } }
       ]
@@ -140,8 +143,9 @@
     {
       "date": "2016-10-13",
       "weekday": "thu",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
+        { "label": "Story events occupy the daytime; evening activity is confined to LeBlanc", "spoiler": true },
         { "label": "Watch '31' (11/12; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.31", "statGains": { "guts": 5 } },
         { "label": "Guts reaches rank 5" }
       ]
@@ -164,7 +168,7 @@
     {
       "date": "2016-10-15",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "school",
       "steps": [
         { "label": "Last chalk throw of the game — no need to dodge" },
         { "label": "Hang out with Shinya — Tower reaches rank 6 (answer wrong on purpose)", "statGains": { "kindness": 3 } },
@@ -176,7 +180,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "kindness": 2 } },
         { "label": "Buy items from the Kanda priest" },
         { "label": "Play the Akihabara capsule machines until you win the Gear Girimehkala" },
         { "label": "Hang out with Futaba — Hermit reaches rank 6" },
@@ -212,34 +216,38 @@
     {
       "date": "2016-10-20",
       "weekday": "thu",
-      "dayKind": "free",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final midterm exam day; evening activity is confined to LeBlanc" },
         { "label": "Watch 'Tee' (Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 5 } }
       ]
     },
     {
       "date": "2016-10-21",
       "weekday": "fri",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
+        { "label": "Police questioning and the Phantom Thieves meeting occupy the day; evening activity is confined to LeBlanc", "spoiler": true },
         { "label": "Watch 'Tee' (12/12; Craft of Cinema bonus active)", "activityRef": "p5r.activity.dvd.tee", "statGains": { "proficiency": 5 } }
       ]
     },
     {
       "date": "2016-10-22",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
-        { "label": "Watch 'Duhvengers' at the Shinjuku movie theater (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.duhvengers", "statGains": { "kindness": 7 } }
+        { "label": "Festival-committee work occupies after school; normal free time resumes in the evening", "spoiler": true },
+        { "label": "Watch 'Duhvengers' at the Shinjuku movie theater in the evening (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.duhvengers", "statGains": { "kindness": 7 } }
       ]
     },
     {
       "date": "2016-10-23",
       "weekday": "sun",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "knowledge": 2 } },
+        { "label": "Festival-planning story occupies the daytime; evening route actions remain available", "spoiler": true },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "knowledge": 2 } },
         { "label": "Completion-route cleanup: return the DVDs now; Royal's subscription has no return deadline and this route makes no more rentals" },
         { "label": "Meet the Twins on Shibuya Central Street (10/13)" },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
@@ -259,8 +267,9 @@
     {
       "date": "2016-10-25",
       "weekday": "tue",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
+        { "label": "School-festival events occupy the daytime; evening activity is confined to LeBlanc", "spoiler": true },
         { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 3 } }
       ]
     },
@@ -269,31 +278,34 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Story events only — no free time today", "spoiler": true }
+        { "label": "School-festival and after-party story events only — no free time today", "spoiler": true }
       ]
     },
     {
       "date": "2016-10-27",
       "weekday": "thu",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
+        { "label": "Story events occupy the daytime; evening activity is confined to LeBlanc", "spoiler": true },
         { "label": "Save first, then beat 'Gambla Goemon' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.gambla-goemon", "statGains": { "charm": 3 } }
       ]
     },
     {
       "date": "2016-10-28",
       "weekday": "fri",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
+        { "label": "Story events only — no free time today", "spoiler": true },
         { "label": "Judgement reaches rank 6", "spoiler": true }
       ]
     },
     {
       "date": "2016-10-29",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
         { "label": "First infiltration of the casino — take the guided path", "spoiler": true },
+        { "label": "Evening activity is confined to LeBlanc after the forced infiltration", "spoiler": true },
         { "label": "Finish 'Woman in the Dark'", "activityRef": "p5r.activity.book.woman-in-the-dark", "statGains": { "proficiency": 5 } }
       ]
     },
@@ -304,7 +316,7 @@
       "steps": [
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "charm": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "charm": 2 } },
         { "label": "Buy a Mystery Stew from an Akihabara vending machine" },
         { "label": "Hang out with Shinya at Destinyland — receive Balloons (room decoration 4/20)" },
         { "label": "Use the Mega Fertilizer on the plant", "statGains": { "kindness": 5 } },
