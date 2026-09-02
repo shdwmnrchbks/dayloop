@@ -63,10 +63,14 @@ class P5RTrophyAvailabilityAuditTest {
         available("Talent Thief", "2016-05-07")
         available("The Purpose of a Thief", "2016-05-18")
         available("Efficient Executioner", "2016-05-18")
+        available("A Grand Experiment", "2016-05-20")
         available("Trash Into Treasure", "2016-06-05")
         available("Dartslinger", "2016-06-06")
         available("A Hustler's Journey", "2016-06-06")
         available("A Serene Experience", "2016-06-06")
+        available("It's Showtime!", "2016-06-21")
+        available("Accident-Prone", "2016-06-21")
+        available("Success Built on Sacrifice", "2016-07-26")
         available("Going Against the Crane", "2016-08-31")
         available("Awakening the Phantom Thieves", "2017-01-10")
 
@@ -88,6 +92,18 @@ class P5RTrophyAvailabilityAuditTest {
         // result from an Apr 18 ordinary ticket, never a guaranteed completion date.
         assertEquals("2016-04-18", achievements.getValue("Punch That Clock!").availableFrom)
         assertEquals("2016-04-25", achievements.getValue("Easy Money").availableFrom)
+
+        // Earliest Palace-route security gates these Velvet Room mechanics. The
+        // completion route can secure the same routes later without changing
+        // their first possible Royal trophy dates.
+        assertEquals("2016-05-20", achievements.getValue("A Grand Experiment").availableFrom)
+        assertEquals("2016-06-21", achievements.getValue("Accident-Prone").availableFrom)
+        assertEquals("2017-02-03", achievements.getValue("Take Back the Future").availableFrom)
+        assertEquals("2016-07-26", achievements.getValue("Success Built on Sacrifice").availableFrom)
+
+        // Showtime's forced Bank tutorial does not itself award the trophy, but
+        // subsequent Showtime activations are eligible from Jun 21 onward.
+        assertEquals("2016-06-21", achievements.getValue("It's Showtime!").availableFrom)
 
         // The 5/7 tutorial Mementos request is mandatory and is the first
         // deterministic One Step at a Time trophy point.
