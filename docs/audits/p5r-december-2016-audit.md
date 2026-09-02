@@ -9,20 +9,23 @@ which completion guide is followed.
 
 This pass covers hidden social-stat points, reusable movie/game rewards, Craft
 of Cinema, Aojiru, Mega Fertilizer, fishing, Maid Cafe rewards, Tower/Hanged
-stat rewards, crosswords/TV quizzes, and the final-exam result/reward dates. It
-does not claim that every optional December hangout was independently replayed
-on the same day as the authored route.
+stat rewards, crosswords/TV quizzes, the final-exam result/reward dates, and the
+route-specific Akechi promise prompt. It does not claim that every optional
+December hangout was independently replayed on the same day as the authored
+route.
 
 ## Independent references
 
 - GameFAQs, marendarade, **Persona 5 Royal — December**:
   https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/december
+- GameFAQs, marendarade, **Persona 5 Royal — Justice**:
+  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/justice
 - GameFAQs, sdarkpaladin, **Persona 5 Royal — December**:
   https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/79923/december
 - GameFAQs, marendarade, **Persona 5 Royal — Social Stats**:
   https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/social-stats
 - GameFAQs, Raidramon0, **Persona 5 Royal — Proficiency** (updated 2026-07-27):
-  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/82334/proficiency
+  https://gamefaqs.gamespot.com/ps4/260936/persona-5-royal/faqs/82334/proficiency
 - Megami Tensei Wiki, **Persona 5 Royal calendar**:
   https://megatenwiki.com/wiki/User:Desacredess/sandbox5
 - Samurai Gamers, **Persona 5 Royal December Walkthrough and Guide**:
@@ -48,6 +51,18 @@ on the same day as the authored route.
   units, not the displayed three-note shorthand.
 - The `Sido` typo in the Shido Palace boss instruction was corrected.
 
+## Akechi promise semantics
+
+Justice ranks 9 and 10 are story-triggered during the Cruiser Palace after rank
+8 has been completed. The optional `I want to keep our promise` choice is a
+one-time prompt on the night after rank 10; it is not an open calendar window.
+
+The old deadline entry incorrectly exposed a broad November–December window.
+For this authored completion route Justice rank 10 occurs on December 8, so the
+entry is now explicitly labeled a **completion-route reminder** on December 8.
+The underlying Confidant remains story-triggered; this route date must not be
+interpreted as universal availability.
+
 ## Fixed calendar correction
 
 The prior route placed Sojiro's Boss Undies exam reward on December 22. Royal
@@ -68,11 +83,11 @@ structure. This conflict is recorded here rather than treated as unanimous.
 
 `P5RDecemberAuditTest` pins the corrected high-risk values, Craft of Cinema
 labels, Maid Cafe totals, Shido spelling, Boss Undies date, December 23 day kind,
-and December 24 exam-result reward.
+December 24 exam-result reward, and the route-specific Akechi promise reminder.
 
 ## Remaining audit work
 
-January–February 2017 (the Royal third-semester portion of the route) still
-needs the same point-unit/conditional-modifier pass. Full issue completion still
-requires either independent verification or an explicit route/source-specific
-designation for every user-visible P5R gameplay fact.
+The targeted hidden-point/conditional-modifier pass now continues through the
+Royal third semester in `p5r-third-semester-2017-audit.md`. Full issue completion
+still requires either independent verification or an explicit
+route/source-specific designation for every user-visible P5R gameplay fact.
