@@ -54,11 +54,17 @@ class P5RAprilRouteOrderAuditTest {
             apr20.steps.single { "LeBlanc in the evening" in it.label }.statGains,
         )
 
+        val blossom = days.getValue("2016-04-27").steps.single { "Blossom" in it.label }
         val knowledgeThroughApr27 = april.days
             .filter { it.date <= "2016-04-27" }
             .flatMap { it.steps }
             .sumOf { it.statGains["knowledge"] ?: 0 }
-        assertEquals(34, knowledgeThroughApr27, "the authored April route reaches Royal Knowledge rank 2 by the Apr 27 crossword")
+        assertEquals(36, knowledgeThroughApr27, "the Apr 27 crossword is included in the end-of-day total")
+        assertEquals(
+            34,
+            knowledgeThroughApr27 - (blossom.statGains["knowledge"] ?: 0),
+            "the Apr 27 class answer reaches Royal Knowledge rank 2 before the Blossom crossword",
+        )
 
         val gutsThroughApr22 = april.days
             .filter { it.date <= "2016-04-22" }
