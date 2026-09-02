@@ -26,7 +26,8 @@ class P5RFishingAuditTest {
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
 
-        val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
+        val allDays = loaded.walkthroughs.flatMap { it.file.days }
+        val days = allDays.associateBy { it.date }
         fun step(date: String, marker: String) = days.getValue(date).steps.single { marker in it.label }
 
         val firstFishing = step("2016-12-05", "fish at Ichigaya")
@@ -59,6 +60,8 @@ class P5RFishingAuditTest {
         assertTrue("reload on a miss" in kingpin.label)
         assertEquals(mapOf("proficiency" to 2), kingpin.statGains)
 
-        assertTrue("2016-12-16" < "2017-01-16", "The completion route must catch the Guardian before attempting the Royal-only Kingpin")
+        val guardianIndex = allDays.indexOfFirst { it.date == "2016-12-16" && it.steps.any { step -> "Ichigaya Guardian" in step.label } }
+        val kingpinIndex = allDays.indexOfFirst { it.date == "2017-01-16" && it.steps.any { step -> "Ichigaya Kingpin" in step.label } }
+        assertTrue(guardianIndex >= 0 && kingpinIndex > guardianIndex, "The completion route must catch the Guardian before attempting the Royal-only Kingpin")
     }
 }
