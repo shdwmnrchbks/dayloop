@@ -6,9 +6,9 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 ## Sources checked
 
-- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, lottery result semantics, part-time-job behavior, Showtime/Fusion Alarm behavior, Velvet Room execution mechanics, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
-- TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, May 18 Strength-rank-1 / Group Guillotine availability, and exact Palace/Mementos story-trophy dates.
-- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, early part-time-job availability, May 5 LeBlanc cleaning, May 18 Museum first-free-exploration checks, earliest Palace-route security windows, Palace-resolution dates, and route-date comparisons.
+- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, lottery result semantics, part-time-job behavior, Showtime/Fusion Alarm behavior, Velvet Room execution mechanics, Mementos deviation behavior, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, May 18 Strength-rank-1 / Group Guillotine availability, exact Palace/Mementos story-trophy dates, and player reports of a deviation spawning in Aiyatsbus before Madarame's Palace is cleared.
+- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, early part-time-job availability, May 5 LeBlanc cleaning, May 9 Aiyatsbus unlock, May 18 Museum first-free-exploration checks, earliest Palace-route security windows, Palace-resolution dates, and route-date comparisons.
 - Persona 5 Royal strategy references — Triple Seven job availability from Apr 18, ordinary lottery's Apr 18 sale start / seven-day result delay, earliest Madarame route security on May 20, and Fusion Alarm gating after Kaneshiro route security.
 - Neoseeker Royal walkthrough — independent Jul 26 earliest Futaba Palace Treasure-route security check for Gallows availability.
 - Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story and Apr 18 Castle tutorial checks.
@@ -87,6 +87,10 @@ The mandatory first Mementos request, `Beware the Clingy Ex-boyfriend!`, is comp
 
 The trophy requires a Palace Will Seed crystal to be refined into its usable accessory. Jose first appears during the tutorial Mementos visit on May 7, so June was unnecessarily late as an availability anchor.
 
+### The Deviated Cognition — 2016-05-09
+
+Aiyatsbus unlocks on May 9, after the forced May 7 Qimranut tutorial. Deviated floors are random Mementos floor-generation events, and independent player reports confirm they can already occur in Aiyatsbus Area 2 before Madarame's Palace is cleared. Therefore May 9 is the first independently supported **possible** trophy date. This remains manual with no `expectedBy`: the route does not promise a deviation will spawn on May 9 or on any particular Mementos trip.
+
 ### The Purpose of a Thief — 2016-05-18
 
 The first Treasure Demon is Regent in the Museum Palace's scripted golden-pot encounter. May 18 is the first free-exploration day for the Museum and independent Royal walkthroughs explicitly warn the player to keep a free Persona stock slot so recruiting Regent awards the trophy. The old May 1 value predated the Museum entirely.
@@ -145,6 +149,10 @@ Unlike the fixed Palace-resolution trophies, this trophy is awarded for reaching
 
 Jose is introduced on May 7, but independent guides distinguish that mandatory tutorial encounter from the later freely explorable Mementos session where flowers/stamps can be collected and traded. Optimized completion routes commonly place the first shop/stamp trophy run on May 31, while other references only state `after meeting Jose`. Until the exact free-exploration gate is independently pinned, the audit does not replace the existing broad anchors with false precision.
 
+### The Search for Power
+
+The cheapest cognition category requires 30 stamps, but Royal references conflict on the earliest Kaitul exploration date/path progression and some trophy guides use a later Pyramid-era path mapping. Until the path-unlock timing and actual free Mementos slot are reconciled independently, the current broad anchor is not replaced with a falsely exact day.
+
 ### A Night in Kichijoji
 
 The jazz club is gated by Justice/Akechi rank 4, not merely the Kichijoji district unlock. Independent references disagree on the exact earliest calendar date achievable for rank 4 (and optimized routes can move it), so this pass does not replace the current metadata with a falsely precise fixed day. The condition should be modeled or separately audited before changing it.
@@ -159,4 +167,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` now pins **34** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, Apr 15 negotiation, Apr 18 Castle combat/mechanic/job trophies, the first possible Apr 25 lottery result, earliest Electric Chair/Fusion Alarm/Showtime/Gallows trophy availability, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
+`P5RTrophyAvailabilityAuditTest` now pins **35** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, Apr 15 negotiation, Apr 18 Castle combat/mechanic/job trophies, the first possible Apr 25 lottery result, the first possible May 9 random Mementos deviation, earliest Electric Chair/Fusion Alarm/Showtime/Gallows trophy availability, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
