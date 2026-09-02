@@ -9,9 +9,10 @@ Royal route.
 ## Sources used
 
 - **marendarade, GameFAQs Persona 5 Royal walkthrough — January**: independent
-  checks for January class-question/crossword rewards and a successful darts
-  session. The walkthrough explicitly records +2 for the January classroom and
-  crossword rewards and +3 Proficiency for the January Faith darts session.
+  checks for January class-question/crossword rewards, January classroom-answer
+  content, and a successful darts session. The walkthrough explicitly records
+  +2 for the January classroom/crossword rewards and +3 Proficiency for the
+  January Faith darts session.
 - **marendarade, GameFAQs Persona 5 Royal Social Stats**: reusable Royal activity
   mechanics for first-time movies, The Craft of Cinema, retro games, Sunday
   drinks, fishing and Big Bang Burger challenge tiers.
@@ -35,6 +36,12 @@ stores +2 hidden points for:
 - 1/14 `Resolution`, 1/19 `Dionysus`, 1/23 `Lachesis` and 1/27 `Orochi`
   crosswords.
 - 1/15 Proficiency, 1/22 Guts and 1/29 Kindness Sunday drinks.
+
+The structured January answer sheets were also checked against the independent
+Royal walkthrough and already match it, including the two-part 1/11 response
+(`How numerous they are` / `The Eight Million Gods`) and the three-part 1/24
+response (`Kind-hearted` / `Negative` / `Resentful`). The regression test now
+pins all six January classroom answer sheets.
 
 The Sunday drink steps now also carry the reusable
 `p5r.activity.drink.fruit-drink` reference so the stateful Aojiru mechanic stays
@@ -84,5 +91,6 @@ third-awakening order, cleanup activities or free-time choices are the only
 possible Royal schedule. Those remain route selections unless separately
 encoded as universal gates or story timing.
 
-`P5RThirdSemesterAuditTest` pins the corrected January–February values and active
-Craft of Cinema labels so future imports cannot silently reintroduce note counts.
+`P5RThirdSemesterAuditTest` pins the corrected January–February values, active
+Craft of Cinema labels, and January classroom answers so future imports cannot
+silently reintroduce note counts or flattened answers.
