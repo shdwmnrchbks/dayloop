@@ -4,10 +4,12 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,10 +34,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
+import com.shadowmonarchbooks.dayloop.data.deadlineEnd
 import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.formatMonth
 import com.shadowmonarchbooks.dayloop.data.parseDateOrNull
@@ -46,9 +51,65 @@ import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import java.time.LocalDate
+import kotlin.math.abs
 
 private val WeekHeaders = listOf("M", "T", "W", "T", "F", "S", "S")
+
+internal data class CalendarMediaMarker(
+    val assetPath: String,
+    val title: String,
+    val kind: String,
+)
+
+/** A horizontal swipe changes exactly one month and clamps at either end. */
+internal fun monthIndexAfterSwipe(
+    current: Int,
+    last: Int,
+    dragPx: Float,
+    thresholdPx: Float,
+): Int = when {
+    abs(dragPx) < thresholdPx -> current
+    dragPx < 0f -> (current + 1).coerceAtMost(last)
+    else -> (current - 1).coerceAtLeast(0)
+}
+
+/**
+ * Slash-calendar placement for the three reusable guide graphics. The month
+ * opener replaces the generic marker on each due date. The first section
+ * graphic marks the month's authored start; remaining section graphics mark
+ * deadline-range starts. Multiple meanings may share one calendar cell.
+ */
+internal fun slashCalendarMarkerItems(
+    month: String,
+    authoredDates: Set<String>,
+    deadlines: List<Deadline>,
+    media: List<MediaItem>,
+): Map<String, List<MediaItem>> {
+    val result = linkedMapOf<String, MutableList<MediaItem>>()
+    fun add(date: String?, item: MediaItem?) {
+        if (date == null || item == null || !date.startsWith("$month-")) return
+        result.getOrPut(date) { mutableListOf() }.add(item)
+    }
+
+    val monthOpener = media.firstOrNull { it.kind == MediaKinds.MONTH }
+    deadlines.forEach { deadline -> add(deadlineEnd(deadline), monthOpener) }
+
+    val sectionMarkers = media.filter { it.kind == MediaKinds.SECTION }
+    sectionMarkers.firstOrNull()
+        ?.takeIf { month in it.months }
+        ?.let { marker -> add(authoredDates.filter { it.startsWith("$month-") }.minOrNull(), marker) }
+    sectionMarkers.drop(1).forEach { marker ->
+        if (month in marker.months) {
+            deadlines.forEach { deadline -> add(deadlineStart(deadline), marker) }
+        }
+    }
+
+    return result.mapValues { (_, items) -> items.distinctBy(MediaItem::id) }
+}
 
 /** Month grid over authored months only; tap an authored day for its detail. */
 @Composable
@@ -73,22 +134,57 @@ fun MonthScreen(
         )
     }
     val month = months[index]
-    // Moon-language packs (docs/ROADMAP-v3.md Phase 14): dates the pack marks
-    // with day-anchored media (full-moon operations) render the marker art in
-    // their calendar cell instead of the generic deadline dot.
-    val dateMarkers: Map<String, Pair<String, String>> =
-        if (LocalSkin.current.motif == "moon") {
-            pack.media.filter { it.kind == "day" && it.dates.isNotEmpty() }
-                .flatMap { item -> item.dates.map { date -> date to (pack.assetOf(item) to item.title) } }
-                .toMap()
-        } else {
-            emptyMap()
+    val skin = LocalSkin.current
+    val markerItems = when {
+        skin.motion == "slash" -> slashCalendarMarkerItems(
+            month = month,
+            authoredDates = state.days.keys,
+            deadlines = pack.deadlines,
+            media = pack.media,
+        )
+        skin.motif == "moon" -> pack.media
+            .filter { it.kind == MediaKinds.DAY && it.dates.isNotEmpty() }
+            .flatMap { item -> item.dates.map { date -> date to item } }
+            .groupBy({ it.first }, { it.second })
+        else -> emptyMap()
+    }
+    val dateMarkers = markerItems.mapValues { (_, items) ->
+        items.map { item ->
+            CalendarMediaMarker(
+                assetPath = pack.assetOf(item),
+                title = item.title,
+                kind = item.kind,
+            )
         }
+    }
+    val swipeThresholdPx = with(LocalDensity.current) { 56.dp.toPx() }
+    val monthMedia = pack.mediaForMonth(month)
+    val formerMonthArt = monthMedia.firstOrNull { it.kind == MediaKinds.MONTH }
+    val formerSectionArt = monthMedia.filter { it.kind == MediaKinds.SECTION }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier
             .fillMaxSize()
+            .pointerInput(index, months.size, swipeThresholdPx) {
+                var dragPx = 0f
+                detectHorizontalDragGestures(
+                    onDragStart = { dragPx = 0f },
+                    onHorizontalDrag = { change, amount ->
+                        change.consume()
+                        dragPx += amount
+                    },
+                    onDragEnd = {
+                        index = monthIndexAfterSwipe(
+                            current = index,
+                            last = months.lastIndex,
+                            dragPx = dragPx,
+                            thresholdPx = swipeThresholdPx,
+                        )
+                    },
+                    onDragCancel = { dragPx = 0f },
+                )
+            }
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
@@ -100,20 +196,26 @@ fun MonthScreen(
             IconButton(onClick = { if (index > 0) index-- }, enabled = index > 0) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous month")
             }
-            val monthMedia = pack.mediaForMonth(month)
-            monthMedia.firstOrNull { it.kind == "month" }?.let { opener ->
-                MediaImage(assetPath = pack.assetOf(opener), title = opener.title, size = 40.dp)
-            }
+            // Keep the title plate's rc4 geometry while moving its artwork
+            // into calendar cells: these invisible slots preserve the exact
+            // text position and background width shown in the reference.
+            formerMonthArt?.let { Spacer(Modifier.size(40.dp)) }
             SkinHeader(text = formatMonth(month), modifier = Modifier.weight(1f))
-            monthMedia.filter { it.kind == "section" }.forEach { marker ->
-                MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 22.dp)
-            }
+            formerSectionArt.forEach { Spacer(Modifier.size(22.dp)) }
             IconButton(onClick = { if (index < months.lastIndex) index++ }, enabled = index < months.lastIndex) {
                 Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next month")
             }
         }
 
-        CalendarGrid(days = state.days, deadlines = pack.deadlines, month = month, clockDate = state.currentDate, calendar = pack.calendar, onOpenDay = onOpenDay, dateMarkers = dateMarkers)
+        CalendarGrid(
+            days = state.days,
+            deadlines = pack.deadlines,
+            month = month,
+            clockDate = state.currentDate,
+            calendar = pack.calendar,
+            onOpenDay = onOpenDay,
+            dateMarkers = dateMarkers,
+        )
 
         val monthAchievements = pack.mediaForMonth(month).filter { it.kind == "achievement" }
         if (monthAchievements.isNotEmpty()) {
@@ -136,9 +238,9 @@ private fun CalendarGrid(
     clockDate: String?,
     calendar: com.shadowmonarchbooks.dayloop.pack.GameCalendar?,
     onOpenDay: (String) -> Unit,
-    dateMarkers: Map<String, Pair<String, String>> = emptyMap(),
+    dateMarkers: Map<String, List<CalendarMediaMarker>> = emptyMap(),
 ) {
-    val deadlineDates = deadlines.mapNotNull { deadlineStart(it) }.toSet()
+    val deadlineDates = deadlines.mapNotNull { deadlineEnd(it) }.toSet()
 
     val cycle = calendar?.cycleTokens.orEmpty()
     if (cycle.isEmpty() || calendar == null) {
@@ -178,7 +280,7 @@ private fun CalendarGrid(
                                 day = days[iso],
                                 hasDeadline = iso in deadlineDates,
                                 isClockDate = iso == clockDate,
-                                marker = dateMarkers[iso],
+                                markers = dateMarkers[iso].orEmpty(),
                                 onOpenDay = onOpenDay,
                                 modifier = Modifier.fillMaxSize(),
                             )
@@ -198,7 +300,7 @@ private fun RealMonthGrid(
     month: String,
     clockDate: String?,
     onOpenDay: (String) -> Unit,
-    dateMarkers: Map<String, Pair<String, String>> = emptyMap(),
+    dateMarkers: Map<String, List<CalendarMediaMarker>> = emptyMap(),
 ) {
     val first = parseDateOrNull("$month-01") ?: return
     val daysInMonth = first.lengthOfMonth()
@@ -233,7 +335,7 @@ private fun RealMonthGrid(
                                 day = days[iso],
                                 hasDeadline = iso in deadlineDates,
                                 isClockDate = iso == clockDate,
-                                marker = dateMarkers[iso],
+                                markers = dateMarkers[iso].orEmpty(),
                                 onOpenDay = onOpenDay,
                                 modifier = Modifier.fillMaxSize(),
                             )
@@ -254,8 +356,8 @@ private fun DayCell(
     isClockDate: Boolean,
     onOpenDay: (String) -> Unit,
     modifier: Modifier = Modifier,
-    /** Moon-language packs (Phase 14): date-marked media (asset, title) renders in the cell. */
-    marker: Pair<String, String>? = null,
+    /** Pack marker art rendered on its derived or authored calendar date. */
+    markers: List<CalendarMediaMarker> = emptyList(),
 ) {
     val skin = LocalSkin.current
     val crown = skin.hasSkin && skin.motif == "crown"
@@ -306,13 +408,20 @@ private fun DayCell(
                         else -> MaterialTheme.colorScheme.onSurface
                     },
                 )
-                if (marker != null) {
-                    MediaImage(
-                        assetPath = marker.first,
-                        title = marker.second,
-                        size = 16.dp,
+                if (markers.isNotEmpty()) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(1.dp),
+                        verticalAlignment = Alignment.Bottom,
                         modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 2.dp),
-                    )
+                    ) {
+                        markers.take(3).forEach { marker ->
+                            MediaImage(
+                                assetPath = marker.assetPath,
+                                title = marker.title,
+                                size = if (marker.kind == MediaKinds.MONTH) 16.dp else 11.dp,
+                            )
+                        }
+                    }
                 } else if (hasDeadline) {
                     when {
                         slash -> Box(

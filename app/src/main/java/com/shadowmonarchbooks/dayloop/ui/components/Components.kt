@@ -581,10 +581,9 @@ fun DeadlineBanner(
         // packs): an inverted card with the label in display type — the
         // urgent/due color logic stays engine logic, reduced to the due line
         // so contrast holds.
-        val urgent = daysLeft <= 3
         Surface(
             shape = skin.shapes.card,
-            color = MaterialTheme.colorScheme.inverseSurface,
+            color = Color(0xFFF0F0F0),
             modifier = modifier.fillMaxWidth(),
         ) {
             Column(
@@ -596,16 +595,12 @@ fun DeadlineBanner(
                     text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold,
-                    color = if (urgent) {
-                        MaterialTheme.colorScheme.error
-                    } else {
-                        MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.75f)
-                    },
+                    color = MaterialTheme.colorScheme.primary,
                 )
                 Text(
                     text = skin.cased(deadline.label, "display"),
                     style = MaterialTheme.typography.displaySmall,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = Color.Black,
                 )
             }
         }

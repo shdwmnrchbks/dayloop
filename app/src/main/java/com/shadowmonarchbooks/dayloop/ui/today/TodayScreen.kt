@@ -72,7 +72,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
  * Hero screen: the persisted in-game clock (End-Day), today's checkbox tasks,
  * the carried-over queue, and the next deadline (docs/PLAN.md §5/§6). End-Day
  * plays the skin's day-advance sequence (docs/ROADMAP-v3.md Phase 16) —
- * skippable, ≤400 ms, nothing at all under remove-animations — and a
+ * skippable, two 400 ms transition segments, nothing at all under
+ * remove-animations — and a
  * perfect-day splash rises when every authored task of the day is Done.
  */
 @Composable
@@ -323,6 +324,7 @@ fun TodayScreen(
                     onClick = ::advanceDay,
                     enabled = state.hasNextDay(),
                     fillWidth = true,
+                    largeLabel = true,
                     modifier = Modifier.weight(1f),
                 )
                 SkinOutlinedActionButton(
@@ -351,6 +353,7 @@ fun TodayScreen(
         PerfectDaySplash(
             allDone = allTasksDone,
             key = date,
+            suppressed = advance != null,
             modifier = Modifier
                 .align(Alignment.Center)
                 .padding(horizontal = 32.dp),

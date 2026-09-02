@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -33,6 +34,7 @@ fun SkinActionButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     fillWidth: Boolean = false,
+    largeLabel: Boolean = false,
 ) {
     SlashActionButton(
         text = text,
@@ -40,6 +42,7 @@ fun SkinActionButton(
         modifier = modifier,
         enabled = enabled,
         fillWidth = fillWidth,
+        largeLabel = largeLabel,
         treatment = SlashActionTreatment.Primary,
         fallback = {
             Button(onClick = onClick, enabled = enabled, modifier = modifier) {
@@ -64,6 +67,7 @@ fun SkinOutlinedActionButton(
         modifier = modifier,
         enabled = enabled,
         fillWidth = fillWidth,
+        largeLabel = false,
         treatment = SlashActionTreatment.Outlined,
         fallback = {
             OutlinedButton(onClick = onClick, enabled = enabled, modifier = modifier) {
@@ -88,6 +92,7 @@ fun SkinTextActionButton(
         modifier = modifier,
         enabled = enabled,
         fillWidth = fillWidth,
+        largeLabel = false,
         treatment = SlashActionTreatment.Text,
         fallback = {
             TextButton(onClick = onClick, enabled = enabled, modifier = modifier) {
@@ -106,6 +111,7 @@ private fun SlashActionButton(
     modifier: Modifier,
     enabled: Boolean,
     fillWidth: Boolean,
+    largeLabel: Boolean,
     treatment: SlashActionTreatment,
     fallback: @Composable () -> Unit,
 ) {
@@ -118,7 +124,7 @@ private fun SlashActionButton(
     val colors = MaterialTheme.colorScheme
     val primary = treatment == SlashActionTreatment.Primary
     val container = if (primary) colors.primary else colors.background
-    val content = if (primary) colors.background else colors.primary
+    val content = if (primary) Color.White else colors.primary
     val border = if (primary) colors.background else colors.onBackground
     val horizontalPadding = if (treatment == SlashActionTreatment.Text) 10.dp else 14.dp
     val buttonModifier = if (fillWidth) Modifier.fillMaxWidth() else Modifier
@@ -127,10 +133,14 @@ private fun SlashActionButton(
     } else {
         Modifier.padding(horizontal = horizontalPadding, vertical = 5.dp)
     }
-    val labelStyle = MaterialTheme.typography.displaySmall.copy(
-        fontSize = MaterialTheme.typography.titleLarge.fontSize,
-        lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
-    )
+    val labelStyle = if (largeLabel) {
+        MaterialTheme.typography.displaySmall
+    } else {
+        MaterialTheme.typography.displaySmall.copy(
+            fontSize = MaterialTheme.typography.titleLarge.fontSize,
+            lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+        )
+    }
 
     Box(
         modifier = modifier
