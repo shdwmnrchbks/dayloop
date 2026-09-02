@@ -5,7 +5,9 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RJazzJinAuditTest {
@@ -21,11 +23,21 @@ class P5RJazzJinAuditTest {
     }
 
     @Test
-    fun `p5r late Sunday Jazz Jin route keeps party skills and Futaba navigator skills mutually exclusive`() {
+    fun `p5r Jazz Jin separates first trophy opportunity from route Akechi timing and Sunday skill choices`() {
         val root = contentPacksDir() ?: return
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
         val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
+
+        val achievement = loaded.achievements?.achievements.orEmpty()
+            .single { it.title == "A Night in Kichijoji" }
+        assertEquals("2016-06-26", achievement.availableFrom)
+        assertNull(achievement.expectedBy, "Jazz Jin is state-gated by Justice rank 4, not a completion-route deadline")
+
+        val justice = loaded.confidants?.bonds.orEmpty().single { it.label == "Justice" }
+        val routeRank4 = justice.ranks.single { it.rank == 4 }
+        assertEquals("2016-08-06", routeRank4.scheduledFor)
+        assertNull(routeRank4.availableFrom, "the route's Aug 6 Justice rank 4 must not be presented as universal availability")
 
         fun jazzLabel(date: String): String =
             days.getValue(date).steps.single { "jazz club" in it.label.lowercase() }.label
