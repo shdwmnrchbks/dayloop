@@ -42,6 +42,8 @@ class P5RTrophyAvailabilityAuditTest {
         available("Leblanc Buffer", "2016-05-05")
         available("One Step at a Time", "2016-05-07")
         available("Talent Thief", "2016-05-07")
+        available("The Purpose of a Thief", "2016-05-18")
+        available("Efficient Executioner", "2016-05-18")
         available("Trash Into Treasure", "2016-06-05")
         available("Dartslinger", "2016-06-06")
         available("A Hustler's Journey", "2016-06-06")
