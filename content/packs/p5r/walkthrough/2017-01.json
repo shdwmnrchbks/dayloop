@@ -226,7 +226,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Win the Jagao Doll at the Akihabara arcade (8/8)" },
-        { "label": "Claim the retro-game accessories at the Akihabara retro store" },
+        { "label": "Claim any outstanding badges for the five completed retro games at the Akihabara Retro Game Shop: Forneus Badge, Gambla Badge, Featherman Badge, Punch Badge, and Train Badge" },
         { "label": "Hang out with Sumire — Faith reaches rank 9 (romance choice available)" },
         { "label": "Solve the LeBlanc crossword: 'Lachesis'", "statGains": { "knowledge": 2 } },
         { "label": "Buy the Flower Basket at the Shinjuku flower shop" },
@@ -287,7 +287,7 @@
       "steps": [
         { "label": "Receive the request 'An Idol and a Unicorn'", "spoiler": true },
         { "label": "Talk to the woman in the white coat in Akihabara, then with Anji Fuwa" },
-        { "label": "Claim the final retro-game accessory" },
+        { "label": "Claim the PI Badge for completing Power Intuition at the Akihabara Retro Game Shop" },
         { "label": "Ask Chihaya for a money reading and a celestial reading" },
         { "label": "Final Mementos visit — complete the requests, get all Stamps, raise Jose's EXP to 200%", "spoiler": true },
         { "label": "Optional: let the Reaper catch you and defeat it — debuff it and spam charged Hassou Tobi with Yoshitsune", "spoiler": true },
@@ -323,7 +323,7 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Claim the retro-game completion accessory in Akihabara" },
+        { "label": "Claim the Golfer Badge for completing Golfer Sarutahiko at the Akihabara Retro Game Shop" },
         { "label": "Talk to Star Lilina by the Machine Parts Shop for her new CD" },
         { "label": "Free day — optional Thieves Den grind, self-laundry, 30 home runs, or training at the Protein Lovers Gym" }
       ]
