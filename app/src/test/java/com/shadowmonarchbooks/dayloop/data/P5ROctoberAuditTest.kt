@@ -76,5 +76,11 @@ class P5ROctoberAuditTest {
         assertTrue(step("2016-10-02", "Back to the Ninja").label.contains("Craft of Cinema bonus active"))
         assertTrue(step("2016-10-05", "Mouse M.D.").label.contains("Craft of Cinema bonus active"))
         assertTrue(step("2016-10-22", "Duhvengers").label.contains("Craft of Cinema bonus active"))
+
+        val dvdTarget = p5r.deadlines?.deadlines?.single { it.id == "p5r.deadline.missable.dvd-rentals" }
+        assertEquals("2016-10-23", dvdTarget?.date)
+        assertEquals(null, dvdTarget?.window)
+        assertTrue(dvdTarget?.label.orEmpty().contains("Completion-route target"))
+        assertTrue(dvdTarget?.label.orEmpty().contains("no rental return deadline"))
     }
 }
