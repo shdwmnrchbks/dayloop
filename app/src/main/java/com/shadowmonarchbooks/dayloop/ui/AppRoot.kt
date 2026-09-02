@@ -2,8 +2,14 @@ package com.shadowmonarchbooks.dayloop.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
@@ -104,6 +110,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val backStackEntry by nav.currentBackStackEntryAsState()
     val route = backStackEntry?.destination?.route
     val pack = state.selected
+    val tabs = remember(pack) { topLevelTabs(pack) }
 
     // Fixed for the session once selection is ready: installs with no persisted
     // choice start on the picker, everyone else lands on Today.
@@ -119,7 +126,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
         topBar = {
             if (route != "onboarding") {
                 DayloopTopBar(
-                    title = pack?.pack?.title ?: "dayloop",
+                    title = bannerTitle(route, tabs, pack),
                     canGoBack = route != null && route !in TopLevelRoutes,
                     onBack = { nav.popBackStack() },
                     onOpenSearch = { nav.navigate("search") { launchSingleTop = true } },
@@ -130,12 +137,13 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
         bottomBar = {
             if (route in TopLevelRoutes) {
                 NavigationBar {
-                    topLevelTabs(pack).forEach { tab ->
+                    tabs.forEach { tab ->
                         NavigationBarItem(
                             selected = route == tab.route,
                             onClick = { nav.navigate(tab.route) { launchSingleTop = true } },
-                            icon = { Icon(tab.icon, contentDescription = null) },
-                            label = { Text(tab.label) },
+                            icon = { Icon(tab.icon, contentDescription = tab.label) },
+                            label = null,
+                            alwaysShowLabel = false,
                         )
                     }
                 }
@@ -266,6 +274,24 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     }
 }
 
+/**
+ * The header identifies the current place while pack artwork supplies the
+ * visual identity. Top-level names moved here from the icon-only navigation
+ * bar; detail destinations get an equally useful, engine-neutral title.
+ */
+private fun bannerTitle(route: String?, tabs: List<TopTab>, pack: LoadedPack?): String {
+    tabs.firstOrNull { it.route == route }?.let { return it.label }
+    return when (route?.substringBefore('/')) {
+        "day" -> "Day"
+        "bond" -> pack?.pack?.labels?.bond ?: "Bond"
+        "activity", "activities" -> "Activities"
+        "search" -> "Search"
+        "settings" -> "Settings"
+        "media" -> "Media"
+        else -> pack?.pack?.title ?: "dayloop"
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DayloopTopBar(
@@ -275,30 +301,38 @@ private fun DayloopTopBar(
     onOpenSearch: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
-    // Engine look preserved: the bar keeps its surface fill (drawn on the
-    // modifier so the skin's header decoration can sit behind it).
-    TopAppBar(
-        modifier = Modifier
-            .background(MaterialTheme.colorScheme.surface)
-            .skinDecor("header"),
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
-        navigationIcon = {
-            if (canGoBack) {
-                IconButton(onClick = onBack) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+    // Keep system information on a calm surface instead of extending the
+    // pack's decorated banner behind the status-bar icons.
+    Column(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .windowInsetsTopHeight(WindowInsets.statusBars),
+        )
+        TopAppBar(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.surface)
+                .skinDecor("header"),
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+            windowInsets = WindowInsets(0, 0, 0, 0),
+            navigationIcon = {
+                if (canGoBack) {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
                 }
-            }
-        },
-        title = {
-            Text(title, style = MaterialTheme.typography.titleMedium)
-        },
-        actions = {
-            IconButton(onClick = onOpenSearch) {
-                Icon(Icons.Filled.Search, contentDescription = "Search")
-            }
-            IconButton(onClick = onOpenSettings) {
-                Icon(Icons.Filled.Settings, contentDescription = "Settings")
-            }
-        },
-    )
+            },
+            title = {
+                Text(title, style = MaterialTheme.typography.titleMedium)
+            },
+            actions = {
+                IconButton(onClick = onOpenSearch) {
+                    Icon(Icons.Filled.Search, contentDescription = "Search")
+                }
+                IconButton(onClick = onOpenSettings) {
+                    Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                }
+            },
+        )
+    }
 }
