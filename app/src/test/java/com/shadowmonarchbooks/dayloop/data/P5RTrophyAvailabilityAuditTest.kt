@@ -36,6 +36,18 @@ class P5RTrophyAvailabilityAuditTest {
             assertNull(achievement.expectedBy, "$title availability is not a completion-route deadline")
         }
 
+        // Fixed story-resolution trophies. Palace heist dates are flexible, but
+        // these trophy pop dates are not.
+        available("Castle of Lust: Seized", "2016-05-02")
+        available("Museum of Vanity: Repossessed", "2016-06-05")
+        available("Bank of Gluttony: Cleaned Out", "2016-07-09")
+        available("Pyramid of Wrath: Plundered", "2016-08-22")
+        available("Spaceport of Greed: Obliterated", "2016-10-11")
+        available("Casino of Jealousy: Bankrupted", "2016-11-20")
+        available("Cruiser of Pride: Capsized", "2016-12-18")
+        available("The Thorough Trickster", "2016-12-24")
+        available("Take Back the Future", "2017-02-03")
+
         available("Spirit of Rebellion", "2016-04-11")
         available("A Deadly Debut", "2016-04-18")
         available("Phantom Thieves: Assemble!", "2016-05-05")
