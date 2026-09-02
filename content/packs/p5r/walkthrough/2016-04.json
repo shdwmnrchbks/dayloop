@@ -124,7 +124,7 @@
       "steps": [
         { "label": "Read 'The Great Thief' on the train (seated day — no slot used)", "activityRef": "p5r.activity.book.great-thief", "statGains": { "knowledge": 5 } },
         { "label": "Borrow 'Pirate Legend' from the school library" },
-        { "label": "Study in the library (rainy-day bonus)", "statGains": { "knowledge": 5, "guts": 2 } },
+        { "label": "Study in the library during rain (pre-Kamoshida Guts bonus)", "statGains": { "knowledge": 5, "guts": 2 } },
         { "label": "Study at LeBlanc in the evening (rainy-day bonus)", "statGains": { "knowledge": 5 } }
       ]
     },
