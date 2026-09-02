@@ -90,13 +90,13 @@ route-specific stat.
 therefore require pre-6/23 DVD gains to equal the 3-point base and post-read DVD
 viewings to include the +2 modifier (for example ICU on 6/25 and 6/27 = 5).
 
-July through December received targeted **point-unit and active-modifier**
-passes. The route order was preserved where flexible, while user-visible totals
-and fixed calendar facts were normalized where the mechanics are independently
-checkable. Examples include:
+July 2016 through February 2017 received targeted **point-unit and
+active-modifier** passes. The route order was preserved where flexible, while
+user-visible totals and fixed calendar facts were normalized where the mechanics
+are independently checkable. Examples include:
 
-- July–December crosswords, class questions, TV quizzes and Aojiru use their
-  actual +2 values rather than one-note shorthand.
+- July–January crosswords, class questions, TV quizzes and Aojiru use their
+  actual +2 hidden values rather than one-note shorthand.
 - Craft of Cinema adds +2 to movie/DVD base rewards; Luck Reading then applies
   its 50% boost to the resulting selected-stat gain, rounded down. That is why
   a 7-point movie reward becomes 10 with an active matching Luck Reading.
@@ -132,12 +132,18 @@ checkable. Examples include:
   reward to December 23, keeps the independently supported December 24 result
   date, and records the conflicting secondary source rather than hiding it.
   See `p5r-december-2016-audit.md`.
+- January–February normalize the remaining classroom/crossword/Aojiru entries,
+  fishing, darts, Big Bang Burger tiers, retro games and all final theater
+  viewings. `March of the Lambs`, `Bite Club`, `Finding Beemo` and
+  `The Goodfather` explicitly include the already-active Craft of Cinema bonus.
+  See `p5r-third-semester-2017-audit.md`.
 
-These July–December corrections are regression-tested for the highest-risk
+These July–February corrections are regression-tested for the highest-risk
 point, modifier and fixed-calendar cases, but they are **not** a claim that every
 flexible route step in those months has been independently reproduced day-for-day
-from a second walkthrough. January–February 2017 have not yet received the same
-point-unit pass.
+from a second walkthrough. The targeted hidden-point/modifier pass now reaches
+the route's last stat-bearing activity on February 1, 2017; full fact-by-fact
+secondary verification remains tracked separately in issue #12.
 
 ### Confidants
 
