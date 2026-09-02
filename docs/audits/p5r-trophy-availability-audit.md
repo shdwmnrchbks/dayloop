@@ -7,12 +7,12 @@ Scope: Royal trophy `availableFrom` metadata that had inherited broad month anch
 ## Sources checked
 
 - PlayStationTrophies / TrueAchievements / Xbox achievement guides — Royal trophy requirements and first-opportunity mechanics.
-- GameFAQs Royal walkthroughs and mechanics guides — exact story dates, Palace mechanic gates, Mementos/Jose progression, Royal-specific July fishing timing, Strength/Lockdown progression, and route-vs-unlock comparisons.
-- Samurai Gamers Royal walkthroughs / facility guides — independent checks for Castle mechanics, Kichijoji facilities, Ryuji's Jul 3 Ichigaya hangout, and other calendar gates.
+- GameFAQs Royal walkthroughs and mechanics guides — exact story dates, Palace mechanic gates, Mementos/Jose progression, Apr 28 Ryuji/Ogikubo trophy routing, Royal-specific July fishing timing, Strength/Lockdown progression, and route-vs-unlock comparisons.
+- Samurai Gamers Royal walkthroughs / facility guides — independent checks for Castle mechanics, Kichijoji facilities, Ryuji/Ogikubo progression, Ryuji's Jul 3 Ichigaya hangout, and other calendar gates.
 - Persona 5 Royal Japanese strategy references — lottery timing, Mementos path/stamp counts, Palace route-security windows, and Royal-specific Velvet Room unlocks.
 - Neoseeker Royal walkthrough — additional Jose, Kichijoji incense, and Futaba/Gallows timing checks.
 
-Where cross-version trophy pages conflict with Royal-specific schedules, the audit records the conflict instead of silently importing vanilla Persona 5 dates.
+Where two valid Royal schedules earn a trophy on adjacent dates, `availableFrom` uses the earliest independently demonstrated legal opportunity rather than the completion route's chosen date.
 
 ## Corrected anchors
 
@@ -36,6 +36,7 @@ Where cross-version trophy pages conflict with Royal-specific schedules, the aud
 | Technician | 2016-04-18 | First Technical tutorial battle |
 | Punch That Clock! | 2016-04-18 | Part-time jobs / Triple Seven available |
 | Easy Money | 2016-04-25 | First possible posted result from an Apr 18 ordinary lottery ticket; RNG, no deadline |
+| Tokyo Tourist | 2016-04-28 | Royal schedules can reach Chariot rank 4, unlock Ogikubo and award the trophy on Apr 28 |
 | Phantom Thieves: Assemble! | 2016-05-05 | Fixed team-naming story event |
 | Leblanc Buffer | 2016-05-05 | First confirmed LeBlanc cleaning opportunity |
 | One Step at a Time | 2016-05-07 | Mandatory first Mementos request completion |
@@ -60,6 +61,12 @@ Where cross-version trophy pages conflict with Royal-specific schedules, the aud
 | Awakening the Phantom Thieves | 2017-01-10 | Mandatory Morgana third awakening on Royal third-semester path |
 
 ## Important route/global distinctions
+
+### Tokyo Tourist
+
+Multiple Royal GameFAQs schedules demonstrate Chariot rank 4 / Ogikubo / `Tokyo Tourist` on **Apr 28**. Samurai Gamers reaches the same rank and trophy on Apr 29 because it spends Apr 28 on Takemi instead. That one-day difference is schedule order, not a game gate.
+
+Dayloop's authored completion route delays Ryuji rank 4 until Jun 1. The catalog therefore uses Apr 28 as first supported availability while preserving Jun 1 as this route's chosen progression date.
 
 ### Palace trophies
 
@@ -100,6 +107,6 @@ These remain separate gate-model audit items instead of receiving false calendar
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` pins **40** corrected fixed/first-opportunity anchors and keeps them manual/no-deadline unless a separately modeled route target exists. It also guards key route/global distinctions: Jun 2 Strength rank 3 + Jun 5 incense availability, Jul 3 Ichigaya unlock vs Jul 4 first possible fishing trophy, May 9 free-Mementos behavior, flexible Palace security gates, and late route choices such as billiards/temple/crane not overwriting real facility availability.
+`P5RTrophyAvailabilityAuditTest` pins **41** corrected fixed/first-opportunity anchors and keeps them manual/no-deadline unless a separately modeled route target exists. It also guards key route/global distinctions: Apr 28 Tokyo Tourist vs the route's Jun 1 Chariot rank, Jun 2 Strength rank 3 + Jun 5 incense availability, Jul 3 Ichigaya unlock vs Jul 4 first possible fishing trophy, May 9 free-Mementos behavior, flexible Palace security gates, and late route choices such as billiards/temple/crane not overwriting real facility availability.
 
 Dedicated activity tests (`P5RFishingAuditTest`, `P5RLotteryAuditTest`, `P5RBathhouseAuditTest`, `P5RBattingCageAuditTest`, and others) pin the higher-risk mechanic semantics behind these dates.
