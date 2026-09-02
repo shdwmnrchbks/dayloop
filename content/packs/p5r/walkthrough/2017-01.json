@@ -211,7 +211,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Buy the Supernova Burger at the Central Street Big Bang Burger" },
-        { "label": "Give the Supernova Burger to the Kichijoji alley man — Old Man's Elixir (16/16)" },
+        { "label": "Give the Supernova Burger to the Kichijoji alley man — Father's Elixir (16/16)" },
         { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
         { "label": "Buy items from the Kanda priest" },
         { "label": "Hang out with Sumire — Faith reaches rank 8" },
