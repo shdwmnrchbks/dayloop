@@ -215,7 +215,7 @@
         { "label": "Accept Hifumi's invitation (7 of 10)" },
         { "label": "Reach 100,000 yen spent at Shady Commodities — buy Black Kogatana and Black Robe toward Chaos rank; stock 10 of each Black item" },
         { "label": "Answer the TV game show: 'Ten years in prison'", "statGains": { "knowledge": 2 } },
-        { "label": "Win the Bunguer-kun Doll at the Akihabara arcade (2/8)" },
+        { "label": "Win the Burger-kun Doll at the Akihabara arcade (2/8)" },
         { "label": "Hang out with Ohya — Devil reaches rank 8", "statGains": { "charm": 5 } }
       ]
     },
