@@ -53,6 +53,7 @@ class P5RHomeShoppingAuditTest {
             "2016-12-11",
             "2017-01-15",
             "2017-01-22",
+            "2017-01-29",
         )
         assertEquals(expectedDates, shoppingSteps.keys, "The authored route should only present Home Shopping reminders on verified Royal broadcast dates")
         shoppingSteps.keys.forEach { date ->
@@ -87,11 +88,10 @@ class P5RHomeShoppingAuditTest {
         require("2016-12-11", "Super Detox", "Fancy Magatama")
         require("2017-01-15", "Lucky Worker Bag", "Lucky Muscle")
         require("2017-01-22", "Talisman", "Sweet Delight")
+        require("2017-01-29", "Energetic", "Delicious Revival")
 
-        // The route deliberately skips optional May 1 and Jan 29 broadcasts;
-        // omission from a completion-route reminder list is not a false claim
-        // that those Royal broadcasts do not exist.
+        // May 1 is a valid Royal broadcast that this completion route simply
+        // does not need to surface as a reminder.
         assertTrue("2016-05-01" !in shoppingSteps)
-        assertTrue("2017-01-29" !in shoppingSteps)
     }
 }
