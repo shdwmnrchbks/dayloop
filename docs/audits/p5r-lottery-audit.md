@@ -1,22 +1,25 @@
 # P5R Easy Money / lottery audit
 
-Scope: the completion-route reminder for Royal's `Easy Money` trophy and the distinction between lottery profit and trophy-qualifying wins.
+Scope: the completion-route reminder for Royal's `Easy Money` trophy and the distinction between lottery availability, random trophy completion, and trophy-qualifying wins.
 
 ## Sources checked
 
 - Alyookid, **Persona 5 The Royal 100% Achievements + Perfect Schedule** — source route. Its introduction explicitly calls `Easy Money` the one achievement the schedule cannot guarantee because it is luck-based, and its July 1 note says some lottery types do not work for the trophy.
 - GameFAQs Royal July walkthrough — independently states that the July `Summer Lotto` / Summer Mammoth ticket does **not** unlock `Easy Money`.
-- Persona 5 Royal Japanese strategy wiki, **駅前広場・宝くじ売店** — independent mechanics table for Station Square lottery availability, result timing and the July Summer Mammoth draw.
-- PlayStationTrophies / Xbox achievement guides — independent checks that the result is fixed when a ticket is purchased and that the player must return later to claim a qualifying win.
+- Persona 5 Royal Japanese strategy references — ordinary lottery tickets are sold from **Apr 18** and their results are posted **7 days later**.
+- PlayStationTrophies / Xbox achievement guides — independent checks that the result is fixed when a ticket is purchased, the player must return later to claim a qualifying win, and the trophy unlocks only on a winning result.
 
 ## Confirmed semantics
 
 - Location: Shibuya Station Square lottery stand.
+- The ordinary weekly lottery becomes available on **2016-04-18**.
+- Its result is available seven in-game days later, so **2016-04-25** is the first possible `Easy Money` trophy date if the first ticket wins.
 - Buying/checking tickets does not consume a calendar time slot.
 - The trophy is luck-dependent; the completion route cannot promise a specific completion date.
-- Results for the ordinary multi-ticket lottery are checked later rather than immediately.
 - The July Summer Mammoth/Summer Lotto draw is useful as a guaranteed money payout but **does not satisfy the Easy Money trophy**.
 - The result is determined at purchase, so repeatedly reloading only on result day does not reroll the same ticket.
+
+`availableFrom = 2016-04-25` therefore means **first possible result**, not guaranteed completion. `expectedBy` intentionally remains absent.
 
 ## Scratch-ticket source conflict
 
@@ -46,9 +49,10 @@ This preserves the source schedule's intended "start trying now" guidance withou
 
 ## Achievement semantics
 
-The first-class P5R achievement catalog already treats `Easy Money` correctly:
+The first-class P5R achievement catalog now records:
 
 - description: `Win a qualifying lottery prize.`
+- `availableFrom`: `2016-04-25` — first possible ordinary-ticket result
 - tracking: manual
 - no `expectedBy` date
 
@@ -56,4 +60,4 @@ The absence of `expectedBy` is intentional: a random trophy must not be represen
 
 ## Regression coverage
 
-`P5RLotteryAuditTest` pins the July 1 warning, Station Square location, RNG/qualifying-ticket language, Summer Mammoth exclusion, and the achievement catalog's manual/no-guaranteed-date semantics.
+`P5RLotteryAuditTest` pins the July 1 warning, Station Square location, RNG/qualifying-ticket language, Summer Mammoth exclusion, the Apr 25 first-possible availability anchor, and the achievement catalog's manual/no-guaranteed-date semantics.
