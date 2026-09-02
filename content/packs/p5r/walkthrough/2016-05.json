@@ -15,7 +15,7 @@
     {
       "date": "2016-05-02",
       "weekday": "mon",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
         { "label": "Solve the LeBlanc crossword: 'Golden'", "statGains": { "knowledge": 2 } },
         { "label": "Study at LeBlanc", "statGains": { "knowledge": 3 } }
@@ -24,7 +24,7 @@
     {
       "date": "2016-05-03",
       "weekday": "tue",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
         { "label": "Study at LeBlanc", "statGains": { "knowledge": 3 } }
       ]
@@ -32,7 +32,7 @@
     {
       "date": "2016-05-04",
       "weekday": "wed",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
         { "label": "Visit the Airsoft shop and look inside the bag Iwai gives you" },
         { "label": "Study at LeBlanc", "statGains": { "knowledge": 3 } }
@@ -41,7 +41,7 @@
     {
       "date": "2016-05-05",
       "weekday": "thu",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
         { "label": "Use the Bio Nutrient on your plant", "statGains": { "kindness": 3 } },
         { "label": "Study at LeBlanc — Fool reaches rank 3", "statGains": { "knowledge": 3 } }
@@ -69,7 +69,7 @@
       "steps": [
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Forced Mementos run (first request) — leave at level 12", "spoiler": true },
-        { "label": "Finish 'Medjed Menace' (Knowledge reaches rank 2)", "activityRef": "p5r.activity.book.medjed-menace", "statGains": { "knowledge": 5 } }
+        { "label": "Finish 'Medjed Menace'", "activityRef": "p5r.activity.book.medjed-menace", "statGains": { "knowledge": 5 } }
       ]
     },
     {
@@ -78,7 +78,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Automatic Mishima hang-out — Moon reaches rank 2" },
-        { "label": "Check the TV Shopping Program — Bio Nutrients Set" },
+        { "label": "Buy the TV Shopping Program's Bio Nutrients Set (includes Mega Fertilizer)" },
         { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
         { "label": "Hang out with Sojiro — Hierophant reaches rank 2", "statGains": { "kindness": 3 } }
       ]
@@ -102,7 +102,8 @@
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Have 3 Tin Clasps and 3 Silk Yarn ready for crafting" },
         { "label": "Hang out with Ann — Lovers reaches rank 2" },
-        { "label": "Evening: study with Ryuji", "statGains": { "knowledge": 5 } }
+        { "label": "Solve the LeBlanc crossword: 'Malaise'", "statGains": { "knowledge": 2 } },
+        { "label": "Evening: study with Ryuji — Knowledge reaches rank 3", "statGains": { "knowledge": 5 } }
       ]
     },
     {
@@ -133,17 +134,20 @@
     {
       "date": "2016-05-14",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final midterm exam day" },
         { "label": "Watch 'Guy McVer' (second viewing)", "activityRef": "p5r.activity.dvd.guy-mcver", "statGains": { "proficiency": 3 } }
       ]
     },
     {
       "date": "2016-05-15",
       "weekday": "sun",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
-        { "label": "TV Shopping Program: Allergy Relief Pack (x20 Wide Eye Drops)" }
+        { "label": "Forced museum-exhibit trip during the day", "spoiler": true },
+        { "label": "Buy the TV Shopping Program's Allergy Relief Pack (x20 Wide Eye Drops)" },
+        { "label": "Save first, then craft 3 lock picks and reload for the bonus result — finish with 5 lock picks total", "statGains": { "proficiency": 3 } }
       ]
     },
     {
@@ -193,8 +197,9 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Exam results — Charm +3", "statGains": { "charm": 3 } },
-        { "label": "Third infiltration (boss fight — be prepared); Sojiro gives a coffee for SP", "spoiler": true },
+        { "label": "Exam results — this route places in the top 10", "statGains": { "charm": 5 } },
+        { "label": "Third museum infiltration — scripted Palace combat sequence; this is not the final Madarame boss", "spoiler": true },
+        { "label": "Talk to Sojiro at LeBlanc for the Tough Belt exam reward" },
         { "label": "Watch 'Bubbly Hills, 90210' (first viewing)", "activityRef": "p5r.activity.dvd.bubbly-hills", "statGains": { "charm": 3 } }
       ]
     },
@@ -207,6 +212,7 @@
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Borrow 'The Gallant Rogue' from the school library", "activityRef": "p5r.activity.book.gallant-rogue" },
         { "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 3" },
+        { "label": "Use the Mega Fertilizer from the May 8 shopping set on the plant", "statGains": { "kindness": 5 } },
         { "label": "Work at the Beef Bowl Shop (get every order right)", "statGains": { "proficiency": 5 } }
       ]
     },
