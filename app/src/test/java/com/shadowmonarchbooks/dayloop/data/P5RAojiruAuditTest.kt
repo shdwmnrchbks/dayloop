@@ -23,7 +23,7 @@ class P5RAojiruAuditTest {
     }
 
     @Test
-    fun `p5r Sunday Aojiru keeps Royal location timing points and purchase rotation`() {
+    fun `p5r Sunday Aojiru keeps Royal location timing points rotation and active modifiers`() {
         val root = contentPacksDir() ?: return
         val p5r = PackLoader.load(root.resolve("p5r"))
         assertEquals(emptyList(), p5r.parseIssues)
@@ -38,10 +38,14 @@ class P5RAojiruAuditTest {
         assertTrue(activity.notes.orEmpty().contains("+2 points"))
         assertTrue(activity.notes.orEmpty().contains("same stat repeats on later Sundays until purchased"))
 
+        // Audit every authored route purchase by the user-visible action text rather
+        // than relying on activityRef. Older walkthrough imports did not tag every
+        // Aojiru row consistently, but the underlying purchase/rotation facts still
+        // need regression coverage.
         val purchases = p5r.walkthroughs
             .flatMap { it.file.days }
             .flatMap { day -> day.steps.map { step -> day.date to step } }
-            .filter { (_, step) -> step.activityRef == activity.id }
+            .filter { (_, step) -> step.label.contains("Sunday drink") }
 
         assertTrue(purchases.isNotEmpty(), "The completion route should exercise the audited Aojiru activity")
 
@@ -49,11 +53,18 @@ class P5RAojiruAuditTest {
         purchases.forEachIndexed { index, (date, step) ->
             assertEquals(DayOfWeek.SUNDAY, LocalDate.parse(date).dayOfWeek, "$date Aojiru purchase must be on Sunday")
             assertTrue(step.label.contains("Underground Walkway"), "$date should keep the audited Shibuya location visible")
+
+            val expectedStat = rotation[index % rotation.size]
+            val expectedPoints = if (step.label.contains("Luck Reading active")) 3 else 2
             assertEquals(
-                mapOf(rotation[index % rotation.size] to 2),
+                mapOf(expectedStat to expectedPoints),
                 step.statGains,
-                "$date must advance the fixed Royal Aojiru rotation only after a purchase",
+                "$date must advance the fixed Royal Aojiru rotation only after a purchase and include any active Luck Reading modifier",
             )
+
+            step.activityRef?.let { ref ->
+                assertEquals(activity.id, ref, "$date must not link a Sunday drink to the wrong reusable activity")
+            }
         }
     }
 }
