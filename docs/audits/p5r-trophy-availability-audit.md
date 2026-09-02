@@ -7,10 +7,10 @@ Scope: Royal trophy `availableFrom` metadata that had inherited broad month anch
 ## Sources checked
 
 - PlayStationTrophies / TrueAchievements / Xbox achievement guides — Royal trophy requirements and first-opportunity mechanics.
-- GameFAQs Royal walkthroughs and mechanics guides — exact story dates, Palace mechanic gates, Mementos/Jose progression, Royal-specific July fishing timing, and route-vs-unlock comparisons.
+- GameFAQs Royal walkthroughs and mechanics guides — exact story dates, Palace mechanic gates, Mementos/Jose progression, Royal-specific July fishing timing, Strength/Lockdown progression, and route-vs-unlock comparisons.
 - Samurai Gamers Royal walkthroughs / facility guides — independent checks for Castle mechanics, Kichijoji facilities, Ryuji's Jul 3 Ichigaya hangout, and other calendar gates.
 - Persona 5 Royal Japanese strategy references — lottery timing, Mementos path/stamp counts, Palace route-security windows, and Royal-specific Velvet Room unlocks.
-- Neoseeker Royal walkthrough — additional Jose and Futaba/Gallows timing checks.
+- Neoseeker Royal walkthrough — additional Jose, Kichijoji incense, and Futaba/Gallows timing checks.
 
 Where cross-version trophy pages conflict with Royal-specific schedules, the audit records the conflict instead of silently importing vanilla Persona 5 dates.
 
@@ -47,6 +47,7 @@ Where cross-version trophy pages conflict with Royal-specific schedules, the aud
 | Efficient Executioner | 2016-05-18 | Strength rank 1 / Group Guillotine available |
 | A Grand Experiment | 2016-05-20 | Earliest Royal Museum Treasure-route security / Electric Chair unlock |
 | Trash Into Treasure | 2016-06-05 | Kichijoji used-clothes shop available |
+| Intensive Training | 2016-06-05 | Strength rank 3 can already be reached; Kichijoji/Mantra Ganda opens with purchasable incense |
 | Dartslinger | 2016-06-06 | First free-time darts after the Jun 5 introduction |
 | A Hustler's Journey | 2016-06-06 | First free billiards opportunity |
 | A Serene Experience | 2016-06-06 | Kichijoji temple becomes usable |
@@ -72,6 +73,12 @@ Both dates are **first possible**, not deterministic completion points. `Easy Mo
 
 May 7 introduces Jose during the forced Mementos tutorial. May 9 is the first free Aiyatsbus state where normal flowers, stamps, cognition changes and random Mementos behavior are available. The route may choose to perform those actions later.
 
+### Intensive Training
+
+Lockdown requires Strength rank 3. Dayloop's own route reaches Strength rank 3 on **Jun 2**. Kichijoji opens on **Jun 5**, and Mantra Ganda sells incense there once the Lockdown prerequisite is met. This makes Jun 5 the first supported trophy opportunity.
+
+The route later buys the Jul 3 Calm Mind Set for incense, but that shopping-channel purchase is not the mechanic's unlock and must not determine `availableFrom`.
+
 ### Angler's Debut source conflict
 
 Several cross-version trophy pages still say Ryuji unlocks Ichigaya on Jul 6. Royal-specific walkthroughs from GameFAQs, Samurai Gamers and the current P5R route consistently place the Ryuji/Kawakami fishing hangout on **Jul 3**. Separate achievement reports agree that the invitation visit itself does **not** award `Angler's Debut`; the player must return and actually catch a fish.
@@ -93,6 +100,6 @@ These remain separate gate-model audit items instead of receiving false calendar
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` pins **39** corrected fixed/first-opportunity anchors and keeps them manual/no-deadline unless a separately modeled route target exists. It also guards key route/global distinctions: Jul 3 Ichigaya unlock vs Jul 4 first possible fishing trophy, May 9 free-Mementos behavior, flexible Palace security gates, and late route choices such as billiards/temple/crane not overwriting real facility availability.
+`P5RTrophyAvailabilityAuditTest` pins **40** corrected fixed/first-opportunity anchors and keeps them manual/no-deadline unless a separately modeled route target exists. It also guards key route/global distinctions: Jun 2 Strength rank 3 + Jun 5 incense availability, Jul 3 Ichigaya unlock vs Jul 4 first possible fishing trophy, May 9 free-Mementos behavior, flexible Palace security gates, and late route choices such as billiards/temple/crane not overwriting real facility availability.
 
 Dedicated activity tests (`P5RFishingAuditTest`, `P5RLotteryAuditTest`, `P5RBathhouseAuditTest`, `P5RBattingCageAuditTest`, and others) pin the higher-risk mechanic semantics behind these dates.
