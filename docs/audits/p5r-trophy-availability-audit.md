@@ -6,10 +6,10 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 ## Sources checked
 
-- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, Castle combat tutorials, grappling-hook behavior, third-semester awakening timing, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
 - TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, May 18 Strength-rank-1 / Group Guillotine availability, and exact Palace/Mementos story-trophy dates.
-- GameFAQs and Samurai Gamers Royal walkthroughs — independent May 5 LeBlanc cleaning/trophy checks, May 18 Museum first-free-exploration checks, Palace-resolution dates, and route-date comparisons.
-- Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story check.
+- GameFAQs Royal walkthroughs — Apr 15 negotiation availability, the Apr 18 Baton Pass / Grappling Hook / Disaster Shadow / Technical tutorial run, May 5 LeBlanc cleaning, May 18 Museum first-free-exploration checks, Palace-resolution dates, and route-date comparisons.
+- Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story and Apr 18 Castle tutorial checks.
 - Samurai Gamers Old Temple guide — explicit Jun 6 temple unlock.
 - Samurai Gamers June walkthrough — independent early Kichijoji darts/billiards usage examples.
 
@@ -37,9 +37,29 @@ These values are trophy availability/pop dates. They must not replace the separa
 
 Royal's first Persona awakening is a fixed story event in the Castle Palace on Apr 11. The previous Apr 9 value was the pack calendar start, not the trophy event.
 
+### I am Thou... — 2016-04-15
+
+Shadow negotiation is introduced during the Apr 15 Castle sequence. Independent Royal walkthroughs identify Apr 15 as the first opportunity to recruit a Persona through negotiation; Dayloop's own Apr 15 route already says to capture Personas during the third infiltration. The old Apr 9 anchor predated negotiation entirely.
+
 ### A Deadly Debut — 2016-04-18
 
 Normal Guillotine fusion becomes available in the Velvet Room by Apr 18, and Royal's fusion tutorial can award the trophy that day. The old Apr 9 value again represented the pack calendar start rather than the mechanic being available.
+
+### Tactical Teamwork — 2016-04-18
+
+The first free Castle infiltration includes the Baton Pass tutorial and can award the trophy immediately. Dayloop's completion route postpones its long Castle infiltration until Apr 24, but route selection does not change the mechanic's Apr 18 availability.
+
+### Let's Blow It Up — 2016-04-18
+
+Disaster Shadows are introduced during the Apr 18 Castle infiltration. The tutorial encounter can award the trophy when the explosion defeats another enemy. The old Apr 9 value predated Disaster Shadows.
+
+### You'd Better Hang On! — 2016-04-18
+
+The opening Casino grappling-hook sequence does not award this trophy. The first valid trophy use is the mandatory Castle grappling-hook tutorial during the Apr 18 infiltration. This is an actual game-availability anchor, not Dayloop's later chosen Castle-clearing date.
+
+### Technician — 2016-04-18
+
+Royal introduces Technical attacks during the Apr 18 Castle run and provides a tutorial battle where the trophy can be earned. The previous Apr 9 anchor was before the mechanic exists in normal play.
 
 ### Phantom Thieves: Assemble! — 2016-05-05
 
@@ -85,6 +105,10 @@ The Kichijoji temple becomes usable on Jun 6. Dayloop's completion route intenti
 
 Akihabara and its crane game unlock on Aug 31. The route starts its crane-prize chain in September, but the trophy is already obtainable on Aug 31.
 
+### Awakening the Phantom Thieves — 2017-01-10
+
+On the Royal third-semester path, Morgana's third awakening is a mandatory Jan 10 story scene and immediately awards the trophy. Optional party-member third awakenings happen later, so the old Jan 1 month anchor was early while waiting for an optional teammate is unnecessarily late. Dayloop's Jan 10 route already records Morgana's awakening.
+
 ## Deliberately excluded from this pass
 
 ### The Path Chosen
@@ -117,4 +141,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` now pins **22** corrected fixed/first-opportunity availability anchors, including all nine Palace/Mementos story-resolution trophies above. It confirms they remain manual/no-deadline trophies, checks the mandatory May 7 Mementos introduction, and explicitly verifies that the route's later billiards, temple and crane choices do not overwrite real facility availability.
+`P5RTrophyAvailabilityAuditTest` now pins **28** corrected fixed/first-opportunity availability anchors. It includes all nine Palace/Mementos story-resolution trophies, the Apr 15 negotiation trophy, the Apr 18 Castle combat/mechanic trophies, and the mandatory Jan 10 Morgana third-awakening trophy. The test confirms these remain manual/no-deadline trophies and explicitly checks that later completion-route choices do not overwrite earlier real game availability.
