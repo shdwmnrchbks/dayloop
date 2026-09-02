@@ -42,7 +42,7 @@ class P5RLotteryAuditTest {
 
         val achievement = loaded.achievements?.achievements.orEmpty()
             .single { it.title == "Easy Money" }
-        assertTrue(achievement.description.contains("qualifying lottery prize", ignoreCase = true))
+        assertTrue(achievement.description.orEmpty().contains("qualifying lottery prize", ignoreCase = true))
         assertEquals(AchievementTrackingTypes.MANUAL, achievement.tracking.type)
         assertNull(achievement.expectedBy, "Easy Money is RNG and the completion route must not claim a guaranteed completion date")
     }
