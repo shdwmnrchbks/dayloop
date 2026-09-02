@@ -8,25 +8,13 @@ guide artwork.
 ## Sources
 
 - TrueTrophies, **Persona 5 Royal Trophies** — independent complete list of 53
-  Royal trophies and their unlock requirements:
-  https://www.truetrophies.com/game/Persona-5-Royal/trophies
+  Royal trophies and their unlock requirements.
 - GameFAQs, marendarade, **Persona 5 Royal — Trophies** — second Royal-specific
-  trophy requirement list:
-  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/trophies
-- GameFAQs, Bkstunt_31 / Haeravon, **Week 11: June 20–30 — Kaneshiro's Palace**
-  — independently places the Showtime tutorial/trophy during the June 25 Palace
-  infiltration used as Dayloop's route checkpoint:
-  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78256/week-11-june-20th-june-30th-kaneshiros-palace
-- GameFAQs, marendarade, **Velvet Room — Fusion Alarm (Royal)** — Fusion Alarms
-  unlock after securing the Bank Palace Treasure route:
-  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/velvet-room
-- GameFAQs, sdarkpaladin, **August** — Akihabara unlocks on August 31 with the
-  Hermit story event:
-  https://gamefaqs.gamespot.com/ps5/370928-persona-5-royal/faqs/79923/august
-- GameFAQs, marendarade, **Social Stats — Akihabara / Maid Cafe** — the special
-  menu becomes available after spending ¥20,000 / collecting the required stamp
-  progress at the Maid Cafe:
-  https://gamefaqs.gamespot.com/ps4/260936-persona-5-royal/faqs/78212/social-stats
+  trophy requirement list.
+- PlayStationTrophies Royal trophy pages — independent requirement and mechanic
+  checks for Showtime, Fusion Alarm, Akihabara and later availability audits.
+- Royal walkthrough/mechanic references under `docs/audits/p5r-trophy-availability-audit.md`
+  — exact first-opportunity/fixed-story checks for trophy `availableFrom` metadata.
 
 ## Findings
 
@@ -57,30 +45,39 @@ matching imported guide artwork, so `iconMediaRef` is intentionally absent and
 the app renders its built-in fallback icon rather than inventing or duplicating
 art.
 
-### Route availability checkpoints
+### Availability semantics
 
-`availableFrom` is a Dayloop route checkpoint, not a claim that the trophy is
-universally forced on that calendar date.
+`availableFrom` is now treated as the first independently supported Royal date
+on which a trophy can become obtainable, **not** the completion route's chosen
+day to earn it. Route-selected actions and cleanup targets remain in the
+walkthrough or `expectedBy`/`routeTarget` metadata instead of overwriting game
+availability.
 
-- `It's Showtime!` — **2016-06-25**. The independent Royal walkthrough places
-  the Showtime tutorial during the June 25 Kaneshiro infiltration, which is also
-  Dayloop's authored Bank Palace run for this mechanic.
-- `Accident-Prone` — **2016-06-25**. Fusion Alarms unlock only after securing the
-  Bank Palace Treasure route; Dayloop explicitly secures that route and performs
-  an execution for the achievement on June 25.
-- `Master of Akihabara` — **2016-08-31**. Akihabara becomes available on August
-  31. Dayloop's `expectedBy` date remains a completion-route target for the
-  later Maid Cafe stamp cleanup, not a universal deadline.
+For the three trophies restored by this catalog pass:
 
-The first draft used June 20 / June 21 for the first two trophies; the
-independent mechanic/date check rejected those guesses and the catalog plus
-regression test now pin June 25 instead.
+- `It's Showtime!` — **2016-06-21**. Showtime is introduced during the Bank arc;
+  the mandatory tutorial itself does not award the trophy, but later Showtime
+  activations are trophy-eligible from June 21 onward.
+- `Accident-Prone` — **2016-06-21**. Fusion Alarms become available after the
+  Bank Treasure route is secured; June 21 is the earliest legal route-security
+  date in Royal.
+- `Master of Akihabara` — **2016-08-31**. Akihabara and the Maid Cafe unlock on
+  August 31. Its `expectedBy` date remains a completion-route target for the
+  later stamp cleanup, not a universal deadline.
+
+The earlier June 25 values were the authored route's chosen Bank-Palace day and
+are retained only where useful in walkthrough guidance. They are not trophy
+availability dates.
+
+The broader first-opportunity/fixed-story audit now lives in
+`p5r-trophy-availability-audit.md`, with focused regression coverage in
+`P5RTrophyAvailabilityAuditTest`.
 
 ## Tracking boundary
 
 All 53 P5R trophies intentionally use manual tracking in this pass. The catalog
-is complete and the requirements are now visible, but a trophy is not promoted
-to story/event/counter/checklist automation until its deterministic rule is
+is complete and the requirements are visible, but a trophy is not promoted to
+story/event/counter/checklist automation until its deterministic rule is
 separately audited. This avoids false auto-awards while preserving the option to
 add rich tracking incrementally, as was done for P3R.
 
@@ -89,15 +86,19 @@ add rich tracking incrementally, as was done for P3R.
 - exactly 53 unique Royal trophy ids,
 - preservation of all 50 legacy media ids,
 - the three no-art fallback entries,
-- the audited June 25 / June 25 / August 31 availability checkpoints,
+- June 21 / June 21 / August 31 for the three restored trophies,
 - manual tracking for the current P5R catalog,
 - valid calendar dates and resolvable icon references.
 
+`P5RTrophyAvailabilityAuditTest` separately pins the expanded set of exact
+first-opportunity/fixed-story dates and ensures route-selected dates do not leak
+back into `availableFrom`.
+
 ## Remaining boundary for issue #12
 
-This closes the **trophy catalog identity/completeness** gap and independently
-checks the three previously missing trophy requirements. It does not by itself
-verify every route month anchor attached to the legacy trophy artwork, nor does
-it claim that every trophy's current `availableFrom` month-start approximation
-is a universal unlock date. Those broader route/metadata facts remain under the
-fact-by-fact verification definition of done in #12.
+This closes the **trophy catalog identity/completeness** gap and has now been
+followed by a much broader trophy-availability audit. It still does not turn
+player-state, RNG or branch-dependent trophies into falsely precise calendar
+facts. Those unresolved gates, along with flexible route-order and remaining
+one-off gameplay facts, stay under the fact-by-fact verification definition of
+done in #12.
