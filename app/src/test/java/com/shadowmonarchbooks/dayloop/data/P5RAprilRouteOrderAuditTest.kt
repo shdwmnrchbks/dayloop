@@ -46,12 +46,16 @@ class P5RAprilRouteOrderAuditTest {
 
         val apr20 = days.getValue("2016-04-20")
         assertEquals(
-            mapOf("knowledge" to 5),
+            mapOf("knowledge" to 5, "guts" to 2),
             apr20.steps.single { "library (rainy-day bonus)" in it.label }.statGains,
         )
         assertEquals(
             mapOf("knowledge" to 5),
             apr20.steps.single { "LeBlanc in the evening" in it.label }.statGains,
+        )
+        assertEquals(
+            mapOf("knowledge" to 5, "guts" to 2),
+            days.getValue("2016-04-21").steps.single { "school library (rainy-day bonus)" in it.label }.statGains,
         )
 
         val blossom = days.getValue("2016-04-27").steps.single { "Blossom" in it.label }
@@ -70,7 +74,7 @@ class P5RAprilRouteOrderAuditTest {
             .filter { it.date <= "2016-04-22" }
             .flatMap { it.steps }
             .sumOf { it.statGains["guts"] ?: 0 }
-        assertTrue(gutsThroughApr22 >= 11, "Death rank 2 on Apr 23 requires Guts rank 2")
+        assertEquals(16, gutsThroughApr22, "pre-Kamoshida library study contributes Guts as well as Knowledge")
 
         assertTrue(days.getValue("2016-04-24").steps.any { "secure the route to the Treasure" in it.label })
         assertTrue(days.getValue("2016-04-25").steps.any { "Calling Card" in it.label })
