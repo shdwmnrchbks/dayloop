@@ -176,6 +176,7 @@
         { "label": "Buy all the books at the Central Street bookstore" },
         { "label": "Rent 'Bubbly Hills, 90210'", "activityRef": "p5r.activity.dvd.bubbly-hills" },
         { "label": "Hang out with Takemi — Death reaches rank 7", "statGains": { "guts": 2 } },
+        { "label": "Solve the LeBlanc crossword: 'Gallery'", "statGains": { "knowledge": 2 } },
         { "label": "Apply at the Beef Bowl Shop job flyer, then work the evening shift", "statGains": { "proficiency": 3 } }
       ]
     },
@@ -323,6 +324,7 @@
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Hang out with Ann — Lovers reaches rank 6" },
+        { "label": "Solve the LeBlanc crossword: 'Japanese'", "statGains": { "knowledge": 2 } },
         { "label": "Take the Big Bang Burger challenge (1 of 3)", "statGains": { "knowledge": 2, "guts": 2, "proficiency": 2, "charm": 2 } }
       ]
     }
