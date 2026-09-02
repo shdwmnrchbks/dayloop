@@ -5,23 +5,9 @@ on:
     branches: [ main ]
   pull_request:
 
-concurrency:
-  group: dayloop-ci-${{ github.ref }}
-  cancel-in-progress: true
-
-env:
-  DAYLOOP_ANDROID_SDK_VERSION: '35'
-  DAYLOOP_ANDROID_BUILD_TOOLS: '35.0.0'
-  DAYLOOP_ANDROID_CMDLINE_TOOLS: '13114758'
-
 jobs:
   build:
-    # Dayloop's toolchain can now reuse persistent self-hosted machine installs
-    # on both Windows and Linux x64 runners. Any compatible org runner can pick
-    # up the job.
-    runs-on: [self-hosted, X64]
-    timeout-minutes: 60
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,115 +18,14 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Prepare persistent Android SDK (Linux/macOS)
-        if: runner.os != 'Windows'
-        run: |
-          set -euo pipefail
-
-          SDK_ROOT="$HOME/android-sdk"
-          CMDLINE_TOOLS_VERSION="${DAYLOOP_ANDROID_CMDLINE_TOOLS}"
-          CMDLINE_TOOLS_ZIP="commandlinetools-linux-${CMDLINE_TOOLS_VERSION}_latest.zip"
-          CMDLINE_TOOLS_URL="https://dl.google.com/android/repository/${CMDLINE_TOOLS_ZIP}"
-          TOOLS_DIR="$SDK_ROOT/cmdline-tools"
-          LATEST_DIR="$TOOLS_DIR/latest"
-          export ANDROID_SDK_ROOT="$SDK_ROOT"
-          export ANDROID_HOME="$SDK_ROOT"
-          export PATH="$LATEST_DIR/bin:$SDK_ROOT/platform-tools:$PATH"
-
-          mkdir -p "$TOOLS_DIR"
-
-          if [ ! -x "$LATEST_DIR/bin/sdkmanager" ]; then
-            echo "Installing Android command-line tools into $LATEST_DIR"
-            temp_dir="$(mktemp -d)"
-            trap 'rm -rf "$temp_dir"' EXIT
-            archive="$temp_dir/$CMDLINE_TOOLS_ZIP"
-            curl --fail --location --silent --show-error "$CMDLINE_TOOLS_URL" -o "$archive"
-            unzip -q "$archive" -d "$temp_dir/unpacked"
-            rm -rf "$LATEST_DIR"
-            mkdir -p "$LATEST_DIR"
-            mv "$temp_dir/unpacked/cmdline-tools"/* "$LATEST_DIR/"
-          fi
-
-          printf '%s\n' "$LATEST_DIR/bin" "$SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
-          {
-            echo "ANDROID_SDK_ROOT=$SDK_ROOT"
-            echo "ANDROID_HOME=$SDK_ROOT"
-          } >> "$GITHUB_ENV"
-
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager \
-            "platform-tools" \
-            "platforms;android-${DAYLOOP_ANDROID_SDK_VERSION}" \
-            "build-tools;${DAYLOOP_ANDROID_BUILD_TOOLS}"
-
-      - name: Prepare persistent Android SDK (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          $ErrorActionPreference = 'Stop'
-
-          $SdkRoot = Join-Path $env:USERPROFILE 'android-sdk'
-          $CmdlineToolsVersion = $env:DAYLOOP_ANDROID_CMDLINE_TOOLS
-          $ZipName = "commandlinetools-win-$CmdlineToolsVersion`_latest.zip"
-          $Url = "https://dl.google.com/android/repository/$ZipName"
-          $ToolsDir = Join-Path $SdkRoot 'cmdline-tools'
-          $LatestDir = Join-Path $ToolsDir 'latest'
-          $SdkManager = Join-Path $LatestDir 'bin\sdkmanager.bat'
-
-          New-Item -ItemType Directory -Force -Path $ToolsDir | Out-Null
-
-          if (-not (Test-Path $SdkManager)) {
-            Write-Host "Installing Android command-line tools into $LatestDir"
-            $TempDir = Join-Path $env:RUNNER_TEMP 'android-cmdline-tools'
-            Remove-Item -Recurse -Force $TempDir -ErrorAction SilentlyContinue
-            New-Item -ItemType Directory -Force -Path $TempDir | Out-Null
-            $Archive = Join-Path $TempDir $ZipName
-            Invoke-WebRequest -Uri $Url -OutFile $Archive
-            $UnpackDir = Join-Path $TempDir 'unpacked'
-            Expand-Archive -Path $Archive -DestinationPath $UnpackDir -Force
-            Remove-Item -Recurse -Force $LatestDir -ErrorAction SilentlyContinue
-            New-Item -ItemType Directory -Force -Path $LatestDir | Out-Null
-            Get-ChildItem (Join-Path $UnpackDir 'cmdline-tools') | Move-Item -Destination $LatestDir -Force
-          }
-
-          "ANDROID_SDK_ROOT=$SdkRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "ANDROID_HOME=$SdkRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          $LatestBin = Join-Path $LatestDir 'bin'
-          $PlatformTools = Join-Path $SdkRoot 'platform-tools'
-          $LatestBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          $PlatformTools | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-
-          cmd /c "echo y | `"$SdkManager`" --licenses" | Out-Null
-          & $SdkManager `
-            'platform-tools' `
-            "platforms;android-$env:DAYLOOP_ANDROID_SDK_VERSION" `
-            "build-tools;$env:DAYLOOP_ANDROID_BUILD_TOOLS"
-
-      - name: Set up Gradle
+      - name: Set up Gradle (with caching)
         uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-disabled: true
 
-      - name: Build and test (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Build and test
         run: ./gradlew assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
 
-      - name: Build and test (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: .\gradlew.bat assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
-
-      - name: Validate content packs (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Validate content packs (packlint)
         run: |
           ./gradlew packlint
           ./gradlew packlint "-Ppack=content/packs/p3r"
           ./gradlew packlint "-Ppack=content/packs/metaphor"
-
-      - name: Validate content packs (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          .\gradlew.bat packlint
-          .\gradlew.bat packlint "-Ppack=content/packs/p3r"
-          .\gradlew.bat packlint "-Ppack=content/packs/metaphor"

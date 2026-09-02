@@ -26,7 +26,6 @@ env:
 
 jobs:
   candidate:
-    # Keep prerelease delivery independent from the optional self-hosted CI pool.
     # The same tests and packlint gates run here before the APK is retained or published.
     runs-on: ubuntu-latest
     timeout-minutes: 60
