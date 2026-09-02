@@ -74,7 +74,7 @@ swappable, lint-validated, accessible, and strippable before any public flip
 - Settings redirects to the same onboarding carousel used on first run; it is
   the single game picker and switching keeps saved profiles.
 - All 116 guide-package graphics ship under per-pack `images/` directories
-  (P5R 53, P3R 16, Metaphor 47) and are declared by `media.json`.
+  (P5R 75, P3R 16, Metaphor 47) and are declared by `media.json`.
 - Media uses engine-neutral kinds/anchors and is served on Day, Calendar, Bonds
   and the Pack Media gallery.
 - packlint rejects orphaned/missing/invalid media and invalid anchors.

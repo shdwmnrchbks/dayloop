@@ -44,7 +44,7 @@ data class IdBaseline(
  *    declarations, duplicate days are scoped per route
  *  - cross-references resolve: stats, slots, activity refs, bond refs
  *  - bonds: ranks strictly increasing, availability windows valid
- *  - deadlines: date or window present, inside the pack calendar
+ *  - deadlines/route targets: date or window present, inside the pack calendar
  *  - answer sheets: dates/kinds align with authored days (docs/PLAN.md Phase 5)
  *  - ID immutability: any ID present in pack-ids.baseline.json must still exist
  *    (deletions/renames fail lint; additions are fine)
@@ -52,7 +52,7 @@ data class IdBaseline(
 object PackLint {
 
     private val ACTIVITY_KINDS = setOf("book", "dvd", "videoGame", "drink", "shop", "hangout", "exam", "other")
-    private val DEADLINE_KINDS = setOf("palace", "exam", "missable", "request", "other")
+    private val DEADLINE_KINDS = setOf("palace", "exam", "missable", "request", "routeTarget", "other")
     private val DAY_KINDS = setOf("free", "school", "story", "exam", "forced")
     private val TIME_MODELS = setOf("weekdayGrid", "dayCounter")
     private val ANSWER_KINDS = setOf("exam", "classQuestion")
@@ -208,7 +208,7 @@ object PackLint {
             }
         }
 
-        // Deadlines
+        // Deadlines and route targets
         val deadlineIds = mutableSetOf<String>()
         loaded.deadlines?.deadlines?.forEach { d ->
             if (!deadlineIds.add(d.id)) issues += err("deadlines.json", "duplicate deadline id '${d.id}'")

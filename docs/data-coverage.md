@@ -34,7 +34,7 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `slots[].label` | Slot pill on every step row (Today/Day) | Served |
 | `stats[].id` / `label` | Stat-gain lines on steps; gate text; Activities gains | Served |
 | `routes[].id` | Profile pinning (Room), route folders | Served (Settings) |
-| `routes[].label` | Today profile line, Settings profile rows, profile-creation picker, Widget | Served |
+| `routes[].label` | Today profile line, Day route badge, Settings profile rows, profile-creation picker, Widget | Served |
 | `routes[].description` | Profile-creation dialog (New profile) | Served (intentionally confined to creation; not re-shown elsewhere) |
 | `capabilities.answers` | Answers tab, Day answer card, search answers, Onboarding feature line (⟂) | Served |
 | `capabilities.exams` | Reserved flag — exam rendering is day-kind driven; packlint validates declared-vs-shipped answers only | Intentionally not served (reserved for exam-specific UI; no first-pack need) |
@@ -43,13 +43,13 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `labels.stat` | Activities detail section header ("<Stat label> gains") | Served |
 | `labels.deadlineKinds` | Deadline kind chips ("Palace"/"Mission"/…), pack override per kind token (⟂ packlint-validated closed set) | Served |
 | `theme.accent` / `theme.accentDark` | Theme.kt builds the full Material 3 light/dark schemes for the active pack; the dark scheme also supplies the full Phase 17 widget palette and the saved skin is used before first visible app content | Served |
-| `theme.style` | Closed-set scheme-character token (tonalSpot/vibrant/expressive/content) → scheme variant in Theme.kt | Served |
+| `theme.style` | Closed-set scheme-character token (`tonalSpot`/`vibrant`/`expressive`/`content`/`ink`) → color-role scheme in Theme.kt. `ink` deliberately constrains roles to black/white/accent shades instead of synthesizing extra hues | Served |
 | `theme.motif` | Closed-set decorative family (`masks`/`moon`/`crown`) → skin painter/family defaults across app surfaces; Phase 17b maps the same generic family into Glance-safe widget treatments and cold-start uses the resolved skin | Served |
 | `theme.art` | Named art slots: `card` → onboarding cover, `icon` → Settings tiles, `launcherBadge` → optional Dayloop-owned dynamic launcher-shortcut decoration. Every declared file is packlint-validated; unknown valid slots may ride along for future surfaces | Served for known slots |
-| `theme.shapes` | Closed-set card/chip/header/frame silhouettes consumed by Compose skin primitives; Phase 17b also resolves generic shape families into widget angular/framed treatment | Served |
+| `theme.shapes` | Closed-set card/chip/header/frame silhouettes consumed by Compose skin primitives and skin-aware app chrome; Phase 17b also resolves generic shape families into widget angular/framed treatment | Served |
 | `theme.typography` | Bundled display/title/body font roles + case/italic/tracking consumed by the app theme; invalid/missing declarations fail packlint and unreadable runtime fonts fall back to engine type | Served when declared |
 | `theme.decor` | Header/panel/divider decoration art consumed by skin surfaces; `StartupShell` uses the resolved panel decoration, with motif procedural painters as fallback | Served when declared |
-| `theme.motion` | Closed-set navigation/reveal motion grammar and skin feedback selection; remove-animations disables it. Widget/launcher surfaces intentionally do not consume app-only motion | Served |
+| `theme.motion` | Closed-set navigation/reveal motion grammar and skin feedback selection; `slash` also selects the generic angular app-chrome treatment. remove-animations disables transitions, not static styling. Widget/launcher surfaces intentionally do not consume app-only motion | Served |
 | `theme.sfx` | Named sound moments (`tap`/`advance`/`complete`, closed set) → SkinFx playback on mark-toggle/End-Day/perfect-day, only while the user enables "Skin sounds" in Settings; never on the widget. packlint validates slot, .ogg extension, and the ≤100 KB per-file budget. Optional — no bundled pack ships audio yet (v0.11.0 lands the engine capability; files need an OGG encoder to author) | Served when declared |
 
 Phase 17 launcher-badge-specific dimensions/format rules are documented in
@@ -90,6 +90,9 @@ contract JVM-side.
 | `steps[].statGains` | Step-row gain line ("Knowledge +3") | Served |
 | `steps[].spoiler` | Legacy authoring metadata; daily step text always renders directly | Intentionally presentation-neutral |
 
+Walkthrough dates are route facts: Day always renders the active `routes[].label`
+so a completion plan is never silently presented as universal availability.
+
 ## confidants.json (`BondsFile`, `Bond`, `RankStep`)
 
 | Field | Served by | Status |
@@ -99,8 +102,9 @@ contract JVM-side.
 | `bond.characterLabel` | Bond detail heading; search | Served |
 | `rank.rank` | Numbered ladder in Bond detail | Served |
 | `rank.gates` | Bond detail "Requires: …" line via `describeCondition` (packlint validates gate refs; JVM test pins them) | Served |
-| `rank.availableFrom` | Bond detail "From <date>"; Bonds list "latest from" | Served |
-| `rank.availableUntil` | Bond detail "Until <date>" | Served |
+| `rank.scheduledFor` | Bond detail red/skin route tag; Bonds list route-max summary. JVM tests require route dates to be valid calendar dates and inside any explicit availability window | Served |
+| `rank.availableFrom` | Bond detail explicit "Available from <date>" line; reserved for game availability/fixed story timing, not route-selected rank dates | Served |
+| `rank.availableUntil` | Bond detail explicit "Available until <date>" line; route-date regression tests enforce the window | Served |
 | `rank.location` | Bond detail location line; search | Served |
 | `rank.notes` | Bond detail note, rendered directly | Served |
 
@@ -152,7 +156,7 @@ reference activities).
   column rather than duplicating.
 - Cross-references the app resolves at render time are pinned by
   `app/src/test/.../PackContentTest.kt` (deadlineRef, activityRef, slots, gate
-  refs); packlint enforces the full structural rule set.
+  refs, and route-date windows); packlint enforces the full structural rule set.
 - Statuses: **Served** / **Intentionally not served**. Anything that would need
   a third status is a gap: file it as a Phase-9-style work item instead of
   letting a row drift.

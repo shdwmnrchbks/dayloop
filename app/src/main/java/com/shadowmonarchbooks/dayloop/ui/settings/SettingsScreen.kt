@@ -7,25 +7,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,12 +33,17 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
-import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
+import com.shadowmonarchbooks.dayloop.ui.components.SkinPackIcon
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinOutlinedActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
 /**
@@ -70,6 +72,8 @@ fun SettingsScreen(
     var createOpen by remember { mutableStateOf(false) }
     val hasMultipleRoutes = pack.routes.size > 1
     val view = LocalView.current
+    val skin = LocalSkin.current
+    val slashPanels = skin.hasSkin && skin.motion == "slash"
 
     Column(
         verticalArrangement = Arrangement.spacedBy(18.dp),
@@ -82,7 +86,7 @@ fun SettingsScreen(
         SectionTitle("Game")
         Surface(
             onClick = onSwitchGame,
-            shape = RoundedCornerShape(12.dp),
+            shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.surfaceVariant,
             modifier = Modifier.fillMaxWidth(),
         ) {
@@ -91,7 +95,7 @@ fun SettingsScreen(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.padding(10.dp),
             ) {
-                PackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
+                SkinPackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
                 Column(Modifier.weight(1f)) {
                     Text(
                         text = pack.pack.title,
@@ -120,7 +124,7 @@ fun SettingsScreen(
             SectionTitle("Pack media")
             Surface(
                 onClick = onOpenMedia,
-                shape = RoundedCornerShape(12.dp),
+                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -141,7 +145,11 @@ fun SettingsScreen(
 
         // ---- In-game clock ----
         SectionTitle("In-game clock")
-        Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+        Surface(
+            shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 state.activeProfile?.let { profile ->
                     Text(profile.name, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)
@@ -155,23 +163,25 @@ fun SettingsScreen(
                     // Day advance here gets the same light haptic tick + the
                     // pack's `advance` sound (if Skin sounds are on) as the
                     // End-Day button (docs/ROADMAP-v3.md Phase 16).
-                    Button(
+                    SkinActionButton(
+                        text = "Advance a day",
                         onClick = {
                             view.skinTick()
                             vm.skinFx.play("advance")
                             vm.endDay()
                         },
                         enabled = state.hasNextDay(),
-                    ) {
-                        Text("Advance a day")
-                    }
-                    OutlinedButton(onClick = vm::rerollDay, enabled = state.hasPreviousDay()) {
-                        Text("Reroll")
-                    }
+                    )
+                    SkinOutlinedActionButton(
+                        text = "Reroll",
+                        onClick = vm::rerollDay,
+                        enabled = state.hasPreviousDay(),
+                    )
                 }
-                OutlinedButton(onClick = { resetConfirmOpen = true }) {
-                    Text("Reset profile")
-                }
+                SkinOutlinedActionButton(
+                    text = "Reset profile",
+                    onClick = { resetConfirmOpen = true },
+                )
                 if (state.activeProfile != null && state.activeProfile!!.contentVersion != pack.pack.contentVersion) {
                     Text(
                         text = "Pack content was updated after this save was made.",
@@ -188,7 +198,11 @@ fun SettingsScreen(
         if (pack.pack.theme?.sfx?.isNotEmpty() == true) {
             val soundsEnabled by vm.soundsEnabled.collectAsState()
             SectionTitle("Skin sounds")
-            Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+            Surface(
+                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
@@ -217,9 +231,13 @@ fun SettingsScreen(
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             state.profiles.forEach { profile ->
                 val active = profile.id == state.activeProfile?.id
-                Surface(shape = RoundedCornerShape(10.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+                Surface(
+                    shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.small,
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
-                        RadioButton(selected = active, onClick = { vm.switchProfile(profile.id) })
+                        SkinChoiceIndicator(selected = active, onClick = { vm.switchProfile(profile.id) })
                         Column(modifier = Modifier.weight(1f)) {
                             Text(profile.name, style = MaterialTheme.typography.bodyLarge, fontWeight = if (active) FontWeight.SemiBold else null)
                             val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
@@ -241,18 +259,23 @@ fun SettingsScreen(
                     }
                 }
             }
-            TextButton(onClick = { createOpen = true }) {
-                Text("+ New profile")
-            }
+            SkinTextActionButton(
+                text = "+ New profile",
+                onClick = { createOpen = true },
+            )
         }
 
         // ---- Orphaned marks review (docs/PLAN.md §3.6) ----
         if (state.orphans.isNotEmpty()) {
             SectionTitle("Saved marks no longer in content")
-            Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.errorContainer, modifier = Modifier.fillMaxWidth()) {
+            Surface(
+                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.errorContainer,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack ” content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
+                        text = "${state.orphans.size} saved mark(s) point at steps that no longer exist in this pack — content was edited after they were saved. Nothing was dropped; discard them once reviewed.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onErrorContainer,
                     )
@@ -270,9 +293,10 @@ fun SettingsScreen(
                             color = MaterialTheme.colorScheme.onErrorContainer,
                         )
                     }
-                    OutlinedButton(onClick = vm::discardOrphans) {
-                        Text("Discard these marks")
-                    }
+                    SkinOutlinedActionButton(
+                        text = "Discard these marks",
+                        onClick = vm::discardOrphans,
+                    )
                 }
             }
         }
@@ -361,7 +385,7 @@ private fun CreateProfileDialog(
                     Text("Route", style = MaterialTheme.typography.labelLarge)
                     routes.forEach { route ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            RadioButton(
+                            SkinChoiceIndicator(
                                 selected = routeId == route.id,
                                 onClick = { routeId = route.id },
                             )
@@ -391,7 +415,7 @@ private fun CreateProfileDialog(
 
 @Composable
 private fun SectionTitle(text: String, modifier: Modifier = Modifier) {
-    Text(text = text, style = MaterialTheme.typography.titleMedium, modifier = modifier)
+    SkinSectionHeader(text = text, modifier = modifier)
 }
 
 @Composable

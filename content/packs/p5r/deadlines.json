@@ -2,9 +2,9 @@
   "deadlines": [
     {
       "id": "p5r.deadline.palace1",
-      "label": "First palace heist — steal the Treasure",
+      "label": "First palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-04-26"
+      "date": "2016-05-02"
     },
     {
       "id": "p5r.deadline.exams.may-midterms",
@@ -14,15 +14,15 @@
     },
     {
       "id": "p5r.deadline.palace2",
-      "label": "Second palace heist — steal the Treasure",
+      "label": "Second palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-05-25"
+      "date": "2016-06-05"
     },
     {
       "id": "p5r.deadline.palace3",
-      "label": "Third palace heist — steal the Treasure",
+      "label": "Third palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-06-28"
+      "date": "2016-07-09"
     },
     {
       "id": "p5r.deadline.exams.july-finals",
@@ -32,15 +32,15 @@
     },
     {
       "id": "p5r.deadline.palace4",
-      "label": "Fourth palace heist — steal the Treasure",
+      "label": "Fourth palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-07-27"
+      "date": "2016-08-21"
     },
     {
       "id": "p5r.deadline.palace5",
-      "label": "Fifth palace heist — steal the Treasure",
+      "label": "Fifth palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-10-06"
+      "date": "2016-10-11"
     },
     {
       "id": "p5r.deadline.exams.october-midterms",
@@ -50,15 +50,15 @@
     },
     {
       "id": "p5r.deadline.palace6",
-      "label": "Sixth palace heist — steal the Treasure",
+      "label": "Sixth palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-11-19"
+      "date": "2016-11-20"
     },
     {
       "id": "p5r.deadline.palace7",
-      "label": "Seventh palace heist — steal the Treasure",
+      "label": "Seventh palace story deadline — finish the heist beforehand",
       "kind": "palace",
-      "date": "2016-12-09"
+      "date": "2016-12-18"
     },
     {
       "id": "p5r.deadline.exams.december-finals",
@@ -68,33 +68,39 @@
     },
     {
       "id": "p5r.deadline.palace8",
-      "label": "Final palace battle — steal the Treasure",
+      "label": "Royal final Palace story deadline — final confrontation",
       "kind": "palace",
       "date": "2017-02-03"
     },
     {
+      "id": "p5r.deadline.missable.palace8-route",
+      "label": "Royal final Palace — secure the Treasure route by February 2",
+      "kind": "missable",
+      "date": "2017-02-02"
+    },
+    {
       "id": "p5r.deadline.missable.councilor-rank9",
-      "label": "Councilor must reach rank 9 before the term-paper event",
+      "label": "Councilor rank 9 — required to unlock the third semester",
       "kind": "missable",
       "date": "2016-11-17"
     },
     {
       "id": "p5r.deadline.missable.justice-rivalry",
-      "label": "Accept the rivalry and win the duel — required for the third semester",
+      "label": "Justice rank 8 — optional Royal/Akechi content, not required for the third semester",
       "kind": "missable",
-      "window": { "start": "2016-11-02", "end": "2016-11-04" }
+      "date": "2016-11-17"
     },
     {
       "id": "p5r.deadline.missable.keep-the-promise",
-      "label": "Answer to keep the promise after the fifth heist — required for the third semester",
+      "label": "Completion-route reminder after Justice rank 10 — choose to keep the promise for optional Akechi content",
       "kind": "missable",
       "date": "2016-12-08"
     },
     {
       "id": "p5r.deadline.missable.faith-rank5",
-      "label": "Faith must reach rank 5 before the arcana locks until January",
+      "label": "Faith rank 5 — needed to continue ranks 6–10 in January; not required for the third semester",
       "kind": "missable",
-      "date": "2016-07-28"
+      "date": "2016-12-22"
     },
     {
       "id": "p5r.deadline.missable.interrogation-answers",
@@ -104,38 +110,38 @@
     },
     {
       "id": "p5r.deadline.missable.dvd-rentals",
-      "label": "Last DVD rental (all series end; return on 10/23)",
-      "kind": "missable",
-      "window": { "start": "2016-06-29", "end": "2016-10-14" }
+      "label": "Completion-route target — finish the planned Royal DVD viewings (no rental return deadline)",
+      "kind": "routeTarget",
+      "date": "2016-10-23"
     },
     {
       "id": "p5r.deadline.missable.library-borrowing",
-      "label": "Last day to borrow from the school library",
-      "kind": "missable",
+      "label": "Completion-route last school-library borrowing",
+      "kind": "routeTarget",
       "date": "2016-11-07"
     },
     {
       "id": "p5r.deadline.missable.books-complete",
-      "label": "All 46 books finished (Chinese Sweets last — unlocks Chinatown)",
-      "kind": "missable",
+      "label": "Completion-route target — finish the full 46-book catalog (Bookworm award requires 40)",
+      "kind": "routeTarget",
       "date": "2017-01-25"
     },
     {
       "id": "p5r.deadline.missable.sooty-scale-armor",
-      "label": "Last chance to farm the Sooty Scale Armor (Morgana's best armor)",
-      "kind": "missable",
+      "label": "Completion-route farming window — Sooty Scale Armor",
+      "kind": "routeTarget",
       "window": { "start": "2017-01-12", "end": "2017-01-26" }
     },
     {
       "id": "p5r.deadline.missable.mementos-finale",
-      "label": "Last Mementos visit — all Stamps, EXP bonus, and the Reaper",
-      "kind": "missable",
+      "label": "Completion-route final Mementos cleanup visit",
+      "kind": "routeTarget",
       "date": "2017-01-28"
     },
     {
       "id": "p5r.deadline.missable.retro-games",
-      "label": "All seven retro games beaten for the accessory set",
-      "kind": "missable",
+      "label": "Completion-route target — finish all seven retro games",
+      "kind": "routeTarget",
       "date": "2017-01-30"
     }
   ]

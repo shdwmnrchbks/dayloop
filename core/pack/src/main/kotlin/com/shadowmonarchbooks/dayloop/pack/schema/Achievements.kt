@@ -15,7 +15,7 @@ data class AchievementDefinition(
     val title: String,
     val description: String? = null,
     val scope: String = "base",
-    /** Earliest date the achievement is meaningfully actionable in this route. */
+    /** Earliest independently supported in-game date this achievement can become actionable; not a route completion date. */
     val availableFrom: String? = null,
     /** Route-specific checkpoint where the guide expects this to be earned. */
     val expectedBy: String? = null,
@@ -59,11 +59,7 @@ data class AchievementTrackingRule(
     val unit: String? = null,
 )
 
-/**
- * Stable semantic selector for an authored walkthrough step. The selector is
- * deliberately independent of step index, so inserting/reordering steps does
- * not silently retarget achievement progress.
- */
+/** Stable semantic selector for an authored walkthrough step. The selector is deliberately independent of step index. */
 @Serializable
 data class AchievementEventAnchor(
     val id: String,

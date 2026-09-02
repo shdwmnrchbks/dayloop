@@ -1,7 +1,9 @@
 package com.shadowmonarchbooks.dayloop.ui.answers
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,11 +22,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
-import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.byId
+import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 
 /**
  * Exam/test answer sheets (docs/PLAN.md Phase 5): every structured answer the
@@ -51,14 +55,25 @@ fun AnswersScreen(
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         items(sheets, key = { it.id }) { sheet ->
+            val skin = LocalSkin.current
+            val slash = skin.hasSkin && skin.motion == "slash"
+            val cardShape = if (slash) skin.shapes.card else RoundedCornerShape(12.dp)
             Surface(
-                shape = RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                shape = cardShape,
+                color = if (slash) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceVariant,
+                shadowElevation = 0.dp,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .then(
+                        if (slash) Modifier.border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.onBackground,
+                            shape = cardShape,
+                        ) else Modifier,
+                    )
                     .clickable { onOpenDay(sheet.date) },
             ) {
-                androidx.compose.foundation.layout.Column(
+                Column(
                     Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                 ) {
@@ -66,32 +81,47 @@ fun AnswersScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
-                        AnswerKindChip(sheet.kind)
+                        if (slash) {
+                            SkinTag(
+                                text = skin.cased(
+                                    when (sheet.kind) {
+                                        "exam" -> "Exam"
+                                        "classQuestion" -> "Class question"
+                                        else -> sheet.kind.replaceFirstChar { it.uppercase() }
+                                    },
+                                    "display",
+                                ),
+                                container = MaterialTheme.colorScheme.primary,
+                                content = MaterialTheme.colorScheme.onPrimary,
+                            )
+                        } else {
+                            AnswerKindChip(sheet.kind)
+                        }
                         Text(
-                            text = sheet.label,
-                            style = MaterialTheme.typography.titleSmall,
+                            text = if (slash) skin.cased(sheet.label, "display") else sheet.label,
+                            style = if (slash) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.SemiBold,
+                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.weight(1f),
                         )
                         Text(
                             text = formatDate(sheet.date, pack.calendar),
                             style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    // deadlineRef cross-link rendered as the referenced
-                    // deadline's label (docs/ROADMAP-v2.md Phase 9).
                     pack.deadlines.byId(sheet.deadlineRef)?.let { dl ->
                         Text(
                             text = "Deadline: ${dl.label}",
                             style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.secondary,
+                            color = if (slash) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
                         )
                     }
                     sheet.answers.forEachIndexed { i, answer ->
                         Text(
                             text = "${i + 1}. $answer",
                             style = MaterialTheme.typography.bodyMedium,
+                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                         )
                     }
                 }

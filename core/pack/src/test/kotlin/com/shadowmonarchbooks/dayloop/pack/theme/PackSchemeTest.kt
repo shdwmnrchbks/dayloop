@@ -19,7 +19,7 @@ class PackSchemeTest {
 
     @Test
     fun `style tokens are the closed set`() {
-        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content"), THEME_STYLES)
+        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink"), THEME_STYLES)
     }
 
     @Test
@@ -32,6 +32,24 @@ class PackSchemeTest {
             roles.keys.containsAll(CONTRAST_PAIRS.flatMap { listOf(it.first, it.second) }),
             "every contrast pair role must exist in the materialized scheme",
         )
+    }
+
+    @Test
+    fun `ink scheme stays within black white and accent shades`() {
+        val t = theme("#D81800", style = "ink")
+        for (dark in listOf(true, false)) {
+            val roles = schemeArgb(t, dark)!!
+            val allowed = setOf(
+                0xFF000000.toInt(),
+                0xFF181818.toInt(),
+                0xFFF0F0F0.toInt(),
+                0xFFFFFFFF.toInt(),
+                0xFFD81800.toInt(),
+                0xFF8F1000.toInt(),
+                0xFFF21B00.toInt(),
+            )
+            assertTrue(roles.values.all { it in allowed }, "ink scheme introduced an unrelated hue: $roles")
+        }
     }
 
     @Test
@@ -53,7 +71,7 @@ class PackSchemeTest {
     @Test
     fun `every text pair passes AA for a representative seed and all styles`() {
         // Representative seeds across the hue wheel + the lightness extremes a
-        // pack might declare; the tonal system must produce AA pairs everywhere.
+        // pack might declare; every scheme character must produce AA pairs.
         val seeds = listOf(
             "#A61E22", "#D9433C", "#2E5C8A", "#5C8FCB", "#9A6D07", "#DCA11E",
             "#1B5E20", "#4A148C", "#000000", "#FFFFFF",

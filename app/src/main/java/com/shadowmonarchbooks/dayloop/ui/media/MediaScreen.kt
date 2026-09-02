@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.media
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,7 +19,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -29,6 +28,9 @@ import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
+import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
  * The pack's bundled graphics, every declared media.json item grouped by
@@ -49,17 +51,24 @@ fun MediaScreen(
         return
     }
 
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         pack.mediaByKind().forEach { (kind, items) ->
             item(key = "kind-$kind") {
-                Text(
-                    text = kindLabel(kind, items.size, pack),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(top = 8.dp),
-                )
+                val label = kindLabel(kind, items.size, pack)
+                if (slash) {
+                    SkinHeader(label, modifier = Modifier.padding(top = 8.dp))
+                } else {
+                    Text(
+                        text = label,
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(top = 8.dp),
+                    )
+                }
             }
             items(items, key = { it.id }) { item ->
                 MediaGalleryRow(pack = pack, item = item)
@@ -70,19 +79,34 @@ fun MediaScreen(
 
 @Composable
 private fun MediaGalleryRow(pack: LoadedPack, item: MediaItem) {
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
+    val cardShape = skin.shapes.card
     Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant,
-        modifier = Modifier.fillMaxWidth(),
+        shape = cardShape,
+        color = if (slash) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceVariant,
+        shadowElevation = 0.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .then(
+                if (slash) Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground, cardShape)
+                else Modifier,
+            ),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.skinDecor("panel").padding(10.dp),
         ) {
             Surface(
-                shape = RoundedCornerShape(10.dp),
+                shape = skin.shapes.chip,
                 color = MaterialTheme.colorScheme.surface,
+                shadowElevation = 0.dp,
+                modifier = if (slash) {
+                    Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground, skin.shapes.chip)
+                } else {
+                    Modifier
+                },
             ) {
                 MediaImage(
                     assetPath = pack.assetOf(item),
@@ -93,33 +117,47 @@ private fun MediaGalleryRow(pack: LoadedPack, item: MediaItem) {
             }
             Column(Modifier.weight(1f)) {
                 Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.bodyLarge,
+                    text = if (slash) skin.cased(item.title, "display") else item.title,
+                    style = if (slash) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.SemiBold,
+                    color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                 )
                 item.caption?.let {
                     Text(
                         text = it,
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
                 Spacer(Modifier.height(2.dp))
                 Text(
                     text = anchorText(pack, item),
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = if (slash) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
                 )
             }
         }
     }
 }
 
-/** Where this item surfaces, in pack vocabulary ("June 2016", "Lovers", "gallery only"). */
-private fun anchorText(pack: LoadedPack, item: MediaItem): String {
+/**
+ * Where this item surfaces, in pack vocabulary. Achievement artwork belongs to
+ * the media/gallery layer, not the achievement rule layer: once a pack ships a
+ * first-class achievement catalog its media month/day anchors are explicitly
+ * labelled as imported guide placement so they cannot be mistaken for trophy
+ * unlock dates.
+ */
+internal fun anchorText(pack: LoadedPack, item: MediaItem): String {
+    val guidePlacement = item.kind == MediaKinds.ACHIEVEMENT && pack.achievements.isNotEmpty()
     val anchors = buildList {
-        if (item.months.isNotEmpty()) add("months: ${item.months.joinToString()}")
-        if (item.dates.isNotEmpty()) add("days: ${item.dates.joinToString()}")
+        if (item.months.isNotEmpty()) {
+            val label = if (guidePlacement) "guide placement months" else "months"
+            add("$label: ${item.months.joinToString()}")
+        }
+        if (item.dates.isNotEmpty()) {
+            val label = if (guidePlacement) "guide placement days" else "days"
+            add("$label: ${item.dates.joinToString()}")
+        }
         item.bonds.forEach { bondId ->
             pack.bonds.firstOrNull { it.id == bondId }?.let { add(it.label) }
         }

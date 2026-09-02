@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.activities
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,12 +11,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,16 +27,18 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.schema.Activity
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
+import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /**
  * Activities browsing (docs/ROADMAP-v2.md Phase 9): the pack's activity
- * catalog — stat gains, locations, notes — reachable from the Today entry
- * point, tappable activity references on steps, and search hits. Engine-
+ * catalog — stat gains, locations/sources, notes — reachable from the Today
+ * entry point, tappable activity references on steps, and search hits. Engine-
  * neutral: kinds/labels come from the pack; spoiler activities stay hidden
  * behind a tap (docs/PLAN.md §6.2).
  */
@@ -54,37 +57,46 @@ fun ActivitiesScreen(
         return
     }
 
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
     val sorted = pack.activities.values.sortedBy { it.label.lowercase() }
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         items(sorted, key = { it.id }) { activity ->
+            val cardShape = skin.shapes.card
             Surface(
-                shape = RoundedCornerShape(10.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                shape = cardShape,
+                color = if (slash) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceVariant,
+                shadowElevation = 0.dp,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .then(
+                        if (slash) Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground, cardShape)
+                        else Modifier,
+                    )
                     .clickable { onOpenActivity(activity.id) },
             ) {
-                Column(Modifier.padding(horizontal = 12.dp, vertical = 10.dp)) {
+                Column(Modifier.skinDecor("panel").padding(horizontal = 12.dp, vertical = 10.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         ActivityKindChip(activity.kind)
                         Text(
-                            text = activity.label,
-                            style = MaterialTheme.typography.bodyLarge,
+                            text = if (slash) skin.cased(activity.label, "display") else activity.label,
+                            style = if (slash) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.SemiBold,
+                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.weight(1f),
                         )
                     }
                     if (!activity.spoiler) {
-                        ActivityMetadata(activity, pack.pack.statLabels())
+                        ActivityMetadata(activity, pack.pack.statLabels(), slash)
                     } else {
                         Text(
                             text = "Spoiler — tap to open",
                             style = MaterialTheme.typography.labelMedium,
                             fontStyle = FontStyle.Italic,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(top = 2.dp),
                         )
                     }
@@ -94,7 +106,7 @@ fun ActivitiesScreen(
     }
 }
 
-/** Full activity detail: kind, location, stat gains, notes, walkthrough references. */
+/** Full activity detail: kind, location/source, stat gains, notes, walkthrough references. */
 @Composable
 fun ActivityDetailScreen(
     activityId: String,
@@ -113,6 +125,8 @@ fun ActivityDetailScreen(
     val references = state.days.values.sumOf { day ->
         day.steps.count { it.activityRef == activity.id }
     }
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
 
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -124,8 +138,8 @@ fun ActivityDetailScreen(
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             ActivityKindChip(activity.kind)
             Text(
-                text = activity.label,
-                style = MaterialTheme.typography.headlineSmall,
+                text = if (slash) skin.cased(activity.label, "display") else activity.label,
+                style = if (slash) MaterialTheme.typography.displaySmall else MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.weight(1f),
             )
         }
@@ -135,17 +149,24 @@ fun ActivityDetailScreen(
             if (shown) {
                 ActivityBody(activity, pack, references)
             } else {
+                val revealShape = skin.shapes.chip
                 Surface(
                     onClick = { shown = true },
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    modifier = Modifier.fillMaxWidth(),
+                    shape = revealShape,
+                    color = if (slash) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceVariant,
+                    shadowElevation = 0.dp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(
+                            if (slash) Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground, revealShape)
+                            else Modifier,
+                        ),
                 ) {
                     Text(
                         text = "Spoiler — tap to reveal",
                         style = MaterialTheme.typography.labelLarge,
                         fontStyle = FontStyle.Italic,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
                     )
                 }
@@ -158,16 +179,17 @@ fun ActivityDetailScreen(
 
 @Composable
 private fun ActivityBody(activity: Activity, pack: com.shadowmonarchbooks.dayloop.data.LoadedPack, references: Int) {
+    val skin = LocalSkin.current
+    val slash = skin.hasSkin && skin.motion == "slash"
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         activity.location?.let {
             Text(
-                text = it,
+                text = "Location / source: $it",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
         if (activity.statGains.isNotEmpty()) {
-            // Pack-supplied vocabulary for the stat category (§3.1).
             Text(
                 text = "${pack.pack.labels.stat} gains",
                 style = MaterialTheme.typography.titleSmall,
@@ -176,7 +198,7 @@ private fun ActivityBody(activity: Activity, pack: com.shadowmonarchbooks.dayloo
                 Text(
                     text = "${pack.pack.statLabels()[stat] ?: stat} +$gain",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.tertiary,
+                    color = if (slash) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary,
                 )
             }
         }
@@ -190,14 +212,14 @@ private fun ActivityBody(activity: Activity, pack: com.shadowmonarchbooks.dayloo
             Text(
                 text = "Referenced by $references step(s) in the walkthrough.",
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
 }
 
 @Composable
-private fun ActivityMetadata(activity: Activity, statLabels: Map<String, String>) {
+private fun ActivityMetadata(activity: Activity, statLabels: Map<String, String>, slash: Boolean) {
     val bits = buildList {
         activity.location?.let { add(it) }
         activity.statGains.entries.joinToString(" · ") { (stat, gain) ->
@@ -208,7 +230,7 @@ private fun ActivityMetadata(activity: Activity, statLabels: Map<String, String>
         Text(
             text = bits.joinToString(" — "),
             style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 2,
             modifier = Modifier.padding(top = 2.dp),
         )
@@ -218,12 +240,9 @@ private fun ActivityMetadata(activity: Activity, statLabels: Map<String, String>
 /** Neutral chip for the activity's closed-set kind — capitalized token, no game words. */
 @Composable
 private fun ActivityKindChip(kind: String) {
-    Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.secondaryContainer) {
-        Text(
-            text = kind.replaceFirstChar { it.uppercase() },
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-        )
-    }
+    SkinTag(
+        text = kind.replaceFirstChar { it.uppercase() },
+        container = MaterialTheme.colorScheme.secondaryContainer,
+        content = MaterialTheme.colorScheme.onSecondaryContainer,
+    )
 }
