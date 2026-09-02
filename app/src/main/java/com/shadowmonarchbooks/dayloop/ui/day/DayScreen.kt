@@ -151,7 +151,7 @@ fun DayScreen(
             ) {
                 SkinSectionHeader("Tasks", modifier = Modifier.weight(1f, fill = false))
                 SkinTextActionButton(
-                    text = if (allTasksDone) "All checked" else "Check all",
+                    text = "Check all",
                     onClick = { vm.markAllDone(date, day.steps.size) },
                     enabled = day.steps.isNotEmpty() && !allTasksDone,
                 )

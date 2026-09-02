@@ -38,6 +38,10 @@ fun SkinSectionHeader(
     }
 
     val colors = MaterialTheme.colorScheme
+    val labelStyle = MaterialTheme.typography.displaySmall.copy(
+        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+        lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+    )
     Box(modifier = modifier.padding(end = 3.dp, bottom = 3.dp)) {
         Box(
             modifier = Modifier
@@ -48,7 +52,7 @@ fun SkinSectionHeader(
         Surface(
             shape = skin.shapes.header,
             color = colors.primary,
-            contentColor = colors.onPrimary,
+            contentColor = colors.background,
             shadowElevation = 0.dp,
             modifier = Modifier
                 .graphicsLayer { rotationZ = -1.2f }
@@ -56,7 +60,8 @@ fun SkinSectionHeader(
         ) {
             Text(
                 text = skin.cased(text, "display"),
-                style = MaterialTheme.typography.titleLarge,
+                style = labelStyle,
+                color = colors.background,
                 modifier = Modifier.padding(horizontal = 14.dp, vertical = 5.dp),
             )
         }

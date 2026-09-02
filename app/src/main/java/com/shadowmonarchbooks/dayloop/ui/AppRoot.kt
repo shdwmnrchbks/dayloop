@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -54,7 +53,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
 /** Every top-level destination stays registered, whatever the active pack ships. */
-private val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "deadlines", "answers")
+internal val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "answers")
 
 /**
  * Tabs the active pack earns. Achievements is a first-class tracker for every
@@ -62,15 +61,12 @@ private val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds",
  * than falling back to the old Activities browser. Activities stay reachable
  * through authored step references and Search, where they have context.
  */
-private fun topLevelTabs(pack: LoadedPack?): List<SkinNavItem> = buildList {
+internal fun topLevelTabs(pack: LoadedPack?): List<SkinNavItem> = buildList {
     add(SkinNavItem("today", "Today", Icons.Filled.Home))
     add(SkinNavItem("calendar", "Calendar", Icons.Filled.DateRange))
     add(SkinNavItem("achievements", "Achievements", Icons.Filled.Star))
     if (pack == null || pack.hasBondsFile) {
         add(SkinNavItem("bonds", pack?.pack?.labels?.bond?.let { it + "s" } ?: "Bonds", Icons.Filled.Person))
-    }
-    if (pack == null || pack.hasDeadlinesFile) {
-        add(SkinNavItem("deadlines", "Deadlines", Icons.Filled.Warning))
     }
     if (pack == null || pack.pack.capabilities.answers) {
         add(SkinNavItem("answers", "Answers", Icons.Filled.Info))

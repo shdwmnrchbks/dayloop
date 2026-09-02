@@ -239,7 +239,7 @@ fun TodayScreen(
             ) {
                 SkinSectionHeader("Tasks", modifier = Modifier.weight(1f, fill = false))
                 SkinTextActionButton(
-                    text = if (allTasksDone) "All checked" else "Check all",
+                    text = "Check all",
                     onClick = { vm.markAllDone(date, day.steps.size) },
                     enabled = !allTasksDone,
                 )
@@ -319,15 +319,17 @@ fun TodayScreen(
                 modifier = Modifier.skinDecor("panel").padding(horizontal = 10.dp, vertical = 8.dp),
             ) {
                 SkinActionButton(
-                    text = "End day ›",
+                    text = "End day",
                     onClick = ::advanceDay,
                     enabled = state.hasNextDay(),
+                    fillWidth = true,
                     modifier = Modifier.weight(1f),
                 )
                 SkinOutlinedActionButton(
-                    text = "‹ Undo day",
+                    text = "Undo day",
                     onClick = vm::rerollDay,
                     enabled = state.hasPreviousDay(),
+                    fillWidth = true,
                     modifier = Modifier.weight(1f),
                 )
             }
