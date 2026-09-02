@@ -29,8 +29,9 @@
     {
       "date": "2016-11-03",
       "weekday": "thu",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
+        { "label": "Culture Day — no school today" },
         { "label": "Accept Mishima's invitation (can he join us?)" },
         { "label": "Win the Lexy Doll at the Akihabara arcade (4/8)" },
         { "label": "Hang out with Mishima — Moon reaches rank 7" }
@@ -54,7 +55,7 @@
     {
       "date": "2016-11-05",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "school",
       "steps": [
         { "label": "Finish 'Heroic Revelations' on the metro", "activityRef": "p5r.activity.book.heroic-revelations", "statGains": { "knowledge": 7 } },
         { "label": "Finish 'Dressed in Ashes' during class", "activityRef": "p5r.activity.book.dressed-in-ashes", "statGains": { "charm": 5 } },
@@ -72,7 +73,7 @@
         { "label": "Accept Haru's invitation — Kumade (room decoration 6/20)" },
         { "label": "TV Shopping Program: Sturdy Ointment and Inner Muscle sets" },
         { "label": "Buy items from the Kanda priest" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "proficiency": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "proficiency": 2 } },
         { "label": "Hang out with Iwai (no rank-up today)" },
         { "label": "Receive the request 'Shady Deal in the Shadows'", "spoiler": true },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
@@ -141,7 +142,7 @@
     {
       "date": "2016-11-12",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "knowledge": 2 } },
         { "label": "Hang out with Futaba — Hermit reaches rank 9 (romance choice available)" },
@@ -158,7 +159,7 @@
         { "label": "Give the Moon Dango to the Kichijoji alley man — Kintaro Axe (12/16)" },
         { "label": "Hang out with Futaba — Hermit reaches rank 10" },
         { "label": "TV Shopping Program: Instant Spray and Meditative sets" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "guts": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "guts": 2 } },
         { "label": "Watch 'Pach Saw' with Haru (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.pach-saw", "statGains": { "guts": 7 } },
         { "label": "Grab Chunky Katsu at the Kichijoji fried food shop" }
       ]
@@ -216,7 +217,7 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [
-        { "label": "Councilor reaches rank 10", "spoiler": true },
+        { "label": "Councilor reaches rank 10 and the Casino Calling Card sequence occupies the daytime; evening is confined to LeBlanc", "spoiler": true },
         { "label": "Send the Calling Card, then save your game", "spoiler": true },
         { "label": "Beat 'Featherman Seeker' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.featherman-seeker", "statGains": { "knowledge": 3 } }
       ]
@@ -249,16 +250,18 @@
     {
       "date": "2016-11-22",
       "weekday": "tue",
-      "dayKind": "school",
+      "dayKind": "story",
       "steps": [
+        { "label": "Automatic investigation/story occupies the daytime; Kawakami covers school and the evening is confined to LeBlanc", "spoiler": true },
         { "label": "Save first, then beat 'Featherman Seeker' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.featherman-seeker", "statGains": { "knowledge": 3 } }
       ]
     },
     {
       "date": "2016-11-23",
       "weekday": "wed",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
+        { "label": "Shido election-speech/story events occupy the daytime; the evening is confined to LeBlanc", "spoiler": true },
         { "label": "Save first, then beat 'Featherman Seeker' with 'the technique' — reload until you win", "activityRef": "p5r.activity.videoGame.featherman-seeker", "statGains": { "knowledge": 3 } }
       ]
     },
@@ -267,6 +270,7 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
+        { "label": "Automatic Diet Building investigation leads directly into the first cruise-ship infiltration; the evening is confined to LeBlanc", "spoiler": true },
         { "label": "First cruise-ship infiltration — follow the fixed path to the Representatives Chamber", "spoiler": true },
         { "label": "Answer the TV game show: 'The Speaker of the House decides'", "statGains": { "knowledge": 2 } },
         { "label": "Carry Emperor, Tower, Hanged Man, and Empress Personas" },
@@ -276,8 +280,9 @@
     {
       "date": "2016-11-25",
       "weekday": "fri",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
+        { "label": "Joker is still presumed dead and cannot attend school; normal daytime route freedom resumes from LeBlanc", "spoiler": true },
         { "label": "Receive the request 'Swindling Old Folk is Pretty Low'", "spoiler": true },
         { "label": "Buy SP-recovery drinks from the vending machines" },
         { "label": "Hang out with Yusuke — Emperor reaches rank 8" },
@@ -302,7 +307,7 @@
       "steps": [
         { "label": "Buy the Legendary Yaki-imo from the vendor in front of Takemi's clinic" },
         { "label": "Give the Legendary Yaki-imo to the Kichijoji alley man — Empowering Ofuda x3 (13/16)" },
-        { "label": "Buy the Sunday drink in the Underground Walkway", "statGains": { "kindness": 2 } },
+        { "label": "Buy the Sunday drink in the Underground Walkway", "activityRef": "p5r.activity.drink.fruit-drink", "statGains": { "kindness": 2 } },
         { "label": "Hang out with Yusuke — Emperor reaches rank 9" },
         { "label": "TV Shopping Program: Yaki-Imo and Limited Sweets sets" },
         { "label": "Buy items from the Kanda priest" },
@@ -313,8 +318,9 @@
     {
       "date": "2016-11-28",
       "weekday": "mon",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
+        { "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots", "spoiler": true },
         { "label": "Hang out with Yusuke — Emperor reaches rank 10" },
         { "label": "Solve the LeBlanc crossword: 'Charisma'", "statGains": { "knowledge": 2 } },
         { "label": "Watch 'Over the Pigeon's Nest' in Yongen-Jaya (Craft of Cinema bonus active)", "activityRef": "p5r.activity.movie.over-the-pigeons-nest", "statGains": { "kindness": 7 } }
@@ -323,8 +329,9 @@
     {
       "date": "2016-11-29",
       "weekday": "tue",
-      "dayKind": "school",
+      "dayKind": "free",
       "steps": [
+        { "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots", "spoiler": true },
         { "label": "Hang out with Haru — Empress reaches rank 3" },
         { "label": "Hang out with Chihaya — Fortune reaches rank 10" }
       ]
@@ -334,6 +341,7 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
+        { "label": "Still presumed dead — no school; use the route's normal daytime/evening free slots", "spoiler": true },
         { "label": "Buy the Local Mascot Set at the Akihabara Otaku Goods Shop" },
         { "label": "Hang out with Futaba in Akihabara — Hero Figure (room decoration 9/20)" },
         { "label": "Buy the Robot Vacuum at the Akihabara electronics shop" },
