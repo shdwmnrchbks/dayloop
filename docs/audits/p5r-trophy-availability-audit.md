@@ -6,14 +6,32 @@ This pass does **not** try to force every trophy into the authored 100% Completi
 
 ## Sources checked
 
-- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed story timing, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
-- TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, and May 18 Strength-rank-1 / Group Guillotine availability.
-- GameFAQs and Samurai Gamers Royal walkthroughs — independent May 5 LeBlanc cleaning/trophy checks, May 18 Museum first-free-exploration checks, and route-date comparisons.
+- PlayStationTrophies Royal trophy guide and trophy-specific pages — trophy requirements, fixed Palace-resolution timing, fusion availability, Museum Treasure Demon behavior, Kichijoji facility behavior, the non-trophy Jun 5 darts introduction, Jose's first encounter, and Akihabara's crane-game unlock.
+- TrueAchievements Royal achievement pages — independent checks for the May 5 Phantom Thieves formation, mandatory May 7 first Mementos request, May 18 Strength-rank-1 / Group Guillotine availability, and exact Palace/Mementos story-trophy dates.
+- GameFAQs and Samurai Gamers Royal walkthroughs — independent May 5 LeBlanc cleaning/trophy checks, May 18 Museum first-free-exploration checks, Palace-resolution dates, and route-date comparisons.
 - Samurai Gamers Royal April walkthrough — independent Apr 11 Arsène awakening/story check.
 - Samurai Gamers Old Temple guide — explicit Jun 6 temple unlock.
 - Samurai Gamers June walkthrough — independent early Kichijoji darts/billiards usage examples.
 
 ## Corrected anchors
+
+### Palace and main-story completion trophies
+
+The heist/boss day for the first seven Palaces can move because the player chooses when to complete the dungeon. The corresponding Royal trophy does **not** pop on that flexible boss day: it appears at the fixed story resolution/deadline. Dayloop previously used broad month-start anchors for most of these trophies, which made `availableFrom` neither the route date nor the actual trophy date.
+
+The audited fixed pop dates are:
+
+- `Castle of Lust: Seized` — **2016-05-02**, Kamoshida's confession.
+- `Museum of Vanity: Repossessed` — **2016-06-05**, Madarame-arc resolution.
+- `Bank of Gluttony: Cleaned Out` — **2016-07-09**, Kaneshiro-arc resolution.
+- `Pyramid of Wrath: Plundered` — **2016-08-22**, the Medjed/Futaba resolution after the 8/21 deadline.
+- `Spaceport of Greed: Obliterated` — **2016-10-11**, Okumura-arc resolution.
+- `Casino of Jealousy: Bankrupted` — **2016-11-20**, when the story catches up to the interrogation.
+- `Cruiser of Pride: Capsized` — **2016-12-18**, Shido-arc/election resolution.
+- `The Thorough Trickster` — **2016-12-24**, after completing Mementos Depths / Qliphoth and the original final boss.
+- `Take Back the Future` — **2017-02-03**, after the Laboratory Palace final battle.
+
+These values are trophy availability/pop dates. They must not replace the separate actionable Palace deadlines or the completion route's chosen infiltration/heist dates.
 
 ### Spirit of Rebellion — 2016-04-11
 
@@ -69,6 +87,10 @@ Akihabara and its crane game unlock on Aug 31. The route starts its crane-prize 
 
 ## Deliberately excluded from this pass
 
+### The Path Chosen
+
+Unlike the fixed Palace-resolution trophies, this trophy is awarded for reaching **an ending**. Royal contains multiple ending branches and the exact trophy date depends on the ending path. A single fixed calendar day would therefore be misleading unless the achievement is explicitly tied to Dayloop's authored true-ending route.
+
 ### Jose's Favorite Customer / The Phantom Philatelist
 
 Jose is introduced on May 7, but independent guides distinguish that mandatory tutorial encounter from the later freely explorable Mementos session where flowers/stamps can be collected and traded. Optimized completion routes commonly place the first shop/stamp trophy run on May 31, while other references only state `after meeting Jose`. Until the exact free-exploration gate is independently pinned, the audit does not replace the existing broad anchors with false precision.
@@ -95,4 +117,4 @@ Gun customization depends on Guts rank 4 plus Hanged Man/Iwai rank 1 and returni
 
 ## Regression coverage
 
-`P5RTrophyAvailabilityAuditTest` pins the thirteen corrected fixed/first-opportunity availability anchors, confirms they remain manual/no-deadline trophies, checks the mandatory May 7 Mementos introduction, and explicitly verifies that the route's later billiards, temple and crane choices do not overwrite real facility availability.
+`P5RTrophyAvailabilityAuditTest` now pins **22** corrected fixed/first-opportunity availability anchors, including all nine Palace/Mementos story-resolution trophies above. It confirms they remain manual/no-deadline trophies, checks the mandatory May 7 Mementos introduction, and explicitly verifies that the route's later billiards, temple and crane choices do not overwrite real facility availability.
