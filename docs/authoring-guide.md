@@ -151,7 +151,7 @@ engine look.
   modifier draws behind the opaque container and never shows.
 - **Motion**: `slash` (hard diagonal wipe + skew-in, ~240 ms), `fade`
   (180 ms cross-fade), `flip` (page-turn slide + scale), `none` (engine
-  default). Applies to screen navigation and the spoiler/step reveal; all of
+  default). Applies to screen navigation; all of
   it collapses to no animation when the system remove-animations setting is
   on. Widgets and launcher shortcuts intentionally do not consume app-only
   animation or sound.
@@ -277,7 +277,7 @@ must point at an existing file — orphaned or unresolvable art fails lint, so
 
 - Steps are short imperatives in **our own words** — never guide prose
   (docs/sources.md).
-- `spoiler: true` hides story context behind a tap (docs/PLAN.md §6).
+- Walkthrough `spoiler` remains accepted for pack compatibility, but daily step text renders directly. Activity-level `spoiler: true` still hides detail behind a tap (docs/PLAN.md §6).
 - Coverage warnings are expected while a pack grows; aim to retire them one
   month at a time.
 

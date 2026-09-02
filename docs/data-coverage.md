@@ -88,7 +88,7 @@ contract JVM-side.
 | `steps[].slot` | Slot pill per step row, pack-supplied label | Served |
 | `steps[].activityRef` | Activity label on the step row (tap → Activity detail); packlint ref check | Served |
 | `steps[].statGains` | Step-row gain line ("Knowledge +3") | Served |
-| `steps[].spoiler` | Spoiler-gated step row ("tap to reveal", §6.2) | Served |
+| `steps[].spoiler` | Legacy authoring metadata; daily step text always renders directly | Intentionally presentation-neutral |
 
 ## confidants.json (`BondsFile`, `Bond`, `RankStep`)
 
@@ -96,13 +96,13 @@ contract JVM-side.
 |---|---|---|
 | `bond.id` | Navigation (`bond/{id}`), search keys | Served |
 | `bond.label` | Bonds list/detail, search | Served |
-| `bond.characterLabel` | Bond detail "Show character" reveal; search | Served |
+| `bond.characterLabel` | Bond detail heading; search | Served |
 | `rank.rank` | Numbered ladder in Bond detail | Served |
 | `rank.gates` | Bond detail "Requires: …" line via `describeCondition` (packlint validates gate refs; JVM test pins them) | Served |
 | `rank.availableFrom` | Bond detail "From <date>"; Bonds list "latest from" | Served |
 | `rank.availableUntil` | Bond detail "Until <date>" | Served |
 | `rank.location` | Bond detail location line; search | Served |
-| `rank.notes` | Bond detail tap-to-reveal note (§6.2) | Served |
+| `rank.notes` | Bond detail note, rendered directly | Served |
 
 ## activities.json (`ActivitiesFile`, `Activity`)
 

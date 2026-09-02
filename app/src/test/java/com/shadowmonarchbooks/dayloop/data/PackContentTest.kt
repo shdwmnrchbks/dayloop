@@ -5,6 +5,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.AllOf
 import com.shadowmonarchbooks.dayloop.pack.schema.AnyOf
 import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
 import com.shadowmonarchbooks.dayloop.pack.schema.Condition
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.pack.schema.StatGte
 import java.nio.file.Files
 import java.nio.file.Path
@@ -180,6 +181,22 @@ class PackContentTest {
                 }
             }
         }
+    }
+
+    @Test
+    fun `p5r serves supplied confidant backgrounds on unique bond pages`() {
+        val loaded = loadPacks().firstOrNull { it.first == "p5r" }?.third ?: return
+        val backgrounds = loaded.media?.media.orEmpty().filter {
+            it.kind == MediaKinds.BANNER && it.id.startsWith("p5r.media.confidant.")
+        }
+
+        assertEquals(22, backgrounds.size, "all supplied confidant graphics must be declared")
+        assertTrue(backgrounds.all { it.bonds.size == 1 }, "each confidant background must target one bond")
+        assertEquals(
+            22,
+            backgrounds.flatMap { it.bonds }.distinct().size,
+            "each supplied confidant background must target a different bond",
+        )
     }
 
     @Test

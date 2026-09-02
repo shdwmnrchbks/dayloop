@@ -3,7 +3,7 @@
     {
       "id": "p5r.bond.fool",
       "label": "Fool",
-      "characterLabel": "The Walrus",
+      "characterLabel": "Igor",
       "ranks": [
         { "rank": 1, "availableFrom": "2016-04-09", "notes": "Unlocked by the story at the start of the game." },
         { "rank": 2, "availableFrom": "2016-04-24", "notes": "Advances on its own during the first heist window." },
@@ -139,7 +139,7 @@
     {
       "id": "p5r.bond.strength",
       "label": "Strength",
-      "characterLabel": "The Twins",
+      "characterLabel": "Caroline and Justine",
       "ranks": [
         { "rank": 1, "availableFrom": "2016-05-19", "notes": "Velvet Room ritual (fusion request)." },
         { "rank": 2, "availableFrom": "2016-05-23", "notes": "Velvet Room ritual (fusion request)." },
@@ -190,6 +190,7 @@
     {
       "id": "p5r.bond.faith",
       "label": "Faith",
+      "characterLabel": "Kasumi Yoshizawa",
       "ranks": [
         { "rank": 1, "availableFrom": "2016-05-30", "notes": "Unlocked automatically by the story." },
         { "rank": 2, "availableFrom": "2016-06-08", "location": "Kichijoji" },
@@ -376,6 +377,7 @@
     {
       "id": "p5r.bond.judgement",
       "label": "Judgement",
+      "characterLabel": "Sae",
       "ranks": [
         { "rank": 1, "availableFrom": "2016-07-09", "notes": "Unlocked automatically by the story." },
         { "rank": 2, "availableFrom": "2016-07-24", "notes": "Story-forced." },

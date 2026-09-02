@@ -12,7 +12,7 @@ data class Bond(
     val id: String,
     /** Display label, e.g. "Fool". */
     val label: String,
-    /** Character display label; may be spoiler-sensitive, UI gates it. */
+    /** Character display label shown on the bond detail page. */
     val characterLabel: String? = null,
     val ranks: List<RankStep>,
 )
@@ -29,6 +29,6 @@ data class RankStep(
     val availableFrom: String? = null,
     val availableUntil: String? = null,
     val location: String? = null,
-    /** Rewritten, spoiler-safe note shown behind progressive disclosure. */
+    /** Optional rank guidance shown directly on the bond detail page. */
     val notes: String? = null,
 )

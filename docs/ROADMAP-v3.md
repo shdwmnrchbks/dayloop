@@ -54,7 +54,7 @@ swappable, lint-validated, accessible, and strippable before any public flip
 1. **Engine neutrality.** No game titles, character names, or per-game colors in
    Kotlin. CI guards engine sources against game-specific literals.
 2. **Spoiler safety & anti-deviation UX survive the skin.** Done/Skip/Later and
-   spoiler-collapse behavior are semantic engine behavior, never skin behavior.
+   activity spoiler-collapse behavior are semantic engine behavior, never skin behavior.
 3. **Both dark and light mode** for every skin.
 4. **Performance budget.** 60fps target on a mid-tier device; decorative effects
    degrade gracefully and animation is not load-bearing.

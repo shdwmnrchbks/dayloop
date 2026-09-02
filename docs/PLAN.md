@@ -104,7 +104,7 @@ Today (hero: current slot, next action, deadline bar) → Day detail (slot-by-sl
 ## 6. UX principles
 
 1. **Anti-deviation friction:** Done / Skip / Later everywhere; deviating updates suggestions, never punishes.
-2. **Progressive disclosure:** future deadlines visible; spoilers behind taps.
+2. **Progressive disclosure:** future deadlines remain visible; explicitly spoiler-tagged activity details stay behind taps while daily steps and bond details render directly.
 3. **In-game-time honesty:** deadline bar + widget > push notifications.
 
 ## 7. Milestones
