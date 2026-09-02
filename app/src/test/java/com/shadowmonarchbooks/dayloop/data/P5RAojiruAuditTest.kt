@@ -38,14 +38,18 @@ class P5RAojiruAuditTest {
         assertTrue(activity.notes.orEmpty().contains("+2 points"))
         assertTrue(activity.notes.orEmpty().contains("same stat repeats on later Sundays until purchased"))
 
-        // Audit every authored route purchase by the user-visible action text rather
-        // than relying on activityRef. Older walkthrough imports did not tag every
-        // Aojiru row consistently, but the underlying purchase/rotation facts still
-        // need regression coverage.
+        // Audit every authored route purchase by its reusable reference when present
+        // or by the visible action text. The first route entry says "Sunday fruit
+        // drink" while later entries shorten that to "Sunday drink", and older
+        // imports did not tag every row with activityRef.
         val purchases = p5r.walkthroughs
             .flatMap { it.file.days }
             .flatMap { day -> day.steps.map { step -> day.date to step } }
-            .filter { (_, step) -> step.label.contains("Sunday drink") }
+            .filter { (_, step) ->
+                step.activityRef == activity.id ||
+                    step.label.contains("Sunday drink") ||
+                    step.label.contains("Sunday fruit drink")
+            }
 
         assertTrue(purchases.isNotEmpty(), "The completion route should exercise the audited Aojiru activity")
 
@@ -63,7 +67,7 @@ class P5RAojiruAuditTest {
             )
 
             step.activityRef?.let { ref ->
-                assertEquals(activity.id, ref, "$date must not link a Sunday drink to the wrong reusable activity")
+                assertEquals(activity.id, ref, "$date must not link an Aojiru purchase to the wrong reusable activity")
             }
         }
     }
