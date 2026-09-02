@@ -22,7 +22,7 @@
     {
       "id": "standard",
       "label": "100% Completion Route",
-      "description": "Source-specific full-coverage plan. Route dates are the authored order for this completion route, not universal game availability or deadlines."
+      "description": "Source-specific full-coverage plan. Route dates are the authored order for this completion route, not universal game availability or deadlines. The source route chooses romance at romanceable Confidant branches; choosing friendship is valid gameplay but can change later affinity, hangout, and romance-only decoration availability."
     }
   ],
   "capabilities": {
