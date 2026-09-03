@@ -16,8 +16,6 @@ class P3rRescueDeadlineAuditTest {
         val deadlines = assertNotNull(loadP3r().deadlines).deadlines
         val byId = deadlines.associateBy { it.id }
 
-        assertEquals(23, deadlines.size)
-
         val expected = linkedMapOf(
             "p3r.deadline.missing-persons.2009-07-06" to "2009-07-06",
             "p3r.deadline.missing-persons.2009-08-05" to "2009-08-05",
@@ -28,6 +26,10 @@ class P3rRescueDeadlineAuditTest {
             "p3r.deadline.missing-persons.2009-12-30" to "2009-12-30",
             "p3r.deadline.missing-persons.2010-01-30" to "2010-01-30",
         )
+
+        val rescueDeadlines = deadlines.filter { it.id.startsWith("p3r.deadline.missing-persons.") }
+        assertEquals(8, rescueDeadlines.size)
+        assertEquals(expected.keys, rescueDeadlines.map { it.id }.toSet())
 
         expected.forEach { (id, date) ->
             val deadline = assertNotNull(byId[id], id)
