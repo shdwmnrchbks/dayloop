@@ -41,6 +41,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
@@ -566,6 +567,7 @@ fun DeadlineBanner(
     deadline: Deadline,
     daysLeft: Long,
     modifier: Modifier = Modifier,
+    backgroundAssetPath: String? = null,
     /** True when the deadline lands on a date the pack marks with moon media (Phase 14). */
     moonMarked: Boolean = false,
     /**
@@ -577,6 +579,7 @@ fun DeadlineBanner(
 ) {
     val skin = LocalSkin.current
     if (skin.motion == "slash") {
+        val background = rememberAssetImage(backgroundAssetPath)
         // Calling-card treatment (docs/ROADMAP-v3.md Phase 13, slash-language
         // packs): an inverted card with the label in display type — the
         // urgent/due color logic stays engine logic, reduced to the due line
@@ -586,22 +589,40 @@ fun DeadlineBanner(
             color = Color(0xFFF0F0F0),
             modifier = modifier.fillMaxWidth(),
         ) {
-            Column(
-                Modifier
-                    .skinDecor("panel")
-                    .padding(horizontal = 14.dp, vertical = 10.dp),
-            ) {
-                Text(
-                    text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(
-                    text = skin.cased(deadline.label, "display"),
-                    style = MaterialTheme.typography.displaySmall,
-                    color = Color.Black,
-                )
+            Box(Modifier.skinDecor("panel")) {
+                background?.let {
+                    Image(
+                        bitmap = it,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        alignment = Alignment.CenterEnd,
+                        modifier = Modifier.matchParentSize(),
+                    )
+                    Box(
+                        Modifier
+                            .matchParentSize()
+                            .background(
+                                Brush.horizontalGradient(
+                                    0f to Color(0xFFF0F0F0),
+                                    0.58f to Color(0xFFF0F0F0).copy(alpha = 0.94f),
+                                    1f to Color(0xFFF0F0F0).copy(alpha = 0.08f),
+                                ),
+                            ),
+                    )
+                }
+                Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
+                    Text(
+                        text = if (daysLeft == 0L) "Due today" else "$daysLeft day(s) left",
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                    Text(
+                        text = skin.cased(deadline.label, "display"),
+                        style = MaterialTheme.typography.displaySmall,
+                        color = Color.Black,
+                    )
+                }
             }
         }
         return

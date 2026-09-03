@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -43,8 +44,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -400,6 +404,7 @@ fun PerfectDaySplash(
     allDone: Boolean,
     key: Any?,
     suppressed: Boolean = false,
+    background: ImageBitmap? = null,
     modifier: Modifier = Modifier,
 ) {
     var show by remember { mutableStateOf(false) }
@@ -421,7 +426,7 @@ fun PerfectDaySplash(
         exit = fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)),
         modifier = modifier,
     ) {
-        PerfectDayCard(onDismiss = { show = false })
+        PerfectDayCard(background = background, onDismiss = { show = false })
     }
 }
 
@@ -430,7 +435,7 @@ internal fun shouldShowPerfectDay(allDone: Boolean, dayCompleteVisible: Boolean)
     allDone && !dayCompleteVisible
 
 @Composable
-private fun PerfectDayCard(onDismiss: () -> Unit) {
+private fun PerfectDayCard(background: ImageBitmap?, onDismiss: () -> Unit) {
     val skin = LocalSkin.current
     val slash = skin.hasSkin && skin.motif == "masks"
     Surface(
@@ -443,13 +448,32 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
         shadowElevation = 4.dp,
         modifier = Modifier.clickable(onClick = onDismiss),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier
-                .skinDecor("panel")
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-        ) {
+        Box(Modifier.skinDecor("panel")) {
+            if (slash && background != null) {
+                Image(
+                    bitmap = background,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    alignment = Alignment.CenterEnd,
+                    modifier = Modifier.matchParentSize(),
+                )
+                Box(
+                    Modifier
+                        .matchParentSize()
+                        .background(
+                            Brush.horizontalGradient(
+                                0f to Color(0xFFF0F0F0),
+                                0.62f to Color(0xFFF0F0F0).copy(alpha = 0.92f),
+                                1f to Color.Transparent,
+                            ),
+                        ),
+                )
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            ) {
             when {
                 skin.hasSkin && skin.motif == "moon" -> MoonFillBadge(
                     color = MaterialTheme.colorScheme.primary,
@@ -488,6 +512,7 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
                         else -> MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
                     },
                 )
+            }
             }
         }
     }

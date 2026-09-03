@@ -443,6 +443,13 @@
       "bonds": ["p5r.bond.justice"]
     },
     {
+      "id": "p5r.media.confidant.kasumi",
+      "file": "images/confidant-kasumi.png",
+      "kind": "banner",
+      "title": "Kasumi",
+      "bonds": ["p5r.bond.faith"]
+    },
+    {
       "id": "p5r.media.confidant.yusuke",
       "file": "images/confidant_yusuke.png",
       "kind": "banner",

@@ -36,9 +36,9 @@ class P5RMediaCatalogAuditTest {
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
         val achievementIds = p5r.achievements?.achievements.orEmpty().mapTo(linkedSetOf()) { it.id }
 
-        assertEquals(73, media.size)
+        assertEquals(74, media.size)
         assertEquals(50, trophyArt.size, "the imported P5R guide archive contributes 50 trophy images")
-        assertEquals(22, confidantBackgrounds.size, "the supplied Confidants archive contributes 22 backgrounds")
+        assertEquals(23, confidantBackgrounds.size, "the supplied Confidants artwork contributes 23 backgrounds")
         assertEquals(
             setOf("p5r.media.month-opener"),
             guideGraphics.mapTo(linkedSetOf()) { it.id },
@@ -52,10 +52,10 @@ class P5RMediaCatalogAuditTest {
             "every monthly trophy image must resolve to persisted achievement progress",
         )
 
-        assertEquals(22, confidantBackgrounds.flatMap { it.bonds }.distinct().size)
+        assertEquals(23, confidantBackgrounds.flatMap { it.bonds }.distinct().size)
         confidantBackgrounds.forEach { item ->
             assertEquals(1, item.bonds.size, "${item.id}: each background must target one Confidant")
-            assertTrue(item.file.startsWith("images/confidant_"), "${item.id}: unexpected Confidant asset path")
+            assertTrue(item.file.startsWith("images/confidant"), "${item.id}: unexpected Confidant asset path")
             assertTrue(item.months.isEmpty(), "${item.id}: Confidant art must not masquerade as month art")
             assertTrue(item.dates.isEmpty(), "${item.id}: Confidant art must not masquerade as date art")
         }

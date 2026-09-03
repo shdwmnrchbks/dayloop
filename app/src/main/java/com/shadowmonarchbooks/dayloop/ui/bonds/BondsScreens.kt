@@ -175,8 +175,12 @@ private fun ConfidantFaceStrip(
                 bitmap = it,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                alignment = BiasAlignment(horizontalBias = 0.2f, verticalBias = -0.35f),
-                modifier = Modifier.fillMaxSize().alpha(0.78f),
+                alignment = BiasAlignment(horizontalBias = 1f, verticalBias = -0.35f),
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .fillMaxHeight()
+                    .fillMaxWidth(0.64f)
+                    .alpha(0.78f),
             )
         }
         Box(
