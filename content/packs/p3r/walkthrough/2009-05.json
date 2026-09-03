@@ -81,7 +81,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Talk to Kenji about the Gourmet King (Moon flag)" },
-        { "label": "Hang out with Junpei — Magician reaches rank 4 (best answers: A > 1)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 4 (best answers: A > 1)" },
         { "label": "Evening: vending machines restocked — buy SP drinks" },
         { "label": "Evening: play House of the Deceased at Game Parade" }
       ]
@@ -152,7 +152,7 @@
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Talk to Kenji, answer 3 > 3 > 2, and hand over your Odd Morsel (Moon flag)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 1" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 1" },
         { "label": "Evening: study with Mitsuru and Akihiko" }
       ]
     },
