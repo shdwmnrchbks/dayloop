@@ -180,6 +180,25 @@ class P3rDataAuditTest {
     }
 
     @Test
+    fun `P3R April prep entries are route targets rather than hard deadlines`() {
+        val loaded = loadP3r()
+        val deadlines = assertNotNull(loaded.deadlines).deadlines.associateBy { it.id }
+
+        val firstTartarus = deadlines.getValue("p3r.deadline.tartarus.first-cycle")
+        assertEquals("routeTarget", firstTartarus.kind)
+        assertEquals("2009-04-20", assertNotNull(firstTartarus.window).start)
+        assertEquals("2009-04-26", firstTartarus.window?.end)
+        assertTrue(firstTartarus.label.startsWith("Route target:"))
+
+        val muscleDrink = deadlines.getValue("p3r.deadline.aohige-sale.muscle-drink")
+        assertEquals("routeTarget", muscleDrink.kind)
+        assertEquals("2009-04-25", muscleDrink.date)
+        assertTrue(muscleDrink.label.startsWith("Route prep:"))
+        assertFalse(muscleDrink.label.contains("one-day", ignoreCase = true))
+        assertFalse(muscleDrink.label.contains("missable", ignoreCase = true))
+    }
+
+    @Test
     fun `P3R answer sheets serve answer text rather than menu indices`() {
         val loaded = loadP3r()
         val answers = assertNotNull(loaded.answers).answers
