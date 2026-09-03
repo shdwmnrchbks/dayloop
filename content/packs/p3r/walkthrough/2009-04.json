@@ -165,7 +165,7 @@
       "steps": [
         { "label": "Visit Bookworms — Hierophant reaches rank 1" },
         { "label": "Buy SP drinks from the restocked vending machines" },
-        { "label": "Eat the Mystery Burger at Wilduck Burger (Courage reaches rank 2)", "statGains": { "courage": 2 } }
+        { "label": "Eat the Mystery Burger at Wilduck Burger (Courage reaches rank 2)", "statGains": { "courage": 3 } }
       ]
     },
     {
