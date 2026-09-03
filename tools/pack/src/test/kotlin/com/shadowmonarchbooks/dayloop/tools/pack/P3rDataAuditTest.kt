@@ -64,6 +64,47 @@ class P3rDataAuditTest {
     }
 
     @Test
+    fun `P3R automatic Social Links preserve story skips and floor progression`() {
+        val loaded = loadP3r()
+        val byId = assertNotNull(loaded.bonds).bonds.associateBy { it.id }
+
+        val fool = byId.getValue("p3r.bond.fool")
+        assertEquals(listOf(1, 2, 3, 4, 5, 6, 7, 9, 10), fool.ranks.map { it.rank })
+        assertEquals(
+            listOf(
+                "2009-04-18",
+                "2009-04-20",
+                "2009-05-09",
+                "2009-07-07",
+                "2009-07-22",
+                "2009-11-02",
+                "2009-11-04",
+                "2009-11-28",
+                "2009-12-31",
+            ),
+            fool.ranks.map { it.availableFrom },
+        )
+        assertTrue(fool.ranks.all { it.scheduledFor == null })
+
+        val death = byId.getValue("p3r.bond.death")
+        assertEquals(listOf(1, 3, 5, 6, 8, 10), death.ranks.map { it.rank })
+        assertEquals(
+            listOf("2009-06-12", "2009-07-12", "2009-08-07", "2009-09-12", "2009-10-06", "2009-11-04"),
+            death.ranks.map { it.availableFrom },
+        )
+        assertTrue(death.ranks.all { it.scheduledFor == null })
+
+        val judgment = byId.getValue("p3r.bond.judgment")
+        assertEquals((1..10).toList(), judgment.ranks.map { it.rank })
+        assertEquals("2009-12-31", judgment.ranks.first().availableFrom)
+        assertTrue(judgment.ranks.drop(1).all { it.availableFrom == null && it.scheduledFor == null })
+        val expectedFloors = listOf("227F", "230F", "236F", "241F", "246F", "247F", "253F", "254F", "255F")
+        assertEquals(expectedFloors, judgment.ranks.drop(1).map { rank ->
+            expectedFloors.first { floor -> rank.notes.orEmpty().contains(floor) }
+        })
+    }
+
+    @Test
     fun `P3R walkthrough keeps Magician and Moon identities distinct`() {
         val loaded = loadP3r()
         val steps = loaded.walkthroughs
