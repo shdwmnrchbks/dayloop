@@ -104,6 +104,59 @@ class P3rJulyAuditTest {
         assertTrue(july25.steps.any { it.label.contains("Lovers reaches rank 1", ignoreCase = true) })
     }
 
+    @Test
+    fun `P3R July Elizabeth requests 38 through 42 preserve prerequisite ordering`() {
+        val loaded = loadP3r()
+        val july = assertNotNull(
+            loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == "2009-07" },
+            "2009-07",
+        ).file.days.associateBy { it.date }
+
+        val july9 = assertNotNull(july["2009-07-09"])
+        val acceptIndex = july9.steps.indexOfFirst {
+            it.label.contains("accept Requests #38", ignoreCase = true) &&
+                it.label.contains("#39", ignoreCase = true) &&
+                it.label.contains("#40", ignoreCase = true) &&
+                it.label.contains("#42", ignoreCase = true)
+        }
+        val chilledIndex = july9.steps.indexOfFirst {
+            it.label.contains("Chilled Taiyaki", ignoreCase = true) && it.label.contains("Request #38", ignoreCase = true)
+        }
+        val musicIndex = july9.steps.indexOfFirst {
+            it.label.contains("PA Room", ignoreCase = true) &&
+                it.label.contains("Gekkoukan Boogie", ignoreCase = true) &&
+                it.label.contains("Request #39", ignoreCase = true)
+        }
+        assertTrue(acceptIndex >= 0)
+        assertTrue(chilledIndex > acceptIndex)
+        assertTrue(musicIndex > acceptIndex)
+
+        val catFeedDates = listOf("2009-07-09", "2009-07-10", "2009-07-11", "2009-07-13")
+        catFeedDates.forEachIndexed { index, date ->
+            val day = assertNotNull(july[date], date)
+            val step = assertNotNull(day.steps.firstOrNull { it.label.contains("Request #42", ignoreCase = true) })
+            assertTrue(step.label.contains("${index + 1} of 4", ignoreCase = true), "$date: ${step.label}")
+        }
+        val finalCat = assertNotNull(july["2009-07-13"])
+            .steps.firstOrNull { it.label.contains("Request #42", ignoreCase = true) }
+        assertNotNull(finalCat)
+        assertTrue(finalCat.label.contains("report", ignoreCase = true))
+        assertTrue(finalCat.label.contains("complete", ignoreCase = true))
+
+        val july18 = assertNotNull(july["2009-07-18"])
+        val shoesIndex = july18.steps.indexOfFirst {
+            it.label.contains("Request #40", ignoreCase = true) && it.label.contains("Max Safety Shoes", ignoreCase = true)
+        }
+        val autographIndex = july18.steps.indexOfFirst {
+            it.label.contains("Request #41", ignoreCase = true) &&
+                it.label.contains("Tanaka", ignoreCase = true) &&
+                it.label.contains("Signature", ignoreCase = true)
+        }
+        assertTrue(shoesIndex >= 0)
+        assertTrue(autographIndex > shoesIndex)
+        assertTrue(july18.steps[shoesIndex].label.contains("unlocks Request #41", ignoreCase = true))
+    }
+
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
     }
