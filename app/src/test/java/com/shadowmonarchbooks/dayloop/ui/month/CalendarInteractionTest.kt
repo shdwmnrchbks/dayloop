@@ -19,7 +19,7 @@ class CalendarInteractionTest {
     }
 
     @Test
-    fun `slash calendar moves guide graphics onto relevant dates`() {
+    fun `slash calendar places only month opener art on deadline due dates`() {
         val opener = MediaItem("month", "month.png", MediaKinds.MONTH, "Month opener")
         val schedule = MediaItem(
             "schedule",
@@ -45,16 +45,14 @@ class CalendarInteractionTest {
             ),
         )
 
-        val markers = slashCalendarMarkerItems(
+        val markers = slashDeadlineMarkerItems(
             month = "2016-05",
-            authoredDates = setOf("2016-05-01", "2016-05-02", "2016-05-11", "2016-05-13"),
             deadlines = deadlines,
             media = listOf(opener, schedule, stretch),
         )
 
-        assertEquals(listOf("schedule"), markers.getValue("2016-05-01").map(MediaItem::id))
-        assertEquals(listOf("month", "stretch"), markers.getValue("2016-05-02").map(MediaItem::id))
-        assertEquals(listOf("stretch"), markers.getValue("2016-05-11").map(MediaItem::id))
+        assertEquals(setOf("2016-05-02", "2016-05-13"), markers.keys)
+        assertEquals(listOf("month"), markers.getValue("2016-05-02").map(MediaItem::id))
         assertEquals(listOf("month"), markers.getValue("2016-05-13").map(MediaItem::id))
     }
 }

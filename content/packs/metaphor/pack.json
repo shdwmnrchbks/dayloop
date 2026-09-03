@@ -2,6 +2,7 @@
   "packId": "metaphor",
   "title": "Metaphor: ReFantazio",
   "contentVersion": 2,
+  "pickerOrder": 2,
   "timeModel": "dayCounter",
   "calendar": {
     "startDate": "2100-06-02",

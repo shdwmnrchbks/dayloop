@@ -40,6 +40,9 @@ import com.shadowmonarchbooks.dayloop.data.describeCondition
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
+import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.progress.StepKey
+import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
@@ -51,6 +54,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 @Composable
 fun BondsScreen(
     pack: LoadedPack?,
+    days: Map<String, Day> = emptyMap(),
+    marks: Map<StepKey, StepMark> = emptyMap(),
     onOpenBond: (String) -> Unit,
 ) {
     if (pack == null) {
@@ -69,6 +74,8 @@ fun BondsScreen(
     ) {
         items(pack.bonds, key = { it.id }) { bond ->
             val skin = LocalSkin.current
+            val completedRank = completedBondRank(bond, days, marks)
+            val highestRank = bond.ranks.maxOfOrNull { it.rank } ?: 0
             if (skin.hasSkin) {
                 // Arcana-card rows: the pack owns the silhouette. Ink/slash
                 // skins add a hard keyline instead of Material elevation.
@@ -111,7 +118,7 @@ fun BondsScreen(
                             val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
                             Text(
                                 buildString {
-                                    append("${bond.ranks.size} rank(s)")
+                                    append("Rank $completedRank/$highestRank")
                                     if (lastRouteDate != null) {
                                         append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
                                     }
@@ -134,7 +141,7 @@ fun BondsScreen(
                         val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
                         Text(
                             buildString {
-                                append("${bond.ranks.size} rank(s)")
+                                append("Rank $completedRank/$highestRank")
                                 if (lastRouteDate != null) {
                                     append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
                                 }
@@ -154,6 +161,8 @@ fun BondsScreen(
 fun BondDetailScreen(
     bondId: String,
     pack: LoadedPack?,
+    days: Map<String, Day> = emptyMap(),
+    marks: Map<StepKey, StepMark> = emptyMap(),
 ) {
     val bond = pack?.bonds?.firstOrNull { it.id == bondId } ?: run {
         EmptyState("Bond not found in this pack.")
@@ -167,6 +176,8 @@ fun BondDetailScreen(
     val bondMedia = pack.mediaForBond(bondId)
     val background = bondMedia.firstOrNull { it.kind == MediaKinds.BANNER }
     val portraits = bondMedia.filter { it.kind == MediaKinds.PORTRAIT }
+    val completedRank = completedBondRank(bond, days, marks)
+    val highestRank = bond.ranks.maxOfOrNull { it.rank } ?: 0
 
     Box(modifier = Modifier.fillMaxSize()) {
         background?.let { art ->
@@ -243,6 +254,12 @@ fun BondDetailScreen(
             )
         }
 
+        Text(
+            text = "Rank $completedRank / $highestRank",
+            style = if (slash) MaterialTheme.typography.displaySmall else MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.primary,
+        )
+
         if (bond.ranks.any { it.scheduledFor != null }) {
             Text(
                 text = "Route dates are the authored completion plan; they are not the same thing as general availability.",
@@ -252,6 +269,7 @@ fun BondDetailScreen(
         }
 
         bond.ranks.sortedBy { it.rank }.forEach { step ->
+            val completed = step.rank <= completedRank
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -301,6 +319,13 @@ fun BondDetailScreen(
                     )
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    if (completed) {
+                        SkinTag(
+                            text = "Complete",
+                            container = MaterialTheme.colorScheme.primary,
+                            content = MaterialTheme.colorScheme.onPrimary,
+                        )
+                    }
                     step.scheduledFor?.let {
                         SkinTag(
                             text = "Route · ${formatDate(it, pack.calendar)}",

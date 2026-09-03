@@ -213,6 +213,8 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 composable("bonds") {
                     BondsScreen(
                         pack = pack,
+                        days = state.days,
+                        marks = state.marks,
                         onOpenBond = { id -> nav.navigate("bond/$id") },
                     )
                 }
@@ -220,6 +222,8 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     BondDetailScreen(
                         bondId = entry.arguments?.getString("bondId").orEmpty(),
                         pack = pack,
+                        days = state.days,
+                        marks = state.marks,
                     )
                 }
                 composable("deadlines") {
