@@ -131,9 +131,9 @@
       "date": "2009-12-14",
       "weekday": "mon",
       "dayKind": "exam",
-      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 6 with all answers correct.",
+      "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 6 and all five player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — answer everything you can" }
+        { "label": "Exam day — see the Answers tab for today's sheet" }
       ]
     },
     {
@@ -171,8 +171,9 @@
     {
       "date": "2009-12-19",
       "weekday": "sat",
-      "dayKind": "school",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final exam day — no player-answer question; after school is free" },
         { "label": "Watch Junpei's Link Episode" },
         { "label": "Evening: watch Akihiko's Link Episode" }
       ]
