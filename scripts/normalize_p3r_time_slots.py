@@ -26,8 +26,8 @@ PREFIX_RE = re.compile(
     re.IGNORECASE,
 )
 
-# These are actions that happen during the school-day / exam portion rather than
-# in the player's after-school free-time slot.
+# These happen during the mandatory school/exam portion rather than in the
+# player's free-time slot.
 DAY_PATTERNS = (
     "answer the class question",
     "stay awake in class",
@@ -38,13 +38,19 @@ DAY_PATTERNS = (
 )
 
 
+def capitalize_first(text: str) -> str:
+    if not text:
+        return text
+    return text[0].upper() + text[1:]
+
+
 def explicit_slot(label: str) -> tuple[str | None, str]:
     match = PREFIX_RE.match(label)
     if not match:
         return None, label
 
     prefix = match.group("prefix").lower().replace("-", " ")
-    cleaned = label[match.end() :].strip()
+    cleaned = capitalize_first(label[match.end() :].strip())
     if prefix in {"evening", "night"}:
         return "evening", cleaned
     if prefix == "daytime":
@@ -57,27 +63,46 @@ def is_day_action(label: str) -> bool:
     return any(pattern in lowered for pattern in DAY_PATTERNS)
 
 
+def is_full_moon_night(label: str) -> bool:
+    lowered = label.lower()
+    return "full moon" in lowered and (
+        "night" in lowered
+        or "shadow operation" in lowered
+        or "no free time" in lowered
+    )
+
+
 def normalize_day(day: dict) -> None:
     day_kind = day.get("dayKind")
     # School/exam dates default to After School once mandatory classroom actions
-    # are excluded. Free/story dates default to Day. An explicit evening marker
-    # moves the remainder of that day's route into the Evening slot.
+    # are excluded. Free/story dates default to Day. Explicit or high-confidence
+    # evening markers move the remainder of that day's route into Evening.
     default_slot = "afternoon" if day_kind in {"school", "exam"} else "day"
     current_slot = default_slot
 
     for step in day.get("steps", []):
         label = step.get("label", "")
+        existing = step.get("slot")
         explicit, cleaned = explicit_slot(label)
 
         if explicit is not None:
             current_slot = explicit
             slot = explicit
             step["label"] = cleaned
+        elif is_full_moon_night(label):
+            current_slot = "evening"
+            slot = "evening"
         elif is_day_action(label):
             slot = "day"
         elif "death reaches rank" in label.lower():
             # Pharos/Death automatic ranks occur during the nighttime story beat.
+            current_slot = "evening"
             slot = "evening"
+        elif existing in VALID_SLOTS:
+            # Makes the migration safe to re-run while preserving reviewed slots.
+            slot = existing
+            if existing != "day":
+                current_slot = existing
         else:
             slot = current_slot
 
