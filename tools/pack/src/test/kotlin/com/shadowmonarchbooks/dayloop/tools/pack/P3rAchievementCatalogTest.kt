@@ -22,6 +22,7 @@ class P3rAchievementCatalogTest {
         assertEquals(48, catalog.achievements.size)
         assertEquals(catalog.achievements.size, catalog.achievements.map { it.id }.toSet().size)
         assertEquals(catalog.events.size, catalog.events.map { it.id }.toSet().size)
+        assertEquals(48, catalog.achievements.count { !it.description.isNullOrBlank() })
 
         val eventIds = catalog.events.map { it.id }.toSet()
         val referencedEvents = catalog.achievements.flatMap { achievement ->
@@ -77,6 +78,7 @@ class P3rAchievementCatalogTest {
         }
 
         val strength = achievement(catalog.achievements, "p3r.achievement.strength-of-hearts")
+        assertEquals("Used all teammates' Theurgy.", strength.description)
         assertEquals(AchievementTrackingTypes.CHECKLIST, strength.tracking.type)
         assertEquals(9, strength.tracking.items.size)
         assertEquals(
@@ -90,6 +92,8 @@ class P3rAchievementCatalogTest {
 
         val greatSeal = achievement(catalog.achievements, "p3r.achievement.great-seal")
         val goodEnding = achievement(catalog.achievements, "p3r.achievement.shadows-into-light")
+        assertEquals("Sealed Nyx.", greatSeal.description)
+        assertEquals("Watched the good ending.", goodEnding.description)
         assertEquals(AchievementTrackingTypes.CHOICE, greatSeal.tracking.type)
         assertEquals(AchievementTrackingTypes.CHOICE, goodEnding.tracking.type)
         assertEquals("p3r.choice.ryoji-fate", greatSeal.tracking.stateKey)
@@ -99,21 +103,49 @@ class P3rAchievementCatalogTest {
         assertEquals("2010-01-31", greatSeal.tracking.date)
         assertEquals("2010-03-05", goodEnding.tracking.date)
 
+        val topOfClass = achievement(catalog.achievements, "p3r.achievement.top-of-class")
+        assertEquals("Aced an exam.", topOfClass.description)
+        assertEquals("2009-05-18", topOfClass.availableFrom)
+        assertEquals("2009-05-25", topOfClass.expectedBy)
+        assertEquals("2009-05-25", topOfClass.tracking.date)
+        assertTrue(topOfClass.tracking.prompt.orEmpty().contains("May exam results", ignoreCase = true))
+
         val people = achievement(catalog.achievements, "p3r.achievement.people-person")
         val legacy = achievement(catalog.achievements, "p3r.achievement.legacy-of-friendships")
+        assertEquals("Unlocked all Social Links.", people.description)
+        assertEquals("Maxed out all Social Links.", legacy.description)
         assertEquals(AchievementTrackingTypes.EVENT, people.tracking.type)
         assertEquals("p3r.event.social-all-unlocked", people.tracking.event)
         assertEquals(AchievementTrackingTypes.EVENT, legacy.tracking.type)
         assertEquals("p3r.event.social-all-max", legacy.tracking.event)
 
+        val reaper = achievement(catalog.achievements, "p3r.achievement.reaper-reaped")
+        assertEquals("Defeated the Reaper.", reaper.description)
+        assertEquals("2009-06-13", reaper.availableFrom)
+        assertEquals("2010-01-31", reaper.expectedBy)
+        assertEquals("2010-01-21", reaper.tracking.date)
+
+        val darkZone = achievement(catalog.achievements, "p3r.achievement.horror-of-shade")
+        assertEquals("Encountered a Dark Zone in Tartarus.", darkZone.description)
+        assertEquals("2009-10-01", darkZone.availableFrom)
+        assertTrue(darkZone.tracking.prompt.orEmpty().contains("scripted tutorial Dark Zone does not count", ignoreCase = true))
+
         val veggies = achievement(catalog.achievements, "p3r.achievement.eat-your-veggies")
+        assertEquals("Harvested a crop that you grew with a teammate.", veggies.description)
         assertEquals(AchievementTrackingTypes.CONFIRMATION, veggies.tracking.type)
         assertEquals("p3r.event.teammate-gardening", veggies.tracking.event)
 
         val grindset = achievement(catalog.achievements, "p3r.achievement.grindset-mindset")
+        assertEquals("Earned over 50,000 yen total from part-time jobs.", grindset.description)
         assertEquals(AchievementTrackingTypes.MANUAL, grindset.tracking.type)
         assertEquals(50_001, grindset.tracking.target)
         assertEquals("¥", grindset.tracking.unit)
+
+        val eagleEye = achievement(catalog.achievements, "p3r.achievement.eagle-eye")
+        assertEquals("Acquired every Twilight Fragment in town.", eagleEye.description)
+        val remainingFragments = assertNotNull(catalog.events.firstOrNull { it.id == "p3r.event.fragments-remaining" })
+        assertEquals("2009-05-25", remainingFragments.date)
+        assertEquals("collect the remaining Twilight Fragments", remainingFragments.labelContains)
 
         val defaultDays = loaded.walkthroughs
             .filter { it.routeId == Routes.DEFAULT }
