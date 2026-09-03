@@ -83,7 +83,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Visit the Faculty Office for Request #75" },
-        { "label": "Hang out with Kenji — Moon reaches rank 8 (best answer: 2)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 8 (best answer: 2)" },
         { "label": "Evening: study with Mitsuru and Akihiko" }
       ]
     },
@@ -105,7 +105,7 @@
       "steps": [
         { "label": "Answer the class question" },
         { "label": "Visit the Faculty Office for Request #75" },
-        { "label": "Hang out with Kenji — Moon reaches rank 9 (best answer: A)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 9 (best answer: A)" },
         { "label": "Evening: walk Koromaru (with Ken)" }
       ]
     },
@@ -221,7 +221,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question" },
-        { "label": "Hang out with Junpei — Magician reaches rank 9 (best answer: 2)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 9 (best answer: 2)" },
         { "label": "Evening: brush Koromaru (Koromaru hangout)" }
       ]
     },
@@ -231,7 +231,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Junpei — Magician reaches rank 10 (MAX)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 10 (MAX)" },
         { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 10 (MAX)" }
       ]
     },
