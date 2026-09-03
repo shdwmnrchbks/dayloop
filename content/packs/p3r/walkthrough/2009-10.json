@@ -10,7 +10,7 @@
         { "label": "Stay awake in class", "statGains": { "academics": 2 } },
         { "label": "Join the art club — Fortune reaches rank 6 (best answers: A > 2)" },
         { "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true }
+        { "label": "Evening: Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone", "spoiler": true }
       ]
     },
     {
@@ -56,12 +56,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "New Elizabeth's requests are available — accept Request #76 (Glasses Wipe) before talking to Ikutsuki" },
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "New Elizabeth's requests are available — accept Requests #74, #75, and #76 before their item interactions" },
+        { "label": "After accepting Request #74, inspect the Inari at Naganaki Shrine for Inari Sushi and return it to Elizabeth to complete the request" },
+        { "label": "After accepting Request #75, visit the Faculty Office for the Sengoku-era helm chain (visit 1 of 8)", "statGains": { "academics": 2 } },
         { "label": "Watch Koromaru's Link Episode" },
         { "label": "Evening: new software and notes are available" },
         { "label": "Buy the Part-Time Master at MangaStar Net Café (Strip Mall 3F)" },
-        { "label": "Evening: run the Part-Time Master on the dorm's shared computer (increases part-time job income)" }
+        { "label": "Evening: run the Part-Time Master on the dorm's shared computer (increases part-time job income)" },
+        { "label": "Death reaches rank 8 (story; Reload skips rank 7)" }
       ]
     },
     {
@@ -70,11 +72,11 @@
       "dayKind": "school",
       "notes": "Social stat recovery point — if your Academics rank-ups don't match the guide, replace future part-time jobs and dorm hangouts with arcade or Wakatsu visits so the Empress link unlocks on time.",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Visit the Faculty Office for Request #75 (visit 2 of 8)", "statGains": { "academics": 2 } },
         { "label": "Hang out with the rival athlete — Star reaches rank 3 (best answers: A > A)" },
         { "label": "Talk to Ikutsuki for the Glasses Wipe and report it to Elizabeth to complete Request #76 before November 1" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
       ]
     },
     {
@@ -82,9 +84,9 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Visit the Faculty Office for Request #75 (visit 3 of 8)", "statGains": { "academics": 2 } },
         { "label": "Hang out with Nozomi — Moon reaches rank 8 (best answer: 2)" },
-        { "label": "Evening: study with Mitsuru and Akihiko" }
+        { "label": "Evening: study with Mitsuru and Akihiko", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -93,9 +95,9 @@
       "dayKind": "school",
       "steps": [
         { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Visit the Faculty Office for Request #75 (visit 4 of 8)", "statGains": { "academics": 2 } },
         { "label": "Hang out with the rival athlete — Star reaches rank 4 (best answers: A > 1 > 2)" },
-        { "label": "Evening: study with Yukari, Junpei, and Fuuka" }
+        { "label": "Evening: study with Yukari, Junpei, and Fuuka", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -103,8 +105,8 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Visit the Faculty Office for Request #75 (visit 5 of 8)", "statGains": { "academics": 2 } },
         { "label": "Hang out with Nozomi — Moon reaches rank 9 (best answer: A)" },
         { "label": "Evening: walk Koromaru (with Ken)" }
       ]
@@ -116,7 +118,7 @@
       "steps": [
         { "label": "Optional: TV Shopping (¥19,800 — Paring Knife & 2 Candy Hosui Pear)" },
         { "label": "Visit the dying young man at the shrine — Sun reaches rank 2" },
-        { "label": "Evening: study with Aigis, Ken, and Koromaru" }
+        { "label": "Evening: study with Aigis, Ken, and Koromaru", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -126,7 +128,7 @@
       "notes": "Public holiday — Sports Day.",
       "steps": [
         { "label": "Play the MMORPG at your desk — Hermit reaches rank 10 (MAX)" },
-        { "label": "Evening: study with everyone" }
+        { "label": "Evening: study with everyone", "statGains": { "academics": 5 } }
       ]
     },
     {
@@ -168,7 +170,7 @@
       "dayKind": "exam",
       "steps": [
         { "label": "Final exam day — no player-answer question; after school is free" },
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Visit the Faculty Office for Request #75 (visit 6 of 8)", "statGains": { "academics": 2 } },
         { "label": "Hang out with the old couple — Hierophant reaches rank 6 (best answers: 2 > A)" },
         { "label": "Evening: join Junpei's gardening hangout — Combat Characteristic enhanced" }
       ]
@@ -189,12 +191,12 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Exam results" },
-        { "label": "Answer the class question" },
+        { "label": "Exam results — top of the class", "statGains": { "charm": 4 } },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Talk to Mitsuru for the exam reward" },
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Visit the Faculty Office for Request #75 (visit 7 of 8)", "statGains": { "academics": 2 } },
         { "label": "Hang out with Hidetoshi — Emperor reaches rank 9 (best answer: A)" },
-        { "label": "Evening: watch Akihiko's Link Episode" }
+        { "label": "Evening: watch Akihiko's Link Episode", "statGains": { "charm": 2 } }
       ]
     },
     {
@@ -202,7 +204,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Visit the Faculty Office for Request #75" },
+        { "label": "Visit the Faculty Office for Request #75 (visit 8 of 8) — receive Kanetsugu's Helm and report it to Elizabeth to complete the Sengoku-era helm request", "statGains": { "academics": 2 } },
         { "label": "Join the art club — Fortune reaches rank 7 (best answer: 1)" },
         { "label": "Evening: join Aigis's gardening hangout" }
       ]
@@ -213,7 +215,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with the exchange student — Temperance reaches rank 9 (best answer: 2)" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
       ]
     },
     {
@@ -221,7 +223,7 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Hang out with Kenji — Magician reaches rank 9 (best answer: 2)" },
         { "label": "Evening: brush Koromaru (Koromaru hangout)" }
       ]
@@ -242,7 +244,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with the old couple — Hierophant reaches rank 7 (best answers: 1 > 2 > A)" },
-        { "label": "Evening: join Akihiko's DVD hangout" }
+        { "label": "Evening: join Akihiko's DVD hangout", "statGains": { "courage": 2 } }
       ]
     },
     {
@@ -261,10 +263,10 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Hang out with Yukari — Lovers reaches rank 4 (best answer: 3)" },
         { "label": "Check the dorm fridge for a Doctor in Jelly and a note from Junpei" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
       ]
     },
     {
@@ -282,7 +284,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with Yukari — Lovers reaches rank 5 (romance: A > A > A > 1 > 1 / platonic: A > A > A > 2/3 > 1)" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
       ]
     },
     {
@@ -300,9 +302,9 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
+        { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Hang out with Hidetoshi — Emperor reaches rank 10 (MAX)" },
-        { "label": "Evening: join Ken's DVD hangout" }
+        { "label": "Evening: join Ken's DVD hangout", "statGains": { "courage": 2 } }
       ]
     },
     {
