@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.tools.pack
 
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.Test
@@ -40,6 +41,31 @@ class P3rRescueDeadlineAuditTest {
         assertTrue(byId.getValue("p3r.deadline.missing-persons.2009-10-03").label.contains("Bunkichi", ignoreCase = true))
         assertTrue(byId.getValue("p3r.deadline.missing-persons.2009-11-02").label.contains("Maiko", ignoreCase = true))
         assertTrue(byId.getValue("p3r.deadline.missing-persons.2010-01-30").label.contains("Final", ignoreCase = true))
+    }
+
+    @Test
+    fun `P3R completion route clears every missing-person batch before its cutoff`() {
+        val loaded = loadP3r()
+        val tartarusDates = loaded.walkthroughs
+            .filter { it.routeId == Routes.DEFAULT }
+            .flatMap { it.file.days }
+            .filter { day -> day.steps.any { it.label.contains("Tartarus", ignoreCase = true) } }
+            .mapTo(mutableSetOf()) { it.date }
+
+        val expectedBatchClearDates = listOf(
+            "2009-06-27",
+            "2009-08-03",
+            "2009-09-04",
+            "2009-10-01",
+            "2009-11-02",
+            "2009-11-29",
+            "2009-12-30",
+            "2010-01-15",
+        )
+
+        expectedBatchClearDates.forEach { date ->
+            assertTrue(date in tartarusDates, "$date: authored route must retain the audited rescue-batch Tartarus visit")
+        }
     }
 
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
