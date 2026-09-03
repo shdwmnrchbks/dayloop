@@ -181,9 +181,9 @@
       "date": "2009-05-18",
       "weekday": "mon",
       "dayKind": "exam",
-      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 4+ (or rank 3 with every answer correct).",
+      "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 3 and all four player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — answer everything you can" }
+        { "label": "Exam day — no player-answer question today" }
       ]
     },
     {
@@ -221,8 +221,9 @@
     {
       "date": "2009-05-23",
       "weekday": "sat",
-      "dayKind": "school",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final exam day — no player-answer question; after school is free" },
         { "label": "Hang out with Chihiro — Justice reaches rank 2 (best answers: 1 > 1/2 > 1 > A > A)" },
         { "label": "Evening: Weekend Wilduck Set at Wilduck Burger" }
       ]
