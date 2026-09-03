@@ -1,5 +1,9 @@
 package com.shadowmonarchbooks.dayloop.ui
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -162,8 +166,29 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 modifier = Modifier
                     .padding(padding)
                     .skinBackdrop(skin, showHaze = route != "today"),
-                enterTransition = { motion.enter },
-                exitTransition = { motion.exit },
+                enterTransition = {
+                    if (
+                        initialState.destination.route == "onboarding" &&
+                        targetState.destination.route == "today"
+                    ) {
+                        fadeIn(tween(360)) + slideInVertically(
+                            initialOffsetY = { it / 12 },
+                            animationSpec = tween(360),
+                        )
+                    } else {
+                        motion.enter
+                    }
+                },
+                exitTransition = {
+                    if (
+                        initialState.destination.route == "onboarding" &&
+                        targetState.destination.route == "today"
+                    ) {
+                        fadeOut(tween(220))
+                    } else {
+                        motion.exit
+                    }
+                },
                 popEnterTransition = { motion.popEnter },
                 popExitTransition = { motion.popExit },
             ) {

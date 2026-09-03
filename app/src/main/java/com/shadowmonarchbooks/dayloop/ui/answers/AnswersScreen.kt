@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,6 +27,7 @@ import com.shadowmonarchbooks.dayloop.data.byId
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerKindChip
+import com.shadowmonarchbooks.dayloop.ui.components.answerKindLabel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
@@ -57,6 +59,7 @@ fun AnswersScreen(
         items(sheets, key = { it.id }) { sheet ->
             val skin = LocalSkin.current
             val slash = skin.hasSkin && skin.motion == "slash"
+            val kindLabel = answerKindLabel(sheet.kind)
             val cardShape = if (slash) skin.shapes.card else RoundedCornerShape(12.dp)
             Surface(
                 shape = cardShape,
@@ -83,27 +86,24 @@ fun AnswersScreen(
                     ) {
                         if (slash) {
                             SkinTag(
-                                text = skin.cased(
-                                    when (sheet.kind) {
-                                        "exam" -> "Exam"
-                                        "classQuestion" -> "Class question"
-                                        else -> sheet.kind.replaceFirstChar { it.uppercase() }
-                                    },
-                                    "display",
-                                ),
+                                text = skin.cased(kindLabel, "display"),
                                 container = MaterialTheme.colorScheme.primary,
                                 content = MaterialTheme.colorScheme.onPrimary,
                             )
                         } else {
                             AnswerKindChip(sheet.kind)
                         }
-                        Text(
-                            text = if (slash) skin.cased(sheet.label, "display") else sheet.label,
-                            style = if (slash) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
-                            fontWeight = FontWeight.SemiBold,
-                            color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.weight(1f),
-                        )
+                        if (!sheet.label.equals(kindLabel, ignoreCase = true)) {
+                            Text(
+                                text = if (slash) skin.cased(sheet.label, "display") else sheet.label,
+                                style = if (slash) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
+                                fontWeight = FontWeight.SemiBold,
+                                color = if (slash) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.weight(1f),
+                            )
+                        } else {
+                            Spacer(Modifier.weight(1f))
+                        }
                         Text(
                             text = formatDate(sheet.date, pack.calendar),
                             style = MaterialTheme.typography.labelMedium,
