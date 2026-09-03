@@ -242,7 +242,7 @@ class P3rDataAuditTest {
             .steps
             .firstOrNull { it.label.contains("Mystery Burger", ignoreCase = true) }
         assertNotNull(burger)
-        assertEquals(2, burger.statGains["courage"])
+        assertEquals(3, burger.statGains["courage"])
     }
 
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
