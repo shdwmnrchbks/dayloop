@@ -11,8 +11,8 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 through the January 31 Promised Day, including the February-to-March epilogue
 calendar transition.** Social Links, answers, exams, Social Stat point units,
 Tartarus/rescue timing, timed and route-critical Elizabeth request chains,
-automatic story ranks, and the base achievement catalog now have explicit audit
-coverage.
+automatic story ranks, walkthrough time-of-day slots, and the base achievement
+catalog now have explicit audit coverage.
 
 The stable catalog contains **22 Social Links, 37 deadlines, 53 answer sheets,
 48 achievements, and zero reusable activities**. The absence of `activities.json`
@@ -301,6 +301,29 @@ actual completion obligations explicit without displacing those daytime choices:
 - January 31 remains the Promised Day, followed by the already-audited March
   epilogue transition.
 
+### P3R-AUD-026 — Walkthrough time slots were declared but unused — FIXED BASELINE
+
+P3R already declared three presentation slots in `pack.json` — **Day**, **After
+School**, and **Evening** — but the imported walkthrough left `Step.slot` unset and
+encoded many boundaries only as label prefixes such as `Evening:`. As a result,
+the app could not divide P3R's daily route into time-of-day sections the way it
+does for P5R.
+
+All **819 walkthrough steps across 11 P3R month files** now carry a structured
+`day`, `afternoon`, or `evening` slot. Classroom/exam actions remain in Day;
+school free-time uses After School; explicit night actions, Tartarus, dorm
+hangouts, and nighttime story progression use Evening; free-day daytime actions
+remain in Day. Redundant `Evening:` / `Daytime:` / `After School:` prefixes were
+removed where the slot heading now supplies that context. The migration also
+handles fixed nighttime cases such as full-moon operations and Death ranks that
+did not consistently carry an imported prefix.
+
+Regression coverage rejects any future un-slotted P3R step, unknown slot ID, or
+redundant time-prefix label and pins representative school, free-day, full-moon,
+exam-Saturday, automatic-rank, and March-epilogue boundaries. `contentVersion` is
+bumped to **3** because the walkthrough's rendered grouping changes even though
+route order and gameplay facts do not.
+
 ## Regression rules for P3R
 
 1. A completion-route date is not `availableFrom` unless independently fixed.
@@ -335,6 +358,9 @@ actual completion obligations explicit without displacing those daytime choices:
     independent support beyond the primary completion schedule.
 22. A disputed earliest Social Link start remains an authored route date until an
     independent fixed boundary can be established; do not promote it by test name.
+
+23. Every P3R walkthrough step carries one of the declared Day / After School /
+    Evening slot IDs; labels do not duplicate the slot heading.
 
 ## Remaining passes
 
