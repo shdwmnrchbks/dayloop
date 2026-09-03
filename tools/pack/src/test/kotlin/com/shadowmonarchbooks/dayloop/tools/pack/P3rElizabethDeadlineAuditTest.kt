@@ -90,8 +90,8 @@ class P3rElizabethDeadlineAuditTest {
         requireStep("2009-09", "2009-09-10", "Request #68", "Fruit Knife", "October 2")
         requireStep("2009-09", "2009-09-10", "Request #69", "Machine Oil", "October 2")
 
-        // 11/1 deadline: acceptance precedes the Ikutsuki handoff.
-        requireStep("2009-10", "2009-10-06", "Request #76", "accept", "Glasses Wipe")
+        // 11/1 deadline: grouped acceptance precedes the separately verified Ikutsuki handoff.
+        requireStep("2009-10", "2009-10-06", "#76", "accept")
         requireStep("2009-10", "2009-10-07", "Request #76", "Glasses Wipe", "November 1")
 
         // 11/30 deadline: #95 becomes available after #94.
