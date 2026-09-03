@@ -206,6 +206,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question" },
+        { "label": "Two missing persons enter Tartarus today — plan to rescue them on 209F and 221F by December 30" },
         { "label": "Talk to Mitsuru — Empress reaches rank 9 (romance: 3 > A > 1 / platonic: A > 1)" },
         { "label": "Evening: walk Koromaru (with Mitsuru)" }
       ]
@@ -283,21 +284,22 @@
       "date": "2009-12-30",
       "weekday": "wed",
       "dayKind": "free",
-      "notes": "Carry the Star Arcana out of Tartarus until January 10.",
+      "notes": "Carry the Star Arcana out of Tartarus until January 10. This is the last actionable day for the December missing-person batch.",
       "steps": [
         { "label": "Hang out with the rival athlete — Star reaches rank 7 (best answers: 2 > A > A > 2)" },
         { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true }
+        { "label": "Evening: Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression", "spoiler": true }
       ]
     },
     {
       "date": "2009-12-31",
       "weekday": "thu",
       "dayKind": "story",
-      "notes": "Important story decision tonight.",
+      "notes": "Important story decision tonight. The 100% completion route must continue into January.",
       "steps": [
         { "label": "Daytime: work part-time at Screen Shot" },
-        { "label": "Evening: watch Ryoji's Link Episode — an important story decision", "spoiler": true },
+        { "label": "Evening: watch Ryoji's Link Episode, choose 'Spare Ryoji and stay as is,' and insist on sparing him to stay on the good-ending route", "spoiler": true },
+        { "label": "Fool reaches rank 10 (MAX; story)", "spoiler": true },
         { "label": "Judgment reaches rank 1 (story)", "spoiler": true }
       ]
     }
