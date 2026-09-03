@@ -64,7 +64,8 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true },
+        { "label": "Fool reaches rank 4 (story)" }
       ]
     },
     {
@@ -120,7 +121,8 @@
       "steps": [
         { "label": "Buy the Max Safety Shoes via TV Shopping (¥9,800 — Max Safety Shoes & 2 Instant Curry) — required for Request #40" },
         { "label": "Play the MMORPG at your desk — Hermit reaches rank 7 (best answers: 3 > A)" },
-        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } }
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } },
+        { "label": "Death reaches rank 3 (story; Reload skips rank 2)" }
       ]
     },
     {
@@ -210,7 +212,8 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Yakushima vacation — return home" }
+        { "label": "Yakushima vacation — return home" },
+        { "label": "Fool reaches rank 5 (story)" }
       ]
     },
     {
