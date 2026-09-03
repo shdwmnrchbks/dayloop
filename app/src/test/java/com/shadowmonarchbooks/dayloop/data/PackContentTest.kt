@@ -462,10 +462,10 @@ class PackContentTest {
             it.kind == MediaKinds.BANNER && it.id.startsWith("p5r.media.confidant.")
         }
 
-        assertEquals(22, backgrounds.size, "all supplied confidant graphics must be declared")
+        assertEquals(23, backgrounds.size, "all supplied confidant graphics must be declared")
         assertTrue(backgrounds.all { it.bonds.size == 1 }, "each confidant background must target one bond")
         assertEquals(
-            22,
+            23,
             backgrounds.flatMap { it.bonds }.distinct().size,
             "each supplied confidant background must target a different bond",
         )
@@ -477,7 +477,7 @@ class PackContentTest {
         loadPacks().forEach { (slug, _, loaded) ->
             counts[slug] = loaded.media?.media?.size ?: 0
         }
-        assertTrue((counts["p5r"] ?: 0) >= 73, "p5r must declare its 73 bundled graphics, found ${counts["p5r"]}")
+        assertTrue((counts["p5r"] ?: 0) >= 74, "p5r must declare its 74 bundled graphics, found ${counts["p5r"]}")
         assertTrue((counts["p3r"] ?: 0) >= 16, "p3r must declare its 16 guide graphics, found ${counts["p3r"]}")
         assertTrue((counts["metaphor"] ?: 0) >= 47, "metaphor must declare its 47 guide graphics, found ${counts["metaphor"]}")
     }
