@@ -374,13 +374,13 @@ fun TodayScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 8.dp),
         ) {
-            SkinTextActionButton(
-                text = "Back",
-                onClick = vm::rerollDay,
-                enabled = state.hasPreviousDay(),
-                fillWidth = true,
-                modifier = Modifier.weight(1f).heightIn(min = 52.dp),
-            )
+            if (state.hasPreviousDay()) {
+                SkinTextActionButton(
+                    text = "Back",
+                    onClick = vm::rerollDay,
+                    modifier = Modifier.heightIn(min = 52.dp),
+                )
+            }
             SkinActionButton(
                 text = "End day",
                 onClick = ::advanceDay,
@@ -395,6 +395,7 @@ fun TodayScreen(
         // overlay; the clock commits while the screen is covered.
         DayAdvanceOverlay(
             fx = advance,
+            background = rememberAssetImage(pack.artAsset("day-complete")),
             onCovered = {
                 skinFx?.play("advance")
                 vm.endDay()
@@ -407,7 +408,6 @@ fun TodayScreen(
         PerfectDaySplash(
             allDone = allTasksDone,
             key = date,
-            background = rememberAssetImage(pack.artAsset("day-complete")),
             suppressed = advance != null,
             modifier = Modifier
                 .align(Alignment.Center)
