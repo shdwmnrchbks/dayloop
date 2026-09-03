@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 
@@ -52,7 +53,7 @@ fun SkinSectionHeader(
         Surface(
             shape = skin.shapes.header,
             color = colors.primary,
-            contentColor = colors.background,
+            contentColor = Color.White,
             shadowElevation = 0.dp,
             modifier = Modifier
                 .graphicsLayer { rotationZ = -1.2f }
@@ -61,7 +62,7 @@ fun SkinSectionHeader(
             Text(
                 text = skin.cased(text, "display"),
                 style = labelStyle,
-                color = colors.background,
+                color = Color.White,
                 modifier = Modifier.padding(horizontal = 14.dp, vertical = 5.dp),
             )
         }

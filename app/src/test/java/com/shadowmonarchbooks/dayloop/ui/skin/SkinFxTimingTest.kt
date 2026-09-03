@@ -47,14 +47,21 @@ class SkinFxTimingTest {
 
     @Test
     fun `every phase 16 moment duration stays under the ceiling`() {
-        assertTrue(SkinFxTiming.ADVANCE_TOTAL_MS <= SkinFxTiming.MAX_TRANSITION_MS)
+        assertTrue(SkinFxTiming.ADVANCE_TOTAL_MS == 800, "day-complete cover and reveal must total 0.8 seconds")
         assertTrue(SkinFxTiming.ADVANCE_COVER_MS <= SkinFxTiming.MAX_TRANSITION_MS)
         assertTrue(SkinFxTiming.ADVANCE_REVEAL_MS <= SkinFxTiming.MAX_TRANSITION_MS)
         assertTrue(SkinFxTiming.SPLASH_IN_MS <= SkinFxTiming.MAX_TRANSITION_MS)
         assertTrue(SkinFxTiming.SPLASH_OUT_MS <= SkinFxTiming.MAX_TRANSITION_MS)
         assertTrue(SkinFxTiming.MARK_MS <= SkinFxTiming.MAX_TRANSITION_MS)
-        assertTrue(SkinFxTiming.ADVANCE_LINGER_MS == 3_000L, "day-complete results must last exactly three seconds")
-        assertTrue(SkinFxTiming.SPLASH_LINGER_MS == 3_000L, "perfect-day splash must last exactly three seconds")
+        assertTrue(SkinFxTiming.ADVANCE_LINGER_MS == 2_000L, "day-complete results must last exactly two seconds")
+        assertTrue(SkinFxTiming.SPLASH_LINGER_MS == 2_000L, "perfect-day splash must last exactly two seconds")
+    }
+
+    @Test
+    fun `day complete takes priority over perfect day`() {
+        assertTrue(shouldShowPerfectDay(allDone = true, dayCompleteVisible = false))
+        assertTrue(!shouldShowPerfectDay(allDone = true, dayCompleteVisible = true))
+        assertTrue(!shouldShowPerfectDay(allDone = false, dayCompleteVisible = false))
     }
 
     @Test

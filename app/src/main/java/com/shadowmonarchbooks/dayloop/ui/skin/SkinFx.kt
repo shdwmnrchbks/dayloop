@@ -67,7 +67,7 @@ import kotlinx.coroutines.launch
  * sequences, the perfect-day splash, mark micro-animations, opt-in skin sounds,
  * and haptics. Durations are engine constants ([SkinFxTiming]) — skins choose
  * the grammar, never the milliseconds — and the animation timing lint
- * (SkinFxTimingTest) pins every blocking transition at ≤ 400 ms, with
+ * (SkinFxTimingTest) pins each transition segment at ≤ 400 ms, with
  * reduce-motion collapsing all of it to plain fades or nothing.
  */
 object SkinFxTiming {
@@ -75,11 +75,11 @@ object SkinFxTiming {
     const val MAX_TRANSITION_MS = 400
 
     /** Day-advance overlay: the cover half, then the reveal half. */
-    const val ADVANCE_COVER_MS = 180
-    const val ADVANCE_REVEAL_MS = 140
+    const val ADVANCE_COVER_MS = 400
+    const val ADVANCE_REVEAL_MS = 400
     const val ADVANCE_TOTAL_MS = ADVANCE_COVER_MS + ADVANCE_REVEAL_MS
     /** Readable results hold after the clock commits; a tap still dismisses immediately. */
-    const val ADVANCE_LINGER_MS = 3_000L
+    const val ADVANCE_LINGER_MS = 2_000L
 
     /**
      * Perfect-day splash. Only the entrance/exit transitions block; the card
@@ -88,7 +88,7 @@ object SkinFxTiming {
      */
     const val SPLASH_IN_MS = 220
     const val SPLASH_OUT_MS = 160
-    const val SPLASH_LINGER_MS = 3_000L
+    const val SPLASH_LINGER_MS = 2_000L
 
     /** Mark micro-animations (selection plate, moon fill, seal stamp). */
     const val MARK_MS = 180
@@ -399,12 +399,13 @@ private fun CrownAdvancePanel(progress: Float) {
 fun PerfectDaySplash(
     allDone: Boolean,
     key: Any?,
+    suppressed: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
     var show by remember { mutableStateOf(false) }
     val skinFx = LocalSkinFx.current
-    LaunchedEffect(key, allDone) {
-        if (allDone) {
+    LaunchedEffect(key, allDone, suppressed) {
+        if (shouldShowPerfectDay(allDone, suppressed)) {
             show = true
             skinFx?.play("complete")
             delay(SkinFxTiming.SPLASH_LINGER_MS)
@@ -414,7 +415,7 @@ fun PerfectDaySplash(
         }
     }
     AnimatedVisibility(
-        visible = show,
+        visible = show && !suppressed,
         enter = fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) +
             scaleIn(initialScale = 0.92f, animationSpec = tween(SkinFxTiming.SPLASH_IN_MS)),
         exit = fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)),
@@ -424,6 +425,10 @@ fun PerfectDaySplash(
     }
 }
 
+/** Day Complete has priority when both completion treatments would overlap. */
+internal fun shouldShowPerfectDay(allDone: Boolean, dayCompleteVisible: Boolean): Boolean =
+    allDone && !dayCompleteVisible
+
 @Composable
 private fun PerfectDayCard(onDismiss: () -> Unit) {
     val skin = LocalSkin.current
@@ -431,7 +436,7 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
     Surface(
         shape = skin.shapes.card,
         color = when {
-            slash -> MaterialTheme.colorScheme.inverseSurface
+            slash -> Color(0xFFF0F0F0)
             skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.primaryContainer
             else -> MaterialTheme.colorScheme.secondaryContainer
         },
@@ -457,7 +462,7 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
                     Icons.Filled.Check,
                     contentDescription = null,
                     tint = if (slash) {
-                        MaterialTheme.colorScheme.inverseOnSurface
+                        Color.Black
                     } else {
                         MaterialTheme.colorScheme.onSecondaryContainer
                     },
@@ -469,7 +474,7 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = when {
-                        slash -> MaterialTheme.colorScheme.primary
+                        slash -> Color.Black
                         skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer
                         else -> MaterialTheme.colorScheme.onSecondaryContainer
                     },
@@ -478,7 +483,7 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
                     text = "Every task of this day is done.",
                     style = MaterialTheme.typography.bodySmall,
                     color = when {
-                        slash -> MaterialTheme.colorScheme.primary.copy(alpha = 0.82f)
+                        slash -> Color.Black.copy(alpha = 0.82f)
                         skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f)
                         else -> MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
                     },

@@ -101,7 +101,7 @@ fun BondsScreen(
                                     MaterialTheme.typography.titleMedium
                                 },
                                 color = if (skin.motion == "slash") {
-                                    MaterialTheme.colorScheme.primary
+                                    Color.White
                                 } else {
                                     MaterialTheme.colorScheme.onSurface
                                 },
@@ -115,6 +115,11 @@ fun BondsScreen(
                                     if (lastRouteDate != null) {
                                         append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
                                     }
+                                },
+                                color = if (skin.motion == "slash") {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
                                 },
                             )
                         },
