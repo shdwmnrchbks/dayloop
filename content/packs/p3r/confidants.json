@@ -3,15 +3,15 @@
     {
       "id": "p3r.bond.fool", "label": "Fool", "characterLabel": "S.E.E.S.",
       "ranks": [
-        { "rank": 1, "availableFrom": "2009-04-18", "notes": "Unlocked automatically by the story; it advances on its own and never spends a time slot." },
-        { "rank": 2, "scheduledFor": "2009-04-20", "notes": "Route/status estimate: pinned to the first Tartarus visit — the source only confirms rank 2 is reached by the end of April." },
-        { "rank": 3, "scheduledFor": "2009-05-10", "notes": "Route/status estimate: pinned to the day after the May full-moon operation — the story advances this link on its own and the source confirms the rank by the end of May." },
-        { "rank": 4, "scheduledFor": "2009-08-31", "notes": "Route/status estimate: the story advances this link on its own; the source only confirms rank 5 by the end of August." },
-        { "rank": 5, "scheduledFor": "2009-08-31", "notes": "Confirmed by the source's end-of-August status report." },
-        { "rank": 6, "scheduledFor": "2009-11-30", "notes": "Route/status estimate: intermediate ranks advance with the story; the source's end-of-November report confirms rank 9." },
-        { "rank": 7, "scheduledFor": "2009-11-30", "notes": "Route/status estimate; see rank 6." },
-        { "rank": 8, "scheduledFor": "2009-11-30", "notes": "Route/status estimate; see rank 6." },
-        { "rank": 9, "scheduledFor": "2009-11-30", "notes": "Confirmed by the source's end-of-November status report. The source lists Fool as MAX by the end of December but does not state the final rank number." }
+        { "rank": 1, "availableFrom": "2009-04-18", "notes": "Automatic story rank; never spends a time slot." },
+        { "rank": 2, "availableFrom": "2009-04-20", "notes": "Automatic story rank; never spends a time slot." },
+        { "rank": 3, "availableFrom": "2009-05-09", "notes": "Automatic story rank after the May full-moon operation." },
+        { "rank": 4, "availableFrom": "2009-07-07", "notes": "Automatic story rank after the July full-moon operation." },
+        { "rank": 5, "availableFrom": "2009-07-22", "notes": "Automatic story rank during the Yakushima story sequence." },
+        { "rank": 6, "availableFrom": "2009-11-02", "notes": "Automatic story rank." },
+        { "rank": 7, "availableFrom": "2009-11-04", "notes": "Automatic story rank." },
+        { "rank": 9, "availableFrom": "2009-11-28", "notes": "Automatic story rank. Persona 3 Reload skips Fool rank 8 rather than presenting a separate rank-8 event." },
+        { "rank": 10, "availableFrom": "2009-12-31", "notes": "Automatic story MAX on the good-ending path." }
       ]
     },
     {
@@ -227,14 +227,12 @@
     {
       "id": "p3r.bond.death", "label": "Death", "characterLabel": "Pharos",
       "ranks": [
-        { "rank": 1, "availableFrom": "2009-06-12", "notes": "Advances automatically with the story; it never spends a time slot." },
-        { "rank": 2, "scheduledFor": "2009-08-31", "notes": "Route/status estimate: the story advances this link on its own; the source only confirms rank 5 by the end of August." },
-        { "rank": 3, "scheduledFor": "2009-08-31", "notes": "Route/status estimate; see rank 2." },
-        { "rank": 4, "scheduledFor": "2009-08-31", "notes": "Route/status estimate; see rank 2." },
-        { "rank": 5, "scheduledFor": "2009-08-31", "notes": "Confirmed by the source's end-of-August status report." },
-        { "rank": 6, "scheduledFor": "2009-09-30", "notes": "Route/status estimate: pinned to the end of the month because the source's end-of-September report confirms rank 6." },
-        { "rank": 7, "scheduledFor": "2009-10-31", "notes": "Route/status estimate: intermediate automatic rank." },
-        { "rank": 8, "scheduledFor": "2009-10-31", "notes": "Confirmed by the source's end-of-October status report. Later reports list Death as MAX but do not state the final rank number." }
+        { "rank": 1, "availableFrom": "2009-06-12", "notes": "Automatic story rank; never spends a time slot." },
+        { "rank": 3, "availableFrom": "2009-07-12", "notes": "Automatic story rank. Persona 3 Reload skips Death rank 2." },
+        { "rank": 5, "availableFrom": "2009-08-07", "notes": "Automatic story rank. Persona 3 Reload skips Death rank 4." },
+        { "rank": 6, "availableFrom": "2009-09-12", "notes": "Automatic story rank." },
+        { "rank": 8, "availableFrom": "2009-10-06", "notes": "Automatic story rank. Persona 3 Reload skips Death rank 7." },
+        { "rank": 10, "availableFrom": "2009-11-04", "notes": "Automatic story MAX. Persona 3 Reload skips Death rank 9." }
       ]
     },
     {
@@ -270,7 +268,16 @@
     {
       "id": "p3r.bond.judgment", "label": "Judgment", "characterLabel": "Nyx Annihilation Team",
       "ranks": [
-        { "rank": 1, "availableFrom": "2009-12-31", "notes": "Unlocked automatically by the story; it advances on its own and never spends a time slot. The imported catalog currently lacks later automatic ranks and remains under audit." }
+        { "rank": 1, "availableFrom": "2009-12-31", "notes": "Automatic story unlock on the good-ending path; never spends a time slot." },
+        { "rank": 2, "notes": "Automatic when reaching Adamah 227F in Tartarus." },
+        { "rank": 3, "notes": "Automatic after clearing Adamah 230F in Tartarus." },
+        { "rank": 4, "notes": "Automatic after clearing Adamah 236F in Tartarus." },
+        { "rank": 5, "notes": "Automatic after clearing Adamah 241F in Tartarus." },
+        { "rank": 6, "notes": "Automatic after clearing Adamah 246F in Tartarus." },
+        { "rank": 7, "notes": "Automatic after clearing Adamah 247F in Tartarus." },
+        { "rank": 8, "notes": "Automatic after clearing Adamah 253F in Tartarus." },
+        { "rank": 9, "notes": "Automatic after clearing Adamah 254F in Tartarus." },
+        { "rank": 10, "notes": "Automatic after clearing Adamah 255F in Tartarus." }
       ]
     },
     {
