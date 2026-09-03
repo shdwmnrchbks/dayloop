@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.tools.pack
 
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
+import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import java.nio.file.Files
 import java.nio.file.Path
@@ -14,10 +15,15 @@ class P3rMayAuditTest {
     @Test
     fun `P3R May social-stat route matches audited raw point thresholds`() {
         val loaded = loadP3r()
-        val april = month(loaded, "2009-04").days.associateBy { it.date }
-        val may = month(loaded, "2009-05").days.associateBy { it.date }
+        fun monthDays(value: String) = assertNotNull(
+            loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == value },
+            value,
+        ).file.days.associateBy { it.date }
 
-        fun gain(days: Map<String, com.shadowmonarchbooks.dayloop.pack.schema.DayEntry>, date: String, label: String, stat: String): Int {
+        val april = monthDays("2009-04")
+        val may = monthDays("2009-05")
+
+        fun gain(days: Map<String, Day>, date: String, label: String, stat: String): Int {
             val day = assertNotNull(days[date], date)
             val step = assertNotNull(day.steps.firstOrNull { it.label.contains(label, ignoreCase = true) }, "$date: $label")
             return assertNotNull(step.statGains[stat], "$date: $label -> $stat")
@@ -75,7 +81,13 @@ class P3rMayAuditTest {
 
     @Test
     fun `P3R May 10 request chain tells the user how to finish the drink request`() {
-        val day = assertNotNull(month(loadP3r(), "2009-05").days.firstOrNull { it.date == "2009-05-10" })
+        val loaded = loadP3r()
+        val may = assertNotNull(
+            loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == "2009-05" },
+            "2009-05",
+        ).file
+        val day = assertNotNull(may.days.firstOrNull { it.date == "2009-05-10" })
+
         val oldDocument = assertNotNull(day.steps.firstOrNull { it.label.contains("Request #2", ignoreCase = true) })
         assertTrue(oldDocument.label.contains("Old Document 01", ignoreCase = true))
         assertTrue(oldDocument.label.contains("22F", ignoreCase = true))
@@ -89,11 +101,6 @@ class P3rMayAuditTest {
         assertTrue(drinks.label.contains("duplicates", ignoreCase = true))
         assertTrue(drinks.label.contains("Request #11", ignoreCase = true))
     }
-
-    private fun month(loaded: com.shadowmonarchbooks.dayloop.pack.LoadedPack, value: String) = assertNotNull(
-        loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == value },
-        value,
-    ).file
 
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
