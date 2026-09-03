@@ -273,8 +273,8 @@ private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageB
             Image(
                 bitmap = it,
                 contentDescription = null,
-                contentScale = ContentScale.Crop,
-                alignment = Alignment.CenterEnd,
+                contentScale = ContentScale.Fit,
+                alignment = Alignment.TopEnd,
                 modifier = Modifier.matchParentSize(),
             )
             Box(

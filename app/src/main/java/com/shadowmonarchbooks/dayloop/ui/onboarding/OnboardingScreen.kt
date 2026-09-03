@@ -28,8 +28,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -71,6 +75,13 @@ fun OnboardingScreen(
     val packs = state.packs.sortedBy { it.pack.pickerOrder }
     val profileCounts by vm.profileCounts.collectAsState()
     val reselecting = state.selectedSlug != null
+    var pendingSelection by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(state.selectedSlug, pendingSelection) {
+        if (pendingSelection != null && state.selectedSlug == pendingSelection) {
+            pendingSelection = null
+            onStart()
+        }
+    }
     val pagerState = rememberPagerState(
         initialPage = packs.indexOfFirst { it.slug == state.selectedSlug }.coerceAtLeast(0),
         pageCount = { packs.size },
@@ -141,8 +152,10 @@ fun OnboardingScreen(
                 selected = page == pagerState.currentPage,
                 savedProfiles = profileCounts[packs[page].slug] ?: 0,
                 onSelect = {
-                    vm.selectPack(packs[page].slug)
-                    onStart()
+                    if (pendingSelection == null) {
+                        pendingSelection = packs[page].slug
+                        vm.selectPack(packs[page].slug)
+                    }
                 },
             )
         }

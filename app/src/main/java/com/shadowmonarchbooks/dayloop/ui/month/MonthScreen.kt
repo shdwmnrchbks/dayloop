@@ -464,12 +464,12 @@ private fun DayCell(
                 Text(
                     text = "TODAY",
                     style = MaterialTheme.typography.displaySmall.copy(
-                        fontSize = 15.sp,
-                        lineHeight = 17.sp,
+                        fontSize = 20.sp,
+                        lineHeight = 22.sp,
                         fontStyle = FontStyle.Normal,
                     ),
                     color = Color.Black,
-                    modifier = Modifier.padding(horizontal = 9.dp, vertical = 4.dp),
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp),
                 )
             }
         }
