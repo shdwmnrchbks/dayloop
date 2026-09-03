@@ -7,7 +7,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Daytime: New Year's event" },
-        { "label": "Evening: new Elizabeth's requests are available" },
+        { "label": "Evening: check Elizabeth for newly available late-game requests; availability depends on earlier request prerequisites" },
         { "label": "Evening: the Believer's Blog Note is now available from the Suspicious Man at Club Escapade" },
         { "label": "Evening: join Ken's DVD hangout — Combat Characteristic enhanced" }
       ]
@@ -55,6 +55,7 @@
       "notes": "Alternative: choose Star rank 9 today instead, then meet Keisuke during the January 10 Koromaru walk if Star maxes that day.",
       "steps": [
         { "label": "Accept Kazushi's phone invitation (best answer: 3)" },
+        { "label": "Check Elizabeth's late-game request list; Request #98 can be completed once its fusion prerequisite is met, while #99/#100/#101 are handled during the remaining Tartarus cleanup" },
         { "label": "Evening: join Aigis's reading hangout" }
       ]
     },
@@ -139,11 +140,15 @@
       "date": "2010-01-15",
       "weekday": "fri",
       "dayKind": "school",
+      "notes": "The final missing-person batch enters Tartarus today. This route uses tonight's Tartarus visit for the Adamah climb and request cleanup; if needed, the same objectives can be split across later free evenings without changing daytime Social Links.",
       "steps": [
         { "label": "Stay awake in class" },
         { "label": "Talk to Aigis — Aeon reaches rank 3 (best answers: A > 2)" },
         { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true }
+        { "label": "Before or after the climb, complete Request #98 by reporting a Masakado with Charge once the request is available" },
+        { "label": "Evening: Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff", "spoiler": true },
+        { "label": "Continue through Adamah: Judgment reaches ranks 2–10 at 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively", "spoiler": true },
+        { "label": "Clear the final Monad Passage on 255F, defeat the Shadow of the Void, and report it to Elizabeth to complete Request #99", "spoiler": true }
       ]
     },
     {
@@ -200,7 +205,7 @@
       "notes": "Good day for Reaper and Secret Super Boss preparations.",
       "steps": [
         { "label": "Revival Event (after school)" },
-        { "label": "Evening: Tartarus — Reaper and Secret Super Boss preparations", "spoiler": true }
+        { "label": "Evening: Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary", "spoiler": true }
       ]
     },
     {
@@ -285,9 +290,11 @@
       "date": "2010-01-30",
       "weekday": "sat",
       "dayKind": "free",
+      "notes": "This is the last actionable day for the January missing-person batch and the safest final cleanup night before the Promised Day.",
       "steps": [
         { "label": "Spend time with your romance Social Link (or Hierophant)" },
-        { "label": "Evening: Tartarus — final preparations", "spoiler": true }
+        { "label": "Confirm the 232F and 250F missing persons have been rescued before today's cutoff" },
+        { "label": "Evening: Tartarus — with Request #101 accepted, enter the 255F Monad door alone and defeat the ultimate adversary to complete Elizabeth's final request; finish any remaining preparations afterward", "spoiler": true }
       ]
     },
     {
