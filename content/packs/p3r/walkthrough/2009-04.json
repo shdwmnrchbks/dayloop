@@ -131,7 +131,7 @@
         { "label": "Greet Yuko and ask to walk home with her (Strength flag)" },
         { "label": "Collect the Twilight Fragments hidden inside the dorm" },
         { "label": "Buy SP items from the vending machines (Iwatodai Station, Strip Mall 3F, Dorm 2F)" },
-        { "label": "Evening: Tartarus run — grind ¥36,000+, loot an Odd Morsel from a chest, and exploit gatekeeper weaknesses (Thebel 5F Agi, 11F Agi/Garu, 17F Zio)", "spoiler": true },
+        { "label": "Evening: Tartarus — clear Thebel through the 22F border, collect Old Document 01 from the purple chest, grind ¥36,000+, loot an Odd Morsel from a common chest, and exploit gatekeeper weaknesses (5F Fire, 11F Wind on Barbaric Beast Wheel / Fire on Magic Hands, 17F Electricity)", "spoiler": true },
         { "label": "Leave Tartarus carrying Hermit and Hanged-Man Personas (fusion options: Nekomata + Omoikane, Orpheus + Omoikane)" }
       ]
     },
@@ -154,7 +154,7 @@
       "steps": [
         { "label": "Hierophant flag — visit Bookworms (Strip Mall 1F), then take a persimmon leaf from the school's Young Tree (Corridor); don't return to Bookworms today" },
         { "label": "Hang out with Yuko — Strength reaches rank 2 (best answers: 1 > 2 > 1)" },
-        { "label": "Buy a Muscle Drink at Aohige Pharmacy's one-day sale (Elizabeth request prep)" },
+        { "label": "Buy a discounted Muscle Drink during Aohige Pharmacy's Saturday sale (Elizabeth request prep)" },
         { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
       ]
     },
