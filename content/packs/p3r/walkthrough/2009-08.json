@@ -6,8 +6,17 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: track team training" },
-        { "label": "Evening: join Mitsuru's reading hangout — Combat Characteristic unlocked", "statGains": { "academics": 2 } }
+        {
+          "label": "Track team training",
+          "slot": "day"
+        },
+        {
+          "label": "Join Mitsuru's reading hangout — Combat Characteristic unlocked",
+          "slot": "evening",
+          "statGains": {
+            "academics": 2
+          }
+        }
       ]
     },
     {
@@ -15,8 +24,17 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: track team tournament" },
-        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } }
+        {
+          "label": "Track team tournament",
+          "slot": "day"
+        },
+        {
+          "label": "Eat the Seafood Full Course at Wakatsu Kitchen",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -25,9 +43,19 @@
       "dayKind": "free",
       "notes": "Carry Priestess, Strength, Justice, Tower, Star, and Moon Arcanas out of Tartarus until the next visit (September 4). Reaching ~30% Persona Compendium completion around now unlocks the Protagonist's Combat Characteristic.",
       "steps": [
-        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 7 (best answers: A > A)" },
-        { "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade" },
-        { "label": "Evening: Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)", "spoiler": true }
+        {
+          "label": "Visit the girl at the shrine — Hanged-Man reaches rank 7 (best answers: A > A)",
+          "slot": "day"
+        },
+        {
+          "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade",
+          "slot": "day"
+        },
+        {
+          "label": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -35,8 +63,14 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Nozomi — Moon reaches rank 5 (best answer: 1)" },
-        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 6" }
+        {
+          "label": "Hang out with Nozomi — Moon reaches rank 5 (best answer: 1)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 6",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -44,8 +78,17 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Meet the rival athlete — Star reaches rank 1" },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Meet the rival athlete — Star reaches rank 1",
+          "slot": "day"
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -53,7 +96,11 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        {
+          "label": "Full moon — the night is a mandatory Shadow operation, no free time",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -61,9 +108,18 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with the rival athlete — Star reaches rank 2 (best answers: 2 > 2)" },
-        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 5 (best answers: 1 > 2)" },
-        { "label": "Death reaches rank 5 (story; Reload skips rank 4)" }
+        {
+          "label": "Hang out with the rival athlete — Star reaches rank 2 (best answers: 2 > 2)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the monk at Club Escapade — Tower reaches rank 5 (best answers: 1 > 2)",
+          "slot": "evening"
+        },
+        {
+          "label": "Death reaches rank 5 (story; Reload skips rank 4)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -71,12 +127,30 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "New Elizabeth's requests are available" },
-        { "label": "Accept Request #58 and complete the straw-millionaire trade chain: Wrapped Bandage → Student Handbook → Irresistible Catnip → Cat Ear Headband; return it to Elizabeth before August 31" },
-        { "label": "Soul Spinach Sprout is now stocked at Rafflesia (Port Island Station)" },
-        { "label": "Accept Request #54, then check Naganaki Shrine's Monetary Offering (shrine visit 1 of 3; this does not consume the daytime slot)" },
-        { "label": "Hang out with Nozomi — Moon reaches rank 6 (best answer: 3)" },
-        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 7" }
+        {
+          "label": "New Elizabeth's requests are available",
+          "slot": "day"
+        },
+        {
+          "label": "Accept Request #58 and complete the straw-millionaire trade chain: Wrapped Bandage → Student Handbook → Irresistible Catnip → Cat Ear Headband; return it to Elizabeth before August 31",
+          "slot": "day"
+        },
+        {
+          "label": "Soul Spinach Sprout is now stocked at Rafflesia (Port Island Station)",
+          "slot": "day"
+        },
+        {
+          "label": "Accept Request #54, then check Naganaki Shrine's Monetary Offering (shrine visit 1 of 3; this does not consume the daytime slot)",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with Nozomi — Moon reaches rank 6 (best answer: 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 7",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -85,10 +159,25 @@
       "dayKind": "free",
       "notes": "'Walk Koromaru' events are not mandatory for 100% achievements — treat them as free time if you are behind on stats or links.",
       "steps": [
-        { "label": "Optional: TV Shopping (¥3,980 — 10 Isotope Soda & 20 Mad Bull)" },
-        { "label": "Check Naganaki Shrine's Monetary Offering again (Request #54, shrine visit 2 of 3)" },
-        { "label": "Watch Junpei's Link Episode", "statGains": { "charm": 2 } },
-        { "label": "Evening: free time — walk Koromaru (with Kenji)" }
+        {
+          "label": "Optional: TV Shopping (¥3,980 — 10 Isotope Soda & 20 Mad Bull)",
+          "slot": "day"
+        },
+        {
+          "label": "Check Naganaki Shrine's Monetary Offering again (Request #54, shrine visit 2 of 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Junpei's Link Episode",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Free time — walk Koromaru (with Kenji)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -96,7 +185,13 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Summer class", "statGains": { "academics": 3 } }
+        {
+          "label": "Summer class",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 3
+          }
+        }
       ]
     },
     {
@@ -104,7 +199,13 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Summer class", "statGains": { "academics": 3 } }
+        {
+          "label": "Summer class",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 3
+          }
+        }
       ]
     },
     {
@@ -112,7 +213,13 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Summer class", "statGains": { "academics": 3 } }
+        {
+          "label": "Summer class",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 3
+          }
+        }
       ]
     },
     {
@@ -120,7 +227,13 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Summer class", "statGains": { "academics": 3 } }
+        {
+          "label": "Summer class",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 3
+          }
+        }
       ]
     },
     {
@@ -128,8 +241,17 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Summer class", "statGains": { "academics": 3 } },
-        { "label": "Watch Takaya's Link Episode" }
+        {
+          "label": "Summer class",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 3
+          }
+        },
+        {
+          "label": "Watch Takaya's Link Episode",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -138,8 +260,17 @@
       "dayKind": "school",
       "notes": "Save here to watch all the different Summer Festival events tomorrow.",
       "steps": [
-        { "label": "Daytime: summer classes", "statGains": { "academics": 3 } },
-        { "label": "Evening: walk Koromaru (with Aigis)" }
+        {
+          "label": "Summer classes",
+          "slot": "day",
+          "statGains": {
+            "academics": 3
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Aigis)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -147,7 +278,10 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Summer festival — choose who you wish to attend with" }
+        {
+          "label": "Summer festival — choose who you wish to attend with",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -156,9 +290,24 @@
       "dayKind": "free",
       "notes": "'Film Festival' events are not mandatory for 100% achievements, but skipping them all requires making up at least +8 Academics points elsewhere.",
       "steps": [
-        { "label": "Optional: TV Shopping (¥3,980 — 3 Curse Paper & 2 Vanish Ball)" },
-        { "label": "Watch the Film Festival with Kenji", "statGains": { "courage": 4 } },
-        { "label": "Evening: join Koromaru's TV hangout", "statGains": { "academics": 2 } }
+        {
+          "label": "Optional: TV Shopping (¥3,980 — 3 Curse Paper & 2 Vanish Ball)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch the Film Festival with Kenji",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Join Koromaru's TV hangout",
+          "slot": "evening",
+          "statGains": {
+            "academics": 2
+          }
+        }
       ]
     },
     {
@@ -166,9 +315,21 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the Film Festival with the exchange student — Academics reaches rank 5", "statGains": { "academics": 4 } },
-        { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 8" }
+        {
+          "label": "Watch the Film Festival with the exchange student — Academics reaches rank 5",
+          "slot": "day",
+          "statGains": {
+            "academics": 4
+          }
+        },
+        {
+          "label": "Check the Command Room's new dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 8",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -176,8 +337,20 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the Film Festival with Keisuke", "statGains": { "charm": 4 } },
-        { "label": "Evening: join Yukari's DVD hangout — Combat Characteristic unlocked", "statGains": { "charm": 2 } }
+        {
+          "label": "Watch the Film Festival with Keisuke",
+          "slot": "day",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Join Yukari's DVD hangout — Combat Characteristic unlocked",
+          "slot": "evening",
+          "statGains": {
+            "charm": 2
+          }
+        }
       ]
     },
     {
@@ -185,10 +358,25 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Check Naganaki Shrine's Monetary Offering a third time, then return the found 500-yen bill to Elizabeth to complete Request #54 (shrine visit 3 of 3)" },
-        { "label": "Hang out with Nozomi — Moon reaches rank 7 (best answers: 3 > A)" },
-        { "label": "Evening: watch Takaya's Link Episode" },
-        { "label": "Evening: join Fuuka's reading hangout — Combat Characteristic unlocked", "statGains": { "academics": 2 } }
+        {
+          "label": "Check Naganaki Shrine's Monetary Offering a third time, then return the found 500-yen bill to Elizabeth to complete Request #54 (shrine visit 3 of 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with Nozomi — Moon reaches rank 7 (best answers: 3 > A)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Takaya's Link Episode",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Fuuka's reading hangout — Combat Characteristic unlocked",
+          "slot": "evening",
+          "statGains": {
+            "academics": 2
+          }
+        }
       ]
     },
     {
@@ -196,8 +384,17 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the Film Festival with Yuko", "statGains": { "courage": 4 } },
-        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 6 (best answers: 2 > 2)" }
+        {
+          "label": "Watch the Film Festival with Yuko",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Visit the monk at Club Escapade — Tower reaches rank 6 (best answers: 2 > 2)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -205,8 +402,17 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the Film Festival with Kazushi", "statGains": { "courage": 4 } },
-        { "label": "Evening: walk Koromaru (with Bunkichi)" }
+        {
+          "label": "Watch the Film Festival with Kazushi",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Bunkichi)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -214,9 +420,21 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥2,980 — 2 Soul Spinach Sprout & 3 Buff Potato Sprout)" },
-        { "label": "Watch the Film Festival with Chihiro", "statGains": { "charm": 4 } },
-        { "label": "Evening: walk Koromaru (with Akihiko)" }
+        {
+          "label": "Optional: TV Shopping (¥2,980 — 2 Soul Spinach Sprout & 3 Buff Potato Sprout)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch the Film Festival with Chihiro",
+          "slot": "day",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Akihiko)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -224,8 +442,20 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Yukari from the Dorm 1F Lounge and watch the Film Festival with her", "statGains": { "academics": 4 } },
-        { "label": "Evening: join Koromaru's TV hangout", "statGains": { "academics": 2 } }
+        {
+          "label": "Invite Yukari from the Dorm 1F Lounge and watch the Film Festival with her",
+          "slot": "day",
+          "statGains": {
+            "academics": 4
+          }
+        },
+        {
+          "label": "Join Koromaru's TV hangout",
+          "slot": "evening",
+          "statGains": {
+            "academics": 2
+          }
+        }
       ]
     },
     {
@@ -233,8 +463,17 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Akihiko from the Dorm 1F Lounge and watch the Film Festival with him", "statGains": { "courage": 4 } },
-        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 9" }
+        {
+          "label": "Invite Akihiko from the Dorm 1F Lounge and watch the Film Festival with him",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 9",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -242,8 +481,20 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Koromaru from the Dorm 1F Lounge and watch the Film Festival together", "statGains": { "courage": 4 } },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Invite Koromaru from the Dorm 1F Lounge and watch the Film Festival together",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -251,8 +502,17 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Junpei from the Dorm 1F Lounge and watch the Film Festival with him", "statGains": { "charm": 4 } },
-        { "label": "Evening: walk Koromaru (with Junpei)" }
+        {
+          "label": "Invite Junpei from the Dorm 1F Lounge and watch the Film Festival with him",
+          "slot": "day",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Junpei)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -260,8 +520,17 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Aigis from the Dorm 1F Lounge and watch the Film Festival with her", "statGains": { "academics": 4 } },
-        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 7 (best answer: 2)" }
+        {
+          "label": "Invite Aigis from the Dorm 1F Lounge and watch the Film Festival with her",
+          "slot": "day",
+          "statGains": {
+            "academics": 4
+          }
+        },
+        {
+          "label": "Visit the monk at Club Escapade — Tower reaches rank 7 (best answer: 2)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -269,8 +538,17 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Fuuka from the Dorm 1F Lounge and watch the Film Festival with her", "statGains": { "charm": 4 } },
-        { "label": "Evening: walk Koromaru (with Fuuka)" }
+        {
+          "label": "Invite Fuuka from the Dorm 1F Lounge and watch the Film Festival with her",
+          "slot": "day",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Fuuka)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -278,9 +556,21 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥9,800 — 3 Fierce Sutra & 3 Depleting Sutra)" },
-        { "label": "Invite Mitsuru from the Dorm 1F Lounge and watch the Film Festival with her", "statGains": { "academics": 4 } },
-        { "label": "Evening: walk Koromaru (with Mitsuru)" }
+        {
+          "label": "Optional: TV Shopping (¥9,800 — 3 Fierce Sutra & 3 Depleting Sutra)",
+          "slot": "day"
+        },
+        {
+          "label": "Invite Mitsuru from the Dorm 1F Lounge and watch the Film Festival with her",
+          "slot": "day",
+          "statGains": {
+            "academics": 4
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Mitsuru)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -288,8 +578,20 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Invite Ken from the Dorm 1F Lounge and watch the Film Festival with him", "statGains": { "courage": 4 } },
-        { "label": "Evening: join Koromaru's TV hangout — Combat Characteristic unlocked", "statGains": { "academics": 2 } }
+        {
+          "label": "Invite Ken from the Dorm 1F Lounge and watch the Film Festival with him",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Join Koromaru's TV hangout — Combat Characteristic unlocked",
+          "slot": "evening",
+          "statGains": {
+            "academics": 2
+          }
+        }
       ]
     }
   ]

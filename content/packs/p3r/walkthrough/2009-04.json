@@ -6,7 +6,13 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        }
       ]
     },
     {
@@ -14,8 +20,18 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Evening: full moon — the night is a mandatory story event, no free time", "spoiler": true }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Full moon — the night is a mandatory story event, no free time",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -79,8 +95,18 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Fool reaches rank 1 (story)", "spoiler": true }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Fool reaches rank 1 (story)",
+          "slot": "afternoon",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -95,9 +121,20 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Evening: initial Tartarus exploration of Thebel", "spoiler": true },
-        { "label": "When Shuffle Time appears, pick the Coins card (money bonus)" },
-        { "label": "Fool reaches rank 2 (story)", "spoiler": true }
+        {
+          "label": "Initial Tartarus exploration of Thebel",
+          "slot": "evening",
+          "spoiler": true
+        },
+        {
+          "label": "When Shuffle Time appears, pick the Coins card (money bonus)",
+          "slot": "evening"
+        },
+        {
+          "label": "Fool reaches rank 2 (story)",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -105,11 +142,38 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Police Station: make no purchases today (budget plan)" },
-        { "label": "Drink the medicine at the school Nurse's Office (1F Faculty Office Hallway)", "statGains": { "courage": 2 } },
-        { "label": "Watch a movie at Screen Shot", "statGains": { "charm": 4 } },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Police Station: make no purchases today (budget plan)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Drink the medicine at the school Nurse's Office (1F Faculty Office Hallway)",
+          "slot": "afternoon",
+          "statGains": {
+            "courage": 2
+          }
+        },
+        {
+          "label": "Watch a movie at Screen Shot",
+          "slot": "afternoon",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Play House of the Deceased at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -117,8 +181,17 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Magician starts automatically with Kenji Tomochika — rank 1" },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Magician starts automatically with Kenji Tomochika — rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -126,13 +199,35 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Collect the Twilight Fragments hidden around the city (side-quest pickups)" },
-        { "label": "Join the track team at the Practice Field — Chariot reaches rank 1" },
-        { "label": "Greet Yuko and ask to walk home with her (Strength flag)" },
-        { "label": "Collect the Twilight Fragments hidden inside the dorm" },
-        { "label": "Buy SP items from the vending machines (Iwatodai Station, Strip Mall 3F, Dorm 2F)" },
-        { "label": "Evening: Tartarus — clear Thebel through the 22F border, collect Old Document 01 from the purple chest, grind ¥36,000+, loot an Odd Morsel from a common chest, and exploit gatekeeper weaknesses (5F Fire, 11F Wind on Barbaric Beast Wheel / Fire on Magic Hands, 17F Electricity)", "spoiler": true },
-        { "label": "Leave Tartarus carrying Hermit and Hanged-Man Personas (fusion options: Nekomata + Omoikane, Orpheus + Omoikane)" }
+        {
+          "label": "Collect the Twilight Fragments hidden around the city (side-quest pickups)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join the track team at the Practice Field — Chariot reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Greet Yuko and ask to walk home with her (Strength flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Collect the Twilight Fragments hidden inside the dorm",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy SP items from the vending machines (Iwatodai Station, Strip Mall 3F, Dorm 2F)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tartarus — clear Thebel through the 22F border, collect Old Document 01 from the purple chest, grind ¥36,000+, loot an Odd Morsel from a common chest, and exploit gatekeeper weaknesses (5F Fire, 11F Wind on Barbaric Beast Wheel / Fire on Magic Hands, 17F Electricity)",
+          "slot": "evening",
+          "spoiler": true
+        },
+        {
+          "label": "Leave Tartarus carrying Hermit and Hanged-Man Personas (fusion options: Nekomata + Omoikane, Orpheus + Omoikane)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -140,11 +235,32 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Drink the medicine at the school Nurse's Office", "statGains": { "courage": 2 } },
-        { "label": "Hang out with Kazushi — Chariot reaches rank 2 (best answers: 2 > A > A)" },
-        { "label": "Greet Yuko and ask to walk home with her again (Strength flag)" },
-        { "label": "Hang out with Yuko — Strength reaches rank 1" },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        {
+          "label": "Drink the medicine at the school Nurse's Office",
+          "slot": "afternoon",
+          "statGains": {
+            "courage": 2
+          }
+        },
+        {
+          "label": "Hang out with Kazushi — Chariot reaches rank 2 (best answers: 2 > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Greet Yuko and ask to walk home with her again (Strength flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yuko — Strength reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play House of the Deceased at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -152,10 +268,25 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Hierophant flag — visit Bookworms (Strip Mall 1F), then take a persimmon leaf from the school's Young Tree (Corridor); don't return to Bookworms today" },
-        { "label": "Hang out with Yuko — Strength reaches rank 2 (best answers: 1 > 2 > 1)" },
-        { "label": "Buy a discounted Muscle Drink during Aohige Pharmacy's Saturday sale (Elizabeth request prep)" },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Hierophant flag — visit Bookworms (Strip Mall 1F), then take a persimmon leaf from the school's Young Tree (Corridor); don't return to Bookworms today",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yuko — Strength reaches rank 2 (best answers: 1 > 2 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy a discounted Muscle Drink during Aohige Pharmacy's Saturday sale (Elizabeth request prep)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -163,9 +294,21 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Visit Bookworms — Hierophant reaches rank 1" },
-        { "label": "Buy SP drinks from the restocked vending machines" },
-        { "label": "Eat the Mystery Burger at Wilduck Burger (Courage reaches rank 2)", "statGains": { "courage": 3 } }
+        {
+          "label": "Visit Bookworms — Hierophant reaches rank 1",
+          "slot": "day"
+        },
+        {
+          "label": "Buy SP drinks from the restocked vending machines",
+          "slot": "day"
+        },
+        {
+          "label": "Eat the Mystery Burger at Wilduck Burger (Courage reaches rank 2)",
+          "slot": "day",
+          "statGains": {
+            "courage": 3
+          }
+        }
       ]
     },
     {
@@ -173,9 +316,24 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Sign your papers at the Faculty Office (1F Faculty Office Hallway) — Emperor reaches rank 1" },
-        { "label": "Evening: play High School of Youth at Game Parade", "statGains": { "charm": 4 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Sign your papers at the Faculty Office (1F Faculty Office Hallway) — Emperor reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play High School of Youth at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     },
     {
@@ -183,9 +341,21 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Chihiro (Justice flag)" },
-        { "label": "Hang out with Kenji — Magician reaches rank 2 (best answers: 2/3 > 1/3)" },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        {
+          "label": "Talk to Chihiro (Justice flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Kenji — Magician reaches rank 2 (best answers: 2/3 > 1/3)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play House of the Deceased at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -193,9 +363,21 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Play the MMORPG at your desk — Hermit reaches rank 1" },
-        { "label": "Evening: the dorm's shared computer unlocks today" },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Play the MMORPG at your desk — Hermit reaches rank 1",
+          "slot": "day"
+        },
+        {
+          "label": "The dorm's shared computer unlocks today",
+          "slot": "evening"
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -203,10 +385,28 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Talk to Chihiro again (Justice flag)" },
-        { "label": "Hang out with Kenji — Magician reaches rank 3 (best answers: 3 > 2)" },
-        { "label": "Evening: play High School of Youth at Game Parade (Charm reaches rank 2)", "statGains": { "charm": 4 } }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Talk to Chihiro again (Justice flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Kenji — Magician reaches rank 3 (best answers: 3 > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play High School of Youth at Game Parade (Charm reaches rank 2)",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     }
   ]

@@ -7,10 +7,26 @@
       "dayKind": "school",
       "notes": "Carry Priestess, Hierophant, Lovers, Star, and Moon Arcanas out of Tartarus until the next visit (November 2). You should have earned 'The Strength of Our Hearts' by now — if not, use everyone's Theurgy at least once.",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Join the art club — Fortune reaches rank 6 (best answers: A > 2)" },
-        { "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade" },
-        { "label": "Evening: Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone", "spoiler": true }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Join the art club — Fortune reaches rank 6 (best answers: A > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -18,9 +34,18 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Refuse the medicine at the school Nurse's Office" },
-        { "label": "Draw a relationship fortune for Fuuka at Naganaki Shrine" },
-        { "label": "Evening: join Yukari's cooking hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Refuse the medicine at the school Nurse's Office",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Draw a relationship fortune for Fuuka at Naganaki Shrine",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Yukari's cooking hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -28,9 +53,21 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Fuuka — Priestess reaches rank 10 (MAX)" },
-        { "label": "Evening: join Junpei's gardening hangout" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Fuuka — Priestess reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Junpei's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -38,7 +75,11 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        {
+          "label": "Full moon — the night is a mandatory Shadow operation, no free time",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -47,8 +88,14 @@
       "dayKind": "free",
       "notes": "The skill card you receive depends on Shinjiro's level.",
       "steps": [
-        { "label": "Enter Shinjiro's room and open the desk drawer — Shinjiro Link Episode 5" },
-        { "label": "Walk Koromaru (with Aigis)" }
+        {
+          "label": "Enter Shinjiro's room and open the desk drawer — Shinjiro Link Episode 5",
+          "slot": "day"
+        },
+        {
+          "label": "Walk Koromaru (with Aigis)",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -56,14 +103,41 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "New Elizabeth's requests are available — accept Requests #74, #75, and #76 before their item interactions" },
-        { "label": "After accepting Request #74, inspect the Inari at Naganaki Shrine for Inari Sushi and return it to Elizabeth to complete the request" },
-        { "label": "After accepting Request #75, visit the Faculty Office for the Sengoku-era helm chain (visit 1 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Watch Koromaru's Link Episode" },
-        { "label": "Evening: new software and notes are available" },
-        { "label": "Buy the Part-Time Master at MangaStar Net Café (Strip Mall 3F)" },
-        { "label": "Evening: run the Part-Time Master on the dorm's shared computer (increases part-time job income)" },
-        { "label": "Death reaches rank 8 (story; Reload skips rank 7)" }
+        {
+          "label": "New Elizabeth's requests are available — accept Requests #74, #75, and #76 before their item interactions",
+          "slot": "afternoon"
+        },
+        {
+          "label": "After accepting Request #74, inspect the Inari at Naganaki Shrine for Inari Sushi and return it to Elizabeth to complete the request",
+          "slot": "afternoon"
+        },
+        {
+          "label": "After accepting Request #75, visit the Faculty Office for the Sengoku-era helm chain (visit 1 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Watch Koromaru's Link Episode",
+          "slot": "afternoon"
+        },
+        {
+          "label": "New software and notes are available",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the Part-Time Master at MangaStar Net Café (Strip Mall 3F)",
+          "slot": "evening"
+        },
+        {
+          "label": "Run the Part-Time Master on the dorm's shared computer (increases part-time job income)",
+          "slot": "evening"
+        },
+        {
+          "label": "Death reaches rank 8 (story; Reload skips rank 7)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -72,11 +146,36 @@
       "dayKind": "school",
       "notes": "Social stat recovery point — if your Academics rank-ups don't match the guide, replace future part-time jobs and dorm hangouts with arcade or Wakatsu visits so the Empress link unlocks on time.",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Visit the Faculty Office for Request #75 (visit 2 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Hang out with the rival athlete — Star reaches rank 3 (best answers: A > A)" },
-        { "label": "Talk to Ikutsuki for the Glasses Wipe and report it to Elizabeth to complete Request #76 before November 1" },
-        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 2 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with the rival athlete — Star reaches rank 3 (best answers: A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to Ikutsuki for the Glasses Wipe and report it to Elizabeth to complete Request #76 before November 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening",
+          "statGains": {
+            "charm": 1,
+            "courage": 1
+          }
+        }
       ]
     },
     {
@@ -84,9 +183,24 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Visit the Faculty Office for Request #75 (visit 3 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Nozomi — Moon reaches rank 8 (best answer: 2)" },
-        { "label": "Evening: study with Mitsuru and Akihiko", "statGains": { "academics": 4 } }
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 3 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Nozomi — Moon reaches rank 8 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study with Mitsuru and Akihiko",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -94,10 +208,31 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Visit the Faculty Office for Request #75 (visit 4 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Hang out with the rival athlete — Star reaches rank 4 (best answers: A > 1 > 2)" },
-        { "label": "Evening: study with Yukari, Junpei, and Fuuka", "statGains": { "academics": 4 } }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 4 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with the rival athlete — Star reaches rank 4 (best answers: A > 1 > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study with Yukari, Junpei, and Fuuka",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -105,10 +240,28 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Visit the Faculty Office for Request #75 (visit 5 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Nozomi — Moon reaches rank 9 (best answer: A)" },
-        { "label": "Evening: walk Koromaru (with Ken)" }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 5 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Nozomi — Moon reaches rank 9 (best answer: A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Ken)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -116,9 +269,21 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥19,800 — Paring Knife & 2 Candy Hosui Pear)" },
-        { "label": "Visit the dying young man at the shrine — Sun reaches rank 2" },
-        { "label": "Evening: study with Aigis, Ken, and Koromaru", "statGains": { "academics": 4 } }
+        {
+          "label": "Optional: TV Shopping (¥19,800 — Paring Knife & 2 Candy Hosui Pear)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the dying young man at the shrine — Sun reaches rank 2",
+          "slot": "day"
+        },
+        {
+          "label": "Study with Aigis, Ken, and Koromaru",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -127,8 +292,17 @@
       "dayKind": "free",
       "notes": "Public holiday — Sports Day.",
       "steps": [
-        { "label": "Play the MMORPG at your desk — Hermit reaches rank 10 (MAX)" },
-        { "label": "Evening: study with everyone", "statGains": { "academics": 5 } }
+        {
+          "label": "Play the MMORPG at your desk — Hermit reaches rank 10 (MAX)",
+          "slot": "day"
+        },
+        {
+          "label": "Study with everyone",
+          "slot": "evening",
+          "statGains": {
+            "academics": 5
+          }
+        }
       ]
     },
     {
@@ -137,7 +311,10 @@
       "dayKind": "exam",
       "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 5 and all four player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -145,7 +322,10 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -153,7 +333,10 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -161,7 +344,10 @@
       "weekday": "fri",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -169,10 +355,25 @@
       "weekday": "sat",
       "dayKind": "exam",
       "steps": [
-        { "label": "Final exam day — no player-answer question; after school is free" },
-        { "label": "Visit the Faculty Office for Request #75 (visit 6 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Hang out with the old couple — Hierophant reaches rank 6 (best answers: 2 > A)" },
-        { "label": "Evening: join Junpei's gardening hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Final exam day — no player-answer question; after school is free",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 6 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 6 (best answers: 2 > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Junpei's gardening hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -180,10 +381,22 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥4,980 — Instant Curry & 10 Instant Ramen)" },
-        { "label": "Visit the dying young man at the shrine — Sun reaches rank 3" },
-        { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: join Ken's coffee hangout — Combat Characteristic unlocked" }
+        {
+          "label": "Optional: TV Shopping (¥4,980 — Instant Curry & 10 Instant Ramen)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the dying young man at the shrine — Sun reaches rank 3",
+          "slot": "day"
+        },
+        {
+          "label": "Check the Command Room's new dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Ken's coffee hangout — Combat Characteristic unlocked",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -191,12 +404,42 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Exam results — top of the class", "statGains": { "charm": 4 } },
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Talk to Mitsuru for the exam reward" },
-        { "label": "Visit the Faculty Office for Request #75 (visit 7 of 8)", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Hidetoshi — Emperor reaches rank 9 (best answer: A)" },
-        { "label": "Evening: watch Akihiko's Link Episode", "statGains": { "charm": 2 } }
+        {
+          "label": "Exam results — top of the class",
+          "slot": "day",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Talk to Mitsuru for the exam reward",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 7 of 8)",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Hidetoshi — Emperor reaches rank 9 (best answer: A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch Akihiko's Link Episode",
+          "slot": "evening",
+          "statGains": {
+            "charm": 2
+          }
+        }
       ]
     },
     {
@@ -204,9 +447,21 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Visit the Faculty Office for Request #75 (visit 8 of 8) — receive Kanetsugu's Helm and report it to Elizabeth to complete the Sengoku-era helm request", "statGains": { "academics": 2 } },
-        { "label": "Join the art club — Fortune reaches rank 7 (best answer: 1)" },
-        { "label": "Evening: join Aigis's gardening hangout" }
+        {
+          "label": "Visit the Faculty Office for Request #75 (visit 8 of 8) — receive Kanetsugu's Helm and report it to Elizabeth to complete the Sengoku-era helm request",
+          "slot": "afternoon",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Join the art club — Fortune reaches rank 7 (best answer: 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Aigis's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -214,8 +469,18 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with the exchange student — Temperance reaches rank 9 (best answer: 2)" },
-        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
+        {
+          "label": "Hang out with the exchange student — Temperance reaches rank 9 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening",
+          "statGains": {
+            "charm": 1,
+            "courage": 1
+          }
+        }
       ]
     },
     {
@@ -223,9 +488,21 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Kenji — Magician reaches rank 9 (best answer: 2)" },
-        { "label": "Evening: brush Koromaru (Koromaru hangout)" }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hang out with Kenji — Magician reaches rank 9 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Brush Koromaru (Koromaru hangout)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -233,9 +510,21 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Kenji — Magician reaches rank 10 (MAX)" },
-        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 10 (MAX)" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Kenji — Magician reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the monk at Club Escapade — Tower reaches rank 10 (MAX)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -243,8 +532,17 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with the old couple — Hierophant reaches rank 7 (best answers: 1 > 2 > A)" },
-        { "label": "Evening: join Akihiko's DVD hangout", "statGains": { "courage": 2 } }
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 7 (best answers: 1 > 2 > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Akihiko's DVD hangout",
+          "slot": "evening",
+          "statGains": {
+            "courage": 2
+          }
+        }
       ]
     },
     {
@@ -252,10 +550,22 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥24,800 — Pumpkin Mask & 50 Halloween Candy)" },
-        { "label": "Accept Yukari's phone invitation (best answer: 2)" },
-        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
-        { "label": "Evening: join Aigis's gardening hangout" }
+        {
+          "label": "Optional: TV Shopping (¥24,800 — Pumpkin Mask & 50 Halloween Candy)",
+          "slot": "day"
+        },
+        {
+          "label": "Accept Yukari's phone invitation (best answer: 2)",
+          "slot": "day"
+        },
+        {
+          "label": "Chill a Taiyaki in the dorm kitchen fridge",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Aigis's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -263,10 +573,29 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Yukari — Lovers reaches rank 4 (best answer: 3)" },
-        { "label": "Check the dorm fridge for a Doctor in Jelly and a note from Junpei" },
-        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 4 (best answer: 3)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check the dorm fridge for a Doctor in Jelly and a note from Junpei",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening",
+          "statGains": {
+            "charm": 1,
+            "courage": 1
+          }
+        }
       ]
     },
     {
@@ -274,8 +603,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Join the art club — Fortune reaches rank 8 (best answers: 1 > A > A)" },
-        { "label": "Evening: join Fuuka's gardening hangout" }
+        {
+          "label": "Join the art club — Fortune reaches rank 8 (best answers: 1 > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Fuuka's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -283,8 +618,18 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yukari — Lovers reaches rank 5 (romance: A > A > A > 1 > 1 / platonic: A > A > A > 2/3 > 1)" },
-        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 5 (romance: A > A > A > 1 > 1 / platonic: A > A > A > 2/3 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening",
+          "statGains": {
+            "charm": 1,
+            "courage": 1
+          }
+        }
       ]
     },
     {
@@ -292,9 +637,21 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class — Academics reaches rank 6", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Yukari — Lovers reaches rank 6 (romance: 2 > 1 / platonic: 2 > 2)" },
-        { "label": "Evening: brush Koromaru (Koromaru hangout)" }
+        {
+          "label": "Stay awake in class — Academics reaches rank 6",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 6 (romance: 2 > 1 / platonic: 2 > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Brush Koromaru (Koromaru hangout)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -302,9 +659,24 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Hidetoshi — Emperor reaches rank 10 (MAX)" },
-        { "label": "Evening: join Ken's DVD hangout", "statGains": { "courage": 2 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hang out with Hidetoshi — Emperor reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Ken's DVD hangout",
+          "slot": "evening",
+          "statGains": {
+            "courage": 2
+          }
+        }
       ]
     },
     {
@@ -312,8 +684,14 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yukari — Lovers reaches rank 7 (romance answer: 3 / platonic answer: 1)" },
-        { "label": "Evening: walk Koromaru (with Ken)" }
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 7 (romance answer: 3 / platonic answer: 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Ken)",
+          "slot": "evening"
+        }
       ]
     }
   ]
