@@ -41,6 +41,7 @@ class P3rDataAuditTest {
 
         val automatic = setOf("p3r.bond.fool", "p3r.bond.death", "p3r.bond.judgment")
         bonds.filterNot { it.id in automatic }.forEach { bond ->
+            assertEquals((1..10).toList(), bond.ranks.map { it.rank }, "${bond.id}: incomplete rank ladder")
             assertTrue(bond.ranks.all { it.availableFrom == null }, "${bond.id}: route dates must not live in availableFrom")
             assertTrue(bond.ranks.all { it.scheduledFor != null }, "${bond.id}: imported route rank needs scheduledFor")
         }
@@ -49,6 +50,53 @@ class P3rDataAuditTest {
             .filter { bond -> bond.ranks.any { it.availableFrom != null } }
             .mapTo(mutableSetOf()) { it.id }
         assertEquals(automatic, bondsWithExplicitAvailability)
+
+        fun scheduledFor(id: String, rank: Int) = assertNotNull(
+            byId.getValue(id).ranks.firstOrNull { it.rank == rank },
+            "$id rank $rank",
+        ).scheduledFor
+
+        assertEquals("2009-07-28", scheduledFor("p3r.bond.devil", 5))
+        assertEquals("2009-09-01", scheduledFor("p3r.bond.devil", 10))
+        assertEquals("2009-07-31", scheduledFor("p3r.bond.tower", 4))
+        assertEquals("2009-09-07", scheduledFor("p3r.bond.lovers", 2))
+        assertEquals("2009-09-10", scheduledFor("p3r.bond.lovers", 3))
+    }
+
+    @Test
+    fun `P3R walkthrough keeps Magician and Moon identities distinct`() {
+        val loaded = loadP3r()
+        val steps = loaded.walkthroughs
+            .filter { it.routeId == Routes.DEFAULT }
+            .flatMap { walkthrough -> walkthrough.file.days }
+            .flatMap { day -> day.steps }
+
+        val magicianRankSteps = steps.filter { it.label.contains("Magician reaches rank", ignoreCase = true) }
+        val moonRankSteps = steps.filter { it.label.contains("Moon reaches rank", ignoreCase = true) }
+
+        assertTrue(magicianRankSteps.isNotEmpty())
+        assertTrue(moonRankSteps.isNotEmpty())
+        assertTrue(magicianRankSteps.all { it.label.contains("Kenji", ignoreCase = true) })
+        assertFalse(magicianRankSteps.any { it.label.contains("Junpei", ignoreCase = true) })
+        assertTrue(moonRankSteps.all { it.label.contains("Nozomi", ignoreCase = true) })
+        assertFalse(moonRankSteps.any { it.label.contains("Kenji", ignoreCase = true) })
+    }
+
+    @Test
+    fun `P3R restored late July completion route steps`() {
+        val loaded = loadP3r()
+        val july = assertNotNull(
+            loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == "2009-07" },
+        ).file
+        val days = july.days.associateBy { it.date }
+
+        val july28 = assertNotNull(days["2009-07-28"])
+        assertTrue(july28.steps.any { it.label.contains("track team training", ignoreCase = true) })
+        assertTrue(july28.steps.any { it.label.contains("Devil reaches rank 5", ignoreCase = true) })
+
+        val july31 = assertNotNull(days["2009-07-31"])
+        assertTrue(july31.steps.any { it.label.contains("track team training", ignoreCase = true) })
+        assertTrue(july31.steps.any { it.label.contains("Tower reaches rank 4", ignoreCase = true) })
     }
 
     @Test
