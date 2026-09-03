@@ -35,7 +35,8 @@
       "dayKind": "school",
       "notes": "Request #97's reward is useful for the Secret Super Boss.",
       "steps": [
-        { "label": "New Elizabeth's requests are available" },
+        { "label": "New Elizabeth's requests are available — accept Request #97 before talking to the Eccentric Man" },
+        { "label": "Talk to the Eccentric Man on Iwatodai Strip Mall 2F, show a Thank-You Letter from a rescued Tartarus victim, receive the Christmas Present, and return it to Elizabeth to complete Request #97 before December 25" },
         { "label": "Talk to Mitsuru — Empress reaches rank 4 (best answers: 2 > 1 > A)" },
         { "label": "Evening: play Real Wheel Racer at Game Parade" }
       ]
