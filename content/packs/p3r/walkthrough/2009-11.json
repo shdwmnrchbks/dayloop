@@ -52,8 +52,11 @@
       "dayKind": "school",
       "notes": "Request #81 should be available if you completed all of Elizabeth's available requests in a timely fashion.",
       "steps": [
+        { "label": "New Elizabeth's requests are available — accept Request #94 (furry friend food)" },
         { "label": "Invite Elizabeth to your room (Request #81)" },
         { "label": "Hang out with Kazushi — Chariot reaches rank 5 (best answers: 1 > 1)" },
+        { "label": "Evening: talk to Koromaru for Gourmet Dog Food and report it to Elizabeth to complete Request #94; then accept Request #95" },
+        { "label": "Evening: talk to Ken for the Featherman R action figure and report it to Elizabeth to complete Request #95 before November 30" },
         { "label": "Evening: read the History Website Note on the dorm's shared computer" }
       ]
     },
