@@ -171,10 +171,12 @@
         { "rank": 2, "scheduledFor": "2009-07-04", "location": "Paulownia Mall" },
         { "rank": 3, "scheduledFor": "2009-07-11", "location": "Paulownia Mall" },
         { "rank": 4, "scheduledFor": "2009-07-25", "location": "Paulownia Mall" },
-        { "rank": 6, "scheduledFor": "2009-08-04", "location": "Paulownia Mall", "notes": "Audit gap: the archived schedule jumps from rank 4 (July 25) straight to rank 6; no rank-5 hangout appears in the imported route." },
+        { "rank": 5, "scheduledFor": "2009-07-28", "location": "Paulownia Mall" },
+        { "rank": 6, "scheduledFor": "2009-08-04", "location": "Paulownia Mall" },
         { "rank": 7, "scheduledFor": "2009-08-08", "location": "Paulownia Mall" },
         { "rank": 8, "scheduledFor": "2009-08-18", "location": "Paulownia Mall" },
-        { "rank": 9, "scheduledFor": "2009-08-25", "location": "Paulownia Mall" }
+        { "rank": 9, "scheduledFor": "2009-08-25", "location": "Paulownia Mall" },
+        { "rank": 10, "scheduledFor": "2009-09-01", "location": "Paulownia Mall" }
       ]
     },
     {
@@ -183,7 +185,8 @@
         { "rank": 1, "scheduledFor": "2009-06-04", "location": "Club Escapade (Paulownia Mall)", "notes": "Flag: talk to Yuko about the monk (June 3). Evening availability: Thu, Fri, Sat, Sun. Drink orders for rank 1: 4 > 2 > 2 > 4." },
         { "rank": 2, "scheduledFor": "2009-06-06", "location": "Club Escapade (Paulownia Mall)" },
         { "rank": 3, "scheduledFor": "2009-06-18", "location": "Club Escapade (Paulownia Mall)" },
-        { "rank": 5, "scheduledFor": "2009-08-07", "location": "Club Escapade (Paulownia Mall)", "notes": "Audit gap: the imported route/catalog has no rank-4 entry before this rank-5 event." },
+        { "rank": 4, "scheduledFor": "2009-07-31", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 5, "scheduledFor": "2009-08-07", "location": "Club Escapade (Paulownia Mall)" },
         { "rank": 6, "scheduledFor": "2009-08-21", "location": "Club Escapade (Paulownia Mall)" },
         { "rank": 7, "scheduledFor": "2009-08-28", "location": "Club Escapade (Paulownia Mall)" },
         { "rank": 8, "scheduledFor": "2009-09-17", "location": "Club Escapade (Paulownia Mall)" },
@@ -238,7 +241,9 @@
       "id": "p3r.bond.lovers", "label": "Lovers", "characterLabel": "Yukari Takeba",
       "ranks": [
         { "rank": 1, "scheduledFor": "2009-07-25", "location": "Classroom 2-F", "notes": "Daytime availability: Mon, Wed, Thu, Sat." },
-        { "rank": 4, "scheduledFor": "2009-10-26", "location": "Classroom 2-F", "notes": "Audit gap: ranks 2–3 are missing from the imported catalog before this route event." },
+        { "rank": 2, "scheduledFor": "2009-09-07", "location": "Classroom 2-F" },
+        { "rank": 3, "scheduledFor": "2009-09-10", "location": "Classroom 2-F" },
+        { "rank": 4, "scheduledFor": "2009-10-26", "location": "Classroom 2-F" },
         { "rank": 5, "scheduledFor": "2009-10-28", "location": "Classroom 2-F" },
         { "rank": 6, "scheduledFor": "2009-10-29", "location": "Classroom 2-F" },
         { "rank": 7, "scheduledFor": "2009-10-31", "location": "Classroom 2-F" },
