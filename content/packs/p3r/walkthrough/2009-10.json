@@ -133,9 +133,9 @@
       "date": "2009-10-13",
       "weekday": "tue",
       "dayKind": "exam",
-      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 6.",
+      "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 5 and all four player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — answer everything you can" }
+        { "label": "Exam day — see the Answers tab for today's sheet" }
       ]
     },
     {
@@ -165,8 +165,9 @@
     {
       "date": "2009-10-17",
       "weekday": "sat",
-      "dayKind": "school",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final exam day — no player-answer question; after school is free" },
         { "label": "Visit the Faculty Office for Request #75" },
         { "label": "Hang out with the old couple — Hierophant reaches rank 6 (best answers: 2 > A)" },
         { "label": "Evening: join Junpei's gardening hangout — Combat Characteristic enhanced" }
