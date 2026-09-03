@@ -1,7 +1,7 @@
 {
   "packId": "p3r",
   "title": "Persona 3 Reload",
-  "contentVersion": 1,
+  "contentVersion": 2,
   "pickerOrder": 1,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -24,6 +24,13 @@
     { "id": "academics", "label": "Academics" },
     { "id": "charm", "label": "Charm" },
     { "id": "courage", "label": "Courage" }
+  ],
+  "routes": [
+    {
+      "id": "standard",
+      "label": "100% Completion Route",
+      "description": "Source-specific full-coverage plan. Route dates are the authored order for this completion route, not universal game availability, unlock dates, or deadlines."
+    }
   ],
   "capabilities": {
     "exams": true,
