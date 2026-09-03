@@ -76,14 +76,21 @@ class P3rJulyAuditTest {
     }
 
     @Test
-    fun `P3R July fixed story and facility transitions stay represented`() {
+    fun `P3R July fixed story ranks facilities and route milestones stay represented`() {
         val loaded = loadP3r()
         val july = assertNotNull(
             loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == "2009-07" },
             "2009-07",
         ).file.days.associateBy { it.date }
 
-        assertTrue(assertNotNull(july["2009-07-07"]).steps.any { it.label.contains("Full moon", ignoreCase = true) })
+        val july7 = assertNotNull(july["2009-07-07"])
+        assertTrue(july7.steps.any { it.label.contains("Full moon", ignoreCase = true) })
+        assertTrue(july7.steps.any { it.label.contains("Fool reaches rank 4", ignoreCase = true) })
+
+        val july12 = assertNotNull(july["2009-07-12"])
+        assertTrue(july12.steps.any { it.label.contains("Death reaches rank 3", ignoreCase = true) })
+        assertTrue(july12.steps.any { it.label.contains("skips rank 2", ignoreCase = true) })
+
         assertTrue(assertNotNull(july["2009-07-18"]).steps.any { it.label.contains("Mayoido Antiques unlocks", ignoreCase = true) })
 
         listOf("2009-07-20", "2009-07-21", "2009-07-22").forEach { date ->
@@ -91,6 +98,7 @@ class P3rJulyAuditTest {
             assertEquals("story", day.dayKind)
             assertTrue(day.steps.any { it.label.contains("Yakushima", ignoreCase = true) })
         }
+        assertTrue(assertNotNull(july["2009-07-22"]).steps.any { it.label.contains("Fool reaches rank 5", ignoreCase = true) })
 
         val july25 = assertNotNull(july["2009-07-25"])
         assertTrue(july25.steps.any { it.label.contains("Lovers reaches rank 1", ignoreCase = true) })
