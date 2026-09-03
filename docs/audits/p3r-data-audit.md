@@ -9,9 +9,10 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 **Baseline correction pass landed on the audit branch; month-by-month factual audit remains in progress.**
 Route identity, answer representation, stable IDs, ordinary Social Link route-date
-semantics, canonical Social Link identities, and the first April corrections now
-have regression coverage. Rank-ladder completeness, automatic-link chronology,
-full April point provenance, deadlines, and May onward remain open.
+semantics, canonical Social Link catalog identities, and the first April
+corrections now have regression coverage. The walkthrough-wide identity cleanup,
+rank-ladder completeness, automatic-link chronology, full April point provenance,
+deadlines, and May onward remain open.
 
 ## Source roles
 
@@ -35,12 +36,12 @@ P3R now declares the `standard` route as **100% Completion Route** and explicitl
 states that its authored dates are not universal availability, unlock, or
 deadline facts. `contentVersion` was bumped from 1 to 2.
 
-### P3R-AUD-002 — Social Link identities corrupted — BASELINE FIXED
+### P3R-AUD-002 — Social Link identities corrupted — CATALOG FIXED / ROUTE CLEANUP OPEN
 
 The catalog incorrectly mapped Magician to Junpei and Moon to Kenji. The April
 walkthrough repeated the Magician error on April 22, 28, and 30.
 
-The baseline pass now uses canonical identities, including:
+The Social Link catalog now uses canonical identities, including:
 
 - Magician — **Kenji Tomochika**
 - Moon — **Nozomi Suemitsu**
@@ -52,8 +53,27 @@ The baseline pass now uses canonical identities, including:
 - Star — **Mamoru Hayase**
 - Sun — **Akinari Kamiki**
 
-April route prose now uses Kenji for Magician. Linked Episodes remain outside the
-Social Link catalog and must not be collapsed into an Arcana relationship.
+April route prose now uses Kenji for Magician. A wider scan after the baseline
+CI pass confirmed that the original import repeated the same name/Arcana swap in
+later walkthrough files. Confirmed remaining examples include:
+
+- May 8 — Junpei incorrectly named for Magician rank 4.
+- May 15 — Kenji incorrectly named as the Moon rank-1 hangout after the Gourmet
+  King prerequisite; the Moon Social Link itself is Nozomi.
+- June 7 — Kenji incorrectly named for Moon rank 2.
+- June 19 / June 25 — Junpei incorrectly named for Magician ranks 5 / 6.
+- July 2 / July 24 — Junpei incorrectly named for Magician ranks 7 / 8.
+- July 9 / July 10 — Kenji incorrectly named for Moon ranks 3 / 4.
+- August 4 / August 8 / August 20 — Kenji incorrectly named for Moon ranks 5–7.
+- October 8 / October 10 — Kenji incorrectly named for Moon ranks 8 / 9.
+- October 22 / October 23 — Junpei incorrectly named for Magician ranks 9 / 10.
+- December 26 — Kenji incorrectly named for Moon rank 10.
+
+Those route strings are now an explicit blocking item for the next correction
+batch rather than being hidden by the fixed catalog. Linked Episodes remain
+outside the Social Link catalog and must not be collapsed into an Arcana
+relationship; legitimate Junpei/Kenji story, invitation, festival, or Link
+Episode references must therefore be preserved during the targeted cleanup.
 
 ### P3R-AUD-003 — Route dates overloaded into `availableFrom` — BASELINE FIXED
 
@@ -142,9 +162,14 @@ classification.
    one valid route to imitate another.
 10. Fixed story dates, unlock gates, deadlines, and availability windows require
     independent support beyond the primary completion schedule.
+11. Walkthrough identity cleanup must be targeted to Social Link rank actions;
+    do not globally replace legitimate Junpei/Kenji Link Episode, invitation,
+    festival, prerequisite, or other story references.
 
 ## Next passes
 
+- Correct the remaining walkthrough-wide Magician/Moon identity swaps and add a
+  regression scan that prevents them from returning.
 - Reconstruct the missing Social Link ranks and independently verify automatic
   Fool/Death/Judgment chronology.
 - Finish April route + point-unit audit.
