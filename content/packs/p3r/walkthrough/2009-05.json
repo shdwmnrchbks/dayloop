@@ -91,7 +91,8 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true },
+        { "label": "Fool reaches rank 3 (story)" }
       ]
     },
     {
