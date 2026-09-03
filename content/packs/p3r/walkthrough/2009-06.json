@@ -120,7 +120,8 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with the exchange student — Temperance reaches rank 2 (best answers: A > 1)" },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } },
+        { "label": "Death reaches rank 1 (story)" }
       ]
     },
     {
