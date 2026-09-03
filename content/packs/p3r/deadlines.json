@@ -26,9 +26,9 @@
     },
     {
       "id": "p3r.deadline.exams.may",
-      "label": "First school exams — top of the class needs Academics rank 4+ (or rank 3 with all answers correct)",
+      "label": "First school exams — top of the class requires Academics rank 3 and all answers correct",
       "kind": "exam",
-      "window": { "start": "2009-05-18", "end": "2009-05-22" }
+      "window": { "start": "2009-05-18", "end": "2009-05-23" }
     },
     {
       "id": "p3r.deadline.fullmoon.june",
@@ -44,9 +44,9 @@
     },
     {
       "id": "p3r.deadline.exams.july",
-      "label": "Second school exams — top of the class needs Academics rank 5+ (or rank 4 with all answers correct)",
+      "label": "Second school exams — top of the class requires Academics rank 4 and all answers correct",
       "kind": "exam",
-      "window": { "start": "2009-07-14", "end": "2009-07-17" }
+      "window": { "start": "2009-07-14", "end": "2009-07-18" }
     },
     {
       "id": "p3r.deadline.fullmoon.august",
@@ -68,9 +68,9 @@
     },
     {
       "id": "p3r.deadline.exams.october",
-      "label": "Third school exams — top of the class needs Academics rank 6",
+      "label": "Third school exams — top of the class requires Academics rank 5 and all answers correct",
       "kind": "exam",
-      "window": { "start": "2009-10-13", "end": "2009-10-16" }
+      "window": { "start": "2009-10-13", "end": "2009-10-17" }
     },
     {
       "id": "p3r.deadline.fullmoon.november",
@@ -86,9 +86,9 @@
     },
     {
       "id": "p3r.deadline.exams.december",
-      "label": "Fourth school exams — top of the class needs Academics rank 6 with all answers correct",
+      "label": "Fourth school exams — top of the class requires Academics rank 6 and all answers correct",
       "kind": "exam",
-      "window": { "start": "2009-12-14", "end": "2009-12-18" }
+      "window": { "start": "2009-12-14", "end": "2009-12-19" }
     }
   ]
 }
