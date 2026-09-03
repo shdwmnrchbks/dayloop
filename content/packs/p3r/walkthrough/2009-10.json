@@ -56,7 +56,7 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "New Elizabeth's requests are available" },
+        { "label": "New Elizabeth's requests are available — accept Request #76 (Glasses Wipe) before talking to Ikutsuki" },
         { "label": "Visit the Faculty Office for Request #75" },
         { "label": "Watch Koromaru's Link Episode" },
         { "label": "Evening: new software and notes are available" },
@@ -73,7 +73,7 @@
         { "label": "Answer the class question" },
         { "label": "Visit the Faculty Office for Request #75" },
         { "label": "Hang out with the rival athlete — Star reaches rank 3 (best answers: A > A)" },
-        { "label": "Talk to Ikutsuki for the Glasses Wipe (Request #76)" },
+        { "label": "Talk to Ikutsuki for the Glasses Wipe and report it to Elizabeth to complete Request #76 before November 1" },
         { "label": "Evening: work part-time at Chagall Café" }
       ]
     },
