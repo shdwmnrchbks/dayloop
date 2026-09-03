@@ -7,12 +7,12 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
-**Social Link, answer, exam, and rescue-deadline baselines are corrected and regression-protected; month-by-month factual audit remains in progress.**
+**Social Link, answer, exam, rescue-deadline, and April social-stat baselines are corrected and regression-protected; month-by-month factual audit remains in progress.**
 Route identity, answer representation, stable IDs, Social Link identities, ordinary
 route-date semantics, ordinary rank-ladder completeness, automatic-link chronology,
-exam windows/requirements, actionable missing-person rescue cutoffs, and the first
-April corrections now have regression coverage. Full social-stat point provenance,
-route/Tartarus consistency, and the broader May → January route audit remain open.
+exam windows/requirements, actionable missing-person rescue cutoffs, rescue-route
+timing, and April social-stat point units now have regression coverage. April
+Tartarus/Elizabeth details and the broader May → January route audit remain open.
 
 ## Source roles
 
@@ -24,9 +24,10 @@ route/Tartarus consistency, and the broader May → January route audit remain o
 - **RPG Site / Push Square / Game8 school-answer guides** — independent checks
   for class/exam dates and answer text.
 - **megaten-database P3R social-events data** — structured cross-check for school
-  answers and automatic Social Link mechanics.
-- **GameFAQs P3R walkthrough/social-link references** — independent check for
-  fixed automatic ranks, story skips, and Judgment floor progression.
+  answers, social-stat points, and automatic Social Link mechanics.
+- **GameFAQs P3R walkthrough/social-link/gameplay references** — independent
+  check for social-stat point units, fixed automatic ranks, story skips, and
+  Judgment floor progression.
 - **RPG Site P3R Missing Persons guide** — independent check for rescue batches,
   Tartarus floors, story cutoffs, and the Bunkichi/Maiko Social Link risk.
 - **Game8 / GameSkinny P3R missing-person references** — cross-check for the
@@ -57,8 +58,8 @@ The catalog now uses canonical identities, including:
 - Star — **Mamoru Hayase**
 - Sun — **Akinari Kamiki**
 
-The targeted route cleanup now covers April, May, June, July, August, October,
-and December. Regression coverage scans every walkthrough month and rejects any
+The targeted route cleanup covers April, May, June, July, August, October, and
+December. Regression coverage scans every walkthrough month and rejects any
 Magician rank action naming Junpei or Moon rank action naming Kenji. Legitimate
 Junpei/Kenji Link Episodes, invitations, festival scenes, prerequisite dialogue,
 and other non-Social-Link references are preserved.
@@ -179,21 +180,42 @@ other Reload-specific guides list September 4 directly as the due date. Dayloop
 therefore stores **September 4 as the last actionable rescue date**. This is a UI
 and gameplay-safety semantic choice, not a claim that every source prints 9/4.
 
-## April route audit — first correction pass
+The authored completion route also has regression coverage for its corresponding
+batch-clear Tartarus visits: **June 27, August 3, September 4, October 1,
+November 2, November 29, December 30, and January 15**. Each visit occurs after
+the batch has appeared and no later than its actionable rescue cutoff.
 
-The first April pass corrected the Magician identity and the Wilduck **Mystery
-Burger** Courage gain from `+3` to the audited `+2`. Regression coverage pins:
+### P3R-AUD-012 — April social-stat point units — FIXED
 
-- April 22 Magician start to Kenji Tomochika, with no Junpei reference;
-- April 28 and April 30 Magician rank-ups to Kenji;
-- April 26 Mystery Burger to Courage `+2`;
-- the three April school-answer strings;
+April route `statGains` are now independently pinned in the pack's internal
+numeric point scale:
+
+- correct classroom answer — **+2 Charm**;
+- stay awake in class — **+2 Academics**;
+- Nurse's Office medicine — **+2 Courage**;
+- Screen Shot movie — **+4** to the advertised social stat;
+- Game Parade social-stat games — **+4**;
+- Mystery Burger — **+3 Courage**.
+
+An interim audit edit incorrectly changed Mystery Burger from +3 to +2 after
+mixing display-note/pip representations with raw point values. Point-based Reload
+references agree on **+3**, so the route has been restored to +3 and the old +2
+regression assertion removed. The April Courage route now sums to exactly **15
+points** on April 26 (2 + 4 + 2 + 4 + 3), matching the Courage Rank 2 threshold.
+
+## April route audit
+
+April now has regression coverage for:
+
+- Magician identity and the April 22/28/30 Kenji rank events;
+- classroom answer text;
+- social-stat point units for class, nurse, movie, arcade, and Mystery Burger;
+- the April 26 Courage Rank 2 point threshold;
 - first-Tartarus and Muscle Drink entries as route targets rather than fake hard
   deadlines.
 
-Still open for April: complete independent provenance for every class/stay-awake,
-nurse, movie, arcade, food and study gain; Tartarus progression; Elizabeth
-request preparation; omitted/duplicate steps; and fixed-story-vs-flexible-route
+Still open for April: Tartarus progression/gatekeeper details, Elizabeth request
+preparation, omitted/duplicate steps, and fixed-story-vs-flexible-route
 classification.
 
 ## Regression rules for P3R
@@ -214,22 +236,22 @@ classification.
 10. Route prep/optimization targets are not labeled as hard missable deadlines.
 11. Missing-person cutoffs use the final **actionable rescue date** in the UI; if
     a narrative cutoff falls on a mandatory story night, document the distinction.
-12. Reusable activity stat gains must be verified before creating
+12. Social-stat data uses raw/internal point units consistently; do not mix them
+    with UI note/pip counts from guides that use a different representation.
+13. Reusable activity stat gains must be verified before creating
     `activities.json`.
-13. Structural validation proves schema/reference integrity, not gameplay facts.
-14. When two valid completion guides differ only on a flexible action date,
+14. Structural validation proves schema/reference integrity, not gameplay facts.
+15. When two valid completion guides differ only on a flexible action date,
     preserve the authored route and document the difference rather than changing
     one valid route to imitate another.
-15. Fixed story dates, unlock gates, deadlines, and availability windows require
+16. Fixed story dates, unlock gates, deadlines, and availability windows require
     independent support beyond the primary completion schedule.
-16. Walkthrough identity cleanup is targeted to Social Link rank actions; do not
+17. Walkthrough identity cleanup is targeted to Social Link rank actions; do not
     globally replace legitimate Junpei/Kenji story references.
 
 ## Next passes
 
-- Finish April route + social-stat point-unit and Tartarus progression audit.
-- Check that every authored Tartarus visit safely precedes the new rescue cutoffs
-  and that no route step implies an impossible rescue date.
+- Finish April Tartarus progression/gatekeeper and Elizabeth-prep audit.
 - Continue May → January month-by-month, then verify the January-ending to March
   epilogue/non-playable calendar transition.
 - Re-check full-moon/story labels while auditing the corresponding route months.
