@@ -24,6 +24,34 @@ class P3rDataAuditTest {
     }
 
     @Test
+    fun `P3R Social Links use canonical identities and route dates`() {
+        val loaded = loadP3r()
+        val bonds = assertNotNull(loaded.bonds).bonds
+        val byId = bonds.associateBy { it.id }
+
+        assertEquals(22, bonds.size)
+        assertEquals("Kenji Tomochika", byId.getValue("p3r.bond.magician").characterLabel)
+        assertEquals("Nozomi Suemitsu", byId.getValue("p3r.bond.moon").characterLabel)
+        assertEquals("Maiko Oohashi", byId.getValue("p3r.bond.hanged-man").characterLabel)
+        assertEquals("President Tanaka", byId.getValue("p3r.bond.devil").characterLabel)
+        assertEquals("Mutatsu", byId.getValue("p3r.bond.tower").characterLabel)
+        assertEquals("Keisuke Hiraga", byId.getValue("p3r.bond.fortune").characterLabel)
+        assertEquals("Mamoru Hayase", byId.getValue("p3r.bond.star").characterLabel)
+        assertEquals("Akinari Kamiki", byId.getValue("p3r.bond.sun").characterLabel)
+
+        val automatic = setOf("p3r.bond.fool", "p3r.bond.death", "p3r.bond.judgment")
+        bonds.filterNot { it.id in automatic }.forEach { bond ->
+            assertTrue(bond.ranks.all { it.availableFrom == null }, "${bond.id}: route dates must not live in availableFrom")
+            assertTrue(bond.ranks.all { it.scheduledFor != null }, "${bond.id}: imported route rank needs scheduledFor")
+        }
+
+        val bondsWithExplicitAvailability = bonds
+            .filter { bond -> bond.ranks.any { it.availableFrom != null } }
+            .mapTo(mutableSetOf()) { it.id }
+        assertEquals(automatic, bondsWithExplicitAvailability)
+    }
+
+    @Test
     fun `P3R answer sheets serve answer text rather than menu indices`() {
         val loaded = loadP3r()
         val answers = assertNotNull(loaded.answers).answers
