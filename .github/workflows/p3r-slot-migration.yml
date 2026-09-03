@@ -6,6 +6,7 @@ on:
       - fix/p3r-time-slots
     paths:
       - "scripts/normalize_p3r_time_slots.py"
+      - "scripts/finalize_p3r_time_slot_audit.py"
       - ".github/workflows/p3r-slot-migration.yml"
 
 permissions:
@@ -22,14 +23,16 @@ jobs:
           fetch-depth: 0
       - name: Normalize P3R walkthrough slots
         run: python3 scripts/normalize_p3r_time_slots.py
-      - name: Commit normalized walkthrough
+      - name: Finalize P3R slot audit metadata
+        run: python3 scripts/finalize_p3r_time_slot_audit.py
+      - name: Commit normalized P3R data
         run: |
-          if git diff --quiet -- content/packs/p3r/walkthrough; then
-            echo "No walkthrough changes to commit."
+          if git diff --quiet -- content/packs/p3r/walkthrough content/packs/p3r/pack.json docs/audits/p3r-data-audit.md; then
+            echo "No P3R slot-audit changes to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/packs/p3r/walkthrough
-          git commit -m "Normalize P3R walkthrough time slots"
+          git add content/packs/p3r/walkthrough content/packs/p3r/pack.json docs/audits/p3r-data-audit.md
+          git commit -m "Finalize P3R walkthrough slot audit"
           git push origin HEAD:fix/p3r-time-slots
