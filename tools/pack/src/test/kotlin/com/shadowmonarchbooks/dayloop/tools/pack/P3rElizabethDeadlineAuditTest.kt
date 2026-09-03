@@ -94,8 +94,8 @@ class P3rElizabethDeadlineAuditTest {
         requireStep("2009-10", "2009-10-06", "#76", "accept")
         requireStep("2009-10", "2009-10-07", "Request #76", "Glasses Wipe", "November 1")
 
-        // 11/30 deadline: #95 becomes available after #94.
-        requireStep("2009-11", "2009-11-06", "Request #94", "accept")
+        // 11/30 deadline: #94 is accepted in a grouped request step; #95 becomes available after #94.
+        requireStep("2009-11", "2009-11-06", "#94", "accept")
         requireStep("2009-11", "2009-11-06", "Request #94", "Gourmet Dog Food", "Request #95")
         requireStep("2009-11", "2009-11-06", "Request #95", "Featherman", "November 30")
 
