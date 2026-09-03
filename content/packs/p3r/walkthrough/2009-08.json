@@ -35,7 +35,7 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with Kenji — Moon reaches rank 5 (best answer: 1)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 5 (best answer: 1)" },
         { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 6" }
       ]
     },
@@ -73,7 +73,7 @@
         { "label": "New Elizabeth's requests are available" },
         { "label": "Soul Spinach Sprout is now stocked at Rafflesia (Port Island Station)" },
         { "label": "Pray at Naganaki Shrine's Monetary Offering (Request #54)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 6 (best answer: 3)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 6 (best answer: 3)" },
         { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 7" }
       ]
     },
@@ -184,7 +184,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Pray at Naganaki Shrine (Request #54)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 7 (best answers: 3 > A)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 7 (best answers: 3 > A)" },
         { "label": "Evening: watch Takaya's Link Episode" },
         { "label": "Evening: join Fuuka's reading hangout — Combat Characteristic unlocked" }
       ]
