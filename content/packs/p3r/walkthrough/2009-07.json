@@ -136,9 +136,9 @@
       "date": "2009-07-14",
       "weekday": "tue",
       "dayKind": "exam",
-      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 5+ (or rank 4 with all answers correct).",
+      "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 4 and all four player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — answer everything you can" }
+        { "label": "Exam day — see the Answers tab for today's sheet" }
       ]
     },
     {
@@ -168,8 +168,9 @@
     {
       "date": "2009-07-18",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final exam day — no player-answer question; after school is free" },
         { "label": "Evening: Mayoido Antiques unlocks — join Junpei's gardening hangout" }
       ]
     },
