@@ -141,6 +141,45 @@ class P3rDataAuditTest {
     }
 
     @Test
+    fun `P3R exam deadlines use complete windows and top-class requirements`() {
+        val loaded = loadP3r()
+        val deadlines = assertNotNull(loaded.deadlines).deadlines.associateBy { it.id }
+
+        data class ExamCheck(val id: String, val start: String, val end: String, val academicsRank: Int)
+        val checks = listOf(
+            ExamCheck("p3r.deadline.exams.may", "2009-05-18", "2009-05-23", 3),
+            ExamCheck("p3r.deadline.exams.july", "2009-07-14", "2009-07-18", 4),
+            ExamCheck("p3r.deadline.exams.october", "2009-10-13", "2009-10-17", 5),
+            ExamCheck("p3r.deadline.exams.december", "2009-12-14", "2009-12-19", 6),
+        )
+
+        checks.forEach { check ->
+            val deadline = deadlines.getValue(check.id)
+            val window = assertNotNull(deadline.window, check.id)
+            assertEquals(check.start, window.start, check.id)
+            assertEquals(check.end, window.end, check.id)
+            assertTrue(deadline.label.contains("Academics rank ${check.academicsRank}"), deadline.label)
+            assertTrue(deadline.label.contains("all answers correct", ignoreCase = true), deadline.label)
+        }
+
+        val finalExamDays = mapOf(
+            "2009-05" to "2009-05-23",
+            "2009-07" to "2009-07-18",
+            "2009-10" to "2009-10-17",
+            "2009-12" to "2009-12-19",
+        )
+        finalExamDays.forEach { (month, date) ->
+            val walkthrough = assertNotNull(
+                loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == month },
+                month,
+            ).file
+            val day = assertNotNull(walkthrough.days.firstOrNull { it.date == date }, date)
+            assertEquals("exam", day.dayKind, date)
+            assertTrue(day.steps.any { it.label.contains("Final exam day", ignoreCase = true) }, date)
+        }
+    }
+
+    @Test
     fun `P3R answer sheets serve answer text rather than menu indices`() {
         val loaded = loadP3r()
         val answers = assertNotNull(loaded.answers).answers
