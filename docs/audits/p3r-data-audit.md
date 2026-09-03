@@ -7,15 +7,16 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
-**Social Link, answer, exam, rescue-deadline, timed Elizabeth-request, and early
-social-stat/Tartarus baselines are corrected and regression-protected; the broader
-month-by-month factual audit remains in progress.**
+**Social Link, answer, exam, rescue-deadline, timed Elizabeth-request, early
+social-stat/Tartarus, epilogue-calendar, and achievement-catalog baselines are
+corrected and regression-protected; the broader month-by-month factual audit
+remains in progress.**
 
 The current stable catalog contains **22 Social Links, 37 deadlines, 53 answer
-sheets, and zero reusable activities**. The route now explicitly satisfies all
-eight missing-person rescue cutoffs and all fourteen explicitly timed Elizabeth
-requests without replacing the authored Social Link or time-consuming activity
-choices.
+sheets, 48 achievements, and zero reusable activities**. The route now explicitly
+satisfies all eight missing-person rescue cutoffs and all fourteen explicitly
+timed Elizabeth requests without replacing the authored Social Link or
+time-consuming activity choices.
 
 ## Source roles
 
@@ -26,7 +27,9 @@ choices.
   Elizabeth requests, and activity/stat facts.
 - **Game8 / Push Square / GameFAQs / PlayStationTrophies / PowerPyx** — independent
   cross-checks for class/exam answers, request prerequisites/deadlines, automatic
-  Social Links, Tartarus timing, and route mechanics.
+  Social Links, Tartarus timing, epilogue timing, and achievement mechanics.
+- **Platform trophy/achievement text plus cross-checked trophy guides** — canonical
+  P3R base-game achievement titles/descriptions and mechanic-specific unlock facts.
 - **megaten-database P3R data** — structured cross-check for school answers,
   social-stat points, and automatic Social Link mechanics.
 
@@ -181,6 +184,46 @@ both the deadline catalog and all fourteen route handoffs, including ordering
 where one request unlocks another or acceptance is required before the NPC item
 becomes available.
 
+### P3R-AUD-016 — January ending to March epilogue transition — FIXED
+
+The pack's calendar correctly treats **February 1 through March 3** as the skipped
+post-Promised-Day span while keeping **March 4** and **March 5** inside the active
+calendar. March 4 remains player-controlled epilogue cleanup: the route sends the
+player through the school/city and dorm before bed. March 5 is the story-only
+Graduation Day ending.
+
+Regression coverage now pins the complete 31-date non-playable span, requires the
+calendar to end on March 5, rejects March 4/5 from `nonPlayableDates`, and requires
+both epilogue walkthrough entries to remain present.
+
+### P3R-AUD-017 — Achievement catalog mixed paraphrases and route dates with game facts — FIXED BASELINE
+
+The pack ships **48** base-game Journey achievements. Their descriptions are now
+normalized to the canonical platform achievement wording instead of guide-style
+paraphrases. Route tracking remains separate from actual mechanic availability.
+
+Specific semantic corrections include:
+
+- **Top of the Class** — canonical condition is `Aced an exam.`; this completion
+  route satisfies the first-exam requirements and records the unlock on the
+  **May 25** results day rather than delaying it to July 24.
+- **Reaper Reaped** — the Reaper becomes available with the June Tartarus
+  progression, so `availableFrom` is **June 13**; January remains this route's
+  dedicated preparation/expected completion period rather than a fake unlock.
+- **The Horror of the Shade** — random Dark Zones relevant to the achievement are
+  modeled from the Tziah tutorial point on **October 1**; the scripted tutorial
+  Dark Zone itself does not count.
+- **Eagle Eye** — the lingering `Twinkling Fragments` importer typo was corrected
+  to **Twilight Fragments** in both the May 25 walkthrough step and semantic event
+  anchor.
+
+Achievement regression coverage still preserves the existing structural checks:
+48 unique definitions, valid tracking types, resolvable event anchors, explicit
+choice/checklist/confirmation semantics, the nine-member Theurgy checklist, the
+shared good-ending choice state, Social Link completion anchors, gardening
+confirmation, and the >¥50,000 part-time-job counter. It now also pins the audited
+achievement descriptions and availability/route dates above.
+
 ## Regression rules for P3R
 
 1. A completion-route date is not `availableFrom` unless independently fixed.
@@ -197,18 +240,22 @@ becomes available.
 11. If a request requires acceptance before an NPC item interaction, the route
     must show that acceptance before the handoff.
 12. Social-stat data uses one raw/internal point scale and does not mix pip counts.
-13. Reusable activity effects must be verified before creating `activities.json`.
-14. Structural validation proves schema/reference integrity, not gameplay facts.
-15. Alternate valid guide dates do not override this authored route merely for
+13. Achievement descriptions use canonical platform wording; route completion
+    checkpoints must not masquerade as mechanic availability dates.
+14. The post-January calendar skip ends on March 3; March 4 player control and
+    March 5 Graduation Day remain represented.
+15. Reusable activity effects must be verified before creating `activities.json`.
+16. Structural validation proves schema/reference integrity, not gameplay facts.
+17. Alternate valid guide dates do not override this authored route merely for
     stylistic consistency.
-16. Fixed story dates, unlock gates, deadlines, and availability windows require
+18. Fixed story dates, unlock gates, deadlines, and availability windows require
     independent support beyond the primary completion schedule.
 
 ## Next passes
 
 - Continue the June → January month-by-month gameplay/stat/activity audit beyond
   the timed-request corrections already landed.
-- Verify the January-ending → March epilogue/non-playable calendar transition.
 - Re-check full-moon/story labels as their route months are audited.
-- Audit achievement descriptions/triggers against canonical trophy data.
+- Revisit achievement availability dates only when a true mechanic boundary is
+  independently established; do not substitute this route's cleanup date.
 - Build P3R activities only after the underlying reusable point/effect audit is stable.
