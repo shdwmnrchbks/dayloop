@@ -595,7 +595,9 @@ fun DeadlineBanner(
                         bitmap = it,
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
-                        alignment = Alignment.CenterEnd,
+                        // The shallow banner crops a large landscape source;
+                        // pin its upper edge so Joker's face stays in frame.
+                        alignment = Alignment.TopEnd,
                         modifier = Modifier.matchParentSize(),
                     )
                     Box(

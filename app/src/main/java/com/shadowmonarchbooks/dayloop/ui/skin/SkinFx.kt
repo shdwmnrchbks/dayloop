@@ -12,6 +12,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +24,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
@@ -214,6 +217,7 @@ fun DayAdvanceOverlay(
     fx: AdvanceFx?,
     onCovered: () -> Unit,
     onFinished: () -> Unit,
+    background: ImageBitmap? = null,
     modifier: Modifier = Modifier,
 ) {
     var covered by remember { mutableStateOf(false) }
@@ -249,7 +253,7 @@ fun DayAdvanceOverlay(
         contentAlignment = Alignment.Center,
     ) {
         when (fx.motif) {
-            "masks" -> MasksAdvancePanel(fx, p)
+            "masks" -> MasksAdvancePanel(fx, p, background)
             "moon" -> MoonAdvancePanel(p)
             "crown" -> CrownAdvancePanel(p)
         }
@@ -258,30 +262,49 @@ fun DayAdvanceOverlay(
 
 /** Slash family: a black results panel swept in by a white slash, checklist ticking. */
 @Composable
-private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float) {
+private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageBitmap?) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .alpha(progress)
-            .background(Color.Black)
-            .drawBehind {
-                // One diagonal slash sweeping across as the panel covers.
-                val t = progress
-                val x = size.width * (t * 1.6f - 0.3f)
-                drawLine(
-                    color = Color.White.copy(alpha = 0.9f),
-                    start = Offset(x - size.width * 0.12f, 0f),
-                    end = Offset(x + size.width * 0.12f, size.height),
-                    strokeWidth = 3.dp.toPx(),
-                )
-            },
+            .background(Color.Black),
     ) {
+        background?.let {
+            Image(
+                bitmap = it,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.CenterEnd,
+                modifier = Modifier.matchParentSize(),
+            )
+            Box(
+                Modifier
+                    .matchParentSize()
+                    .background(
+                        Brush.horizontalGradient(
+                            0f to Color.Black,
+                            0.58f to Color.Black.copy(alpha = 0.92f),
+                            1f to Color.Black.copy(alpha = 0.18f),
+                        ),
+                    ),
+            )
+        }
+        Canvas(Modifier.matchParentSize()) {
+            // Keep the transition slash above the supplied background art.
+            val x = size.width * (progress * 1.6f - 0.3f)
+            drawLine(
+                color = Color.White.copy(alpha = 0.9f),
+                start = Offset(x - size.width * 0.12f, 0f),
+                end = Offset(x + size.width * 0.12f, size.height),
+                strokeWidth = 3.dp.toPx(),
+            )
+        }
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.CenterStart)
                 .padding(28.dp)
-                .widthIn(max = 320.dp),
+                .widthIn(max = 280.dp),
         ) {
             Text(
                 text = "DAY COMPLETE",
@@ -404,7 +427,6 @@ fun PerfectDaySplash(
     allDone: Boolean,
     key: Any?,
     suppressed: Boolean = false,
-    background: ImageBitmap? = null,
     modifier: Modifier = Modifier,
 ) {
     var show by remember { mutableStateOf(false) }
@@ -421,12 +443,18 @@ fun PerfectDaySplash(
     }
     AnimatedVisibility(
         visible = show && !suppressed,
-        enter = fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) +
-            scaleIn(initialScale = 0.92f, animationSpec = tween(SkinFxTiming.SPLASH_IN_MS)),
-        exit = fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)),
+        enter = slideInHorizontally(
+            initialOffsetX = { it * 2 },
+            animationSpec = tween(SkinFxTiming.SPLASH_IN_MS),
+        ) + fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) +
+            scaleIn(initialScale = 0.86f, animationSpec = tween(SkinFxTiming.SPLASH_IN_MS)),
+        exit = slideOutHorizontally(
+            targetOffsetX = { -it },
+            animationSpec = tween(SkinFxTiming.SPLASH_OUT_MS),
+        ) + fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)),
         modifier = modifier,
     ) {
-        PerfectDayCard(background = background, onDismiss = { show = false })
+        PerfectDayCard(onDismiss = { show = false })
     }
 }
 
@@ -435,84 +463,86 @@ internal fun shouldShowPerfectDay(allDone: Boolean, dayCompleteVisible: Boolean)
     allDone && !dayCompleteVisible
 
 @Composable
-private fun PerfectDayCard(background: ImageBitmap?, onDismiss: () -> Unit) {
+private fun PerfectDayCard(onDismiss: () -> Unit) {
     val skin = LocalSkin.current
     val slash = skin.hasSkin && skin.motif == "masks"
-    Surface(
-        shape = skin.shapes.card,
-        color = when {
-            slash -> Color(0xFFF0F0F0)
-            skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.primaryContainer
-            else -> MaterialTheme.colorScheme.secondaryContainer
-        },
-        shadowElevation = 4.dp,
-        modifier = Modifier.clickable(onClick = onDismiss),
+    Box(
+        modifier = Modifier
+            .padding(end = if (slash) 7.dp else 0.dp, bottom = if (slash) 7.dp else 0.dp)
+            .clickable(onClick = onDismiss),
     ) {
-        Box(Modifier.skinDecor("panel")) {
-            if (slash && background != null) {
-                Image(
-                    bitmap = background,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    alignment = Alignment.CenterEnd,
-                    modifier = Modifier.matchParentSize(),
-                )
-                Box(
-                    Modifier
-                        .matchParentSize()
-                        .background(
-                            Brush.horizontalGradient(
-                                0f to Color(0xFFF0F0F0),
-                                0.62f to Color(0xFFF0F0F0).copy(alpha = 0.92f),
-                                1f to Color.Transparent,
-                            ),
-                        ),
-                )
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-            ) {
-            when {
-                skin.hasSkin && skin.motif == "moon" -> MoonFillBadge(
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                skin.hasSkin && skin.motif == "crown" -> SealStampBadge(
-                    shape = skin.shapes.chip,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                else -> Icon(
-                    Icons.Filled.Check,
-                    contentDescription = null,
-                    tint = if (slash) {
-                        Color.Black
-                    } else {
-                        MaterialTheme.colorScheme.onSecondaryContainer
-                    },
-                )
-            }
-            Column {
-                Text(
-                    text = skin.cased("Perfect day", "display"),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = when {
-                        slash -> Color.Black
-                        skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer
-                        else -> MaterialTheme.colorScheme.onSecondaryContainer
-                    },
-                )
-                Text(
-                    text = "Every task of this day is done.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = when {
-                        slash -> Color.Black.copy(alpha = 0.82f)
-                        skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f)
-                        else -> MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
-                    },
-                )
-            }
+        if (slash) {
+            Box(
+                Modifier
+                    .matchParentSize()
+                    .offset(x = 7.dp, y = 7.dp)
+                    .background(Color.Black, skin.shapes.card),
+            )
+            Box(
+                Modifier
+                    .matchParentSize()
+                    .offset(x = 3.dp, y = 3.dp)
+                    .background(MaterialTheme.colorScheme.primary, skin.shapes.card),
+            )
+        }
+        Surface(
+            shape = skin.shapes.card,
+            color = when {
+                slash -> Color(0xFFF0F0F0)
+                skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.primaryContainer
+                else -> MaterialTheme.colorScheme.secondaryContainer
+            },
+            shadowElevation = if (slash) 0.dp else 4.dp,
+            modifier = Modifier.graphicsLayer { rotationZ = if (slash) -2.2f else 0f },
+        ) {
+            Box(Modifier.skinDecor("panel")) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier
+                        .widthIn(min = 260.dp, max = 340.dp)
+                        .padding(horizontal = 18.dp, vertical = 14.dp),
+                ) {
+                    when {
+                        skin.hasSkin && skin.motif == "moon" -> MoonFillBadge(
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                        skin.hasSkin && skin.motif == "crown" -> SealStampBadge(
+                            shape = skin.shapes.chip,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                        else -> Icon(
+                            Icons.Filled.Check,
+                            contentDescription = null,
+                            tint = if (slash) Color.Black else MaterialTheme.colorScheme.onSecondaryContainer,
+                        )
+                    }
+                    Column {
+                        Text(
+                            text = skin.cased("Perfect day", "display"),
+                            style = if (slash) {
+                                MaterialTheme.typography.displaySmall
+                            } else {
+                                MaterialTheme.typography.titleLarge
+                            },
+                            fontWeight = FontWeight.Black,
+                            color = when {
+                                slash -> Color.Black
+                                skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer
+                                else -> MaterialTheme.colorScheme.onSecondaryContainer
+                            },
+                        )
+                        Text(
+                            text = "Every task of this day is done.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = when {
+                                slash -> Color.Black.copy(alpha = 0.82f)
+                                skin.hasSkin && skin.motif == "crown" -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f)
+                                else -> MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
+                            },
+                        )
+                    }
+                }
             }
         }
     }
