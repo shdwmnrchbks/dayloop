@@ -63,8 +63,8 @@ Kotlin contains no game names and no per-game colors.
     "card": "art/card.jpg",
     "icon": "art/icon.png",
     "launcherBadge": "art/launcher-badge.png",
-    "todayDay": "art/today-day.jpeg",
-    "todayNight": "art/today-night.jpeg"
+    "today-day": "art/today-day.jpeg",
+    "today-night": "art/today-night.jpeg"
   }
 }
 ```
@@ -77,7 +77,7 @@ Kotlin contains no game names and no per-game colors.
   (source-anchored). packlint rejects unknown tokens.
 - **`art` slots** — the engine reads `card` (onboarding hero), `icon` (small
   Settings tiles), optional `launcherBadge` (Phase 17c launcher-shortcut
-  motif), and paired optional `todayDay`/`todayNight` scenes. When both Today
+  motif), and paired optional `today-day`/`today-night` scenes. When both Today
   scenes exist, the app crossfades to night after every task in the pack's
   first authored time slot is Done. Other valid slots may ride along for
   future surfaces and must still point at existing pack-relative image files.

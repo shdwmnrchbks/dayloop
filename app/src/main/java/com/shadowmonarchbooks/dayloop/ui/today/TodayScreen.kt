@@ -141,8 +141,8 @@ fun TodayScreen(
         animationSpec = tween(durationMillis = if (animationsDisabled) 0 else 1_200),
         label = "Today day-to-night scene",
     )
-    val dayScene = rememberAssetImage(pack.artAsset("todayDay"))
-    val nightScene = rememberAssetImage(pack.artAsset("todayNight"))
+    val dayScene = rememberAssetImage(pack.artAsset("today-day"))
+    val nightScene = rememberAssetImage(pack.artAsset("today-night"))
     val showMonthAchievements = day != null &&
         isLastAuthoredDayOfMonth(date, state.days.keys) &&
         pack.mediaForMonth(date.take(7)).any { it.kind == MediaKinds.ACHIEVEMENT }

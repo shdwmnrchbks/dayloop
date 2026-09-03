@@ -65,8 +65,8 @@
       "card": "art/card.jpg",
       "icon": "art/icon.png",
     "launcherBadge": "art/launcher-badge.png",
-    "todayDay": "art/today-day.jpeg",
-    "todayNight": "art/today-night.jpeg"
+    "today-day": "art/today-day.jpeg",
+    "today-night": "art/today-night.jpeg"
     }
   }
 }

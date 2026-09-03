@@ -5,7 +5,7 @@ This audit tracks the eight visual and settings changes requested after rc6. The
 | Area | rc7 contract |
 | --- | --- |
 | Theme | Compose and system bars stay on the dark presentation regardless of device appearance |
-| Today art | `theme.art.todayDay` and `theme.art.todayNight` provide matching full-screen scenes with a black readability veil |
+| Today art | `theme.art["today-day"]` and `theme.art["today-night"]` provide matching full-screen scenes with a black readability veil |
 | Scene state | Night is selected only when every task in the pack's first authored time slot is Done; the crossfade is 1.2 seconds |
 | Today actions | Pinned BACK and END DAY commands have full touch targets but no plate, border, shadow, or footer surface |
 | Other pages | Slash-family pages use black with two low-opacity red radial haze fields |
