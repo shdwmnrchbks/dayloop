@@ -46,38 +46,62 @@ class P3rElizabethDeadlineAuditTest {
     }
 
     @Test
-    fun `P3R completion route closes the first timed Elizabeth request batches before cutoff`() {
+    fun `P3R completion route closes every timed Elizabeth request before cutoff`() {
         val loaded = loadP3r()
 
-        fun day(month: String, date: String) = assertNotNull(
-            loaded.walkthroughs
-                .firstOrNull { it.routeId == Routes.DEFAULT && it.month == month }
-                ?.file
-                ?.days
-                ?.firstOrNull { it.date == date },
-            date,
-        )
+        fun labels(month: String, date: String): List<String> {
+            val walkthrough = assertNotNull(
+                loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == month },
+                month,
+            ).file
+            val day = assertNotNull(walkthrough.days.firstOrNull { it.date == date }, date)
+            return day.steps.map { it.label }
+        }
 
-        fun labels(month: String, date: String) = day(month, date).steps.map { it.label }
+        fun requireStep(month: String, date: String, vararg terms: String) {
+            val dayLabels = labels(month, date)
+            assertTrue(
+                dayLabels.any { label -> terms.all { term -> label.contains(term, ignoreCase = true) } },
+                "$date: expected a step containing ${terms.joinToString()}",
+            )
+        }
 
-        val may10 = labels("2009-05", "2009-05-10")
-        assertTrue(may10.any { it.contains("Request #12", ignoreCase = true) && it.contains("Pine Resin", ignoreCase = true) })
-        assertTrue(may10.any { it.contains("Request #13", ignoreCase = true) && it.contains("Handheld", ignoreCase = true) })
+        // 6/6 deadline: acceptance is required before Yukari/Junpei will provide the items.
+        requireStep("2009-05", "2009-05-10", "Request #12", "accept", "Pine Resin", "6/6")
+        requireStep("2009-05", "2009-05-10", "Request #13", "accept", "Handheld", "6/6")
 
-        val june14 = labels("2009-06", "2009-06-14")
-        assertTrue(june14.any { it.contains("Request #27", ignoreCase = true) && it.contains("Fencing Epee", ignoreCase = true) })
-        assertTrue(june14.any { it.contains("Request #28", ignoreCase = true) && it.contains("Amateur Protein", ignoreCase = true) })
-        assertTrue(june14.any { it.contains("Request #29", ignoreCase = true) && it.contains("accept", ignoreCase = true) })
+        // 7/5 deadline: #28 follows #27; #29 needs Black Quartz converted at Club Escapade.
+        requireStep("2009-06", "2009-06-14", "Request #27", "Fencing Epee")
+        requireStep("2009-06", "2009-06-14", "Request #28", "Amateur Protein")
+        requireStep("2009-06", "2009-06-14", "Request #29", "accept")
+        requireStep("2009-06", "2009-06-27", "Request #29", "Black Quartz")
+        requireStep("2009-06", "2009-06-28", "Request #29", "fashionable", "July 5")
 
-        val june27 = labels("2009-06", "2009-06-27")
-        assertTrue(june27.any { it.contains("Request #29", ignoreCase = true) && it.contains("Black Quartz", ignoreCase = true) })
+        // 8/4 deadline: both must be accepted before their item interactions.
+        requireStep("2009-07", "2009-07-09", "Request #43", "Request #44", "accept")
+        requireStep("2009-07", "2009-07-09", "Request #43", "Poinsettia", "August 4")
+        requireStep("2009-07", "2009-07-20", "Request #44", "beach")
+        requireStep("2009-07", "2009-07-23", "Request #44", "Yakushima", "August 4")
 
-        val june28 = labels("2009-06", "2009-06-28")
-        assertTrue(june28.any {
-            it.contains("Request #29", ignoreCase = true) &&
-                it.contains("fashionable", ignoreCase = true) &&
-                it.contains("July 5", ignoreCase = true)
-        })
+        // 8/31 deadline: complete the full barter chain rather than merely accepting it.
+        requireStep("2009-08", "2009-08-08", "Request #58", "Wrapped Bandage", "Cat Ear Headband", "August 31")
+
+        // 10/2 deadline: #69 follows #68 and both party-member items require acceptance first.
+        requireStep("2009-09", "2009-09-10", "Request #68", "Fruit Knife", "October 2")
+        requireStep("2009-09", "2009-09-10", "Request #69", "Machine Oil", "October 2")
+
+        // 11/1 deadline: acceptance precedes the Ikutsuki handoff.
+        requireStep("2009-10", "2009-10-06", "Request #76", "accept", "Glasses Wipe")
+        requireStep("2009-10", "2009-10-07", "Request #76", "Glasses Wipe", "November 1")
+
+        // 11/30 deadline: #95 becomes available after #94.
+        requireStep("2009-11", "2009-11-06", "Request #94", "accept")
+        requireStep("2009-11", "2009-11-06", "Request #94", "Gourmet Dog Food", "Request #95")
+        requireStep("2009-11", "2009-11-06", "Request #95", "Featherman", "November 30")
+
+        // 12/25 deadline: accept before the Eccentric Man exchange.
+        requireStep("2009-12", "2009-12-04", "Request #97", "accept", "Eccentric Man")
+        requireStep("2009-12", "2009-12-04", "Request #97", "Christmas Present", "December 25")
     }
 
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
