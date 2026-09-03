@@ -83,8 +83,10 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
+        { "label": "Visit the Velvet Room and accept Request #43 (Christmas Star) and Request #44 (ocean souvenir) before the Yakushima trip" },
         { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42)" },
         { "label": "Hang out with Nozomi — Moon reaches rank 3 (best answer: 2)" },
+        { "label": "Evening: talk to Fuuka at the dorm for the Poinsettia and return it to Elizabeth to complete Request #43 before August 4" },
         { "label": "Evening: study with Mitsuru and Akihiko" }
       ]
     },
@@ -188,10 +190,10 @@
       "date": "2009-07-20",
       "weekday": "mon",
       "dayKind": "story",
-      "notes": "Yakushima vacation (July 20–22) — collect items from the beach for Request #44.",
+      "notes": "Yakushima vacation (July 20–22) — collect a beach souvenir for accepted Request #44.",
       "steps": [
         { "label": "Yakushima vacation with the team" },
-        { "label": "Collect items from the beach for Request #44" }
+        { "label": "Collect a Pretty Seashell or another beach item for Request #44" }
       ]
     },
     {
@@ -200,7 +202,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Yakushima vacation with the team" },
-        { "label": "Collect items from the beach for Request #44" }
+        { "label": "Collect another beach item for Request #44 if you missed one yesterday" }
       ]
     },
     {
@@ -216,6 +218,7 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
+        { "label": "Bring a Yakushima beach souvenir to Elizabeth to complete Request #44 before August 4" },
         { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
       ]
     },
