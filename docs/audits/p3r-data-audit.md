@@ -66,8 +66,8 @@ schedule use `scheduledFor`; they are no longer presented as universal first-
 availability dates.
 
 `availableFrom` is now limited to independently verified fixed automatic story
-ranks for Fool, Death, and Judgment rank 1. Judgment ranks after the unlock are
-floor-driven, not calendar-driven.
+rank dates for Fool and Death plus Judgment's fixed rank-1 unlock. Judgment ranks
+after the unlock are floor-driven, not calendar-driven.
 
 ### P3R-AUD-004 — Answer catalog stored option numbers — FIXED
 
