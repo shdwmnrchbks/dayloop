@@ -70,7 +70,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Optional: TV Shopping (¥3,980 — Perfume & 2 Health Supplement)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 2 (best answer: 1)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 2 (best answer: 1)" },
         { "label": "Evening: vending machines restocked — buy SP drinks" },
         { "label": "Evening: Weekend Wilduck Set at Wilduck Burger" }
       ]
@@ -192,7 +192,7 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Junpei — Magician reaches rank 5 (best answer: 2)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 5 (best answer: 2)" },
         { "label": "Evening: sing solo karaoke at Mandragora — Courage reaches rank 6" }
       ]
     },
@@ -249,7 +249,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Junpei — Magician reaches rank 6 (best answers: A > 1)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 6 (best answers: A > 1)" },
         { "label": "Evening: join Fuuka's reading hangout" }
       ]
     },
