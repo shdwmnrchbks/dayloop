@@ -36,7 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
@@ -48,65 +48,35 @@ private fun SkinSpec.isSlashChrome(): Boolean = hasSkin && motion == "slash"
 
 /**
  * App-wide background treatment. Slash-language skins use a black field with
- * broad asymmetric red/white print fields and a diagonal guide line instead
- * of Material tonal surface elevation. Other skins are
- * intentionally untouched.
+ * a restrained red haze instead of opaque geometric fields. Today can opt out
+ * of the haze because it supplies its own pack-authored day/night scene.
  *
  * The content itself stays on the ordinary layout grid: these shapes are a
  * composition layer only, so readable text and accessible touch bounds never
  * inherit the visual skew.
  */
 @Composable
-fun Modifier.skinBackdrop(skin: SkinSpec): Modifier {
+fun Modifier.skinBackdrop(skin: SkinSpec, showHaze: Boolean = true): Modifier {
     if (!skin.isSlashChrome()) return this
     val colors = MaterialTheme.colorScheme
-    val background = colors.background
-    val red = colors.primary.copy(alpha = 0.30f)
-    val redShade = colors.primaryContainer.copy(alpha = 0.22f)
-    val white = colors.onBackground.copy(alpha = 0.11f)
-    val keyline = colors.onBackground.copy(alpha = 0.32f)
-    return this
-        .background(background)
-        .drawBehind {
-            // Large off-axis fields make the page read as one split poster
-            // composition instead of a stack of unrelated Material cards.
-            val upperRed = Path().apply {
-                moveTo(size.width * 0.54f, 0f)
-                lineTo(size.width, 0f)
-                lineTo(size.width, size.height * 0.28f)
-                lineTo(size.width * 0.76f, size.height * 0.20f)
-                close()
-            }
-            drawPath(upperRed, red)
-
-            val lowerRed = Path().apply {
-                moveTo(0f, size.height * 0.76f)
-                lineTo(size.width * 0.24f, size.height * 0.82f)
-                lineTo(size.width * 0.12f, size.height)
-                lineTo(0f, size.height)
-                close()
-            }
-            drawPath(lowerRed, redShade)
-
-            val whiteSlash = Path().apply {
-                moveTo(0f, size.height * 0.61f)
-                lineTo(size.width * 0.43f, size.height * 0.73f)
-                lineTo(size.width * 0.39f, size.height * 0.76f)
-                lineTo(0f, size.height * 0.65f)
-                close()
-            }
-            drawPath(whiteSlash, white)
-
-            // The strong diagonal line is deliberately more visible than the
-            // old corner tick: it acts as a gaze guide across the composition.
-            drawLine(
-                color = keyline,
-                start = Offset(size.width * 0.03f, size.height * 0.58f),
-                end = Offset(size.width * 0.48f, size.height * 0.72f),
-                strokeWidth = 2.dp.toPx(),
-            )
-
-        }
+    val background = Color.Black
+    if (!showHaze) return this.background(background)
+    return this.background(background).drawBehind {
+        drawRect(
+            brush = Brush.radialGradient(
+                colors = listOf(colors.primary.copy(alpha = 0.18f), Color.Transparent),
+                center = Offset(size.width * 0.88f, size.height * 0.10f),
+                radius = size.width * 0.92f,
+            ),
+        )
+        drawRect(
+            brush = Brush.radialGradient(
+                colors = listOf(colors.primary.copy(alpha = 0.09f), Color.Transparent),
+                center = Offset(size.width * 0.05f, size.height * 0.88f),
+                radius = size.width * 0.72f,
+            ),
+        )
+    }
 }
 
 /**

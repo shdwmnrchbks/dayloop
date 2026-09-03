@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Dayloop" parent="android:style/Theme.Material.NoActionBar" />
+    <style name="Theme.Dayloop" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
 
     <style name="Theme.Dayloop.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/dayloop_splash_background</item>

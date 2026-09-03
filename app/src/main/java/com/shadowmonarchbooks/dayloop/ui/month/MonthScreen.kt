@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -354,11 +355,24 @@ private fun DayCell(
         "free" -> MaterialTheme.colorScheme.secondaryContainer
         else -> null
     }
+    val slashNumberColor = when (day?.dayKind) {
+        "school" -> Color.White
+        "story" -> MaterialTheme.colorScheme.primary
+        "exam" -> MaterialTheme.colorScheme.error
+        "free" -> MaterialTheme.colorScheme.onSurfaceVariant
+        else -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
+    }
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         Surface(
-            shape = if (skin.hasSkin) skin.shapes.card else RoundedCornerShape(10.dp),
-            color = if (isClockDate && skin.hasSkin && container != null && !slash) {
+            shape = when {
+                slash -> RectangleShape
+                skin.hasSkin -> skin.shapes.card
+                else -> RoundedCornerShape(10.dp)
+            },
+            color = if (slash) {
+                Color.Transparent
+            } else if (isClockDate && skin.hasSkin && container != null) {
                 MaterialTheme.colorScheme.primary
             } else {
                 container ?: MaterialTheme.colorScheme.surface
@@ -366,10 +380,6 @@ private fun DayCell(
             tonalElevation = if (slash || container == null) 0.dp else 2.dp,
             border = when {
                 isClockDate && !skin.hasSkin -> BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
-                slash && day != null -> BorderStroke(
-                    if (isClockDate) 1.5.dp else 0.8.dp,
-                    MaterialTheme.colorScheme.onBackground.copy(alpha = if (isClockDate) 1f else 0.55f),
-                )
                 crown && day != null -> BorderStroke(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f))
                 else -> null
             },
@@ -384,8 +394,8 @@ private fun DayCell(
                     text = dayNumber.toString(),
                     style = if (slash) {
                         MaterialTheme.typography.displaySmall.copy(
-                            fontSize = 27.sp,
-                            lineHeight = 29.sp,
+                            fontSize = 32.sp,
+                            lineHeight = 34.sp,
                             fontStyle = FontStyle.Normal,
                         )
                     } else {
@@ -393,32 +403,13 @@ private fun DayCell(
                     },
                     fontWeight = if (isClockDate || slash) FontWeight.Bold else null,
                     color = when {
+                        slash -> slashNumberColor
                         day == null -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
                         inverted -> MaterialTheme.colorScheme.inverseOnSurface
                         isClockDate && skin.hasSkin && container != null && !slash -> MaterialTheme.colorScheme.onPrimary
                         else -> MaterialTheme.colorScheme.onSurface
                     },
                 )
-                if (slash && isClockDate) {
-                    Surface(
-                        shape = skin.shapes.chip,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .graphicsLayer { rotationZ = -6f },
-                    ) {
-                        Text(
-                            text = "TODAY",
-                            style = MaterialTheme.typography.displaySmall.copy(
-                                fontSize = 9.sp,
-                                lineHeight = 10.sp,
-                                fontStyle = FontStyle.Normal,
-                            ),
-                            color = Color.Black,
-                            modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp),
-                        )
-                    }
-                }
                 if (markers.isNotEmpty() && !slash) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(1.dp),
@@ -460,6 +451,26 @@ private fun DayCell(
                         )
                     }
                 }
+            }
+        }
+        if (slash && isClockDate) {
+            Surface(
+                shape = skin.shapes.chip,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .graphicsLayer { rotationZ = -6f },
+            ) {
+                Text(
+                    text = "TODAY",
+                    style = MaterialTheme.typography.displaySmall.copy(
+                        fontSize = 15.sp,
+                        lineHeight = 17.sp,
+                        fontStyle = FontStyle.Normal,
+                    ),
+                    color = Color.Black,
+                    modifier = Modifier.padding(horizontal = 9.dp, vertical = 4.dp),
+                )
             }
         }
         if (slash) {

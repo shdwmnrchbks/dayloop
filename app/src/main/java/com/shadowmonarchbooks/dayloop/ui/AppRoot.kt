@@ -161,7 +161,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 startDestination = startDestination,
                 modifier = Modifier
                     .padding(padding)
-                    .skinBackdrop(skin),
+                    .skinBackdrop(skin, showHaze = route != "today"),
                 enterTransition = { motion.enter },
                 exitTransition = { motion.exit },
                 popEnterTransition = { motion.popEnter },

@@ -1,6 +1,9 @@
 package com.shadowmonarchbooks.dayloop.ui.today
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +28,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
@@ -38,6 +43,7 @@ import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.GameCalendar
+import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
@@ -60,8 +66,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.DayAdvanceOverlay
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
-import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
-import com.shadowmonarchbooks.dayloop.ui.skin.SkinOutlinedActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinBareActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
@@ -74,6 +79,16 @@ private val HeistDeadlineSuffix = Regex(
 )
 
 internal fun todayDeadlineLabel(label: String): String = label.replace(HeistDeadlineSuffix, "").trim()
+
+internal fun areSlotTasksDone(
+    day: Day?,
+    slotId: String?,
+    markAt: (Int) -> StepMark,
+): Boolean {
+    if (day == null || slotId == null) return false
+    val indices = day.steps.indices.filter { day.steps[it].slot == slotId }
+    return indices.isNotEmpty() && indices.all { markAt(it) == StepMark.DONE }
+}
 
 /**
  * Hero screen: the persisted in-game clock (End-Day), today's checkbox tasks,
@@ -119,6 +134,15 @@ fun TodayScreen(
     }
     val allTasksDone = day != null && day.steps.isNotEmpty() &&
         day.steps.indices.all { state.markAt(date, it) == StepMark.DONE }
+    val daySlotId = pack.pack.slots.firstOrNull()?.id
+    val dayTasksDone = areSlotTasksDone(day, daySlotId) { state.markAt(date, it) }
+    val nightBlend by animateFloatAsState(
+        targetValue = if (dayTasksDone) 1f else 0f,
+        animationSpec = tween(durationMillis = if (animationsDisabled) 0 else 1_200),
+        label = "Today day-to-night scene",
+    )
+    val dayScene = rememberAssetImage(pack.artAsset("todayDay"))
+    val nightScene = rememberAssetImage(pack.artAsset("todayNight"))
     val showMonthAchievements = day != null &&
         isLastAuthoredDayOfMonth(date, state.days.keys) &&
         pack.mediaForMonth(date.take(7)).any { it.kind == MediaKinds.ACHIEVEMENT }
@@ -145,6 +169,35 @@ fun TodayScreen(
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
+        dayScene?.let { bitmap ->
+            Image(
+                bitmap = bitmap,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.BottomCenter,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer { alpha = 1f - nightBlend },
+            )
+        }
+        nightScene?.let { bitmap ->
+            Image(
+                bitmap = bitmap,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.BottomCenter,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer { alpha = nightBlend },
+            )
+        }
+        if (dayScene != null || nightScene != null) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.58f)),
+            )
+        }
         Column(
             verticalArrangement = Arrangement.spacedBy(14.dp),
             modifier = Modifier
@@ -313,35 +366,28 @@ fun TodayScreen(
 
         }
 
-        Surface(
-            shape = skin.shapes.card,
-            color = MaterialTheme.colorScheme.surface,
-            shadowElevation = 6.dp,
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 8.dp),
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.skinDecor("panel").padding(horizontal = 10.dp, vertical = 8.dp),
-            ) {
-                SkinOutlinedActionButton(
-                    text = "Undo day",
-                    onClick = vm::rerollDay,
-                    enabled = state.hasPreviousDay(),
-                    fillWidth = true,
-                    modifier = Modifier.weight(1f),
-                )
-                SkinActionButton(
-                    text = "End day",
-                    onClick = ::advanceDay,
-                    enabled = state.hasNextDay(),
-                    fillWidth = true,
-                    largeLabel = true,
-                    modifier = Modifier.weight(1f),
-                )
-            }
+            SkinBareActionButton(
+                text = "Back",
+                onClick = vm::rerollDay,
+                enabled = state.hasPreviousDay(),
+                contentColor = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.weight(1f),
+            )
+            SkinBareActionButton(
+                text = "End day",
+                onClick = ::advanceDay,
+                enabled = state.hasNextDay(),
+                contentColor = Color.White,
+                largeLabel = true,
+                modifier = Modifier.weight(1f),
+            )
         }
 
         // Day-advance sequence (docs/ROADMAP-v3.md Phase 16): the per-skin

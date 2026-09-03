@@ -62,7 +62,9 @@ Kotlin contains no game names and no per-game colors.
   "art": {                       // named art slots, pack-relative paths
     "card": "art/card.jpg",
     "icon": "art/icon.png",
-    "launcherBadge": "art/launcher-badge.png"
+    "launcherBadge": "art/launcher-badge.png",
+    "todayDay": "art/today-day.jpeg",
+    "todayNight": "art/today-night.jpeg"
   }
 }
 ```
@@ -74,9 +76,11 @@ Kotlin contains no game names and no per-game colors.
   default), `vibrant` (bold), `expressive` (playful), `content`
   (source-anchored). packlint rejects unknown tokens.
 - **`art` slots** — the engine reads `card` (onboarding hero), `icon` (small
-  Settings tiles), and optional `launcherBadge` (Phase 17c launcher-shortcut
-  motif). Other valid slots may ride along for future surfaces and must still
-  point at existing pack-relative image files.
+  Settings tiles), optional `launcherBadge` (Phase 17c launcher-shortcut
+  motif), and paired optional `todayDay`/`todayNight` scenes. When both Today
+  scenes exist, the app crossfades to night after every task in the pack's
+  first authored time slot is Done. Other valid slots may ride along for
+  future surfaces and must still point at existing pack-relative image files.
 - **`launcherBadge`** — PNG only, square, 48–256 px, ≤128 KB. It decorates the
   Dayloop-owned dynamic launcher shortcut; it does **not** replace the compiled
   primary Dayloop app icon. Use a small original/owned motif, never a copied
