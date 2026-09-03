@@ -7,12 +7,12 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
-**Baseline correction pass landed on the audit branch; month-by-month factual audit remains in progress.**
-Route identity, answer representation, stable IDs, ordinary Social Link route-date
-semantics, canonical Social Link catalog identities, and the first April
-corrections now have regression coverage. The walkthrough-wide identity cleanup,
-rank-ladder completeness, automatic-link chronology, full April point provenance,
-deadlines, and May onward remain open.
+**Social Link baseline corrected and regression-protected; month-by-month factual audit remains in progress.**
+Route identity, answer representation, stable IDs, Social Link identities, ordinary
+route-date semantics, ordinary rank-ladder completeness, automatic-link chronology,
+and the first April corrections now have regression coverage. Full social-stat
+point provenance, deadline claims, Tartarus/rescue-window details, and the broader
+May → January route audit remain open.
 
 ## Source roles
 
@@ -24,9 +24,9 @@ deadlines, and May onward remain open.
 - **RPG Site / Push Square / Game8 school-answer guides** — independent checks
   for class/exam dates and answer text.
 - **megaten-database P3R social-events data** — structured cross-check for school
-  answers, Social Link point mechanics, and fixed social events.
-- **GameFAQs P3R walkthroughs** — independent calendar/route spot-checking where
-  route order or fixed story timing needs a second reference.
+  answers and automatic Social Link mechanics.
+- **GameFAQs P3R walkthrough/social-link references** — independent check for
+  fixed automatic ranks, story skips, and Judgment floor progression.
 
 ## Baseline findings
 
@@ -36,12 +36,12 @@ P3R now declares the `standard` route as **100% Completion Route** and explicitl
 states that its authored dates are not universal availability, unlock, or
 deadline facts. `contentVersion` was bumped from 1 to 2.
 
-### P3R-AUD-002 — Social Link identities corrupted — CATALOG FIXED / ROUTE CLEANUP OPEN
+### P3R-AUD-002 — Social Link identities corrupted — FIXED
 
-The catalog incorrectly mapped Magician to Junpei and Moon to Kenji. The April
-walkthrough repeated the Magician error on April 22, 28, and 30.
+The original import mapped Magician to Junpei and Moon to Kenji, then repeated
+those name/Arcana swaps throughout the walkthrough.
 
-The Social Link catalog now uses canonical identities, including:
+The catalog now uses canonical identities, including:
 
 - Magician — **Kenji Tomochika**
 - Moon — **Nozomi Suemitsu**
@@ -53,44 +53,26 @@ The Social Link catalog now uses canonical identities, including:
 - Star — **Mamoru Hayase**
 - Sun — **Akinari Kamiki**
 
-April route prose now uses Kenji for Magician. A wider scan after the baseline
-CI pass confirmed that the original import repeated the same name/Arcana swap in
-later walkthrough files. Confirmed remaining examples include:
+The targeted route cleanup now covers April, May, June, July, August, October,
+and December. Regression coverage scans every walkthrough month and rejects any
+Magician rank action naming Junpei or Moon rank action naming Kenji. Legitimate
+Junpei/Kenji Link Episodes, invitations, festival scenes, prerequisite dialogue,
+and other non-Social-Link references are preserved.
 
-- May 8 — Junpei incorrectly named for Magician rank 4.
-- May 15 — Kenji incorrectly named as the Moon rank-1 hangout after the Gourmet
-  King prerequisite; the Moon Social Link itself is Nozomi.
-- June 7 — Kenji incorrectly named for Moon rank 2.
-- June 19 / June 25 — Junpei incorrectly named for Magician ranks 5 / 6.
-- July 2 / July 24 — Junpei incorrectly named for Magician ranks 7 / 8.
-- July 9 / July 10 — Kenji incorrectly named for Moon ranks 3 / 4.
-- August 4 / August 8 / August 20 — Kenji incorrectly named for Moon ranks 5–7.
-- October 8 / October 10 — Kenji incorrectly named for Moon ranks 8 / 9.
-- October 22 / October 23 — Junpei incorrectly named for Magician ranks 9 / 10.
-- December 26 — Kenji incorrectly named for Moon rank 10.
-
-Those route strings are now an explicit blocking item for the next correction
-batch rather than being hidden by the fixed catalog. Linked Episodes remain
-outside the Social Link catalog and must not be collapsed into an Arcana
-relationship; legitimate Junpei/Kenji story, invitation, festival, or Link
-Episode references must therefore be preserved during the targeted cleanup.
-
-### P3R-AUD-003 — Route dates overloaded into `availableFrom` — BASELINE FIXED
+### P3R-AUD-003 — Route dates overloaded into `availableFrom` — FIXED
 
 Ordinary player-selected Social Link rank dates imported from the completion
-schedule have been migrated to `scheduledFor`. They are no longer presented as
-universal first-availability dates.
+schedule use `scheduledFor`; they are no longer presented as universal first-
+availability dates.
 
-The only links retaining any `availableFrom` values are the automatic story links
-**Fool, Death, and Judgment**. Their later imported/status dates are now stored as
-`scheduledFor` when the primary guide only supports a route/status estimate.
-Their exact automatic-rank chronology still requires an independent story pass.
+`availableFrom` is now limited to independently verified fixed automatic story
+ranks for Fool, Death, and Judgment rank 1. Judgment ranks after the unlock are
+floor-driven, not calendar-driven.
 
 ### P3R-AUD-004 — Answer catalog stored option numbers — FIXED
 
-All 53 answer sheets now store the actual answer text rather than menu positions.
-Exam sheets also resolve back to their corresponding exam deadline through
-`deadlineRef`.
+All 53 answer sheets now store actual answer text rather than menu positions.
+Exam sheets resolve to their corresponding exam deadline through `deadlineRef`.
 
 April is pinned by regression coverage as:
 
@@ -110,28 +92,44 @@ audited; otherwise bad imported gains would be promoted into reusable base data.
 ### P3R-AUD-006 — Stable-ID baseline was only a seed subset — FIXED
 
 `pack-ids.baseline.json` now pins the current catalog: **22 Social Links, 15
-deadlines, 53 answer sheets**, and zero activities. This gives the audit a stable
-identifier floor while factual corrections continue.
+deadlines, 53 answer sheets**, and zero activities.
 
-### P3R-AUD-007 — Several Social Link rank ladders are incomplete — OPEN
+### P3R-AUD-007 — Ordinary Social Link rank ladders were incomplete — FIXED
 
-The baseline Social Link pass exposed missing ranks that the original import had
-hidden behind later rank numbers. Confirmed structural gaps include:
+The apparent gaps were importer omissions rather than intentional game skips.
+The authored completion route and existing walkthrough data resolve them as:
 
-- **Devil** — rank 5 and rank 10 absent.
-- **Tower** — rank 4 absent.
-- **Lovers** — ranks 2 and 3 absent.
-- **Fool / Death / Judgment** — automatic ladders are incomplete and/or use
-  end-of-month status estimates rather than a fully verified rank chronology.
+- **Devil rank 5** — July 28.
+- **Devil rank 10** — September 1.
+- **Tower rank 4** — July 31.
+- **Lovers rank 2** — September 7.
+- **Lovers rank 3** — September 10.
 
-These must be reconstructed against the authored walkthrough and independent P3R
-references. The audit deliberately does not fabricate a date just to make each
-ladder numerically complete.
+The July importer had also dropped most of the July 27–31 route block. That block
+has been restored, including track practice, the Devil/Tower ranks, fridge/Taiyaki
+steps, arcade time, and Fuuka's dorm hangout. Every non-automatic Social Link is
+now regression-pinned to a continuous 1–10 rank ladder.
+
+### P3R-AUD-008 — Automatic Social Links were modeled as estimates — FIXED
+
+The original data used end-of-month status estimates for Fool and Death and left
+Judgment almost empty. Independent references establish the actual mechanics:
+
+- **Fool**: ranks 1, 2, 3, 4, 5, 6, 7, 9, 10 occur automatically on fixed story
+  dates; Persona 3 Reload has no separate Fool rank-8 event.
+- **Death**: actual automatic events reach ranks 1, 3, 5, 6, 8, 10; ranks
+  2, 4, 7, and 9 are skipped by the game.
+- **Judgment**: rank 1 unlocks automatically on December 31 on the good-ending
+  path; ranks 2–10 advance automatically at Adamah 227F, 230F, 236F, 241F,
+  246F, 247F, 253F, 254F, and 255F respectively.
+
+The catalog now records real fixed dates only where dates exist and uses explicit
+floor guidance for Judgment instead of inventing calendar dates.
 
 ## April route audit — first correction pass
 
 The first April pass corrected the Magician identity and the Wilduck **Mystery
-Burger** Courage gain from `+3` to the audited `+2`. Regression coverage now pins:
+Burger** Courage gain from `+3` to the audited `+2`. Regression coverage pins:
 
 - April 22 Magician start to Kenji Tomochika, with no Junpei reference;
 - April 28 and April 30 Magician rank-ups to Kenji;
@@ -146,34 +144,33 @@ classification.
 ## Regression rules for P3R
 
 1. A completion-route date is not `availableFrom` unless an independent source
-   establishes it as an actual game boundary.
+   establishes it as an actual fixed game boundary.
 2. Route-selected Social Link dates use `scheduledFor`.
 3. Social Links and Linked Episodes are different systems and must not be merged
    or represented under the wrong Arcana.
-4. `answers[].answers` contains answer text, never merely a menu position.
-5. Exam answer sheets resolve to their exam deadline when that deadline exists.
-6. Reusable activity stat gains must be verified before creating
+4. Every ordinary Social Link maintains a complete 1–10 rank ladder.
+5. Automatic links preserve real skipped ranks; they are not padded with fake
+   events merely to create a numeric sequence.
+6. Floor-driven progression such as Judgment is not assigned synthetic dates.
+7. `answers[].answers` contains answer text, never merely a menu position.
+8. Exam answer sheets resolve to their exam deadline when that deadline exists.
+9. Reusable activity stat gains must be verified before creating
    `activities.json`.
-7. Missing Social Link ranks must not be filled with synthetic dates merely to
-   make a ladder look complete.
-8. Structural validation proves schema/reference integrity, not gameplay facts.
-9. When two valid completion guides differ only on a flexible action date,
-   preserve the authored route and document the difference rather than changing
-   one valid route to imitate another.
-10. Fixed story dates, unlock gates, deadlines, and availability windows require
+10. Structural validation proves schema/reference integrity, not gameplay facts.
+11. When two valid completion guides differ only on a flexible action date,
+    preserve the authored route and document the difference rather than changing
+    one valid route to imitate another.
+12. Fixed story dates, unlock gates, deadlines, and availability windows require
     independent support beyond the primary completion schedule.
-11. Walkthrough identity cleanup must be targeted to Social Link rank actions;
-    do not globally replace legitimate Junpei/Kenji Link Episode, invitation,
-    festival, prerequisite, or other story references.
+13. Walkthrough identity cleanup is targeted to Social Link rank actions; do not
+    globally replace legitimate Junpei/Kenji story references.
 
 ## Next passes
 
-- Correct the remaining walkthrough-wide Magician/Moon identity swaps and add a
-  regression scan that prevents them from returning.
-- Reconstruct the missing Social Link ranks and independently verify automatic
-  Fool/Death/Judgment chronology.
-- Finish April route + point-unit audit.
-- Audit deadlines/full-moon/Tartarus rescue windows independently.
+- Finish April route + social-stat point-unit audit.
+- Audit exam-rank claims, full-moon deadlines, and Tartarus rescue/deadline windows
+  independently.
 - Continue May → January month-by-month, then verify the January-ending to March
   epilogue/non-playable calendar transition.
+- Audit achievement descriptions/triggers against canonical trophy data.
 - Build P3R activities only after the underlying point/effect audit is stable.
