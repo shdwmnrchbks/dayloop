@@ -34,21 +34,13 @@ class P3rJanuaryAuditTest {
         val january15 = assertNotNull(januaryDays()["2010-01-15"])
         val judgment = assertNotNull(january15.steps.firstOrNull { it.label.contains("Judgment reaches ranks 2–10", ignoreCase = true) })
 
-        val expected = listOf(
-            "227F" to 2,
-            "230F" to 3,
-            "236F" to 4,
-            "241F" to 5,
-            "246F" to 6,
-            "247F" to 7,
-            "253F" to 8,
-            "254F" to 9,
-            "255F" to 10,
+        assertTrue(
+            judgment.label.contains(
+                "227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively",
+                ignoreCase = true,
+            ),
+            judgment.label,
         )
-        expected.forEach { (floor, rank) ->
-            assertTrue(judgment.label.contains(floor), judgment.label)
-            assertTrue(judgment.label.contains(rank.toString()), judgment.label)
-        }
 
         val request99 = assertNotNull(january15.steps.firstOrNull { it.label.contains("Request #99", ignoreCase = true) })
         assertTrue(request99.label.contains("255F", ignoreCase = true))
