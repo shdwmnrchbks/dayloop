@@ -1,0 +1,35 @@
+name: P3R slot migration
+
+on:
+  push:
+    branches:
+      - fix/p3r-time-slots
+    paths:
+      - "scripts/normalize_p3r_time_slots.py"
+      - ".github/workflows/p3r-slot-migration.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/p3r-time-slots
+          fetch-depth: 0
+      - name: Normalize P3R walkthrough slots
+        run: python3 scripts/normalize_p3r_time_slots.py
+      - name: Commit normalized walkthrough
+        run: |
+          if git diff --quiet -- content/packs/p3r/walkthrough; then
+            echo "No walkthrough changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/packs/p3r/walkthrough
+          git commit -m "Normalize P3R walkthrough time slots"
+          git push origin HEAD:fix/p3r-time-slots
