@@ -66,7 +66,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.DayAdvanceOverlay
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
-import com.shadowmonarchbooks.dayloop.ui.skin.SkinBareActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
@@ -265,6 +265,7 @@ fun TodayScreen(
             DeadlineBanner(
                 deadline = deadline.copy(label = todayDeadlineLabel(deadline.label)),
                 daysLeft = days,
+                backgroundAssetPath = pack.artAsset("deadline-banner"),
                 moonMarked = deadlineStart(deadline) in moonMarkedDates,
                 kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
             )
@@ -373,20 +374,20 @@ fun TodayScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 8.dp),
         ) {
-            SkinBareActionButton(
+            SkinTextActionButton(
                 text = "Back",
                 onClick = vm::rerollDay,
                 enabled = state.hasPreviousDay(),
-                contentColor = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.weight(1f),
+                fillWidth = true,
+                modifier = Modifier.weight(1f).heightIn(min = 52.dp),
             )
-            SkinBareActionButton(
+            SkinActionButton(
                 text = "End day",
                 onClick = ::advanceDay,
                 enabled = state.hasNextDay(),
-                contentColor = Color.White,
                 largeLabel = true,
-                modifier = Modifier.weight(1f),
+                fillWidth = true,
+                modifier = Modifier.weight(1f).heightIn(min = 52.dp),
             )
         }
 
@@ -406,6 +407,7 @@ fun TodayScreen(
         PerfectDaySplash(
             allDone = allTasksDone,
             key = date,
+            background = rememberAssetImage(pack.artAsset("day-complete")),
             suppressed = advance != null,
             modifier = Modifier
                 .align(Alignment.Center)
