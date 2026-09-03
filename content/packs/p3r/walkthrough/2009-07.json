@@ -16,7 +16,7 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Junpei — Magician reaches rank 7 (best answers: 1 > 3 > 1)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 7 (best answers: 1 > 3 > 1)" },
         { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
       ]
     },
@@ -84,7 +84,7 @@
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 3 (best answer: 2)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 3 (best answer: 2)" },
         { "label": "Evening: study with Mitsuru and Akihiko" }
       ]
     },
@@ -95,7 +95,7 @@
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Feed the weak cat again (Request #42)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 4 (best answer: 2)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 4 (best answer: 2)" },
         { "label": "Evening: study with Yukari and Fuuka" }
       ]
     },
@@ -225,7 +225,7 @@
       "steps": [
         { "label": "Exam results — Charm reaches rank 6", "statGains": { "charm": 2 } },
         { "label": "Talk to Mitsuru for the exam reward" },
-        { "label": "Hang out with Junpei — Magician reaches rank 8 (best answers: 2 > 1/2)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 8 (best answers: 2 > 1/2)" },
         { "label": "Evening: check the Command Room's new dorm recording" },
         { "label": "Evening: watch Akihiko's Link Episode" }
       ]
@@ -255,36 +255,47 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: track team training" }
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
       ]
     },
     {
       "date": "2009-07-28",
       "weekday": "tue",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 5" }
+      ]
     },
     {
       "date": "2009-07-29",
       "weekday": "wed",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: play You're the Answer at Game Parade" }
+      ]
     },
     {
       "date": "2009-07-30",
       "weekday": "thu",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: check the dorm fridge for a Chilled Taiyaki and a note from Yukari" },
+        { "label": "Evening: join Fuuka's reading hangout" }
+      ]
     },
     {
       "date": "2009-07-31",
       "weekday": "fri",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 4 (best answer: 1)" }
+      ]
     }
   ]
 }
