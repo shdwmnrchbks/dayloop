@@ -123,8 +123,10 @@ so a completion plan is never silently presented as universal availability.
 
 Entry points (≤3 taps from any tab): Today → "Activities" link; any step row's
 activity reference; Search → activity hit. The surface exists only for packs
-that ship `activities.json` (p3r currently doesn't — its steps never
-reference activities).
+that ship `activities.json`. P3R intentionally remains without this file while
+its audit uses inline `statGains`; a P3R catalog should be added only if verified
+reusable entries are useful as standalone Activities/search content, not merely to
+duplicate already-correct route effects.
 
 ## deadlines.json (`DeadlinesFile`, `Deadline`)
 

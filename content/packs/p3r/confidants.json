@@ -1,1191 +1,328 @@
 {
   "bonds": [
     {
-      "id": "p3r.bond.fool",
-      "label": "Fool",
-      "characterLabel": "S.E.E.S.",
+      "id": "p3r.bond.fool", "label": "Fool", "characterLabel": "S.E.E.S.",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-18",
-          "notes": "Unlocked automatically by the story; it advances on its own and never spends a time slot."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-04-20",
-          "notes": "Judgment call: pinned to the first Tartarus visit — the guide only confirms rank 2 is reached by the end of April."
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-10",
-          "notes": "Judgment call: pinned to the day after the May full-moon operation — the story advances this link on its own (confirmed by the end-of-May status report)."
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-08-31",
-          "notes": "Judgment call: the story advances this link on its own; the guide only confirms rank 5 by the end of August."
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-08-31",
-          "notes": "Confirmed by the end-of-August status report."
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-11-30",
-          "notes": "Judgment call: intermediate ranks advance with the story — the guide's end-of-November status report confirms rank 9."
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-11-30",
-          "notes": "Judgment call: see rank 6."
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-11-30",
-          "notes": "Judgment call: see rank 6."
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-11-30",
-          "notes": "Confirmed by the end-of-November status report. The guide lists Fool as MAX by the end of December but never states the final rank number."
-        }
+        { "rank": 1, "availableFrom": "2009-04-18", "notes": "Automatic story rank; never spends a time slot." },
+        { "rank": 2, "availableFrom": "2009-04-20", "notes": "Automatic story rank; never spends a time slot." },
+        { "rank": 3, "availableFrom": "2009-05-09", "notes": "Automatic story rank after the May full-moon operation." },
+        { "rank": 4, "availableFrom": "2009-07-07", "notes": "Automatic story rank after the July full-moon operation." },
+        { "rank": 5, "availableFrom": "2009-07-22", "notes": "Automatic story rank during the Yakushima story sequence." },
+        { "rank": 6, "availableFrom": "2009-11-02", "notes": "Automatic story rank." },
+        { "rank": 7, "availableFrom": "2009-11-04", "notes": "Automatic story rank." },
+        { "rank": 9, "availableFrom": "2009-11-28", "notes": "Automatic story rank. Persona 3 Reload skips Fool rank 8 rather than presenting a separate rank-8 event." },
+        { "rank": 10, "availableFrom": "2009-12-31", "notes": "Automatic story MAX on the good-ending path." }
       ]
     },
     {
-      "id": "p3r.bond.magician",
-      "label": "Magician",
-      "characterLabel": "Junpei",
+      "id": "p3r.bond.magician", "label": "Magician", "characterLabel": "Kenji Tomochika",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-22",
-          "location": "Classroom 2-F",
-          "notes": "Daytime availability: Tue, Thu, Fri."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-04-28",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-04-30",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-05-08",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-06-19",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-06-25",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-07-02",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-07-24",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-10-22",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-10-23",
-          "location": "Classroom 2-F"
-        }
+        { "rank": 1, "scheduledFor": "2009-04-22", "location": "Classroom 2-F", "notes": "Starts automatically on the completion route. Daytime availability: Tue, Thu, Fri." },
+        { "rank": 2, "scheduledFor": "2009-04-28", "location": "Classroom 2-F" },
+        { "rank": 3, "scheduledFor": "2009-04-30", "location": "Classroom 2-F" },
+        { "rank": 4, "scheduledFor": "2009-05-08", "location": "Classroom 2-F" },
+        { "rank": 5, "scheduledFor": "2009-06-19", "location": "Classroom 2-F" },
+        { "rank": 6, "scheduledFor": "2009-06-25", "location": "Classroom 2-F" },
+        { "rank": 7, "scheduledFor": "2009-07-02", "location": "Classroom 2-F" },
+        { "rank": 8, "scheduledFor": "2009-07-24", "location": "Classroom 2-F" },
+        { "rank": 9, "scheduledFor": "2009-10-22", "location": "Classroom 2-F" },
+        { "rank": 10, "scheduledFor": "2009-10-23", "location": "Classroom 2-F" }
       ]
     },
     {
-      "id": "p3r.bond.chariot",
-      "label": "Chariot",
-      "characterLabel": "Kazushi",
+      "id": "p3r.bond.chariot", "label": "Chariot", "characterLabel": "Kazushi Miyamoto",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-23",
-          "location": "Practice Field (Gym Hallway)",
-          "notes": "Starts by joining the track team. Daytime availability: Mon, Tue, Thu, Fri."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-04-24",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-06-11",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-06-15",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-11-06",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-11-10",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-11-13",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-11-16",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-12-25",
-          "location": "Practice Field (Gym Hallway)"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2010-01-12",
-          "location": "Practice Field (Gym Hallway)"
-        }
+        { "rank": 1, "scheduledFor": "2009-04-23", "location": "Practice Field (Gym Hallway)", "notes": "Starts by joining the track team. Daytime availability: Mon, Tue, Thu, Fri." },
+        { "rank": 2, "scheduledFor": "2009-04-24", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 3, "scheduledFor": "2009-06-11", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 4, "scheduledFor": "2009-06-15", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 5, "scheduledFor": "2009-11-06", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 6, "scheduledFor": "2009-11-10", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 7, "scheduledFor": "2009-11-13", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 8, "scheduledFor": "2009-11-16", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 9, "scheduledFor": "2009-12-25", "location": "Practice Field (Gym Hallway)" },
+        { "rank": 10, "scheduledFor": "2010-01-12", "location": "Practice Field (Gym Hallway)" }
       ]
     },
     {
-      "id": "p3r.bond.strength",
-      "label": "Strength",
-      "characterLabel": "Yuko",
+      "id": "p3r.bond.strength", "label": "Strength", "characterLabel": "Yuko Nishiwaki",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-24",
-          "location": "2F Classroom Hallway",
-          "notes": "Greet Yuko and offer to walk home with her first. Daytime availability: Wed, Sat."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-04-25",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-27",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-05-30",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-06-03",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-06-06",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-06-10",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-06-13",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-09-09",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-09-12",
-          "location": "2F Classroom Hallway"
-        }
+        { "rank": 1, "scheduledFor": "2009-04-24", "location": "2F Classroom Hallway", "notes": "Greet Yuko and offer to walk home with her first. Daytime availability: Wed, Sat." },
+        { "rank": 2, "scheduledFor": "2009-04-25", "location": "2F Classroom Hallway" },
+        { "rank": 3, "scheduledFor": "2009-05-27", "location": "2F Classroom Hallway" },
+        { "rank": 4, "scheduledFor": "2009-05-30", "location": "2F Classroom Hallway" },
+        { "rank": 5, "scheduledFor": "2009-06-03", "location": "2F Classroom Hallway" },
+        { "rank": 6, "scheduledFor": "2009-06-06", "location": "2F Classroom Hallway" },
+        { "rank": 7, "scheduledFor": "2009-06-10", "location": "2F Classroom Hallway" },
+        { "rank": 8, "scheduledFor": "2009-06-13", "location": "2F Classroom Hallway" },
+        { "rank": 9, "scheduledFor": "2009-09-09", "location": "2F Classroom Hallway" },
+        { "rank": 10, "scheduledFor": "2009-09-12", "location": "2F Classroom Hallway" }
       ]
     },
     {
-      "id": "p3r.bond.hierophant",
-      "label": "Hierophant",
-      "characterLabel": "Bunkichi & Mitsuko",
+      "id": "p3r.bond.hierophant", "label": "Hierophant", "characterLabel": "Bunkichi & Mitsuko Kitamura",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-26",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)",
-          "notes": "Flag: visit the store once, then fetch the persimmon leaf from the school's Young Tree. Daytime availability: Tue–Sun."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-05-02",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-05",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-05-10",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-05-14",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-10-17",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-10-24",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-11-29",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-12-08",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-12-23",
-          "location": "Bookworms (Iwatodai Strip Mall 1F)"
-        }
+        { "rank": 1, "scheduledFor": "2009-04-26", "location": "Bookworms (Iwatodai Strip Mall 1F)", "notes": "Flag: visit the store once, then fetch the persimmon leaf from the school's Young Tree. Daytime availability: Tue–Sun." },
+        { "rank": 2, "scheduledFor": "2009-05-02", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 3, "scheduledFor": "2009-05-05", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 4, "scheduledFor": "2009-05-10", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 5, "scheduledFor": "2009-05-14", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 6, "scheduledFor": "2009-10-17", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 7, "scheduledFor": "2009-10-24", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 8, "scheduledFor": "2009-11-29", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 9, "scheduledFor": "2009-12-08", "location": "Bookworms (Iwatodai Strip Mall 1F)" },
+        { "rank": 10, "scheduledFor": "2009-12-23", "location": "Bookworms (Iwatodai Strip Mall 1F)" }
       ]
     },
     {
-      "id": "p3r.bond.emperor",
-      "label": "Emperor",
-      "characterLabel": "Hidetoshi",
+      "id": "p3r.bond.emperor", "label": "Emperor", "characterLabel": "Hidetoshi Odagiri",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-27",
-          "location": "Faculty Office (1F Faculty Office Hallway)",
-          "notes": "Starts by signing the student council papers. Daytime availability: Mon, Wed, Fri at the Student Council Room (2F Classroom Hallway)."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-05-06",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-25",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-06-01",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-06-05",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-06-17",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-07-01",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-09-30",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-10-19",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-10-30",
-          "location": "Student Council Room (2F Classroom Hallway)"
-        }
+        { "rank": 1, "scheduledFor": "2009-04-27", "location": "Faculty Office (1F Faculty Office Hallway)", "notes": "Starts by signing the student council papers. Daytime availability: Mon, Wed, Fri at the Student Council Room (2F Classroom Hallway)." },
+        { "rank": 2, "scheduledFor": "2009-05-06", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 3, "scheduledFor": "2009-05-25", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 4, "scheduledFor": "2009-06-01", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 5, "scheduledFor": "2009-06-05", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 6, "scheduledFor": "2009-06-17", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 7, "scheduledFor": "2009-07-01", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 8, "scheduledFor": "2009-09-30", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 9, "scheduledFor": "2009-10-19", "location": "Student Council Room (2F Classroom Hallway)" },
+        { "rank": 10, "scheduledFor": "2009-10-30", "location": "Student Council Room (2F Classroom Hallway)" }
       ]
     },
     {
-      "id": "p3r.bond.hermit",
-      "label": "Hermit",
+      "id": "p3r.bond.hermit", "label": "Hermit", "characterLabel": "Maya",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-04-29",
-          "location": "Desk in your room",
-          "notes": "Play the MMORPG on the shared computer. Daytime availability: Sundays and certain holidays."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-05-03",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-04",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-05-17",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-06-28",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-07-05",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-07-12",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-07-19",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-07-26",
-          "location": "Desk in your room"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-10-12",
-          "location": "Desk in your room"
-        }
+        { "rank": 1, "scheduledFor": "2009-04-29", "location": "Desk in your room", "notes": "Play the MMORPG on the shared computer. Daytime availability: Sundays and certain holidays." },
+        { "rank": 2, "scheduledFor": "2009-05-03", "location": "Desk in your room" },
+        { "rank": 3, "scheduledFor": "2009-05-04", "location": "Desk in your room" },
+        { "rank": 4, "scheduledFor": "2009-05-17", "location": "Desk in your room" },
+        { "rank": 5, "scheduledFor": "2009-06-28", "location": "Desk in your room" },
+        { "rank": 6, "scheduledFor": "2009-07-05", "location": "Desk in your room" },
+        { "rank": 7, "scheduledFor": "2009-07-12", "location": "Desk in your room" },
+        { "rank": 8, "scheduledFor": "2009-07-19", "location": "Desk in your room" },
+        { "rank": 9, "scheduledFor": "2009-07-26", "location": "Desk in your room" },
+        { "rank": 10, "scheduledFor": "2009-10-12", "location": "Desk in your room" }
       ]
     },
     {
-      "id": "p3r.bond.justice",
-      "label": "Justice",
-      "characterLabel": "Chihiro",
+      "id": "p3r.bond.justice", "label": "Justice", "characterLabel": "Chihiro Fushimi",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-05-07",
-          "location": "2F Classroom Hallway",
-          "notes": "Starts after three flags (talk to Chihiro on April 28 and 30, then ask her to hang out on May 2). Daytime availability: Tue, Thu, Sat."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-05-23",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-26",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-05-28",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-06-02",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-06-04",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-06-09",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-06-23",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-09-01",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-09-03",
-          "location": "2F Classroom Hallway"
-        }
+        { "rank": 1, "scheduledFor": "2009-05-07", "location": "2F Classroom Hallway", "notes": "Starts after three flags (talk to Chihiro on April 28 and 30, then ask her to hang out on May 2). Daytime availability: Tue, Thu, Sat." },
+        { "rank": 2, "scheduledFor": "2009-05-23", "location": "2F Classroom Hallway" },
+        { "rank": 3, "scheduledFor": "2009-05-26", "location": "2F Classroom Hallway" },
+        { "rank": 4, "scheduledFor": "2009-05-28", "location": "2F Classroom Hallway" },
+        { "rank": 5, "scheduledFor": "2009-06-02", "location": "2F Classroom Hallway" },
+        { "rank": 6, "scheduledFor": "2009-06-04", "location": "2F Classroom Hallway" },
+        { "rank": 7, "scheduledFor": "2009-06-09", "location": "2F Classroom Hallway" },
+        { "rank": 8, "scheduledFor": "2009-06-23", "location": "2F Classroom Hallway" },
+        { "rank": 9, "scheduledFor": "2009-09-01", "location": "2F Classroom Hallway" },
+        { "rank": 10, "scheduledFor": "2009-09-03", "location": "2F Classroom Hallway" }
       ]
     },
     {
-      "id": "p3r.bond.hanged-man",
-      "label": "Hanged-Man",
-      "characterLabel": "Girl at the Shrine",
+      "id": "p3r.bond.hanged-man", "label": "Hanged-Man", "characterLabel": "Maiko Oohashi",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-05-11",
-          "location": "Naganaki Shrine",
-          "notes": "Flag: hand over the Weird Takoyaki and Mad Bull, then promise to play with her (May 6). Daytime availability: Mon, Wed, Sat."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-05-13",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-05-16",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-07-08",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-07-11",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-07-13",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-08-03",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-11-23",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-12-05",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-12-12",
-          "location": "Naganaki Shrine"
-        }
+        { "rank": 1, "scheduledFor": "2009-05-11", "location": "Naganaki Shrine", "notes": "Flag: hand over the Weird Takoyaki and Mad Bull, then promise to play with her (May 6). Daytime availability: Mon, Wed, Sat." },
+        { "rank": 2, "scheduledFor": "2009-05-13", "location": "Naganaki Shrine" },
+        { "rank": 3, "scheduledFor": "2009-05-16", "location": "Naganaki Shrine" },
+        { "rank": 4, "scheduledFor": "2009-07-08", "location": "Naganaki Shrine" },
+        { "rank": 5, "scheduledFor": "2009-07-11", "location": "Naganaki Shrine" },
+        { "rank": 6, "scheduledFor": "2009-07-13", "location": "Naganaki Shrine" },
+        { "rank": 7, "scheduledFor": "2009-08-03", "location": "Naganaki Shrine" },
+        { "rank": 8, "scheduledFor": "2009-11-23", "location": "Naganaki Shrine" },
+        { "rank": 9, "scheduledFor": "2009-12-05", "location": "Naganaki Shrine" },
+        { "rank": 10, "scheduledFor": "2009-12-12", "location": "Naganaki Shrine" }
       ]
     },
     {
-      "id": "p3r.bond.moon",
-      "label": "Moon",
-      "characterLabel": "Kenji",
+      "id": "p3r.bond.moon", "label": "Moon", "characterLabel": "Nozomi Suemitsu",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-05-15",
-          "location": "Paulownia Mall",
-          "notes": "Flag: talk to Kenji about the Gourmet King (May 8), then answer 3 > 3 > 2 and hand over an Odd Morsel. Daytime availability: Mon–Sun."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-06-07",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-07-09",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-07-10",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-08-04",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-08-08",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-08-20",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-10-08",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-10-10",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-12-26",
-          "location": "Paulownia Mall"
-        }
+        { "rank": 1, "scheduledFor": "2009-05-15", "location": "Paulownia Mall", "notes": "Flag: learn about the Gourmet King from Kenji, then answer 3 > 3 > 2 and hand over an Odd Morsel. Daytime availability: Mon–Sun." },
+        { "rank": 2, "scheduledFor": "2009-06-07", "location": "Paulownia Mall" },
+        { "rank": 3, "scheduledFor": "2009-07-09", "location": "Paulownia Mall" },
+        { "rank": 4, "scheduledFor": "2009-07-10", "location": "Paulownia Mall" },
+        { "rank": 5, "scheduledFor": "2009-08-04", "location": "Paulownia Mall" },
+        { "rank": 6, "scheduledFor": "2009-08-08", "location": "Paulownia Mall" },
+        { "rank": 7, "scheduledFor": "2009-08-20", "location": "Paulownia Mall" },
+        { "rank": 8, "scheduledFor": "2009-10-08", "location": "Paulownia Mall" },
+        { "rank": 9, "scheduledFor": "2009-10-10", "location": "Paulownia Mall" },
+        { "rank": 10, "scheduledFor": "2009-12-26", "location": "Paulownia Mall" }
       ]
     },
     {
-      "id": "p3r.bond.temperance",
-      "label": "Temperance",
-      "characterLabel": "Exchange Student",
+      "id": "p3r.bond.temperance", "label": "Temperance", "characterLabel": "Bebe",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-05-29",
-          "location": "1F Laboratory Hallway",
-          "notes": "Daytime availability: Tue, Wed, Fri."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-06-12",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-06-16",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-06-24",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-06-30",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-09-11",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-09-16",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-09-25",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-10-21",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-12-02",
-          "location": "1F Laboratory Hallway"
-        }
+        { "rank": 1, "scheduledFor": "2009-05-29", "location": "1F Laboratory Hallway", "notes": "Daytime availability: Tue, Wed, Fri." },
+        { "rank": 2, "scheduledFor": "2009-06-12", "location": "1F Laboratory Hallway" },
+        { "rank": 3, "scheduledFor": "2009-06-16", "location": "1F Laboratory Hallway" },
+        { "rank": 4, "scheduledFor": "2009-06-24", "location": "1F Laboratory Hallway" },
+        { "rank": 5, "scheduledFor": "2009-06-30", "location": "1F Laboratory Hallway" },
+        { "rank": 6, "scheduledFor": "2009-09-11", "location": "1F Laboratory Hallway" },
+        { "rank": 7, "scheduledFor": "2009-09-16", "location": "1F Laboratory Hallway" },
+        { "rank": 8, "scheduledFor": "2009-09-25", "location": "1F Laboratory Hallway" },
+        { "rank": 9, "scheduledFor": "2009-10-21", "location": "1F Laboratory Hallway" },
+        { "rank": 10, "scheduledFor": "2009-12-02", "location": "1F Laboratory Hallway" }
       ]
     },
     {
-      "id": "p3r.bond.devil",
-      "label": "Devil",
-      "characterLabel": "Businessman",
+      "id": "p3r.bond.devil", "label": "Devil", "characterLabel": "President Tanaka",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-06-02",
-          "location": "Paulownia Mall",
-          "notes": "Flags: pay ¥20,000 (May 26), then ¥10,000 (May 30), then ¥10,000 (June 2) to the man in a suit. Evening availability: Tue, Sat at Paulownia Mall."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-07-04",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-07-11",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-07-25",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-08-04",
-          "location": "Paulownia Mall",
-          "notes": "Judgment call: the archived schedule jumps from rank 4 (July 25) straight to rank 6 — no rank-5 hangout appears in the guide."
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-08-08",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-08-18",
-          "location": "Paulownia Mall"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-08-25",
-          "location": "Paulownia Mall"
-        }
+        { "rank": 1, "scheduledFor": "2009-06-02", "location": "Paulownia Mall", "notes": "Flags: pay ¥20,000 (May 26), then ¥10,000 (May 30), then ¥10,000 (June 2) to the man in a suit. Evening availability: Tue, Sat at Paulownia Mall." },
+        { "rank": 2, "scheduledFor": "2009-07-04", "location": "Paulownia Mall" },
+        { "rank": 3, "scheduledFor": "2009-07-11", "location": "Paulownia Mall" },
+        { "rank": 4, "scheduledFor": "2009-07-25", "location": "Paulownia Mall" },
+        { "rank": 5, "scheduledFor": "2009-07-28", "location": "Paulownia Mall" },
+        { "rank": 6, "scheduledFor": "2009-08-04", "location": "Paulownia Mall" },
+        { "rank": 7, "scheduledFor": "2009-08-08", "location": "Paulownia Mall" },
+        { "rank": 8, "scheduledFor": "2009-08-18", "location": "Paulownia Mall" },
+        { "rank": 9, "scheduledFor": "2009-08-25", "location": "Paulownia Mall" },
+        { "rank": 10, "scheduledFor": "2009-09-01", "location": "Paulownia Mall" }
       ]
     },
     {
-      "id": "p3r.bond.tower",
-      "label": "Tower",
-      "characterLabel": "Unusual Monk",
+      "id": "p3r.bond.tower", "label": "Tower", "characterLabel": "Mutatsu",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-06-04",
-          "location": "Club Escapade (Paulownia Mall)",
-          "notes": "Flag: talk to Yuko about the monk (June 3). Evening availability: Thu, Fri, Sat, Sun. Drink orders for rank 1: 4 > 2 > 2 > 4."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-06-06",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-06-18",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-08-07",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-08-21",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-08-28",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-09-17",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-09-24",
-          "location": "Club Escapade (Paulownia Mall)"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-10-23",
-          "location": "Club Escapade (Paulownia Mall)"
-        }
+        { "rank": 1, "scheduledFor": "2009-06-04", "location": "Club Escapade (Paulownia Mall)", "notes": "Flag: talk to Yuko about the monk (June 3). Evening availability: Thu, Fri, Sat, Sun. Drink orders for rank 1: 4 > 2 > 2 > 4." },
+        { "rank": 2, "scheduledFor": "2009-06-06", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 3, "scheduledFor": "2009-06-18", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 4, "scheduledFor": "2009-07-31", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 5, "scheduledFor": "2009-08-07", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 6, "scheduledFor": "2009-08-21", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 7, "scheduledFor": "2009-08-28", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 8, "scheduledFor": "2009-09-17", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 9, "scheduledFor": "2009-09-24", "location": "Club Escapade (Paulownia Mall)" },
+        { "rank": 10, "scheduledFor": "2009-10-23", "location": "Club Escapade (Paulownia Mall)" }
       ]
     },
     {
-      "id": "p3r.bond.fortune",
-      "label": "Fortune",
-      "characterLabel": "Art Club",
+      "id": "p3r.bond.fortune", "label": "Fortune", "characterLabel": "Keisuke Hiraga",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-06-18",
-          "location": "1F Laboratory Hallway",
-          "notes": "Daytime availability: Tue, Wed, Thu."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-09-15",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-09-17",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-09-24",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-09-29",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-10-01",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-10-20",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-10-27",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2010-01-14",
-          "location": "1F Laboratory Hallway"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2010-01-26",
-          "location": "1F Laboratory Hallway"
-        }
+        { "rank": 1, "scheduledFor": "2009-06-18", "location": "1F Laboratory Hallway", "notes": "Daytime availability: Tue, Wed, Thu." },
+        { "rank": 2, "scheduledFor": "2009-09-15", "location": "1F Laboratory Hallway" },
+        { "rank": 3, "scheduledFor": "2009-09-17", "location": "1F Laboratory Hallway" },
+        { "rank": 4, "scheduledFor": "2009-09-24", "location": "1F Laboratory Hallway" },
+        { "rank": 5, "scheduledFor": "2009-09-29", "location": "1F Laboratory Hallway" },
+        { "rank": 6, "scheduledFor": "2009-10-01", "location": "1F Laboratory Hallway" },
+        { "rank": 7, "scheduledFor": "2009-10-20", "location": "1F Laboratory Hallway" },
+        { "rank": 8, "scheduledFor": "2009-10-27", "location": "1F Laboratory Hallway" },
+        { "rank": 9, "scheduledFor": "2010-01-14", "location": "1F Laboratory Hallway" },
+        { "rank": 10, "scheduledFor": "2010-01-26", "location": "1F Laboratory Hallway" }
       ]
     },
     {
-      "id": "p3r.bond.priestess",
-      "label": "Priestess",
-      "characterLabel": "Fuuka Yamagishi",
+      "id": "p3r.bond.priestess", "label": "Priestess", "characterLabel": "Fuuka Yamagishi",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-06-22",
-          "location": "2F Classroom Hallway",
-          "notes": "Daytime availability: Mon, Fri, Sat."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-06-26",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-06-27",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-06-29",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-07-03",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-07-04",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-07-06",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-09-14",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-09-28",
-          "location": "2F Classroom Hallway"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-10-03",
-          "location": "2F Classroom Hallway"
-        }
+        { "rank": 1, "scheduledFor": "2009-06-22", "location": "2F Classroom Hallway", "notes": "Daytime availability: Mon, Fri, Sat." },
+        { "rank": 2, "scheduledFor": "2009-06-26", "location": "2F Classroom Hallway" },
+        { "rank": 3, "scheduledFor": "2009-06-27", "location": "2F Classroom Hallway" },
+        { "rank": 4, "scheduledFor": "2009-06-29", "location": "2F Classroom Hallway" },
+        { "rank": 5, "scheduledFor": "2009-07-03", "location": "2F Classroom Hallway" },
+        { "rank": 6, "scheduledFor": "2009-07-04", "location": "2F Classroom Hallway" },
+        { "rank": 7, "scheduledFor": "2009-07-06", "location": "2F Classroom Hallway" },
+        { "rank": 8, "scheduledFor": "2009-09-14", "location": "2F Classroom Hallway" },
+        { "rank": 9, "scheduledFor": "2009-09-28", "location": "2F Classroom Hallway" },
+        { "rank": 10, "scheduledFor": "2009-10-03", "location": "2F Classroom Hallway" }
       ]
     },
     {
-      "id": "p3r.bond.death",
-      "label": "Death",
-      "characterLabel": "Mysterious Boy",
+      "id": "p3r.bond.death", "label": "Death", "characterLabel": "Pharos",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-06-12",
-          "notes": "Advances automatically with the story; it never spends a time slot."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-08-31",
-          "notes": "Judgment call: the story advances this link on its own; the guide only confirms rank 5 by the end of August."
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-08-31",
-          "notes": "Judgment call: see rank 2 — intermediate ranks advance with the story."
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-08-31",
-          "notes": "Judgment call: see rank 2 — intermediate ranks advance with the story."
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-08-31",
-          "notes": "Confirmed by the end-of-August status report."
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-09-30",
-          "notes": "Judgment call: pinned to the end of the month — the guide's end-of-September status report confirms rank 6."
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-10-31",
-          "notes": "Judgment call: intermediate rank — the story advances this link on its own."
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-10-31",
-          "notes": "Confirmed by the end-of-October status report. The guide's later reports list Death as MAX but never state the final rank number."
-        }
+        { "rank": 1, "availableFrom": "2009-06-12", "notes": "Automatic story rank; never spends a time slot." },
+        { "rank": 3, "availableFrom": "2009-07-12", "notes": "Automatic story rank. Persona 3 Reload skips Death rank 2." },
+        { "rank": 5, "availableFrom": "2009-08-07", "notes": "Automatic story rank. Persona 3 Reload skips Death rank 4." },
+        { "rank": 6, "availableFrom": "2009-09-12", "notes": "Automatic story rank." },
+        { "rank": 8, "availableFrom": "2009-10-06", "notes": "Automatic story rank. Persona 3 Reload skips Death rank 7." },
+        { "rank": 10, "availableFrom": "2009-11-04", "notes": "Automatic story MAX. Persona 3 Reload skips Death rank 9." }
       ]
     },
     {
-      "id": "p3r.bond.lovers",
-      "label": "Lovers",
-      "characterLabel": "Yukari Takeba",
+      "id": "p3r.bond.lovers", "label": "Lovers", "characterLabel": "Yukari Takeba",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-07-25",
-          "location": "Classroom 2-F",
-          "notes": "Daytime availability: Mon, Wed, Thu, Sat."
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-10-26",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-10-28",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-10-29",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-10-31",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-11-02",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-11-11",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-11-12",
-          "location": "Classroom 2-F"
-        }
+        { "rank": 1, "scheduledFor": "2009-07-25", "location": "Classroom 2-F", "notes": "Daytime availability: Mon, Wed, Thu, Sat." },
+        { "rank": 2, "scheduledFor": "2009-09-07", "location": "Classroom 2-F" },
+        { "rank": 3, "scheduledFor": "2009-09-10", "location": "Classroom 2-F" },
+        { "rank": 4, "scheduledFor": "2009-10-26", "location": "Classroom 2-F" },
+        { "rank": 5, "scheduledFor": "2009-10-28", "location": "Classroom 2-F" },
+        { "rank": 6, "scheduledFor": "2009-10-29", "location": "Classroom 2-F" },
+        { "rank": 7, "scheduledFor": "2009-10-31", "location": "Classroom 2-F" },
+        { "rank": 8, "scheduledFor": "2009-11-02", "location": "Classroom 2-F" },
+        { "rank": 9, "scheduledFor": "2009-11-11", "location": "Classroom 2-F" },
+        { "rank": 10, "scheduledFor": "2009-11-12", "location": "Classroom 2-F" }
       ]
     },
     {
-      "id": "p3r.bond.star",
-      "label": "Star",
-      "characterLabel": "Rival Athlete",
+      "id": "p3r.bond.star", "label": "Star", "characterLabel": "Mamoru Hayase",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-08-05",
-          "location": "Iwatodai Station Strip Mall 1F",
-          "notes": "Daytime availability: Wed, Fri, Sun."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-08-07",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-10-07",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-10-09",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-12-11",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-12-13",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-12-30",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2010-01-03",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2010-01-10",
-          "location": "Iwatodai Station Strip Mall 1F"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2010-01-17",
-          "location": "Iwatodai Station Strip Mall 1F"
-        }
+        { "rank": 1, "scheduledFor": "2009-08-05", "location": "Iwatodai Station Strip Mall 1F", "notes": "Daytime availability: Wed, Fri, Sun." },
+        { "rank": 2, "scheduledFor": "2009-08-07", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 3, "scheduledFor": "2009-10-07", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 4, "scheduledFor": "2009-10-09", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 5, "scheduledFor": "2009-12-11", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 6, "scheduledFor": "2009-12-13", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 7, "scheduledFor": "2009-12-30", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 8, "scheduledFor": "2010-01-03", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 9, "scheduledFor": "2010-01-10", "location": "Iwatodai Station Strip Mall 1F" },
+        { "rank": 10, "scheduledFor": "2010-01-17", "location": "Iwatodai Station Strip Mall 1F" }
       ]
     },
     {
-      "id": "p3r.bond.judgment",
-      "label": "Judgment",
-      "characterLabel": "Nyx Annihilation Team",
+      "id": "p3r.bond.judgment", "label": "Judgment", "characterLabel": "Nyx Annihilation Team",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-12-31",
-          "notes": "Unlocked automatically by the story; it advances on its own and never spends a time slot."
-        }
+        { "rank": 1, "availableFrom": "2009-12-31", "notes": "Automatic story unlock on the good-ending path; never spends a time slot." },
+        { "rank": 2, "notes": "Automatic when reaching Adamah 227F in Tartarus." },
+        { "rank": 3, "notes": "Automatic after clearing Adamah 230F in Tartarus." },
+        { "rank": 4, "notes": "Automatic after clearing Adamah 236F in Tartarus." },
+        { "rank": 5, "notes": "Automatic after clearing Adamah 241F in Tartarus." },
+        { "rank": 6, "notes": "Automatic after clearing Adamah 246F in Tartarus." },
+        { "rank": 7, "notes": "Automatic after clearing Adamah 247F in Tartarus." },
+        { "rank": 8, "notes": "Automatic after clearing Adamah 253F in Tartarus." },
+        { "rank": 9, "notes": "Automatic after clearing Adamah 254F in Tartarus." },
+        { "rank": 10, "notes": "Automatic after clearing Adamah 255F in Tartarus." }
       ]
     },
     {
-      "id": "p3r.bond.empress",
-      "label": "Empress",
-      "characterLabel": "Mitsuru Kirijo",
+      "id": "p3r.bond.empress", "label": "Empress", "characterLabel": "Mitsuru Kirijo",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-11-21",
-          "location": "1F Faculty Office Hallway",
-          "notes": "Daytime availability: Mon, Tue, Wed, Thu, Fri, Sat. In January her schedule changes to Tue, Wed, Thu, Sat."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-11-28",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-11-30",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-12-04",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-12-07",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-12-09",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-12-10",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-12-21",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-12-22",
-          "location": "1F Faculty Office Hallway"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2010-01-09",
-          "location": "1F Faculty Office Hallway"
-        }
+        { "rank": 1, "scheduledFor": "2009-11-21", "location": "1F Faculty Office Hallway", "notes": "Daytime availability: Mon, Tue, Wed, Thu, Fri, Sat. In January her schedule changes to Tue, Wed, Thu, Sat." },
+        { "rank": 2, "scheduledFor": "2009-11-28", "location": "1F Faculty Office Hallway" },
+        { "rank": 3, "scheduledFor": "2009-11-30", "location": "1F Faculty Office Hallway" },
+        { "rank": 4, "scheduledFor": "2009-12-04", "location": "1F Faculty Office Hallway" },
+        { "rank": 5, "scheduledFor": "2009-12-07", "location": "1F Faculty Office Hallway" },
+        { "rank": 6, "scheduledFor": "2009-12-09", "location": "1F Faculty Office Hallway" },
+        { "rank": 7, "scheduledFor": "2009-12-10", "location": "1F Faculty Office Hallway" },
+        { "rank": 8, "scheduledFor": "2009-12-21", "location": "1F Faculty Office Hallway" },
+        { "rank": 9, "scheduledFor": "2009-12-22", "location": "1F Faculty Office Hallway" },
+        { "rank": 10, "scheduledFor": "2010-01-09", "location": "1F Faculty Office Hallway" }
       ]
     },
     {
-      "id": "p3r.bond.aeon",
-      "label": "Aeon",
-      "characterLabel": "Aigis",
+      "id": "p3r.bond.aeon", "label": "Aeon", "characterLabel": "Aigis",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2010-01-08",
-          "location": "Classroom 2-F",
-          "notes": "Daytime availability: Mon, Tue, Wed, Thu, Fri, Sat."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2010-01-13",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2010-01-15",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2010-01-16",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2010-01-20",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2010-01-22",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2010-01-23",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2010-01-27",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2010-01-28",
-          "location": "Classroom 2-F"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2010-01-29",
-          "location": "Classroom 2-F"
-        }
+        { "rank": 1, "scheduledFor": "2010-01-08", "location": "Classroom 2-F", "notes": "Daytime availability: Mon, Tue, Wed, Thu, Fri, Sat." },
+        { "rank": 2, "scheduledFor": "2010-01-13", "location": "Classroom 2-F" },
+        { "rank": 3, "scheduledFor": "2010-01-15", "location": "Classroom 2-F" },
+        { "rank": 4, "scheduledFor": "2010-01-16", "location": "Classroom 2-F" },
+        { "rank": 5, "scheduledFor": "2010-01-20", "location": "Classroom 2-F" },
+        { "rank": 6, "scheduledFor": "2010-01-22", "location": "Classroom 2-F" },
+        { "rank": 7, "scheduledFor": "2010-01-23", "location": "Classroom 2-F" },
+        { "rank": 8, "scheduledFor": "2010-01-27", "location": "Classroom 2-F" },
+        { "rank": 9, "scheduledFor": "2010-01-28", "location": "Classroom 2-F" },
+        { "rank": 10, "scheduledFor": "2010-01-29", "location": "Classroom 2-F" }
       ]
     },
     {
-      "id": "p3r.bond.sun",
-      "label": "Sun",
-      "characterLabel": "Dying Young Man",
+      "id": "p3r.bond.sun", "label": "Sun", "characterLabel": "Akinari Kamiki",
       "ranks": [
-        {
-          "rank": 1,
-          "availableFrom": "2009-09-06",
-          "location": "Naganaki Shrine",
-          "notes": "Starts by talking to the thin young man at the shrine, then retrieving his Red Fountain Pen from Koromaru. Daytime availability: Sunday."
-        },
-        {
-          "rank": 2,
-          "availableFrom": "2009-10-11",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 3,
-          "availableFrom": "2009-10-18",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 4,
-          "availableFrom": "2009-11-01",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 5,
-          "availableFrom": "2009-11-08",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 6,
-          "availableFrom": "2009-11-15",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 7,
-          "availableFrom": "2009-11-22",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 8,
-          "availableFrom": "2009-12-06",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 9,
-          "availableFrom": "2009-12-20",
-          "location": "Naganaki Shrine"
-        },
-        {
-          "rank": 10,
-          "availableFrom": "2009-12-27",
-          "location": "Naganaki Shrine"
-        }
+        { "rank": 1, "scheduledFor": "2009-09-06", "location": "Naganaki Shrine", "notes": "Starts by talking to the thin young man at the shrine, then retrieving his Red Fountain Pen from Koromaru. Daytime availability: Sunday." },
+        { "rank": 2, "scheduledFor": "2009-10-11", "location": "Naganaki Shrine" },
+        { "rank": 3, "scheduledFor": "2009-10-18", "location": "Naganaki Shrine" },
+        { "rank": 4, "scheduledFor": "2009-11-01", "location": "Naganaki Shrine" },
+        { "rank": 5, "scheduledFor": "2009-11-08", "location": "Naganaki Shrine" },
+        { "rank": 6, "scheduledFor": "2009-11-15", "location": "Naganaki Shrine" },
+        { "rank": 7, "scheduledFor": "2009-11-22", "location": "Naganaki Shrine" },
+        { "rank": 8, "scheduledFor": "2009-12-06", "location": "Naganaki Shrine" },
+        { "rank": 9, "scheduledFor": "2009-12-20", "location": "Naganaki Shrine" },
+        { "rank": 10, "scheduledFor": "2009-12-27", "location": "Naganaki Shrine" }
       ]
     }
   ]

@@ -35,7 +35,8 @@
       "dayKind": "school",
       "notes": "Request #97's reward is useful for the Secret Super Boss.",
       "steps": [
-        { "label": "New Elizabeth's requests are available" },
+        { "label": "New Elizabeth's requests are available — accept Request #97 before talking to the Eccentric Man" },
+        { "label": "Talk to the Eccentric Man on Iwatodai Strip Mall 2F, show a Thank-You Letter from a rescued Tartarus victim, receive the Christmas Present, and return it to Elizabeth to complete Request #97 before December 25" },
         { "label": "Talk to Mitsuru — Empress reaches rank 4 (best answers: 2 > 1 > A)" },
         { "label": "Evening: play Real Wheel Racer at Game Parade" }
       ]
@@ -131,9 +132,9 @@
       "date": "2009-12-14",
       "weekday": "mon",
       "dayKind": "exam",
-      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 6 with all answers correct.",
+      "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 6 and all five player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — answer everything you can" }
+        { "label": "Exam day — see the Answers tab for today's sheet" }
       ]
     },
     {
@@ -171,8 +172,9 @@
     {
       "date": "2009-12-19",
       "weekday": "sat",
-      "dayKind": "school",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final exam day — no player-answer question; after school is free" },
         { "label": "Watch Junpei's Link Episode" },
         { "label": "Evening: watch Akihiko's Link Episode" }
       ]
@@ -204,6 +206,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question" },
+        { "label": "Two missing persons enter Tartarus today — plan to rescue them on 209F and 221F by December 30" },
         { "label": "Talk to Mitsuru — Empress reaches rank 9 (romance: 3 > A > 1 / platonic: A > 1)" },
         { "label": "Evening: walk Koromaru (with Mitsuru)" }
       ]
@@ -245,7 +248,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Stay awake in class" },
-        { "label": "Hang out with Kenji — Moon reaches rank 10 (MAX)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 10 (MAX)" },
         { "label": "Evening: run the Muscle Boot Camp on the dorm's shared computer" }
       ]
     },
@@ -281,21 +284,22 @@
       "date": "2009-12-30",
       "weekday": "wed",
       "dayKind": "free",
-      "notes": "Carry the Star Arcana out of Tartarus until January 10.",
+      "notes": "Carry the Star Arcana out of Tartarus until January 10. This is the last actionable day for the December missing-person batch.",
       "steps": [
         { "label": "Hang out with the rival athlete — Star reaches rank 7 (best answers: 2 > A > A > 2)" },
         { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true }
+        { "label": "Evening: Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression", "spoiler": true }
       ]
     },
     {
       "date": "2009-12-31",
       "weekday": "thu",
       "dayKind": "story",
-      "notes": "Important story decision tonight.",
+      "notes": "Important story decision tonight. The 100% completion route must continue into January.",
       "steps": [
         { "label": "Daytime: work part-time at Screen Shot" },
-        { "label": "Evening: watch Ryoji's Link Episode — an important story decision", "spoiler": true },
+        { "label": "Evening: watch Ryoji's Link Episode, choose 'Spare Ryoji and stay as is,' and insist on sparing him to stay on the good-ending route", "spoiler": true },
+        { "label": "Fool reaches rank 10 (MAX; story)", "spoiler": true },
         { "label": "Judgment reaches rank 1 (story)", "spoiler": true }
       ]
     }

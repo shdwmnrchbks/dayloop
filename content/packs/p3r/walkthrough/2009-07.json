@@ -16,8 +16,8 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Junpei — Magician reaches rank 7 (best answers: 1 > 3 > 1)" },
-        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+        { "label": "Hang out with Kenji — Magician reaches rank 7 (best answers: 1 > 3 > 1)" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -27,7 +27,7 @@
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Hang out with Fuuka — Priestess reaches rank 5 (best answers: 2 > A > 3)" },
-        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -47,7 +47,7 @@
       "steps": [
         { "label": "Optional: TV Shopping (¥3,980 — 3 YABA Chocolate & 3 Doctor in Jelly)" },
         { "label": "Play the MMORPG at your desk — Hermit reaches rank 6 (best answer: 2)" },
-        { "label": "Evening: join Mitsuru's reading hangout" }
+        { "label": "Evening: join Mitsuru's reading hangout", "statGains": { "academics": 2 } }
       ]
     },
     {
@@ -56,7 +56,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Hang out with Fuuka — Priestess reaches rank 7 (romance: A > A > 3 > 1 / platonic: A > A > 3 > 2)" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
       ]
     },
     {
@@ -64,7 +64,8 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true },
+        { "label": "Fool reaches rank 4 (story)" }
       ]
     },
     {
@@ -74,7 +75,7 @@
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
         { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 4 (best answer: 1/2)" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        { "label": "Evening: work part-time at Chagall Café", "statGains": { "charm": 1, "courage": 1 } }
       ]
     },
     {
@@ -83,9 +84,13 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 3 (best answer: 2)" },
-        { "label": "Evening: study with Mitsuru and Akihiko" }
+        { "label": "Visit the Velvet Room and accept Requests #38, #39, #40, #42, #43 (Christmas Star), and #44 (ocean souvenir); #44 must be accepted before the Yakushima trip" },
+        { "label": "Hand the saved Chilled Taiyaki to Elizabeth to complete Request #38" },
+        { "label": "After accepting Request #39, enter the school PA Room to obtain Gekkoukan Boogie, then return the CD to Elizabeth to complete Request #39" },
+        { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42, feeding 1 of 4)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 3 (best answer: 2)" },
+        { "label": "Evening: talk to Fuuka at the dorm for the Poinsettia and return it to Elizabeth to complete Request #43 before August 4" },
+        { "label": "Evening: study with Mitsuru and Akihiko", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -94,9 +99,9 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Feed the weak cat again (Request #42)" },
-        { "label": "Hang out with Kenji — Moon reaches rank 4 (best answer: 2)" },
-        { "label": "Evening: study with Yukari and Fuuka" }
+        { "label": "Feed the weak cat again (Request #42, feeding 2 of 4)" },
+        { "label": "Hang out with Nozomi — Moon reaches rank 4 (best answer: 2)" },
+        { "label": "Evening: study with Yukari and Fuuka", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -105,7 +110,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Feed the weak cat a third time (Request #42)" },
+        { "label": "Feed the weak cat a third time (Request #42, feeding 3 of 4)" },
         { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 5 (best answers: 1 > 2)" },
         { "label": "Buy the Security Site Note from the Suspicious Man at Club Escapade" },
         { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 3" }
@@ -116,9 +121,10 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Max Safety Shoes via TV Shopping (¥9,800 — Max Safety Shoes & 2 Instant Curry) — required for Request #40" },
+        { "label": "Buy the Max Safety Shoes via TV Shopping (¥9,800 — Max Safety Shoes & 2 Instant Curry) for accepted Request #40" },
         { "label": "Play the MMORPG at your desk — Hermit reaches rank 7 (best answers: 3 > A)" },
-        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } },
+        { "label": "Death reaches rank 3 (story; Reload skips rank 2)" }
       ]
     },
     {
@@ -127,18 +133,18 @@
       "dayKind": "school",
       "steps": [
         { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Feed the weak cat a final time (Request #42)" },
+        { "label": "Feed the weak cat a final time (Request #42, feeding 4 of 4), then report to Elizabeth to complete Request #42" },
         { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 6 (best answers: 2/3 > 1)" },
-        { "label": "Evening: study with everyone — Academics reaches rank 4" }
+        { "label": "Evening: study with everyone — Academics reaches rank 4", "statGains": { "academics": 5 } }
       ]
     },
     {
       "date": "2009-07-14",
       "weekday": "tue",
       "dayKind": "exam",
-      "notes": "Exam week runs through Friday. Top of the class needs Academics rank 5+ (or rank 4 with all answers correct).",
+      "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 4 and all four player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — answer everything you can" }
+        { "label": "Exam day — see the Answers tab for today's sheet" }
       ]
     },
     {
@@ -168,8 +174,11 @@
     {
       "date": "2009-07-18",
       "weekday": "sat",
-      "dayKind": "free",
+      "dayKind": "exam",
       "steps": [
+        { "label": "Final exam day — no player-answer question; after school is free" },
+        { "label": "Report the delivered Max Safety Shoes to Elizabeth to complete Request #40; this unlocks Request #41" },
+        { "label": "Accept Request #41 and hand over Tanaka's Signature obtained from starting the Devil Social Link to complete the mysterious-person autograph request" },
         { "label": "Evening: Mayoido Antiques unlocks — join Junpei's gardening hangout" }
       ]
     },
@@ -187,10 +196,10 @@
       "date": "2009-07-20",
       "weekday": "mon",
       "dayKind": "story",
-      "notes": "Yakushima vacation (July 20–22) — collect items from the beach for Request #44.",
+      "notes": "Yakushima vacation (July 20–22) — collect a beach souvenir for accepted Request #44.",
       "steps": [
         { "label": "Yakushima vacation with the team" },
-        { "label": "Collect items from the beach for Request #44" }
+        { "label": "Collect a Pretty Seashell or another beach item for Request #44" }
       ]
     },
     {
@@ -199,7 +208,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Yakushima vacation with the team" },
-        { "label": "Collect items from the beach for Request #44" }
+        { "label": "Collect another beach item for Request #44 if you missed one yesterday" }
       ]
     },
     {
@@ -207,7 +216,8 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Yakushima vacation — return home" }
+        { "label": "Yakushima vacation — return home" },
+        { "label": "Fool reaches rank 5 (story)" }
       ]
     },
     {
@@ -215,7 +225,8 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen" }
+        { "label": "Bring a Yakushima beach souvenir to Elizabeth to complete Request #44 before August 4" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } }
       ]
     },
     {
@@ -223,11 +234,11 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Exam results — Charm reaches rank 6", "statGains": { "charm": 2 } },
+        { "label": "Exam results — Charm reaches rank 6", "statGains": { "charm": 4 } },
         { "label": "Talk to Mitsuru for the exam reward" },
-        { "label": "Hang out with Junpei — Magician reaches rank 8 (best answers: 2 > 1/2)" },
+        { "label": "Hang out with Kenji — Magician reaches rank 8 (best answers: 2 > 1/2)" },
         { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: watch Akihiko's Link Episode" }
+        { "label": "Evening: watch Akihiko's Link Episode", "statGains": { "charm": 2 } }
       ]
     },
     {
@@ -247,7 +258,7 @@
       "steps": [
         { "label": "Optional: TV Shopping (¥6,980 — Brand Wallet & Perfume)" },
         { "label": "Play the MMORPG at your desk — Hermit reaches rank 9 (best answers: 2 > A > 1)" },
-        { "label": "Evening: join Mitsuru's reading hangout" }
+        { "label": "Evening: join Mitsuru's reading hangout", "statGains": { "academics": 2 } }
       ]
     },
     {
@@ -255,36 +266,47 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: track team training" }
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } }
       ]
     },
     {
       "date": "2009-07-28",
       "weekday": "tue",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 5" }
+      ]
     },
     {
       "date": "2009-07-29",
       "weekday": "wed",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
+        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+      ]
     },
     {
       "date": "2009-07-30",
       "weekday": "thu",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: check the dorm fridge for a Chilled Taiyaki and a note from Yukari" },
+        { "label": "Evening: join Fuuka's reading hangout", "statGains": { "academics": 2 } }
+      ]
     },
     {
       "date": "2009-07-31",
       "weekday": "fri",
       "dayKind": "free",
-      "notes": "Summer break — the guide schedules nothing; use free time as needed.",
-      "steps": []
+      "steps": [
+        { "label": "Daytime: track team training" },
+        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 4 (best answer: 1)" }
+      ]
     }
   ]
 }
