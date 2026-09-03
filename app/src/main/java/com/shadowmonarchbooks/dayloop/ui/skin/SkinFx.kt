@@ -88,7 +88,7 @@ object SkinFxTiming {
      */
     const val SPLASH_IN_MS = 220
     const val SPLASH_OUT_MS = 160
-    const val SPLASH_LINGER_MS = 2_000L
+    const val SPLASH_LINGER_MS = 1_250L
 
     /** Mark micro-animations (selection plate, moon fill, seal stamp). */
     const val MARK_MS = 180

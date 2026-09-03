@@ -725,6 +725,12 @@ fun DeadlineBanner(
 }
 
 /** Kind chip for answer sheets — "Exam" or "Class question". */
+internal fun answerKindLabel(kind: String): String = when (kind) {
+    "exam" -> "Exam"
+    "classQuestion" -> "Class question"
+    else -> kind.replaceFirstChar { it.uppercase() }
+}
+
 @Composable
 fun AnswerKindChip(kind: String, modifier: Modifier = Modifier) {
     val colors = when (kind) {
@@ -733,11 +739,7 @@ fun AnswerKindChip(kind: String, modifier: Modifier = Modifier) {
     }
     Surface(shape = LocalSkin.current.shapes.chip, color = colors.first, modifier = modifier) {
         Text(
-            text = when (kind) {
-                "exam" -> "Exam"
-                "classQuestion" -> "Class question"
-                else -> kind.replaceFirstChar { it.uppercase() }
-            },
+            text = answerKindLabel(kind),
             style = MaterialTheme.typography.labelMedium,
             color = colors.second,
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
@@ -773,12 +775,14 @@ fun AnswerSheetCard(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 AnswerKindChip(sheet.kind)
-                Text(
-                    text = sheet.label,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.weight(1f),
-                )
+                if (!sheet.label.equals(answerKindLabel(sheet.kind), ignoreCase = true)) {
+                    Text(
+                        text = sheet.label,
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
             }
             deadlineLabel?.let {
                 Text(

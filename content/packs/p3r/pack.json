@@ -2,6 +2,7 @@
   "packId": "p3r",
   "title": "Persona 3 Reload",
   "contentVersion": 1,
+  "pickerOrder": 1,
   "timeModel": "weekdayGrid",
   "calendar": {
     "startDate": "2009-04-08",

@@ -26,6 +26,7 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `packId` | Settings (save-stamp line); identity in Room saves | Served |
 | `title` | Top bar, Onboarding cards, Settings game list, Widget, launcher shortcut label | Served |
 | `contentVersion` | Settings (save-stamp + "content was updated" notice) | Served |
+| `pickerOrder` | Onboarding and Settings game-picker carousel order | Served |
 | `timeModel` | Engine: calendar construction + Clock stepping | Intentionally not served (engine dimension; no user-facing distinction) |
 | `calendar.startDate` / `endDate` | Clock bounds (End-Day enablement); Onboarding range | Served |
 | `calendar.nonPlayableDates` | `Clock.next/previous` skips them; packlint validates | Intentionally not served (clock behavior, no per-date marker) |
@@ -61,7 +62,7 @@ documented in `docs/preview-fixtures.md` and are debug-only, not pack schema.
 | Field | Served by | Status |
 |---|---|---|
 | `item.id` | Media gallery keys, navigation identity, packlint uniqueness | Served (identity; no direct user-facing print) |
-| `item.file` | Decoded to the pack asset path on Day (date anchors), Calendar (month anchors + section markers), Bond detail (bond anchors), Media gallery | Served |
+| `item.file` | Decoded to the pack asset path on Day (date anchors), Calendar (pack-selected date markers), Bond detail (bond anchors), Media gallery | Served |
 | `item.kind` | Gallery grouping + which surfaces attempt to serve the item (closed set: achievement/month/section/day/portrait/banner/guide) | Served |
 | `item.title` | Media chip labels, month achievements strip, gallery rows | Served |
 | `item.caption` | Media gallery rows | Served |

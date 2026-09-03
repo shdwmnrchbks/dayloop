@@ -13,6 +13,8 @@ data class Pack(
     val title: String,
     /** Bumped on every content change; saves stamp packId @ contentVersion. */
     val contentVersion: Int,
+    /** Display order in the game picker; lower values appear first. */
+    val pickerOrder: Int = Int.MAX_VALUE,
     /** "weekdayGrid" (P3R/P5R) or "dayCounter" (Metaphor). */
     val timeModel: String,
     val calendar: CalendarRange,

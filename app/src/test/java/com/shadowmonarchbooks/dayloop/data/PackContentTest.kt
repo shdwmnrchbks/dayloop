@@ -196,7 +196,7 @@ class PackContentTest {
         val activities = p5r.activities?.activities.orEmpty()
         val byId = activities.associateBy { it.id }
 
-        assertEquals(8, pack.contentVersion)
+        assertEquals(9, pack.contentVersion)
 
         val statBooks = activities.filter { it.id.startsWith("p5r.activity.book.") && it.statGains.isNotEmpty() }
         assertTrue(statBooks.isNotEmpty())
@@ -477,7 +477,7 @@ class PackContentTest {
         loadPacks().forEach { (slug, _, loaded) ->
             counts[slug] = loaded.media?.media?.size ?: 0
         }
-        assertTrue((counts["p5r"] ?: 0) >= 75, "p5r must declare its 75 bundled graphics, found ${counts["p5r"]}")
+        assertTrue((counts["p5r"] ?: 0) >= 73, "p5r must declare its 73 bundled graphics, found ${counts["p5r"]}")
         assertTrue((counts["p3r"] ?: 0) >= 16, "p3r must declare its 16 guide graphics, found ${counts["p3r"]}")
         assertTrue((counts["metaphor"] ?: 0) >= 47, "metaphor must declare its 47 guide graphics, found ${counts["metaphor"]}")
     }

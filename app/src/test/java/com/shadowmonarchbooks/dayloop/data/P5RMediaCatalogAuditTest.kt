@@ -36,20 +36,16 @@ class P5RMediaCatalogAuditTest {
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
         val achievementIds = p5r.achievements?.achievements.orEmpty().mapTo(linkedSetOf()) { it.id }
 
-        assertEquals(75, media.size)
+        assertEquals(73, media.size)
         assertEquals(50, trophyArt.size, "the imported P5R guide archive contributes 50 trophy images")
         assertEquals(22, confidantBackgrounds.size, "the supplied Confidants archive contributes 22 backgrounds")
         assertEquals(
-            setOf(
-                "p5r.media.month-opener",
-                "p5r.media.marker-schedule",
-                "p5r.media.marker-deadline",
-            ),
+            setOf("p5r.media.month-opener"),
             guideGraphics.mapTo(linkedSetOf()) { it.id },
-            "all non-trophy P5R media should remain the three source-specific guide graphics",
+            "the month opener should be the only remaining non-trophy guide graphic",
         )
         assertEquals(1, guideGraphics.count { it.kind == MediaKinds.MONTH })
-        assertEquals(2, guideGraphics.count { it.kind == MediaKinds.SECTION })
+        assertEquals(0, guideGraphics.count { it.kind == MediaKinds.SECTION })
         assertEquals(49, trophyArt.count { it.months.isNotEmpty() })
         assertTrue(
             trophyArt.all { it.id in achievementIds },

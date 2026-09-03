@@ -68,7 +68,7 @@ fun OnboardingScreen(
     onCancel: (() -> Unit)? = null,
 ) {
     val state by vm.state.collectAsState()
-    val packs = state.packs
+    val packs = state.packs.sortedBy { it.pack.pickerOrder }
     val profileCounts by vm.profileCounts.collectAsState()
     val reselecting = state.selectedSlug != null
     val pagerState = rememberPagerState(

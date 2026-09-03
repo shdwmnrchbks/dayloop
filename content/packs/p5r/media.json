@@ -16,22 +16,6 @@
       "months": ["2016-04", "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-11", "2016-12", "2017-01"]
     },
     {
-      "id": "p5r.media.marker-schedule",
-      "file": "images/img003_1F005A6DFE489F36.png",
-      "kind": "section",
-      "title": "Schedule marker",
-      "caption": "Small marker the guide uses on regular schedule sections.",
-      "months": ["2016-04", "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-10", "2016-11", "2016-12", "2017-01"]
-    },
-    {
-      "id": "p5r.media.marker-deadline",
-      "file": "images/img004_9C21CC7316E37F3A.png",
-      "kind": "section",
-      "title": "Deadline stretch marker",
-      "caption": "Small marker the guide uses on deadline-stretch sections.",
-      "months": ["2016-04", "2016-05", "2016-06", "2016-07", "2016-10", "2016-11", "2016-12", "2017-01", "2017-02"]
-    },
-    {
       "id": "p5r.media.achievement.pyramid-of-wrath-plundered",
       "file": "images/img005_385BC000E7F840D6.png",
       "kind": "achievement",

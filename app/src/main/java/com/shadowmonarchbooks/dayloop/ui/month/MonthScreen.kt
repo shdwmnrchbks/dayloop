@@ -9,10 +9,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -34,14 +34,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.deadlineEnd
-import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.formatMonth
 import com.shadowmonarchbooks.dayloop.data.parseDateOrNull
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
@@ -54,10 +57,9 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
-import java.time.LocalDate
 import kotlin.math.abs
 
-private val WeekHeaders = listOf("M", "T", "W", "T", "F", "S", "S")
+private val WeekHeaders = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
 internal data class CalendarMediaMarker(
     val assetPath: String,
@@ -77,15 +79,9 @@ internal fun monthIndexAfterSwipe(
     else -> (current - 1).coerceAtLeast(0)
 }
 
-/**
- * Slash-calendar placement for the three reusable guide graphics. The month
- * opener replaces the generic marker on each due date. The first section
- * graphic marks the month's authored start; remaining section graphics mark
- * deadline-range starts. Multiple meanings may share one calendar cell.
- */
-internal fun slashCalendarMarkerItems(
+/** The P5R month-opener graphic replaces the generic marker on due dates. */
+internal fun slashDeadlineMarkerItems(
     month: String,
-    authoredDates: Set<String>,
     deadlines: List<Deadline>,
     media: List<MediaItem>,
 ): Map<String, List<MediaItem>> {
@@ -97,16 +93,6 @@ internal fun slashCalendarMarkerItems(
 
     val monthOpener = media.firstOrNull { it.kind == MediaKinds.MONTH }
     deadlines.forEach { deadline -> add(deadlineEnd(deadline), monthOpener) }
-
-    val sectionMarkers = media.filter { it.kind == MediaKinds.SECTION }
-    sectionMarkers.firstOrNull()
-        ?.takeIf { month in it.months }
-        ?.let { marker -> add(authoredDates.filter { it.startsWith("$month-") }.minOrNull(), marker) }
-    sectionMarkers.drop(1).forEach { marker ->
-        if (month in marker.months) {
-            deadlines.forEach { deadline -> add(deadlineStart(deadline), marker) }
-        }
-    }
 
     return result.mapValues { (_, items) -> items.distinctBy(MediaItem::id) }
 }
@@ -136,9 +122,8 @@ fun MonthScreen(
     val month = months[index]
     val skin = LocalSkin.current
     val markerItems = when {
-        skin.motion == "slash" -> slashCalendarMarkerItems(
+        skin.motion == "slash" -> slashDeadlineMarkerItems(
             month = month,
-            authoredDates = state.days.keys,
             deadlines = pack.deadlines,
             media = pack.media,
         )
@@ -158,10 +143,6 @@ fun MonthScreen(
         }
     }
     val swipeThresholdPx = with(LocalDensity.current) { 56.dp.toPx() }
-    val monthMedia = pack.mediaForMonth(month)
-    val formerMonthArt = monthMedia.firstOrNull { it.kind == MediaKinds.MONTH }
-    val formerSectionArt = monthMedia.filter { it.kind == MediaKinds.SECTION }
-
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier
@@ -188,21 +169,23 @@ fun MonthScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            IconButton(onClick = { if (index > 0) index-- }, enabled = index > 0) {
+            IconButton(
+                onClick = { if (index > 0) index-- },
+                enabled = index > 0,
+                modifier = Modifier.align(Alignment.CenterStart),
+            ) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous month")
             }
-            // Keep the title plate's rc4 geometry while moving its artwork
-            // into calendar cells: these invisible slots preserve the exact
-            // text position and background width shown in the reference.
-            formerMonthArt?.let { Spacer(Modifier.size(40.dp)) }
-            SkinHeader(text = formatMonth(month), modifier = Modifier.weight(1f))
-            formerSectionArt.forEach { Spacer(Modifier.size(22.dp)) }
-            IconButton(onClick = { if (index < months.lastIndex) index++ }, enabled = index < months.lastIndex) {
+            SkinHeader(text = formatMonth(month))
+            IconButton(
+                onClick = { if (index < months.lastIndex) index++ },
+                enabled = index < months.lastIndex,
+                modifier = Modifier.align(Alignment.CenterEnd),
+            ) {
                 Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next month")
             }
         }
@@ -256,8 +239,8 @@ private fun CalendarGrid(
             cycle.forEach { token ->
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     Text(
-                        text = token.replaceFirstChar { it.uppercase() }.take(1),
-                        style = MaterialTheme.typography.labelMedium,
+                        text = token.replaceFirstChar { it.uppercase() }.take(3),
+                        style = calendarWeekdayStyle(),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
@@ -312,7 +295,7 @@ private fun RealMonthGrid(
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     Text(
                         text = h,
-                        style = MaterialTheme.typography.labelMedium,
+                        style = calendarWeekdayStyle(),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
@@ -375,7 +358,7 @@ private fun DayCell(
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         Surface(
             shape = if (skin.hasSkin) skin.shapes.card else RoundedCornerShape(10.dp),
-            color = if (isClockDate && skin.hasSkin && container != null) {
+            color = if (isClockDate && skin.hasSkin && container != null && !slash) {
                 MaterialTheme.colorScheme.primary
             } else {
                 container ?: MaterialTheme.colorScheme.surface
@@ -399,16 +382,44 @@ private fun DayCell(
             Box(contentAlignment = Alignment.Center) {
                 Text(
                     text = dayNumber.toString(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = if (isClockDate) FontWeight.SemiBold else null,
+                    style = if (slash) {
+                        MaterialTheme.typography.displaySmall.copy(
+                            fontSize = 27.sp,
+                            lineHeight = 29.sp,
+                            fontStyle = FontStyle.Normal,
+                        )
+                    } else {
+                        MaterialTheme.typography.bodyMedium
+                    },
+                    fontWeight = if (isClockDate || slash) FontWeight.Bold else null,
                     color = when {
                         day == null -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
                         inverted -> MaterialTheme.colorScheme.inverseOnSurface
-                        isClockDate && skin.hasSkin && container != null -> MaterialTheme.colorScheme.onPrimary
+                        isClockDate && skin.hasSkin && container != null && !slash -> MaterialTheme.colorScheme.onPrimary
                         else -> MaterialTheme.colorScheme.onSurface
                     },
                 )
-                if (markers.isNotEmpty()) {
+                if (slash && isClockDate) {
+                    Surface(
+                        shape = skin.shapes.chip,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .graphicsLayer { rotationZ = -6f },
+                    ) {
+                        Text(
+                            text = "TODAY",
+                            style = MaterialTheme.typography.displaySmall.copy(
+                                fontSize = 9.sp,
+                                lineHeight = 10.sp,
+                                fontStyle = FontStyle.Normal,
+                            ),
+                            color = Color.Black,
+                            modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp),
+                        )
+                    }
+                }
+                if (markers.isNotEmpty() && !slash) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(1.dp),
                         verticalAlignment = Alignment.Bottom,
@@ -422,15 +433,8 @@ private fun DayCell(
                             )
                         }
                     }
-                } else if (hasDeadline) {
+                } else if (hasDeadline && !slash) {
                     when {
-                        slash -> Box(
-                            modifier = Modifier
-                                .align(Alignment.BottomCenter)
-                                .padding(bottom = 3.dp)
-                                .size(9.dp)
-                                .background(MaterialTheme.colorScheme.primary, skin.shapes.chip),
-                        )
                         crown -> {
                             Box(
                                 modifier = Modifier
@@ -458,5 +462,25 @@ private fun DayCell(
                 }
             }
         }
+        if (slash) {
+            markers.firstOrNull { it.kind == MediaKinds.MONTH }?.let { marker ->
+                MediaImage(
+                    assetPath = marker.assetPath,
+                    title = marker.title,
+                    size = 32.dp,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .offset(x = 9.dp, y = (-9).dp),
+                )
+            }
+        }
     }
 }
+
+@Composable
+private fun calendarWeekdayStyle() = MaterialTheme.typography.displaySmall.copy(
+    fontSize = 13.sp,
+    lineHeight = 15.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Bold,
+)

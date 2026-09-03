@@ -68,6 +68,13 @@ import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
 
+private val HeistDeadlineSuffix = Regex(
+    pattern = "\\s*[—-]\\s*finish the heist beforehand\\s*$",
+    option = RegexOption.IGNORE_CASE,
+)
+
+internal fun todayDeadlineLabel(label: String): String = label.replace(HeistDeadlineSuffix, "").trim()
+
 /**
  * Hero screen: the persisted in-game clock (End-Day), today's checkbox tasks,
  * the carried-over queue, and the next deadline (docs/PLAN.md §5/§6). End-Day
@@ -203,7 +210,7 @@ fun TodayScreen(
         }
         upcoming?.let { (deadline, days) ->
             DeadlineBanner(
-                deadline = deadline,
+                deadline = deadline.copy(label = todayDeadlineLabel(deadline.label)),
                 daysLeft = days,
                 moonMarked = deadlineStart(deadline) in moonMarkedDates,
                 kindLabel = pack.pack.labels.deadlineKind(deadline.kind),
@@ -319,19 +326,19 @@ fun TodayScreen(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.skinDecor("panel").padding(horizontal = 10.dp, vertical = 8.dp),
             ) {
+                SkinOutlinedActionButton(
+                    text = "Undo day",
+                    onClick = vm::rerollDay,
+                    enabled = state.hasPreviousDay(),
+                    fillWidth = true,
+                    modifier = Modifier.weight(1f),
+                )
                 SkinActionButton(
                     text = "End day",
                     onClick = ::advanceDay,
                     enabled = state.hasNextDay(),
                     fillWidth = true,
                     largeLabel = true,
-                    modifier = Modifier.weight(1f),
-                )
-                SkinOutlinedActionButton(
-                    text = "Undo day",
-                    onClick = vm::rerollDay,
-                    enabled = state.hasPreviousDay(),
-                    fillWidth = true,
                     modifier = Modifier.weight(1f),
                 )
             }

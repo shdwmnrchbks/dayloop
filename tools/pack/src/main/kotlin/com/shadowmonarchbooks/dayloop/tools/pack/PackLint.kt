@@ -75,6 +75,7 @@ object PackLint {
             issues += err("pack.json", "packId '$packId' is not a lowercase slug")
         }
         if (pack.contentVersion < 1) issues += err("pack.json", "contentVersion must be >= 1")
+        if (pack.pickerOrder < 0) issues += err("pack.json", "pickerOrder must be >= 0")
         if (pack.timeModel !in TIME_MODELS) issues += err("pack.json", "unknown timeModel '${pack.timeModel}'")
 
         // Calendar
