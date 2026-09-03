@@ -252,7 +252,7 @@
         { "label": "Talk to Mitsuru for the exam reward" },
         { "label": "Drink the medicine at the school Nurse's Office — Courage reaches rank 4", "statGains": { "courage": 2 } },
         { "label": "Hang out with Hidetoshi — Emperor reaches rank 3 (best answer: A)" },
-        { "label": "Evening: the rooftop garden unlocks — collect the remaining Twinkling Fragments in the city and plant the Healthy Tomato Sprouts" },
+        { "label": "Evening: the rooftop garden unlocks — collect the remaining Twilight Fragments in the city and plant the Healthy Tomato Sprouts" },
         { "label": "Evening: play High School of Youth at Game Parade — Charm reaches rank 4", "statGains": { "charm": 4 } }
       ]
     },
