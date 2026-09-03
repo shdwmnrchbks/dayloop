@@ -83,7 +83,7 @@ internal fun todayDeadlineLabel(label: String): String = label.replace(HeistDead
 internal fun areSlotTasksDone(
     day: Day?,
     slotId: String?,
-    markAt: (Int) -> StepMark,
+    markAt: (Int) -> StepMark?,
 ): Boolean {
     if (day == null || slotId == null) return false
     val indices = day.steps.indices.filter { day.steps[it].slot == slotId }
