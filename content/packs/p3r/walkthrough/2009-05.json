@@ -103,6 +103,8 @@
         { "label": "Hang out with the old couple — Hierophant reaches rank 4 (best answers: A > A > 2)" },
         { "label": "Visit the Velvet Room — Elizabeth's requests unlock today; hand in Request #2 using Old Document 01 from Thebel 22F for ¥10,000" },
         { "label": "Complete Request #1 with the Muscle Drink, then Request #9: bring 12 unique vending-machine drinks from Dorm 2F, Dorm 3F, Port Island Station, and Iwatodai Strip Mall 3F (Iwatodai Station duplicates Dorm 2F); accept Request #11" },
+        { "label": "Evening request prep: accept Request #12, talk to Yukari at the dorm for Pine Resin, and report it to Elizabeth before the 6/6 deadline" },
+        { "label": "Evening request prep: accept Request #13, talk to Junpei at the dorm for the Handheld Game Console, and report it to Elizabeth before the 6/6 deadline" },
         { "label": "Take the Big Eater Challenge at Wilduck Burger — Charm and Courage reach rank 3 (prompts: 2 > 1 > 2)", "statGains": { "academics": 4, "charm": 4, "courage": 4 } }
       ]
     },
