@@ -75,6 +75,30 @@ class P3rJuneAuditTest {
         assertNotNull(courageRankStep)
     }
 
+    @Test
+    fun `P3R June fixed unlock labels stay on independently supported dates`() {
+        val loaded = loadP3r()
+        val june = assertNotNull(
+            loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == "2009-06" },
+            "2009-06",
+        ).file.days.associateBy { it.date }
+
+        val june13 = assertNotNull(june["2009-06-13"])
+        assertTrue(june13.steps.any { it.label.contains("Theurgy", ignoreCase = true) })
+        assertTrue(june13.steps.any { it.label.contains("combat uniforms", ignoreCase = true) })
+
+        val june16 = assertNotNull(june["2009-06-16"])
+        assertTrue(june16.steps.any { it.label.contains("dorm hangouts unlock", ignoreCase = true) })
+        assertTrue(june16.steps.any { it.label.contains("Junpei's reading", ignoreCase = true) })
+
+        val june18 = assertNotNull(june["2009-06-18"])
+        assertTrue(june18.steps.any { it.label.contains("Missing Persons", ignoreCase = true) })
+        assertTrue(june18.steps.any { it.label.contains("rescue missions unlock", ignoreCase = true) })
+
+        val june22 = assertNotNull(june["2009-06-22"])
+        assertTrue(june22.steps.any { it.label.contains("Fuuka", ignoreCase = true) && it.label.contains("Priestess reaches rank 1", ignoreCase = true) })
+    }
+
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
     }
