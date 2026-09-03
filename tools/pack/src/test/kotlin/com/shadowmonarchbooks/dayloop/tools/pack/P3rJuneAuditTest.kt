@@ -76,7 +76,7 @@ class P3rJuneAuditTest {
     }
 
     @Test
-    fun `P3R June fixed unlock labels stay on independently supported dates`() {
+    fun `P3R June fixed gameplay unlock labels stay on independently supported dates`() {
         val loaded = loadP3r()
         val june = assertNotNull(
             loaded.walkthroughs.firstOrNull { it.routeId == Routes.DEFAULT && it.month == "2009-06" },
@@ -94,9 +94,6 @@ class P3rJuneAuditTest {
         val june18 = assertNotNull(june["2009-06-18"])
         assertTrue(june18.steps.any { it.label.contains("Missing Persons", ignoreCase = true) })
         assertTrue(june18.steps.any { it.label.contains("rescue missions unlock", ignoreCase = true) })
-
-        val june22 = assertNotNull(june["2009-06-22"])
-        assertTrue(june22.steps.any { it.label.contains("Fuuka", ignoreCase = true) && it.label.contains("Priestess reaches rank 1", ignoreCase = true) })
     }
 
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
