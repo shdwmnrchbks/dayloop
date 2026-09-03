@@ -10,10 +10,7 @@
       "id": "p3r.deadline.tartarus.first-cycle",
       "label": "Route target: first Thebel exploration cycle",
       "kind": "routeTarget",
-      "window": {
-        "start": "2009-04-20",
-        "end": "2009-04-26"
-      }
+      "window": { "start": "2009-04-20", "end": "2009-04-26" }
     },
     {
       "id": "p3r.deadline.aohige-sale.muscle-drink",
@@ -31,16 +28,43 @@
       "id": "p3r.deadline.exams.may",
       "label": "First school exams — top of the class requires Academics rank 3 and all answers correct",
       "kind": "exam",
-      "window": {
-        "start": "2009-05-18",
-        "end": "2009-05-23"
-      }
+      "window": { "start": "2009-05-18", "end": "2009-05-23" }
+    },
+    {
+      "id": "p3r.deadline.elizabeth.12-pine-resin",
+      "label": "Elizabeth Request #12 — bring Pine Resin",
+      "kind": "request",
+      "date": "2009-06-06"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.13-handheld-console",
+      "label": "Elizabeth Request #13 — bring a Handheld Game Console",
+      "kind": "request",
+      "date": "2009-06-06"
     },
     {
       "id": "p3r.deadline.fullmoon.june",
       "label": "June full moon — mandatory Shadow operation, no free time",
       "kind": "other",
       "date": "2009-06-08"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.27-triangular-sword",
+      "label": "Elizabeth Request #27 — bring a triangular sword",
+      "kind": "request",
+      "date": "2009-07-05"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.28-protein",
+      "label": "Elizabeth Request #28 — bring protein not for pros",
+      "kind": "request",
+      "date": "2009-07-05"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.29-fashion",
+      "label": "Elizabeth Request #29 — bring a fashionable item",
+      "kind": "request",
+      "date": "2009-07-05"
     },
     {
       "id": "p3r.deadline.missing-persons.2009-07-06",
@@ -58,10 +82,19 @@
       "id": "p3r.deadline.exams.july",
       "label": "Second school exams — top of the class requires Academics rank 4 and all answers correct",
       "kind": "exam",
-      "window": {
-        "start": "2009-07-14",
-        "end": "2009-07-18"
-      }
+      "window": { "start": "2009-07-14", "end": "2009-07-18" }
+    },
+    {
+      "id": "p3r.deadline.elizabeth.43-christmas-star",
+      "label": "Elizabeth Request #43 — bring a Christmas Star",
+      "kind": "request",
+      "date": "2009-08-04"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.44-ocean",
+      "label": "Elizabeth Request #44 — bring an item that lets her feel the ocean",
+      "kind": "request",
+      "date": "2009-08-04"
     },
     {
       "id": "p3r.deadline.missing-persons.2009-08-05",
@@ -76,6 +109,12 @@
       "date": "2009-08-06"
     },
     {
+      "id": "p3r.deadline.elizabeth.58-straw-millionaire",
+      "label": "Elizabeth Request #58 — complete the straw-millionaire trade chain",
+      "kind": "request",
+      "date": "2009-08-31"
+    },
+    {
       "id": "p3r.deadline.missing-persons.2009-09-04",
       "label": "Missing-person rescue cutoff — last actionable night for all 3 current Tartarus victims (101F, 109F, 114F)",
       "kind": "missable",
@@ -86,6 +125,18 @@
       "label": "September full moon — mandatory Shadow operation, no free time",
       "kind": "other",
       "date": "2009-09-05"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.68-fruit-knife",
+      "label": "Elizabeth Request #68 — bring a Fruit Knife",
+      "kind": "request",
+      "date": "2009-10-02"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.69-machine-oil",
+      "label": "Elizabeth Request #69 — bring Machine Oil",
+      "kind": "request",
+      "date": "2009-10-02"
     },
     {
       "id": "p3r.deadline.missing-persons.2009-10-03",
@@ -103,10 +154,13 @@
       "id": "p3r.deadline.exams.october",
       "label": "Third school exams — top of the class requires Academics rank 5 and all answers correct",
       "kind": "exam",
-      "window": {
-        "start": "2009-10-13",
-        "end": "2009-10-17"
-      }
+      "window": { "start": "2009-10-13", "end": "2009-10-17" }
+    },
+    {
+      "id": "p3r.deadline.elizabeth.76-glasses-wipe",
+      "label": "Elizabeth Request #76 — bring a Glasses Wipe",
+      "kind": "request",
+      "date": "2009-11-01"
     },
     {
       "id": "p3r.deadline.missing-persons.2009-11-02",
@@ -119,6 +173,18 @@
       "label": "November full moon — mandatory Shadow operation, no free time",
       "kind": "other",
       "date": "2009-11-03"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.94-furry-friend",
+      "label": "Elizabeth Request #94 — bring food for a Furry Friend",
+      "kind": "request",
+      "date": "2009-11-30"
+    },
+    {
+      "id": "p3r.deadline.elizabeth.95-featherman",
+      "label": "Elizabeth Request #95 — bring a Featherman R action figure",
+      "kind": "request",
+      "date": "2009-11-30"
     },
     {
       "id": "p3r.deadline.missing-persons.2009-12-01",
@@ -136,10 +202,13 @@
       "id": "p3r.deadline.exams.december",
       "label": "Fourth school exams — top of the class requires Academics rank 6 and all answers correct",
       "kind": "exam",
-      "window": {
-        "start": "2009-12-14",
-        "end": "2009-12-19"
-      }
+      "window": { "start": "2009-12-14", "end": "2009-12-19" }
+    },
+    {
+      "id": "p3r.deadline.elizabeth.97-christmas-present",
+      "label": "Elizabeth Request #97 — bring her Christmas present",
+      "kind": "request",
+      "date": "2009-12-25"
     },
     {
       "id": "p3r.deadline.missing-persons.2009-12-30",
