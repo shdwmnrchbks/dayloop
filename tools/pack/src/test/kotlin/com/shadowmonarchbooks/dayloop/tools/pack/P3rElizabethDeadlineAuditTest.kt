@@ -78,7 +78,7 @@ class P3rElizabethDeadlineAuditTest {
         requireStep("2009-06", "2009-06-28", "Request #29", "fashionable", "July 5")
 
         // 8/4 deadline: both must be accepted before their item interactions.
-        requireStep("2009-07", "2009-07-09", "Request #43", "Request #44", "accept")
+        requireStep("2009-07", "2009-07-09", "#43", "#44", "accept")
         requireStep("2009-07", "2009-07-09", "Request #43", "Poinsettia", "August 4")
         requireStep("2009-07", "2009-07-20", "Request #44", "beach")
         requireStep("2009-07", "2009-07-23", "Request #44", "Yakushima", "August 4")
