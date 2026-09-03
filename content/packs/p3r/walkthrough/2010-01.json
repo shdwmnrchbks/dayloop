@@ -6,10 +6,22 @@
       "weekday": "fri",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: New Year's event" },
-        { "label": "Evening: check Elizabeth for newly available late-game requests; availability depends on earlier request prerequisites" },
-        { "label": "Evening: the Believer's Blog Note is now available from the Suspicious Man at Club Escapade" },
-        { "label": "Evening: join Ken's DVD hangout — Combat Characteristic enhanced" }
+        {
+          "label": "New Year's event",
+          "slot": "day"
+        },
+        {
+          "label": "Check Elizabeth for newly available late-game requests; availability depends on earlier request prerequisites",
+          "slot": "evening"
+        },
+        {
+          "label": "The Believer's Blog Note is now available from the Suspicious Man at Club Escapade",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Ken's DVD hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -17,8 +29,14 @@
       "weekday": "sat",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: take a nap" },
-        { "label": "Evening: walk Koromaru (with Yuko)" }
+        {
+          "label": "Take a nap",
+          "slot": "day"
+        },
+        {
+          "label": "Walk Koromaru (with Yuko)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -26,8 +44,14 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with the rival athlete — Star reaches rank 8 (best answers: 1 > A)" },
-        { "label": "Evening: read the Believer's Blog Note on the dorm's shared computer" }
+        {
+          "label": "Hang out with the rival athlete — Star reaches rank 8 (best answers: 1 > A)",
+          "slot": "day"
+        },
+        {
+          "label": "Read the Believer's Blog Note on the dorm's shared computer",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -35,8 +59,14 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Accept Mitsuru's phone invitation (romance answer: 2 / platonic answer: 3)" },
-        { "label": "Evening: watch Akihiko's Link Episode" }
+        {
+          "label": "Accept Mitsuru's phone invitation (romance answer: 2 / platonic answer: 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Akihiko's Link Episode",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -44,8 +74,14 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch Koromaru's Link Episode" },
-        { "label": "Evening: join Yukari's DVD hangout" }
+        {
+          "label": "Watch Koromaru's Link Episode",
+          "slot": "day"
+        },
+        {
+          "label": "Join Yukari's DVD hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -54,9 +90,18 @@
       "dayKind": "free",
       "notes": "Alternative: choose Star rank 9 today instead, then meet Keisuke during the January 10 Koromaru walk if Star maxes that day.",
       "steps": [
-        { "label": "Accept Kazushi's phone invitation (best answer: 3)" },
-        { "label": "Check Elizabeth's late-game request list; Request #98 can be completed once its fusion prerequisite is met, while #99/#100/#101 are handled during the remaining Tartarus cleanup" },
-        { "label": "Evening: join Aigis's reading hangout" }
+        {
+          "label": "Accept Kazushi's phone invitation (best answer: 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Check Elizabeth's late-game request list; Request #98 can be completed once its fusion prerequisite is met, while #99/#100/#101 are handled during the remaining Tartarus cleanup",
+          "slot": "day"
+        },
+        {
+          "label": "Join Aigis's reading hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -64,8 +109,14 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: study at your desk" },
-        { "label": "Evening: walk Koromaru (with Aigis)" }
+        {
+          "label": "Study at your desk",
+          "slot": "day"
+        },
+        {
+          "label": "Walk Koromaru (with Aigis)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -73,9 +124,18 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Talk to Aigis — Aeon reaches rank 1" },
-        { "label": "Evening: join Yukari's cooking hangout" }
+        {
+          "label": "Answer the class question",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Yukari's cooking hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -83,9 +143,18 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Mitsuru — Empress reaches rank 10 (MAX)" },
-        { "label": "Chill a Taiyaki in the dorm kitchen fridge" },
-        { "label": "Evening: walk Koromaru (with Chihiro)" }
+        {
+          "label": "Talk to Mitsuru — Empress reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Chill a Taiyaki in the dorm kitchen fridge",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Chihiro)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -93,9 +162,18 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with the rival athlete — Star reaches rank 9 (best answers: 1 > 2 > A > 1)" },
-        { "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Mitsuru" },
-        { "label": "Evening: walk Koromaru (with Hayase)" }
+        {
+          "label": "Hang out with the rival athlete — Star reaches rank 9 (best answers: 1 > 2 > A > 1)",
+          "slot": "day"
+        },
+        {
+          "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Mitsuru",
+          "slot": "day"
+        },
+        {
+          "label": "Walk Koromaru (with Hayase)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -104,8 +182,14 @@
       "dayKind": "free",
       "notes": "Public holiday — Coming of Age Day.",
       "steps": [
-        { "label": "Accept Keisuke's phone invitation (best answer: 3)" },
-        { "label": "Evening: join Mitsuru's tea-time hangout" }
+        {
+          "label": "Accept Keisuke's phone invitation (best answer: 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Join Mitsuru's tea-time hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -113,9 +197,18 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class" },
-        { "label": "Hang out with Kazushi — Chariot reaches rank 10 (MAX)" },
-        { "label": "Evening: join Fuuka's gardening hangout" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with Kazushi — Chariot reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Fuuka's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -123,8 +216,15 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Aigis — Aeon reaches rank 2 (best answer: 1)" },
-        { "label": "Evening: talk to the suspicious-looking man at Club Escapade and agree to meet their Messiah — Takaya's Link Episode", "spoiler": true }
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 2 (best answer: 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to the suspicious-looking man at Club Escapade and agree to meet their Messiah — Takaya's Link Episode",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -132,8 +232,14 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Join the art club — Fortune reaches rank 9 (best answers: 1 > A > A > A > A)" },
-        { "label": "Evening: join Fuuka's reading hangout" }
+        {
+          "label": "Join the art club — Fortune reaches rank 9 (best answers: 1 > A > A > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Fuuka's reading hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -142,13 +248,37 @@
       "dayKind": "school",
       "notes": "The final missing-person batch enters Tartarus today. This route uses tonight's Tartarus visit for the Adamah climb and request cleanup; if needed, the same objectives can be split across later free evenings without changing daytime Social Links.",
       "steps": [
-        { "label": "Stay awake in class" },
-        { "label": "Talk to Aigis — Aeon reaches rank 3 (best answers: A > 2)" },
-        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Before or after the climb, complete Request #98 by reporting a Masakado with Charge once the request is available" },
-        { "label": "Evening: Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff", "spoiler": true },
-        { "label": "Continue through Adamah: Judgment reaches ranks 2–10 at 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively", "spoiler": true },
-        { "label": "Clear the final Monad Passage on 255F, defeat the Shadow of the Void, and report it to Elizabeth to complete Request #99", "spoiler": true }
+        {
+          "label": "Stay awake in class",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 3 (best answers: A > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy any fortune from the Fortune Teller at Club Escapade",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Before or after the climb, complete Request #98 by reporting a Masakado with Charge once the request is available",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff",
+          "slot": "evening",
+          "spoiler": true
+        },
+        {
+          "label": "Continue through Adamah: Judgment reaches ranks 2–10 at 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively",
+          "slot": "evening",
+          "spoiler": true
+        },
+        {
+          "label": "Clear the final Monad Passage on 255F, defeat the Shadow of the Void, and report it to Elizabeth to complete Request #99",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -156,8 +286,14 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Aigis — Aeon reaches rank 4 (best answers: 1 > A > 1)" },
-        { "label": "Evening: walk Koromaru (with Mitsuru)" }
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 4 (best answers: 1 > A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Mitsuru)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -165,9 +301,18 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Hang out with the rival athlete — Star reaches rank 10 (MAX)" },
-        { "label": "Evening: check the Command Room's final dorm recording" },
-        { "label": "Evening: walk Koromaru (with Yuko)" }
+        {
+          "label": "Hang out with the rival athlete — Star reaches rank 10 (MAX)",
+          "slot": "day"
+        },
+        {
+          "label": "Check the Command Room's final dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Walk Koromaru (with Yuko)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -175,9 +320,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Watch Junpei's Link Episode" },
-        { "label": "Evening: join Junpei's reading hangout" }
+        {
+          "label": "Answer the class question",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Junpei's Link Episode",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Junpei's reading hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -185,8 +339,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Study at the school library (after school)" },
-        { "label": "Evening: watch Ken's Link Episode" }
+        {
+          "label": "Study at the school library (after school)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch Ken's Link Episode",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -194,8 +354,14 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Aigis — Aeon reaches rank 5 (best answer: 1)" },
-        { "label": "Evening: go to bed" }
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 5 (best answer: 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Go to bed",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -204,8 +370,15 @@
       "dayKind": "school",
       "notes": "Good day for Reaper and Secret Super Boss preparations.",
       "steps": [
-        { "label": "Revival Event (after school)" },
-        { "label": "Evening: Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary", "spoiler": true }
+        {
+          "label": "Revival Event (after school)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -213,10 +386,22 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class" },
-        { "label": "Talk to Aigis — Aeon reaches rank 6 (best answer: 2/3)" },
-        { "label": "Chill a Taiyaki in the dorm kitchen fridge" },
-        { "label": "Evening: join Ken's DVD hangout" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 6 (best answer: 2/3)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Chill a Taiyaki in the dorm kitchen fridge",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Ken's DVD hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -224,9 +409,18 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Aigis — Aeon reaches rank 7 (best answers: A > A > A)" },
-        { "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Fuuka" },
-        { "label": "Evening: walk Koromaru (with Chihiro)" }
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 7 (best answers: A > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Fuuka",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Chihiro)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -234,8 +428,14 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Daytime: drink coffee at Chagall Café" },
-        { "label": "Evening: walk Koromaru (with Kenji)" }
+        {
+          "label": "Drink coffee at Chagall Café",
+          "slot": "day"
+        },
+        {
+          "label": "Walk Koromaru (with Kenji)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -243,9 +443,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class" },
-        { "label": "Watch Koromaru's Link Episode" },
-        { "label": "Evening: join Koromaru's TV hangout" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Koromaru's Link Episode",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Koromaru's TV hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -253,8 +462,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Join the art club — Fortune reaches rank 10 (MAX)" },
-        { "label": "Evening: join Fuuka's gardening hangout" }
+        {
+          "label": "Join the art club — Fortune reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Fuuka's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -262,8 +477,14 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Aigis — Aeon reaches rank 8 (romance: 2 > A > 1 / platonic: 2 > A > 2)" },
-        { "label": "Evening: join Akihiko's cooking hangout" }
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 8 (romance: 2 > A > 1 / platonic: 2 > A > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Akihiko's cooking hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -271,9 +492,18 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class" },
-        { "label": "Talk to Aigis — Aeon reaches rank 9 (romance: 1 > 1 / platonic: 1 > A)" },
-        { "label": "Evening: play Punch Boxer at Game Parade" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 9 (romance: 1 > 1 / platonic: 1 > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play Punch Boxer at Game Parade",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -282,8 +512,14 @@
       "dayKind": "school",
       "notes": "All Social Links should now be MAX.",
       "steps": [
-        { "label": "Talk to Aigis — Aeon reaches rank 10 (MAX)" },
-        { "label": "Evening: walk Koromaru (with the whole team)" }
+        {
+          "label": "Talk to Aigis — Aeon reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with the whole team)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -292,9 +528,19 @@
       "dayKind": "free",
       "notes": "This is the last actionable day for the January missing-person batch and the safest final cleanup night before the Promised Day.",
       "steps": [
-        { "label": "Spend time with your romance Social Link (or Hierophant)" },
-        { "label": "Confirm the 232F and 250F missing persons have been rescued before today's cutoff" },
-        { "label": "Evening: Tartarus — with Request #101 accepted, enter the 255F Monad door alone and defeat the ultimate adversary to complete Elizabeth's final request; finish any remaining preparations afterward", "spoiler": true }
+        {
+          "label": "Spend time with your romance Social Link (or Hierophant)",
+          "slot": "day"
+        },
+        {
+          "label": "Confirm the 232F and 250F missing persons have been rescued before today's cutoff",
+          "slot": "day"
+        },
+        {
+          "label": "Tartarus — with Request #101 accepted, enter the 255F Monad door alone and defeat the ultimate adversary to complete Elizabeth's final request; finish any remaining preparations afterward",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -303,8 +549,15 @@
       "dayKind": "story",
       "notes": "Final free time — talk to Elizabeth if you need HP & SP recovery. The Reaper falls easily to Armageddon Theurgy (Helel + Satan); Messiah is fused from Orpheus + Thanatos (Lv 91, or 86 with the Sun Major Arcana).",
       "steps": [
-        { "label": "Roam the city and talk to everyone — final free time activity" },
-        { "label": "Evening: Tartarus — The Promised Day", "spoiler": true }
+        {
+          "label": "Roam the city and talk to everyone — final free time activity",
+          "slot": "day"
+        },
+        {
+          "label": "Tartarus — The Promised Day",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     }
   ]

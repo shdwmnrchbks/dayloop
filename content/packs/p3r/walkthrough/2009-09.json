@@ -6,11 +6,29 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Take the supplementary lesson at the school Nurse's Office" },
-        { "label": "Hang out with Chihiro — Justice reaches rank 9 (romance: 1 > A > A > 1 > 1 > A / platonic: 1 > A > A > 1)" },
-        { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 10 (MAX)" },
-        { "label": "After Devil reaches MAX, bring the Social Link max-rank item to Elizabeth to complete Request #55 (proof of a bond)" }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Take the supplementary lesson at the school Nurse's Office",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihiro — Justice reaches rank 9 (romance: 1 > A > A > 1 > 1 > A / platonic: 1 > A > A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 10 (MAX)",
+          "slot": "evening"
+        },
+        {
+          "label": "After Devil reaches MAX, bring the Social Link max-rank item to Elizabeth to complete Request #55 (proof of a bond)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -18,7 +36,13 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Evening: join Aigis's reading hangout", "statGains": { "charm": 2 } }
+        {
+          "label": "Join Aigis's reading hangout",
+          "slot": "evening",
+          "statGains": {
+            "charm": 2
+          }
+        }
       ]
     },
     {
@@ -26,9 +50,21 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Take the supplementary lesson at the school Nurse's Office" },
-        { "label": "Hang out with Chihiro — Justice reaches rank 10 (MAX)" },
-        { "label": "Evening: join Junpei's reading hangout — Combat Characteristic unlocked", "statGains": { "courage": 2 } }
+        {
+          "label": "Take the supplementary lesson at the school Nurse's Office",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Chihiro — Justice reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Junpei's reading hangout — Combat Characteristic unlocked",
+          "slot": "evening",
+          "statGains": {
+            "courage": 2
+          }
+        }
       ]
     },
     {
@@ -37,11 +73,30 @@
       "dayKind": "school",
       "notes": "Carry Priestess, Lovers, Strength, Temperance, and Tower Arcanas out of Tartarus until the next visit (October 1). Bonus: a Platinum Brooch (¥16,000) from the Club Escapade Luxury Shop can be gifted to Elizabeth for a Master Incense.",
       "steps": [
-        { "label": "Take the supplementary lesson at the school Nurse's Office" },
-        { "label": "Talk to Mitsuru to receive the Reinstatement Form, then watch Shinjiro's Link Episode", "statGains": { "courage": 2 } },
-        { "label": "Optional: buy the Platinum Brooch at Club Escapade and gift it to Elizabeth for a Master Incense" },
-        { "label": "Optional: purchase any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes", "spoiler": true }
+        {
+          "label": "Take the supplementary lesson at the school Nurse's Office",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to Mitsuru to receive the Reinstatement Form, then watch Shinjiro's Link Episode",
+          "slot": "afternoon",
+          "statGains": {
+            "courage": 2
+          }
+        },
+        {
+          "label": "Optional: buy the Platinum Brooch at Club Escapade and gift it to Elizabeth for a Master Incense",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Optional: purchase any fortune from the Fortune Teller at Club Escapade",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -49,7 +104,11 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        {
+          "label": "Full moon — the night is a mandatory Shadow operation, no free time",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -57,10 +116,22 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥9,800 — Brand Purse & Brand Wallet)" },
-        { "label": "Talk to the thin young man at Naganaki Shrine, then retrieve his Red Fountain Pen from Koromaru — Sun reaches rank 1" },
-        { "label": "Evening: new software is available at MangaStar Net Café" },
-        { "label": "Evening: join Ken's coffee hangout" }
+        {
+          "label": "Optional: TV Shopping (¥9,800 — Brand Purse & Brand Wallet)",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to the thin young man at Naganaki Shrine, then retrieve his Red Fountain Pen from Koromaru — Sun reaches rank 1",
+          "slot": "day"
+        },
+        {
+          "label": "New software is available at MangaStar Net Café",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Ken's coffee hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -68,8 +139,14 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yukari — Lovers reaches rank 2 (best answers: 1 > 1)" },
-        { "label": "Evening: join Shinjiro's gardening hangout" }
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 2 (best answers: 1 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Shinjiro's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -77,8 +154,20 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch Koromaru's Link Episode", "statGains": { "courage": 2 } },
-        { "label": "Evening: watch Ken's Link Episode", "statGains": { "academics": 2 } }
+        {
+          "label": "Watch Koromaru's Link Episode",
+          "slot": "afternoon",
+          "statGains": {
+            "courage": 2
+          }
+        },
+        {
+          "label": "Watch Ken's Link Episode",
+          "slot": "evening",
+          "statGains": {
+            "academics": 2
+          }
+        }
       ]
     },
     {
@@ -86,8 +175,17 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yuko — Strength reaches rank 9 (romance: A > 2 > A > 1 > 1 / platonic: A > 2 > A > 1)" },
-        { "label": "Evening: join Aigis's reading hangout", "statGains": { "charm": 2 } }
+        {
+          "label": "Hang out with Yuko — Strength reaches rank 9 (romance: A > 2 > A > 1 > 1 / platonic: A > 2 > A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Aigis's reading hangout",
+          "slot": "evening",
+          "statGains": {
+            "charm": 2
+          }
+        }
       ]
     },
     {
@@ -95,12 +193,33 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "New Elizabeth's requests are available" },
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Yukari — Lovers reaches rank 3 (best answer: A)" },
-        { "label": "Evening: accept Request #68, get the Fruit Knife from Shinjiro at the dorm, and report it to Elizabeth before October 2" },
-        { "label": "Evening: after completing #68, accept Request #69, get the Machine Oil from Aigis at the dorm, and report it to Elizabeth before October 2" },
-        { "label": "Evening: join Shinjiro's gardening hangout" }
+        {
+          "label": "New Elizabeth's requests are available",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 3 (best answer: A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Accept Request #68, get the Fruit Knife from Shinjiro at the dorm, and report it to Elizabeth before October 2",
+          "slot": "evening"
+        },
+        {
+          "label": "After completing #68, accept Request #69, get the Machine Oil from Aigis at the dorm, and report it to Elizabeth before October 2",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Shinjiro's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -108,9 +227,21 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with the exchange student — Temperance reaches rank 6 (best answers: 2 > A > 1)" },
-        { "label": "Evening: join Yukari's cooking hangout" }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hang out with the exchange student — Temperance reaches rank 6 (best answers: 2 > A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Yukari's cooking hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -118,11 +249,29 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Buy 6 Lukewarm Taiyaki from the School Store (Main Lobby)" },
-        { "label": "Hang out with Yuko — Strength reaches rank 10 (MAX)" },
-        { "label": "Evening: join Shinjiro's cooking hangout" },
-        { "label": "Death reaches rank 6 (story)" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Buy 6 Lukewarm Taiyaki from the School Store (Main Lobby)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Yuko — Strength reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Shinjiro's cooking hangout",
+          "slot": "evening"
+        },
+        {
+          "label": "Death reaches rank 6 (story)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -130,11 +279,26 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥24,800 — Emergency Vest & 5 First Aid Kit M)" },
-        { "label": "Watch Shinjiro's Link Episode" },
-        { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
-        { "label": "Evening: join Ken's coffee hangout" }
+        {
+          "label": "Optional: TV Shopping (¥24,800 — Emergency Vest & 5 First Aid Kit M)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Shinjiro's Link Episode",
+          "slot": "day"
+        },
+        {
+          "label": "Check the Command Room's new dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Chill a Taiyaki in the dorm kitchen fridge",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Ken's coffee hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -142,10 +306,25 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hang out with Fuuka — Priestess reaches rank 8 (romance: A > A / platonic: 3 > A > A)" },
-        { "label": "Check the dorm fridge for Mega Protein and a note from Akihiko" },
-        { "label": "Evening: join Shinjiro's gardening hangout — Combat Characteristic unlocked" }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hang out with Fuuka — Priestess reaches rank 8 (romance: A > A / platonic: 3 > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check the dorm fridge for Mega Protein and a note from Akihiko",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Shinjiro's gardening hangout — Combat Characteristic unlocked",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -153,8 +332,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Join the art club — Fortune reaches rank 2 (best answers: A > A)" },
-        { "label": "Evening: join Fuuka's gardening hangout" }
+        {
+          "label": "Join the art club — Fortune reaches rank 2 (best answers: A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Fuuka's gardening hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -162,8 +347,14 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with the exchange student — Temperance reaches rank 7 (best answer: 2)" },
-        { "label": "Evening: walk Koromaru (with Shinjiro)" }
+        {
+          "label": "Hang out with the exchange student — Temperance reaches rank 7 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Shinjiro)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -171,8 +362,14 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Join the art club — Fortune reaches rank 3 (best answers: 1 > A)" },
-        { "label": "Visit the monk at Club Escapade — Tower reaches rank 8 (best answers: 1 > 1/3 > A > 2)" }
+        {
+          "label": "Join the art club — Fortune reaches rank 3 (best answers: 1 > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the monk at Club Escapade — Tower reaches rank 8 (best answers: 1 > 1/3 > A > 2)",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -181,7 +378,10 @@
       "dayKind": "school",
       "notes": "New special fusions have been added.",
       "steps": [
-        { "label": "Watch Takaya's Link Episode after school" }
+        {
+          "label": "Watch Takaya's Link Episode after school",
+          "slot": "afternoon"
+        }
       ]
     },
     {
@@ -203,9 +403,21 @@
       "weekday": "mon",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch Shinjiro's Link Episode", "statGains": { "academics": 2 } },
-        { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: join Mitsuru's tea-time hangout" }
+        {
+          "label": "Watch Shinjiro's Link Episode",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Check the Command Room's new dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Mitsuru's tea-time hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -213,8 +425,14 @@
       "weekday": "tue",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch Koromaru's Link Episode" },
-        { "label": "Evening: watch Ken's Link Episode" }
+        {
+          "label": "Watch Koromaru's Link Episode",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Ken's Link Episode",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -222,8 +440,17 @@
       "weekday": "wed",
       "dayKind": "free",
       "steps": [
-        { "label": "Watch the Film Festival with Shinjiro", "statGains": { "courage": 4 } },
-        { "label": "Evening: walk Koromaru (with Shinjiro)" }
+        {
+          "label": "Watch the Film Festival with Shinjiro",
+          "slot": "day",
+          "statGains": {
+            "courage": 4
+          }
+        },
+        {
+          "label": "Walk Koromaru (with Shinjiro)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -232,10 +459,25 @@
       "dayKind": "school",
       "notes": "If you romanced Yuko and/or Chihiro, you can play along with Kenji's stand-up routine for an event; rejecting him changes nothing in the cleanup scene.",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Talk to Mitsuru and take the Extension Form back — hold onto it, don't return it to Shinjiro yet (Shinjiro Link Episode 3.5)" },
-        { "label": "Join the art club — Fortune reaches rank 4 (best answers: A > 1)" },
-        { "label": "Evening: visit the monk at Club Escapade — Tower reaches rank 9 (best answers: A > A > A)" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Talk to Mitsuru and take the Extension Form back — hold onto it, don't return it to Shinjiro yet (Shinjiro Link Episode 3.5)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join the art club — Fortune reaches rank 4 (best answers: A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Visit the monk at Club Escapade — Tower reaches rank 9 (best answers: A > A > A)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -243,8 +485,14 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with the exchange student — Temperance reaches rank 8 (best answer: 2)" },
-        { "label": "Evening: join Yukari's cooking hangout" }
+        {
+          "label": "Hang out with the exchange student — Temperance reaches rank 8 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Yukari's cooking hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -252,10 +500,25 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Spend time with Fuuka (Priestess)" },
-        { "label": "Evening: chill a Taiyaki in the dorm kitchen fridge" },
-        { "label": "Evening: join Shinjiro's cooking hangout" }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Spend time with Fuuka (Priestess)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Chill a Taiyaki in the dorm kitchen fridge",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Shinjiro's cooking hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -263,11 +526,26 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥19,800 — R/C Geta & Hyper-Metal Robot)" },
-        { "label": "Watch Shinjiro's Link Episode" },
-        { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: check the dorm fridge for a Chilled Taiyaki and a note from Shinjiro" },
-        { "label": "Evening: walk Koromaru (with Akihiko)" }
+        {
+          "label": "Optional: TV Shopping (¥19,800 — R/C Geta & Hyper-Metal Robot)",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Shinjiro's Link Episode",
+          "slot": "day"
+        },
+        {
+          "label": "Check the Command Room's new dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Shinjiro",
+          "slot": "evening"
+        },
+        {
+          "label": "Walk Koromaru (with Akihiko)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -275,10 +553,25 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Fuuka — Priestess reaches rank 9 (romance: A > A > 1 > A / platonic: A > 1 > 1)" },
-        { "label": "Evening: new notes are available from the Suspicious Man at Club Escapade" },
-        { "label": "Evening: join Mitsuru's tea-time hangout" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Fuuka — Priestess reaches rank 9 (romance: A > A > 1 > A / platonic: A > 1 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "New notes are available from the Suspicious Man at Club Escapade",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Mitsuru's tea-time hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -286,8 +579,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Join the art club — Fortune reaches rank 5 (best answer: A)" },
-        { "label": "Evening: join Shinjiro's cooking hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Join the art club — Fortune reaches rank 5 (best answer: A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Shinjiro's cooking hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -295,8 +594,17 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Hidetoshi — Emperor reaches rank 8 (best answers: A > 1)" },
-        { "label": "Evening: join Aigis's reading hangout — Combat Characteristic unlocked", "statGains": { "charm": 2 } }
+        {
+          "label": "Hang out with Hidetoshi — Emperor reaches rank 8 (best answers: A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Aigis's reading hangout — Combat Characteristic unlocked",
+          "slot": "evening",
+          "statGains": {
+            "charm": 2
+          }
+        }
       ]
     }
   ]

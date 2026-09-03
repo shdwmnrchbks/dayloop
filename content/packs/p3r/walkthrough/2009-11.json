@@ -6,9 +6,18 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥39,800 — Myohou Muramasa & Samurai Haori)" },
-        { "label": "Visit the dying young man at the shrine — Sun reaches rank 4" },
-        { "label": "Evening: walk Koromaru (with Yukari)" }
+        {
+          "label": "Optional: TV Shopping (¥39,800 — Myohou Muramasa & Samurai Haori)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the dying young man at the shrine — Sun reaches rank 4",
+          "slot": "day"
+        },
+        {
+          "label": "Walk Koromaru (with Yukari)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -17,10 +26,23 @@
       "dayKind": "school",
       "notes": "Carry Hierophant, Lovers, and Chariot Arcanas out of Tartarus until the next visit (November 29). Reaching ~60% Persona Compendium completion around now enhances the Protagonist's Combat Characteristic.",
       "steps": [
-        { "label": "Hang out with Yukari — Lovers reaches rank 8 (best answers: 1 > A)" },
-        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true },
-        { "label": "Fool reaches rank 6 (story)" }
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 8 (best answers: 1 > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy any fortune from the Fortune Teller at Club Escapade",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Tartarus",
+          "slot": "evening",
+          "spoiler": true
+        },
+        {
+          "label": "Fool reaches rank 6 (story)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -28,7 +50,11 @@
       "weekday": "tue",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true }
+        {
+          "label": "Full moon — the night is a mandatory Shadow operation, no free time",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -37,8 +63,14 @@
       "dayKind": "story",
       "notes": "Celebration and aftermath — no player actions.",
       "steps": [
-        { "label": "Death reaches rank 10 (MAX; story — Reload skips rank 9)" },
-        { "label": "Fool reaches rank 7 (story)" }
+        {
+          "label": "Death reaches rank 10 (MAX; story — Reload skips rank 9)",
+          "slot": "evening"
+        },
+        {
+          "label": "Fool reaches rank 7 (story)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -46,8 +78,14 @@
       "weekday": "thu",
       "dayKind": "free",
       "steps": [
-        { "label": "Evening: a new note is available from the Suspicious Man at Club Escapade" },
-        { "label": "Evening: read the Assassin Site Note on the dorm's shared computer" }
+        {
+          "label": "A new note is available from the Suspicious Man at Club Escapade",
+          "slot": "evening"
+        },
+        {
+          "label": "Read the Assassin Site Note on the dorm's shared computer",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -56,15 +94,42 @@
       "dayKind": "school",
       "notes": "Request #81 should be available if you completed all of Elizabeth's available requests in a timely fashion.",
       "steps": [
-        { "label": "New Elizabeth's requests are available — accept Requests #92, #93, #94, and #96; #96 must be accepted before the Kyoto drink trade chain" },
-        { "label": "For Request #92, use the Port Island Station restroom and choose to scrub harder until it is clean, then report to Elizabeth to complete the request" },
-        { "label": "For Request #93, water the flowers on Gekkoukan High's rooftop, then report to Elizabeth to complete the request" },
-        { "label": "For accepted Request #96, talk to the Friendly Student by the Persimmon Tree before the Kyoto trip so the later drink trade is ready" },
-        { "label": "Invite Elizabeth to your room (Request #81)" },
-        { "label": "Hang out with Kazushi — Chariot reaches rank 5 (best answers: 1 > 1)" },
-        { "label": "Evening: talk to Koromaru for Gourmet Dog Food and report it to Elizabeth to complete Request #94; then accept Request #95" },
-        { "label": "Evening: talk to Ken for the Featherman R action figure and report it to Elizabeth to complete Request #95 before November 30" },
-        { "label": "Evening: read the History Website Note on the dorm's shared computer" }
+        {
+          "label": "New Elizabeth's requests are available — accept Requests #92, #93, #94, and #96; #96 must be accepted before the Kyoto drink trade chain",
+          "slot": "afternoon"
+        },
+        {
+          "label": "For Request #92, use the Port Island Station restroom and choose to scrub harder until it is clean, then report to Elizabeth to complete the request",
+          "slot": "afternoon"
+        },
+        {
+          "label": "For Request #93, water the flowers on Gekkoukan High's rooftop, then report to Elizabeth to complete the request",
+          "slot": "afternoon"
+        },
+        {
+          "label": "For accepted Request #96, talk to the Friendly Student by the Persimmon Tree before the Kyoto trip so the later drink trade is ready",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Invite Elizabeth to your room (Request #81)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Kazushi — Chariot reaches rank 5 (best answers: 1 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to Koromaru for Gourmet Dog Food and report it to Elizabeth to complete Request #94; then accept Request #95",
+          "slot": "evening"
+        },
+        {
+          "label": "Talk to Ken for the Featherman R action figure and report it to Elizabeth to complete Request #95 before November 30",
+          "slot": "evening"
+        },
+        {
+          "label": "Read the History Website Note on the dorm's shared computer",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -72,9 +137,18 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Watch Junpei's Link Episode — encourage him to see Chidori" },
-        { "label": "Evening: walk Koromaru (with Hayase)" }
+        {
+          "label": "Answer the class question",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Junpei's Link Episode — encourage him to see Chidori",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Walk Koromaru (with Hayase)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -82,11 +156,26 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥9,800 — Japanese Doll & Homunculus)" },
-        { "label": "Buy the White Flower at Rafflesia (Port Island Station)" },
-        { "label": "Visit the dying young man at the shrine — Sun reaches rank 5" },
-        { "label": "Evening: watch Junpei's Link Episode — hand over the White Flower" },
-        { "label": "Evening: walk Koromaru (with Yuko)" }
+        {
+          "label": "Optional: TV Shopping (¥9,800 — Japanese Doll & Homunculus)",
+          "slot": "day"
+        },
+        {
+          "label": "Buy the White Flower at Rafflesia (Port Island Station)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the dying young man at the shrine — Sun reaches rank 5",
+          "slot": "day"
+        },
+        {
+          "label": "Watch Junpei's Link Episode — hand over the White Flower",
+          "slot": "evening"
+        },
+        {
+          "label": "Walk Koromaru (with Yuko)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -94,9 +183,21 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Watch Ryoji's Link Episode" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Watch Ryoji's Link Episode",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -104,8 +205,14 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Kazushi — Chariot reaches rank 6 (best answers: 2 > 2 > 2)" },
-        { "label": "Evening: watch Ken's Link Episode" }
+        {
+          "label": "Hang out with Kazushi — Chariot reaches rank 6 (best answers: 2 > 2 > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch Ken's Link Episode",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -113,9 +220,18 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yukari — Lovers reaches rank 9 (romance: 2 > 1 / platonic: 2 > A > A)" },
-        { "label": "Evening: buy 5 Dating Site Notes from the Suspicious Man at Club Escapade" },
-        { "label": "Evening: read the Dating Site Note (Yukari Takeba) on the dorm's shared computer" }
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 9 (romance: 2 > 1 / platonic: 2 > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy 5 Dating Site Notes from the Suspicious Man at Club Escapade",
+          "slot": "evening"
+        },
+        {
+          "label": "Read the Dating Site Note (Yukari Takeba) on the dorm's shared computer",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -123,9 +239,18 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Hang out with Yukari — Lovers reaches rank 10 (MAX)" },
-        { "label": "Evening: brush Koromaru (Koromaru hangout) — Combat Characteristic enhanced" }
+        {
+          "label": "Answer the class question",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with Yukari — Lovers reaches rank 10 (MAX)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Brush Koromaru (Koromaru hangout) — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -133,8 +258,14 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Kazushi — Chariot reaches rank 7 (best answers: 1 > 1)" },
-        { "label": "Evening: join Ken's DVD hangout" }
+        {
+          "label": "Hang out with Kazushi — Chariot reaches rank 7 (best answers: 1 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Ken's DVD hangout",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -142,9 +273,21 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Watch Ryoji's Link Episode" },
-        { "label": "Evening: join Akihiko's DVD hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Watch Ryoji's Link Episode",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Akihiko's DVD hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -152,10 +295,22 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥39,800 — Sid's Jacket & 8 Mega Protein)" },
-        { "label": "Visit the dying young man at the shrine — Sun reaches rank 6" },
-        { "label": "Evening: check the Command Room's new dorm recording" },
-        { "label": "Evening: join Aigis's gardening hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Optional: TV Shopping (¥39,800 — Sid's Jacket & 8 Mega Protein)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the dying young man at the shrine — Sun reaches rank 6",
+          "slot": "day"
+        },
+        {
+          "label": "Check the Command Room's new dorm recording",
+          "slot": "evening"
+        },
+        {
+          "label": "Join Aigis's gardening hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -163,9 +318,21 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Kazushi — Chariot reaches rank 8 (best answer: 2)" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Kazushi — Chariot reaches rank 8 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -174,8 +341,14 @@
       "dayKind": "story",
       "notes": "Kyoto school trip (November 17–19). Buy Ken a gift (he likes Nama Yatsuhashi) if you wish. Request #96 requires the three Kyoto-exclusive drinks.",
       "steps": [
-        { "label": "Kyoto school trip" },
-        { "label": "For accepted Request #96, buy Durian Soda, Jumbo Juice, and V6 from the Kyoto vending machine; keep all three for the Friendly Student trade after returning" }
+        {
+          "label": "Kyoto school trip",
+          "slot": "day"
+        },
+        {
+          "label": "For accepted Request #96, buy Durian Soda, Jumbo Juice, and V6 from the Kyoto vending machine; keep all three for the Friendly Student trade after returning",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -184,8 +357,14 @@
       "dayKind": "story",
       "notes": "Hot Spring Event escape route: 1 > 1 > 2 (requires Courage rank 4, Academics rank 5, Charm rank 6).",
       "steps": [
-        { "label": "Kyoto school trip" },
-        { "label": "Accept Ryoji's invitation — watch his Link Episode" }
+        {
+          "label": "Kyoto school trip",
+          "slot": "day"
+        },
+        {
+          "label": "Accept Ryoji's invitation — watch his Link Episode",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -193,7 +372,10 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Kyoto school trip — return home" }
+        {
+          "label": "Kyoto school trip — return home",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -201,8 +383,14 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Evening: optionally gift Ken something you bought in Kyoto" },
-        { "label": "Evening: walk Koromaru (with Ken)" }
+        {
+          "label": "Optionally gift Ken something you bought in Kyoto",
+          "slot": "evening"
+        },
+        {
+          "label": "Walk Koromaru (with Ken)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -211,9 +399,18 @@
       "dayKind": "school",
       "notes": "Past this date, class-time actions (awake/asleep and answers) no longer affect your maxed Social Stats.",
       "steps": [
-        { "label": "Stay awake in class" },
-        { "label": "Talk to Mitsuru at the Faculty Office — Empress reaches rank 1" },
-        { "label": "Evening: join Fuuka's gardening hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to Mitsuru at the Faculty Office — Empress reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Fuuka's gardening hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -221,9 +418,18 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥49,800 — 3 Garnet & 2 Opal)" },
-        { "label": "Visit the dying young man at the shrine — Sun reaches rank 7" },
-        { "label": "Evening: read the Dating Site Note (Girl at the Shrine) on the dorm's shared computer" }
+        {
+          "label": "Optional: TV Shopping (¥49,800 — 3 Garnet & 2 Opal)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the dying young man at the shrine — Sun reaches rank 7",
+          "slot": "day"
+        },
+        {
+          "label": "Read the Dating Site Note (Girl at the Shrine) on the dorm's shared computer",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -232,8 +438,14 @@
       "dayKind": "free",
       "notes": "Public holiday — Labor Thanksgiving Day.",
       "steps": [
-        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 8 (best answers: 1 > 1 > 1)" },
-        { "label": "Evening: work part-time at Chagall Café" }
+        {
+          "label": "Visit the girl at the shrine — Hanged-Man reaches rank 8 (best answers: 1 > 1 > 1)",
+          "slot": "day"
+        },
+        {
+          "label": "Work part-time at Chagall Café",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -242,7 +454,10 @@
       "dayKind": "story",
       "notes": "Career Experience (November 24–26).",
       "steps": [
-        { "label": "Career Experience" }
+        {
+          "label": "Career Experience",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -250,7 +465,10 @@
       "weekday": "wed",
       "dayKind": "story",
       "steps": [
-        { "label": "Career Experience" }
+        {
+          "label": "Career Experience",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -258,7 +476,10 @@
       "weekday": "thu",
       "dayKind": "story",
       "steps": [
-        { "label": "Career Experience" }
+        {
+          "label": "Career Experience",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -266,8 +487,14 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Career Experience (after school)" },
-        { "label": "Evening: read the Dating Site Note (Gourmet King) on the dorm's shared computer" }
+        {
+          "label": "Career Experience (after school)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read the Dating Site Note (Gourmet King) on the dorm's shared computer",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -275,10 +502,22 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "For Request #96, trade Durian Soda, Jumbo Juice, and V6 with the Friendly Student, pay ¥5,000 for Oden Juice, then return it to Elizabeth to complete the request" },
-        { "label": "Talk to Mitsuru — Empress reaches rank 2 (best answer: A)" },
-        { "label": "Evening: read the Ninja Fansite Note on the dorm's shared computer" },
-        { "label": "Fool reaches rank 9 (story; Reload skips rank 8)" }
+        {
+          "label": "For Request #96, trade Durian Soda, Jumbo Juice, and V6 with the Friendly Student, pay ¥5,000 for Oden Juice, then return it to Elizabeth to complete the request",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Talk to Mitsuru — Empress reaches rank 2 (best answer: A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read the Ninja Fansite Note on the dorm's shared computer",
+          "slot": "evening"
+        },
+        {
+          "label": "Fool reaches rank 9 (story; Reload skips rank 8)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -287,10 +526,23 @@
       "dayKind": "free",
       "notes": "Carry Hierophant, Chariot, Hanged-Man, and Star Arcanas out of Tartarus until the next visit (December 30). The TV Shopping equipment is useful for the Secret Super Boss.",
       "steps": [
-        { "label": "Optional: TV Shopping (¥39,800 — Shoes of Bane & Infrared Goggles)" },
-        { "label": "Hang out with the old couple — Hierophant reaches rank 8 (best answers: A > A > A)" },
-        { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true }
+        {
+          "label": "Optional: TV Shopping (¥39,800 — Shoes of Bane & Infrared Goggles)",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 8 (best answers: A > A > A)",
+          "slot": "day"
+        },
+        {
+          "label": "Buy any fortune from the Fortune Teller at Club Escapade",
+          "slot": "day"
+        },
+        {
+          "label": "Tartarus",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -298,9 +550,18 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question" },
-        { "label": "Talk to Mitsuru — Empress reaches rank 3 (best answers: 2 > 2 > A > 2)" },
-        { "label": "Evening: join Mitsuru's tea-time hangout — Combat Characteristic enhanced" }
+        {
+          "label": "Answer the class question",
+          "slot": "day"
+        },
+        {
+          "label": "Talk to Mitsuru — Empress reaches rank 3 (best answers: 2 > 2 > A > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Join Mitsuru's tea-time hangout — Combat Characteristic enhanced",
+          "slot": "evening"
+        }
       ]
     }
   ]

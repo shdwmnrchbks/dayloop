@@ -6,8 +6,17 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Visit Akihiko at the hospital after school" },
-        { "label": "Evening: run the Digital Cram School software on the dorm's shared computer — Academics reaches rank 2", "statGains": { "academics": 4 } }
+        {
+          "label": "Visit Akihiko at the hospital after school",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Run the Digital Cram School software on the dorm's shared computer — Academics reaches rank 2",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -15,10 +24,25 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Ask Chihiro to hang out (Justice flag #3)" },
-        { "label": "Hang out with the old couple — Hierophant reaches rank 2 (best answers: 1 > 1 > A > A > A)" },
-        { "label": "Buy all ¥1,200 software at MangaStar Net Café (Iwatodai Strip Mall 3F)" },
-        { "label": "Evening: run Lessons in Etiquette on the dorm's shared computer", "statGains": { "charm": 4 } }
+        {
+          "label": "Ask Chihiro to hang out (Justice flag #3)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 2 (best answers: 1 > 1 > A > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy all ¥1,200 software at MangaStar Net Café (Iwatodai Strip Mall 3F)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Run Lessons in Etiquette on the dorm's shared computer",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     },
     {
@@ -26,9 +50,21 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥2,980 — Rose Bouquet & 2 Luxury Chocolate)" },
-        { "label": "Play the MMORPG at your desk — Hermit reaches rank 2 (best answers: 1 > 2)" },
-        { "label": "Evening: run Virtual Diet on the dorm's shared computer", "statGains": { "charm": 4 } }
+        {
+          "label": "Optional: TV Shopping (¥2,980 — Rose Bouquet & 2 Luxury Chocolate)",
+          "slot": "day"
+        },
+        {
+          "label": "Play the MMORPG at your desk — Hermit reaches rank 2 (best answers: 1 > 2)",
+          "slot": "day"
+        },
+        {
+          "label": "Run Virtual Diet on the dorm's shared computer",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     },
     {
@@ -37,8 +73,17 @@
       "dayKind": "free",
       "notes": "Public holiday — the MMORPG is playable outside its usual Sunday slot.",
       "steps": [
-        { "label": "Play the MMORPG at your desk — Hermit reaches rank 3 (best answers: 1 > 1)" },
-        { "label": "Evening: run Language Made Easy on the dorm's shared computer", "statGains": { "academics": 4 } }
+        {
+          "label": "Play the MMORPG at your desk — Hermit reaches rank 3 (best answers: 1 > 1)",
+          "slot": "day"
+        },
+        {
+          "label": "Run Language Made Easy on the dorm's shared computer",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -47,10 +92,25 @@
       "dayKind": "free",
       "notes": "Public holiday.",
       "steps": [
-        { "label": "Buy the Weird Takoyaki at Octopia (Iwatodai Strip Mall 1F) and Mad Bull from the Iwatodai Station vending machine (Hanged-Man flag items)" },
-        { "label": "Buy another Mad Bull from the dorm 2F vending machine" },
-        { "label": "Hang out with the old couple — Hierophant reaches rank 3 (best answers: 1 > 2 > A > A > A > A)" },
-        { "label": "Evening: run Animal Othello on the dorm's shared computer", "statGains": { "courage": 4 } }
+        {
+          "label": "Buy the Weird Takoyaki at Octopia (Iwatodai Strip Mall 1F) and Mad Bull from the Iwatodai Station vending machine (Hanged-Man flag items)",
+          "slot": "day"
+        },
+        {
+          "label": "Buy another Mad Bull from the dorm 2F vending machine",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 3 (best answers: 1 > 2 > A > A > A > A)",
+          "slot": "day"
+        },
+        {
+          "label": "Run Animal Othello on the dorm's shared computer",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -58,10 +118,28 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Hand over the Weird Takoyaki and Mad Bull at the shrine, then promise to play with her (Hanged-Man flag)" },
-        { "label": "Hang out with Hidetoshi — Emperor reaches rank 2 (best answer: 2)" },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Hand over the Weird Takoyaki and Mad Bull at the shrine, then promise to play with her (Hanged-Man flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Hidetoshi — Emperor reaches rank 2 (best answer: 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -70,9 +148,18 @@
       "dayKind": "school",
       "notes": "Catch-up: if a Justice flag was missed and Chihiro's link can't start today, swap today with a Chariot rank-up and replace June 11's activity with a Justice rank-up.",
       "steps": [
-        { "label": "Ask Chihiro to hang out — Justice reaches rank 1" },
-        { "label": "Buy the Iwatodai Forum Note (¥500) from the Suspicious Man at Club Escapade" },
-        { "label": "Evening: read the Iwatodai Forum Note on the dorm's shared computer (unlocks new drinks at the Iwatodai Station vending machines)" }
+        {
+          "label": "Ask Chihiro to hang out — Justice reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Buy the Iwatodai Forum Note (¥500) from the Suspicious Man at Club Escapade",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Read the Iwatodai Forum Note on the dorm's shared computer (unlocks new drinks at the Iwatodai Station vending machines)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -80,10 +167,25 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Talk to Kenji about the Gourmet King (Moon flag)" },
-        { "label": "Hang out with Kenji — Magician reaches rank 4 (best answers: A > 1)" },
-        { "label": "Evening: vending machines restocked — buy SP drinks" },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        {
+          "label": "Talk to Kenji about the Gourmet King (Moon flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Kenji — Magician reaches rank 4 (best answers: A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Vending machines restocked — buy SP drinks",
+          "slot": "evening"
+        },
+        {
+          "label": "Play House of the Deceased at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -91,8 +193,15 @@
       "weekday": "sat",
       "dayKind": "story",
       "steps": [
-        { "label": "Full moon — the night is a mandatory Shadow operation, no free time", "spoiler": true },
-        { "label": "Fool reaches rank 3 (story)" }
+        {
+          "label": "Full moon — the night is a mandatory Shadow operation, no free time",
+          "slot": "evening",
+          "spoiler": true
+        },
+        {
+          "label": "Fool reaches rank 3 (story)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -100,13 +209,39 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥3,980 — 2 Antibiotic Gel & 5 Sappy Jelly)" },
-        { "label": "Hang out with the old couple — Hierophant reaches rank 4 (best answers: A > A > 2)" },
-        { "label": "Visit the Velvet Room — Elizabeth's requests unlock today; hand in Request #2 using Old Document 01 from Thebel 22F for ¥10,000" },
-        { "label": "Complete Request #1 with the Muscle Drink, then Request #9: bring 12 unique vending-machine drinks from Dorm 2F, Dorm 3F, Port Island Station, and Iwatodai Strip Mall 3F (Iwatodai Station duplicates Dorm 2F); accept Request #11" },
-        { "label": "Evening request prep: accept Request #12, talk to Yukari at the dorm for Pine Resin, and report it to Elizabeth before the 6/6 deadline" },
-        { "label": "Evening request prep: accept Request #13, talk to Junpei at the dorm for the Handheld Game Console, and report it to Elizabeth before the 6/6 deadline" },
-        { "label": "Take the Big Eater Challenge at Wilduck Burger — Charm and Courage reach rank 3 (prompts: 2 > 1 > 2)", "statGains": { "academics": 4, "charm": 4, "courage": 4 } }
+        {
+          "label": "Optional: TV Shopping (¥3,980 — 2 Antibiotic Gel & 5 Sappy Jelly)",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 4 (best answers: A > A > 2)",
+          "slot": "day"
+        },
+        {
+          "label": "Visit the Velvet Room — Elizabeth's requests unlock today; hand in Request #2 using Old Document 01 from Thebel 22F for ¥10,000",
+          "slot": "day"
+        },
+        {
+          "label": "Complete Request #1 with the Muscle Drink, then Request #9: bring 12 unique vending-machine drinks from Dorm 2F, Dorm 3F, Port Island Station, and Iwatodai Strip Mall 3F (Iwatodai Station duplicates Dorm 2F); accept Request #11",
+          "slot": "day"
+        },
+        {
+          "label": "Evening request prep: accept Request #12, talk to Yukari at the dorm for Pine Resin, and report it to Elizabeth before the 6/6 deadline",
+          "slot": "day"
+        },
+        {
+          "label": "Evening request prep: accept Request #13, talk to Junpei at the dorm for the Handheld Game Console, and report it to Elizabeth before the 6/6 deadline",
+          "slot": "day"
+        },
+        {
+          "label": "Take the Big Eater Challenge at Wilduck Burger — Charm and Courage reach rank 3 (prompts: 2 > 1 > 2)",
+          "slot": "day",
+          "statGains": {
+            "academics": 4,
+            "charm": 4,
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -114,10 +249,28 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 1" },
-        { "label": "Evening: check the Command Room's newly unlocked dorm recordings" },
-        { "label": "Evening: run TypinGhoul on the dorm's shared computer", "statGains": { "courage": 4 } }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Visit the girl at the shrine — Hanged-Man reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Check the Command Room's newly unlocked dorm recordings",
+          "slot": "evening"
+        },
+        {
+          "label": "Run TypinGhoul on the dorm's shared computer",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -125,8 +278,17 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Watch Junpei's Link Episode after school" },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        {
+          "label": "Watch Junpei's Link Episode after school",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play House of the Deceased at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -134,9 +296,24 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 2 (best answers: 1 > A > A)" },
-        { "label": "Evening: play You're the Answer at Game Parade", "statGains": { "academics": 4 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Visit the girl at the shrine — Hanged-Man reaches rank 2 (best answers: 1 > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play You're the Answer at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -144,8 +321,17 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with the old couple — Hierophant reaches rank 5 (best answers: 1 > A)" },
-        { "label": "Evening: play High School of Youth at Game Parade", "statGains": { "charm": 4 } }
+        {
+          "label": "Hang out with the old couple — Hierophant reaches rank 5 (best answers: 1 > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play High School of Youth at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     },
     {
@@ -153,10 +339,28 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Talk to Kenji, answer 3 > 3 > 2, and hand over your Odd Morsel (Moon flag)" },
-        { "label": "Hang out with Nozomi — Moon reaches rank 1" },
-        { "label": "Evening: study with Mitsuru and Akihiko", "statGains": { "academics": 4 } }
+        {
+          "label": "Answer the class question",
+          "slot": "day",
+          "statGains": {
+            "charm": 2
+          }
+        },
+        {
+          "label": "Talk to Kenji, answer 3 > 3 > 2, and hand over your Odd Morsel (Moon flag)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Hang out with Nozomi — Moon reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study with Mitsuru and Akihiko",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -164,9 +368,24 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 3 (best answers: A > 3)" },
-        { "label": "Evening: study with Yukari and Junpei", "statGains": { "academics": 4 } }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Visit the girl at the shrine — Hanged-Man reaches rank 3 (best answers: A > 3)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Study with Yukari and Junpei",
+          "slot": "evening",
+          "statGains": {
+            "academics": 4
+          }
+        }
       ]
     },
     {
@@ -174,10 +393,25 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥2,980 — 3 Blinding Flashlight & 3 Freeze Spray)" },
-        { "label": "Play the MMORPG at your desk — Hermit reaches rank 4 (best answer: 3)" },
-        { "label": "Evening: vending machines restocked — buy SP drinks" },
-        { "label": "Evening: study with everyone — Academics reaches rank 3", "statGains": { "academics": 5 } }
+        {
+          "label": "Optional: TV Shopping (¥2,980 — 3 Blinding Flashlight & 3 Freeze Spray)",
+          "slot": "day"
+        },
+        {
+          "label": "Play the MMORPG at your desk — Hermit reaches rank 4 (best answer: 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Vending machines restocked — buy SP drinks",
+          "slot": "evening"
+        },
+        {
+          "label": "Study with everyone — Academics reaches rank 3",
+          "slot": "evening",
+          "statGains": {
+            "academics": 5
+          }
+        }
       ]
     },
     {
@@ -186,7 +420,10 @@
       "dayKind": "exam",
       "notes": "Exam period runs through Saturday. Top of the class requires Academics rank 3 and all four player-answer questions correct.",
       "steps": [
-        { "label": "Exam day — no player-answer question today" }
+        {
+          "label": "Exam day — no player-answer question today",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -194,7 +431,10 @@
       "weekday": "tue",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -202,7 +442,10 @@
       "weekday": "wed",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -210,7 +453,10 @@
       "weekday": "thu",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -218,7 +464,10 @@
       "weekday": "fri",
       "dayKind": "exam",
       "steps": [
-        { "label": "Exam day — see the Answers tab for today's sheet" }
+        {
+          "label": "Exam day — see the Answers tab for today's sheet",
+          "slot": "day"
+        }
       ]
     },
     {
@@ -226,9 +475,21 @@
       "weekday": "sat",
       "dayKind": "exam",
       "steps": [
-        { "label": "Final exam day — no player-answer question; after school is free" },
-        { "label": "Hang out with Chihiro — Justice reaches rank 2 (best answers: 1 > 1/2 > 1 > A > A)" },
-        { "label": "Evening: Weekend Wilduck Set at Wilduck Burger", "statGains": { "courage": 4 } }
+        {
+          "label": "Final exam day — no player-answer question; after school is free",
+          "slot": "day"
+        },
+        {
+          "label": "Hang out with Chihiro — Justice reaches rank 2 (best answers: 1 > 1/2 > 1 > A > A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Weekend Wilduck Set at Wilduck Burger",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -237,10 +498,23 @@
       "dayKind": "free",
       "notes": "Carry Justice and Strength Arcanas out of Tartarus until the next visit (June 27).",
       "steps": [
-        { "label": "Optional: TV Shopping (¥5,980 — All-Purpose Apron & 2 Umugi Water)" },
-        { "label": "Free time — accept Kenji or Kazushi's phone invitation (Magician best answer: 2 / Chariot best answer: 1)" },
-        { "label": "Buy the Fortune Teller's 'Rarity Fortune' at Club Escapade" },
-        { "label": "Evening: Tartarus — grind ¥75,000 before leaving (Request #14 pays ¥20,000)", "spoiler": true }
+        {
+          "label": "Optional: TV Shopping (¥5,980 — All-Purpose Apron & 2 Umugi Water)",
+          "slot": "day"
+        },
+        {
+          "label": "Free time — accept Kenji or Kazushi's phone invitation (Magician best answer: 2 / Chariot best answer: 1)",
+          "slot": "day"
+        },
+        {
+          "label": "Buy the Fortune Teller's 'Rarity Fortune' at Club Escapade",
+          "slot": "day"
+        },
+        {
+          "label": "Tartarus — grind ¥75,000 before leaving (Request #14 pays ¥20,000)",
+          "slot": "evening",
+          "spoiler": true
+        }
       ]
     },
     {
@@ -248,13 +522,46 @@
       "weekday": "mon",
       "dayKind": "school",
       "steps": [
-        { "label": "Exam results — top of the class", "statGains": { "charm": 4 } },
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Talk to Mitsuru for the exam reward" },
-        { "label": "Drink the medicine at the school Nurse's Office — Courage reaches rank 4", "statGains": { "courage": 2 } },
-        { "label": "Hang out with Hidetoshi — Emperor reaches rank 3 (best answer: A)" },
-        { "label": "Evening: the rooftop garden unlocks — collect the remaining Twilight Fragments in the city and plant the Healthy Tomato Sprouts" },
-        { "label": "Evening: play High School of Youth at Game Parade — Charm reaches rank 4", "statGains": { "charm": 4 } }
+        {
+          "label": "Exam results — top of the class",
+          "slot": "day",
+          "statGains": {
+            "charm": 4
+          }
+        },
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Talk to Mitsuru for the exam reward",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Drink the medicine at the school Nurse's Office — Courage reaches rank 4",
+          "slot": "afternoon",
+          "statGains": {
+            "courage": 2
+          }
+        },
+        {
+          "label": "Hang out with Hidetoshi — Emperor reaches rank 3 (best answer: A)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "The rooftop garden unlocks — collect the remaining Twilight Fragments in the city and plant the Healthy Tomato Sprouts",
+          "slot": "evening"
+        },
+        {
+          "label": "Play High School of Youth at Game Parade — Charm reaches rank 4",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     },
     {
@@ -262,9 +569,21 @@
       "weekday": "tue",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Chihiro — Justice reaches rank 3 (best answers: 1 > 1)" },
-        { "label": "Pay ¥20,000 to the man in a suit at Paulownia Mall (Devil flag #1)" },
-        { "label": "Evening: play House of the Deceased at Game Parade", "statGains": { "courage": 4 } }
+        {
+          "label": "Hang out with Chihiro — Justice reaches rank 3 (best answers: 1 > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Pay ¥20,000 to the man in a suit at Paulownia Mall (Devil flag #1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play House of the Deceased at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -272,10 +591,22 @@
       "weekday": "wed",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yuko — Strength reaches rank 3 (romance: A > 2 > 1 / platonic: A > 2 > 2)" },
-        { "label": "Evening: vending machines restocked — buy SP drinks" },
-        { "label": "Buy the School X Site Note (¥500) from the Suspicious Man at Club Escapade" },
-        { "label": "Evening: read the School X Site Note on the dorm's shared computer (unlocks Lukewarm Taiyaki at the School Store)" }
+        {
+          "label": "Hang out with Yuko — Strength reaches rank 3 (romance: A > 2 > 1 / platonic: A > 2 > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Vending machines restocked — buy SP drinks",
+          "slot": "evening"
+        },
+        {
+          "label": "Buy the School X Site Note (¥500) from the Suspicious Man at Club Escapade",
+          "slot": "evening"
+        },
+        {
+          "label": "Read the School X Site Note on the dorm's shared computer (unlocks Lukewarm Taiyaki at the School Store)",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -283,9 +614,24 @@
       "weekday": "thu",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Hang out with Chihiro — Justice reaches rank 4 (best answers: A > 2)" },
-        { "label": "Evening: play High School of Youth at Game Parade", "statGains": { "charm": 4 } }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Hang out with Chihiro — Justice reaches rank 4 (best answers: A > 2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Play High School of Youth at Game Parade",
+          "slot": "evening",
+          "statGains": {
+            "charm": 4
+          }
+        }
       ]
     },
     {
@@ -293,10 +639,25 @@
       "weekday": "fri",
       "dayKind": "school",
       "steps": [
-        { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Buy a Lukewarm Taiyaki from the School Store (Main Lobby)" },
-        { "label": "Meet the exchange student — Temperance reaches rank 1" },
-        { "label": "Evening: watch Akihiko's Link Episode — jog back with him for +5 Max HP, or refuse for +3 Max SP" }
+        {
+          "label": "Stay awake in class",
+          "slot": "day",
+          "statGains": {
+            "academics": 2
+          }
+        },
+        {
+          "label": "Buy a Lukewarm Taiyaki from the School Store (Main Lobby)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Meet the exchange student — Temperance reaches rank 1",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Watch Akihiko's Link Episode — jog back with him for +5 Max HP, or refuse for +3 Max SP",
+          "slot": "evening"
+        }
       ]
     },
     {
@@ -304,9 +665,21 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Hang out with Yuko — Strength reaches rank 4 (best answers: A > 1)" },
-        { "label": "Pay the man in a suit another ¥10,000 (Devil flag #2)" },
-        { "label": "Evening: Weekend Wilduck Set at Wilduck Burger", "statGains": { "courage": 4 } }
+        {
+          "label": "Hang out with Yuko — Strength reaches rank 4 (best answers: A > 1)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Pay the man in a suit another ¥10,000 (Devil flag #2)",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Weekend Wilduck Set at Wilduck Burger",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     },
     {
@@ -314,11 +687,29 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Optional: TV Shopping (¥3,980 — Health Sandals & 4 Diet Food)" },
-        { "label": "Accept Yuko's phone invitation (best answer: 3)" },
-        { "label": "Chill a Taiyaki in the dorm kitchen fridge (one left over 60 days becomes Mystery Food)" },
-        { "label": "Evening: vending machines restocked — buy SP drinks" },
-        { "label": "Evening: Weekend Wilduck Set at Wilduck Burger", "statGains": { "courage": 4 } }
+        {
+          "label": "Optional: TV Shopping (¥3,980 — Health Sandals & 4 Diet Food)",
+          "slot": "day"
+        },
+        {
+          "label": "Accept Yuko's phone invitation (best answer: 3)",
+          "slot": "day"
+        },
+        {
+          "label": "Chill a Taiyaki in the dorm kitchen fridge (one left over 60 days becomes Mystery Food)",
+          "slot": "day"
+        },
+        {
+          "label": "Vending machines restocked — buy SP drinks",
+          "slot": "evening"
+        },
+        {
+          "label": "Weekend Wilduck Set at Wilduck Burger",
+          "slot": "evening",
+          "statGains": {
+            "courage": 4
+          }
+        }
       ]
     }
   ]
