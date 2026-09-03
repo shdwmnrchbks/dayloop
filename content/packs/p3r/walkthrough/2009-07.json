@@ -84,8 +84,10 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Visit the Velvet Room and accept Request #43 (Christmas Star) and Request #44 (ocean souvenir) before the Yakushima trip" },
-        { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42)" },
+        { "label": "Visit the Velvet Room and accept Requests #38, #39, #40, #42, #43 (Christmas Star), and #44 (ocean souvenir); #44 must be accepted before the Yakushima trip" },
+        { "label": "Hand the saved Chilled Taiyaki to Elizabeth to complete Request #38" },
+        { "label": "After accepting Request #39, enter the school PA Room to obtain Gekkoukan Boogie, then return the CD to Elizabeth to complete Request #39" },
+        { "label": "Buy 4 Super Cat Food at Aohige Pharmacy and feed the weak cat at the Station Outskirts (Request #42, feeding 1 of 4)" },
         { "label": "Hang out with Nozomi — Moon reaches rank 3 (best answer: 2)" },
         { "label": "Evening: talk to Fuuka at the dorm for the Poinsettia and return it to Elizabeth to complete Request #43 before August 4" },
         { "label": "Evening: study with Mitsuru and Akihiko", "statGains": { "academics": 4 } }
@@ -97,7 +99,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Feed the weak cat again (Request #42)" },
+        { "label": "Feed the weak cat again (Request #42, feeding 2 of 4)" },
         { "label": "Hang out with Nozomi — Moon reaches rank 4 (best answer: 2)" },
         { "label": "Evening: study with Yukari and Fuuka", "statGains": { "academics": 4 } }
       ]
@@ -108,7 +110,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Answer the class question", "statGains": { "charm": 2 } },
-        { "label": "Feed the weak cat a third time (Request #42)" },
+        { "label": "Feed the weak cat a third time (Request #42, feeding 3 of 4)" },
         { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 5 (best answers: 1 > 2)" },
         { "label": "Buy the Security Site Note from the Suspicious Man at Club Escapade" },
         { "label": "Evening: visit the businessman at Paulownia Mall — Devil reaches rank 3" }
@@ -119,7 +121,7 @@
       "weekday": "sun",
       "dayKind": "free",
       "steps": [
-        { "label": "Buy the Max Safety Shoes via TV Shopping (¥9,800 — Max Safety Shoes & 2 Instant Curry) — required for Request #40" },
+        { "label": "Buy the Max Safety Shoes via TV Shopping (¥9,800 — Max Safety Shoes & 2 Instant Curry) for accepted Request #40" },
         { "label": "Play the MMORPG at your desk — Hermit reaches rank 7 (best answers: 3 > A)" },
         { "label": "Evening: eat the Seafood Full Course at Wakatsu Kitchen", "statGains": { "academics": 4 } },
         { "label": "Death reaches rank 3 (story; Reload skips rank 2)" }
@@ -131,7 +133,7 @@
       "dayKind": "school",
       "steps": [
         { "label": "Stay awake in class", "statGains": { "academics": 2 } },
-        { "label": "Feed the weak cat a final time (Request #42)" },
+        { "label": "Feed the weak cat a final time (Request #42, feeding 4 of 4), then report to Elizabeth to complete Request #42" },
         { "label": "Visit the girl at the shrine — Hanged-Man reaches rank 6 (best answers: 2/3 > 1)" },
         { "label": "Evening: study with everyone — Academics reaches rank 4", "statGains": { "academics": 5 } }
       ]
@@ -175,6 +177,8 @@
       "dayKind": "exam",
       "steps": [
         { "label": "Final exam day — no player-answer question; after school is free" },
+        { "label": "Report the delivered Max Safety Shoes to Elizabeth to complete Request #40; this unlocks Request #41" },
+        { "label": "Accept Request #41 and hand over Tanaka's Signature obtained from starting the Devil Social Link to complete the mysterious-person autograph request" },
         { "label": "Evening: Mayoido Antiques unlocks — join Junpei's gardening hangout" }
       ]
     },
