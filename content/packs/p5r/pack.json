@@ -1,7 +1,7 @@
 {
   "packId": "p5r",
   "title": "Persona 5 Royal",
-  "contentVersion": 9,
+  "contentVersion": 10,
   "pickerOrder": 0,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -64,7 +64,9 @@
     "art": {
       "card": "art/card.jpg",
       "icon": "art/icon.png",
-      "launcherBadge": "art/launcher-badge.png"
+    "launcherBadge": "art/launcher-badge.png",
+    "today-day": "art/today-day.jpeg",
+    "today-night": "art/today-night.jpeg"
     }
   }
 }

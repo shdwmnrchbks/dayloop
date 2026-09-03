@@ -141,6 +141,8 @@ class PackThemeTest {
         assertTrue(display.italic, "display must be italic")
         assertTrue("header" !in theme.decor, "p5r header must use the procedural cutline painter")
         assertTrue("divider" in theme.decor, "p5r decor divider slot")
+        assertEquals("art/today-day.jpeg", theme.art["today-day"])
+        assertEquals("art/today-night.jpeg", theme.art["today-night"])
     }
 
     @Test

@@ -196,7 +196,7 @@ class PackContentTest {
         val activities = p5r.activities?.activities.orEmpty()
         val byId = activities.associateBy { it.id }
 
-        assertEquals(9, pack.contentVersion)
+        assertEquals(10, pack.contentVersion)
 
         val statBooks = activities.filter { it.id.startsWith("p5r.activity.book.") && it.statGains.isNotEmpty() }
         assertTrue(statBooks.isNotEmpty())

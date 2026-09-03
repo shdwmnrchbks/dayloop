@@ -2,11 +2,13 @@ package com.shadowmonarchbooks.dayloop.ui.skin
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -15,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
@@ -100,6 +103,45 @@ fun SkinTextActionButton(
             }
         },
     )
+}
+
+/**
+ * Container-free command used when the page artwork should remain visible.
+ * It keeps the pack's display face and a full accessible touch target without
+ * drawing a plate, border, shadow, or pasted-paper offset.
+ */
+@Composable
+fun SkinBareActionButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    contentColor: Color = MaterialTheme.colorScheme.onBackground,
+    largeLabel: Boolean = false,
+) {
+    val skin = LocalSkin.current
+    val label = if (skin.hasSkin) skin.cased(text, "display") else text
+    val style = if (skin.hasSkin && largeLabel) {
+        MaterialTheme.typography.displaySmall
+    } else if (skin.hasSkin) {
+        MaterialTheme.typography.displaySmall.copy(
+            fontSize = MaterialTheme.typography.titleLarge.fontSize,
+            lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+        )
+    } else {
+        MaterialTheme.typography.labelLarge
+    }
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+            .heightIn(min = 52.dp)
+            .widthIn(min = 48.dp)
+            .graphicsLayer { alpha = if (enabled) 1f else 0.38f }
+            .clickable(enabled = enabled, onClick = onClick)
+            .padding(horizontal = 12.dp, vertical = 8.dp),
+    ) {
+        Text(text = label, style = style, color = contentColor, textAlign = TextAlign.Center)
+    }
 }
 
 private enum class SlashActionTreatment { Primary, Outlined, Text }

@@ -26,8 +26,8 @@ android {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
         targetSdk = 35
-        versionCode = 19
-        versionName = "0.12.0-rc6"
+        versionCode = 20
+        versionName = "0.12.0-rc7"
     }
 
     signingConfigs {
@@ -69,6 +69,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     // Bundled pack content (docs/PLAN.md §2): every directory under

@@ -94,6 +94,9 @@ data class LoadedPack(
     /** Asset path for a media item's file, e.g. "p5r/images/img001_....png". */
     fun assetOf(item: MediaItem): String = "$slug/${item.file}"
 
+    /** Asset path for a named pack-art slot, or null when the pack omits it. */
+    fun artAsset(slot: String): String? = pack.theme?.art?.get(slot)?.let { "$slug/$it" }
+
     /** Month-anchored media in manifest order (month art, section markers, month achievements). */
     fun mediaForMonth(month: String): List<MediaItem> = media.filter { month in it.months }
 

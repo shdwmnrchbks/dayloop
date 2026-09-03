@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -33,6 +34,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
@@ -76,7 +79,23 @@ fun BondsScreen(
             val skin = LocalSkin.current
             val completedRank = completedBondRank(bond, days, marks)
             val highestRank = bond.ranks.maxOfOrNull { it.rank } ?: 0
-            if (skin.hasSkin) {
+            val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
+            val progressLabel = buildString {
+                append("Rank $completedRank/$highestRank")
+                if (lastRouteDate != null) {
+                    append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
+                }
+            }
+            if (skin.hasSkin && skin.motion == "slash") {
+                ConfidantFaceStrip(
+                    label = skin.cased(bond.label, "display"),
+                    progressLabel = progressLabel,
+                    assetPath = pack.mediaForBond(bond.id)
+                        .firstOrNull { it.kind == MediaKinds.BANNER }
+                        ?.let(pack::assetOf),
+                    onClick = { onOpenBond(bond.id) },
+                )
+            } else if (skin.hasSkin) {
                 // Arcana-card rows: the pack owns the silhouette. Ink/slash
                 // skins add a hard keyline instead of Material elevation.
                 Surface(
@@ -115,20 +134,7 @@ fun BondsScreen(
                             )
                         },
                         supportingContent = {
-                            val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
-                            Text(
-                                buildString {
-                                    append("Rank $completedRank/$highestRank")
-                                    if (lastRouteDate != null) {
-                                        append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
-                                    }
-                                },
-                                color = if (skin.motion == "slash") {
-                                    MaterialTheme.colorScheme.primary
-                                } else {
-                                    MaterialTheme.colorScheme.onSurfaceVariant
-                                },
-                            )
+                            Text(progressLabel, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         },
                         colors = ListItemDefaults.colors(containerColor = Color.Transparent),
                         modifier = Modifier.skinDecor("panel"),
@@ -138,20 +144,71 @@ fun BondsScreen(
                 ListItem(
                     headlineContent = { Text(bond.label, style = MaterialTheme.typography.titleMedium) },
                     supportingContent = {
-                        val lastRouteDate = bond.ranks.lastOrNull()?.scheduledFor
-                        Text(
-                            buildString {
-                                append("Rank $completedRank/$highestRank")
-                                if (lastRouteDate != null) {
-                                    append(" · route max ${formatDate(lastRouteDate, pack.calendar)}")
-                                }
-                            },
-                        )
+                        Text(progressLabel)
                     },
                     modifier = Modifier.clickable { onOpenBond(bond.id) },
                 )
                 HorizontalDivider()
             }
+        }
+    }
+}
+
+/** Wide, rectangular face crop used by the slash-family Confidant index. */
+@Composable
+private fun ConfidantFaceStrip(
+    label: String,
+    progressLabel: String,
+    assetPath: String?,
+    onClick: () -> Unit,
+) {
+    val bitmap = rememberAssetImage(assetPath)
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(92.dp)
+            .background(Color.Black)
+            .clickable(onClick = onClick),
+    ) {
+        bitmap?.let {
+            Image(
+                bitmap = it,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alignment = BiasAlignment(horizontalBias = 0.2f, verticalBias = -0.35f),
+                modifier = Modifier.fillMaxSize().alpha(0.78f),
+            )
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.horizontalGradient(
+                        0f to Color.Black,
+                        0.58f to Color.Black.copy(alpha = 0.84f),
+                        1f to Color.Black.copy(alpha = 0.12f),
+                    ),
+                ),
+        )
+        Column(
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(horizontal = 16.dp, vertical = 10.dp),
+        ) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.displaySmall.copy(
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                    lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+                ),
+                color = Color.White,
+            )
+            Text(
+                text = progressLabel,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
         }
     }
 }

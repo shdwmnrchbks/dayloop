@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
@@ -40,7 +41,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         splash.setKeepOnScreenCondition { !packStore.state.value.selectionReady }
 
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(android.graphics.Color.BLACK),
+        )
         setContent {
             // Theme directly from PackStore during the initial handoff. This is
             // the earliest resolved source of truth for the selected pack and

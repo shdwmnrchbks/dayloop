@@ -1,6 +1,5 @@
 package com.shadowmonarchbooks.dayloop.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -210,7 +209,7 @@ private fun materialShapesFor(skin: SkinSpec): Shapes =
 @Composable
 fun DayloopTheme(
     pack: LoadedPack? = null,
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit,
 ) {
     val theme = pack?.pack?.theme
