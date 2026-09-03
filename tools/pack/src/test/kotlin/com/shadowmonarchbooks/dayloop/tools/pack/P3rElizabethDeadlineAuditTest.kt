@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.tools.pack
 
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.Test
@@ -42,6 +43,41 @@ class P3rElizabethDeadlineAuditTest {
         }
 
         assertEquals(expected.keys, deadlines.filter { it.id.startsWith("p3r.deadline.elizabeth.") }.map { it.id }.toSet())
+    }
+
+    @Test
+    fun `P3R completion route closes the first timed Elizabeth request batches before cutoff`() {
+        val loaded = loadP3r()
+
+        fun day(month: String, date: String) = assertNotNull(
+            loaded.walkthroughs
+                .firstOrNull { it.routeId == Routes.DEFAULT && it.month == month }
+                ?.file
+                ?.days
+                ?.firstOrNull { it.date == date },
+            date,
+        )
+
+        fun labels(month: String, date: String) = day(month, date).steps.map { it.label }
+
+        val may10 = labels("2009-05", "2009-05-10")
+        assertTrue(may10.any { it.contains("Request #12", ignoreCase = true) && it.contains("Pine Resin", ignoreCase = true) })
+        assertTrue(may10.any { it.contains("Request #13", ignoreCase = true) && it.contains("Handheld", ignoreCase = true) })
+
+        val june14 = labels("2009-06", "2009-06-14")
+        assertTrue(june14.any { it.contains("Request #27", ignoreCase = true) && it.contains("Fencing Epee", ignoreCase = true) })
+        assertTrue(june14.any { it.contains("Request #28", ignoreCase = true) && it.contains("Amateur Protein", ignoreCase = true) })
+        assertTrue(june14.any { it.contains("Request #29", ignoreCase = true) && it.contains("accept", ignoreCase = true) })
+
+        val june27 = labels("2009-06", "2009-06-27")
+        assertTrue(june27.any { it.contains("Request #29", ignoreCase = true) && it.contains("Black Quartz", ignoreCase = true) })
+
+        val june28 = labels("2009-06", "2009-06-28")
+        assertTrue(june28.any {
+            it.contains("Request #29", ignoreCase = true) &&
+                it.contains("fashionable", ignoreCase = true) &&
+                it.contains("July 5", ignoreCase = true)
+        })
     }
 
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
