@@ -7,7 +7,7 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
-**Social Link, answer, exam, rescue-deadline, timed Elizabeth-request, early
+**Social Link, answer, exam, rescue-deadline, timed Elizabeth-request, April–June
 social-stat/Tartarus, epilogue-calendar, and achievement-catalog baselines are
 corrected and regression-protected; the broader month-by-month factual audit
 remains in progress.**
@@ -224,6 +224,34 @@ shared good-ending choice state, Social Link completion anchors, gardening
 confirmation, and the >¥50,000 part-time-job counter. It now also pins the audited
 achievement descriptions and availability/route dates above.
 
+### P3R-AUD-018 — June social-stat/activity representation was incomplete — FIXED BASELINE
+
+June had the same importer omission pattern as May: route prose named activities
+but omitted the structured raw-point gains that make the advertised Social Stat
+rank checkpoints reproducible. The audited route now records:
+
+- Game Parade stat games — **+4** to their advertised stat.
+- Weekend Wilduck Set — **+4 Courage**.
+- Chagall Café part-time work — **+1 Charm / +1 Courage**.
+- Mandragora solo karaoke — **+2 Courage**.
+- Junpei reading and Akihiko DVD dorm hangouts — **+2 Courage**.
+- Yukari DVD hangouts — **+2 Charm**.
+- Fuuka reading hangout — **+2 Academics**.
+- Wakatsu Prodigy Platter — **+3 Academics**.
+- Wakatsu Seafood Full Course — **+4 Academics**.
+
+With the April/May audited totals carried forward, the route reaches **61 Courage
+points on June 5** (Rank 5 threshold 60), **70 Charm points exactly on June 17**
+(Rank 5 threshold 70), and **81 Courage points on June 19** (Rank 6 threshold 80).
+Regression coverage pins both the individual gains and these cumulative thresholds.
+
+Fixed June mechanics are also kept distinct from route choices: Theurgy/combat
+uniforms remain on June 13, dorm hangouts unlock on June 16, and Missing Person
+rescue missions unlock on June 18. Sources disagree on Fuuka's earliest possible
+Priestess start, so **June 22 is preserved as this completion route's selected
+rank-1 date only**; it is deliberately not regression-labeled as a universal
+fixed availability boundary.
+
 ## Regression rules for P3R
 
 1. A completion-route date is not `availableFrom` unless independently fixed.
@@ -250,11 +278,12 @@ achievement descriptions and availability/route dates above.
     stylistic consistency.
 18. Fixed story dates, unlock gates, deadlines, and availability windows require
     independent support beyond the primary completion schedule.
+19. A disputed earliest Social Link start remains an authored route date until an
+    independent fixed boundary can be established; do not promote it by test name.
 
 ## Next passes
 
-- Continue the June → January month-by-month gameplay/stat/activity audit beyond
-  the timed-request corrections already landed.
+- Continue the **July → January** month-by-month gameplay/stat/activity audit.
 - Re-check full-moon/story labels as their route months are audited.
 - Revisit achievement availability dates only when a true mechanic boundary is
   independently established; do not substitute this route's cleanup date.
