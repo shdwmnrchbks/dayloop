@@ -19,7 +19,8 @@
       "steps": [
         { "label": "Hang out with Yukari — Lovers reaches rank 8 (best answers: 1 > A)" },
         { "label": "Buy any fortune from the Fortune Teller at Club Escapade" },
-        { "label": "Evening: Tartarus", "spoiler": true }
+        { "label": "Evening: Tartarus", "spoiler": true },
+        { "label": "Fool reaches rank 6 (story)" }
       ]
     },
     {
@@ -35,7 +36,10 @@
       "weekday": "wed",
       "dayKind": "story",
       "notes": "Celebration and aftermath — no player actions.",
-      "steps": []
+      "steps": [
+        { "label": "Death reaches rank 10 (MAX; story — Reload skips rank 9)" },
+        { "label": "Fool reaches rank 7 (story)" }
+      ]
     },
     {
       "date": "2009-11-05",
@@ -52,7 +56,10 @@
       "dayKind": "school",
       "notes": "Request #81 should be available if you completed all of Elizabeth's available requests in a timely fashion.",
       "steps": [
-        { "label": "New Elizabeth's requests are available — accept Request #94 (furry friend food)" },
+        { "label": "New Elizabeth's requests are available — accept Requests #92, #93, #94, and #96; #96 must be accepted before the Kyoto drink trade chain" },
+        { "label": "For Request #92, use the Port Island Station restroom and choose to scrub harder until it is clean, then report to Elizabeth to complete the request" },
+        { "label": "For Request #93, water the flowers on Gekkoukan High's rooftop, then report to Elizabeth to complete the request" },
+        { "label": "For accepted Request #96, talk to the Friendly Student by the Persimmon Tree before the Kyoto trip so the later drink trade is ready" },
         { "label": "Invite Elizabeth to your room (Request #81)" },
         { "label": "Hang out with Kazushi — Chariot reaches rank 5 (best answers: 1 > 1)" },
         { "label": "Evening: talk to Koromaru for Gourmet Dog Food and report it to Elizabeth to complete Request #94; then accept Request #95" },
@@ -165,10 +172,10 @@
       "date": "2009-11-17",
       "weekday": "tue",
       "dayKind": "story",
-      "notes": "Kyoto school trip (November 17–19). Buy Ken a gift (he likes Nama Yatsuhashi) if you wish. Request #96: buy all 3 Kyoto-exclusive drinks from a vending machine.",
+      "notes": "Kyoto school trip (November 17–19). Buy Ken a gift (he likes Nama Yatsuhashi) if you wish. Request #96 requires the three Kyoto-exclusive drinks.",
       "steps": [
         { "label": "Kyoto school trip" },
-        { "label": "Buy all 3 Kyoto-exclusive drinks from a vending machine (Request #96)" }
+        { "label": "For accepted Request #96, buy Durian Soda, Jumbo Juice, and V6 from the Kyoto vending machine; keep all three for the Friendly Student trade after returning" }
       ]
     },
     {
@@ -268,9 +275,10 @@
       "weekday": "sat",
       "dayKind": "school",
       "steps": [
-        { "label": "Buy Oden Juice from the friendly student at the School Corridor (Request #96)" },
+        { "label": "For Request #96, trade Durian Soda, Jumbo Juice, and V6 with the Friendly Student, pay ¥5,000 for Oden Juice, then return it to Elizabeth to complete the request" },
         { "label": "Talk to Mitsuru — Empress reaches rank 2 (best answer: A)" },
-        { "label": "Evening: read the Ninja Fansite Note on the dorm's shared computer" }
+        { "label": "Evening: read the Ninja Fansite Note on the dorm's shared computer" },
+        { "label": "Fool reaches rank 9 (story; Reload skips rank 8)" }
       ]
     },
     {
