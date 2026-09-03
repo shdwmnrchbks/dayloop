@@ -6,7 +6,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Vivid Carp Streamers"
       ]
     },
     {
@@ -15,7 +15,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Middens"
       ]
     },
     {
@@ -24,7 +24,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "A"
       ]
     },
     {
@@ -33,7 +33,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "A pantograph"
       ]
     },
     {
@@ -42,7 +42,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "The pendulum"
       ]
     },
     {
@@ -51,7 +51,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "May Blues"
       ]
     },
     {
@@ -60,8 +60,9 @@
       "kind": "exam",
       "label": "School exams — day 2",
       "answers": [
-        "1"
-      ]
+        "May Blues"
+      ],
+      "deadlineRef": "p3r.deadline.exams.may"
     },
     {
       "id": "p3r.answers.exam.2009-05-20",
@@ -69,8 +70,9 @@
       "kind": "exam",
       "label": "School exams — day 3",
       "answers": [
-        "3"
-      ]
+        "A pendulum"
+      ],
+      "deadlineRef": "p3r.deadline.exams.may"
     },
     {
       "id": "p3r.answers.exam.2009-05-21",
@@ -78,8 +80,9 @@
       "kind": "exam",
       "label": "School exams — day 4",
       "answers": [
-        "2"
-      ]
+        "Electricity"
+      ],
+      "deadlineRef": "p3r.deadline.exams.may"
     },
     {
       "id": "p3r.answers.exam.2009-05-22",
@@ -87,8 +90,9 @@
       "kind": "exam",
       "label": "School exams — day 5",
       "answers": [
-        "1"
-      ]
+        "Jomon"
+      ],
+      "deadlineRef": "p3r.deadline.exams.may"
     },
     {
       "id": "p3r.answers.class.2009-06-15",
@@ -96,7 +100,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "Keen eye"
       ]
     },
     {
@@ -105,7 +109,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Shamanism"
       ]
     },
     {
@@ -114,7 +118,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Witch of Agnesi"
       ]
     },
     {
@@ -123,7 +127,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "The flutter effect"
       ]
     },
     {
@@ -132,7 +136,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "Dowsing"
       ]
     },
     {
@@ -141,7 +145,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "About romance"
       ]
     },
     {
@@ -150,7 +154,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Between \"time\" and \"it's\""
       ]
     },
     {
@@ -159,7 +163,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Social disparity"
       ]
     },
     {
@@ -168,7 +172,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Kabbalah"
       ]
     },
     {
@@ -177,7 +181,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "The katana"
       ]
     },
     {
@@ -186,8 +190,9 @@
       "kind": "exam",
       "label": "School exams — day 1",
       "answers": [
-        "2"
-      ]
+        "Dowsing"
+      ],
+      "deadlineRef": "p3r.deadline.exams.july"
     },
     {
       "id": "p3r.answers.exam.2009-07-15",
@@ -195,8 +200,9 @@
       "kind": "exam",
       "label": "School exams — day 2",
       "answers": [
-        "3"
-      ]
+        "An error in translation"
+      ],
+      "deadlineRef": "p3r.deadline.exams.july"
     },
     {
       "id": "p3r.answers.exam.2009-07-16",
@@ -204,8 +210,9 @@
       "kind": "exam",
       "label": "School exams — day 3",
       "answers": [
-        "1"
-      ]
+        "Taira No Masakado"
+      ],
+      "deadlineRef": "p3r.deadline.exams.july"
     },
     {
       "id": "p3r.answers.exam.2009-07-17",
@@ -213,8 +220,9 @@
       "kind": "exam",
       "label": "School exams — day 4",
       "answers": [
-        "2"
-      ]
+        "Comma splice"
+      ],
+      "deadlineRef": "p3r.deadline.exams.july"
     },
     {
       "id": "p3r.answers.class.2009-09-01",
@@ -222,7 +230,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Resistance"
       ]
     },
     {
@@ -231,7 +239,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "To reveal a secret"
       ]
     },
     {
@@ -240,7 +248,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "The Hermetica"
       ]
     },
     {
@@ -249,7 +257,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "Their soulmate"
       ]
     },
     {
@@ -258,7 +266,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Tetractys"
       ]
     },
     {
@@ -267,7 +275,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Dopamine"
       ]
     },
     {
@@ -276,7 +284,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Helena Blavatsky"
       ]
     },
     {
@@ -285,7 +293,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "India"
       ]
     },
     {
@@ -294,7 +302,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "Venus"
       ]
     },
     {
@@ -303,7 +311,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Izumo"
       ]
     },
     {
@@ -312,7 +320,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "Beta-amylase"
       ]
     },
     {
@@ -321,8 +329,9 @@
       "kind": "exam",
       "label": "School exams — day 1",
       "answers": [
-        "3"
-      ]
+        "Addiction"
+      ],
+      "deadlineRef": "p3r.deadline.exams.october"
     },
     {
       "id": "p3r.answers.exam.2009-10-14",
@@ -330,8 +339,9 @@
       "kind": "exam",
       "label": "School exams — day 2",
       "answers": [
-        "1"
-      ]
+        "Pythagoras"
+      ],
+      "deadlineRef": "p3r.deadline.exams.october"
     },
     {
       "id": "p3r.answers.exam.2009-10-15",
@@ -339,8 +349,9 @@
       "kind": "exam",
       "label": "School exams — day 3",
       "answers": [
-        "3"
-      ]
+        "Superconductivity"
+      ],
+      "deadlineRef": "p3r.deadline.exams.october"
     },
     {
       "id": "p3r.answers.exam.2009-10-16",
@@ -348,8 +359,9 @@
       "kind": "exam",
       "label": "School exams — day 4",
       "answers": [
-        "3"
-      ]
+        "To reveal a secret"
+      ],
+      "deadlineRef": "p3r.deadline.exams.october"
     },
     {
       "id": "p3r.answers.class.2009-11-07",
@@ -357,7 +369,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "The Upanishads"
       ]
     },
     {
@@ -366,7 +378,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "Her favorite time in winter"
       ]
     },
     {
@@ -375,7 +387,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "The cherry blossom"
       ]
     },
     {
@@ -384,7 +396,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "The ozone layer"
       ]
     },
     {
@@ -393,7 +405,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Kido"
       ]
     },
     {
@@ -402,7 +414,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Lives"
       ]
     },
     {
@@ -411,7 +423,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "1"
+        "Euphoria"
       ]
     },
     {
@@ -420,8 +432,9 @@
       "kind": "exam",
       "label": "School exams — day 1",
       "answers": [
-        "1"
-      ]
+        "The number zero"
+      ],
+      "deadlineRef": "p3r.deadline.exams.december"
     },
     {
       "id": "p3r.answers.exam.2009-12-15",
@@ -429,8 +442,9 @@
       "kind": "exam",
       "label": "School exams — day 2",
       "answers": [
-        "2"
-      ]
+        "Maltose"
+      ],
+      "deadlineRef": "p3r.deadline.exams.december"
     },
     {
       "id": "p3r.answers.exam.2009-12-16",
@@ -438,8 +452,9 @@
       "kind": "exam",
       "label": "School exams — day 3",
       "answers": [
-        "3"
-      ]
+        "Venus"
+      ],
+      "deadlineRef": "p3r.deadline.exams.december"
     },
     {
       "id": "p3r.answers.exam.2009-12-17",
@@ -447,8 +462,9 @@
       "kind": "exam",
       "label": "School exams — day 4",
       "answers": [
-        "4"
-      ]
+        "Murasaki-no-Ue"
+      ],
+      "deadlineRef": "p3r.deadline.exams.december"
     },
     {
       "id": "p3r.answers.exam.2009-12-18",
@@ -456,8 +472,9 @@
       "kind": "exam",
       "label": "School exams — day 5",
       "answers": [
-        "4"
-      ]
+        "Geeses"
+      ],
+      "deadlineRef": "p3r.deadline.exams.december"
     },
     {
       "id": "p3r.answers.class.2010-01-08",
@@ -465,7 +482,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "3"
+        "The underworld"
       ]
     },
     {
@@ -474,7 +491,7 @@
       "kind": "classQuestion",
       "label": "Class question",
       "answers": [
-        "2"
+        "Circe"
       ]
     }
   ]
