@@ -7,16 +7,18 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
-**Social Link, answer, exam, rescue-deadline, timed Elizabeth-request, April–June
-social-stat/Tartarus, epilogue-calendar, and achievement-catalog baselines are
-corrected and regression-protected; the broader month-by-month factual audit
-remains in progress.**
+**The P3R baseline route audit is corrected and regression-protected from April
+through the January 31 Promised Day, including the February-to-March epilogue
+calendar transition.** Social Links, answers, exams, Social Stat point units,
+Tartarus/rescue timing, timed and route-critical Elizabeth request chains,
+automatic story ranks, and the base achievement catalog now have explicit audit
+coverage.
 
-The current stable catalog contains **22 Social Links, 37 deadlines, 53 answer
-sheets, 48 achievements, and zero reusable activities**. The route now explicitly
-satisfies all eight missing-person rescue cutoffs and all fourteen explicitly
-timed Elizabeth requests without replacing the authored Social Link or
-time-consuming activity choices.
+The stable catalog contains **22 Social Links, 37 deadlines, 53 answer sheets,
+48 achievements, and zero reusable activities**. The absence of `activities.json`
+is now the main intentional coverage debt: reusable activities should only be
+promoted after the catalog representation is shown to add value beyond the already
+audited inline route effects.
 
 ## Source roles
 
@@ -64,9 +66,10 @@ Exam sheets resolve to their exam deadline through `deadlineRef`.
 
 ### P3R-AUD-005 — No Activities catalog — OPEN COVERAGE DEBT
 
-P3R still ships no `activities.json`. This remains intentional until reusable
-activity effects and point values are independently audited; embedded route values
-must not be promoted into base data merely because they parse successfully.
+P3R still ships no `activities.json`. The route now has independently audited raw
+point values for the recurring activities that matter to progression, but a new
+catalog should only be added if the schema provides a useful standalone surface.
+Do not duplicate inline route data merely to eliminate a zero count.
 
 ### P3R-AUD-006 — Stable-ID baseline was a seed subset — FIXED
 
@@ -86,6 +89,9 @@ Social Link is regression-pinned to a continuous 1–10 ladder.
 - Death preserves real ranks 1,3,5,6,8,10 and the game's intentional skips.
 - Judgment rank 1 unlocks December 31; ranks 2–10 advance at Adamah 227F, 230F,
   236F, 241F, 246F, 247F, 253F, 254F, and 255F.
+
+Fixed dated Fool/Death ranks are also represented in walkthrough prose instead of
+existing only in the Social Link catalog.
 
 ### P3R-AUD-009 — Exam windows and top-class requirements were wrong — FIXED
 
@@ -147,9 +153,6 @@ route's advertised rank checkpoints, including Academics Rank 3 before exams and
 Courage Rank 4 on May 25. Request #9 now explains the twelve-unique-drink vending
 route rather than merely saying to complete it.
 
-This does not mean every May gameplay fact is fully audited; it means the point
-and early-request baseline no longer contains the known importer omissions.
-
 ### P3R-AUD-015 — Timed Elizabeth requests were absent from deadlines and route — FIXED
 
 The original pack did not expose the game's explicitly timed Elizabeth requests,
@@ -165,92 +168,138 @@ catalog now has **14** `request` deadlines:
 - #94 Furry Friend Food / #95 Featherman R Figure — **November 30**.
 - #97 Christmas Present — **December 25**.
 
-The completion route now explicitly closes each chain before its cutoff:
-
-- May 10 accepts and completes #12/#13 through Yukari and Junpei.
-- June 14 completes #27/#28 and accepts #29; June 27 obtains Black Quartz and
-  June 28 converts it into the fashionable item and reports #29.
-- July 9 accepts #43/#44 and completes #43 through Fuuka; the accepted #44 is
-  collected during Yakushima and reported July 23.
-- August 8 records the full #58 barter chain through the Cat Ear Headband.
-- September 10 completes #68 then #69 through Shinjiro and Aigis.
-- October 6 accepts #76 before the October 7 Ikutsuki Glasses Wipe handoff.
-- November 6 completes #94 then #95 through Koromaru and Ken.
-- December 4 accepts and completes #97 through the Eccentric Man exchange.
-
-These interactions were added around the existing authored route rather than
-replacing Social Link or other time-consuming choices. Regression coverage checks
-both the deadline catalog and all fourteen route handoffs, including ordering
-where one request unlocks another or acceptance is required before the NPC item
-becomes available.
+The completion route explicitly closes each chain before its cutoff and preserves
+accept-before-item ordering where Reload requires it.
 
 ### P3R-AUD-016 — January ending to March epilogue transition — FIXED
 
 The pack's calendar correctly treats **February 1 through March 3** as the skipped
 post-Promised-Day span while keeping **March 4** and **March 5** inside the active
-calendar. March 4 remains player-controlled epilogue cleanup: the route sends the
-player through the school/city and dorm before bed. March 5 is the story-only
-Graduation Day ending.
-
-Regression coverage now pins the complete 31-date non-playable span, requires the
-calendar to end on March 5, rejects March 4/5 from `nonPlayableDates`, and requires
-both epilogue walkthrough entries to remain present.
+calendar. March 4 remains player-controlled epilogue cleanup; March 5 is the
+story-only Graduation Day ending.
 
 ### P3R-AUD-017 — Achievement catalog mixed paraphrases and route dates with game facts — FIXED BASELINE
 
 The pack ships **48** base-game Journey achievements. Their descriptions are now
-normalized to the canonical platform achievement wording instead of guide-style
-paraphrases. Route tracking remains separate from actual mechanic availability.
-
-Specific semantic corrections include:
-
-- **Top of the Class** — canonical condition is `Aced an exam.`; this completion
-  route satisfies the first-exam requirements and records the unlock on the
-  **May 25** results day rather than delaying it to July 24.
-- **Reaper Reaped** — the Reaper becomes available with the June Tartarus
-  progression, so `availableFrom` is **June 13**; January remains this route's
-  dedicated preparation/expected completion period rather than a fake unlock.
-- **The Horror of the Shade** — random Dark Zones relevant to the achievement are
-  modeled from the Tziah tutorial point on **October 1**; the scripted tutorial
-  Dark Zone itself does not count.
-- **Eagle Eye** — the lingering `Twinkling Fragments` importer typo was corrected
-  to **Twilight Fragments** in both the May 25 walkthrough step and semantic event
-  anchor.
-
-Achievement regression coverage still preserves the existing structural checks:
-48 unique definitions, valid tracking types, resolvable event anchors, explicit
-choice/checklist/confirmation semantics, the nine-member Theurgy checklist, the
-shared good-ending choice state, Social Link completion anchors, gardening
-confirmation, and the >¥50,000 part-time-job counter. It now also pins the audited
-achievement descriptions and availability/route dates above.
+normalized to canonical platform wording. Route tracking remains separate from
+actual mechanic availability. Specific corrections include Top of the Class on
+the May 25 results day, Reaper availability from the June progression point, the
+October Dark Zone mechanic boundary, and the Twilight Fragments typo/event anchor.
 
 ### P3R-AUD-018 — June social-stat/activity representation was incomplete — FIXED BASELINE
 
-June had the same importer omission pattern as May: route prose named activities
-but omitted the structured raw-point gains that make the advertised Social Stat
-rank checkpoints reproducible. The audited route now records:
+June recurring activity gains are structured in the same raw-point scale. Carrying
+April/May totals forward, the route reaches **61 Courage on June 5**, **70 Charm
+exactly on June 17**, and **81 Courage on June 19**. Fixed June mechanics are kept
+separate from route choices: Theurgy/uniforms June 13, dorm hangouts June 16, and
+Missing Person rescue missions June 18. Fuuka's June 22 Priestess start remains an
+authored route date rather than a claimed universal earliest boundary.
 
-- Game Parade stat games — **+4** to their advertised stat.
-- Weekend Wilduck Set — **+4 Courage**.
-- Chagall Café part-time work — **+1 Charm / +1 Courage**.
-- Mandragora solo karaoke — **+2 Courage**.
-- Junpei reading and Akihiko DVD dorm hangouts — **+2 Courage**.
-- Yukari DVD hangouts — **+2 Charm**.
-- Fuuka reading hangout — **+2 Academics**.
-- Wakatsu Prodigy Platter — **+3 Academics**.
-- Wakatsu Seafood Full Course — **+4 Academics**.
+### P3R-AUD-019 — July stats, story ranks, and Elizabeth dependency chain — FIXED BASELINE
 
-With the April/May audited totals carried forward, the route reaches **61 Courage
-points on June 5** (Rank 5 threshold 60), **70 Charm points exactly on June 17**
-(Rank 5 threshold 70), and **81 Courage points on June 19** (Rank 6 threshold 80).
-Regression coverage pins both the individual gains and these cumulative thresholds.
+July's missing route effects are restored. The cumulative raw-point route reaches
+**103 Academics on July 13** for Rank 4. Charm is **96** before July 24 exam
+results; the audited top-result reward is **+4 Charm**, reaching **100 exactly**
+for Charm Rank 6 before the later Link Episode gain.
 
-Fixed June mechanics are also kept distinct from route choices: Theurgy/combat
-uniforms remain on June 13, dorm hangouts unlock on June 16, and Missing Person
-rescue missions unlock on June 18. Sources disagree on Fuuka's earliest possible
-Priestess start, so **June 22 is preserved as this completion route's selected
-rank-1 date only**; it is deliberately not regression-labeled as a universal
-fixed availability boundary.
+Fixed story ranks are visible in the route: Fool 4 on July 7, Death 3 on July 12
+with Reload's rank-2 skip, and Fool 5 on July 22 during Yakushima.
+
+The route now explicitly preserves the untimed request prerequisites that affect
+later completion:
+
+- July 9 accepts #38/#39/#40/#42 alongside timed #43/#44.
+- #38 turns in the saved Chilled Taiyaki.
+- #39 is accepted before entering the PA Room for Gekkoukan Boogie.
+- #42 records all four cat feedings and the final report.
+- #40's Max Safety Shoes are reported before accepting/completing #41 with
+  Tanaka's Signature.
+
+### P3R-AUD-020 — August summer-stat baseline and shrine request — FIXED BASELINE
+
+August's deterministic route gains are now structured. Summer school contributes
+**+3 Academics per day for six days (+18)**. Film Festival outings use the audited
++4 raw-point gain to the relevant stat, while deterministic dorm reading/DVD/TV
+hangouts preserve their +2 effects.
+
+The route carries **121 Academics** out of July, reaches 131 before summer school,
+149 after summer school, 151 after the August 17 Koromaru TV hangout, then
+**155 exactly on August 18** from Bebe's Film Festival outing for Academics Rank 5.
+
+Death Rank 5 is restored on August 7 with the Reload rank-4 skip. Request #54 is
+now an explicit accept → three no-time shrine checks → 500-yen bill report chain.
+
+### P3R-AUD-021 — September point totals, Death 6, and proof-of-bond handoff — FIXED BASELINE
+
+September preserves the primary completion route's Social Stat total: end-August
+Academics is **177**, September contributes exactly **+10**, and the month ends at
+**187 Academics**. Supplementary Nurse's Office lessons remain stat-neutral rather
+than inventing Social Stat points.
+
+Death Rank 6 is restored on September 12. Because this authored route first maxes
+Devil on September 1, Request #55's proof-of-bond handoff is explicitly completed
+immediately after Devil MAX instead of being falsely placed in August.
+
+### P3R-AUD-022 — October Genius threshold and request chains — FIXED BASELINE
+
+October reconstructs the primary route's exact **+43 Academics** path from 187 to
+**230**, reaching Rank 6 on October 29. The 43 points are:
+
+- five stay-awake classes ×2 = 10;
+- eight Request #75 Faculty Office lectures ×2 = 16;
+- three regular group-study sessions ×4 = 12;
+- the full-group pre-exam study session = 5.
+
+October 6 now explicitly accepts #74/#75/#76 before their item interactions. #74
+retrieves Inari Sushi only after acceptance. #75 is represented as visits 1–8,
+ending with Kanetsugu's Helm and the Elizabeth report. #76 remains the timed
+Ikutsuki Glasses Wipe chain.
+
+The October 1 Tziah Dark Zone is explicitly the scripted tutorial and is not
+mistaken for the random Dark Zone required by the achievement. Death Rank 8 is
+restored on October 6 with Reload's rank-7 skip.
+
+### P3R-AUD-023 — November automatic ranks and Kyoto request chain — FIXED BASELINE
+
+November now exposes the fixed automatic Social Link story progression that the
+catalog already knew: Fool 6 on November 2; Death 10/MAX and Fool 7 on November 4;
+and Fool 9 on November 28 with Reload's rank-8 skip.
+
+The November request batch now explicitly closes #92 (Port Island restroom) and
+#93 (school rooftop flowers). Request #96 is represented as an ordered chain:
+accept before Kyoto, prepare the Friendly Student trade, buy Durian Soda/Jumbo
+Juice/V6 in Kyoto, then trade them plus ¥5,000 for Oden Juice and report it on
+November 28. Timed #94/#95 remain ordered so #95 follows #94.
+
+### P3R-AUD-024 — December rescue and good-ending boundary — FIXED BASELINE
+
+Timed Request #97 remains accept-before-item and is completed before December 25.
+The route now surfaces the December 22 missing-person batch and explicitly rescues
+the **209F and 221F** victims during the December 30 Tartarus visit, the last
+actionable day for that batch.
+
+December 31 no longer says only “important story decision.” The 100% route
+explicitly chooses to **spare Ryoji**, then records **Fool Rank 10/MAX before
+Judgment Rank 1**, preserving the good-ending progression into January.
+
+### P3R-AUD-025 — January endgame completion chain — FIXED BASELINE
+
+The authored daytime Social Link schedule is preserved through Aeon MAX on January
+29. The previously vague late-game Tartarus placeholders now make the 100% route's
+actual completion obligations explicit without displacing those daytime choices:
+
+- January 15 rescues the final **232F and 250F** missing persons before the
+  January 30 cutoff.
+- Judgment ranks **2–10** are represented by their Adamah floor milestones:
+  227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, 255F.
+- Request #98 records Masakado with Charge once available.
+- Request #99 records the 255F final Monad Passage / Shadow of the Void clear.
+- January 21 defeats the Reaper, reports its Bloody Button for #100, then accepts
+  #101.
+- January 30 explicitly performs #101's solo 255F ultimate-adversary fight and
+  confirms the final rescue batch is already safe.
+- January 31 remains the Promised Day, followed by the already-audited March
+  epilogue transition.
 
 ## Regression rules for P3R
 
@@ -258,33 +307,42 @@ fixed availability boundary.
 2. Route-selected Social Link dates use `scheduledFor`.
 3. Social Links and Linked Episodes remain separate systems.
 4. Ordinary Social Links keep complete 1–10 ladders; automatic links keep real skips.
-5. Floor-driven progression is not given synthetic dates.
-6. Answer sheets contain useful text, never merely menu positions.
-7. Exam windows cover the full exam period and link to answer sheets.
-8. Route optimization targets are not mislabeled as hard deadlines.
-9. Missing-person UI deadlines use the last actionable rescue date.
-10. Every explicitly timed Elizabeth request has both a catalog deadline and a
+5. Every fixed dated Fool/Death rank must also appear on its walkthrough date.
+6. Floor-driven Judgment progression is not assigned synthetic calendar dates.
+7. Answer sheets contain useful text, never merely menu positions.
+8. Exam windows cover the full exam period and link to answer sheets.
+9. Route optimization targets are not mislabeled as hard deadlines.
+10. Missing-person UI deadlines use the last actionable rescue date, and the route
+    must explicitly clear the corresponding rescue floors before that cutoff.
+11. Every explicitly timed Elizabeth request has both a catalog deadline and a
     route handoff before that deadline.
-11. If a request requires acceptance before an NPC item interaction, the route
-    must show that acceptance before the handoff.
-12. Social-stat data uses one raw/internal point scale and does not mix pip counts.
-13. Achievement descriptions use canonical platform wording; route completion
+12. If a request requires acceptance or a previous request before its item appears,
+    the route and regression tests preserve that ordering.
+13. Social-stat data uses one raw/internal point scale and does not mix pip counts.
+14. Achievement descriptions use canonical platform wording; route completion
     checkpoints must not masquerade as mechanic availability dates.
-14. The post-January calendar skip ends on March 3; March 4 player control and
+15. The post-January calendar skip ends on March 3; March 4 player control and
     March 5 Graduation Day remain represented.
-15. Reusable activity effects must be verified before creating `activities.json`.
-16. Structural validation proves schema/reference integrity, not gameplay facts.
-17. Alternate valid guide dates do not override this authored route merely for
+16. December 31's good-ending route explicitly spares Ryoji before Fool MAX and
+    Judgment Rank 1.
+17. January Judgment ranks 2–10 remain floor-driven and the route preserves all
+    nine Adamah milestones in order.
+18. Reusable activity effects must be verified before creating `activities.json`.
+19. Structural validation proves schema/reference integrity, not gameplay facts.
+20. Alternate valid guide dates do not override this authored route merely for
     stylistic consistency.
-18. Fixed story dates, unlock gates, deadlines, and availability windows require
+21. Fixed story dates, unlock gates, deadlines, and availability windows require
     independent support beyond the primary completion schedule.
-19. A disputed earliest Social Link start remains an authored route date until an
+22. A disputed earliest Social Link start remains an authored route date until an
     independent fixed boundary can be established; do not promote it by test name.
 
-## Next passes
+## Remaining passes
 
-- Continue the **July → January** month-by-month gameplay/stat/activity audit.
-- Re-check full-moon/story labels as their route months are audited.
-- Revisit achievement availability dates only when a true mechanic boundary is
-  independently established; do not substitute this route's cleanup date.
-- Build P3R activities only after the underlying reusable point/effect audit is stable.
+- Decide whether a **verified recurring-activity catalog** materially improves the
+  app. If added, include only independently verified reusable effects and update
+  stable IDs/tests; do not create a catalog just to eliminate the zero count.
+- Revisit achievement or mechanic `availableFrom` dates only where a true fixed
+  boundary can be independently established; never substitute this route's cleanup
+  date for game-wide availability.
+- Run the complete CI + packlint suite and perform final PR metadata/diff review
+  before considering the baseline ready to merge.
