@@ -4,8 +4,6 @@ import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class MetaphorRouteResidualAuditTest {
@@ -53,6 +51,29 @@ class MetaphorRouteResidualAuditTest {
 
         assertTrue(days.getValue("2100-07-15").steps.any { "Skullduggery" in it.label && "Mortaskulls" in it.label })
         assertTrue(days.getValue("2100-07-16").steps.any { "A Haunted Heirloom" in it.label && "necklace" in it.label })
+    }
+
+    @Test
+    fun `August route keeps timed requests and completion beetles visible`() {
+        val days = standardDays()
+
+        val august4 = days.getValue("2100-08-04").steps
+        assertTrue(august4.any { "Toothbrush of Hygienia" in it.label && "Gold Beetle" in it.label })
+
+        val august19 = days.getValue("2100-08-19").steps
+        assertTrue(august19.any { "Peak Curiosity" in it.label && "The Price of Hope" in it.label })
+        assertTrue(august19.any { "Greater One-Eyed Scoundrel" in it.label && "Gold Beetle" in it.label && "Comfort Concoctions" in it.label })
+        assertTrue(august19.any { "A Guiding Gift" in it.label && "Save the Mourning Snakes" in it.label && "The Price of Hope" in it.label })
+        assertTrue(august19.any { "three Polar Stones" in it.label && "A Guiding Gift" in it.label })
+
+        val august20 = days.getValue("2100-08-20").steps
+        assertTrue(august20.any { "A Guiding Gift" in it.label && "three Polar Stones" in it.label && "Gold Beetle" in it.label })
+
+        val august27 = days.getValue("2100-08-27").steps
+        assertTrue(august27.any { "Save the Mourning Snakes" in it.label && "Gold Beetle" in it.label })
+
+        val august28 = days.getValue("2100-08-28").steps
+        assertTrue(august28.any { "Peak Curiosity" in it.label })
     }
 
     private fun standardDays() = loadMetaphor().walkthroughs
