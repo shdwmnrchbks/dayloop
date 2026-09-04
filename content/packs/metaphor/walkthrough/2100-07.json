@@ -157,7 +157,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Sail for Port Brilehaven; cook Benevolent Bread for the Classy Woman (Maria's perk grants one free travel dish).", "slot": "afternoon" },
-        { "label": "Continue 'New World Travel Diary' in the lounge.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } }
+        { "label": "Finish 'New World Travel Diary' in the lounge.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } }
       ]
     },
     {
