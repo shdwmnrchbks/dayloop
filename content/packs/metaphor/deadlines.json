@@ -2,56 +2,68 @@
   "deadlines": [
     {
       "id": "metaphor.deadline.mission.border-fort",
-      "label": "Northern Border Fort assault",
-      "kind": "palace",
+      "label": "Northern Border Fort — mandatory opening story operation",
+      "kind": "other",
       "date": "2100-06-05"
     },
     {
       "id": "metaphor.deadline.mission.nord-mines",
-      "label": "Nord Mines trek",
-      "kind": "palace",
+      "label": "Nord Mines — mandatory story operation",
+      "kind": "other",
       "date": "2100-06-06"
     },
     {
       "id": "metaphor.deadline.mission.grand-cathedral",
-      "label": "Regalith Grand Cathedral trial",
+      "label": "Necromancer Takedown — Regalith Grand Cathedral operation window",
       "kind": "palace",
-      "date": "2100-06-13"
+      "window": { "start": "2100-06-12", "end": "2100-06-21" }
     },
     {
       "id": "metaphor.deadline.mission.kriegante-castle",
-      "label": "Kriegante Castle investigation",
+      "label": "Apprehend the Real Kidnapper — Martira operation window",
       "kind": "palace",
-      "date": "2100-07-05"
+      "window": { "start": "2100-06-23", "end": "2100-07-16" }
     },
     {
       "id": "metaphor.deadline.mission.charadrius",
-      "label": "Charadrius infiltration",
+      "label": "Infiltrate the Charadrius — Brilehaven operation window",
       "kind": "palace",
-      "window": { "start": "2100-07-25", "end": "2100-08-13" }
+      "window": { "start": "2100-07-23", "end": "2100-08-12" }
     },
     {
       "id": "metaphor.deadline.mission.dragon-temple",
-      "label": "Dragon Temple trial",
+      "label": "Obtain Drakodios — Virga Island operation window",
       "kind": "palace",
-      "date": "2100-08-19"
+      "window": { "start": "2100-08-19", "end": "2100-09-05" }
     },
     {
       "id": "metaphor.deadline.mission.opera-house",
-      "label": "Montario Opera House",
-      "kind": "palace",
+      "label": "Montario Opera House — mandatory story event",
+      "kind": "other",
       "date": "2100-09-10"
     },
     {
-      "id": "metaphor.deadline.mission.duel-louis",
-      "label": "Duel with Louis in the capital",
+      "id": "metaphor.deadline.mission.final-prep",
+      "label": "Prepare for the Final Battle — operation window",
       "kind": "palace",
+      "window": { "start": "2100-09-13", "end": "2100-09-22" }
+    },
+    {
+      "id": "metaphor.deadline.mission.duel-louis",
+      "label": "Royal Capital duel with Louis — mandatory story event",
+      "kind": "other",
       "date": "2100-09-23"
     },
     {
       "id": "metaphor.deadline.mission.skybound-avatar",
-      "label": "Final battle — Tyrant's Star",
+      "label": "Skybound Avatar Conquest — operation window",
       "kind": "palace",
+      "window": { "start": "2100-09-26", "end": "2100-10-25" }
+    },
+    {
+      "id": "metaphor.deadline.story.tyrants-star",
+      "label": "Tyrant's Star — final battle",
+      "kind": "other",
       "date": "2100-10-26"
     },
     {
