@@ -47,8 +47,8 @@ class P5RTimeSlotAuditTest {
             day.steps
         }
 
-        assertEquals(1_190, steps.size)
-        assertEquals(833, steps.count { it.slot == "afternoon" })
+        assertEquals(1_198, steps.size)
+        assertEquals(841, steps.count { it.slot == "afternoon" })
         assertEquals(357, steps.count { it.slot == "evening" })
     }
 

@@ -112,6 +112,7 @@
         },
         {
           "label": "Complete the second casino infiltration and buy the High Limit Card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -165,6 +166,7 @@
         },
         {
           "label": "Third casino infiltration — clear the high-limit floor",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -598,6 +600,7 @@
         },
         {
           "label": "Send the Calling Card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -623,6 +626,7 @@
       "steps": [
         {
           "label": "Heist: steal Sae's Treasure",
+          "groupLabel": "Infiltration",
           "tip": "Expose the roulette trick, call for the cheat, and break the glass lid when prompted. Once Leviathan Niijima is vulnerable, use the party's strongest attacks before the next betting phase.",
           "spoiler": true,
           "slot": "afternoon"
@@ -710,6 +714,7 @@
         },
         {
           "label": "First cruise-ship infiltration — follow the fixed path to the Representatives Chamber",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },

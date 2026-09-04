@@ -7,7 +7,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RUncertainTrophyAvailabilityAuditTest {
@@ -23,7 +22,7 @@ class P5RUncertainTrophyAvailabilityAuditTest {
     }
 
     @Test
-    fun `p5r state branch and progression trophies do not claim fake calendar availability`() {
+    fun `p5r state branch trophies keep universal availability separate from route checkpoints`() {
         val root = contentPacksDir() ?: return
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
@@ -43,9 +42,9 @@ class P5RUncertainTrophyAvailabilityAuditTest {
         assertEquals(intentionallyUndated, achievements.values.filter { it.availableFrom == null }.mapTo(linkedSetOf()) { it.title })
         intentionallyUndated.forEach { title ->
             val achievement = achievements.getValue(title)
-            assertNull(achievement.availableFrom, "$title depends on player state, route branch, or progression rather than one universal date")
-            assertEquals(AchievementTrackingTypes.MANUAL, achievement.tracking.type)
-            assertNull(achievement.expectedBy, "$title should not gain a route deadline merely because its availability is undated")
+            assertEquals(null, achievement.availableFrom, "$title depends on player state, route branch, or progression rather than one universal date")
+            assertTrue(achievement.tracking.type != AchievementTrackingTypes.MANUAL)
+            assertTrue(!achievement.expectedBy.isNullOrBlank(), "$title should still have an audited route checkpoint")
         }
 
         // Keep a few nearby exact anchors explicit so this policy cannot be

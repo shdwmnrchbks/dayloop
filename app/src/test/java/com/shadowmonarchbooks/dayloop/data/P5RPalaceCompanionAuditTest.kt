@@ -28,7 +28,7 @@ class P5RPalaceCompanionAuditTest {
         val root = contentPacksDir() ?: return
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
-        assertEquals(11, loaded.pack?.contentVersion)
+        assertEquals(12, loaded.pack?.contentVersion)
         val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
 
         val april15 = days.getValue("2016-04-15")
@@ -46,6 +46,11 @@ class P5RPalaceCompanionAuditTest {
         assertTasks(days, "2016-11-04", "High Limit Card", "Justice Persona")
         assertTasks(days, "2016-12-08", "Emperor's Amulet", "Will Seeds", "Justice rank 10", "Empress Persona")
         assertTasks(days, "2017-01-26", "Orichalcum", "Query gates", "Elevators", "Reach the Treasure")
+
+        assertEquals("Heist: Steal Kamoshida's Heart", days.getValue("2016-04-26").steps.first().label)
+        assertTrue(days.getValue("2016-04-26").steps.first().tip.orEmpty().contains("Trophy of Obsession"))
+        assertTrue(days.getValue("2016-04-26").steps.first().tip.orEmpty().contains("Gold Medal Spike"))
+        assertTrue(days.values.flatMap { it.steps }.any { it.groupLabel == "Infiltration" })
 
         listOf("2016-04-26", "2016-05-25", "2016-06-28", "2016-07-27", "2016-10-06", "2016-11-19")
             .forEach { date ->

@@ -32,7 +32,7 @@ class P5RJazzJinAuditTest {
         val achievement = loaded.achievements?.achievements.orEmpty()
             .single { it.title == "A Night in Kichijoji" }
         assertEquals("2016-06-26", achievement.availableFrom)
-        assertNull(achievement.expectedBy, "Jazz Jin is state-gated by Justice rank 4, not a completion-route deadline")
+        assertEquals("2016-12-04", achievement.expectedBy)
 
         val justice = loaded.bonds?.bonds.orEmpty().single { it.label == "Justice" }
         val routeRank4 = justice.ranks.single { it.rank == 4 }

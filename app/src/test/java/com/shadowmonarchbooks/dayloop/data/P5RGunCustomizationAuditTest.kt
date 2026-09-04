@@ -7,7 +7,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RGunCustomizationAuditTest {
@@ -45,7 +44,7 @@ class P5RGunCustomizationAuditTest {
 
         val trophy = loaded.achievements?.achievements.orEmpty()
             .single { it.title == "Professional Modification" }
-        assertEquals(AchievementTrackingTypes.MANUAL, trophy.tracking.type)
-        assertNull(trophy.expectedBy, "gun customization is player-state gated, not a route deadline")
+        assertEquals(AchievementTrackingTypes.EVENT, trophy.tracking.type)
+        assertEquals("2016-08-11", trophy.expectedBy)
     }
 }

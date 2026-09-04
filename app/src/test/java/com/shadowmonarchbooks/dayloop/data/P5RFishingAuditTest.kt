@@ -6,7 +6,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RFishingAuditTest {
@@ -37,7 +36,7 @@ class P5RFishingAuditTest {
         assertTrue(days.getValue("2016-07-03").steps.any { "Ryuji's invitation" in it.label })
         val angler = loaded.achievements?.achievements.orEmpty().single { it.title == "Angler's Debut" }
         assertEquals("2016-07-04", angler.availableFrom)
-        assertNull(angler.expectedBy, "the completion route deliberately fishes later and must not turn that choice into a deadline")
+        assertEquals("2016-12-05", angler.expectedBy)
 
         val firstFishing = step("2016-12-05", "fish at Ichigaya")
         assertEquals(mapOf("proficiency" to 2), firstFishing.statGains)

@@ -137,6 +137,12 @@
           "slot": "afternoon"
         },
         {
+          "label": "Place a Persona in Lockdown and use incense on it",
+          "tip": "Lockdown becomes available through the Strength Confidant. Select a Persona, place it in Lockdown, then choose an incense to earn Intensive Training.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
           "label": "Fuse Anzu and level it to 28 for Dekaja",
           "spoiler": true,
           "slot": "afternoon"
@@ -662,6 +668,7 @@
         },
         {
           "label": "First infiltration of the pyramid — the path is fixed, follow it",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -704,12 +711,14 @@
         },
         {
           "label": "Capture the Stone of Scone Treasure Demon during the second pyramid infiltration",
+          "groupLabel": "Infiltration",
           "tip": "In Royal, use Fire damage to knock Stone of Scone down, then negotiate to add it to the compendium before leaving the Palace.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Collect all three pyramid Will Seeds",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -732,11 +741,13 @@
       "steps": [
         {
           "label": "Send the Calling Card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Heist: steal Futaba's Treasure",
+          "groupLabel": "Infiltration",
           "tip": "Equip Physical-repelling accessories, guard through Rapid Ascend, and use the ballista opportunity to bring the boss into attack range.",
           "spoiler": true,
           "slot": "afternoon"

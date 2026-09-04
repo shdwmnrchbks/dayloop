@@ -37,4 +37,6 @@ data class Step(
     val spoiler: Boolean = false,
     /** Optional contextual guidance opened from the task's pack-themed Tips action. */
     val tip: String? = null,
+    /** Optional presentation section such as Infiltration; time-slot semantics stay in [slot]. */
+    val groupLabel: String? = null,
 )

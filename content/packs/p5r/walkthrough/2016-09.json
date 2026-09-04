@@ -320,6 +320,7 @@
       "steps": [
         {
           "label": "First infiltration of the spaceport — the path is fixed, follow it",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         }

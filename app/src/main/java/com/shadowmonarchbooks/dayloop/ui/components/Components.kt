@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -50,10 +52,15 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
@@ -352,14 +359,51 @@ fun StepRow(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Column(modifier = Modifier.weight(1f)) {
+            val tipInlineId = "task-tip"
+            val taskText = buildAnnotatedString {
+                append(step.label)
+                if (step.tip != null) {
+                    append(" ")
+                    appendInlineContent(tipInlineId, "Tips")
+                }
+            }
             Text(
-                text = step.label,
+                text = taskText,
                 style = MaterialTheme.typography.bodyLarge,
                 textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
                 color = when (mark) {
                     StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                     StepMark.LATER -> MaterialTheme.colorScheme.tertiary
                     else -> MaterialTheme.colorScheme.onSurface
+                },
+                inlineContent = if (step.tip == null) {
+                    emptyMap()
+                } else {
+                    mapOf(
+                        tipInlineId to InlineTextContent(
+                            placeholder = Placeholder(
+                                width = 2.65.em,
+                                height = 1.em,
+                                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                            ),
+                        ) {
+                            Box(
+                                contentAlignment = Alignment.Center,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(MaterialTheme.colorScheme.primary, skin.shapes.chip)
+                                    .clickable(role = Role.Button) { showTip = true },
+                            ) {
+                                Text(
+                                    text = "TIPS",
+                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    fontWeight = FontWeight.Black,
+                                    maxLines = 1,
+                                )
+                            }
+                        },
+                    )
                 },
             )
             step.activityRef?.let {
@@ -413,17 +457,6 @@ fun StepRow(
                     )
                 }
             }
-            step.tip?.let {
-                Row(
-                    horizontalArrangement = Arrangement.End,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    SkinTextActionButton(
-                        text = "Tips",
-                        onClick = { showTip = true },
-                    )
-                }
-            }
         }
         MarkActions(selected = mark, onToggle = onToggleMark)
     }
@@ -462,14 +495,15 @@ private fun StepTipDialog(tip: String, onDismiss: () -> Unit) {
 /** One time-of-day group, preserving each task's original day index. */
 internal data class TaskGroup(
     val slotId: String?,
+    val groupLabel: String?,
     val tasks: List<IndexedValue<Step>>,
 )
 
-/** Group authored tasks by slot while retaining pack order and progress keys. */
+/** Group authored tasks by time slot and optional guide section while retaining progress keys. */
 internal fun groupTasksBySlot(steps: List<Step>): List<TaskGroup> =
     steps.withIndex()
-        .groupByTo(linkedMapOf()) { it.value.slot }
-        .map { (slotId, tasks) -> TaskGroup(slotId, tasks) }
+        .groupByTo(linkedMapOf()) { it.value.slot to it.value.groupLabel }
+        .map { (key, tasks) -> TaskGroup(key.first, key.second, tasks) }
 
 /** Checkbox-aware, time-grouped task list shared by Today and Day detail. */
 @Composable
@@ -498,7 +532,7 @@ fun TasksList(
         groupTasksBySlot(steps).forEachIndexed { groupIndex, group ->
             if (crown && groupIndex > 0) FiligreeDivider()
             Text(
-                text = group.slotId?.let(slotLabels::get) ?: "Any time",
+                text = group.groupLabel ?: group.slotId?.let(slotLabels::get) ?: "Any time",
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.secondary,
             )

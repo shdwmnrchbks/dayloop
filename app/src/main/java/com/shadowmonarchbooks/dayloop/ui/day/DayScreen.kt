@@ -31,10 +31,9 @@ import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
-import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
-import com.shadowmonarchbooks.dayloop.ui.achievements.MonthlyAchievementChecklist
-import com.shadowmonarchbooks.dayloop.ui.achievements.isLastAuthoredDayOfMonth
+import com.shadowmonarchbooks.dayloop.ui.achievements.DatedAchievementChecklist
+import com.shadowmonarchbooks.dayloop.ui.achievements.datedAchievementRows
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
@@ -79,8 +78,7 @@ fun DayScreen(
     val nextDate = if (idx in 0 until dates.lastIndex) dates[idx + 1] else null
     val allTasksDone = day.steps.isNotEmpty() &&
         day.steps.indices.all { state.markAt(date, it) == StepMark.DONE }
-    val showMonthAchievements = isLastAuthoredDayOfMonth(date, state.days.keys) &&
-        pack.mediaForMonth(date.take(7)).any { it.kind == MediaKinds.ACHIEVEMENT }
+    val showDatedAchievements = datedAchievementRows(pack, state, date).isNotEmpty()
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -166,12 +164,12 @@ fun DayScreen(
                 onOpenActivity = onOpenActivity,
             )
 
-            if (showMonthAchievements) {
-                SkinSectionHeader("Monthly achievements")
-                MonthlyAchievementChecklist(
+            if (showDatedAchievements) {
+                SkinSectionHeader("Achievements")
+                DatedAchievementChecklist(
                     pack = pack,
                     state = state,
-                    month = date.take(7),
+                    date = date,
                     onEarnedChange = vm::setAchievementEarned,
                 )
             }

@@ -29,4 +29,19 @@ class TaskGroupingTest {
         assertEquals(null, groups.single().slotId)
         assertEquals(listOf(0, 1), groups.single().tasks.map { it.index })
     }
+
+    @Test
+    fun `infiltration is a separate section without changing time slot semantics`() {
+        val groups = groupTasksBySlot(
+            listOf(
+                Step("Buy supplies", slot = "afternoon"),
+                Step("Secure the route", slot = "afternoon", groupLabel = "Infiltration"),
+                Step("Read at LeBlanc", slot = "evening"),
+            ),
+        )
+
+        assertEquals(listOf(null, "Infiltration", null), groups.map { it.groupLabel })
+        assertEquals(listOf("afternoon", "afternoon", "evening"), groups.map { it.slotId })
+        assertEquals(listOf(0, 1, 2), groups.flatMap { group -> group.tasks.map { it.index } })
+    }
 }

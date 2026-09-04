@@ -120,12 +120,14 @@
         },
         {
           "label": "Capture the Koh-i-Noor Treasure Demon during the second spaceport infiltration",
+          "groupLabel": "Infiltration",
           "tip": "In Royal, Koh-i-Noor is weak to Gun damage. Knock it down without killing it, then negotiate for its mask.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Collect all three spaceport Will Seeds",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -172,6 +174,7 @@
         },
         {
           "label": "Send the Calling Card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -207,6 +210,7 @@
         },
         {
           "label": "Heist: steal Okumura's Treasure",
+          "groupLabel": "Infiltration",
           "tip": "Clear the approach before the 10-minute timer expires. During the executive waves, chain weaknesses into Baton Passes and finish with strong multi-target attacks. Guard when Big Bang Order telegraphs the Big Bang attack.",
           "spoiler": true,
           "slot": "afternoon"
@@ -655,7 +659,7 @@
           "slot": "afternoon"
         },
         {
-          "label": "Exam results",
+          "label": "Place first in the exam results",
           "statGains": {
             "charm": 5
           },
@@ -747,6 +751,7 @@
       "steps": [
         {
           "label": "First infiltration of the casino — take the guided path",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
