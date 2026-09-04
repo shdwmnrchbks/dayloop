@@ -11,6 +11,7 @@
       "id": "metaphor.activity.book.pride-and-persuasion",
       "label": "Read 'Pride and Persuasion'",
       "kind": "book",
+      "statGains": { "eloquence": 10 },
       "location": "Gauntlet Runner lounge"
     },
     {
@@ -26,7 +27,7 @@
       "kind": "book",
       "statGains": { "wisdom": 10 },
       "location": "Gauntlet Runner lounge",
-      "notes": "Missable: received from Julian at Brilehaven on 07/23 only."
+      "notes": "Missable: obtain it from Julian in Brilehaven between 07/23 and 08/12. The acquisition text may call it 'The Magical Future'; the bookshelf title is 'The Future of Magic'."
     },
     {
       "id": "metaphor.activity.book.top-secret-poetry",
@@ -69,7 +70,7 @@
       "label": "Help cook at the inn",
       "kind": "other",
       "location": "Hushed Honeybee Inn, Grand Trad",
-      "notes": "Evenings only; window closes 09/22 (Chef in Training achievement)."
+      "notes": "Evenings only; available from 06/29 through 09/22 (Chef in Training achievement)."
     },
     {
       "id": "metaphor.activity.cooking.runner",
@@ -101,7 +102,7 @@
       "id": "metaphor.activity.podium-debates",
       "label": "Win a podium debate",
       "kind": "other",
-      "notes": "8 candidate debates across Martira, Brilehaven, and Altabury Heights."
+      "notes": "Eight time-sensitive candidate debates: Loveless 07/06-07/11 Flamesday; Lina 07/07-07/12 Watersday; Roger 07/09-07/14 Metalsday; Jin 07/23-08/08 Arboursday; Glodell 07/24-08/09 Metalsday; Rudolf 07/26-08/11 Flamesday; Milo 07/27-08/12 Watersday; Julian 09/13-10/24 Flamesday/Arboursday/Metalsday. Win all eight for Debate Me."
     },
     {
       "id": "metaphor.activity.bounty-requests",
