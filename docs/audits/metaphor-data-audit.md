@@ -1,12 +1,12 @@
 # Metaphor: ReFantazio data audit
 
-Status: **in progress**. This ledger records evidence-first corrections to the bundled `metaphor` pack. A finding is marked fixed only when the data model and regression coverage encode the conclusion.
+Status: **complete**. This ledger records evidence-first corrections to the bundled `metaphor` pack. A finding is marked fixed only when the data model and regression coverage encode the conclusion.
 
 ## Source roles
 
 - **Primary completion route:** HayateButler, *Comprehensive Walkthrough Schedule & General Resource* (Steam Community guide 3346632862). Dayloop follows this authored 100% route. Dates chosen by that schedule are route facts, not universal availability.
 - **Follower mechanics / prerequisites:** HayateButler, *All Followers Guide* (Steam Community guide 3346632882), cross-checked against independent follower/quest references for fixed timing and prerequisite claims.
-- **Mission / request windows:** independent operation and request references are used to distinguish actual game windows from the primary route's chosen clear date.
+- **Mission / request windows:** HayateButler's quest resource plus independent operation/request references are used to distinguish actual game windows from the primary route's chosen completion date.
 - **Achievements:** Steam's 44-achievement catalog supplies canonical names/descriptions; independent trophy/achievement references are used for trigger mechanics where the platform text is incomplete or misleading.
 - **Existing source policy:** `docs/sources.md` remains authoritative: `scheduledFor` is the selected completion route; `availableFrom` / `availableUntil` are independently supported game windows or fixed story timing.
 
@@ -111,7 +111,7 @@ The pack had 43 achievement images embedded in `media.json` but no canonical `ac
 
 Metaphor now ships a pack-native 44-entry achievement catalog. The 43 real guide icons are linked through optional `iconMediaRef`; Entrusted remains iconless rather than reusing or fabricating unrelated artwork. Story/route achievements use supported dates or semantic walkthrough events. Cumulative, variable-grind, NG+, and optional-branch achievements stay counters, confirmations, or conditional rules rather than receiving arbitrary month-end dates.
 
-Regression: `MetaphorAchievementAuditTest` pins the 44-entry set, 43 legitimate icon links, Entrusted, representative route dates, and the absence of fake route dates on variable/NG+ achievements.
+Regression: `MetaphorAchievementAuditTest`.
 
 ### MET-AUD-017 — Entrusted's platform description does not describe its actual trigger — FIXED
 
@@ -119,16 +119,90 @@ Platform lists describe Entrusted as overcoming the trials to defeat Louis, whil
 
 ### MET-AUD-018 — Gold Beetle completion semantics were ambiguous — FIXED
 
-The reusable activity now keeps the supported `50 total / 46 required for all exchanges` model. The route explicitly performs the final required exchanges on 10/01 and separately collects its final route beetle later; collecting all 50 is not incorrectly required for All That Glitters.
+The reusable activity now keeps the supported `50 obtainable / 46 required for all exchanges` model. The route explicitly performs the final required exchanges on 10/01 and separately collects its final route beetle later; collecting all 50 is not incorrectly required for All That Glitters.
 
-## Remaining audit queue
+### MET-AUD-019 — Timed requests and permanently missable collectibles were under-modeled — FIXED
 
-These items remain open and should not be described as complete yet:
+The deadline surface now covers every independently listed timed side request used by the first-playthrough route:
 
-1. **Requests / missables:** do a request-by-request pass over starts, deadlines, turn-ins, quest-gated locations, and the handful of permanently missable collectibles. The main-operation and Julian/cooking windows are already corrected, but the full request catalog is not yet pack-native.
-2. **Walkthrough residual line check:** compare every remaining untested daily label against the primary route for wording, slot, story/free classification, shopping counts, cooking/fishing details, and collectibles that do not affect the regression milestones above.
-3. **Activity residuals:** verify every reusable activity note and any generic `statGains` that could mislead when completion bonuses differ from ordinary sessions.
-4. **Achievement residuals:** independently verify route expectations for Globetrotter, Worldly Wisdom, Summon Mask Time, and Help Anyone in Need against the final request/location pass. Their tracking is intentionally confirmation-based where route completion alone does not prove the in-game trigger.
-5. **NG+ boundary:** keep Closing the Book and any other second-playthrough-only work out of the first-playthrough calendar while documenting what carries forward.
+- Pagan's Dilemma — 06/12–06/16.
+- Help the Hushed Honeybee — 06/12–06/19.
+- Hatching a Plan — 06/29–07/11.
+- A Haunted Heirloom — due 07/30; its start is prerequisite-gated rather than assigned a fabricated universal date.
+- Skullduggery — due 07/30.
+- Dental Distress — 07/23–08/09, explicitly noting its missable Gold Beetle reward.
+- Efflorescent Youth — 07/23–08/10.
+- A Guiding Gift — 08/19–08/30.
+- Charadrius key objectives — due with the 08/12 operation; Sergeant Xanth is followed by either the Ceiba or Glechom corridor branch.
 
-The Metaphor audit should only be declared complete when these residual queues are closed and CI is green.
+The other two one-way-area Gold Beetles are now prominent missables on 06/05 (Northern Border Fort) and 09/24 (Ancient Eldan Sanctum). Julian's book and the inn-cooking window remain separately represented.
+
+There is no standalone generic Requests schema in the pack format. Non-timed requests therefore remain authored as dated walkthrough tasks; the deadline catalog is intentionally reserved for actual expiry / one-way warnings rather than duplicating every timeless side quest.
+
+Regression: `MetaphorDeadlineAuditTest` and `MetaphorRouteResidualAuditTest`.
+
+### MET-AUD-020 — Reusable book activities implied one fixed Royal Virtue gain — FIXED
+
+The seven reading activities previously carried a generic `statGains` value even though the final reading session awards a larger completion bonus. Generic book gains were removed from `activities.json`; exact gains stay on the dated walkthrough steps where ordinary and completion sessions can differ.
+
+Regression: `MetaphorActivityAuditTest`.
+
+### MET-AUD-021 — June/July residual route compression still hid completion-critical tasks — FIXED
+
+The residual line pass restored Catherina's June 12 `A Friend in Need` rank, the correct June 27 Martira beetle details, the Imp's Den beetle, Man-Eater's Grotto relic/beetle, the Practical Pidgeon Parcel handoff, the full five-beetle Brilehaven sweep, timed request turn-ins, and the July 23 cross-city errands.
+
+A fabricated July 21 free-time entry was removed: the primary schedule has July 21–22 as story time, so July 23 errands are no longer shifted onto a nonexistent free day.
+
+The July 25 Charadrius task now explains the Sergeant Xanth objective and the Ceiba/Glechom corridor choice instead of flattening the operation to generic boss text.
+
+Regression: `MetaphorRouteResidualAuditTest`.
+
+### MET-AUD-022 — August residual route data hid request and collectible dependencies — FIXED
+
+The August line pass restored the Dental Distress Gold Beetle turn-in, August 19's Peak Curiosity / Price of Hope / Greater One-Eyed Scoundrel / A Guiding Gift / Save the Mourning Snakes setup, the three Polar Stones needed for A Guiding Gift, and the later request/Gold Beetle completion steps.
+
+Regression: `MetaphorRouteResidualAuditTest`.
+
+### MET-AUD-023 — September residual route data hid late request setup — FIXED
+
+The September line pass restored the Proof of Power / Rudolf setup, Tainted Threads and Tail Bait shopping, Fiend in the Frozen Forest pickup, the Malva fifth-town milestone, Mt. Vulkano's Rusty Greatsword for The Edge of Glory, the Ligno stop, and the exact late bounty / Dragon Trial request names.
+
+The Wisdom rank-5 label is normalized to the game's **Sagacious**, not the source guide's `Sagatious` typo.
+
+Regression: `MetaphorRouteResidualAuditTest`.
+
+### MET-AUD-024 — Achievement residuals and the NG+ boundary needed explicit contracts — FIXED
+
+Globetrotter, Worldly Wisdom, Summon Mask Time, and Help Anyone in Need retain confirmation-based tracking where the route date is a supported expectation but the app cannot prove the external in-game flag from task completion alone.
+
+`Closing the Book` remains New Game+ only with no first-playthrough date. The first-playthrough walkthrough is explicitly forbidden from containing the Book of Apocalypse / Redscale Dragon path, while The Traveller records that Closing the Book is required.
+
+Regression: `MetaphorAchievementAuditTest` and `MetaphorNgPlusAuditTest`.
+
+### MET-AUD-025 — Help Anyone in Need was phrased as an impossible 76/76 requirement — FIXED
+
+Metaphor contains 76 quest entries, but the Charadrius corridor creates a mutually exclusive branch: after Sergeant Xanth, only one of Maintenance Chief Ceiba or Master Sergeant Glechom is required for quest-completion purposes. The achievement therefore uses the supported **75 of 76** completion rule and still unlocks only after `Save the Country` / story completion.
+
+Dayloop now states this exception in the achievement prompt, deadline warning, and July 25 route task instead of telling users to complete both corridor branches.
+
+Regression: `MetaphorAchievementAuditTest`, `MetaphorDeadlineAuditTest`, and `MetaphorRouteResidualAuditTest`.
+
+## Completion gate
+
+The Metaphor first-playthrough audit is complete when all of these conditions hold; they now do:
+
+- 14 Followers / 112 ranks use fixed-story vs route-selected timing correctly.
+- Main-operation windows, every timed side-request expiry used by the route, and permanent one-way missables are represented without inventing availability dates.
+- All five Royal Virtues have their route rank-up dates and source-visible gains protected without claiming hidden thresholds as exact.
+- All eight podium debates have valid schedules, answers, and rewards.
+- June through October have residual route coverage for completion-critical requests, collectibles, books, virtues, Followers, and endgame milestones.
+- The reusable activity catalog does not flatten variable book rewards.
+- The canonical achievement catalog contains all 44 achievements and separates exact route events, manual/cumulative checks, conditional branches, and NG+ work.
+- Closing the Book remains outside the first-playthrough calendar.
+- Pack parsing, unit tests, and packlint pass.
+
+## Validation
+
+Data/test audit head `733edd833123c4ca9a331baa772e2b712bf10c0c` passed GitHub Actions **CI #643**, including `Build and test` and `Validate content packs (packlint)`.
+
+The audit is therefore closed. Future corrections should be recorded as new findings rather than reopening the baseline audit without new evidence.
