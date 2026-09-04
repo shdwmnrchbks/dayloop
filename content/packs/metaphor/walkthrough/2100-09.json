@@ -60,7 +60,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for Altabury Heights.", "slot": "afternoon" },
-        { "label": "Use the last Tail Bait on the deck's fishing rod before arrival.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+        { "label": "Use the last Tail Bait on the deck's fishing rod before arrival.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
+        { "label": "Start 'How to Walk Outside the Island' (Eupha's book) before bed.", "slot": "night", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 13 } }
       ]
     },
     {
@@ -193,7 +194,7 @@
       "weekday": "flamesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Finish the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 26 } },
+        { "label": "Finish the 'Literacy Workbook' — with all seven books complete, Bookworm unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 26 } },
         { "label": "Clear Scoundrel's Hold — lost relic and Gold Beetle inside; the mobs are small fries.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
