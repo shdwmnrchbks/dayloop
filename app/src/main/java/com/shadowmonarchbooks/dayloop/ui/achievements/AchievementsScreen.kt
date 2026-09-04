@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.achievements
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -72,6 +73,7 @@ fun AchievementsScreen(vm: DayloopViewModel) {
 }
 
 @Composable
+@OptIn(ExperimentalFoundationApi::class)
 private fun RuleBasedAchievements(
     pack: LoadedPack,
     vm: DayloopViewModel,
@@ -134,7 +136,7 @@ private fun RuleBasedAchievements(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
-        item(key = "summary") {
+        stickyHeader(key = "summary") {
             AchievementSummary(
                 earned = earnedCount,
                 total = rows.size,
@@ -470,6 +472,7 @@ private fun formatTrackedUnits(value: Int, unit: String?): String = when (unit) 
 }
 
 @Composable
+@OptIn(ExperimentalFoundationApi::class)
 private fun LegacyMediaAchievements(
     pack: LoadedPack,
     vm: DayloopViewModel,
@@ -497,7 +500,7 @@ private fun LegacyMediaAchievements(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
-        item(key = "summary") {
+        stickyHeader(key = "summary") {
             AchievementSummary(
                 earned = earnedCount,
                 total = achievements.size,
