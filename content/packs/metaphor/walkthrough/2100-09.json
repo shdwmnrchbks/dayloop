@@ -60,7 +60,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for Altabury Heights.", "slot": "afternoon" },
-        { "label": "Use the last Tail Bait on the deck's fishing rod before arrival.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
+        { "label": "Use the second planned Tail Bait and again target 1 Lord of the Lake + 2 Queen's Honey Jars. Match the prompt with: 'Give in to naptime.', 'Thrash and Splash', or 'Think like a fish.'", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
         { "label": "Start 'How to Walk Outside the Island' (Eupha's book) before bed.", "slot": "night", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 13 } }
       ]
     },
@@ -245,6 +245,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Hand over the Rusty Greatsword for 'The Edge of Glory' — thirty days remain until the crowning.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Take 'The Queen of Cuisine: Soul' from the Classy Woman and hand over the saved Indestructible Honey Cake — receive 1 Lord of the Lake.", "slot": "afternoon", "statGains": { "eloquence": 10 } },
         { "label": "Basilio's next step (Follower rank 5); catch up with Brigitta (Follower rank 8).", "slot": "afternoon" }
       ]
     },

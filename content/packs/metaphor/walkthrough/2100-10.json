@@ -110,7 +110,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "The Gentle Merchant at Blue Sky Bridge has your final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Fish for the Lord of the Lake on the way out.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
+        { "label": "Optional: if you still have spare Tail Bait, fish for extra Lord of the Lake or Queen's Honey Jars; the first-playthrough recipe inventory was already secured before Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
         { "label": "Return to the Dragon Temple for Trial of the Dragon: Essence of Power; avoid repel gear and defeat the Elegy of the Soul.", "slot": "afternoon", "spoiler": true },
         { "label": "Complete Essence of Power after the three dragon trials — Entrusted unlocks.", "slot": "afternoon", "spoiler": true }
       ]
@@ -160,7 +160,7 @@
       "steps": [
         { "label": "The decisive battle is set for ten days from now — the rest is free time.", "slot": "afternoon" },
         { "label": "Audit Special Experiments and craft every remaining Masked Dancer mask and Summoner vessel; Summon Mask Time unlocks only when the full craft list is complete.", "slot": "afternoon" },
-        { "label": "Fishing for the Lord of the Lake and Queen's Honey Jar sets up the New Game+ super boss.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+        { "label": "Optional NG+ stockpile: if you have spare bait, fish extra Lord of the Lake or Queen's Honey Jars. Ordinary items and cooking ingredients carry into New Game+.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
       ]
     },
     {

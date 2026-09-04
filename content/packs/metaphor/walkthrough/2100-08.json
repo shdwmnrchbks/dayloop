@@ -188,6 +188,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Eht Ria: fisher-crone's Polar Stones, Edeni's 'Trial of Malnova', and the Clumsy Boy's plea.", "slot": "afternoon" },
+        { "label": "At Amblyrhy's Water Jug, buy both Queen's Honey Jars (10,000 reeve each); the shop only stocks two.", "slot": "afternoon" },
         { "label": "With Wisdom rank 4 secured, hear Hulkenberg out about her next trial (Follower rank 7).", "slot": "afternoon" },
         { "label": "Sit with Eupha at the village shrine.", "slot": "afternoon" }
       ]
@@ -236,7 +237,7 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Fish with the Tail Bait for the Lord of the Lake.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+        { "label": "Fish with Tail Bait and target 1 Lord of the Lake + 2 Queen's Honey Jars. Match the prompt with: 'Give in to naptime.', 'Thrash and Splash', or 'Think like a fish.'", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
       ]
     },
     {

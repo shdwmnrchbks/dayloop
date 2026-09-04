@@ -171,7 +171,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Board your own Gauntlet Runner: check the Pantry, visit the Engine Room, and unlock the Kitchen's Cooking Table.", "slot": "afternoon" },
-        { "label": "Start 'New World Travel Diary' at the lounge bookshelf.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } },
+        { "label": "Start 'New World Travel Diary' at the lounge bookshelf — best responses: 'You've matured.', 'Maybe I'll write a book about it.', then 'Teach me more.'", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } },
         { "label": "Grab the campfire materials (Dreameater Moth or Lumibee).", "slot": "night" },
         { "label": "Talk with Strohl on deck.", "slot": "night", "statGains": { "imagination": 10 } }
       ]
@@ -181,7 +181,7 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Use the Idlesday toilet bonus (+1 Luck), then continue 'New World Travel Diary'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } },
+        { "label": "Use the Idlesday toilet bonus (+1 Luck), then continue 'New World Travel Diary' (best response: 'The pavilion.').", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } },
         { "label": "Imagination reaches rank 2 (Inspired).", "slot": "afternoon" },
         { "label": "Stop at the Tree of Prophecy.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Collect campfire materials and talk with Hulkenberg.", "slot": "night", "statGains": { "imagination": 10 } }

@@ -160,7 +160,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Sail for Port Brilehaven; cook Benevolent Bread for the Classy Woman (Maria's perk grants one free travel dish).", "slot": "afternoon" },
-        { "label": "Finish 'New World Travel Diary' in the lounge.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 20 } }
+        { "label": "Finish 'New World Travel Diary' in the lounge (best response: 'Sounds pretty.').", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 20 } }
       ]
     },
     {
@@ -286,7 +286,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Cook Curative Coney Roast, then read 'The Future of Magic'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
+        { "label": "Cook Curative Coney Roast, then read 'The Future of Magic' (best response: 'It won't work for everyone.').", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
         { "label": "Stop by the Peregrine Falls.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 3 (Knowledgeable).", "slot": "afternoon" },
         { "label": "Tomb of Lament: two Gold Beetles and Neuras' lost relic — hug the left wall and mind the crawl spaces.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
