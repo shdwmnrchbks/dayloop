@@ -4,196 +4,196 @@
       "id": "metaphor.bond.gallica",
       "label": "Gallica",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-06", "notes": "Joins during the Nord Mines trek." },
-        { "rank": 2, "availableFrom": "2100-06-11" },
-        { "rank": 3, "availableFrom": "2100-07-05" },
-        { "rank": 4, "availableFrom": "2100-07-25" },
-        { "rank": 5, "availableFrom": "2100-08-13" },
-        { "rank": 6, "availableFrom": "2100-08-19" },
-        { "rank": 7, "availableFrom": "2100-09-23" },
-        { "rank": 8, "availableFrom": "2100-09-24" }
+        { "rank": 1, "availableFrom": "2100-06-06", "notes": "Automatic fixed story rank during the Nord Mines sequence." },
+        { "rank": 2, "availableFrom": "2100-06-11", "notes": "Automatic fixed story rank after the royal-funeral events." },
+        { "rank": 3, "scheduledFor": "2100-07-05", "notes": "Automatic when the Martira main operation is cleared; this is the completion route's clear date, not a universal calendar unlock." },
+        { "rank": 4, "scheduledFor": "2100-07-25", "notes": "Automatic when Infiltrate the Charadrius is cleared; this is the completion route's clear date, not a universal calendar unlock." },
+        { "rank": 5, "availableFrom": "2100-08-13", "notes": "Automatic fixed story rank during the Brilehaven story events." },
+        { "rank": 6, "scheduledFor": "2100-08-19", "notes": "Automatic when the Virga Island main operation is cleared; this is the completion route's clear date, not a universal calendar unlock." },
+        { "rank": 7, "availableFrom": "2100-09-23", "notes": "Automatic fixed story rank." },
+        { "rank": 8, "availableFrom": "2100-09-24", "notes": "Automatic fixed story rank after the Royal Capital battle." }
       ]
     },
     {
       "id": "metaphor.bond.strohl",
       "label": "Strohl",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-06", "notes": "Bond forms during the fort assault." },
-        { "rank": 2, "availableFrom": "2100-06-13" },
-        { "rank": 3, "availableFrom": "2100-06-16" },
-        { "rank": 4, "availableFrom": "2100-07-09" },
-        { "rank": 5, "availableFrom": "2100-07-12" },
-        { "rank": 6, "availableFrom": "2100-07-27" },
-        { "rank": 7, "availableFrom": "2100-08-04" },
-        { "rank": 8, "availableFrom": "2100-08-07" }
+        { "rank": 1, "availableFrom": "2100-06-06", "notes": "Automatic fixed story rank during the Nord Mines sequence." },
+        { "rank": 2, "scheduledFor": "2100-06-13" },
+        { "rank": 3, "scheduledFor": "2100-06-16" },
+        { "rank": 4, "scheduledFor": "2100-07-09" },
+        { "rank": 5, "scheduledFor": "2100-07-12" },
+        { "rank": 6, "scheduledFor": "2100-07-27" },
+        { "rank": 7, "scheduledFor": "2100-08-04" },
+        { "rank": 8, "scheduledFor": "2100-08-07" }
       ]
     },
     {
       "id": "metaphor.bond.hulkenberg",
       "label": "Hulkenberg",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-11" },
-        { "rank": 2, "availableFrom": "2100-06-14" },
-        { "rank": 3, "availableFrom": "2100-06-29" },
-        { "rank": 4, "availableFrom": "2100-07-01" },
-        { "rank": 5, "availableFrom": "2100-07-09" },
-        { "rank": 6, "availableFrom": "2100-07-29" },
-        { "rank": 7, "availableFrom": "2100-08-20" },
-        { "rank": 8, "availableFrom": "2100-08-22" }
+        { "rank": 1, "availableFrom": "2100-06-11", "notes": "Automatic fixed story rank when Hulkenberg joins the party." },
+        { "rank": 2, "scheduledFor": "2100-06-14" },
+        { "rank": 3, "scheduledFor": "2100-06-29" },
+        { "rank": 4, "scheduledFor": "2100-07-01" },
+        { "rank": 5, "scheduledFor": "2100-07-09" },
+        { "rank": 6, "scheduledFor": "2100-07-29" },
+        { "rank": 7, "scheduledFor": "2100-08-20" },
+        { "rank": 8, "scheduledFor": "2100-08-22" }
       ]
     },
     {
       "id": "metaphor.bond.heismay",
       "label": "Heismay",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-07-04" },
-        { "rank": 2, "availableFrom": "2100-07-13" },
-        { "rank": 3, "availableFrom": "2100-07-16" },
-        { "rank": 4, "availableFrom": "2100-07-24" },
-        { "rank": 5, "availableFrom": "2100-07-29" },
-        { "rank": 6, "availableFrom": "2100-08-04" },
-        { "rank": 7, "availableFrom": "2100-08-21" },
-        { "rank": 8, "availableFrom": "2100-08-23" }
+        { "rank": 1, "availableFrom": "2100-07-04", "notes": "Automatic fixed story rank when Heismay joins the party." },
+        { "rank": 2, "scheduledFor": "2100-07-13" },
+        { "rank": 3, "scheduledFor": "2100-07-16" },
+        { "rank": 4, "scheduledFor": "2100-07-24" },
+        { "rank": 5, "scheduledFor": "2100-07-29" },
+        { "rank": 6, "scheduledFor": "2100-08-04" },
+        { "rank": 7, "scheduledFor": "2100-08-21" },
+        { "rank": 8, "scheduledFor": "2100-08-23" }
       ]
     },
     {
       "id": "metaphor.bond.junah",
       "label": "Junah",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-08-24" },
-        { "rank": 2, "availableFrom": "2100-08-28" },
-        { "rank": 3, "availableFrom": "2100-08-30" },
-        { "rank": 4, "availableFrom": "2100-09-02" },
-        { "rank": 5, "availableFrom": "2100-09-04" },
-        { "rank": 6, "availableFrom": "2100-09-14" },
-        { "rank": 7, "availableFrom": "2100-09-16" },
-        { "rank": 8, "availableFrom": "2100-09-22" }
+        { "rank": 1, "scheduledFor": "2100-08-24", "notes": "Rank 1 is earned by completing Save the Mourning Snakes; this is the completion route's quest-clear date." },
+        { "rank": 2, "scheduledFor": "2100-08-28" },
+        { "rank": 3, "scheduledFor": "2100-08-30" },
+        { "rank": 4, "scheduledFor": "2100-09-02" },
+        { "rank": 5, "scheduledFor": "2100-09-04" },
+        { "rank": 6, "scheduledFor": "2100-09-14" },
+        { "rank": 7, "scheduledFor": "2100-09-16" },
+        { "rank": 8, "scheduledFor": "2100-09-22" }
       ]
     },
     {
       "id": "metaphor.bond.eupha",
       "label": "Eupha",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-08-23" },
-        { "rank": 2, "availableFrom": "2100-08-28" },
-        { "rank": 3, "availableFrom": "2100-08-30" },
-        { "rank": 4, "availableFrom": "2100-09-02" },
-        { "rank": 5, "availableFrom": "2100-09-04" },
-        { "rank": 6, "availableFrom": "2100-09-13" },
-        { "rank": 7, "availableFrom": "2100-10-01" },
-        { "rank": 8, "availableFrom": "2100-10-03" }
+        { "rank": 1, "scheduledFor": "2100-08-23", "notes": "Rank 1 is earned by completing The Trial of Malnova; this is the completion route's quest-clear date." },
+        { "rank": 2, "scheduledFor": "2100-08-28" },
+        { "rank": 3, "scheduledFor": "2100-08-30" },
+        { "rank": 4, "scheduledFor": "2100-09-02" },
+        { "rank": 5, "scheduledFor": "2100-09-04" },
+        { "rank": 6, "scheduledFor": "2100-09-13" },
+        { "rank": 7, "scheduledFor": "2100-10-01" },
+        { "rank": 8, "scheduledFor": "2100-10-03" }
       ]
     },
     {
       "id": "metaphor.bond.basilio",
       "label": "Basilio",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-09-15" },
-        { "rank": 2, "availableFrom": "2100-09-17" },
-        { "rank": 3, "availableFrom": "2100-09-19" },
-        { "rank": 4, "availableFrom": "2100-09-22" },
-        { "rank": 5, "availableFrom": "2100-09-26" },
-        { "rank": 6, "availableFrom": "2100-09-28" },
-        { "rank": 7, "availableFrom": "2100-10-02" },
-        { "rank": 8, "availableFrom": "2100-10-04" }
+        { "rank": 1, "scheduledFor": "2100-09-15", "notes": "Basilio becomes available after joining the party; this is the completion route's chosen first bond event." },
+        { "rank": 2, "scheduledFor": "2100-09-17" },
+        { "rank": 3, "scheduledFor": "2100-09-19" },
+        { "rank": 4, "scheduledFor": "2100-09-22" },
+        { "rank": 5, "scheduledFor": "2100-09-26" },
+        { "rank": 6, "scheduledFor": "2100-09-28" },
+        { "rank": 7, "scheduledFor": "2100-10-02" },
+        { "rank": 8, "scheduledFor": "2100-10-04" }
       ]
     },
     {
       "id": "metaphor.bond.neuras",
       "label": "Neuras",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-07-07" },
-        { "rank": 2, "availableFrom": "2100-07-08" },
-        { "rank": 3, "availableFrom": "2100-07-30" },
-        { "rank": 4, "availableFrom": "2100-08-24" },
-        { "rank": 5, "availableFrom": "2100-09-20" },
-        { "rank": 6, "availableFrom": "2100-09-28" },
-        { "rank": 7, "availableFrom": "2100-09-29" },
-        { "rank": 8, "availableFrom": "2100-10-05" }
+        { "rank": 1, "scheduledFor": "2100-07-07", "notes": "Rank 1 is earned by completing Providing a Spark; later ranks advance through the lost-relic request chain." },
+        { "rank": 2, "scheduledFor": "2100-07-08" },
+        { "rank": 3, "scheduledFor": "2100-07-30" },
+        { "rank": 4, "scheduledFor": "2100-08-24" },
+        { "rank": 5, "scheduledFor": "2100-09-20" },
+        { "rank": 6, "scheduledFor": "2100-09-28" },
+        { "rank": 7, "scheduledFor": "2100-09-29" },
+        { "rank": 8, "scheduledFor": "2100-10-05" }
       ]
     },
     {
       "id": "metaphor.bond.maria",
       "label": "Maria",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-10", "notes": "First free evening in the capital." },
-        { "rank": 2, "availableFrom": "2100-06-30" },
-        { "rank": 3, "availableFrom": "2100-07-08" },
-        { "rank": 4, "availableFrom": "2100-07-11" },
-        { "rank": 5, "availableFrom": "2100-07-13" },
-        { "rank": 6, "availableFrom": "2100-08-05" },
-        { "rank": 7, "availableFrom": "2100-09-01" },
-        { "rank": 8, "availableFrom": "2100-09-03" }
+        { "rank": 1, "availableFrom": "2100-06-10", "notes": "Automatic fixed story rank on the first return to Grand Trad." },
+        { "rank": 2, "scheduledFor": "2100-06-30" },
+        { "rank": 3, "scheduledFor": "2100-07-08" },
+        { "rank": 4, "scheduledFor": "2100-07-11" },
+        { "rank": 5, "scheduledFor": "2100-07-13" },
+        { "rank": 6, "scheduledFor": "2100-08-05" },
+        { "rank": 7, "scheduledFor": "2100-09-01" },
+        { "rank": 8, "scheduledFor": "2100-09-03" }
       ]
     },
     {
       "id": "metaphor.bond.catherina",
       "label": "Catherina",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-12" },
-        { "rank": 2, "availableFrom": "2100-07-02" },
-        { "rank": 3, "availableFrom": "2100-07-19" },
-        { "rank": 4, "availableFrom": "2100-08-03" },
-        { "rank": 5, "availableFrom": "2100-09-13" },
-        { "rank": 6, "availableFrom": "2100-09-15" },
-        { "rank": 7, "availableFrom": "2100-09-17" },
-        { "rank": 8, "availableFrom": "2100-09-27" }
+        { "rank": 1, "scheduledFor": "2100-06-12", "notes": "Automatic on completion of A Friend in Need during its June 12-21 window; June 12 is the completion route's quest-clear date." },
+        { "rank": 2, "availableFrom": "2100-07-02", "notes": "Automatic fixed story encounter on the road to the Giant Sandworm's Nest, conditional on having started Catherina's bond." },
+        { "rank": 3, "availableFrom": "2100-07-19", "notes": "Automatic fixed story encounter on the journey to Port Brilehaven, conditional on having started Catherina's bond." },
+        { "rank": 4, "scheduledFor": "2100-08-03", "notes": "Automatic after the route's third Catherina Gauntlet Runner fight; the date depends on when that travel encounter is triggered." },
+        { "rank": 5, "scheduledFor": "2100-09-13" },
+        { "rank": 6, "scheduledFor": "2100-09-15" },
+        { "rank": 7, "scheduledFor": "2100-09-17" },
+        { "rank": 8, "scheduledFor": "2100-09-27" }
       ]
     },
     {
       "id": "metaphor.bond.alonzo",
       "label": "Alonzo",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-07-11" },
-        { "rank": 2, "availableFrom": "2100-08-06" },
-        { "rank": 3, "availableFrom": "2100-08-08" },
-        { "rank": 4, "availableFrom": "2100-08-10" },
-        { "rank": 5, "availableFrom": "2100-08-12" },
-        { "rank": 6, "availableFrom": "2100-08-21" },
-        { "rank": 7, "availableFrom": "2100-10-01" },
-        { "rank": 8, "availableFrom": "2100-10-04" }
+        { "rank": 1, "scheduledFor": "2100-07-11", "notes": "Rank 1 follows the A Dagger, a Ring, and a Rake request; this is the completion route's quest-clear date." },
+        { "rank": 2, "scheduledFor": "2100-08-06" },
+        { "rank": 3, "scheduledFor": "2100-08-08" },
+        { "rank": 4, "scheduledFor": "2100-08-10" },
+        { "rank": 5, "scheduledFor": "2100-08-12" },
+        { "rank": 6, "scheduledFor": "2100-08-21" },
+        { "rank": 7, "scheduledFor": "2100-10-01" },
+        { "rank": 8, "scheduledFor": "2100-10-04" }
       ]
     },
     {
       "id": "metaphor.bond.bardon",
       "label": "Bardon",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-07-06" },
-        { "rank": 2, "availableFrom": "2100-07-21" },
-        { "rank": 3, "availableFrom": "2100-07-26" },
-        { "rank": 4, "availableFrom": "2100-07-28" },
-        { "rank": 5, "availableFrom": "2100-08-06" },
-        { "rank": 6, "availableFrom": "2100-08-08" },
-        { "rank": 7, "availableFrom": "2100-09-05" },
-        { "rank": 8, "availableFrom": "2100-09-27" }
+        { "rank": 1, "scheduledFor": "2100-07-06", "notes": "Rank 1 becomes available after the Martira main operation; this is the completion route's chosen first bond event." },
+        { "rank": 2, "scheduledFor": "2100-07-21" },
+        { "rank": 3, "scheduledFor": "2100-07-26" },
+        { "rank": 4, "scheduledFor": "2100-07-28" },
+        { "rank": 5, "scheduledFor": "2100-08-06" },
+        { "rank": 6, "scheduledFor": "2100-08-08" },
+        { "rank": 7, "scheduledFor": "2100-09-05" },
+        { "rank": 8, "scheduledFor": "2100-09-27" }
       ]
     },
     {
       "id": "metaphor.bond.brigitta",
       "label": "Brigitta",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-16" },
-        { "rank": 2, "availableFrom": "2100-06-18" },
-        { "rank": 3, "availableFrom": "2100-06-20" },
-        { "rank": 4, "availableFrom": "2100-06-30" },
-        { "rank": 5, "availableFrom": "2100-08-05" },
-        { "rank": 6, "availableFrom": "2100-08-07" },
-        { "rank": 7, "availableFrom": "2100-08-29" },
-        { "rank": 8, "availableFrom": "2100-09-26" }
+        { "rank": 1, "scheduledFor": "2100-06-16", "notes": "Rank 1 follows A Bullish Embargo and its Wisdom gate; this is the completion route's quest-clear date." },
+        { "rank": 2, "scheduledFor": "2100-06-18" },
+        { "rank": 3, "scheduledFor": "2100-06-20" },
+        { "rank": 4, "scheduledFor": "2100-06-30" },
+        { "rank": 5, "scheduledFor": "2100-08-05" },
+        { "rank": 6, "scheduledFor": "2100-08-07" },
+        { "rank": 7, "scheduledFor": "2100-08-29" },
+        { "rank": 8, "scheduledFor": "2100-09-26" }
       ]
     },
     {
       "id": "metaphor.bond.more",
       "label": "More",
       "ranks": [
-        { "rank": 1, "availableFrom": "2100-06-05", "notes": "Met at Akademeia during the opening arc." },
-        { "rank": 2, "notes": "Not dated by the guide; advances with More's Task study between ranks 1 and 3." },
-        { "rank": 3, "availableFrom": "2100-07-07" },
-        { "rank": 4, "availableFrom": "2100-07-07" },
-        { "rank": 5, "availableFrom": "2100-07-25" },
-        { "rank": 6, "availableFrom": "2100-08-19" },
-        { "rank": 7, "availableFrom": "2100-08-27" },
-        { "rank": 8, "availableFrom": "2100-09-30" }
+        { "rank": 1, "availableFrom": "2100-06-05", "notes": "Automatic fixed story rank at Akademeia during the opening arc." },
+        { "rank": 2, "scheduledFor": "2100-06-12", "notes": "Turn in More's Task: Foreword and Prologue after raising a Healer Archetype to rank 10; June 12 is the completion route's turn-in date." },
+        { "rank": 3, "scheduledFor": "2100-07-07", "notes": "Complete More's Task Chapter One: Ordeal after unlocking the Gunner Archetype." },
+        { "rank": 4, "scheduledFor": "2100-07-07", "notes": "Complete More's Task Chapter Two: Solitude after raising the Merchant Archetype to rank 15." },
+        { "rank": 5, "scheduledFor": "2100-07-25", "notes": "Complete More's Task Chapter Three: Drifting after studying 15 Archetypes." },
+        { "rank": 6, "scheduledFor": "2100-08-19", "notes": "Complete More's Task Chapter Four: Turmoil." },
+        { "rank": 7, "scheduledFor": "2100-08-27", "notes": "Complete More's Task Chapter Five: Resolve." },
+        { "rank": 8, "scheduledFor": "2100-09-30", "notes": "Complete More's Task Chapter Six: The End." }
       ]
     }
   ]
