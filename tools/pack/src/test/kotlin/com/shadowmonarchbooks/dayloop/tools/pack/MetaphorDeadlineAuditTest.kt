@@ -22,6 +22,7 @@ class MetaphorDeadlineAuditTest {
             WindowCheck("metaphor.deadline.mission.dragon-temple", "2100-08-19", "2100-09-05"),
             WindowCheck("metaphor.deadline.mission.final-prep", "2100-09-13", "2100-09-22"),
             WindowCheck("metaphor.deadline.mission.skybound-avatar", "2100-09-26", "2100-10-25"),
+            WindowCheck("metaphor.deadline.missable.julian-book", "2100-07-23", "2100-08-12"),
         )
 
         windows.forEach { check ->
@@ -29,7 +30,7 @@ class MetaphorDeadlineAuditTest {
             val window = assertNotNull(deadline.window, check.id)
             assertEquals(check.start, window.start, check.id)
             assertEquals(check.end, window.end, check.id)
-            assertEquals(null, deadline.date, "${check.id}: operation window must not collapse to one route date")
+            assertEquals(null, deadline.date, "${check.id}: window must not collapse to one route date")
         }
     }
 
