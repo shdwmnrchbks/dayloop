@@ -117,7 +117,8 @@
       "steps": [
         { "label": "Ten days remain before the duel in Grand Trad — plan the candidate runner hunts.", "slot": "afternoon" },
         { "label": "Tell Loveless where you'll settle it; take 'Warmth in Winter' from the Portly Man.", "slot": "afternoon" },
-        { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" }
+        { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" },
+        { "label": "Debate Julian at the Blue Sky Bridge podium (answer: the present day matters too).", "slot": "night", "statGains": { "eloquence": 15, "imagination": 7 } }
       ]
     },
     {
@@ -201,7 +202,7 @@
       "weekday": "watersday",
       "dayKind": "free",
       "steps": [
-        { "label": "Report the Scoundrel's Hold quest — last day for the inn cooking evenings.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.inn", "statGains": { "courage": 10 } },
+        { "label": "Report the Scoundrel's Hold quest; inn cooking remains available through September 25.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.inn", "statGains": { "courage": 10 } },
         { "label": "Help Basilio look for Vinca (Follower rank 4).", "slot": "afternoon" },
         { "label": "Visit Myrtus with Junah (Follower rank 8).", "slot": "night" }
       ]
