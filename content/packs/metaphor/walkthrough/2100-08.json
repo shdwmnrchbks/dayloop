@@ -128,7 +128,9 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Drakodios inquiry chain: The Greatest Catch notes, then the merchant, then the colony scout.", "slot": "afternoon" }
+        { "label": "Drakodios inquiry chain: The Greatest Catch notes, then the merchant, then the colony scout; depart for Virga Island.", "slot": "afternoon" },
+        { "label": "Cook Cursed Love Ballad, then play Hulkenberg's game (answer: my cavalry).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner", "statGains": { "wisdom": 10 } },
+        { "label": "At camp, talk with Junah before bed.", "slot": "night", "statGains": { "imagination": 13 } }
       ]
     },
     {
@@ -148,7 +150,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Cook Stale Blackbread from the pantry leftovers.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Hear out each companion's worries aboard the runner — Gallica's talk aids your magic.", "slot": "afternoon", "statGains": { "imagination": 13 } }
+        { "label": "Spend the afternoon with any companion aboard the runner to receive their unique +5-all-stats accessory.", "slot": "afternoon" },
+        { "label": "At camp, spend time with Junah.", "slot": "night", "statGains": { "imagination": 13 } }
       ]
     },
     {
@@ -164,7 +167,8 @@
       "weekday": "arboursday",
       "dayKind": "story",
       "steps": [
-        { "label": "Land on Virga Island; collect the three Gold Beetles around the Village of Pagan before the Dragon Table.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Land on Virga Island; collect all five Gold Beetles around the Village of Pagans before the Dragon Table.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "On the runner, continue 'Top Secret Poetry! Do Not Read!'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 11 } },
         { "label": "Rescue Eupha from the Pagan loyalists.", "slot": "afternoon", "spoiler": true }
       ]
     },
@@ -173,9 +177,11 @@
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Take 'Obtaining Drakodios' plus the village requests, then work the Dragon Temple trial to its guardian.", "slot": "afternoon" },
-        { "label": "Level the General Archetype to 15 for More's request before the boss; the human-possessed dragon god falls at the altar.", "slot": "afternoon", "spoiler": true },
-        { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
+        { "label": "Take 'Obtain Drakodios' plus the village requests; return the appraised igniter before departing.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Finish 'Top Secret Poetry! Do Not Read!' on the runner, including its completion bonus.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 22 } },
+        { "label": "Work the Dragon Temple and Drakongrace Shinjuku to the guardian; level General to 15 before the boss.", "slot": "afternoon", "spoiler": true },
+        { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } },
+        { "label": "Gallica reaches Follower rank 6 after the Virga Island operation is cleared.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -183,8 +189,10 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Eht Ria: fisher-crone's Polar Stones, Edeni's 'Trial of Malnova', and the Clumsy Boy's plea.", "slot": "afternoon" },
-        { "label": "Sit with Eupha at the village shrine.", "slot": "afternoon" }
+        { "label": "Eht Ria: turn in the Polar Stones, take Edeni's 'Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Accompany Hulkenberg to settle matters with Rhodanthe (Follower rank 7).", "slot": "afternoon" },
+        { "label": "At night, take in the View of the Beach at Eht Ria.", "slot": "night", "statGains": { "imagination": 13 } },
+        { "label": "Imagination reaches rank 4 (Revolutionary).", "slot": "night" }
       ]
     },
     {
@@ -203,7 +211,8 @@
       "steps": [
         { "label": "Persuade Edeni to change the weather rite, then depart for the Land of Ceremony.", "slot": "afternoon" },
         { "label": "Cook Almighty Golden Stew; Hulkenberg's resolve (Follower rank 8).", "slot": "afternoon" },
-        { "label": "Watch the Prismatic Sea at night.", "slot": "night", "statGains": { "wisdom": 10 } }
+        { "label": "Stop at the Prismatic Sea.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "At camp, work on the Gauntlet Runner with Neuras.", "slot": "night", "statGains": { "wisdom": 10 } }
       ]
     },
     {
@@ -222,7 +231,7 @@
       "steps": [
         { "label": "Depart for Orbwise Path; cook Sweeter than Poison and meditate with Eupha.", "slot": "afternoon", "statGains": { "imagination": 13 } },
         { "label": "Orbwise Path: two Gold Beetles and the Heartwarmers from the Anxious Soldier.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Junah shows herself after the boss (Follower rank 1).", "slot": "afternoon", "spoiler": true },
+        { "label": "Junah shows herself after the boss (Follower rank 1).", "slot": "afternoon", "statGains": { "imagination": 10 }, "spoiler": true },
         { "label": "Show Neuras the lost relic (Follower rank 4).", "slot": "night" }
       ]
     },
@@ -231,7 +240,8 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Fish with the Tail Bait for the Lord of the Lake.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+        { "label": "Fish with the Tail Bait for the Lord of the Lake.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
+        { "label": "At camp, keep watch with Heismay.", "slot": "night", "statGains": { "tolerance": 8 } }
       ]
     },
     {
@@ -250,7 +260,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
-        { "label": "Climb the Spire of Blind Faith — permanent storm weather; the Stormy Sea Ring cuts the damage.", "slot": "afternoon" }
+        { "label": "Climb the Spire of Blind Faith — permanent storm weather; the Stormy Sea Ring cuts the damage.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "With 25 Archetypes studied, report to More (Follower rank 7); receive 'More's Task Chapter Six: The End'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
       ]
     },
     {
