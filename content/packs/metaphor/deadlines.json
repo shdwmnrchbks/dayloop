@@ -2,69 +2,87 @@
   "deadlines": [
     {
       "id": "metaphor.deadline.mission.border-fort",
-      "label": "Northern Border Fort assault",
-      "kind": "palace",
+      "label": "Route target: Northern Border Fort assault",
+      "kind": "routeTarget",
       "date": "2100-06-05"
     },
     {
       "id": "metaphor.deadline.mission.nord-mines",
-      "label": "Nord Mines trek",
-      "kind": "palace",
+      "label": "Route target: Nord Mines trek",
+      "kind": "routeTarget",
       "date": "2100-06-06"
     },
     {
-      "id": "metaphor.deadline.mission.grand-cathedral",
-      "label": "Regalith Grand Cathedral trial",
+      "id": "metaphor.deadline.mission.prologue",
+      "label": "Prologue operation deadline",
       "kind": "palace",
-      "date": "2100-06-13"
+      "date": "2100-06-11"
+    },
+    {
+      "id": "metaphor.deadline.mission.grand-cathedral",
+      "label": "Necromancer Takedown — Regalith Grand Cathedral",
+      "kind": "palace",
+      "date": "2100-06-21"
     },
     {
       "id": "metaphor.deadline.mission.kriegante-castle",
-      "label": "Kriegante Castle investigation",
+      "label": "Apprehend the Real Kidnapper — Kriegante Castle",
       "kind": "palace",
-      "date": "2100-07-05"
+      "date": "2100-07-16"
     },
     {
       "id": "metaphor.deadline.mission.charadrius",
-      "label": "Charadrius infiltration",
+      "label": "Infiltrate the Charadrius",
       "kind": "palace",
-      "window": { "start": "2100-07-25", "end": "2100-08-13" }
+      "date": "2100-08-12"
     },
     {
       "id": "metaphor.deadline.mission.dragon-temple",
-      "label": "Dragon Temple trial",
+      "label": "Obtain Drakodios — Dragon Temple",
       "kind": "palace",
-      "date": "2100-08-19"
+      "date": "2100-09-05"
     },
     {
       "id": "metaphor.deadline.mission.opera-house",
-      "label": "Montario Opera House",
-      "kind": "palace",
+      "label": "Route target: Montario Opera House",
+      "kind": "routeTarget",
       "date": "2100-09-10"
     },
     {
-      "id": "metaphor.deadline.mission.duel-louis",
-      "label": "Duel with Louis in the capital",
+      "id": "metaphor.deadline.mission.prepare-final-battle",
+      "label": "Prepare for the Final Battle",
       "kind": "palace",
+      "date": "2100-09-22"
+    },
+    {
+      "id": "metaphor.deadline.mission.duel-louis",
+      "label": "Route target: confrontation with Louis in the capital",
+      "kind": "routeTarget",
       "date": "2100-09-23"
     },
     {
       "id": "metaphor.deadline.mission.skybound-avatar",
-      "label": "Final battle — Tyrant's Star",
+      "label": "Skybound Avatar Conquest",
+      "kind": "palace",
+      "date": "2100-10-25"
+    },
+    {
+      "id": "metaphor.deadline.mission.save-country",
+      "label": "Save the Country — Tyrant's Star",
       "kind": "palace",
       "date": "2100-10-26"
     },
     {
       "id": "metaphor.deadline.missable.inn-cooking",
-      "label": "Inn cooking evenings with Maria",
+      "label": "Hushed Honeybee Inn cooking availability",
       "kind": "missable",
-      "window": { "start": "2100-06-29", "end": "2100-09-22" }
+      "window": { "start": "2100-06-12", "end": "2100-09-25" }
     },
     {
       "id": "metaphor.deadline.missable.julian-book",
-      "label": "Missable book from Julian (Brilehaven)",
+      "label": "The Magical Future — missable book from Julian",
       "kind": "missable",
-      "date": "2100-07-23"
+      "window": { "start": "2100-07-23", "end": "2100-08-13" }
     }
   ]
 }
