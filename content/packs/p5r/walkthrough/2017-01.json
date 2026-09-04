@@ -20,6 +20,7 @@
       "steps": [
         {
           "label": "First laboratory infiltration — follow the fixed path",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -110,6 +111,7 @@
       "steps": [
         {
           "label": "Second laboratory infiltration — refuse Maruki's deal",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -154,6 +156,7 @@
       "steps": [
         {
           "label": "Third laboratory infiltration — the Faith arcana is reborn and can now advance to rank 10",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -595,22 +598,26 @@
       "steps": [
         {
           "label": "After school: use Treasure Traps to capture Orichalcum during the final laboratory infiltration",
+          "groupLabel": "Infiltration",
           "tip": "This is the route's last Palace visit. Finish every remaining Palace-only capture, Will Seed, chest, and Thieves Den objective before leaving.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Query gates: 'His lover', 'Evidence', 'By wishing to be that person', 'His Persona fully awakened'",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Elevators: 'B, Go get help', 'C, Give up for a new dream', 'D, Steal evil hearts to fix society'",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Reach the Treasure and leave the palace",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },

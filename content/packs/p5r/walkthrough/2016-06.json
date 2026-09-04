@@ -43,11 +43,26 @@
       "steps": [
         {
           "label": "Explore Mementos and clear both pending requests; don't spend lock picks on locked chests",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Collect every Stamp and all Flowers; spend them with Jose — raise the item buff to x6 first (Flowers don't carry over)",
+          "label": "Trade Mementos flowers to Jose for an item",
+          "groupLabel": "Infiltration",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Spend stamps with Jose to change cognition and raise Items to x6",
+          "groupLabel": "Infiltration",
+          "tip": "Collect every Stamp and Flower before leaving. Spend Flowers before exiting because they do not carry over between Mementos visits.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Have Jose transform Kamoshida's Will Seeds into the Crystal of Lust",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -63,6 +78,7 @@
         },
         {
           "label": "Farm Mementos money — 100,000 yen is needed this month, 250,000 is safe (Treasure Demons are common under Pollen Warning)",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -561,6 +577,7 @@
       "steps": [
         {
           "label": "First bank infiltration — scout Kaneshiro's palace",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -596,6 +613,7 @@
         },
         {
           "label": "Complete the second bank infiltration until Makoto joins",
+          "groupLabel": "Infiltration",
           "tip": "Keep Ann in the active party for Dormina. The encounter resists Physical attacks and uses Ice, so exploit ailments and Technical damage rather than forcing melee damage.",
           "spoiler": true,
           "slot": "afternoon"
@@ -653,7 +671,8 @@
           "slot": "evening"
         },
         {
-          "label": "Visit the bathhouse in Yongen-Jaya during the rain",
+          "label": "Visit the bathhouse during the rain and stay until Joker overheats",
+          "tip": "Getting the Vapors requires the special overheated result during rainy or snowy weather. Save beforehand and reload if the scene does not trigger.",
           "statGains": {
             "charm": 3,
             "guts": 2
@@ -756,39 +775,52 @@
         },
         {
           "label": "Capture the Queen's Necklace Treasure Demon during the third bank infiltration",
+          "groupLabel": "Infiltration",
           "tip": "Queen's Necklace is weak to Psy. Knock it down with a Psy attack before negotiating so it cannot escape.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Collect all three bank Will Seeds",
+          "groupLabel": "Infiltration",
           "tip": "Check the grappling-hook route off the vault stairs, the Laundering Room, and the left-left route at the fourth PIN panel.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "PIN panels: 'Rich' 0102, 'Reap' 0931, 'Huge' 2319, 'Gold' 1841",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Skip the golden pay-doors unless you need a shortcut",
+          "groupLabel": "Infiltration",
           "tip": "They consume yen only to open shortcuts; none is required to secure the route.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Secure the Treasure route to Kaneshiro's vault",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Perform one Velvet Room execution during a Fusion Alarm",
+          "groupLabel": "Infiltration",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Trigger a Showtime attack during the infiltration",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Leave the palace with 150,000+ yen",
+          "groupLabel": "Infiltration",
           "slot": "afternoon"
         },
         {
@@ -864,6 +896,7 @@
         },
         {
           "label": "Send the Calling Card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -884,6 +917,7 @@
       "steps": [
         {
           "label": "Heist: steal Kaneshiro's Treasure",
+          "groupLabel": "Infiltration",
           "tip": "Use ailments and Technical attacks to break the bodyguard phase. A Physical-resistant Persona such as Shiki-Ouji is especially useful late in the fight.",
           "spoiler": true,
           "slot": "afternoon"

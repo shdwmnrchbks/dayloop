@@ -69,11 +69,11 @@ class P5RAchievementCatalogAuditTest {
         assertEquals("2016-08-31", byId.getValue("p5r.achievement.master-of-akihabara").availableFrom)
 
         achievements.forEach { achievement ->
-            assertEquals(
-                AchievementTrackingTypes.MANUAL,
-                achievement.tracking.type,
-                "P5R trophy migration intentionally stays manual until a trophy has a separately audited deterministic rule",
+            assertTrue(
+                achievement.tracking.type != AchievementTrackingTypes.MANUAL,
+                "${achievement.title} should use an audited route rule instead of month-end manual tracking",
             )
+            assertTrue(!achievement.expectedBy.isNullOrBlank(), "${achievement.title} needs a route checkpoint")
             achievement.availableFrom?.let { date ->
                 assertTrue(date in calendar, "${achievement.title}: availableFrom $date is outside the Royal calendar")
             }
@@ -105,5 +105,6 @@ class P5RAchievementCatalogAuditTest {
 
         assertEquals(50, achievements.count { it.iconMediaRef != null })
         assertEquals(3, achievements.count { it.iconMediaRef == null })
+        assertTrue(p5r.achievements?.events.orEmpty().size >= 40)
     }
 }

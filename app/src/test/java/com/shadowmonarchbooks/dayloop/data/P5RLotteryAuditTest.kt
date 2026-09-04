@@ -7,7 +7,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RLotteryAuditTest {
@@ -44,7 +43,7 @@ class P5RLotteryAuditTest {
             .single { it.title == "Easy Money" }
         assertTrue(achievement.description.orEmpty().contains("qualifying lottery prize", ignoreCase = true))
         assertEquals("2016-04-25", achievement.availableFrom, "Apr 25 is the first possible result from an ordinary Apr 18 ticket")
-        assertEquals(AchievementTrackingTypes.MANUAL, achievement.tracking.type)
-        assertNull(achievement.expectedBy, "Easy Money is RNG and the completion route must not claim a guaranteed completion date")
+        assertEquals(AchievementTrackingTypes.CONFIRMATION, achievement.tracking.type)
+        assertEquals("2016-07-01", achievement.expectedBy, "RNG remains confirmable from the route's first planned attempt")
     }
 }

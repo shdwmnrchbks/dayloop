@@ -61,7 +61,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "First infiltration of the castle — follow the tutorials only",
+          "label": "Awaken to Arsène, then complete the first castle infiltration tutorials",
+          "groupLabel": "Infiltration",
           "slot": "afternoon"
         },
         {
@@ -88,10 +89,12 @@
         },
         {
           "label": "Second infiltration — follow tutorials up to the first mini-boss",
+          "groupLabel": "Infiltration",
           "slot": "afternoon"
         },
         {
           "label": "Reach the Treasure security level needed, then leave",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -142,22 +145,26 @@
         },
         {
           "label": "Third castle infiltration — capture Personas by negotiating with Pixie in the tutorial",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Grind to ¥15,000 plus the cost of any missing crafting materials",
+          "groupLabel": "Infiltration",
           "tip": "You need 2 Tin Clasps and 2 Silk Yarns on April 18. Budget ¥2,050 for each missing Tin Clasp and ¥1,150 for each missing Silk Yarn. For example, if both Tin Clasps are missing, the target becomes ¥19,100. A Hold Up money demand can beat a normal victory against some small or high-level groups; against groups of three or more, defeating every Shadow may pay more.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Do not pass the room with three Shadows and one Treasure Chest until the grind is finished",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Farm the three Shadows, return to the entrance to save, and repeat as needed",
+          "groupLabel": "Infiltration",
           "tip": "Passing this room triggers the next story sequence and removes the opportunity to continue this grind. Finish both the yen target and material-drop check first.",
           "spoiler": true,
           "slot": "afternoon"
@@ -436,37 +443,51 @@
         },
         {
           "label": "Infiltrate the castle again — return through the painting and use the newly activated elevator",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Defeat the first Will Seed guardian",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Collect all three Will Seeds before leaving the castle",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Reach the Treasure and secure its infiltration route",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Farm until Joker is level 9 with at least ¥20,000",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Fuse Silky and Agathion into Berith",
+          "groupLabel": "Infiltration",
           "tip": "Berith is a Hierophant Persona and supports the upcoming Sojiro route. Silky appears in battle under the Shadow name Troublesome Maid.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
+          "label": "Perform a Baton Pass, trigger a Technical, explode a Disaster Shadow, and use the grappling hook",
+          "groupLabel": "Infiltration",
+          "tip": "Use a teammate's weakness hit to start a Baton Pass. Apply a status ailment and strike with its matching damage type for a Technical. Damage a Disaster Shadow until it detonates and destroys another enemy. The grappling hook is used naturally while traversing the castle.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
           "label": "Leave the Palace carrying a Lovers Persona",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -507,6 +528,7 @@
         },
         {
           "label": "Send the Calling Card from the hideout",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -526,8 +548,9 @@
       "dayKind": "story",
       "steps": [
         {
-          "label": "Heist: steal the Treasure",
-          "tip": "Keep Tarunda active during the boss fight to reduce incoming damage.",
+          "label": "Heist: Steal Kamoshida's Heart",
+          "groupLabel": "Infiltration",
+          "tip": "Preparation: bring Tarunda on Ann, Saki Mitama, or Bicorn and keep Kamoshida debuffed throughout; Rakunda helps shorten the fight.\n\nPhase 1: damage Kamoshida until he fully heals from the Trophy of Obsession, then focus the trophy until it breaks. If he stares at Ann, have her guard against the next attack. Heal early rather than gambling on his volley.\n\nCrown phase: send Ryuji to steal the crown so Ann and Morgana remain available to heal. Keep attacking while the theft proceeds. When Kamoshida announces his killshot, guard the whole party against Gold Medal Spike. After the crown is removed, he loses pressure and takes much more damage—finish him while maintaining Tarunda.",
           "spoiler": true,
           "slot": "afternoon"
         },

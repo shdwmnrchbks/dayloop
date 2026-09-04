@@ -78,6 +78,6 @@ class P5RAprilRouteOrderAuditTest {
 
         assertTrue(days.getValue("2016-04-24").steps.any { "secure its infiltration route" in it.label })
         assertTrue(days.getValue("2016-04-25").steps.any { "Calling Card" in it.label })
-        assertTrue(days.getValue("2016-04-26").steps.any { "Heist: steal the Treasure" in it.label })
+        assertTrue(days.getValue("2016-04-26").steps.any { "Heist: Steal Kamoshida's Heart" in it.label })
     }
 }

@@ -91,6 +91,11 @@
       "dayKind": "story",
       "steps": [
         {
+          "label": "Form the Phantom Thieves",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
           "label": "Use the Bio Nutrient on your plant",
           "statGains": {
             "kindness": 3
@@ -368,6 +373,7 @@
         },
         {
           "label": "First infiltration of the museum — path is linear, follow it",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         }
@@ -440,13 +446,25 @@
         },
         {
           "label": "Second museum infiltration — reach the exterior blockade",
+          "groupLabel": "Infiltration",
           "tip": "Capture the Regent Treasure Demon if it appears; use its weakness rather than spending turns on normal damage.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Capture the Regent Treasure Demon",
+          "groupLabel": "Infiltration",
+          "tip": "Regent resists ordinary damage. Knock it down with its weakness, then negotiate to recruit it before it escapes.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Twins ritual — Strength reaches rank 1",
           "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Perform a Group Guillotine execution",
           "slot": "afternoon"
         },
         {
@@ -484,6 +502,7 @@
         },
         {
           "label": "Complete the scripted third museum infiltration",
+          "groupLabel": "Infiltration",
           "tip": "This Palace combat sequence is a story encounter, not the final Madarame boss. Follow the escape objective instead of treating it as the heist.",
           "spoiler": true,
           "slot": "afternoon"
@@ -589,21 +608,25 @@
         },
         {
           "label": "Complete the fourth museum infiltration and secure the Treasure route",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Collect all three museum Will Seeds before leaving",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Unlock the Persona sacrifice ritual",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Use the sacrifice ritual to obtain the Frei skill card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -641,6 +664,7 @@
         },
         {
           "label": "Send the Calling Card",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -658,6 +682,7 @@
       "steps": [
         {
           "label": "Heist: steal Madarame's Treasure",
+          "groupLabel": "Infiltration",
           "tip": "Bring access to single-target Fire, Ice, Electric, and Wind attacks. Targeting each painting component with its weakness is safer than relying on broad attacks that can heal another component.",
           "spoiler": true,
           "slot": "afternoon"

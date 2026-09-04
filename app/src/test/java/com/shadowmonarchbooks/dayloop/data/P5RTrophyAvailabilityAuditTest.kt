@@ -7,7 +7,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RTrophyAvailabilityAuditTest {
@@ -32,8 +31,8 @@ class P5RTrophyAvailabilityAuditTest {
         fun available(title: String, date: String) {
             val achievement = achievements.getValue(title)
             assertEquals(date, achievement.availableFrom, "$title should use its independently checked Royal availability anchor")
-            assertEquals(AchievementTrackingTypes.MANUAL, achievement.tracking.type)
-            assertNull(achievement.expectedBy, "$title availability is not a completion-route deadline")
+            assertTrue(achievement.tracking.type != AchievementTrackingTypes.MANUAL)
+            assertTrue(!achievement.expectedBy.isNullOrBlank(), "$title should also expose its completion-route checkpoint")
         }
 
         // Fixed story-resolution trophies. Palace heist dates are flexible, but
@@ -78,7 +77,7 @@ class P5RTrophyAvailabilityAuditTest {
         available("A Night in Kichijoji", "2016-06-26")
         available("Angler's Debut", "2016-07-04")
         available("The Search for Power", "2016-07-12")
-        available("Success Built on Sacrifice", "2016-07-26")
+        available("Success Built on Sacrifice", "2016-05-20")
         available("Going Against the Crane", "2016-08-31")
         available("Awakening the Phantom Thieves", "2017-01-10")
 
@@ -145,7 +144,7 @@ class P5RTrophyAvailabilityAuditTest {
         // their first possible Royal trophy dates.
         assertEquals("2016-05-20", achievements.getValue("A Grand Experiment").availableFrom)
         assertEquals("2016-06-21", achievements.getValue("Accident-Prone").availableFrom)
-        assertEquals("2016-07-26", achievements.getValue("Success Built on Sacrifice").availableFrom)
+        assertEquals("2016-05-20", achievements.getValue("Success Built on Sacrifice").availableFrom)
 
         // Showtime's forced Bank tutorial does not itself award the trophy, but
         // subsequent Showtime activations are eligible from Jun 21 onward.

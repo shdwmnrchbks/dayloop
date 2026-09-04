@@ -33,6 +33,7 @@
         },
         {
           "label": "Tonight is the fixed final Calling Card / ending branch; the Laboratory Treasure route must already be secured",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "evening"
         },
@@ -43,6 +44,7 @@
         },
         {
           "label": "Send Maruki the final Calling Card at night",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "evening"
         },

@@ -491,6 +491,10 @@
           "slot": "afternoon"
         },
         {
+          "label": "Hit at least one ball at the batting cages for Batter Up!",
+          "slot": "afternoon"
+        },
+        {
           "label": "Save first, then grind the batting cages for a home run — reload if needed",
           "statGains": {
             "proficiency": 2

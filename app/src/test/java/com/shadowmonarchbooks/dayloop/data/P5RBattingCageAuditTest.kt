@@ -7,7 +7,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RBattingCageAuditTest {
@@ -32,11 +31,11 @@ class P5RBattingCageAuditTest {
             .single { it.title == "Batter Up!" }
         assertEquals("Hit a ball at the batting cages.", achievement.description)
         assertEquals("2016-04-18", achievement.availableFrom, "Royal's Yongen-Jaya batting cages are usable in the April early game")
-        assertEquals(AchievementTrackingTypes.MANUAL, achievement.tracking.type)
-        assertNull(achievement.expectedBy, "The route's later batting visit is not a universal trophy deadline")
+        assertEquals(AchievementTrackingTypes.EVENT, achievement.tracking.type)
+        assertEquals("2016-08-18", achievement.expectedBy)
 
         val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
-        val august18 = days.getValue("2016-08-18").steps.single { "batting cages" in it.label.lowercase() }
+        val august18 = days.getValue("2016-08-18").steps.single { "grind the batting cages" in it.label.lowercase() }
         assertTrue("home run" in august18.label.lowercase())
         assertTrue("reload" in august18.label.lowercase())
         assertEquals(mapOf("proficiency" to 2), august18.statGains)

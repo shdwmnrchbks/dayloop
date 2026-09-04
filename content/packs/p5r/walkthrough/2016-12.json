@@ -207,11 +207,13 @@
         },
         {
           "label": "Capture the Emperor's Amulet Treasure Demon during the second cruise-ship infiltration",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
           "label": "Collect all three cruise-ship Will Seeds",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -256,6 +258,7 @@
       "steps": [
         {
           "label": "Send the Calling Card and steal Shido's Heart",
+          "groupLabel": "Infiltration",
           "tip": "Use magic in the first phase and Physical damage in the second. During Joker's solo finish, counter Shido's spell order: Fire, Ice, Electric, then Wind.",
           "spoiler": true,
           "slot": "afternoon"

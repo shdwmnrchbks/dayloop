@@ -44,12 +44,11 @@ import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
-import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.progress.ProgressLogic
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
-import com.shadowmonarchbooks.dayloop.ui.achievements.MonthlyAchievementChecklist
-import com.shadowmonarchbooks.dayloop.ui.achievements.isLastAuthoredDayOfMonth
+import com.shadowmonarchbooks.dayloop.ui.achievements.DatedAchievementChecklist
+import com.shadowmonarchbooks.dayloop.ui.achievements.datedAchievementRows
 import com.shadowmonarchbooks.dayloop.ui.components.AnswerSheetCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedOverCard
 import com.shadowmonarchbooks.dayloop.ui.components.CarriedStep
@@ -143,9 +142,7 @@ fun TodayScreen(
     )
     val dayScene = rememberAssetImage(pack.artAsset("today-day"))
     val nightScene = rememberAssetImage(pack.artAsset("today-night"))
-    val showMonthAchievements = day != null &&
-        isLastAuthoredDayOfMonth(date, state.days.keys) &&
-        pack.mediaForMonth(date.take(7)).any { it.kind == MediaKinds.ACHIEVEMENT }
+    val showDatedAchievements = day != null && datedAchievementRows(pack, state, date).isNotEmpty()
 
     // Day-advance sequence state (docs/ROADMAP-v3.md Phase 16): null = the
     // instant path. Skinned packs with animations play the per-motif overlay;
@@ -315,12 +312,12 @@ fun TodayScreen(
                 slotLabels = pack.pack.slotLabels(),
                 onOpenActivity = onOpenActivity,
             )
-            if (showMonthAchievements) {
-                SkinSectionHeader("Monthly achievements")
-                MonthlyAchievementChecklist(
+            if (showDatedAchievements) {
+                SkinSectionHeader("Achievements")
+                DatedAchievementChecklist(
                     pack = pack,
                     state = state,
-                    month = date.take(7),
+                    date = date,
                     onEarnedChange = vm::setAchievementEarned,
                 )
             }

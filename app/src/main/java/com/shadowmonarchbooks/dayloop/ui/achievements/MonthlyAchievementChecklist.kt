@@ -27,11 +27,45 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 internal data class MonthlyAchievementRow(
     val id: String,
     val title: String,
-    val media: MediaItem,
+    val media: MediaItem?,
     val checked: Boolean,
     /** Automatically-derived completion stays read-only; manual rows remain reversible. */
     val enabled: Boolean,
 )
+
+/** Achievements expected on one route date, including catalog entries without artwork. */
+internal fun datedAchievementRows(
+    pack: LoadedPack,
+    state: DayloopUiState,
+    date: String,
+): List<MonthlyAchievementRow> {
+    val completedEvents = completedAchievementEvents(
+        anchors = pack.achievementEvents,
+        days = state.days,
+        marks = state.marks,
+        routeId = state.activeRouteId,
+    )
+    return pack.achievements
+        .filter { it.expectedBy == date }
+        .map { achievement ->
+            val progress = achievementProgress(
+                achievement = achievement,
+                currentDate = state.currentDate ?: pack.pack.calendar.startDate,
+                completedEvents = completedEvents,
+                manualUnits = state.achievementCounts[achievement.id] ?: 0,
+                checkedItems = state.achievementChecklist[achievement.id].orEmpty(),
+                selectedChoice = state.achievementChoices[achievement.tracking.stateKey ?: achievement.id],
+            )
+            val manualEarned = achievement.id in state.earnedAchievements
+            MonthlyAchievementRow(
+                id = achievement.id,
+                title = achievement.title,
+                media = achievement.iconMediaRef?.let { ref -> pack.media.firstOrNull { it.id == ref } },
+                checked = manualEarned || progress.completed,
+                enabled = !progress.automatic && progress.available && !progress.completed,
+            )
+        }
+}
 
 /**
  * Resolve the guide's month-anchored achievement art against the same
@@ -72,7 +106,7 @@ internal fun monthlyAchievementRows(
                 media = media,
                 checked = manualEarned || progress?.completed == true,
                 enabled = manualEarned ||
-                    (progress?.available != false && progress?.completed != true),
+                    (progress?.automatic != true && progress?.available != false && progress?.completed != true),
             )
         }
 }
@@ -103,6 +137,39 @@ internal fun MonthlyAchievementChecklist(
     ) {
         monthlyAchievementRows(pack, state, month)
     }
+    AchievementChecklistRows(pack, rows, onEarnedChange, modifier)
+}
+
+/** Route-date checklist used by Today and day detail instead of month-end dumping. */
+@Composable
+internal fun DatedAchievementChecklist(
+    pack: LoadedPack,
+    state: DayloopUiState,
+    date: String,
+    onEarnedChange: (String, Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val rows = remember(
+        pack,
+        date,
+        state.currentDate,
+        state.marks,
+        state.earnedAchievements,
+        state.achievementCounts,
+        state.achievementChecklist,
+        state.achievementChoices,
+        state.activeRouteId,
+    ) { datedAchievementRows(pack, state, date) }
+    AchievementChecklistRows(pack, rows, onEarnedChange, modifier)
+}
+
+@Composable
+private fun AchievementChecklistRows(
+    pack: LoadedPack,
+    rows: List<MonthlyAchievementRow>,
+    onEarnedChange: (String, Boolean) -> Unit,
+    modifier: Modifier,
+) {
     if (rows.isEmpty()) return
 
     val skin = LocalSkin.current
@@ -122,11 +189,13 @@ internal fun MonthlyAchievementChecklist(
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier.skinDecor("panel").padding(horizontal = 8.dp, vertical = 6.dp),
                 ) {
-                    MediaImage(
-                        assetPath = pack.assetOf(row.media),
-                        title = row.title,
-                        size = 38.dp,
-                    )
+                    row.media?.let { media ->
+                        MediaImage(
+                            assetPath = pack.assetOf(media),
+                            title = row.title,
+                            size = 38.dp,
+                        )
+                    }
                     Text(
                         text = row.title,
                         style = MaterialTheme.typography.bodyMedium,

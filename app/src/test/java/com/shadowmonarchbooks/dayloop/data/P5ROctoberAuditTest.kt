@@ -25,7 +25,7 @@ class P5ROctoberAuditTest {
         val root = contentPacksDir() ?: return
         val p5r = PackLoader.load(root.resolve("p5r"))
         assertEquals(emptyList(), p5r.parseIssues)
-        assertEquals(11, p5r.pack?.contentVersion)
+        assertEquals(12, p5r.pack?.contentVersion)
 
         val days = p5r.walkthroughs.flatMap { it.file.days }
             .filter { it.date.startsWith("2016-10") }
@@ -62,7 +62,7 @@ class P5ROctoberAuditTest {
         assertEquals(mapOf("kindness" to 7), gain("2016-10-22", "Duhvengers"))
         assertEquals(mapOf("knowledge" to 2), gain("2016-10-23", "Sunday drink"))
         assertEquals(mapOf("knowledge" to 2), gain("2016-10-24", "class question"))
-        assertEquals(mapOf("charm" to 5), gain("2016-10-24", "Exam results"))
+        assertEquals(mapOf("charm" to 5), gain("2016-10-24", "exam results"))
         assertEquals(mapOf("charm" to 3), gain("2016-10-25", "Gambla Goemon"))
         assertEquals(mapOf("charm" to 3), gain("2016-10-27", "Gambla Goemon"))
         assertEquals(mapOf("proficiency" to 5), gain("2016-10-29", "Woman in the Dark"))

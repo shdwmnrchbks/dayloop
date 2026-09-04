@@ -7,7 +7,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RBathhouseAuditTest {
@@ -36,8 +35,8 @@ class P5RBathhouseAuditTest {
         assertTrue(description.contains("bathhouse", ignoreCase = true))
         assertTrue(description.contains("rainy", ignoreCase = true))
         assertTrue(description.contains("snowy", ignoreCase = true))
-        assertEquals(AchievementTrackingTypes.MANUAL, achievement.tracking.type)
-        assertNull(achievement.expectedBy, "The overheated result is conditional and must not become a guaranteed completion-route date")
+        assertEquals(AchievementTrackingTypes.EVENT, achievement.tracking.type)
+        assertEquals("2016-06-21", achievement.expectedBy)
 
         assertTrue(
             loaded.deadlines?.deadlines.orEmpty().none { it.label.contains("Getting the Vapors", ignoreCase = true) },
