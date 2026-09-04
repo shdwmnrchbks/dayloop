@@ -3,10 +3,30 @@ package com.shadowmonarchbooks.dayloop.ui.achievements
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class AchievementProgressTest {
+
+    @Test
+    fun `only the two compact progress lines belong to the pinned summary`() {
+        val summary = achievementSummaryCopy(
+            earned = 2,
+            total = 53,
+            due = 8,
+            upcoming = 43,
+            currentDate = "2016-04-26",
+            detail = "Long explanation scrolls away.",
+        )
+
+        assertEquals("2 / 53 earned", summary.pinnedEarned)
+        assertEquals("8 due or available · 43 upcoming", summary.pinnedAvailability)
+        assertEquals(
+            "In-game date 2016-04-26. Long explanation scrolls away.",
+            summary.scrollingDetail,
+        )
+    }
 
     @Test
     fun `date anchored achievement becomes due on its date`() {

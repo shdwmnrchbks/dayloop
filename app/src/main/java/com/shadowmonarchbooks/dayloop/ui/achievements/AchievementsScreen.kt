@@ -131,20 +131,24 @@ private fun RuleBasedAchievements(
     val actionableCount = rows.count { !it.earned && it.progress.available }
     val upcomingCount = rows.size - earnedCount - actionableCount
     val autoCount = rows.count { it.progress.completed && it.progress.automatic && !it.manualEarned }
+    val summary = achievementSummaryCopy(
+        earned = earnedCount,
+        total = rows.size,
+        due = actionableCount,
+        upcoming = upcomingCount,
+        currentDate = currentDate,
+        detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
+    )
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         stickyHeader(key = "summary") {
-            AchievementSummary(
-                earned = earnedCount,
-                total = rows.size,
-                due = actionableCount,
-                upcoming = upcomingCount,
-                currentDate = currentDate,
-                detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
-            )
+            AchievementPinnedSummary(summary)
+        }
+        item(key = "summary-detail") {
+            AchievementSummaryDetail(summary.scrollingDetail)
         }
         items(rows, key = { it.achievement.id }) { row ->
             val choiceKey = row.achievement.tracking.stateKey ?: row.achievement.id
@@ -484,6 +488,14 @@ private fun LegacyMediaAchievements(
     val earnedCount = achievements.count { it.id in earnedIds }
     val dueCount = achievements.count { it.id !in earnedIds && achievementIsDue(it, currentDate) }
     val upcomingCount = achievements.size - earnedCount - dueCount
+    val summary = achievementSummaryCopy(
+        earned = earnedCount,
+        total = achievements.size,
+        due = dueCount,
+        upcoming = upcomingCount,
+        currentDate = currentDate,
+        detail = "Availability advances with End Day; earned status is confirmed manually for this pack.",
+    )
     val ordered = remember(achievements, earnedIds, currentDate) {
         achievements.sortedWith(
             compareBy<MediaItem> {
@@ -501,14 +513,10 @@ private fun LegacyMediaAchievements(
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         stickyHeader(key = "summary") {
-            AchievementSummary(
-                earned = earnedCount,
-                total = achievements.size,
-                due = dueCount,
-                upcoming = upcomingCount,
-                currentDate = currentDate,
-                detail = "Availability advances with End Day; earned status is confirmed manually for this pack.",
-            )
+            AchievementPinnedSummary(summary)
+        }
+        item(key = "summary-detail") {
+            AchievementSummaryDetail(summary.scrollingDetail)
         }
         items(ordered, key = { it.id }) { item ->
             LegacyAchievementRow(
@@ -522,15 +530,28 @@ private fun LegacyMediaAchievements(
     }
 }
 
-@Composable
-private fun AchievementSummary(
+internal data class AchievementSummaryCopy(
+    val pinnedEarned: String,
+    val pinnedAvailability: String,
+    val scrollingDetail: String,
+)
+
+/** Exactly two compact progress lines are sticky; explanatory context is not. */
+internal fun achievementSummaryCopy(
     earned: Int,
     total: Int,
     due: Int,
     upcoming: Int,
     currentDate: String,
     detail: String,
-) {
+) = AchievementSummaryCopy(
+    pinnedEarned = "$earned / $total earned",
+    pinnedAvailability = "$due due or available · $upcoming upcoming",
+    scrollingDetail = "In-game date $currentDate. $detail",
+)
+
+@Composable
+private fun AchievementPinnedSummary(summary: AchievementSummaryCopy) {
     val skin = LocalSkin.current
     Surface(
         shape = skin.shapes.card,
@@ -542,22 +563,28 @@ private fun AchievementSummary(
             modifier = Modifier.skinDecor("panel").padding(14.dp),
         ) {
             Text(
-                text = "$earned / $total earned",
+                text = summary.pinnedEarned,
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
             Text(
-                text = "$due due or available · $upcoming upcoming",
+                text = summary.pinnedAvailability,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
-            Text(
-                text = "In-game date $currentDate. $detail",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.78f),
-            )
         }
     }
+}
+
+/** Context scrolls with the list; only the two progress lines above stay pinned. */
+@Composable
+private fun AchievementSummaryDetail(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp),
+    )
 }
 
 @Composable
