@@ -35,6 +35,41 @@ class MetaphorDeadlineAuditTest {
     }
 
     @Test
+    fun `Metaphor timed requests expose independently supported expiry data`() {
+        val deadlines = assertNotNull(loadMetaphor().deadlines).deadlines.associateBy { it.id }
+
+        data class WindowCheck(val id: String, val start: String, val end: String)
+        val windows = listOf(
+            WindowCheck("metaphor.deadline.request.pagans-dilemma", "2100-06-12", "2100-06-16"),
+            WindowCheck("metaphor.deadline.request.hushed-honeybee", "2100-06-12", "2100-06-19"),
+            WindowCheck("metaphor.deadline.request.hatching-a-plan", "2100-06-29", "2100-07-11"),
+            WindowCheck("metaphor.deadline.request.dental-distress", "2100-07-23", "2100-08-09"),
+            WindowCheck("metaphor.deadline.request.efflorescent-youth", "2100-07-23", "2100-08-10"),
+            WindowCheck("metaphor.deadline.request.guiding-gift", "2100-08-19", "2100-08-30"),
+        )
+
+        windows.forEach { check ->
+            val deadline = deadlines.getValue(check.id)
+            assertEquals("request", deadline.kind, check.id)
+            val window = assertNotNull(deadline.window, check.id)
+            assertEquals(check.start, window.start, check.id)
+            assertEquals(check.end, window.end, check.id)
+            assertEquals(null, deadline.date, check.id)
+        }
+
+        val conditionalStarts = mapOf(
+            "metaphor.deadline.request.haunted-heirloom" to "2100-07-30",
+            "metaphor.deadline.request.skullduggery" to "2100-07-30",
+        )
+        conditionalStarts.forEach { (id, dueDate) ->
+            val deadline = deadlines.getValue(id)
+            assertEquals("request", deadline.kind, id)
+            assertEquals(dueDate, deadline.date, id)
+            assertEquals(null, deadline.window, "$id: do not invent a universal start date")
+        }
+    }
+
+    @Test
     fun `Metaphor mandatory story beats are not marked as palace deadlines`() {
         val deadlines = assertNotNull(loadMetaphor().deadlines).deadlines.associateBy { it.id }
         val storyDates = mapOf(
