@@ -8,7 +8,7 @@
       "steps": [
         { "label": "Cook Magical Bread from the campfire moth (or a fallback dish).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Continue 'The Future of Magic' (answer: immediately is too rash).", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
-        { "label": "Run through Gracia Forest — the mobs are low level; sweep it fully.", "slot": "afternoon" }
+        { "label": "Run through Gracia Forest — sweep it fully and collect the Gold Beetle in the far northeast before leaving.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -37,7 +37,7 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Brilehaven turn-in spree: Dragonthistle Berries, Toothbrush of Hygienia (pays a Gold Beetle), Ebony Horn, Fatolich report, Chalice of Legends, and the tower deed.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "courage": 20 } },
+        { "label": "Brilehaven turn-in spree: give the Toothbrush of Hygienia to the Sullen Man to complete Dental Distress and receive its missable Gold Beetle; also turn in Dragonthistle Berries, Ebony Horn, the Fatolich report, Chalice of Legends, and the tower deed.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "courage": 20 } },
         { "label": "Accompany Strohl to negotiate with Lord Hydran (Follower rank 7).", "slot": "afternoon" },
         { "label": "Help Heismay search the eugief village for his son's urn (Follower rank 6).", "slot": "night" }
       ]
@@ -189,7 +189,7 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Turn in 'A Guiding Gift' to the Hoarse Fisher-Crone, take Edeni's 'The Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Turn in 'A Guiding Gift' to the Hoarse Fisher-Crone, take Edeni's 'The Trial of Malnova', and collect the Clumsy Boy's post-temple Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "At Amblyrhy's Water Jug, buy both Queen's Honey Jars (10,000 reeve each); the shop only stocks two.", "slot": "afternoon" },
         { "label": "With Wisdom rank 4 secured, hear Hulkenberg out about her next trial (Follower rank 7).", "slot": "afternoon" },
         { "label": "At night, pass time at the View of the Beach on Virga Island.", "slot": "night", "statGains": { "imagination": 13 } },
@@ -221,7 +221,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Cook Holistic Whitefish Platter; sit with Heismay (Follower rank 8).", "slot": "afternoon" },
-        { "label": "Clear the Land of Ceremony — sweep every trance crystal; Eupha's Summon Dragon God synthesis makes the boss simple (Follower rank 1).", "slot": "afternoon", "statGains": { "wisdom": 10 } }
+        { "label": "Clear the Land of Ceremony — sweep every trance crystal and collect the Gold Beetle in the east-side room near the cat before the boss; Eupha's Summon Dragon God synthesis makes the fight simple (Follower rank 1).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "wisdom": 10 } }
       ]
     },
     {
@@ -230,7 +230,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for Orbwise Path; cook Sweeter than Poison and meditate with Eupha.", "slot": "afternoon", "statGains": { "imagination": 13 } },
-        { "label": "Orbwise Path: two Gold Beetles and the Heartwarmers from the Anxious Soldier.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Orbwise Path: collect both Gold Beetles — one on the east side of 1F near the chests and one on the upper second-floor route from the north — plus the Heartwarmers from the Anxious Soldier.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Junah shows herself after the boss (Follower rank 1).", "slot": "afternoon", "spoiler": true },
         { "label": "Show Neuras the lost relic (Follower rank 4).", "slot": "night" }
       ]
@@ -261,7 +261,7 @@
       "steps": [
         { "label": "At Akademeia, turn in More's Task Chapter Five: Resolve after studying 25 Archetypes — More reaches Follower rank 7 and Chapter Six: The End opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
-        { "label": "Climb the Spire of Blind Faith — permanent storm weather; the Stormy Sea Ring cuts the damage.", "slot": "afternoon" }
+        { "label": "Climb the Spire of Blind Faith — permanent storm weather; collect the Gold Beetle on the sixth floor and use the Stormy Sea Ring to cut the damage.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -270,6 +270,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Report to the Dejected Man that his sister is safe.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Warp to Grand Trad and collect the new post-8/19 Gold Beetle beside the desk inside Comfort Concoctions.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Explore Brilehaven with Eupha (Follower rank 2); collect the gamble winnings.", "slot": "afternoon" },
         { "label": "Shop with Junah (Follower rank 2).", "slot": "night" }
       ]

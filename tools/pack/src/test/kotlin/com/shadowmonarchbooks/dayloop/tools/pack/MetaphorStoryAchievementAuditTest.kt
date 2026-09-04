@@ -109,7 +109,8 @@ class MetaphorStoryAchievementAuditTest {
     fun `All That Glitters route performs the required beetle exchange`() {
         val cleanup = day("2100-10-13").steps.joinToString("\n") { it.label }
         assertTrue(cleanup.contains("Elderly Entomophile", ignoreCase = true))
-        assertTrue(cleanup.contains("at least 46 Gold Beetles", ignoreCase = true))
+        assertTrue(cleanup.contains("all 50", ignoreCase = true))
+        assertTrue(cleanup.contains("46 are enough", ignoreCase = true))
         assertTrue(cleanup.contains("All That Glitters unlocks", ignoreCase = true))
     }
 

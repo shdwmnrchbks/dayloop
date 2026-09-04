@@ -83,6 +83,12 @@
       "label": "The Magical Future — missable book from Julian",
       "kind": "missable",
       "window": { "start": "2100-07-23", "end": "2100-08-13" }
+    },
+    {
+      "id": "metaphor.deadline.missable.dental-distress",
+      "label": "Dental Distress — missable Gold Beetle reward",
+      "kind": "missable",
+      "window": { "start": "2100-07-23", "end": "2100-08-09" }
     }
   ]
 }

@@ -8,7 +8,7 @@
       "steps": [
         { "label": "Fight through Tradia Desert toward the Royal Capital, looting the two Medicinal Herbs on the way.", "slot": "afternoon" },
         { "label": "Take the Recruitment Centre interview — the second answer sets your starting stats; Magic or Agility is suggested.", "slot": "afternoon" },
-        { "label": "Before queueing for equipment, grab the Gold Beetle in the hallway to your right.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Before queueing for equipment, take the Recruitment Centre's left passage and turn around for the Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -45,7 +45,7 @@
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Switch to the Healer Archetype for More's Task, update gear on Sunshade Row, and pick up two Gold Beetles behind the shops.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Switch to the Healer Archetype for More's Task, update gear on Sunshade Row, then collect Grand Trad's two remaining early Gold Beetles: the Sunshade Row alley behind the armour shop and the spice bag inside Comfort Concoctions.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Attend the royal funeral — the ceremony goes wrong and the cathedral mission begins.", "slot": "afternoon", "spoiler": true },
         { "label": "Hulkenberg joins the party (Follower rank 1); Gallica reaches rank 2.", "slot": "afternoon", "spoiler": true }
       ]
@@ -107,7 +107,7 @@
       "weekday": "watersday",
       "dayKind": "free",
       "steps": [
-        { "label": "Hunt the Maneater Manjula in Tradia Desert; check the bush by the rock pile for a Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Hunt the Maneater Manjula in Tradia Desert; check the northeast bush by the rock pile for the Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -202,7 +202,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Arrive in Martira; Bardon treats you to dinner and briefs the kidnapping case.", "slot": "night", "spoiler": true },
-        { "label": "Gold Beetles: tavern fireplace, guest-room cupboard, and the desk pitcher.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Visca Alba Tavern has exactly two early Gold Beetles: inspect the fireplace, then the guest-room desk/water pitcher. The cupboard is not a Beetle.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -221,7 +221,7 @@
         { "label": "Martira errands: stolen-memento chain, 'Hatching a Plan', the imp bounty, and informant info.", "slot": "afternoon" },
         { "label": "Discount Day at Stairstone Market — update equipment.", "slot": "afternoon" },
         { "label": "Depart for Imp's Den; train with Hulkenberg on deck (Follower rank 3).", "slot": "afternoon" },
-        { "label": "Clear Imp's Den — leave one goborn alive before focusing the Goborn King.", "slot": "afternoon" }
+        { "label": "Clear Imp's Den — leave one goborn alive before focusing the Goborn King, and collect the Gold Beetle on the northwest log before leaving.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {

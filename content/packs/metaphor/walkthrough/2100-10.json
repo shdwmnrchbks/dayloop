@@ -30,7 +30,7 @@
       "steps": [
         { "label": "Harvest the Plant Culture Chamber — a Tail Bait may turn up.", "slot": "afternoon" },
         { "label": "Hear Eupha out (Follower rank 8).", "slot": "afternoon" },
-        { "label": "Clear the Manor of the Ascendant; find the Gold Beetle before the climb and slay the Kokamordos.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Clear the Manor of the Ascendant; on 2F use the crawl-space route to collect its Gold Beetle before the climb, then slay the Kokamordos.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -65,7 +65,7 @@
       "weekday": "watersday",
       "dayKind": "free",
       "steps": [
-        { "label": "Clear the Abandoned Path — the Gold Beetle sits along the left wall at the map's north center; Catherina softens the boss.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Clear the Abandoned Path — collect the Gold Beetle in the northern area along the left wall, then let Catherina soften the boss.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -91,7 +91,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Ask Edeni to clear the Spire of Blind Faith's weather, then set course for the spire for Trial of the Dragon: Heroes' Rest.", "slot": "afternoon" },
+        { "label": "Ask Edeni to clear the Spire of Blind Faith's weather, then set course for the spire for Trial of the Dragon: Heroes' Rest. If the 6F Gold Beetle was missed on 8/27, collect it now.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Climb to the rooftop and defeat the Devourer of Flames; Heroes' Rest completes.", "slot": "afternoon", "spoiler": true }
       ]
     },
@@ -100,7 +100,7 @@
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy; defeat the Ziocropos on the way up for 'Proof of Power'.", "slot": "afternoon" },
+        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy; collect the Gold Beetle on the north side of 2F and defeat the Ziocropos on the way up for 'Proof of Power'.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Defeat the Devourer of Stars; Bygone Legacy completes and Trial of the Dragon: Essence of Power opens.", "slot": "afternoon", "spoiler": true },
         { "label": "At night, report the Ziocropos to the Obsessive Soldier to complete 'Proof of Power', then soak at the Blue Sky Bridge hot spring and collect water for the Gentle Merchant.", "slot": "night", "statGains": { "courage": 10 } }
       ]
@@ -110,7 +110,7 @@
       "weekday": "watersday",
       "dayKind": "story",
       "steps": [
-        { "label": "Return the hot spring water to the Gentle Merchant at Blue Sky Bridge to complete 'Deliver Hot Spring Water' — the reward is your final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Return the hot spring water to the Gentle Merchant at Blue Sky Bridge to complete 'Deliver Hot Spring Water' — the reward is the route's 50th and final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Optional: if you still have spare Tail Bait, fish for extra Lord of the Lake or Queen's Honey Jars; the first-playthrough recipe inventory was already secured before Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
         { "label": "Return to the Dragon Temple for Trial of the Dragon: Essence of Power; avoid repel gear and defeat the Elegy of the Soul.", "slot": "afternoon", "spoiler": true },
         { "label": "Complete Essence of Power after the three dragon trials — Entrusted unlocks.", "slot": "afternoon", "spoiler": true }
@@ -121,7 +121,7 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Warp to Brilehaven's Arenafront Wharf and give the Elderly Entomophile at least 46 Gold Beetles for every exchange reward — All That Glitters unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Warp to Brilehaven's Arenafront Wharf and hand all collected Gold Beetles to the Elderly Entomophile. The route has all 50; 46 are enough for every exchange reward, and All That Glitters unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "At Akademeia, begin the final Special Experiment cleanup for every Masked Dancer mask and Summoner vessel — the first experiment unlocks For Science!.", "slot": "afternoon" },
         { "label": "For missing materials, use the Wary Shopkeep's weekday-rotating Arcana White Masks in Brilehaven and Krozelli's purchasable talismans on Virga Island; do not assume Talisman of the Divine is Skybound-only.", "slot": "afternoon" },
         { "label": "Begin the coliseum grind in Brilehaven.", "slot": "afternoon" }

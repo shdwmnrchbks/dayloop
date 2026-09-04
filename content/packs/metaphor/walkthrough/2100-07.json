@@ -67,7 +67,7 @@
         { "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request'.", "slot": "afternoon" },
         { "label": "At Akademeia, study Gunner and Merchant, turn in More's Task Chapter One: Ordeal — More reaches Follower rank 3.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "With Merchant at rank 15, immediately turn in More's Task Chapter Two: Solitude — More reaches Follower rank 4 and Chapter Three: Drifting opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Restock supplies and continue toward the bounty mark.", "slot": "afternoon" }
+        { "label": "Clear Man-Eater's Grotto for the bounty; on B5 collect the Gold Beetle between the two northern stairs before leaving.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -188,7 +188,7 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Arrive in Brilehaven and sweep the local Gold Beetles: the alley crates off Seabreeze Street and the dock ramp by the ferryman.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Arrive in Brilehaven and collect all five immediately available town Gold Beetles: both Seabreeze Street crate spots, both Merchants' Bazaar crate/alley spots, and the northeast crates at Arenafront Wharf.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Big Bargain Day shopping at Merchants' Bazaar.", "slot": "afternoon" }
       ]
     },
@@ -198,7 +198,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Quest warp-around: capital merchant for Strohl's inheritance, then deliver the flowers to Brilehaven's Kindly Boy.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
-        { "label": "Martira sweep: two Gold Beetles, Benevolent Bread delivery, and Bardon has something to discuss (Follower rank 2).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Martira errands: deliver Benevolent Bread and talk with Bardon (Follower rank 2). If the Visca Alba guest-room Beetle failed to appear on 6/27, recheck the desk/water pitcher now; there are no two new Martira Beetles yet.", "slot": "afternoon" },
         { "label": "Hear the Elegant Performer's music and take the Gambling Man's wager.", "slot": "night" }
       ]
     },
@@ -216,7 +216,7 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Brilehaven errand sweep: 'Soldier's Solace', Julian's missable book, 'Deeds and Diversions', 'Briny Threads' plus a Tail Bait, and the Brewer's request.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
+        { "label": "Brilehaven errand sweep: accept 'Dental Distress' from the Sullen Man on Seabreeze Street, plus 'Soldier's Solace', 'Deeds and Diversions', 'Briny Threads' with Tail Bait, and the Brewer's request. Dental Distress expires August 9 and rewards a missable Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
         { "label": "Julian hands over 'The Future of Magic' — collect it now for this route; it remains available through August 13.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" },
         { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
@@ -277,7 +277,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart on the three-dungeon road trip toward the Tomb of Lament via Inundo; cook Coney Stew; lend Hulkenberg an ear (Follower rank 6).", "slot": "afternoon" },
-        { "label": "Inundo stop: Toothbrush of Hygienia, Mellow Milk, the Briny equipment set.", "slot": "afternoon" },
+        { "label": "Inundo stop: buy the Toothbrush of Hygienia for Dental Distress, plus Mellow Milk and the Briny equipment set.", "slot": "afternoon" },
         { "label": "Campfire, then a heart-to-heart with Heismay (Follower rank 5).", "slot": "night" }
       ]
     },
@@ -289,7 +289,7 @@
         { "label": "Cook Curative Coney Roast, then read 'The Future of Magic' (best response: 'It won't work for everyone.').", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
         { "label": "Stop by the Peregrine Falls.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 3 (Knowledgeable).", "slot": "afternoon" },
-        { "label": "Tomb of Lament: two Gold Beetles and Neuras' lost relic — hug the left wall and mind the crawl spaces.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Tomb of Lament: collect both B2 Gold Beetles via the crawl-space routes and recover Neuras' lost relic.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "After returning, show the recovered relic to Neuras — he reaches Follower rank 3 and the next relic search opens.", "slot": "night" }
       ]
     }

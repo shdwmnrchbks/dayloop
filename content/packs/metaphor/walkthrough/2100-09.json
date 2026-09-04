@@ -82,7 +82,7 @@
         { "label": "Finish 'How to Walk Outside the Island'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 26 } },
         { "label": "Tolerance reaches rank 5 (Saviour).", "slot": "afternoon" },
         { "label": "Pass the Murky Graveyard.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Two Gold Beetles along the Lunlumo Approach.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "On arrival in Altabury, collect five Gold Beetles: both Lunlumo Approach spots (east sidewalk and the dead-end stairs), Blue Sky Bridge between the weapon and item shops, Opera House Square at the end of the bridge, and after dark the cauldron pot inside Whitepeaks Magic Shop.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -90,7 +90,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Gold Beetle in the Skyward Tavern corner; take 'Village Trading: Altabury Heights' from the Informant.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Collect Altabury's sixth town Gold Beetle beside the barrels and fruit in the Skyward Tavern corner; take 'Village Trading: Altabury Heights' from the Informant.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Dia Franco Street shopping: Brocaded Koi from the Dedicated Butcher and the frayed goods for trading.", "slot": "afternoon" },
         { "label": "Attend the Opera House — the production turns into a duel to the death.", "slot": "afternoon", "spoiler": true }
       ]
@@ -174,7 +174,7 @@
         { "label": "Cook Cursed Loved Ballad (or pack Hex cleansers) and fly to Mt. Vulkano for Eupha's request.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Continue the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } },
         { "label": "Imagination reaches rank 5 (Demiurgic).", "slot": "afternoon" },
-        { "label": "Clear Mt. Vulkano for 'Wayward Shepherd'; collect its Gold Beetle, Neuras' out-of-order relic, and the Rusty Greatsword before the boss.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "eloquence": 10 } }
+        { "label": "Clear Mt. Vulkano for 'Wayward Shepherd'; collect its Gold Beetle in the same area as Neuras' out-of-order relic, and take the Rusty Greatsword before the boss.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "eloquence": 10 } }
       ]
     },
     {
@@ -185,7 +185,7 @@
         { "label": "Fly to Everfrost Forest; cook Indestructible Honey Cake (save one for a request).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Cook the first 20 recipes once each — this unlocks the 21st recipe, Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Chat with Basilio (Follower rank 3), then stop at Solstice Crossing on the way.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Clear Everfrost Forest for 'The Fiend in the Frozen Forest'; collect its Gold Beetle and Neuras' lost relic before defeating Icebeast Chimenzahn.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Clear Everfrost Forest for 'The Fiend in the Frozen Forest'; collect the Gold Beetle at the far southwest and Neuras' lost relic before defeating Icebeast Chimenzahn.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -203,7 +203,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Finish the 'Literacy Workbook' — with all seven books complete, Bookworm unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 26 } },
-        { "label": "Clear Scoundrel's Hold — lost relic and Gold Beetle inside; the mobs are small fries.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Clear Scoundrel's Hold — collect the Gold Beetle on B2 via the ladder from B3, recover the lost relic, then finish the dungeon.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -232,7 +232,7 @@
       "steps": [
         { "label": "Browse the upgraded Sunshade Row stock and grab a Soothing Sweetbun.", "slot": "afternoon" },
         { "label": "Take the stage at Regalith Grand Cathedral — push Louis to the story threshold.", "slot": "afternoon", "spoiler": true },
-        { "label": "Set course for the Ancient Eldan Sanctum; collect the one-time Gold Beetle before entering the Prayer Room.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "spoiler": true },
+        { "label": "Set course for the Ancient Eldan Sanctum; in the Plaza of Light collect the one-time Gold Beetle beside the collapsed house before entering the Prayer Room.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "spoiler": true },
         { "label": "At the Altar of Secret History, reject the false ending and study the Prince Archetype — His Majesty unlocks.", "slot": "afternoon", "spoiler": true },
         { "label": "Gallica reaches Follower rank 8.", "slot": "afternoon" }
       ]
@@ -242,7 +242,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Return to Grand Trad; More's deciphered scrolls unlock the Royal Archetypes at Akademeia.", "slot": "afternoon" }
+        { "label": "Return to Grand Trad; collect the newly available Gold Beetle at the east-side food stall in the Regalith Grand Cathedral area, then visit Akademeia as More's deciphered scrolls unlock the Royal Archetypes.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -262,7 +262,7 @@
       "weekday": "watersday",
       "dayKind": "free",
       "steps": [
-        { "label": "Visit the recovered Bardon (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Visit the recovered Bardon (Follower rank 8), then collect Martira's two post-9/26 Gold Beetles: left of the Cattleracket Road staircase and just off-screen to the right of MesmerEyes Apothecary.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Hear Catherina's announcement to her paripus mates (Follower rank 8).", "slot": "night" }
       ]
     },
@@ -292,7 +292,7 @@
         { "label": "Depart for the Disgraced Ruins; cook Sublime Spoonful, the 21st and final recipe — King of Cuisine unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Plant seeds in the Plant Culture Chamber, then stop at Malibelo Slope on the route.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 5 (Sagacious).", "slot": "afternoon" },
-        { "label": "Clear Disgraced Ruins; before the boss, master any Elite Archetype and turn in 'More's Task Chapter Six: The End' — More reaches Follower rank 8.", "slot": "afternoon", "statGains": { "imagination": 10 }, "spoiler": true }
+        { "label": "At Disgraced Ruins, collect the Gold Beetle just west of the dungeon entrance; before the boss, master any Elite Archetype and turn in 'More's Task Chapter Six: The End' — More reaches Follower rank 8.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "imagination": 10 }, "spoiler": true }
       ]
     }
   ]
