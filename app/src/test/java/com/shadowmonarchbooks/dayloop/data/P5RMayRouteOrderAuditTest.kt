@@ -83,8 +83,8 @@ class P5RMayRouteOrderAuditTest {
             may20.steps.single { "top 10" in it.label }.statGains,
         )
         assertTrue(may20.steps.any { "Tough Belt" in it.label })
-        val palaceCombat = may20.steps.single { "Third museum infiltration" in it.label }
-        assertTrue("not the final Madarame boss" in palaceCombat.label)
+        val palaceCombat = may20.steps.single { "third museum infiltration" in it.label }
+        assertTrue("not the final Madarame boss" in palaceCombat.tip.orEmpty())
 
         assertEquals(
             mapOf("kindness" to 5),
