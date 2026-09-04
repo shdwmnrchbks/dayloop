@@ -22,7 +22,7 @@
       "id": "metaphor.deadline.mission.kriegante-castle",
       "label": "Apprehend the Real Kidnapper — Martira operation window",
       "kind": "palace",
-      "window": { "start": "2100-06-23", "end": "2100-07-16" }
+      "window": { "start": "2100-07-05", "end": "2100-07-16" }
     },
     {
       "id": "metaphor.deadline.mission.charadrius",
