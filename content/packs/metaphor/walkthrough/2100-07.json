@@ -44,7 +44,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Martira prep: take 'The Man-Eater in the Mine', buy informant notes, and stock up at Cattleracket Road.", "slot": "afternoon" },
-        { "label": "Return to Kriegante Castle and settle the castle trials.", "slot": "afternoon", "spoiler": true }
+        { "label": "Return to Kriegante Castle and settle the castle trials; use the dungeon time to push Merchant to rank 15 for More's Chapter Two task.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -64,6 +64,8 @@
       "steps": [
         { "label": "Set off for Man-Eater's Grotto; read 'Pride and Persuasion' (choice: scare them).", "slot": "afternoon", "activityRef": "metaphor.activity.book.pride-and-persuasion", "statGains": { "eloquence": 10 } },
         { "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request'.", "slot": "afternoon" },
+        { "label": "At Akademeia, study Gunner and Merchant, turn in More's Task Chapter One: Ordeal — More reaches Follower rank 3.", "slot": "afternoon", "statGains": { "imagination": 10 } },
+        { "label": "With Merchant at rank 15, immediately turn in More's Task Chapter Two: Solitude — More reaches Follower rank 4 and Chapter Three: Drifting opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Restock supplies and continue toward the bounty mark.", "slot": "afternoon" }
       ]
     },
@@ -224,7 +226,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Debate Glodell at the King's Rock (answer: you only parrot Louis).", "slot": "afternoon", "statGains": { "eloquence": 11, "imagination": 5 } },
-        { "label": "Accompany Heismay to his village (Follower rank 4).", "slot": "night" }
+        { "label": "Accompany Heismay to his village (Follower rank 4).", "slot": "night" },
+        { "label": "Before tomorrow's operation, make sure at least 15 distinct Archetypes have been studied for More's Chapter Three task.", "slot": "night" }
       ]
     },
     {
@@ -232,6 +235,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
+        { "label": "At Akademeia, turn in More's Task Chapter Three: Drifting after studying 15 Archetypes — More reaches Follower rank 5 and Chapter Four: Turmoil opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Infiltrate Charadrius — a chain of boss battles; Tetrabreak is the one item that matters, set the team from the informant notes.", "slot": "afternoon", "spoiler": true }
       ]
     },
@@ -283,7 +287,8 @@
         { "label": "Cook Curative Coney Roast, then read 'The Future of Magic'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
         { "label": "Stop by the Peregrine Falls.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 3 (Knowledgeable).", "slot": "afternoon" },
-        { "label": "Tomb of Lament: two Gold Beetles and Neuras' lost relic — hug the left wall and mind the crawl spaces.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Tomb of Lament: two Gold Beetles and Neuras' lost relic — hug the left wall and mind the crawl spaces.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "After returning, show the recovered relic to Neuras — he reaches Follower rank 3 and the next relic search opens.", "slot": "night" }
       ]
     }
   ]
