@@ -291,6 +291,7 @@
         },
         {
           "label": "Explore Mementos — all 6 requests and every Stamp; collect 20 Aluminum Sheets and 10 Liquid Mercury",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -319,6 +320,48 @@
             "proficiency": 7
           },
           "slot": "evening"
+        },
+        {
+          "label": "Complete request: Winners Don't Use Cheats",
+          "groupLabel": "Infiltration",
+          "tip": "Return to Shadow Nejima in Akzeriyyuth Area 5 after unlocking Shinya's Down Shot. Down Shot is the required way to knock it down; the clear reward is the Null Phys skill card.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Debunking the Psychic!",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Fukurai in Kaitul Area 3. It is weak to Ice and Bless; the clear reward is Prophet's Hand.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: The Killer Who Cleans Up Trash",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Kiritani in Akzeriyyuth Area 12. It has no weakness; the clear reward is the High Counter skill card needed for the final Strength rank.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Daughter's Just a Meal Ticket",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat both Shadows Magario in Adyeshach Area 3. The father is weak to Fire and the mother to Ice; the clear reward is the Growth 3 skill card.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Shady Deal in the Shadows",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Tsuda in Kaitul Area 4. It has no weakness; the clear reward is the Weird Wrap armor.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: A Mother's Aggression",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Oda in Adyeshach Area 11. It is weak to Fire; the clear reward is a Soma.",
+          "spoiler": true,
+          "slot": "afternoon"
         }
       ]
     },
@@ -380,6 +423,7 @@
         },
         {
           "label": "Save first, then clear the 'Money-Grubbing Uncle' boss with Futaba outside LeBlanc",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },

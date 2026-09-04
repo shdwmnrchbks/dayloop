@@ -9,6 +9,7 @@ content/packs/p5r/
   activities.json           # repeatable/named activities
   deadlines.json            # palace / exam / missable gates
   answers.json              # exam + class-question answer sheets (optional)
+  mementos-requests.json    # request metadata + exact completion-task anchors (optional)
   media.json                # graphic manifest: every bundled images/ file + anchors (optional)
   walkthrough/
     2016-04.json            # default route: one file per month, YYYY-MM.json
@@ -46,6 +47,19 @@ content/packs/p5r/
   questions may also land on days tagged `free` (e.g. Saturday-class weeks).
   Keep walkthrough step labels free of the answers themselves — the sheet is
   the single source of truth.
+
+## Mementos requests
+
+- `mementos-requests.json` carries request identity, route receipt/completion
+  dates, optional target/location/reward facts, and one `completionEvent` per
+  request.
+- Every event uses a date plus a `labelContains` selector. Lint requires that
+  selector to match exactly one walkthrough task on that route and requires
+  every request to reference a declared event.
+- Point the event only at the task that resolves the request. Receipt,
+  investigation, and failed-attempt tasks must never be used as completion
+  anchors. Append new companion tasks to an existing day so saved step indexes
+  remain stable.
 
 ## Theme & vocabulary (docs/ROADMAP-v2.md Phase 10)
 

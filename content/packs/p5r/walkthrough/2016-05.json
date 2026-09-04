@@ -171,6 +171,7 @@
         },
         {
           "label": "Forced Mementos run (first request) — leave at level 12",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -181,6 +182,13 @@
             "knowledge": 5
           },
           "slot": "evening"
+        },
+        {
+          "label": "Complete request: Beware the Clingy Ex-boyfriend",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Nakanohara in Qimranut Area 1. It is weak to Electricity; the clear reward is an Adhered Pearl.",
+          "spoiler": true,
+          "slot": "afternoon"
         }
       ]
     },

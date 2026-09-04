@@ -20,6 +20,15 @@ class CalendarInteractionTest {
     }
 
     @Test
+    fun `calendar returns to the month used to open a day`() {
+        val months = listOf("2016-04", "2016-05", "2016-06")
+
+        assertEquals(1, resolvedCalendarMonthIndex(months, "2016-05", "2016-04-15"))
+        assertEquals(0, resolvedCalendarMonthIndex(months, null, "2016-04-15"))
+        assertEquals(0, resolvedCalendarMonthIndex(months, "2099-01", "2016-04-15"))
+    }
+
+    @Test
     fun `slash calendar places only month opener art on deadline due dates`() {
         val opener = MediaItem("month", "month.png", MediaKinds.MONTH, "Month opener")
         val schedule = MediaItem(

@@ -30,9 +30,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -88,6 +86,18 @@ internal fun monthIndexAfterSwipe(
     else -> (current - 1).coerceAtLeast(0)
 }
 
+/** Prefer the month the user was browsing; fall back to the profile clock only when absent. */
+internal fun resolvedCalendarMonthIndex(
+    months: List<String>,
+    selectedMonth: String?,
+    currentDate: String?,
+): Int {
+    if (months.isEmpty()) return 0
+    return months.indexOf(selectedMonth).takeIf { it >= 0 }
+        ?: months.indexOf(currentDate?.take(7)).takeIf { it >= 0 }
+        ?: 0
+}
+
 /** The P5R month-opener graphic replaces the generic marker on due dates. */
 internal fun slashDeadlineMarkerItems(
     month: String,
@@ -110,6 +120,8 @@ internal fun slashDeadlineMarkerItems(
 @Composable
 fun MonthScreen(
     vm: DayloopViewModel,
+    selectedMonth: String? = null,
+    onSelectedMonthChange: (String) -> Unit = {},
     onOpenDay: (String) -> Unit,
 ) {
     val state by vm.state.collectAsState()
@@ -123,11 +135,7 @@ fun MonthScreen(
         return
     }
 
-    var index by remember(pack.slug) {
-        mutableIntStateOf(
-            months.indexOf(state.currentDate?.take(7)).takeIf { it >= 0 } ?: 0,
-        )
-    }
+    val index = resolvedCalendarMonthIndex(months, selectedMonth, state.currentDate)
     val month = months[index]
     val skin = LocalSkin.current
     val markerItems = when {
@@ -165,12 +173,13 @@ fun MonthScreen(
                         dragPx += amount
                     },
                     onDragEnd = {
-                        index = monthIndexAfterSwipe(
+                        val next = monthIndexAfterSwipe(
                             current = index,
                             last = months.lastIndex,
                             dragPx = dragPx,
                             thresholdPx = swipeThresholdPx,
                         )
+                        if (next != index) onSelectedMonthChange(months[next])
                     },
                     onDragCancel = { dragPx = 0f },
                 )
@@ -183,7 +192,7 @@ fun MonthScreen(
             modifier = Modifier.fillMaxWidth(),
         ) {
             IconButton(
-                onClick = { if (index > 0) index-- },
+                onClick = { if (index > 0) onSelectedMonthChange(months[index - 1]) },
                 enabled = index > 0,
                 modifier = Modifier.align(Alignment.CenterStart),
             ) {
@@ -191,7 +200,7 @@ fun MonthScreen(
             }
             SkinHeader(text = formatMonth(month))
             IconButton(
-                onClick = { if (index < months.lastIndex) index++ },
+                onClick = { if (index < months.lastIndex) onSelectedMonthChange(months[index + 1]) },
                 enabled = index < months.lastIndex,
                 modifier = Modifier.align(Alignment.CenterEnd),
             ) {

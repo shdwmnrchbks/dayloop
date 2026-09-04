@@ -102,7 +102,7 @@ fun TodayScreen(
     vm: DayloopViewModel,
     onOpenSettings: () -> Unit,
     onOpenActivity: (String) -> Unit = {},
-    onOpenAnswers: () -> Unit = {},
+    onOpenAnswers: (() -> Unit)? = null,
     onDatePinnedChange: (Boolean) -> Unit = {},
 ) {
     val state by vm.state.collectAsState()

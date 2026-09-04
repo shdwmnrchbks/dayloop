@@ -100,6 +100,20 @@
             "charm": 3
           },
           "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: The Bark and Bite of a Bully",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Takanashi in Aiyatsbus Area 2. The clear reward is Protein.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: If Cats Disappeared from the City",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Aino in Aiyatsbus Area 6. It is weak to Wind; the clear reward is the Blood Scimitar.",
+          "spoiler": true,
+          "slot": "afternoon"
         }
       ]
     },

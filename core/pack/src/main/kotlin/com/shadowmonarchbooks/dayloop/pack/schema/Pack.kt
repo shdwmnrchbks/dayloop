@@ -112,6 +112,8 @@ data class Capabilities(
     val weather: Boolean = false,
     /** Pack ships structured answer sheets (exams + class questions) in answers.json. */
     val answers: Boolean = false,
+    /** Pack ships a task-linked Mementos request catalog. */
+    val mementosRequests: Boolean = false,
 )
 
 @Serializable

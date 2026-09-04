@@ -320,6 +320,7 @@
         },
         {
           "label": "Explore Mementos — all 4 requests and every Stamp; open every chest with the Perma-Pick; raise Jose's EXP to 160%",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -334,6 +335,34 @@
         {
           "label": "Bring a non-Futaba party member to the jazz club to learn Debilitate; alternatively invite Futaba for Support Plus 2 instead",
           "slot": "evening"
+        },
+        {
+          "label": "Complete request: Man of Many Faces and Debts",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Akitsu in Akzeriyyuth Area 3. It is weak to Electricity; the clear reward is the Thermopylae skill card.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Swindling Old Folk Is Pretty Low",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Wakasa in Adyeshach Area 13. The clear reward is the Haten Robe.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: The Head Honcho in Showbiz",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Asakura in Sheriruth Area 14. It is weak to Nuclear; the clear reward is the Immortal Vest.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Lady-Killer's Ballad",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Arihara in Sheriruth Area 8. It has no weakness and can Brainwash female party members; the clear reward is the Agitation Crown.",
+          "spoiler": true,
+          "slot": "afternoon"
         }
       ]
     },

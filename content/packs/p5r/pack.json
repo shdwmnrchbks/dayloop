@@ -1,7 +1,7 @@
 {
   "packId": "p5r",
   "title": "Persona 5 Royal",
-  "contentVersion": 12,
+  "contentVersion": 13,
   "pickerOrder": 0,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -29,7 +29,8 @@
   "capabilities": {
     "exams": true,
     "weather": false,
-    "answers": true
+    "answers": true,
+    "mementosRequests": true
   },
   "labels": {
     "bond": "Confidant",

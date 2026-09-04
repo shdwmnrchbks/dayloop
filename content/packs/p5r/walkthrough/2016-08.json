@@ -413,6 +413,7 @@
       "steps": [
         {
           "label": "Explore Mementos — clear all 5 requests, skip locked chests",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -444,6 +445,41 @@
           "statGains": {
             "knowledge": 2
           },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: The Lovesick Cyberstalking Girl",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Mogami in Chemdah Area 8. It has no weakness; the clear reward is the Sticky Hairball.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: We Aren't Just Your Slaves",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Kishi in Kaitul Area 8. It is weak to Bless; the clear reward is the Theme Park Escort book.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Who's Been Assaulting People?",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Naguri in Kaitul Area 5. The clear reward is the Charge skill card.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Calling for Justice for Cats",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Tsuboi in Kaitul Area 1. It is weak to Fire and Bless; the clear reward is the Blood Scimitar.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Bad Medicine",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Oyamada in Chemdah Area 2. The clear reward is the Mediarama skill card.",
+          "spoiler": true,
           "slot": "afternoon"
         }
       ]
