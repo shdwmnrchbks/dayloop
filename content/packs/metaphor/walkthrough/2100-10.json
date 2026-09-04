@@ -9,7 +9,8 @@
         { "label": "Report the founder's defeat at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Courage reaches rank 5 (Heroic).", "slot": "afternoon" },
         { "label": "Ask the Grand Cathedral guard about Neuras' relic.", "slot": "afternoon" },
-        { "label": "Persuade Eupha that the Sanctists will listen (Follower rank 7).", "slot": "night" }
+        { "label": "Persuade Eupha that the Sanctists will listen (Follower rank 7).", "slot": "afternoon" },
+        { "label": "Meet Alonzo in Brilehaven after reaching Courage 5 and see his final performance through (Follower rank 7).", "slot": "night" }
       ]
     },
     {
@@ -38,7 +39,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Report the Kokamordos kill.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Face Vinca with Basilio — no weaknesses, resists all physical; swap Basilio out (Follower rank 8).", "slot": "afternoon" }
+        { "label": "Face Vinca with Basilio — no weaknesses, resists all physical; swap Basilio out (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Return to Alonzo's usual Brilehaven spot and speak with Daturam to close out the Faker bond (Follower rank 8).", "slot": "night" }
       ]
     },
     {
