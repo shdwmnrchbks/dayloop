@@ -1,7 +1,11 @@
 package com.shadowmonarchbooks.dayloop.ui.onboarding
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -37,13 +41,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
@@ -52,7 +61,9 @@ import com.shadowmonarchbooks.dayloop.ui.components.PackIcon
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.packShape
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.theme.packColorScheme
+import kotlinx.coroutines.delay
 
 /**
  * First-run game picker (docs/ROADMAP-v2.md Phase 7): a swipeable carousel of
@@ -78,6 +89,9 @@ fun OnboardingScreen(
     var pendingSelection by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(state.selectedSlug, pendingSelection) {
         if (pendingSelection != null && state.selectedSlug == pendingSelection) {
+            // Keep a warm pack switch on screen long enough to read as an
+            // intentional transition. Cold packs remain covered while loading.
+            delay(650)
             pendingSelection = null
             onStart()
         }
@@ -87,7 +101,8 @@ fun OnboardingScreen(
         pageCount = { packs.size },
     )
 
-    Column(Modifier.fillMaxSize().padding(vertical = 28.dp)) {
+    Box(Modifier.fillMaxSize()) {
+        Column(Modifier.fillMaxSize().padding(vertical = 28.dp)) {
         Column(Modifier.padding(horizontal = 28.dp)) {
             if (reselecting && onCancel != null) {
                 Row(
@@ -179,6 +194,184 @@ fun OnboardingScreen(
                         ),
                 )
             }
+        }
+        }
+
+        pendingSelection?.let { slug ->
+            packs.firstOrNull { it.slug == slug }?.let { PackLoadingOverlay(it) }
+        }
+    }
+}
+
+/** A pack-owned-feeling bridge while the selected guide is initialized. */
+@Composable
+private fun PackLoadingOverlay(pack: LoadedPack) {
+    val scheme = pack.pack.theme?.let { packColorScheme(it, dark = true) }
+    val motif = pack.pack.theme?.motif
+    val background = when (motif) {
+        "masks" -> Color.Black
+        "moon" -> Color(0xFF030A28)
+        "crown" -> Color(0xFF11100D)
+        else -> scheme?.background ?: MaterialTheme.colorScheme.background
+    }
+    val foreground = scheme?.onBackground ?: MaterialTheme.colorScheme.onBackground
+    val accent = scheme?.primary ?: MaterialTheme.colorScheme.primary
+    val animationsDisabled = rememberAnimationsDisabled()
+    val progress = remember(pack.slug) { Animatable(0f) }
+
+    LaunchedEffect(pack.slug, animationsDisabled) {
+        if (animationsDisabled) {
+            progress.snapTo(0.65f)
+        } else {
+            while (true) {
+                progress.snapTo(0f)
+                progress.animateTo(1f, tween(300, easing = LinearEasing))
+            }
+        }
+    }
+
+    val phase = progress.value
+    val message = when (motif) {
+        "masks" -> "LOADING" + ".".repeat((phase * 4).toInt().coerceIn(0, 3))
+        "moon" -> "NOW LOADING"
+        "crown" -> "PREPARING JOURNEY"
+        else -> "LOADING"
+    }
+    Surface(
+        color = background,
+        contentColor = foreground,
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            PackLoadingMotif(
+                motif = motif,
+                phase = phase,
+                accent = accent,
+                foreground = foreground,
+                modifier = Modifier.size(220.dp),
+            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 64.dp, start = 24.dp, end = 24.dp),
+            ) {
+                Text(
+                    text = message,
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = if (motif == "masks") 30.sp else 24.sp,
+                    ),
+                    fontWeight = FontWeight.Black,
+                    color = if (motif == "masks") accent else foreground,
+                    maxLines = 1,
+                )
+                Text(
+                    text = pack.pack.title,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = foreground.copy(alpha = 0.76f),
+                    maxLines = 1,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun PackLoadingMotif(
+    motif: String?,
+    phase: Float,
+    accent: Color,
+    foreground: Color,
+    modifier: Modifier = Modifier,
+) {
+    when (motif) {
+        "masks" -> Canvas(modifier.graphicsLayer { rotationZ = -8f }) {
+            val sweep = size.width * (phase * 1.8f - 0.4f)
+            val slash = Path().apply {
+                moveTo(sweep - size.width * 0.28f, 0f)
+                lineTo(sweep + size.width * 0.08f, 0f)
+                lineTo(sweep + size.width * 0.28f, size.height)
+                lineTo(sweep - size.width * 0.08f, size.height)
+                close()
+            }
+            drawPath(slash, accent)
+            drawLine(
+                color = Color.White,
+                start = Offset(sweep - size.width * 0.17f, 0f),
+                end = Offset(sweep + size.width * 0.05f, size.height),
+                strokeWidth = 4.dp.toPx(),
+            )
+            drawCircle(
+                color = Color.White.copy(alpha = 0.9f),
+                radius = size.minDimension * 0.22f,
+                style = Stroke(width = 5.dp.toPx()),
+            )
+        }
+        "moon" -> Canvas(modifier.graphicsLayer { rotationZ = phase * 360f }) {
+            val radius = size.minDimension * 0.25f
+            drawCircle(color = foreground.copy(alpha = 0.16f), radius = size.minDimension * 0.48f)
+            drawCircle(color = foreground, radius = radius)
+            drawCircle(
+                color = Color(0xFF030A28),
+                radius = radius,
+                center = Offset(center.x + radius * (0.85f - phase * 0.7f), center.y),
+            )
+            drawCircle(
+                color = accent,
+                radius = size.minDimension * 0.42f,
+                style = Stroke(width = 3.dp.toPx()),
+            )
+            drawCircle(
+                color = foreground,
+                radius = 5.dp.toPx(),
+                center = Offset(center.x + size.minDimension * 0.42f, center.y),
+            )
+        }
+        "crown" -> Canvas(modifier.graphicsLayer {
+            val pulse = 0.92f + phase * 0.08f
+            scaleX = pulse
+            scaleY = pulse
+            rotationZ = (phase - 0.5f) * 5f
+        }) {
+            val outer = Path().apply {
+                moveTo(center.x, size.height * 0.08f)
+                lineTo(size.width * 0.88f, center.y)
+                lineTo(center.x, size.height * 0.92f)
+                lineTo(size.width * 0.12f, center.y)
+                close()
+            }
+            val crown = Path().apply {
+                moveTo(size.width * 0.27f, size.height * 0.57f)
+                lineTo(size.width * 0.32f, size.height * 0.35f)
+                lineTo(center.x, size.height * 0.49f)
+                lineTo(size.width * 0.68f, size.height * 0.35f)
+                lineTo(size.width * 0.73f, size.height * 0.57f)
+                close()
+            }
+            drawPath(outer, color = accent.copy(alpha = 0.28f))
+            drawPath(outer, color = accent, style = Stroke(width = 3.dp.toPx()))
+            drawPath(crown, color = foreground)
+            drawLine(
+                color = accent,
+                start = Offset(size.width * 0.28f, size.height * 0.64f),
+                end = Offset(size.width * 0.72f, size.height * 0.64f),
+                strokeWidth = 4.dp.toPx(),
+            )
+        }
+        else -> Canvas(modifier) {
+            drawCircle(
+                color = accent,
+                radius = size.minDimension * 0.36f,
+                style = Stroke(width = 5.dp.toPx()),
+            )
+            drawArc(
+                color = foreground,
+                startAngle = phase * 360f,
+                sweepAngle = 80f,
+                useCenter = false,
+                style = Stroke(width = 6.dp.toPx()),
+            )
         }
     }
 }
