@@ -177,9 +177,11 @@
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Take 'Obtain Drakodios' plus the village requests; return the appraised igniter before departing.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Receive 'Obtain Drakodios'; around the Village of Pagans take 'Peak Curiosity' and 'The Price of Hope' before following the Potion of Blight lead to Grand Trad.", "slot": "afternoon" },
+        { "label": "In Grand Trad, appraise the mustari igniter, take 'The Greater One-Eyed Scoundrel' bounty, buy Parchwater, and collect the newly unblocked Gold Beetle beside Comfort Concoctions.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Back on Virga Island, take 'A Guiding Gift', return the appraised igniter to finish 'The Price of Hope', have Edeni prepare the Potion of Blight, and take Junah's 'Save the Mourning Snakes'.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Finish 'Top Secret Poetry! Do Not Read!' on the runner, including its completion bonus.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 22 } },
-        { "label": "Work the Dragon Temple and Drakongrace Shinjuku to the guardian; level General to 15 before the boss.", "slot": "afternoon", "spoiler": true },
+        { "label": "Work the Dragon Temple and Drakongrace Shinjuku to the guardian; collect all three Polar Stones for 'A Guiding Gift' and level General to 15 before the boss.", "slot": "afternoon", "spoiler": true },
         { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Gallica reaches Follower rank 6 after the Virga Island operation is cleared.", "slot": "afternoon", "spoiler": true }
       ]
@@ -189,7 +191,7 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Eht Ria: turn in the Polar Stones, take Edeni's 'Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Eht Ria: give the three Polar Stones to the Hoarse Fisher-Crone to finish 'A Guiding Gift', take Edeni's 'Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Accompany Hulkenberg to settle matters with Rhodanthe (Follower rank 7).", "slot": "afternoon" },
         { "label": "At night, take in the View of the Beach at Eht Ria.", "slot": "night", "statGains": { "imagination": 13 } },
         { "label": "Imagination reaches rank 4 (Revolutionary).", "slot": "night" }
@@ -260,7 +262,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
-        { "label": "Climb the Spire of Blind Faith — permanent storm weather; the Stormy Sea Ring cuts the damage.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Clear the Spire of Blind Faith for Junah's 'Save the Mourning Snakes' request — permanent storm weather; grab the Gold Beetle on the north side of the sixth floor.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "With 25 Archetypes studied, report to More (Follower rank 7); receive 'More's Task Chapter Six: The End'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
       ]
     },
@@ -269,7 +271,7 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Report to the Dejected Man that his sister is safe.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Report 'Peak Curiosity' to the Dejected Man and tell him his sister is safe.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Courage reaches rank 4 (Dauntless).", "slot": "afternoon" },
         { "label": "Explore Brilehaven with Eupha (Follower rank 2); collect the gamble winnings.", "slot": "afternoon" },
         { "label": "Shop with Junah (Follower rank 2).", "slot": "night" }
