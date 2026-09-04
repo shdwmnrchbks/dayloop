@@ -9,8 +9,8 @@ plugins {
 }
 
 // Release signing: credentials live in keystore.properties at the repo root
-// (gitignored). When present, release builds are signed; when absent, the
-// release APK stays unsigned instead of failing the build.
+// (gitignored). When present, release builds use that key. Private CI builds
+// fall back to Android's debug key so the stable APK remains installable.
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties().apply {
     if (keystorePropertiesFile.exists()) {
@@ -26,8 +26,8 @@ android {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
         targetSdk = 35
-        versionCode = 30
-        versionName = "0.12.0-rc17"
+        versionCode = 31
+        versionName = "0.15.0"
     }
 
     signingConfigs {
@@ -44,8 +44,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            if (keystorePropertiesFile.exists()) {
-                signingConfig = signingConfigs.getByName("release")
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
             }
         }
 

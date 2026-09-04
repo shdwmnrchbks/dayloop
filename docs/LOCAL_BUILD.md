@@ -40,6 +40,7 @@ Licenses were pre-accepted via the standard license-hash files in
 cd C:\Users\airenz1202\Desktop\dayloop
 .\gradlew.bat assembleDebug       # debug APK -> app\build\outputs\apk\debug\
 .\gradlew.bat assembleCandidate   # prerelease test APK -> app\build\outputs\apk\candidate\
+.\gradlew.bat assembleRelease     # stable APK -> app\build\outputs\apk\release\
 .\gradlew.bat test                # unit tests
 .\gradlew.bat lint                # Android lint
 ```
@@ -48,8 +49,10 @@ The `candidate` build type is for hands-on prerelease testing. It uses the
 standard Android debug signing key and application-id suffix `.candidate`, so
 it can coexist with a production-signed Dayloop install. Candidate profiles,
 progress, widgets and settings are therefore isolated from the stable app.
-Production `release` signing is unchanged and still uses the gitignored
-`keystore.properties` setup when those credentials are present.
+Production `release` signing uses the gitignored `keystore.properties` setup
+when those credentials are present. For private CI and local verification where
+that file is absent, it falls back to Android's debug key so the stable APK is
+installable; public distribution must use the persistent production key.
 
 First build downloads all dependencies (several hundred MB) and takes a
 while; later builds are incremental and much faster.

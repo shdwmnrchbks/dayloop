@@ -46,20 +46,20 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 | 14 | P3R “Moonlight” skin | ✅ v0.9.0 |
 | 15 | Metaphor “Royal” skin | ✅ v0.10.0 |
 | 16 | Motion, feedback & sound | ✅ v0.11.1 |
-| 17 | Widget, icon & cold-start skin parity | ⏭️ next |
+| 17 | Widget, icon & cold-start skin parity | ✅ v0.15.0 |
 | 18 | Screenshot verification, budgets, strip pipeline & performance hardening | ⏳ pending |
 
 See [docs/PLAN.md](docs/PLAN.md) for the architecture plan and [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md) for the remaining skin-parity work.
 
 ## Status
 
-🚧 **Phase 0–16 done — current release v0.11.1** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). The first-release trio is complete, all three packs have distinct data-driven skins, and the latest CI/release validation is green. **Phase 17 is next; Phase 18 is the final release-hardening pass.**
+✅ **P5R milestone complete — current stable release v0.15.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Persona 5 Royal is now the frozen reference pack for the next audit phase. Work moves to **Persona 3 Reload**; P3R and Metaphor changes must remain pack-isolated and may not alter the P5R bundle or its established behavior without an explicit P5R change request. See the [P5R stable baseline](docs/packs/p5r-baseline.md).
 
 Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
-- **Exam answers** — structured answer sheets (`answers.json`) for all 12 P5R exam days and 53 class questions, surfaced directly on their day pages.
+- **Exam answers** — structured answer sheets (`answers.json`) for all 12 P5R exam days and 56 class questions, surfaced directly on their day pages.
 - **Mementos requests** — all 33 Royal requests live in a dedicated tracker; each completes only when its exact route completion task is checked.
 - **Search** — top-bar search across steps, bonds, activities, deadlines, and answers for the selected pack/route.
 - **Home-screen widget (Glance)** — in-game date, today's done-count, and the next deadline, always visible; refreshes with app state and re-reads progress on its own.
@@ -123,11 +123,9 @@ Phase 16 (v0.11.1) — [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md):
 
 ### Next
 
-**Phase 17 — Widget, icon & launch parity:** extend the active skin to Glance widget layouts, add the planned pack-declared launcher badge treatment, and make the cold-start shell inherit the active skin before the first app frame.
+**Pack audit focus: Persona 3 Reload.** Reuse P5R's proven schema and UX patterns where they fit, but implement and validate P3R against its own route, mechanics, vocabulary, dates, artwork, and theme. Shared-engine changes must keep the frozen P5R regression suite green and must not rewrite `content/packs/p5r/` as a side effect.
 
-**Phase 18 — Verification, budgets & release hardening:** screenshot/parity tests, pack asset budgets, GIF → animated WebP conversion, the public-release `strip-art` pipeline, and a Macrobenchmark frame-time gate.
-
-Pack focus: **P5R → P3R → Metaphor: ReFantazio**. Persona 4 Golden is deferred — the schema keeps any future pack drop-in.
+After P3R, continue the same isolated audit process for **Metaphor: ReFantazio**. Phase 18 remains the final cross-pack release-hardening pass: screenshot/parity tests, pack asset budgets, the public-release `strip-art` pipeline, and performance gates.
 
 ## License
 
