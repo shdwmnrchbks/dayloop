@@ -178,6 +178,7 @@
       "steps": [
         { "label": "Take 'Obtaining Drakodios' plus the village requests, then work the Dragon Temple trial to its guardian.", "slot": "afternoon" },
         { "label": "Level the General Archetype to 15 for More's request before the boss; the human-possessed dragon god falls at the altar.", "slot": "afternoon", "spoiler": true },
+        { "label": "Completing the Virga Island operation automatically raises Gallica to Follower rank 6.", "slot": "afternoon", "spoiler": true },
         { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
       ]
     },
