@@ -118,6 +118,7 @@
       "steps": [
         { "label": "Ten days remain before the duel in Grand Trad — plan the candidate runner hunts.", "slot": "afternoon" },
         { "label": "Tell Loveless where you'll settle it; take 'Warmth in Winter' from the Portly Man.", "slot": "afternoon" },
+        { "label": "Meet Catherina after reaching Altabury and hear what she plans next (Follower rank 5).", "slot": "afternoon" },
         { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" },
         { "label": "Debate Julian at the Blue Sky Bridge podium (answer: the present day matters too).", "slot": "night", "statGains": { "eloquence": 15, "imagination": 7 } }
       ]
@@ -138,6 +139,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Cook Enchanted Pottage with the flour from Malva, then hunt Milo's runner.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "With Tolerance rank 5 secured, continue Catherina's cause before departure (Follower rank 6).", "slot": "afternoon" },
         { "label": "Basilio introduces himself in the Engine Room Corridor (Follower rank 1).", "slot": "afternoon", "spoiler": true },
         { "label": "Milo's duel: mirror his Mage Mirror turns and burst him down.", "slot": "afternoon" }
       ]
