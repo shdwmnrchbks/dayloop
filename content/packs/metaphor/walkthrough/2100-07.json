@@ -232,7 +232,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "With 15 Archetypes studied, turn in More's Task Chapter Three: Drifting (Follower rank 5); receive Chapter Four: Turmoil.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Infiltrate Charadrius — a chain of boss battles; Tetrabreak is the one item that matters, set the team from the informant notes.", "slot": "afternoon", "spoiler": true }
+        { "label": "Infiltrate Charadrius — complete Sergeant Xanth's key objective, then take either the Maintenance Chief Ceiba or Master Sergeant Glechom corridor branch; only one corridor branch is needed for Help Anyone in Need. Tetrabreak is the key item for the boss chain.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
