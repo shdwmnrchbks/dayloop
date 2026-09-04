@@ -67,6 +67,54 @@
       "date": "2100-10-26"
     },
     {
+      "id": "metaphor.deadline.request.pagans-dilemma",
+      "label": "Pagan's Dilemma — timed request",
+      "kind": "request",
+      "window": { "start": "2100-06-12", "end": "2100-06-16" }
+    },
+    {
+      "id": "metaphor.deadline.request.hushed-honeybee",
+      "label": "Help the Hushed Honeybee — timed request",
+      "kind": "request",
+      "window": { "start": "2100-06-12", "end": "2100-06-19" }
+    },
+    {
+      "id": "metaphor.deadline.request.hatching-a-plan",
+      "label": "Hatching a Plan — timed request",
+      "kind": "request",
+      "window": { "start": "2100-06-29", "end": "2100-07-11" }
+    },
+    {
+      "id": "metaphor.deadline.request.haunted-heirloom",
+      "label": "A Haunted Heirloom — deadline; unlocks after The New King of the Imps bounty",
+      "kind": "request",
+      "date": "2100-07-30"
+    },
+    {
+      "id": "metaphor.deadline.request.skullduggery",
+      "label": "Skullduggery — deadline",
+      "kind": "request",
+      "date": "2100-07-30"
+    },
+    {
+      "id": "metaphor.deadline.request.dental-distress",
+      "label": "Dental Distress — timed request",
+      "kind": "request",
+      "window": { "start": "2100-07-23", "end": "2100-08-09" }
+    },
+    {
+      "id": "metaphor.deadline.request.efflorescent-youth",
+      "label": "Efflorescent Youth — timed request",
+      "kind": "request",
+      "window": { "start": "2100-07-23", "end": "2100-08-10" }
+    },
+    {
+      "id": "metaphor.deadline.request.guiding-gift",
+      "label": "A Guiding Gift — timed request",
+      "kind": "request",
+      "window": { "start": "2100-08-19", "end": "2100-08-30" }
+    },
+    {
       "id": "metaphor.deadline.missable.inn-cooking",
       "label": "Inn cooking evenings with Maria",
       "kind": "missable",
