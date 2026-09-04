@@ -57,6 +57,9 @@ class MetaphorDeadlineAuditTest {
             assertEquals(null, deadline.date, check.id)
         }
 
+        val dental = deadlines.getValue("metaphor.deadline.request.dental-distress")
+        assertTrue(dental.label.contains("missable Gold Beetle"))
+
         val conditionalStarts = mapOf(
             "metaphor.deadline.request.haunted-heirloom" to "2100-07-30",
             "metaphor.deadline.request.skullduggery" to "2100-07-30",
@@ -66,6 +69,23 @@ class MetaphorDeadlineAuditTest {
             assertEquals("request", deadline.kind, id)
             assertEquals(dueDate, deadline.date, id)
             assertEquals(null, deadline.window, "$id: do not invent a universal start date")
+        }
+    }
+
+    @Test
+    fun `Metaphor one-way story Gold Beetles are surfaced as missables`() {
+        val deadlines = assertNotNull(loadMetaphor().deadlines).deadlines.associateBy { it.id }
+        val missables = mapOf(
+            "metaphor.deadline.missable.gold-beetle-border-fort" to "2100-06-05",
+            "metaphor.deadline.missable.gold-beetle-eldan-sanctum" to "2100-09-24",
+        )
+
+        missables.forEach { (id, date) ->
+            val deadline = deadlines.getValue(id)
+            assertEquals("missable", deadline.kind, id)
+            assertEquals(date, deadline.date, id)
+            assertEquals(null, deadline.window, id)
+            assertTrue(deadline.label.contains("Gold Beetle"), id)
         }
     }
 
