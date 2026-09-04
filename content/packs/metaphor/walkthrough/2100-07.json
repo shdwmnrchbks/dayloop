@@ -54,7 +54,7 @@
       "steps": [
         { "label": "Martira farewells: chat with the Cheerful Fairy and the Kind Old Woman, then talk with Bardon (Follower rank 1).", "slot": "afternoon" },
         { "label": "Hear the Elegant Performer's music and take 'The Queen of Cuisine: Heart'.", "slot": "night" },
-        { "label": "Debate Loveless at the King's Rock (answer: alcohol won't bring equality).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 6 } }
+        { "label": "Debate Loveless at the King's Rock (answer: alcohol won't bring equality).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
       ]
     },
     {
@@ -112,7 +112,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Accompany Strohl to his old home (Follower rank 5); receive 'A Noble's Legacy'.", "slot": "afternoon" },
-        { "label": "Debate Lina at the King's Rock (answer: what are your policies?).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 6 } }
+        { "label": "Debate Lina at the King's Rock (answer: what are your policies?).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
       ]
     },
     {
@@ -130,7 +130,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Second Spirited Youth challenge — retry until the plunge lands.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Debate Roger at the King's Rock (answer: taxes benefit us all).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 6 } }
+        { "label": "Debate Roger at the King's Rock (answer: taxes benefit us all).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
       ]
     },
     {
@@ -215,7 +215,7 @@
       "steps": [
         { "label": "Brilehaven errand sweep: 'Soldier's Solace', Julian's missable book, 'Deeds and Diversions', 'Briny Threads' plus a Tail Bait, and the Brewer's request.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
         { "label": "Julian hands over 'The Future of Magic' — collect it now for this route; it remains available through August 13.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" },
-        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
+        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
     },
     {
@@ -223,7 +223,7 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Debate Glodell at the King's Rock (answer: you only parrot Louis).", "slot": "afternoon", "statGains": { "eloquence": 11, "imagination": 6 } },
+        { "label": "Debate Glodell at the King's Rock (answer: you only parrot Louis).", "slot": "afternoon", "statGains": { "eloquence": 11, "imagination": 5 } },
         { "label": "Accompany Heismay to his village (Follower rank 4).", "slot": "night" }
       ]
     },
@@ -241,7 +241,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Chat with Bardon (Follower rank 3).", "slot": "afternoon" },
-        { "label": "Debate Rudolf at the King's Rock (answer: the tribes must stand together).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
+        { "label": "Debate Rudolf at the King's Rock (answer: the tribes must stand together).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
     },
     {
@@ -253,7 +253,7 @@
         { "label": "Tell Strohl about the inheritance merchant (Follower rank 6).", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Tolerance reaches rank 3 (Generous).", "slot": "afternoon" },
         { "label": "Catch the discount at the magic shops.", "slot": "night" },
-        { "label": "Debate Milo at the King's Rock (answer: beauty is deeper than our skin).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
+        { "label": "Debate Milo at the King's Rock (answer: beauty is deeper than our skin).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
     },
     {
