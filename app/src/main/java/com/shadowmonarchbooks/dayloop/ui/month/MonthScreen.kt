@@ -64,6 +64,11 @@ import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import kotlin.math.abs
 
 private val WeekHeaders = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+internal val SlashTodayMarkerWidth = 72.dp
+internal val SlashTodayMarkerFontSize = 30.sp
+internal val SlashTodayMarkerLineHeight = 31.sp
+internal val SlashTodayMarkerHorizontalPadding = 1.dp
+internal val SlashTodayMarkerVerticalPadding = 1.dp
 
 internal data class CalendarMediaMarker(
     val assetPath: String,
@@ -464,14 +469,14 @@ private fun DayCell(
                     .align(Alignment.Center)
                     // The marker is a pasted-on notice: let it overhang the
                     // narrow day cell instead of squeezing its word in half.
-                    .requiredWidth(72.dp)
+                    .requiredWidth(SlashTodayMarkerWidth)
                     .graphicsLayer { rotationZ = -6f },
             ) {
                 Text(
                     text = "TODAY",
                     style = MaterialTheme.typography.displaySmall.copy(
-                        fontSize = 23.sp,
-                        lineHeight = 25.sp,
+                        fontSize = SlashTodayMarkerFontSize,
+                        lineHeight = SlashTodayMarkerLineHeight,
                         fontStyle = FontStyle.Normal,
                     ),
                     color = Color.Black,
@@ -481,7 +486,10 @@ private fun DayCell(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 4.dp, vertical = 5.dp),
+                        .padding(
+                            horizontal = SlashTodayMarkerHorizontalPadding,
+                            vertical = SlashTodayMarkerVerticalPadding,
+                        ),
                 )
             }
         }
