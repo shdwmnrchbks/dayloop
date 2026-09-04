@@ -17,7 +17,7 @@ class MetaphorDeadlineAuditTest {
         data class WindowCheck(val id: String, val start: String, val end: String)
         val windows = listOf(
             WindowCheck("metaphor.deadline.mission.grand-cathedral", "2100-06-12", "2100-06-21"),
-            WindowCheck("metaphor.deadline.mission.kriegante-castle", "2100-06-23", "2100-07-16"),
+            WindowCheck("metaphor.deadline.mission.kriegante-castle", "2100-07-05", "2100-07-16"),
             WindowCheck("metaphor.deadline.mission.charadrius", "2100-07-23", "2100-08-12"),
             WindowCheck("metaphor.deadline.mission.dragon-temple", "2100-08-19", "2100-09-05"),
             WindowCheck("metaphor.deadline.mission.final-prep", "2100-09-13", "2100-09-22"),
