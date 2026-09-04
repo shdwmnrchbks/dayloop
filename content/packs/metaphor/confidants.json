@@ -6,10 +6,10 @@
       "ranks": [
         { "rank": 1, "availableFrom": "2100-06-06", "notes": "Joins during the Nord Mines trek." },
         { "rank": 2, "availableFrom": "2100-06-11" },
-        { "rank": 3, "availableFrom": "2100-07-05" },
-        { "rank": 4, "availableFrom": "2100-07-25" },
+        { "rank": 3, "availableFrom": "2100-07-05", "scheduledFor": "2100-07-05", "notes": "Automatic after clearing Kriegante Castle; this route clears it on 07/05." },
+        { "rank": 4, "availableFrom": "2100-07-23", "scheduledFor": "2100-07-25", "notes": "Automatic after completing Infiltrate the Charadrius; this route clears it on 07/25." },
         { "rank": 5, "availableFrom": "2100-08-13" },
-        { "rank": 6, "availableFrom": "2100-08-19" },
+        { "rank": 6, "availableFrom": "2100-08-19", "scheduledFor": "2100-08-19", "notes": "Automatic after completing the Virga Island operation; this route clears it on 08/19." },
         { "rank": 7, "availableFrom": "2100-09-23" },
         { "rank": 8, "availableFrom": "2100-09-24" }
       ]
