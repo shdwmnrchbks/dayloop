@@ -76,7 +76,7 @@ class P5RAprilRouteOrderAuditTest {
             .sumOf { it.statGains["guts"] ?: 0 }
         assertEquals(16, gutsThroughApr22, "pre-Kamoshida library study contributes Guts as well as Knowledge")
 
-        assertTrue(days.getValue("2016-04-24").steps.any { "secure the route to the Treasure" in it.label })
+        assertTrue(days.getValue("2016-04-24").steps.any { "secure its infiltration route" in it.label })
         assertTrue(days.getValue("2016-04-25").steps.any { "Calling Card" in it.label })
         assertTrue(days.getValue("2016-04-26").steps.any { "Heist: steal the Treasure" in it.label })
     }

@@ -59,13 +59,21 @@ class PackLoaderTest {
     fun `decodeWalkthrough round-trips days`() {
         val wt = WalkthroughFile(
             month = "2016-04",
-            days = listOf(Day("2016-04-09", "sat", "story", steps = listOf(Step("Arrive in town")))),
+            days = listOf(
+                Day(
+                    "2016-04-09",
+                    "sat",
+                    "story",
+                    steps = listOf(Step("Arrive in town", tip = "Take the evening train.")),
+                ),
+            ),
         )
         val text = PackLoader.json.encodeToString(WalkthroughFile.serializer(), wt)
         val parsed = PackLoader.decodeWalkthrough(text)
         assertNotNull(parsed)
         assertEquals(1, parsed.days.size)
         assertEquals("Arrive in town", parsed.days.first().steps.first().label)
+        assertEquals("Take the evening train.", parsed.days.first().steps.first().tip)
     }
 
     @Test

@@ -72,7 +72,7 @@ class P5ROctoberRouteOrderAuditTest {
             assertEquals(expectedGain, step.statGains)
         }
 
-        assertTrue(days.getValue("2016-10-04").steps.any { "Second spaceport infiltration" in it.label })
+        assertTrue(days.getValue("2016-10-04").steps.any { "second spaceport infiltration" in it.label })
         assertTrue(days.getValue("2016-10-05").steps.any { "Calling Card" in it.label })
         assertTrue(days.getValue("2016-10-06").steps.any { "Heist: steal Okumura's Treasure" in it.label })
         assertTrue(days.getValue("2016-10-29").steps.any { "First infiltration of the casino" in it.label })

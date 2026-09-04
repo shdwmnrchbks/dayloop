@@ -281,6 +281,10 @@ must point at an existing file — orphaned or unresolvable art fails lint, so
 
 - Task labels are short imperatives in **our own words** — never guide prose
   (docs/sources.md).
+- Keep required guide objectives as separate checkable tasks. Optional strategy
+  belongs in a step's `tip` field; the app renders it behind a pack-themed
+  **Tips** action so Palace directions, captures, item/money targets, and route
+  gates stay scannable without losing their supporting advice.
 - Walkthrough `spoiler` remains accepted for pack compatibility, but daily step text renders directly. Activity-level `spoiler: true` still hides detail behind a tap (docs/PLAN.md §6).
 - Coverage warnings are expected while a pack grows; aim to retire them one
   month at a time.

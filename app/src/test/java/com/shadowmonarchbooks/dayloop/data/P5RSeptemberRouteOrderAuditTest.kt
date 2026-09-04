@@ -71,7 +71,7 @@ class P5RSeptemberRouteOrderAuditTest {
         }
 
         assertTrue(days.getValue("2016-09-15").steps.any { "First infiltration of the spaceport" in it.label })
-        assertTrue(octDays.getValue("2016-10-04").steps.any { "Second spaceport infiltration" in it.label })
+        assertTrue(octDays.getValue("2016-10-04").steps.any { "second spaceport infiltration" in it.label })
         assertTrue(octDays.getValue("2016-10-05").steps.any { "Calling Card" in it.label })
         assertTrue(octDays.getValue("2016-10-06").steps.any { "Heist: steal Okumura's Treasure" in it.label })
     }

@@ -75,10 +75,10 @@ class P5RJulyRouteOrderAuditTest {
         assertTrue("at the supermarket" !in flowerpedia.label)
 
         assertTrue(days.getValue("2016-07-25").steps.any { "First infiltration of the pyramid" in it.label })
-        assertTrue(days.getValue("2016-07-26").steps.any { "Second infiltration" in it.label })
+        assertTrue(days.getValue("2016-07-26").steps.any { "second pyramid infiltration" in it.label })
         val jul27 = days.getValue("2016-07-27")
         val callingCard = jul27.steps.indexOfFirst { "Calling Card" in it.label }
-        val heist = jul27.steps.indexOfFirst { "Heist: steal the Treasure" in it.label }
+        val heist = jul27.steps.indexOfFirst { "Heist: steal Futaba's Treasure" in it.label }
         assertTrue(callingCard >= 0 && heist > callingCard, "Futaba's Palace sends the card and steals the Treasure on the same day")
     }
 }

@@ -49,9 +49,12 @@ fun searchPack(
             when {
                 q in date.lowercase() -> DayHit(date, day.notes ?: day.steps.firstOrNull()?.label ?: date)
                 else -> {
-                    val step = day.steps.firstOrNull { contains(it.label) }
+                    val step = day.steps.firstOrNull { contains(it.label) || contains(it.tip) }
                     when {
-                        step != null -> DayHit(date, step.label)
+                        step != null -> DayHit(
+                            date,
+                            if (contains(step.label)) step.label else step.tip.orEmpty(),
+                        )
                         contains(day.notes) -> DayHit(date, day.notes.orEmpty())
                         else -> null
                     }

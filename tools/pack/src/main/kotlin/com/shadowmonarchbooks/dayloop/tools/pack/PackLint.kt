@@ -272,6 +272,12 @@ object PackLint {
                 if (day.dayKind !in DAY_KINDS) issues += err(loc, "day '${day.date}' has unknown dayKind '${day.dayKind}'")
                 dayKindsByDate.getOrPut(day.date) { mutableSetOf() }.add(day.dayKind)
                 day.steps.forEachIndexed { i, step ->
+                    if (step.label.isBlank()) {
+                        issues += err(loc, "day '${day.date}' step $i needs a non-blank label")
+                    }
+                    if (step.tip != null && step.tip.isBlank()) {
+                        issues += err(loc, "day '${day.date}' step $i tip must not be blank")
+                    }
                     if (step.slot != null && step.slot !in slotIds) {
                         issues += err(loc, "day '${day.date}' step $i references unknown slot '${step.slot}'")
                     }

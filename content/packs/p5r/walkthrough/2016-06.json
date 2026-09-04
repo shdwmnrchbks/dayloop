@@ -595,7 +595,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Second bank infiltration — keep Ann for Dormina; Makoto joins mid-run (the boss resists physical and uses ice)",
+          "label": "Complete the second bank infiltration until Makoto joins",
+          "tip": "Keep Ann in the active party for Dormina. The encounter resists Physical attacks and uses Ice, so exploit ailments and Technical damage rather than forcing melee damage.",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -754,12 +755,14 @@
           "slot": "afternoon"
         },
         {
-          "label": "Third bank infiltration — capture the Queen's Necklace Treasure Demon (weak to Psi)",
+          "label": "Capture the Queen's Necklace Treasure Demon during the third bank infiltration",
+          "tip": "Queen's Necklace is weak to Psy. Knock it down with a Psy attack before negotiating so it cannot escape.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Grab all three Will Seeds (grappling-hook points off the vault stairs, in the Laundering Room, and left-left at the fourth PIN panel)",
+          "label": "Collect all three bank Will Seeds",
+          "tip": "Check the grappling-hook route off the vault stairs, the Laundering Room, and the left-left route at the fourth PIN panel.",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -769,12 +772,18 @@
           "slot": "afternoon"
         },
         {
-          "label": "Ignore the golden pay-doors — they're only shortcuts",
+          "label": "Skip the golden pay-doors unless you need a shortcut",
+          "tip": "They consume yen only to open shortcuts; none is required to secure the route.",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Secure the Treasure route, then perform one execution for the Fusion Alarm achievement",
+          "label": "Secure the route to Kaneshiro's Treasure",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Perform one Velvet Room execution during a Fusion Alarm",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -874,7 +883,8 @@
       "dayKind": "story",
       "steps": [
         {
-          "label": "Heist: steal Kaneshiro's Treasure — Technicals with ailments break the bodyguard phase, and Shiki-Ouji shines late",
+          "label": "Heist: steal Kaneshiro's Treasure",
+          "tip": "Use ailments and Technical attacks to break the bodyguard phase. A Physical-resistant Persona such as Shiki-Ouji is especially useful late in the fight.",
           "spoiler": true,
           "slot": "afternoon"
         },

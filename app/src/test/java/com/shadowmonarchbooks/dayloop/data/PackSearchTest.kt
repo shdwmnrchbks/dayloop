@@ -18,7 +18,7 @@ class PackSearchTest {
     private val days = mapOf(
         "2016-05-11" to Day(
             "2016-05-11", "wed", "exam",
-            steps = listOf(Step("Exams day 1")),
+            steps = listOf(Step("Exams day 1", tip = "Bring a sharp pencil")),
         ),
         "2016-05-12" to Day(
             "2016-05-12", "thu", "exam",
@@ -55,6 +55,13 @@ class PackSearchTest {
     fun `step labels match days case-insensitively`() {
         val hits = searchPack("study", days, bonds, activities, deadlines, answers)
         assertEquals(listOf("2016-05-12"), hits.days.map { it.date })
+    }
+
+    @Test
+    fun `step tips are searchable without crowding the task label`() {
+        val hits = searchPack("sharp pencil", days, bonds, activities, deadlines, answers)
+        assertEquals(listOf("2016-05-11"), hits.days.map { it.date })
+        assertEquals("Bring a sharp pencil", hits.days.single().snippet)
     }
 
     @Test
