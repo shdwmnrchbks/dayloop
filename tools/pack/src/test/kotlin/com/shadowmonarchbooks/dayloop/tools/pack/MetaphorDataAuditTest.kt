@@ -135,6 +135,63 @@ class MetaphorDataAuditTest {
     }
 
     @Test
+    fun `Metaphor route schedules every required candidate debate with audited virtue gains`() {
+        val loaded = loadMetaphor()
+        val days = loaded.walkthroughs
+            .filter { it.routeId == Routes.DEFAULT }
+            .flatMap { it.file.days }
+            .associateBy { it.date }
+
+        data class DebateCheck(
+            val date: String,
+            val eloquence: Int,
+            val imagination: Int,
+        )
+
+        val expected = mapOf(
+            "Loveless" to DebateCheck("2100-07-06", 10, 5),
+            "Lina" to DebateCheck("2100-07-12", 10, 5),
+            "Roger" to DebateCheck("2100-07-14", 10, 5),
+            "Jin" to DebateCheck("2100-07-23", 11, 5),
+            "Glodell" to DebateCheck("2100-07-24", 11, 5),
+            "Rudolf" to DebateCheck("2100-07-26", 11, 5),
+            "Milo" to DebateCheck("2100-07-27", 11, 5),
+            "Julian" to DebateCheck("2100-09-13", 15, 7),
+        )
+
+        expected.forEach { (candidate, check) ->
+            val day = assertNotNull(days[check.date], "$candidate debate date")
+            val step = assertNotNull(
+                day.steps.singleOrNull { it.label.contains("Debate $candidate", ignoreCase = true) },
+                "$candidate debate step on ${check.date}",
+            )
+            assertEquals(check.eloquence, step.statGains["eloquence"], "$candidate Eloquence")
+            assertEquals(check.imagination, step.statGains["imagination"], "$candidate Imagination")
+        }
+    }
+
+    @Test
+    fun `Metaphor walkthrough copy agrees with corrected missable windows`() {
+        val loaded = loadMetaphor()
+        val days = loaded.walkthroughs
+            .filter { it.routeId == Routes.DEFAULT }
+            .flatMap { it.file.days }
+            .associateBy { it.date }
+
+        val july23 = assertNotNull(days["2100-07-23"])
+        assertTrue(july23.steps.any {
+            it.label.contains("Future of Magic", ignoreCase = true) &&
+                it.label.contains("August 13", ignoreCase = true)
+        })
+
+        val september22 = assertNotNull(days["2100-09-22"])
+        assertTrue(september22.steps.any {
+            it.label.contains("inn cooking", ignoreCase = true) &&
+                it.label.contains("September 25", ignoreCase = true)
+        })
+    }
+
+    @Test
     fun `Metaphor route dungeon days can precede the actual deadline`() {
         val loaded = loadMetaphor()
         val days = loaded.walkthroughs
