@@ -93,8 +93,13 @@ class MetaphorAchievementAuditTest {
         val helpAnyone = achievements.getValue("metaphor.achievement.help-anyone-in-need")
         assertEquals("confirmation", helpAnyone.tracking.type)
         assertEquals("2100-10-26", helpAnyone.tracking.date)
-        assertTrue(helpAnyone.tracking.prompt.orEmpty().contains("Save the Country"))
-        assertTrue(helpAnyone.tracking.prompt.orEmpty().contains("awarded at story completion"))
+        val helpPrompt = helpAnyone.tracking.prompt.orEmpty()
+        assertTrue(helpPrompt.contains("Save the Country"))
+        assertTrue(helpPrompt.contains("75 of 76"), "The Charadrius branch means the achievement must not claim all 76 quests are required")
+        assertTrue(helpPrompt.contains("Sergeant Xanth"))
+        assertTrue(helpPrompt.contains("Maintenance Chief Ceiba"))
+        assertTrue(helpPrompt.contains("Master Sergeant Glechom"))
+        assertTrue(helpPrompt.contains("awarded at story completion"))
     }
 
     @Test
