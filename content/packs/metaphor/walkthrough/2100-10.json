@@ -39,7 +39,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Report the Kokamordos kill.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Face Vinca with Basilio — no weaknesses, resists all physical; swap Basilio out (Follower rank 8).", "slot": "afternoon" },
+        { "label": "Face Vinca with Basilio — no weaknesses, resists all physical; defeating him completes 'A Brother's Mercy' and raises Basilio to Follower rank 8.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Return to Alonzo's usual Brilehaven spot and speak with Daturam to close out the Faker bond (Follower rank 8).", "slot": "night" }
       ]
     },
@@ -100,8 +100,9 @@
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy.", "slot": "afternoon" },
-        { "label": "Defeat the Devourer of Stars; Bygone Legacy completes and Trial of the Dragon: Essence of Power opens.", "slot": "afternoon", "spoiler": true }
+        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy; defeat the Ziocropos on the way up for 'Proof of Power'.", "slot": "afternoon" },
+        { "label": "Defeat the Devourer of Stars; Bygone Legacy completes and Trial of the Dragon: Essence of Power opens.", "slot": "afternoon", "spoiler": true },
+        { "label": "At night, report the Ziocropos to the Obsessive Soldier to complete 'Proof of Power', then soak at the Blue Sky Bridge hot spring and collect water for the Gentle Merchant.", "slot": "night", "statGains": { "courage": 10 } }
       ]
     },
     {
@@ -109,7 +110,7 @@
       "weekday": "watersday",
       "dayKind": "story",
       "steps": [
-        { "label": "The Gentle Merchant at Blue Sky Bridge has your final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Return the hot spring water to the Gentle Merchant at Blue Sky Bridge to complete 'Deliver Hot Spring Water' — the reward is your final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Optional: if you still have spare Tail Bait, fish for extra Lord of the Lake or Queen's Honey Jars; the first-playthrough recipe inventory was already secured before Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
         { "label": "Return to the Dragon Temple for Trial of the Dragon: Essence of Power; avoid repel gear and defeat the Elegy of the Soul.", "slot": "afternoon", "spoiler": true },
         { "label": "Complete Essence of Power after the three dragon trials — Entrusted unlocks.", "slot": "afternoon", "spoiler": true }

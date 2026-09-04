@@ -167,7 +167,7 @@
       "weekday": "arboursday",
       "dayKind": "story",
       "steps": [
-        { "label": "Land on Virga Island; collect the three Gold Beetles around the Village of Pagan before the Dragon Table.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Land on Virga Island; collect all five Gold Beetles around the Village of Pagan before setting off for the Dragon Temple.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Rescue Eupha from the Pagan loyalists.", "slot": "afternoon", "spoiler": true }
       ]
     },
@@ -176,7 +176,9 @@
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Take 'Obtaining Drakodios' plus the village requests, then work the Dragon Temple trial to its guardian.", "slot": "afternoon" },
+        { "label": "Take 'Obtain Drakodios', 'Peak Curiosity', and 'The Price of Hope'; have the Lycaon Igniter Merchant appraise the igniter, then return it on Virga Island.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Before the temple, also take 'The Greater One-Eyed Scoundrel', 'A Guiding Gift', and Junah's 'Save the Mourning Snakes'.", "slot": "afternoon" },
+        { "label": "Work the Dragon Temple trial to its guardian; collect all three Polar Stones for A Guiding Gift.", "slot": "afternoon" },
         { "label": "Level the General Archetype to 15 for More's request before the boss; the human-possessed dragon god falls at the altar.", "slot": "afternoon", "spoiler": true },
         { "label": "Completing the Virga Island operation automatically raises Gallica to Follower rank 6.", "slot": "afternoon", "spoiler": true },
         { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
@@ -187,10 +189,11 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Eht Ria: fisher-crone's Polar Stones, Edeni's 'Trial of Malnova', and the Clumsy Boy's plea.", "slot": "afternoon" },
+        { "label": "Turn in 'A Guiding Gift' to the Hoarse Fisher-Crone, take Edeni's 'The Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "At Amblyrhy's Water Jug, buy both Queen's Honey Jars (10,000 reeve each); the shop only stocks two.", "slot": "afternoon" },
         { "label": "With Wisdom rank 4 secured, hear Hulkenberg out about her next trial (Follower rank 7).", "slot": "afternoon" },
-        { "label": "Sit with Eupha at the village shrine.", "slot": "afternoon" }
+        { "label": "At night, pass time at the View of the Beach on Virga Island.", "slot": "night", "statGains": { "imagination": 13 } },
+        { "label": "Imagination reaches rank 4 (Revolutionary).", "slot": "night" }
       ]
     },
     {

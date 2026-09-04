@@ -118,6 +118,7 @@
       "steps": [
         { "label": "Ten days remain before the duel in Grand Trad — plan the candidate runner hunts.", "slot": "afternoon" },
         { "label": "Tell Loveless where you'll settle it; take 'Warmth in Winter' from the Portly Man.", "slot": "afternoon" },
+        { "label": "Take 'Proof of Power' from the Obsessive Soldier and 'The Fiend in the Frozen Forest' from the Recruitment Centre.", "slot": "afternoon" },
         { "label": "Meet Catherina after reaching Altabury and hear what she plans next (Follower rank 5).", "slot": "afternoon" },
         { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" },
         { "label": "Debate Julian at the Blue Sky Bridge podium (answer: the present day matters too).", "slot": "night", "statGains": { "eloquence": 15, "imagination": 7 } }
@@ -130,7 +131,8 @@
       "steps": [
         { "label": "Cook Amber Stew, then set off for Malva.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Junah shows you something in the lounge (Follower rank 6).", "slot": "afternoon" },
-        { "label": "Loveless boards the runner — an easy fight after the Opera House.", "slot": "afternoon" }
+        { "label": "Loveless boards the runner — an easy fight after the Opera House.", "slot": "afternoon" },
+        { "label": "Back in Altabury, accept Loveless' 'Defeat Milo' request and hand the Durable Spider Silk to the Portly Man to complete 'Warmth in Winter'.", "slot": "night", "statGains": { "tolerance": 10 } }
       ]
     },
     {
@@ -141,7 +143,8 @@
         { "label": "Cook Enchanted Pottage with the flour from Malva, then hunt Milo's runner.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "With Tolerance rank 5 secured, continue Catherina's cause before departure (Follower rank 6).", "slot": "afternoon" },
         { "label": "Basilio introduces himself in the Engine Room Corridor (Follower rank 1).", "slot": "afternoon", "spoiler": true },
-        { "label": "Milo's duel: mirror his Mage Mirror turns and burst him down.", "slot": "afternoon" }
+        { "label": "Milo's duel: mirror his Mage Mirror turns and burst him down.", "slot": "afternoon" },
+        { "label": "Return to Loveless after the duel to complete 'Defeat Milo'.", "slot": "night" }
       ]
     },
     {
@@ -169,7 +172,9 @@
       "dayKind": "free",
       "steps": [
         { "label": "Cook Cursed Loved Ballad (or pack Hex cleansers) and fly to Mt. Vulkano for Eupha's request.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Continue the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } }
+        { "label": "Continue the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } },
+        { "label": "Imagination reaches rank 5 (Demiurgic).", "slot": "afternoon" },
+        { "label": "Clear Mt. Vulkano for 'Wayward Shepherd'; collect its Gold Beetle, Neuras' out-of-order relic, and the Rusty Greatsword before the boss.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "eloquence": 10 } }
       ]
     },
     {
@@ -179,7 +184,8 @@
       "steps": [
         { "label": "Fly to Everfrost Forest; cook Indestructible Honey Cake (save one for a request).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Cook the first 20 recipes once each — this unlocks the 21st recipe, Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Chat with Basilio (Follower rank 3).", "slot": "afternoon" }
+        { "label": "Chat with Basilio (Follower rank 3), then stop at Solstice Crossing on the way.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Clear Everfrost Forest for 'The Fiend in the Frozen Forest'; collect its Gold Beetle and Neuras' lost relic before defeating Icebeast Chimenzahn.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -245,7 +251,9 @@
       "dayKind": "free",
       "steps": [
         { "label": "Hand over the Rusty Greatsword for 'The Edge of Glory' — thirty days remain until the crowning.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Take the three final Recruitment Centre bounties: 'The Incarnate in the Woods', 'The Cockatrice in the Clouds', and 'The Apostles of the Apocalypse'.", "slot": "afternoon" },
         { "label": "Take 'The Queen of Cuisine: Soul' from the Classy Woman and hand over the saved Indestructible Honey Cake — receive 1 Lord of the Lake.", "slot": "afternoon", "statGains": { "eloquence": 10 } },
+        { "label": "Collect the three tower requests — 'Trial of the Dragon: Mad Mischief', 'Heroes' Rest', and 'Bygone Legacy' — plus 'Deliver Hot Spring Water' from the Gentle Merchant at Blue Sky Bridge.", "slot": "afternoon" },
         { "label": "Basilio's next step (Follower rank 5); catch up with Brigitta (Follower rank 8).", "slot": "afternoon" }
       ]
     },
@@ -272,7 +280,7 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Rest at the Lycaon Magic Association bench.", "slot": "afternoon", "statGains": { "wisdom": 13 } },
+        { "label": "Rest at the Lycaon Magic Association bench for the post-9/26 eight-coin Wisdom boost.", "slot": "afternoon" },
         { "label": "Deliver the final lost relic to Neuras (Follower rank 7); 'Petty Thief' arrives to recover the stolen ones.", "slot": "night" }
       ]
     },
@@ -282,8 +290,9 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for the Disgraced Ruins; cook Sublime Spoonful, the 21st and final recipe — King of Cuisine unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Plant seeds in the Plant Culture Chamber.", "slot": "afternoon" },
-        { "label": "More completes the Mystical Scrolls (Follower rank 8).", "slot": "night", "spoiler": true }
+        { "label": "Plant seeds in the Plant Culture Chamber, then stop at Malibelo Slope on the route.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Wisdom reaches rank 5 (Sagacious).", "slot": "afternoon" },
+        { "label": "Clear Disgraced Ruins; before the boss, master any Elite Archetype and turn in 'More's Task Chapter Six: The End' — More reaches Follower rank 8.", "slot": "afternoon", "statGains": { "imagination": 10 }, "spoiler": true }
       ]
     }
   ]

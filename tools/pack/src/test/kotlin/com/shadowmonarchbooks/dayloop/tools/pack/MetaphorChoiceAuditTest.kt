@@ -13,7 +13,7 @@ class MetaphorChoiceAuditTest {
 
     @Test
     fun `Metaphor content version includes audited response guidance`() {
-        assertEquals(5, assertNotNull(loadMetaphor().pack).contentVersion)
+        assertTrue(assertNotNull(loadMetaphor().pack).contentVersion >= 5)
     }
 
     @Test
