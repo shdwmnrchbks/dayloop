@@ -76,7 +76,7 @@
       "id": "metaphor.deadline.missable.julian-book",
       "label": "Missable book from Julian (Brilehaven)",
       "kind": "missable",
-      "date": "2100-07-23"
+      "window": { "start": "2100-07-23", "end": "2100-08-12" }
     }
   ]
 }
