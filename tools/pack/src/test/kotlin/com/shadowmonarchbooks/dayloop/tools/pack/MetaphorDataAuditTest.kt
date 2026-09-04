@@ -76,8 +76,21 @@ class MetaphorDataAuditTest {
             "$id rank $value",
         )
 
-        val gallica = bonds.getValue("metaphor.bond.gallica")
-        assertTrue(gallica.ranks.all { it.availableFrom != null && it.scheduledFor == null })
+        val gallica1 = rank("metaphor.bond.gallica", 1)
+        assertEquals("2100-06-06", gallica1.availableFrom)
+        assertEquals(null, gallica1.scheduledFor)
+        val gallica3 = rank("metaphor.bond.gallica", 3)
+        assertEquals("2100-07-05", gallica3.availableFrom)
+        assertEquals("2100-07-05", gallica3.scheduledFor)
+        val gallica4 = rank("metaphor.bond.gallica", 4)
+        assertEquals("2100-07-23", gallica4.availableFrom)
+        assertEquals("2100-07-25", gallica4.scheduledFor)
+        val gallica6 = rank("metaphor.bond.gallica", 6)
+        assertEquals("2100-08-19", gallica6.availableFrom)
+        assertEquals("2100-08-19", gallica6.scheduledFor)
+        val gallica8 = rank("metaphor.bond.gallica", 8)
+        assertEquals("2100-09-24", gallica8.availableFrom)
+        assertEquals(null, gallica8.scheduledFor)
 
         val strohl1 = rank("metaphor.bond.strohl", 1)
         assertEquals("2100-06-06", strohl1.availableFrom)
