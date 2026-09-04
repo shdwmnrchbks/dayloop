@@ -23,7 +23,7 @@
         { "rank": 3, "scheduledFor": "2100-06-16" },
         { "rank": 4, "scheduledFor": "2100-07-09" },
         { "rank": 5, "scheduledFor": "2100-07-12" },
-        { "rank": 6, "scheduledFor": "2100-07-27" },
+        { "rank": 6, "gates": { "type": "statGte", "stat": "imagination", "rank": 3 }, "scheduledFor": "2100-07-27", "notes": "Requires Imagination rank 3." },
         { "rank": 7, "scheduledFor": "2100-08-04" },
         { "rank": 8, "scheduledFor": "2100-08-07" }
       ]
@@ -38,7 +38,7 @@
         { "rank": 4, "scheduledFor": "2100-07-01" },
         { "rank": 5, "scheduledFor": "2100-07-09" },
         { "rank": 6, "scheduledFor": "2100-07-29" },
-        { "rank": 7, "scheduledFor": "2100-08-20" },
+        { "rank": 7, "gates": { "type": "statGte", "stat": "wisdom", "rank": 4 }, "scheduledFor": "2100-08-20", "notes": "Requires Wisdom rank 4." },
         { "rank": 8, "scheduledFor": "2100-08-22" }
       ]
     },
@@ -47,12 +47,12 @@
       "label": "Heismay",
       "ranks": [
         { "rank": 1, "availableFrom": "2100-07-04", "notes": "Bond forms automatically during the Martira story." },
-        { "rank": 2, "scheduledFor": "2100-07-13" },
+        { "rank": 2, "gates": { "type": "statGte", "stat": "eloquence", "rank": 2 }, "scheduledFor": "2100-07-13", "notes": "Requires Eloquence rank 2." },
         { "rank": 3, "scheduledFor": "2100-07-16" },
         { "rank": 4, "scheduledFor": "2100-07-24" },
         { "rank": 5, "scheduledFor": "2100-07-29" },
         { "rank": 6, "scheduledFor": "2100-08-04" },
-        { "rank": 7, "scheduledFor": "2100-08-21" },
+        { "rank": 7, "gates": { "type": "statGte", "stat": "imagination", "rank": 4 }, "scheduledFor": "2100-08-21", "notes": "Requires Imagination rank 4." },
         { "rank": 8, "scheduledFor": "2100-08-23" }
       ]
     },
@@ -64,7 +64,7 @@
         { "rank": 2, "scheduledFor": "2100-08-28" },
         { "rank": 3, "scheduledFor": "2100-08-30" },
         { "rank": 4, "scheduledFor": "2100-09-02" },
-        { "rank": 5, "scheduledFor": "2100-09-04" },
+        { "rank": 5, "gates": { "type": "statGte", "stat": "imagination", "rank": 4 }, "scheduledFor": "2100-09-04", "notes": "Requires Imagination rank 4." },
         { "rank": 6, "scheduledFor": "2100-09-14" },
         { "rank": 7, "scheduledFor": "2100-09-16" },
         { "rank": 8, "scheduledFor": "2100-09-22" }
@@ -79,8 +79,8 @@
         { "rank": 3, "scheduledFor": "2100-08-30" },
         { "rank": 4, "scheduledFor": "2100-09-02" },
         { "rank": 5, "scheduledFor": "2100-09-04" },
-        { "rank": 6, "scheduledFor": "2100-09-13" },
-        { "rank": 7, "scheduledFor": "2100-10-01" },
+        { "rank": 6, "gates": { "type": "statGte", "stat": "eloquence", "rank": 4 }, "scheduledFor": "2100-09-13", "notes": "Requires Eloquence rank 4." },
+        { "rank": 7, "gates": { "type": "statGte", "stat": "wisdom", "rank": 5 }, "scheduledFor": "2100-10-01", "notes": "Requires Wisdom rank 5." },
         { "rank": 8, "scheduledFor": "2100-10-03" }
       ]
     },
@@ -93,9 +93,9 @@
         { "rank": 3, "scheduledFor": "2100-09-19" },
         { "rank": 4, "scheduledFor": "2100-09-22" },
         { "rank": 5, "scheduledFor": "2100-09-26" },
-        { "rank": 6, "scheduledFor": "2100-09-28" },
+        { "rank": 6, "gates": { "type": "statGte", "stat": "imagination", "rank": 5 }, "scheduledFor": "2100-09-28", "notes": "Requires Imagination rank 5." },
         { "rank": 7, "scheduledFor": "2100-10-02" },
-        { "rank": 8, "scheduledFor": "2100-10-04" }
+        { "rank": 8, "gates": { "type": "statGte", "stat": "eloquence", "rank": 5 }, "scheduledFor": "2100-10-04", "notes": "Requires Eloquence rank 5." }
       ]
     },
     {
@@ -117,12 +117,12 @@
       "label": "Maria",
       "ranks": [
         { "rank": 1, "availableFrom": "2100-06-10", "notes": "Bond forms automatically during the Grand Trad story." },
-        { "rank": 2, "scheduledFor": "2100-06-30" },
+        { "rank": 2, "gates": { "type": "statGte", "stat": "tolerance", "rank": 2 }, "scheduledFor": "2100-06-30", "notes": "Requires Tolerance rank 2." },
         { "rank": 3, "scheduledFor": "2100-07-08" },
         { "rank": 4, "scheduledFor": "2100-07-11" },
         { "rank": 5, "scheduledFor": "2100-07-13" },
         { "rank": 6, "scheduledFor": "2100-08-05" },
-        { "rank": 7, "scheduledFor": "2100-09-01" },
+        { "rank": 7, "gates": { "type": "statGte", "stat": "tolerance", "rank": 4 }, "scheduledFor": "2100-09-01", "notes": "Requires Tolerance rank 4." },
         { "rank": 8, "scheduledFor": "2100-09-03" }
       ]
     },
@@ -135,7 +135,7 @@
         { "rank": 3, "availableFrom": "2100-07-19", "notes": "Automatic runner encounter on the road to Brilehaven." },
         { "rank": 4, "scheduledFor": "2100-08-03", "availableFrom": "2100-07-23", "availableUntil": "2100-08-13", "notes": "Route-selected runner encounter; complete before the Brilehaven travel window closes." },
         { "rank": 5, "scheduledFor": "2100-09-13" },
-        { "rank": 6, "scheduledFor": "2100-09-15" },
+        { "rank": 6, "gates": { "type": "statGte", "stat": "tolerance", "rank": 5 }, "scheduledFor": "2100-09-15", "notes": "Requires Tolerance rank 5." },
         { "rank": 7, "scheduledFor": "2100-09-17" },
         { "rank": 8, "scheduledFor": "2100-09-27" }
       ]
@@ -144,13 +144,13 @@
       "id": "metaphor.bond.alonzo",
       "label": "Alonzo",
       "ranks": [
-        { "rank": 1, "scheduledFor": "2100-07-11", "notes": "Unlocked by completing A Dagger, a Ring, and a Rake." },
-        { "rank": 2, "scheduledFor": "2100-08-06" },
+        { "rank": 1, "gates": { "type": "statGte", "stat": "imagination", "rank": 2 }, "scheduledFor": "2100-07-11", "notes": "Unlocked by completing A Dagger, a Ring, and a Rake; requires Imagination rank 2." },
+        { "rank": 2, "gates": { "type": "statGte", "stat": "wisdom", "rank": 3 }, "scheduledFor": "2100-08-06", "notes": "Requires Wisdom rank 3." },
         { "rank": 3, "scheduledFor": "2100-08-08" },
-        { "rank": 4, "scheduledFor": "2100-08-10" },
+        { "rank": 4, "gates": { "type": "statGte", "stat": "tolerance", "rank": 3 }, "scheduledFor": "2100-08-10", "notes": "Requires Tolerance rank 3." },
         { "rank": 5, "scheduledFor": "2100-08-12" },
         { "rank": 6, "scheduledFor": "2100-08-21" },
-        { "rank": 7, "scheduledFor": "2100-10-01" },
+        { "rank": 7, "gates": { "type": "statGte", "stat": "courage", "rank": 5 }, "scheduledFor": "2100-10-01", "notes": "Requires Courage rank 5." },
         { "rank": 8, "scheduledFor": "2100-10-04" }
       ]
     },
@@ -162,7 +162,7 @@
         { "rank": 2, "scheduledFor": "2100-07-21" },
         { "rank": 3, "scheduledFor": "2100-07-26" },
         { "rank": 4, "scheduledFor": "2100-07-28" },
-        { "rank": 5, "scheduledFor": "2100-08-06" },
+        { "rank": 5, "gates": { "type": "statGte", "stat": "eloquence", "rank": 3 }, "scheduledFor": "2100-08-06", "notes": "Requires Eloquence rank 3." },
         { "rank": 6, "scheduledFor": "2100-08-08" },
         { "rank": 7, "scheduledFor": "2100-09-05" },
         { "rank": 8, "scheduledFor": "2100-09-27" }
@@ -172,13 +172,13 @@
       "id": "metaphor.bond.brigitta",
       "label": "Brigitta",
       "ranks": [
-        { "rank": 1, "scheduledFor": "2100-06-16", "notes": "Route-selected completion of A Bullish Embargo unlocks the Merchant bond." },
+        { "rank": 1, "gates": { "type": "statGte", "stat": "wisdom", "rank": 2 }, "scheduledFor": "2100-06-16", "notes": "Route-selected completion of A Bullish Embargo unlocks the Merchant bond; requires Wisdom rank 2." },
         { "rank": 2, "scheduledFor": "2100-06-18" },
         { "rank": 3, "scheduledFor": "2100-06-20" },
         { "rank": 4, "scheduledFor": "2100-06-30" },
-        { "rank": 5, "scheduledFor": "2100-08-05" },
+        { "rank": 5, "gates": { "type": "statGte", "stat": "courage", "rank": 3 }, "scheduledFor": "2100-08-05", "notes": "Requires Courage rank 3." },
         { "rank": 6, "scheduledFor": "2100-08-07" },
-        { "rank": 7, "scheduledFor": "2100-08-29" },
+        { "rank": 7, "gates": { "type": "statGte", "stat": "courage", "rank": 4 }, "scheduledFor": "2100-08-29", "notes": "Requires Courage rank 4." },
         { "rank": 8, "scheduledFor": "2100-09-26" }
       ]
     },
