@@ -109,6 +109,12 @@
       "window": { "start": "2100-07-23", "end": "2100-08-10" }
     },
     {
+      "id": "metaphor.deadline.request.charadrius-keys",
+      "label": "Charadrius key objectives — Sergeant Xanth plus either Maintenance Chief Ceiba or Master Sergeant Glechom; expire with the operation",
+      "kind": "request",
+      "date": "2100-08-12"
+    },
+    {
       "id": "metaphor.deadline.request.guiding-gift",
       "label": "A Guiding Gift — timed request",
       "kind": "request",
