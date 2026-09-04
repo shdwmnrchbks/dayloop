@@ -175,7 +175,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Fly to Everfrost Forest; cook Indestructible Honey Cake (save one for a request).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "All 20 recipes cooked — 'Sublime Spoonful' unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Cook the first 20 recipes once each — this unlocks the 21st recipe, Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Chat with Basilio (Follower rank 3).", "slot": "afternoon" }
       ]
     },
@@ -222,7 +222,9 @@
       "dayKind": "story",
       "steps": [
         { "label": "Browse the upgraded Sunshade Row stock and grab a Soothing Sweetbun.", "slot": "afternoon" },
-        { "label": "Take the stage at Regalith Grand Cathedral — Louis at full power reads your turns, so play around his predictions.", "slot": "afternoon", "spoiler": true },
+        { "label": "Take the stage at Regalith Grand Cathedral — push Louis to the story threshold.", "slot": "afternoon", "spoiler": true },
+        { "label": "Set course for the Ancient Eldan Sanctum; collect the one-time Gold Beetle before entering the Prayer Room.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "spoiler": true },
+        { "label": "At the Altar of Secret History, reject the false ending and study the Prince Archetype — His Majesty unlocks.", "slot": "afternoon", "spoiler": true },
         { "label": "Gallica reaches Follower rank 8.", "slot": "afternoon" }
       ]
     },
@@ -275,7 +277,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Depart for the Disgraced Ruins; cook the final recipe, Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Depart for the Disgraced Ruins; cook Sublime Spoonful, the 21st and final recipe — King of Cuisine unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Plant seeds in the Plant Culture Chamber.", "slot": "afternoon" },
         { "label": "More completes the Mystical Scrolls (Follower rank 8).", "slot": "night", "spoiler": true }
       ]
