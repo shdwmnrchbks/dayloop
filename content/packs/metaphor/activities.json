@@ -26,7 +26,7 @@
       "kind": "book",
       "statGains": { "wisdom": 10 },
       "location": "Gauntlet Runner lounge",
-      "notes": "Missable: received from Julian at Brilehaven on 07/23 only."
+      "notes": "Missable: received from Julian in Brilehaven from 07/23 through 08/13."
     },
     {
       "id": "metaphor.activity.book.top-secret-poetry",
@@ -69,7 +69,7 @@
       "label": "Help cook at the inn",
       "kind": "other",
       "location": "Hushed Honeybee Inn, Grand Trad",
-      "notes": "Evenings only; window closes 09/22 (Chef in Training achievement)."
+      "notes": "Evenings only; available before 09/26. Cooking with Maria can award Chef in Training."
     },
     {
       "id": "metaphor.activity.cooking.runner",
