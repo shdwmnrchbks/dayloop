@@ -316,11 +316,9 @@
       "id": "metaphor.achievement.help-anyone-in-need",
       "title": "Help Anyone in Need",
       "description": "Complete all quests.",
+      "expectedBy": "2100-10-26",
       "missable": true,
-      "tracking": {
-        "type": "confirmation",
-        "prompt": "Confirm after the achievement unlocks. The game requires completion credit for 75 of its 76 quests."
-      }
+      "tracking": { "type": "event", "event": "metaphor.event.help-anyone-in-need" }
     },
     {
       "id": "metaphor.achievement.coliseum-champion",
@@ -483,6 +481,7 @@
     { "id": "metaphor.event.chef-in-training", "date": "2100-09-03", "labelContains": "cooking lesson with Maria" },
     { "id": "metaphor.event.all-that-glitters", "date": "2100-10-13", "labelContains": "All That Glitters unlocks" },
     { "id": "metaphor.event.king-of-cuisine", "date": "2100-09-30", "labelContains": "King of Cuisine unlocks" },
+    { "id": "metaphor.event.help-anyone-in-need", "date": "2100-10-26", "labelContains": "After the credits" },
     { "id": "metaphor.event.town-komero", "date": "2100-07-07", "labelContains": "Komero stop" },
     { "id": "metaphor.event.town-inundo", "date": "2100-07-29", "labelContains": "Inundo stop" },
     { "id": "metaphor.event.town-silento", "date": "2100-08-27", "labelContains": "Silento stop" },
