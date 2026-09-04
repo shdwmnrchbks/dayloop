@@ -196,8 +196,7 @@
       "steps": [
         { "label": "Quest warp-around: capital merchant for Strohl's inheritance, then deliver the flowers to Brilehaven's Kindly Boy.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Martira sweep: two Gold Beetles, Benevolent Bread delivery, and Bardon has something to discuss (Follower rank 2).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Hear the Elegant Performer at The Greatest Catch and take the Gambling Man's wager.", "slot": "night" },
-        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
+        { "label": "Hear the Elegant Performer's music and take the Gambling Man's wager.", "slot": "night" }
       ]
     },
     {
@@ -215,7 +214,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Brilehaven errand sweep: 'Soldier's Solace', Julian's missable book, 'Deeds and Diversions', 'Briny Threads' plus a Tail Bait, and the Brewer's request.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
-        { "label": "Julian hands over his book — missable after today.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" }
+        { "label": "Julian hands over 'The Future of Magic' — collect it now for this route; it remains available through August 13.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" },
+        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
       ]
     },
     {
@@ -252,7 +252,8 @@
         { "label": "Forgiveness Day (30% off): prep dungeon supplies and buy the Archetypal Ring.", "slot": "afternoon" },
         { "label": "Tell Strohl about the inheritance merchant (Follower rank 6).", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Tolerance reaches rank 3 (Generous).", "slot": "afternoon" },
-        { "label": "Catch the discount at the magic shops.", "slot": "night" }
+        { "label": "Catch the discount at the magic shops.", "slot": "night" },
+        { "label": "Debate Milo at the King's Rock (answer: beauty is deeper than our skin).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
       ]
     },
     {
