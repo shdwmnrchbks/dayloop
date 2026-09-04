@@ -128,7 +128,9 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Drakodios inquiry chain: The Greatest Catch notes, then the merchant, then the colony scout.", "slot": "afternoon" }
+        { "label": "Drakodios inquiry chain: The Greatest Catch notes, then the merchant, then the colony scout.", "slot": "afternoon" },
+        { "label": "Start 'Top Secret Poetry! Do Not Read!' in the Gauntlet Runner lounge.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 11 } },
+        { "label": "Continue 'Top Secret Poetry! Do Not Read!' after nightfall.", "slot": "night", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 11 } }
       ]
     },
     {
@@ -136,7 +138,8 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Cook Steadfast Stew, then read 'Top Secret Poetry! Do Not Read!'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 11 } },
+        { "label": "Cook Steadfast Stew, then finish 'Top Secret Poetry! Do Not Read!'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 22 } },
+        { "label": "Courage reaches rank 4 (Dauntless).", "slot": "afternoon" },
         { "label": "Visit the Towering Seawall.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 4 (Erudite).", "slot": "afternoon" },
         { "label": "The storm breaks — a tentacled horror attacks the fleet; bring Electric and AoE, take the legs first.", "slot": "night", "spoiler": true }
@@ -259,7 +262,6 @@
       "dayKind": "free",
       "steps": [
         { "label": "Report to the Dejected Man that his sister is safe.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Courage reaches rank 4 (Dauntless).", "slot": "afternoon" },
         { "label": "Explore Brilehaven with Eupha (Follower rank 2); collect the gamble winnings.", "slot": "afternoon" },
         { "label": "Shop with Junah (Follower rank 2).", "slot": "night" }
       ]
