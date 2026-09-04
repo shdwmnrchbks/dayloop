@@ -34,7 +34,7 @@ class MetaphorRoyalVirtueAuditTest {
             .sortedBy { it.date }
 
         days.forEach { day ->
-            day.steps.forEach { step ->
+            day.steps.forEach stepLoop@ { step ->
                 step.statGains.forEach { (stat, gain) ->
                     if (stat in totals) {
                         beforeLastGain[stat] = totals.getValue(stat)
@@ -42,7 +42,7 @@ class MetaphorRoyalVirtueAuditTest {
                     }
                 }
 
-                val match = marker.find(step.label) ?: return@forEach
+                val match = marker.find(step.label) ?: return@stepLoop
                 val stat = match.groupValues[1].lowercase()
                 val rank = match.groupValues[2].toInt()
                 val threshold = thresholds.getValue(stat).getValue(rank)
