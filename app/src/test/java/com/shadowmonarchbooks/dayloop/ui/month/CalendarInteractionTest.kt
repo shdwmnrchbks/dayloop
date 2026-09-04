@@ -6,6 +6,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class CalendarInteractionTest {
 
@@ -54,5 +55,17 @@ class CalendarInteractionTest {
         assertEquals(setOf("2016-05-02", "2016-05-13"), markers.keys)
         assertEquals(listOf("month"), markers.getValue("2016-05-02").map(MediaItem::id))
         assertEquals(listOf("month"), markers.getValue("2016-05-13").map(MediaItem::id))
+    }
+
+    @Test
+    fun `slash Today label nearly fills its red marker`() {
+        assertEquals(72f, SlashTodayMarkerWidth.value)
+        assertTrue(SlashTodayMarkerFontSize.value >= 30f)
+        assertTrue(
+            SlashTodayMarkerFontSize.value / SlashTodayMarkerLineHeight.value >= 0.95f,
+            "Today lettering should occupy nearly the full marker height",
+        )
+        assertTrue(SlashTodayMarkerHorizontalPadding.value <= 1f)
+        assertTrue(SlashTodayMarkerVerticalPadding.value <= 1f)
     }
 }
