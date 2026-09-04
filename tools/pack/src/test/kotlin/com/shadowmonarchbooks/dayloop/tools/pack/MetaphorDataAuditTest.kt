@@ -67,6 +67,49 @@ class MetaphorDataAuditTest {
     }
 
     @Test
+    fun `Metaphor follower route dates are separate from game availability`() {
+        val loaded = loadMetaphor()
+        val bonds = assertNotNull(loaded.bonds).bonds.associateBy { it.id }
+
+        fun rank(id: String, value: Int) = assertNotNull(
+            bonds.getValue(id).ranks.firstOrNull { it.rank == value },
+            "$id rank $value",
+        )
+
+        val gallica = bonds.getValue("metaphor.bond.gallica")
+        assertTrue(gallica.ranks.all { it.availableFrom != null && it.scheduledFor == null })
+
+        val strohl1 = rank("metaphor.bond.strohl", 1)
+        assertEquals("2100-06-06", strohl1.availableFrom)
+        assertEquals(null, strohl1.scheduledFor)
+        val strohl2 = rank("metaphor.bond.strohl", 2)
+        assertEquals("2100-06-13", strohl2.scheduledFor)
+        assertEquals(null, strohl2.availableFrom)
+
+        val maria1 = rank("metaphor.bond.maria", 1)
+        assertEquals("2100-06-10", maria1.availableFrom)
+        assertEquals(null, maria1.scheduledFor)
+        val maria2 = rank("metaphor.bond.maria", 2)
+        assertEquals("2100-06-30", maria2.scheduledFor)
+        assertEquals(null, maria2.availableFrom)
+
+        val catherina4 = rank("metaphor.bond.catherina", 4)
+        assertEquals("2100-08-03", catherina4.scheduledFor)
+        assertEquals("2100-07-23", catherina4.availableFrom)
+        assertEquals("2100-08-13", catherina4.availableUntil)
+
+        val more1 = rank("metaphor.bond.more", 1)
+        assertEquals("2100-06-05", more1.availableFrom)
+        assertEquals(null, more1.scheduledFor)
+        val more2 = rank("metaphor.bond.more", 2)
+        assertEquals(null, more2.availableFrom)
+        assertEquals(null, more2.scheduledFor)
+        val more3 = rank("metaphor.bond.more", 3)
+        assertEquals("2100-07-07", more3.scheduledFor)
+        assertEquals(null, more3.availableFrom)
+    }
+
+    @Test
     fun `Metaphor missable windows preserve their real availability`() {
         val loaded = loadMetaphor()
         val deadlines = assertNotNull(loaded.deadlines).deadlines.associateBy { it.id }
