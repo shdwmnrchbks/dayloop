@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -41,6 +42,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -459,17 +462,26 @@ private fun DayCell(
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .align(Alignment.Center)
+                    // The marker is a pasted-on notice: let it overhang the
+                    // narrow day cell instead of squeezing its word in half.
+                    .requiredWidth(72.dp)
                     .graphicsLayer { rotationZ = -6f },
             ) {
                 Text(
                     text = "TODAY",
                     style = MaterialTheme.typography.displaySmall.copy(
-                        fontSize = 20.sp,
-                        lineHeight = 22.sp,
+                        fontSize = 23.sp,
+                        lineHeight = 25.sp,
                         fontStyle = FontStyle.Normal,
                     ),
                     color = Color.Black,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp),
+                    maxLines = 1,
+                    softWrap = false,
+                    overflow = TextOverflow.Clip,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 5.dp),
                 )
             }
         }
