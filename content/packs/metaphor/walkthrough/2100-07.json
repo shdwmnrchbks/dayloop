@@ -44,7 +44,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Martira prep: take 'The Man-Eater in the Mine', buy informant notes, and stock up at Cattleracket Road.", "slot": "afternoon" },
-        { "label": "Return to Kriegante Castle and settle the castle trials; use the dungeon time to push Merchant to rank 15 for More's Chapter Two task.", "slot": "afternoon", "spoiler": true }
+        { "label": "Return to Kriegante Castle and settle the castle trials; use the dungeon time to push Merchant to rank 15 for More's Chapter Two task.", "slot": "afternoon", "spoiler": true },
+        { "label": "Clearing Kriegante Castle automatically raises Gallica to Follower rank 3.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -236,7 +237,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "At Akademeia, turn in More's Task Chapter Three: Drifting after studying 15 Archetypes — More reaches Follower rank 5 and Chapter Four: Turmoil opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Infiltrate Charadrius — a chain of boss battles; Tetrabreak is the one item that matters, set the team from the informant notes.", "slot": "afternoon", "spoiler": true }
+        { "label": "Infiltrate Charadrius — a chain of boss battles; Tetrabreak is the one item that matters, set the team from the informant notes.", "slot": "afternoon", "spoiler": true },
+        { "label": "Completing Infiltrate the Charadrius automatically raises Gallica to Follower rank 4.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
