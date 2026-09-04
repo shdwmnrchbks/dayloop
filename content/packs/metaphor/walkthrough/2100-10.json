@@ -80,27 +80,26 @@
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Cook Cursed Loved Ballad for the coming fight, then set off for the Tower of Insolence.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Stop by the Decaying Estate.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Climb the Tower of Insolence with Catherina.", "slot": "afternoon" }
+        { "label": "Set course for the Forsaken Tower for Trial of the Dragon: Mad Mischief.", "slot": "afternoon" },
+        { "label": "Climb to the rooftop and defeat the Devourer of Nations; Mad Mischief completes.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
       "date": "2100-10-10",
       "weekday": "idlesday",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
-        { "label": "Hang Neuras' drawings with Maria at the inn, then shop Sunshade Row.", "slot": "afternoon" },
-        { "label": "Ask Edeni to clear the Spire of Blind Faith's weather for the dragon rematch.", "slot": "afternoon" }
+        { "label": "Ask Edeni to clear the Spire of Blind Faith's weather, then set course for the spire for Trial of the Dragon: Heroes' Rest.", "slot": "afternoon" },
+        { "label": "Climb to the rooftop and defeat the Devourer of Flames; Heroes' Rest completes.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
       "date": "2100-10-11",
       "weekday": "flamesday",
-      "dayKind": "free",
+      "dayKind": "story",
       "steps": [
-        { "label": "Ranked League at the Varmareno Coliseum — Bronze I into Silver III.", "slot": "afternoon", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } },
-        { "label": "Turn in the hot spring request at Opera House Square.", "slot": "night" }
+        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy.", "slot": "afternoon" },
+        { "label": "Defeat the Devourer of Stars; Bygone Legacy completes and Trial of the Dragon: Essence of Power opens.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -110,7 +109,8 @@
       "steps": [
         { "label": "The Gentle Merchant at Blue Sky Bridge has your final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Fish for the Lord of the Lake on the way out.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
-        { "label": "Return to the Dragon Temple and finish the trial at the Divine Altar Path.", "slot": "afternoon" }
+        { "label": "Return to the Dragon Temple for Trial of the Dragon: Essence of Power; avoid repel gear and defeat the Elegy of the Soul.", "slot": "afternoon", "spoiler": true },
+        { "label": "Complete Essence of Power after the three dragon trials — Entrusted unlocks.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -145,7 +145,8 @@
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Storm the Skybound Avatar to stop Louis — sweep every chest, the gear inside is top-tier.", "slot": "afternoon", "spoiler": true }
+        { "label": "Storm the Skybound Avatar to stop Louis — sweep every chest, the gear inside is top-tier.", "slot": "afternoon", "spoiler": true },
+        { "label": "Defeat the Skybound Avatar boss and complete Skybound Avatar Conquest — Skybound Hope unlocks.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -231,8 +232,9 @@
       "dayKind": "story",
       "steps": [
         { "label": "Final Pantry check, then set course for the Tyrant's Star — there is no turning back; Neuras sells consumables aboard.", "slot": "afternoon", "spoiler": true },
+        { "label": "For Star Shatterer, ignore every Melancholia Crystal and its optional sub-boss elevator so Destroyer Charadrius stays at full power.", "slot": "afternoon", "spoiler": true },
         { "label": "Inside Akademeia, answer 'No! Magic hasn't been lost.' — the fight that follows is a formality.", "slot": "night", "spoiler": true },
-        { "label": "Face the true final battle.", "slot": "night", "spoiler": true },
+        { "label": "Defeat full-power Destroyer Charadrius — Star Shatterer unlocks.", "slot": "night", "spoiler": true },
         { "label": "After the credits, the epilogue catches up with the kingdom in 'Idlesday, December 35'.", "slot": "night", "spoiler": true }
       ]
     }
