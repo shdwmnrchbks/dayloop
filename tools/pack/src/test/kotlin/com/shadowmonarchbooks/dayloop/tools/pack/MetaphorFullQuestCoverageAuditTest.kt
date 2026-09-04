@@ -24,7 +24,7 @@ class MetaphorFullQuestCoverageAuditTest {
             "Pagan's Dilemma",
             "Help the Hushed Honeybee",
             "A Friend in Need",
-            "Bullish Embargo",
+            "A Bullish Embargo",
             "Man's Not-So Best Friend",
             "Promising Returns",
             "Providing a Spark",
