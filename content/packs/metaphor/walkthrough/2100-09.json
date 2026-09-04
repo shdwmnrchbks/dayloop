@@ -132,6 +132,7 @@
         { "label": "Cook Amber Stew, then set off for Malva.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Junah shows you something in the lounge (Follower rank 6).", "slot": "afternoon" },
         { "label": "Loveless boards the runner — an easy fight after the Opera House.", "slot": "afternoon" },
+        { "label": "Malva stop: visit the town after the runner fight and buy the Durable Spider Silk for Warmth in Winter plus Altabury Wheat Flour for tomorrow's cooking.", "slot": "afternoon" },
         { "label": "Back in Altabury, accept Loveless' 'Defeat Milo' request and hand the Durable Spider Silk to the Portly Man to complete 'Warmth in Winter'.", "slot": "night", "statGains": { "tolerance": 10 } }
       ]
     },
@@ -194,7 +195,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Report the Icebeast hunt at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Head for Scoundrel's Hold; train with Basilio on deck for bonus max HP (Follower rank 5 for Neuras).", "slot": "afternoon" }
+        { "label": "Head for Scoundrel's Hold; train with Basilio on deck for bonus max HP (Follower rank 5 for Neuras).", "slot": "afternoon" },
+        { "label": "Ligno stop: visit the town on the way to Scoundrel's Hold and browse its specialist weapons and equipment. This is the route's fifth Globetrotter town.", "slot": "afternoon" }
       ]
     },
     {

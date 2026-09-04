@@ -170,9 +170,17 @@
       "id": "metaphor.achievement.globetrotter",
       "title": "Globetrotter",
       "description": "Visit all towns.",
+      "availableFrom": "2100-07-07",
+      "expectedBy": "2100-09-20",
       "tracking": {
-        "type": "confirmation",
-        "prompt": "Confirm when the in-game Globetrotter achievement unlocks after visiting every town."
+        "type": "allEvents",
+        "events": [
+          "metaphor.event.town-komero",
+          "metaphor.event.town-inundo",
+          "metaphor.event.town-silento",
+          "metaphor.event.town-malva",
+          "metaphor.event.town-ligno"
+        ]
       }
     },
     {
@@ -442,6 +450,11 @@
     { "id": "metaphor.event.chef-in-training", "date": "2100-09-03", "labelContains": "cooking lesson with Maria" },
     { "id": "metaphor.event.all-that-glitters", "date": "2100-10-13", "labelContains": "All That Glitters unlocks" },
     { "id": "metaphor.event.king-of-cuisine", "date": "2100-09-30", "labelContains": "King of Cuisine unlocks" },
+    { "id": "metaphor.event.town-komero", "date": "2100-07-07", "labelContains": "Komero stop" },
+    { "id": "metaphor.event.town-inundo", "date": "2100-07-29", "labelContains": "Inundo stop" },
+    { "id": "metaphor.event.town-silento", "date": "2100-08-27", "labelContains": "Silento stop" },
+    { "id": "metaphor.event.town-malva", "date": "2100-09-14", "labelContains": "Malva stop" },
+    { "id": "metaphor.event.town-ligno", "date": "2100-09-20", "labelContains": "Ligno stop" },
     { "id": "metaphor.event.drawing-tree-of-prophecy", "date": "2100-06-25", "labelContains": "Tree of Prophecy" },
     { "id": "metaphor.event.drawing-midnight-sunsands", "date": "2100-07-02", "labelContains": "Midnight Sunsands" },
     { "id": "metaphor.event.drawing-city-ruins", "date": "2100-07-18", "labelContains": "City Ruins" },

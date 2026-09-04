@@ -261,6 +261,7 @@
       "steps": [
         { "label": "At Akademeia, turn in More's Task Chapter Five: Resolve after studying 25 Archetypes — More reaches Follower rank 7 and Chapter Six: The End opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
+        { "label": "Silento stop: visit the town on the way to the Spire of Blind Faith. No quest forces this visit, so do not skip it — it is required for Globetrotter.", "slot": "afternoon" },
         { "label": "Climb the Spire of Blind Faith — permanent storm weather; collect the Gold Beetle on the sixth floor and use the Stormy Sea Ring to cut the damage.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
