@@ -1,7 +1,7 @@
 {
   "packId": "metaphor",
   "title": "Metaphor: ReFantazio",
-  "contentVersion": 2,
+  "contentVersion": 3,
   "pickerOrder": 2,
   "timeModel": "dayCounter",
   "calendar": {
@@ -29,7 +29,13 @@
     { "id": "eloquence", "label": "Eloquence" },
     { "id": "imagination", "label": "Imagination" }
   ],
-  "routes": [],
+  "routes": [
+    {
+      "id": "standard",
+      "label": "100% Completion Route",
+      "description": "Source-specific full-coverage plan. Route dates are the authored order for this completion route, not universal game availability, unlock dates, or deadlines."
+    }
+  ],
   "capabilities": {
     "exams": false,
     "weather": false
