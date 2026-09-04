@@ -76,6 +76,35 @@ class MetaphorRouteResidualAuditTest {
         assertTrue(august28.any { "Peak Curiosity" in it.label })
     }
 
+    @Test
+    fun `September route preserves final request setup and correct virtue naming`() {
+        val days = standardDays()
+
+        val september13 = days.getValue("2100-09-13").steps
+        assertTrue(september13.any { "Rudolf" in it.label && "Proof of Power" in it.label })
+        assertTrue(september13.any { "Tainted Threads" in it.label && "Tail Bait" in it.label && "Fiend in the Frozen Forest" in it.label })
+
+        val september14 = days.getValue("2100-09-14").steps
+        assertTrue(september14.any { "Malva" in it.label && "fifth town" in it.label && "Globetrotter" in it.label })
+
+        val september18 = days.getValue("2100-09-18").steps
+        assertTrue(september18.any { "Rusty Greatsword" in it.label && "The Edge of Glory" in it.label && "Gold Beetle" in it.label })
+        assertTrue(september18.any { "Cursed Love Ballad" in it.label })
+
+        val september20 = days.getValue("2100-09-20").steps
+        assertTrue(september20.any { "Ligno" in it.label && "equipment shop" in it.label })
+
+        val september26 = days.getValue("2100-09-26").steps
+        assertTrue(september26.any { "Incarnate in the Woods" in it.label && "Cockatrice in the Clouds" in it.label && "Apostles of the Apocalypse" in it.label })
+        assertTrue(september26.any { "Trial of the Dragon: Mad Mischief" in it.label })
+        assertTrue(september26.any { "Trial of the Dragon: Heroes' Rest" in it.label })
+        assertTrue(september26.any { "Trial of the Dragon: Bygone Legacy" in it.label && "Deliver Hot Spring Water" in it.label })
+
+        val september30 = days.getValue("2100-09-30").steps
+        assertTrue(september30.any { "Wisdom reaches rank 5 (Sagacious)" in it.label })
+        assertTrue(september30.none { "Sagatious" in it.label })
+    }
+
     private fun standardDays() = loadMetaphor().walkthroughs
         .filter { it.routeId == "standard" }
         .flatMap { it.file.days }
