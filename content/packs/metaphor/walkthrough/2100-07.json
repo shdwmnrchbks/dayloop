@@ -44,7 +44,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Martira prep: take 'The Man-Eater in the Mine', buy informant notes, and stock up at Cattleracket Road.", "slot": "afternoon" },
-        { "label": "Return to Kriegante Castle and settle the castle trials.", "slot": "afternoon", "spoiler": true }
+        { "label": "Return to Kriegante Castle and settle the castle trials.", "slot": "afternoon", "statGains": { "courage": 10 }, "spoiler": true },
+        { "label": "Gallica reaches Follower rank 3 after the Martira operation.", "slot": "afternoon", "spoiler": true }
       ]
     },
     {
@@ -54,7 +55,7 @@
       "steps": [
         { "label": "Martira farewells: chat with the Cheerful Fairy and the Kind Old Woman, then talk with Bardon (Follower rank 1).", "slot": "afternoon" },
         { "label": "Hear the Elegant Performer's music and take 'The Queen of Cuisine: Heart'.", "slot": "night" },
-        { "label": "Debate Loveless at the King's Rock (answer: alcohol won't bring equality).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 6 } }
+        { "label": "Debate Loveless at the King's Rock (answer: alcohol won't bring equality).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
       ]
     },
     {
@@ -64,6 +65,8 @@
       "steps": [
         { "label": "Set off for Man-Eater's Grotto; read 'Pride and Persuasion' (choice: scare them).", "slot": "afternoon", "activityRef": "metaphor.activity.book.pride-and-persuasion", "statGains": { "eloquence": 10 } },
         { "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request'.", "slot": "afternoon" },
+        { "label": "Turn in More's Task Chapter One: Ordeal (Follower rank 3).", "slot": "afternoon", "statGains": { "imagination": 10 } },
+        { "label": "Turn in More's Task Chapter Two: Solitude with Merchant rank 15 already met (Follower rank 4); receive Chapter Three: Drifting.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Restock supplies and continue toward the bounty mark.", "slot": "afternoon" }
       ]
     },
@@ -112,7 +115,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Accompany Strohl to his old home (Follower rank 5); receive 'A Noble's Legacy'.", "slot": "afternoon" },
-        { "label": "Debate Lina at the King's Rock (answer: what are your policies?).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 6 } }
+        { "label": "Debate Lina at the King's Rock (answer: what are your policies?).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
       ]
     },
     {
@@ -130,7 +133,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Second Spirited Youth challenge — retry until the plunge lands.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Debate Roger at the King's Rock (answer: taxes benefit us all).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 6 } }
+        { "label": "Debate Roger at the King's Rock (answer: taxes benefit us all).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
       ]
     },
     {
@@ -157,7 +160,9 @@
       "dayKind": "story",
       "steps": [
         { "label": "Sail for Port Brilehaven; cook Benevolent Bread for the Classy Woman (Maria's perk grants one free travel dish).", "slot": "afternoon" },
-        { "label": "Continue 'New World Travel Diary' in the lounge.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } }
+        { "label": "Finish 'New World Travel Diary' in the lounge, including its completion bonus.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 20 } },
+        { "label": "At camp, spend time with Heismay (or another companion) for more Imagination.", "slot": "night", "statGains": { "imagination": 10 } },
+        { "label": "Imagination reaches rank 3 (Visionary).", "slot": "night" }
       ]
     },
     {
@@ -196,8 +201,7 @@
       "steps": [
         { "label": "Quest warp-around: capital merchant for Strohl's inheritance, then deliver the flowers to Brilehaven's Kindly Boy.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Martira sweep: two Gold Beetles, Benevolent Bread delivery, and Bardon has something to discuss (Follower rank 2).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Hear the Elegant Performer at The Greatest Catch and take the Gambling Man's wager.", "slot": "night" },
-        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
+        { "label": "Hear the Elegant Performer at The Greatest Catch and take the Gambling Man's wager.", "slot": "night" }
       ]
     },
     {
@@ -206,7 +210,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Visit the Nightprowler.", "slot": "afternoon" },
-        { "label": "Take the ferry to Charadrius — side missions stay open until August 13.", "slot": "night" }
+        { "label": "Take the ferry to Charadrius — optional work can be handled through August 12; the main story resumes August 13.", "slot": "night" }
       ]
     },
     {
@@ -215,7 +219,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Brilehaven errand sweep: 'Soldier's Solace', Julian's missable book, 'Deeds and Diversions', 'Briny Threads' plus a Tail Bait, and the Brewer's request.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
-        { "label": "Julian hands over his book — missable after today.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" }
+        { "label": "Get 'The Future of Magic' from Julian; this missable book remains obtainable through August 12.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" },
+        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
     },
     {
@@ -223,7 +228,7 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Debate Glodell at the King's Rock (answer: you only parrot Louis).", "slot": "afternoon", "statGains": { "eloquence": 11, "imagination": 6 } },
+        { "label": "Debate Glodell at the King's Rock (answer: you only parrot Louis).", "slot": "afternoon", "statGains": { "eloquence": 11, "imagination": 5 } },
         { "label": "Accompany Heismay to his village (Follower rank 4).", "slot": "night" }
       ]
     },
@@ -232,6 +237,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
+        { "label": "With 15 Archetypes studied, turn in More's Task Chapter Three: Drifting (Follower rank 5); receive Chapter Four: Turmoil.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Infiltrate Charadrius — a chain of boss battles; Tetrabreak is the one item that matters, set the team from the informant notes.", "slot": "afternoon", "spoiler": true }
       ]
     },
@@ -241,7 +247,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Chat with Bardon (Follower rank 3).", "slot": "afternoon" },
-        { "label": "Debate Rudolf at the King's Rock (answer: the tribes must stand together).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 6 } }
+        { "label": "Debate Rudolf at the King's Rock (answer: the tribes must stand together).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
     },
     {
@@ -252,7 +258,8 @@
         { "label": "Forgiveness Day (30% off): prep dungeon supplies and buy the Archetypal Ring.", "slot": "afternoon" },
         { "label": "Tell Strohl about the inheritance merchant (Follower rank 6).", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Tolerance reaches rank 3 (Generous).", "slot": "afternoon" },
-        { "label": "Catch the discount at the magic shops.", "slot": "night" }
+        { "label": "Debate Milo at the King's Rock (answer: beauty is deeper than our skin).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } },
+        { "label": "Eloquence reaches rank 4 (Influential).", "slot": "night" }
       ]
     },
     {
