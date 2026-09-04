@@ -187,6 +187,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Eht Ria: fisher-crone's Polar Stones, Edeni's 'Trial of Malnova', and the Clumsy Boy's plea.", "slot": "afternoon" },
+        { "label": "With Wisdom rank 4 secured, hear Hulkenberg out about her next trial (Follower rank 7).", "slot": "afternoon" },
         { "label": "Sit with Eupha at the village shrine.", "slot": "afternoon" }
       ]
     },
@@ -243,6 +244,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Cook Secretest of Secrets; tidy the storage room for extra bait.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Before the next More turn-in, make sure at least 25 distinct Archetypes have been studied.", "slot": "afternoon" },
         { "label": "Sporico Cave run.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Keep the night watch with Heismay.", "slot": "night", "statGains": { "tolerance": 8 } }
       ]
@@ -252,6 +254,7 @@
       "weekday": "watersday",
       "dayKind": "story",
       "steps": [
+        { "label": "At Akademeia, turn in More's Task Chapter Five: Resolve after studying 25 Archetypes — More reaches Follower rank 7 and Chapter Six: The End opens.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
         { "label": "Climb the Spire of Blind Faith — permanent storm weather; the Stormy Sea Ring cuts the damage.", "slot": "afternoon" }
       ]
