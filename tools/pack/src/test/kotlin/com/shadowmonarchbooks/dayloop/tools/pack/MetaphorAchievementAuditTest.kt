@@ -51,9 +51,10 @@ class MetaphorAchievementAuditTest {
             "metaphor.achievement.on-knifes-edge" to "2100-07-25",
             "metaphor.achievement.history-untold" to "2100-08-19",
             "metaphor.achievement.mission-accomplished" to "2100-09-10",
-            "metaphor.achievement.his-majesty" to "2100-09-24",
+            "metaphor.achievement.globetrotter" to "2100-09-14",
             "metaphor.achievement.debate-me" to "2100-09-14",
             "metaphor.achievement.bookworm" to "2100-09-21",
+            "metaphor.achievement.his-majesty" to "2100-09-24",
             "metaphor.achievement.vista-viewer" to "2100-09-30",
             "metaphor.achievement.king-of-cuisine" to "2100-09-30",
             "metaphor.achievement.all-that-glitters" to "2100-10-01",
@@ -61,10 +62,39 @@ class MetaphorAchievementAuditTest {
             "metaphor.achievement.entrusted" to "2100-10-12",
             "metaphor.achievement.coliseum-champion" to "2100-10-15",
             "metaphor.achievement.skybound-hope" to "2100-10-16",
+            "metaphor.achievement.worldly-wisdom" to "2100-10-16",
+            "metaphor.achievement.summon-mask-time" to "2100-10-17",
+            "metaphor.achievement.help-anyone-in-need" to "2100-10-26",
             "metaphor.achievement.coronation-of-the-king" to "2100-10-26",
         )
 
         expected.forEach { (id, date) -> assertEquals(date, achievements.getValue(id).expectedBy, id) }
+    }
+
+    @Test
+    fun `Metaphor completion achievements retain trigger-specific tracking semantics`() {
+        val achievements = assertNotNull(loadMetaphor().achievements).achievements.associateBy { it.id }
+
+        val globetrotter = achievements.getValue("metaphor.achievement.globetrotter")
+        assertEquals("confirmation", globetrotter.tracking.type)
+        assertEquals("2100-09-14", globetrotter.tracking.date)
+        assertTrue(globetrotter.tracking.prompt.orEmpty().contains("Malva"))
+
+        val worldlyWisdom = achievements.getValue("metaphor.achievement.worldly-wisdom")
+        assertEquals("confirmation", worldlyWisdom.tracking.type)
+        assertEquals("2100-10-16", worldlyWisdom.tracking.date)
+        assertTrue(worldlyWisdom.tracking.prompt.orEmpty().contains("Skybound Avatar"))
+
+        val summonMaskTime = achievements.getValue("metaphor.achievement.summon-mask-time")
+        assertEquals("confirmation", summonMaskTime.tracking.type)
+        assertEquals("2100-10-17", summonMaskTime.tracking.date)
+        assertTrue(summonMaskTime.tracking.prompt.orEmpty().contains("Skybound Avatar materials"))
+
+        val helpAnyone = achievements.getValue("metaphor.achievement.help-anyone-in-need")
+        assertEquals("confirmation", helpAnyone.tracking.type)
+        assertEquals("2100-10-26", helpAnyone.tracking.date)
+        assertTrue(helpAnyone.tracking.prompt.orEmpty().contains("Save the Country"))
+        assertTrue(helpAnyone.tracking.prompt.orEmpty().contains("awarded at story completion"))
     }
 
     @Test
