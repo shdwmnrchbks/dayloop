@@ -5,6 +5,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -26,6 +27,68 @@ class MetaphorStoryAchievementAuditTest {
     }
 
     @Test
+    fun `Bookworm route explicitly finishes every book with the final reading reward`() {
+        data class BookFinish(
+            val date: String,
+            val title: String,
+            val stat: String,
+            val gain: Int,
+        )
+
+        val finishes = listOf(
+            BookFinish("2100-07-17", "New World Travel Diary", "imagination", 20),
+            BookFinish("2100-07-10", "Pride and Persuasion", "eloquence", 20),
+            BookFinish("2100-07-19", "Bygone Days", "tolerance", 20),
+            BookFinish("2100-08-02", "The Future of Magic", "wisdom", 20),
+            BookFinish("2100-08-15", "Top Secret Poetry! Do Not Read!", "courage", 22),
+            BookFinish("2100-09-09", "How to Walk Outside the Island", "tolerance", 26),
+            BookFinish("2100-09-21", "Literacy Workbook", "imagination", 26),
+        )
+
+        finishes.forEach { expected ->
+            val step = assertNotNull(
+                day(expected.date).steps.singleOrNull {
+                    it.label.contains("finish", ignoreCase = true) &&
+                        it.label.contains(expected.title, ignoreCase = true)
+                },
+                "${expected.title} final reading on ${expected.date}",
+            )
+            assertEquals(expected.gain, step.statGains[expected.stat], expected.title)
+        }
+
+        assertTrue(day("2100-09-21").steps.any {
+            it.label.contains("Bookworm unlocks", ignoreCase = true)
+        })
+    }
+
+    @Test
+    fun `Top Secret Poetry route reaches Courage rank four on its final reading`() {
+        val august14 = day("2100-08-14")
+        assertTrue(august14.steps.any {
+            it.label.contains("Start 'Top Secret Poetry", ignoreCase = true) && it.slot == "afternoon"
+        })
+        assertTrue(august14.steps.any {
+            it.label.contains("Continue 'Top Secret Poetry", ignoreCase = true) && it.slot == "night"
+        })
+        assertTrue(day("2100-08-15").steps.any {
+            it.label.contains("Courage reaches rank 4", ignoreCase = true)
+        })
+        assertTrue(day("2100-08-28").steps.none {
+            it.label.contains("Courage reaches rank 4", ignoreCase = true)
+        })
+    }
+
+    @Test
+    fun `How to Walk Outside the Island has all three route readings`() {
+        val dates = listOf("2100-09-07", "2100-09-08", "2100-09-09")
+        dates.forEach { date ->
+            assertTrue(day(date).steps.any {
+                it.activityRef == "metaphor.activity.book.how-to-walk-outside-the-island"
+            }, "$date missing How to Walk Outside the Island")
+        }
+    }
+
+    @Test
     fun `King of Cuisine route cooks the first twenty then the final Sublime Spoonful`() {
         val september19 = day("2100-09-19")
         val unlock = assertNotNull(september19.steps.firstOrNull {
@@ -40,6 +103,28 @@ class MetaphorStoryAchievementAuditTest {
         })
         assertTrue(finalRecipe.label.contains("21st and final recipe", ignoreCase = true))
         assertTrue(finalRecipe.label.contains("King of Cuisine", ignoreCase = true))
+    }
+
+    @Test
+    fun `All That Glitters route performs the required beetle exchange`() {
+        val cleanup = day("2100-10-13").steps.joinToString("\n") { it.label }
+        assertTrue(cleanup.contains("Elderly Entomophile", ignoreCase = true))
+        assertTrue(cleanup.contains("at least 46 Gold Beetles", ignoreCase = true))
+        assertTrue(cleanup.contains("All That Glitters unlocks", ignoreCase = true))
+    }
+
+    @Test
+    fun `Summon Mask Time cleanup does not depend on Skybound-only materials`() {
+        val october13 = day("2100-10-13").steps.joinToString("\n") { it.label }
+        assertTrue(october13.contains("Special Experiment", ignoreCase = true))
+        assertTrue(october13.contains("Wary Shopkeep", ignoreCase = true))
+        assertTrue(october13.contains("Krozelli", ignoreCase = true))
+        assertTrue(october13.contains("do not assume", ignoreCase = true))
+
+        val october17 = day("2100-10-17").steps.joinToString("\n") { it.label }
+        assertTrue(october17.contains("every remaining Masked Dancer mask", ignoreCase = true))
+        assertTrue(october17.contains("Summoner vessel", ignoreCase = true))
+        assertTrue(october17.contains("Summon Mask Time", ignoreCase = true))
     }
 
     @Test
