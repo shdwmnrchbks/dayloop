@@ -225,7 +225,7 @@ private fun PackLoadingOverlay(pack: LoadedPack) {
         } else {
             while (true) {
                 progress.snapTo(0f)
-                progress.animateTo(1f, tween(900, easing = LinearEasing))
+                progress.animateTo(1f, tween(300, easing = LinearEasing))
             }
         }
     }
