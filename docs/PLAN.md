@@ -32,7 +32,7 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 - Home-screen widget (Glance) — shipped in Phase 5
 - Exam/test answer sheets — shipped in Phase 5 (`answers.json`; shown on daily pages, with an Answers tab for packs that do not replace it)
 - Mementos Requests tracker — shipped for P5R (`mementos-requests.json` + exact completion-task anchors)
-- Additional packs: P3R and Metaphor: ReFantazio next; P4G and further titles stay drop-in candidates via schema (deferred)
+- Pack audit order after the P5R milestone: P3R, then Metaphor: ReFantazio; P4G and further titles stay drop-in candidates via schema (deferred)
 
 ## 2. Key design decision: model entities, not paragraphs
 
@@ -86,6 +86,14 @@ Game-switcher lists installed packs (bundled now, imported later); separate prof
 - **Design for three, build one.** Before mass-authoring P5R, throwaway mini-packs exercise the schema: one Metaphor month (`dayCounter`, virtue gates, remaining-day counters) and one P3R month (same `weekdayGrid` model as P5R, but a different stat set and different gate shapes, e.g. full-moon-operation-style deadlines). Both must render through the same engine unmodified before Phase 4 authoring begins.
 - **Facts vs prose.** Schedules, thresholds, dates, exam answers = facts (safe to structure). Guide sentences = rewritten in our own words.
 - **No game assets ever bundled.** Original typography/shapes only; unofficial-fan-tool naming ready for public flip. *(Amended 2026-08-31, ROADMAP-v2 Phase 10: curated guide-derived art is allowed for the private, non-commercial build; strip before any public flip. Further amended by ROADMAP-v3 Phase 11: the full guide-image sets ship as declared pack media — `media.json` + packlint orphans rule — under the same strip-before-public rule.)*
+
+### 4.1 Pack-isolation rule after v0.15.0
+
+- Persona 5 Royal is the completed reference pack. Its v0.15.0 facts, task order, IDs, completion anchors, navigation, and Phantom presentation are recorded in [`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md).
+- P3R- or Metaphor-scoped work must not modify `content/packs/p5r/`, increment P5R's `contentVersion`, or weaken a P5R regression test.
+- Shared engine/schema/UI changes are allowed only when pack-generic. They must preserve P5R behavior and keep the full P5R regression suite and `packlint` green.
+- P5R may be used as a reference implementation, never as data to copy blindly. Each title keeps its own mechanics, dates, terminology, sources, artwork, and completion semantics.
+- A future P5R change requires an explicit P5R request, a focused audit, an intentional baseline update, and a P5R `contentVersion` bump when bundled content changes.
 
 ## 5. Architecture table
 

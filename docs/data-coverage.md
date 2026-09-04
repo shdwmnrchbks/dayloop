@@ -4,6 +4,11 @@ Phase 9 deliverable (docs/ROADMAP-v2.md): *"served accordingly" is checkable, no
 vibes. Every field in the pack schema is either rendered somewhere, reachable in
 ≤3 taps, or documented as intentionally unserved with a reason.*
 
+The P5R implementation of this matrix is frozen at the v0.15.0 milestone. Its
+exact content and behavior contract is recorded in
+[`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md); later P3R and Metaphor
+audits must not change that baseline incidentally.
+
 ## How to read the matrix
 
 - **Served** — the field is rendered or acted on by at least one surface, or is

@@ -5,11 +5,11 @@ accent colors. Roadmap v3 goes further: **when you pick P5R, the app should look
 like Persona 5 Royal's own UI — the graphic language, not just the palette** —
 while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 
-> **Current state: v0.11.1 is the latest released build; Phases 11–17 are complete
-> on `main`. Phase 18 is next and is the final verification/release-hardening
-> pass.** Historical implementation detail for completed phases remains available
-> in git history and release notes; this file keeps the shipped contracts plus
-> the actionable remaining plan.
+> **Current state: v0.15.0 is the P5R milestone release; Phases 11–17 are
+> complete. Focus now moves to the isolated P3R pack audit, followed by
+> Metaphor. Phase 18 remains the final cross-pack verification and release-
+> hardening pass.** P5R's frozen reference contract lives in
+> `docs/packs/p5r-baseline.md`.
 
 | # | Ask | Phase | Status |
 |---|-----|-------|--------|
@@ -17,8 +17,8 @@ while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 | 2 | Every guide-package graphic bundled, declared, and served | Phase 11 | ✅ v0.6.0 |
 | 3 | Skin DSL + three per-game visual languages | Phases 12–15 | ✅ v0.7.0–v0.10.0 |
 | 4 | Motion, feedback, sound and accessibility hardening | Phase 16 | ✅ v0.11.1 |
-| 5 | Widget, icon and cold-start parity | Phase 17 | ✅ complete on `main` |
-| 6 | Screenshot verification, budgets and release hardening | Phase 18 | ⏭️ next |
+| 5 | Widget, icon and cold-start parity | Phase 17 | ✅ v0.15.0 |
+| 6 | Screenshot verification, budgets and release hardening | Phase 18 | ⏳ after pack audits |
 
 Architecture rules from `docs/PLAN.md` §3 still bind everything below: the engine
 never knows a game's name; every look is pack data (`pack.json` `theme` + bundled
@@ -221,9 +221,9 @@ Acceptance carried forward:
 
 ---
 
-## Phase 18 — Verification, budgets & release hardening ⏭️
+## Phase 18 — Verification, budgets & release hardening ⏳
 
-**Status: next.**
+**Status: pending after the isolated P3R and Metaphor audit passes.**
 
 **Goal:** make the skins sustainable and produce a release-ready/public-flip
 pipeline.
