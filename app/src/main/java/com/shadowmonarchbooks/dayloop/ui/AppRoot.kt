@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.CircularProgressIndicator
@@ -24,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -42,6 +44,7 @@ import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
 import com.shadowmonarchbooks.dayloop.ui.day.DayScreen
 import com.shadowmonarchbooks.dayloop.ui.deadlines.DeadlinesScreen
 import com.shadowmonarchbooks.dayloop.ui.media.MediaScreen
+import com.shadowmonarchbooks.dayloop.ui.mementos.MementosRequestsScreen
 import com.shadowmonarchbooks.dayloop.ui.month.MonthScreen
 import com.shadowmonarchbooks.dayloop.ui.onboarding.OnboardingScreen
 import com.shadowmonarchbooks.dayloop.ui.search.SearchScreen
@@ -57,7 +60,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
 /** Every top-level destination stays registered, whatever the active pack ships. */
-internal val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "answers")
+internal val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "answers", "mementos")
 
 /**
  * Tabs the active pack earns. Achievements is a first-class tracker for every
@@ -72,7 +75,9 @@ internal fun topLevelTabs(pack: LoadedPack?): List<SkinNavItem> = buildList {
     if (pack == null || pack.hasBondsFile) {
         add(SkinNavItem("bonds", pack?.pack?.labels?.bond?.let { it + "s" } ?: "Bonds", Icons.Filled.Person))
     }
-    if (pack == null || pack.pack.capabilities.answers) {
+    if (pack?.pack?.capabilities?.mementosRequests == true) {
+        add(SkinNavItem("mementos", "Mementos Requests", Icons.Filled.List))
+    } else if (pack == null || pack.pack.capabilities.answers) {
         add(SkinNavItem("answers", "Answers", Icons.Filled.Info))
     }
 }
@@ -116,6 +121,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val pack = state.selected
     val tabs = remember(pack) { topLevelTabs(pack) }
     var todayDatePinned by remember(pack?.slug) { mutableStateOf(false) }
+    var calendarMonth by rememberSaveable(pack?.slug) { mutableStateOf<String?>(null) }
     LaunchedEffect(route) {
         if (route != "today") todayDatePinned = false
     }
@@ -212,7 +218,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         vm = vm,
                         onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
                         onOpenActivity = { ref -> nav.navigate("activity/$ref") },
-                        onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
+                        onOpenAnswers = if (pack?.pack?.capabilities?.mementosRequests == true) null else {
+                            { nav.navigate("answers") { launchSingleTop = true } }
+                        },
                         onDatePinnedChange = { todayDatePinned = it },
                     )
                 }
@@ -225,12 +233,22 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                                 popUpTo("day/{date}") { inclusive = true }
                             }
                         },
-                        onOpenAnswers = { nav.navigate("answers") { launchSingleTop = true } },
+                        onOpenAnswers = if (pack?.pack?.capabilities?.mementosRequests == true) null else {
+                            { nav.navigate("answers") { launchSingleTop = true } }
+                        },
                         onOpenActivity = { ref -> nav.navigate("activity/$ref") },
                     )
                 }
                 composable("calendar") {
-                    MonthScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
+                    MonthScreen(
+                        vm = vm,
+                        selectedMonth = calendarMonth,
+                        onSelectedMonthChange = { calendarMonth = it },
+                        onOpenDay = { date ->
+                            calendarMonth = date.take(7)
+                            nav.navigate("day/$date")
+                        },
+                    )
                 }
                 composable("achievements") {
                     AchievementsScreen(vm = vm)
@@ -256,6 +274,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 }
                 composable("answers") {
                     AnswersScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
+                }
+                composable("mementos") {
+                    MementosRequestsScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
                 }
                 composable("activities") {
                     ActivitiesScreen(

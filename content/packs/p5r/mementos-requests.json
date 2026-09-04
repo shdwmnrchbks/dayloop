@@ -1,0 +1,369 @@
+{
+  "requests": [
+    {
+      "id": "p5r.request.beware-the-clingy-ex-boyfriend",
+      "title": "Beware the Clingy Ex-boyfriend",
+      "receivedOn": "2016-05-07",
+      "expectedBy": "2016-05-07",
+      "target": "Shadow Nakanohara",
+      "location": "Qimranut: Area 1",
+      "reward": "Adhered Pearl",
+      "completionEvent": "p5r.event.request.beware-the-clingy-ex-boyfriend"
+    },
+    {
+      "id": "p5r.request.the-bark-and-bite-of-a-bully",
+      "title": "The Bark and Bite of a Bully",
+      "receivedOn": "2016-05-09",
+      "expectedBy": "2016-06-02",
+      "target": "Shadow Takanashi",
+      "location": "Aiyatsbus: Area 2",
+      "reward": "Protein",
+      "completionEvent": "p5r.event.request.the-bark-and-bite-of-a-bully"
+    },
+    {
+      "id": "p5r.request.if-cats-disappeared-from-the-city",
+      "title": "If Cats Disappeared from the City",
+      "receivedOn": "2016-05-26",
+      "expectedBy": "2016-06-02",
+      "target": "Shadow Aino",
+      "location": "Aiyatsbus: Area 6",
+      "reward": "Blood Scimitar",
+      "completionEvent": "p5r.event.request.if-cats-disappeared-from-the-city"
+    },
+    {
+      "id": "p5r.request.an-elderlys-meaning-of-life",
+      "title": "An Elderly's Meaning of Life",
+      "receivedOn": "2016-06-05",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Ono",
+      "location": "Aiyatsbus: Area 3",
+      "reward": "Ambient Aid Ring",
+      "completionEvent": "p5r.event.request.an-elderlys-meaning-of-life"
+    },
+    {
+      "id": "p5r.request.sadism-is-just-a-sign-of-love",
+      "title": "Sadism Is Just a Sign of Love",
+      "receivedOn": "2016-06-06",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Shimizu",
+      "location": "Aiyatsbus: Area 7",
+      "reward": "Whip Sword",
+      "completionEvent": "p5r.event.request.sadism-is-just-a-sign-of-love"
+    },
+    {
+      "id": "p5r.request.one-who-bullies-bullies",
+      "title": "One Who Bullies Bullies",
+      "receivedOn": "2016-06-12",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Sakoda",
+      "location": "Aiyatsbus: Area 5",
+      "reward": "Evil Snow Crystal",
+      "completionEvent": "p5r.event.request.one-who-bullies-bullies"
+    },
+    {
+      "id": "p5r.request.part-time-job-full-time-hell",
+      "title": "Part-time Job, Full-time Hell",
+      "receivedOn": "2016-06-15",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Odo",
+      "location": "Chemdah: Area 1",
+      "reward": "Chinese Sweets",
+      "completionEvent": "p5r.event.request.part-time-job-full-time-hell"
+    },
+    {
+      "id": "p5r.request.phantom-thieves-vs-burglary-ring",
+      "title": "Phantom Thieves VS Burglary Ring",
+      "receivedOn": "2016-06-18",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Makigami",
+      "location": "Chemdah: Area 4",
+      "reward": "Old Keys",
+      "completionEvent": "p5r.event.request.phantom-thieves-vs-burglary-ring"
+    },
+    {
+      "id": "p5r.request.a-teacher-maid-to-suffer",
+      "title": "A Teacher Maid to Suffer",
+      "receivedOn": "2016-06-30",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Takase",
+      "location": "Chemdah: Area 7",
+      "reward": "Envy Chain",
+      "completionEvent": "p5r.event.request.a-teacher-maid-to-suffer"
+    },
+    {
+      "id": "p5r.request.ending-the-boyfriends-abuse",
+      "title": "Ending the Boyfriend's Abuse",
+      "receivedOn": "2016-06-30",
+      "expectedBy": "2016-07-04",
+      "target": "Shadow Uchimura",
+      "location": "Chemdah: Area 3",
+      "reward": "Sleep Stick",
+      "completionEvent": "p5r.event.request.ending-the-boyfriends-abuse"
+    },
+    {
+      "id": "p5r.request.the-lovesick-cyberstalking-girl",
+      "title": "The Lovesick Cyberstalking Girl",
+      "receivedOn": "2016-07-10",
+      "expectedBy": "2016-08-16",
+      "target": "Shadow Mogami",
+      "location": "Chemdah: Area 8",
+      "reward": "Sticky Hairball",
+      "completionEvent": "p5r.event.request.the-lovesick-cyberstalking-girl"
+    },
+    {
+      "id": "p5r.request.we-arent-just-your-slaves",
+      "title": "We Aren't Just Your Slaves",
+      "receivedOn": "2016-08-02",
+      "expectedBy": "2016-08-16",
+      "target": "Shadow Kishi",
+      "location": "Kaitul: Area 8",
+      "reward": "Theme Park Escort",
+      "completionEvent": "p5r.event.request.we-arent-just-your-slaves"
+    },
+    {
+      "id": "p5r.request.whos-been-assaulting-people",
+      "title": "Who's Been Assaulting People?",
+      "receivedOn": "2016-08-03",
+      "expectedBy": "2016-08-16",
+      "target": "Shadow Naguri",
+      "location": "Kaitul: Area 5",
+      "reward": "Charge skill card",
+      "completionEvent": "p5r.event.request.whos-been-assaulting-people"
+    },
+    {
+      "id": "p5r.request.calling-for-justice-for-cats",
+      "title": "Calling for Justice for Cats",
+      "receivedOn": "2016-08-04",
+      "expectedBy": "2016-08-16",
+      "target": "Shadow Tsuboi",
+      "location": "Kaitul: Area 1",
+      "reward": "Blood Scimitar",
+      "completionEvent": "p5r.event.request.calling-for-justice-for-cats"
+    },
+    {
+      "id": "p5r.request.bad-medicine",
+      "title": "Bad Medicine",
+      "receivedOn": "2016-08-08",
+      "expectedBy": "2016-08-16",
+      "target": "Shadow Oyamada",
+      "location": "Chemdah: Area 2",
+      "reward": "Mediarama skill card",
+      "completionEvent": "p5r.event.request.bad-medicine"
+    },
+    {
+      "id": "p5r.request.upstaging-the-stage-mother",
+      "title": "Upstaging the Stage Mother",
+      "receivedOn": "2016-08-27",
+      "expectedBy": "2016-09-06",
+      "target": "Shadow Togo",
+      "location": "Akzeriyyuth: Area 6",
+      "reward": "Bead Chain",
+      "completionEvent": "p5r.event.request.upstaging-the-stage-mother"
+    },
+    {
+      "id": "p5r.request.whos-muscling-in-yongen-jaya",
+      "title": "Who's Muscling in Yongen-Jaya?",
+      "receivedOn": "2016-08-29",
+      "expectedBy": "2016-09-06",
+      "target": "Shadow Jochi",
+      "location": "Kaitul: Area 10",
+      "reward": "Shitamachi Reborn",
+      "completionEvent": "p5r.event.request.whos-muscling-in-yongen-jaya"
+    },
+    {
+      "id": "p5r.request.fighting-for-truth-in-journalism",
+      "title": "Fighting for Truth in Journalism",
+      "receivedOn": "2016-09-01",
+      "expectedBy": "2016-09-06",
+      "target": "Shadow Honjo",
+      "location": "Kaitul: Area 9",
+      "reward": "Invigorate 3 skill card",
+      "completionEvent": "p5r.event.request.fighting-for-truth-in-journalism"
+    },
+    {
+      "id": "p5r.request.winners-dont-use-cheats",
+      "title": "Winners Don't Use Cheats",
+      "receivedOn": "2016-09-04",
+      "expectedBy": "2016-11-09",
+      "target": "Shadow Nejima",
+      "location": "Akzeriyyuth: Area 5",
+      "reward": "Null Phys skill card",
+      "completionEvent": "p5r.event.request.winners-dont-use-cheats"
+    },
+    {
+      "id": "p5r.request.debunking-the-psychic",
+      "title": "Debunking the Psychic!",
+      "receivedOn": "2016-09-29",
+      "expectedBy": "2016-11-09",
+      "target": "Shadow Fukurai",
+      "location": "Kaitul: Area 3",
+      "reward": "Prophet's Hand",
+      "completionEvent": "p5r.event.request.debunking-the-psychic"
+    },
+    {
+      "id": "p5r.request.the-killer-who-cleans-up-trash",
+      "title": "The Killer Who Cleans Up Trash",
+      "receivedOn": "2016-10-14",
+      "expectedBy": "2016-11-09",
+      "target": "Shadow Kiritani",
+      "location": "Akzeriyyuth: Area 12",
+      "reward": "High Counter skill card",
+      "completionEvent": "p5r.event.request.the-killer-who-cleans-up-trash"
+    },
+    {
+      "id": "p5r.request.daughters-just-a-meal-ticket",
+      "title": "Daughter's Just a Meal Ticket",
+      "receivedOn": "2016-11-02",
+      "expectedBy": "2016-11-09",
+      "target": "Shadows Magario",
+      "location": "Adyeshach: Area 3",
+      "reward": "Growth 3 skill card",
+      "completionEvent": "p5r.event.request.daughters-just-a-meal-ticket"
+    },
+    {
+      "id": "p5r.request.shady-deal-in-the-shadows",
+      "title": "Shady Deal in the Shadows",
+      "receivedOn": "2016-11-06",
+      "expectedBy": "2016-11-09",
+      "target": "Shadow Tsuda",
+      "location": "Kaitul: Area 4",
+      "reward": "Weird Wrap",
+      "completionEvent": "p5r.event.request.shady-deal-in-the-shadows"
+    },
+    {
+      "id": "p5r.request.a-mothers-aggression",
+      "title": "A Mother's Aggression",
+      "receivedOn": "2016-11-07",
+      "expectedBy": "2016-11-09",
+      "target": "Shadow Oda",
+      "location": "Adyeshach: Area 11",
+      "reward": "Soma",
+      "completionEvent": "p5r.event.request.a-mothers-aggression"
+    },
+    {
+      "id": "p5r.request.the-money-grubbing-uncle",
+      "title": "The Money-Grubbing Uncle",
+      "receivedOn": "2016-11-10",
+      "expectedBy": "2016-11-11",
+      "target": "Shadow Isshiki",
+      "location": "Outside LeBlanc (Joker and Futaba only)",
+      "reward": "Venture Saber",
+      "completionEvent": "p5r.event.request.the-money-grubbing-uncle"
+    },
+    {
+      "id": "p5r.request.man-of-many-faces-and-debts",
+      "title": "Man of Many Faces and Debts",
+      "receivedOn": "2016-11-17",
+      "expectedBy": "2016-12-11",
+      "target": "Shadow Akitsu",
+      "location": "Akzeriyyuth: Area 3",
+      "reward": "Thermopylae skill card",
+      "completionEvent": "p5r.event.request.man-of-many-faces-and-debts"
+    },
+    {
+      "id": "p5r.request.swindling-old-folk-is-pretty-low",
+      "title": "Swindling Old Folk Is Pretty Low",
+      "receivedOn": "2016-11-25",
+      "expectedBy": "2016-12-11",
+      "target": "Shadow Wakasa",
+      "location": "Adyeshach: Area 13",
+      "reward": "Haten Robe",
+      "completionEvent": "p5r.event.request.swindling-old-folk-is-pretty-low"
+    },
+    {
+      "id": "p5r.request.the-head-honcho-in-showbiz",
+      "title": "The Head Honcho in Showbiz",
+      "receivedOn": "2016-12-10",
+      "expectedBy": "2016-12-11",
+      "target": "Shadow Asakura",
+      "location": "Sheriruth: Area 14",
+      "reward": "Immortal Vest",
+      "completionEvent": "p5r.event.request.the-head-honcho-in-showbiz"
+    },
+    {
+      "id": "p5r.request.lady-killers-ballad",
+      "title": "Lady-Killer's Ballad",
+      "receivedOn": "2016-12-10",
+      "expectedBy": "2016-12-11",
+      "target": "Shadow Arihara",
+      "location": "Sheriruth: Area 8",
+      "reward": "Agitation Crown",
+      "completionEvent": "p5r.event.request.lady-killers-ballad"
+    },
+    {
+      "id": "p5r.request.a-small-cry-for-help",
+      "title": "A Small Cry for Help",
+      "receivedOn": "2017-01-13",
+      "expectedBy": "2017-01-20",
+      "target": "Shadow Kagami",
+      "location": "Da'at: Area 3",
+      "reward": "Spiral Hell Ring",
+      "completionEvent": "p5r.event.request.a-small-cry-for-help"
+    },
+    {
+      "id": "p5r.request.o-my-young-sister-i-cry-for-you",
+      "title": "O My Young Sister, I Cry for You",
+      "receivedOn": "2017-01-14",
+      "expectedBy": "2017-01-20",
+      "target": "Shadow Minamoto",
+      "location": "Da'at: Area 7",
+      "reward": "Strength Up Ofuda ×8",
+      "completionEvent": "p5r.event.request.o-my-young-sister-i-cry-for-you"
+    },
+    {
+      "id": "p5r.request.fake-man-show",
+      "title": "Fake-Man Show",
+      "receivedOn": "2017-01-27",
+      "expectedBy": "2017-01-28",
+      "target": "Shadow Amasaki",
+      "location": "Da'at: Area 15",
+      "reward": "Eccentric Belt",
+      "completionEvent": "p5r.event.request.fake-man-show"
+    },
+    {
+      "id": "p5r.request.an-idol-and-a-unicorn",
+      "title": "An Idol and a Unicorn",
+      "receivedOn": "2017-01-28",
+      "expectedBy": "2017-01-28",
+      "target": "Shadow Fuwa",
+      "location": "Da'at: Area 13",
+      "reward": "One-shot Kill skill card",
+      "completionEvent": "p5r.event.request.an-idol-and-a-unicorn"
+    }
+  ],
+  "events": [
+    { "id": "p5r.event.request.beware-the-clingy-ex-boyfriend", "date": "2016-05-07", "labelContains": "Complete request: Beware the Clingy Ex-boyfriend" },
+    { "id": "p5r.event.request.the-bark-and-bite-of-a-bully", "date": "2016-06-02", "labelContains": "Complete request: The Bark and Bite of a Bully" },
+    { "id": "p5r.event.request.if-cats-disappeared-from-the-city", "date": "2016-06-02", "labelContains": "Complete request: If Cats Disappeared from the City" },
+    { "id": "p5r.event.request.an-elderlys-meaning-of-life", "date": "2016-07-04", "labelContains": "Complete request: An Elderly's Meaning of Life" },
+    { "id": "p5r.event.request.sadism-is-just-a-sign-of-love", "date": "2016-07-04", "labelContains": "Complete request: Sadism Is Just a Sign of Love" },
+    { "id": "p5r.event.request.one-who-bullies-bullies", "date": "2016-07-04", "labelContains": "Complete request: One Who Bullies Bullies" },
+    { "id": "p5r.event.request.part-time-job-full-time-hell", "date": "2016-07-04", "labelContains": "Complete request: Part-time Job, Full-time Hell" },
+    { "id": "p5r.event.request.phantom-thieves-vs-burglary-ring", "date": "2016-07-04", "labelContains": "Complete request: Phantom Thieves VS Burglary Ring" },
+    { "id": "p5r.event.request.a-teacher-maid-to-suffer", "date": "2016-07-04", "labelContains": "Complete request: A Teacher Maid to Suffer" },
+    { "id": "p5r.event.request.ending-the-boyfriends-abuse", "date": "2016-07-04", "labelContains": "Complete request: Ending the Boyfriend's Abuse" },
+    { "id": "p5r.event.request.the-lovesick-cyberstalking-girl", "date": "2016-08-16", "labelContains": "Complete request: The Lovesick Cyberstalking Girl" },
+    { "id": "p5r.event.request.we-arent-just-your-slaves", "date": "2016-08-16", "labelContains": "Complete request: We Aren't Just Your Slaves" },
+    { "id": "p5r.event.request.whos-been-assaulting-people", "date": "2016-08-16", "labelContains": "Complete request: Who's Been Assaulting People?" },
+    { "id": "p5r.event.request.calling-for-justice-for-cats", "date": "2016-08-16", "labelContains": "Complete request: Calling for Justice for Cats" },
+    { "id": "p5r.event.request.bad-medicine", "date": "2016-08-16", "labelContains": "Complete request: Bad Medicine" },
+    { "id": "p5r.event.request.upstaging-the-stage-mother", "date": "2016-09-06", "labelContains": "Complete request: Upstaging the Stage Mother" },
+    { "id": "p5r.event.request.whos-muscling-in-yongen-jaya", "date": "2016-09-06", "labelContains": "Complete request: Who's Muscling in Yongen-Jaya?" },
+    { "id": "p5r.event.request.fighting-for-truth-in-journalism", "date": "2016-09-06", "labelContains": "Complete request: Fighting for Truth in Journalism" },
+    { "id": "p5r.event.request.winners-dont-use-cheats", "date": "2016-11-09", "labelContains": "Complete request: Winners Don't Use Cheats" },
+    { "id": "p5r.event.request.debunking-the-psychic", "date": "2016-11-09", "labelContains": "Complete request: Debunking the Psychic!" },
+    { "id": "p5r.event.request.the-killer-who-cleans-up-trash", "date": "2016-11-09", "labelContains": "Complete request: The Killer Who Cleans Up Trash" },
+    { "id": "p5r.event.request.daughters-just-a-meal-ticket", "date": "2016-11-09", "labelContains": "Complete request: Daughter's Just a Meal Ticket" },
+    { "id": "p5r.event.request.shady-deal-in-the-shadows", "date": "2016-11-09", "labelContains": "Complete request: Shady Deal in the Shadows" },
+    { "id": "p5r.event.request.a-mothers-aggression", "date": "2016-11-09", "labelContains": "Complete request: A Mother's Aggression" },
+    { "id": "p5r.event.request.the-money-grubbing-uncle", "date": "2016-11-11", "labelContains": "clear the 'Money-Grubbing Uncle' boss" },
+    { "id": "p5r.event.request.man-of-many-faces-and-debts", "date": "2016-12-11", "labelContains": "Complete request: Man of Many Faces and Debts" },
+    { "id": "p5r.event.request.swindling-old-folk-is-pretty-low", "date": "2016-12-11", "labelContains": "Complete request: Swindling Old Folk Is Pretty Low" },
+    { "id": "p5r.event.request.the-head-honcho-in-showbiz", "date": "2016-12-11", "labelContains": "Complete request: The Head Honcho in Showbiz" },
+    { "id": "p5r.event.request.lady-killers-ballad", "date": "2016-12-11", "labelContains": "Complete request: Lady-Killer's Ballad" },
+    { "id": "p5r.event.request.a-small-cry-for-help", "date": "2017-01-20", "labelContains": "Complete request: A Small Cry for Help" },
+    { "id": "p5r.event.request.o-my-young-sister-i-cry-for-you", "date": "2017-01-20", "labelContains": "Complete request: O My Young Sister, I Cry for You" },
+    { "id": "p5r.event.request.fake-man-show", "date": "2017-01-28", "labelContains": "Complete request: Fake-Man Show" },
+    { "id": "p5r.event.request.an-idol-and-a-unicorn", "date": "2017-01-28", "labelContains": "Complete request: An Idol and a Unicorn" }
+  ]
+}

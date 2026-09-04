@@ -7,6 +7,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
+import com.shadowmonarchbooks.dayloop.pack.schema.MementosRequestsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.pack.schema.WalkthroughFile
@@ -49,6 +50,8 @@ class PackLoadResult(
     val media: MediaFile?,
     /** Pack-native achievement rules and semantic walkthrough anchors. */
     val achievements: AchievementsFile?,
+    /** Optional task-linked Mementos request catalog. */
+    val mementosRequests: MementosRequestsFile?,
     val parseIssues: List<LintIssue>,
 )
 
@@ -90,6 +93,9 @@ object PackLoader {
 
     fun decodeAchievements(jsonText: String): AchievementsFile? =
         runCatching { json.decodeFromString(AchievementsFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeMementosRequests(jsonText: String): MementosRequestsFile? =
+        runCatching { json.decodeFromString(MementosRequestsFile.serializer(), jsonText) }.getOrNull()
 
     fun decodeWalkthrough(jsonText: String): WalkthroughFile? =
         runCatching { json.decodeFromString(WalkthroughFile.serializer(), jsonText) }.getOrNull()
@@ -169,6 +175,16 @@ object PackLoader {
             achievementsFile,
             "achievements.json",
             AchievementsFile.serializer(),
+        )
+
+        val mementosRequestsFile = packDir.resolve("mementos-requests.json")
+        val mementosRequestsJson = decode(mementosRequestsFile, "mementos-requests.json")
+        issues += mementosRequestsJson.second
+        val mementosRequests = parse(
+            mementosRequestsJson.first,
+            mementosRequestsFile,
+            "mementos-requests.json",
+            MementosRequestsFile.serializer(),
         )
 
         val walkthroughs = mutableListOf<LoadedWalkthrough>()
@@ -360,6 +376,70 @@ object PackLoader {
             }
         }
 
+        if (pack != null && mementosRequests != null) {
+            val calendar = GameCalendar.of(pack.calendar)
+            val routeIds = Routes.effective(pack).mapTo(mutableSetOf()) { it.id }
+            val eventIds = mutableSetOf<String>()
+            val requestIds = mutableSetOf<String>()
+
+            fun requestError(message: String) {
+                issues += LintIssue(LintIssue.Severity.ERROR, "mementos-requests.json", message)
+            }
+
+            mementosRequests.events.forEach { event ->
+                if (!eventIds.add(event.id)) requestError("duplicate request event id '${event.id}'")
+                if (event.id.isBlank()) requestError("request event id must not be blank")
+                if (event.labelContains.isBlank()) {
+                    requestError("request event '${event.id}' needs a non-blank labelContains selector")
+                }
+                if (calendar != null && event.date !in calendar) {
+                    requestError("request event '${event.id}' date '${event.date}' is outside the pack calendar")
+                }
+                event.routeId?.let { routeId ->
+                    if (routeId !in routeIds) requestError("request event '${event.id}' references unknown route '$routeId'")
+                }
+                val routeId = event.routeId ?: Routes.DEFAULT
+                val matches = walkthroughs
+                    .filter { it.routeId == routeId }
+                    .flatMap { it.file.days }
+                    .filter { it.date == event.date }
+                    .flatMap { it.steps }
+                    .count { it.label.contains(event.labelContains, ignoreCase = true) }
+                if (matches != 1) {
+                    requestError(
+                        "request event '${event.id}' selector '${event.labelContains}' must match exactly one step on ${event.date} in route '$routeId' (found $matches)",
+                    )
+                }
+            }
+
+            mementosRequests.requests.forEach { request ->
+                if (!requestIds.add(request.id)) requestError("duplicate request id '${request.id}'")
+                if (request.id.isBlank()) requestError("request id must not be blank")
+                if (!request.id.startsWith("${pack.packId}.request.")) {
+                    requestError("request id '${request.id}' must be prefixed '${pack.packId}.request.'")
+                }
+                if (request.title.isBlank()) requestError("request '${request.id}' needs a non-blank title")
+                listOf(request.receivedOn, request.expectedBy).forEach { date ->
+                    if (calendar != null && date !in calendar) {
+                        requestError("request '${request.id}' date '$date' is outside the pack calendar")
+                    }
+                }
+                if (request.expectedBy < request.receivedOn) {
+                    requestError("request '${request.id}' completes before it is received")
+                }
+                if (request.completionEvent !in eventIds) {
+                    requestError("request '${request.id}' references unknown completion event '${request.completionEvent}'")
+                }
+            }
+            mementosRequests.requests.groupBy { it.completionEvent }.forEach { (eventId, requests) ->
+                if (requests.size != 1) {
+                    requestError("completion event '$eventId' must belong to exactly one request")
+                }
+            }
+            eventIds.filterNot { eventId -> mementosRequests.requests.any { it.completionEvent == eventId } }
+                .forEach { eventId -> requestError("request event '$eventId' is not used by any request") }
+        }
+
         return PackLoadResult(
             pack,
             bonds,
@@ -369,6 +449,7 @@ object PackLoader {
             answers,
             media,
             achievements,
+            mementosRequests,
             issues,
         )
     }

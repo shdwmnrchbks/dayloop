@@ -128,6 +128,7 @@
         },
         {
           "label": "Explore Mementos — all 7 pending requests; leave locked chests alone",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -149,6 +150,7 @@
         },
         {
           "label": "Clear every request, collect all 10 Stamps, raise Jose's item buff to x9",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -163,6 +165,55 @@
           "statGains": {
             "proficiency": 5
           },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: An Elderly's Meaning of Life",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Ono in Aiyatsbus Area 3. It is weak to Fire; the clear reward is the Ambient Aid Ring.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Sadism Is Just a Sign of Love",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Shimizu in Aiyatsbus Area 7. It is weak to Fire and Bless; the clear reward is the Whip Sword.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: One Who Bullies Bullies",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Sakoda in Aiyatsbus Area 5. It is weak to Bless; the clear reward is the Evil Snow Crystal.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Part-time Job, Full-time Hell",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Odo in Chemdah Area 1. The clear reward is the Chinese Sweets book.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Phantom Thieves VS Burglary Ring",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Makigami in Chemdah Area 4. Makigami is weak to Curse and can summon reinforcements; the clear reward is 2 Old Keys.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: A Teacher Maid to Suffer",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Takase in Chemdah Area 7. It is weak to Fire; the clear reward is the Envy Chain.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Ending the Boyfriend's Abuse",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Uchimura in Chemdah Area 3. It is weak to Psy; the clear reward is the Sleep Stick.",
+          "spoiler": true,
           "slot": "afternoon"
         }
       ]

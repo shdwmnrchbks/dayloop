@@ -37,18 +37,24 @@ class P5RTimeSlotAuditTest {
         val steps = loaded.walkthroughs.flatMap { it.file.days }.flatMap { day ->
             val slots = day.steps.map { it.slot }
             assertFalse(null in slots, "${day.date}: every task must be assigned to Day or Night")
-            val firstNight = slots.indexOf("evening")
+
+            // Infiltration is rendered as its own section, outside the Day/Night columns.
+            // Companion completion tasks are appended so existing progress keys stay stable.
+            val dayAndNightSlots = day.steps
+                .filterNot { it.groupLabel == "Infiltration" }
+                .map { it.slot }
+            val firstNight = dayAndNightSlots.indexOf("evening")
             if (firstNight >= 0) {
                 assertTrue(
-                    slots.drop(firstNight).all { it == "evening" },
+                    dayAndNightSlots.drop(firstNight).all { it == "evening" },
                     "${day.date}: source periods must stay in Day-then-Night order",
                 )
             }
             day.steps
         }
 
-        assertEquals(1_199, steps.size)
-        assertEquals(842, steps.count { it.slot == "afternoon" })
+        assertEquals(1_231, steps.size)
+        assertEquals(874, steps.count { it.slot == "afternoon" })
         assertEquals(357, steps.count { it.slot == "evening" })
     }
 

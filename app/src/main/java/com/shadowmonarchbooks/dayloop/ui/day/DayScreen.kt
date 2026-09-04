@@ -59,7 +59,7 @@ fun DayScreen(
     date: String,
     vm: DayloopViewModel = hiltViewModel(),
     onOpenDay: (String) -> Unit = {},
-    onOpenAnswers: () -> Unit = {},
+    onOpenAnswers: (() -> Unit)? = null,
     onOpenActivity: (String) -> Unit = {},
 ) {
     val state by vm.state.collectAsState()

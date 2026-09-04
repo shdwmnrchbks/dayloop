@@ -347,6 +347,19 @@ object PackLint {
         if (!pack.capabilities.answers && shipsAnswers) {
             issues += err("pack.json", "pack ships answers.json but does not declare capabilities.answers")
         }
+        val shipsMementosRequests = loaded.mementosRequests?.requests?.isNotEmpty() == true
+        if (pack.capabilities.mementosRequests && !shipsMementosRequests) {
+            issues += err(
+                "pack.json",
+                "capabilities.mementosRequests is true but mementos-requests.json is missing or has no requests",
+            )
+        }
+        if (!pack.capabilities.mementosRequests && shipsMementosRequests) {
+            issues += err(
+                "pack.json",
+                "pack ships mementos-requests.json but does not declare capabilities.mementosRequests",
+            )
+        }
 
         // Theme & vocabulary (docs/ROADMAP-v2.md Phase 10): the pack supplies
         // its visual identity and any engine-term display names, so the app

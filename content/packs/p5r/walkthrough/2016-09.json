@@ -185,6 +185,7 @@
         },
         {
           "label": "Explore Mementos — 4 requests; fight the 'Winners Don't Use Cheats' boss (auto-retreats, redo it later)",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -195,6 +196,27 @@
         },
         {
           "label": "Carry Councilor, Hierophant, Star, Devil, Tower, Priestess, Fortune, Hermit, Emperor, and Hanged Man Personas",
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Upstaging the Stage Mother",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Togo in Akzeriyyuth Area 6. It is weak to Bless; the clear reward is a Bead Chain.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Who's Muscling in Yongen-Jaya?",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Jochi in Kaitul Area 10. It is weak to Electricity; the clear reward is the Shitamachi Reborn book.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Fighting for Truth in Journalism",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Honjo in Kaitul Area 9. It is weak to Wind; the clear reward is the Invigorate 3 skill card.",
+          "spoiler": true,
           "slot": "afternoon"
         }
       ]

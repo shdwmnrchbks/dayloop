@@ -415,6 +415,7 @@
         },
         {
           "label": "Explore Mementos — 2 requests; set Treasure Traps for any missing Treasure Demons; reach the Cognitive Control Room",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -429,6 +430,20 @@
             "kindness": 3
           },
           "slot": "evening"
+        },
+        {
+          "label": "Complete request: A Small Cry for Help",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Kagami in Da'at Area 3. It is weak to Bless; the clear reward is the Spiral Hell Ring.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: O My Young Sister, I Cry for You",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Minamoto in Da'at Area 7. It has no weakness; the clear reward is 8 Strength Up Ofuda.",
+          "spoiler": true,
+          "slot": "afternoon"
         }
       ]
     },
@@ -709,6 +724,7 @@
         },
         {
           "label": "After school: final Mementos visit — complete the requests, get all Stamps, raise Jose's EXP to 200%",
+          "groupLabel": "Infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -728,6 +744,20 @@
           "statGains": {
             "proficiency": 3
           },
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: Fake-Man Show",
+          "groupLabel": "Infiltration",
+          "tip": "Defeat Shadow Amasaki in Da'at Area 15. It is weak to Bless and can summon Legion; the clear reward is the Eccentric Belt.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete request: An Idol and a Unicorn",
+          "groupLabel": "Infiltration",
+          "tip": "Confront Shadow Fuwa in Da'at Area 13. It is weak to Curse; resolve the negotiation by asking about his family and child. The clear reward is the One-shot Kill skill card.",
+          "spoiler": true,
           "slot": "afternoon"
         }
       ]

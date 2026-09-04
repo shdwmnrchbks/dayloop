@@ -15,7 +15,7 @@ vibes. Every field in the pack schema is either rendered somewhere, reachable in
   their data doesn't back.
 
 Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
-(list + detail), **Deadlines**, **Answers**, **Activities** (list + detail),
+(list + detail), **Deadlines**, **Answers**, **Mementos Requests**, **Activities** (list + detail),
 **Search**, **Settings**, **Media** (pack graphic gallery), **Onboarding**,
 **Widget**, **Cold start**, **Launcher shortcut**.
 
@@ -37,7 +37,8 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `routes[].id` | Profile pinning (Room), route folders | Served (Settings) |
 | `routes[].label` | Today profile line, Day route badge, Settings profile rows, profile-creation picker, Widget | Served |
 | `routes[].description` | Profile-creation dialog (New profile) | Served (intentionally confined to creation; not re-shown elsewhere) |
-| `capabilities.answers` | Answers tab, Day answer card, search answers, Onboarding feature line (⟂) | Served |
+| `capabilities.answers` | Day answer card, search answers, Onboarding feature line, and Answers tab when no replacement tracker is declared (⟂) | Served |
+| `capabilities.mementosRequests` | Replaces the Answers bottom tab with the task-linked Mementos Requests tracker (⟂) | Served |
 | `capabilities.exams` | Reserved flag — exam rendering is day-kind driven; packlint validates declared-vs-shipped answers only | Intentionally not served (reserved for exam-specific UI; no first-pack need) |
 | `capabilities.weather` | Reserved flag — no pack ships a weather system | Intentionally not served (reserved; `Weather` condition same) |
 | `labels.bond` | Bottom-bar tab label ("Confidants"/"Social Links"/"Followers"), Search section header | Served |
@@ -148,6 +149,19 @@ duplicate already-correct route effects.
 | `sheet.label` | Answers rows, Day card, search | Served |
 | `sheet.answers` | Answers rows + Day card, numbered in asking order | Served |
 | `sheet.deadlineRef` | "Deadline: <label>" line on the Day card and Answers rows; packlint + JVM test verify resolution | Served |
+
+## mementos-requests.json (`MementosRequestsFile`, `MementosRequestDefinition`)
+
+| Field | Served by | Status |
+|---|---|---|
+| `request.id` | Tracker row keys; packlint | Intentionally not served (stable identity) |
+| `request.title` | Mementos Requests rows | Served |
+| `request.receivedOn` | Upcoming/available state and receipt date | Served |
+| `request.expectedBy` | Route completion date and row-to-Day navigation | Served |
+| `request.target` / `location` / `reward` | Request metadata lines | Served |
+| `request.completionEvent` | Automatic completion lookup | Served (state derived from the exact DONE walkthrough task) |
+| `events[].id` | Request-to-event cross-reference; packlint | Intentionally not served (stable identity) |
+| `events[].date` / `labelContains` / `routeId` | Exact semantic walkthrough-task resolution | Served (automatic completion behavior) |
 
 ## Keeping this honest
 

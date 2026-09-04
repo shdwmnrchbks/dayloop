@@ -14,6 +14,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
+import com.shadowmonarchbooks.dayloop.pack.schema.MementosRequestDefinition
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.RouteDef
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
@@ -71,6 +72,9 @@ data class LoadedPack(
     val achievements: List<AchievementDefinition> = emptyList(),
     /** Semantic event anchors used to derive achievement progress from DONE walkthrough steps. */
     val achievementEvents: List<AchievementEventAnchor> = emptyList(),
+    /** Optional task-linked Mementos request catalog. */
+    val mementosRequests: List<MementosRequestDefinition> = emptyList(),
+    val mementosRequestEvents: List<AchievementEventAnchor> = emptyList(),
 ) {
     /** The pack's game calendar (cycle/weekday lookups, deadline day math). */
     val calendar: GameCalendar? by lazy { GameCalendar.of(pack.calendar) }
@@ -214,6 +218,11 @@ class PackStore @Inject constructor(
                 } else {
                     null
                 }
+                val mementosRequestsFile = if ("mementos-requests.json" in files) {
+                    PackLoader.decodeMementosRequests(readAsset(assets, "$slug/mementos-requests.json"))
+                } else {
+                    null
+                }
                 // walkthrough/*.json is the default route; walkthrough/<routeId>/*.json
                 // are additional declared routes (docs/PLAN.md Phase 5).
                 val daysByRoute = mutableMapOf<String, Map<String, Day>>()
@@ -264,6 +273,8 @@ class PackStore @Inject constructor(
                     media = media,
                     achievements = achievementFile?.achievements.orEmpty(),
                     achievementEvents = achievementFile?.events.orEmpty(),
+                    mementosRequests = mementosRequestsFile?.requests.orEmpty(),
+                    mementosRequestEvents = mementosRequestsFile?.events.orEmpty(),
                 )
             } catch (_: Exception) {
                 // A broken pack must never take the app down; lint guards content quality.

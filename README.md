@@ -59,7 +59,8 @@ Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P
 
 Phase 5 added:
 - **Routes** — packs can declare multiple walkthrough routes (`pack.json` `routes` + `walkthrough/<routeId>/`); profiles pin a route (Room v2 migration, default `standard`), and the Metaphor fit-check pack ships a second "Casual" route proving multi-route rendering.
-- **Exam answers** — structured answer sheets (`answers.json`) for all 12 P5R exam days and 53 class questions, surfaced in a new Answers tab and on day pages.
+- **Exam answers** — structured answer sheets (`answers.json`) for all 12 P5R exam days and 53 class questions, surfaced directly on their day pages.
+- **Mementos requests** — all 33 Royal requests live in a dedicated tracker; each completes only when its exact route completion task is checked.
 - **Search** — top-bar search across steps, bonds, activities, deadlines, and answers for the selected pack/route.
 - **Home-screen widget (Glance)** — in-game date, today's done-count, and the next deadline, always visible; refreshes with app state and re-reads progress on its own.
 - **Launcher icon** — original adaptive artwork (sun + day-loop arrow), no game assets.
@@ -76,8 +77,9 @@ Phase 7 (v0.2.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
 - Cold-start loading shell so returning users never see the picker flash before their saved game reopens.
 
 Phase 8 (v0.3.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
-- **Pack-tailored navigation** — the bottom bar derives from the active pack; Answers appears only for packs declaring answer capability.
+- **Pack-tailored navigation** — the bottom bar derives from the active pack; P5R uses Mementos Requests in place of Answers while its answer data remains on daily pages.
 - **`capabilities.answers`** — a closed-set capability flag ties structured answer data to the UI and packlint contract.
+- **`capabilities.mementosRequests`** — gates the task-linked request catalog and its replacement bottom tab.
 - **Guarded entry points** — answer affordances and search results render only when the capability is present.
 
 Phase 9 (v0.4.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md), matrix in [docs/data-coverage.md](docs/data-coverage.md):
