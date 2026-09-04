@@ -10,10 +10,10 @@ import kotlin.test.assertTrue
 class MetaphorFullQuestCoverageAuditTest {
 
     @Test
-    fun `quest - More's Task: Foreword and Prologue`() = assertQuest("More's Task: Foreword and Prologue")
+    fun `quest - More's Task - Foreword and Prologue`() = assertQuest("More's Task: Foreword and Prologue")
 
     @Test
-    fun `quest - More's Task Chapter One: Ordeal`() = assertQuest("More's Task Chapter One: Ordeal")
+    fun `quest - More's Task Chapter One - Ordeal`() = assertQuest("More's Task Chapter One: Ordeal")
 
     @Test
     fun `quest - Pagan's Dilemma`() = assertQuest("Pagan's Dilemma")
@@ -49,13 +49,13 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - The New King of the Imps`() = assertQuest("The New King of the Imps")
 
     @Test
-    fun `quest - Relic Search: Inventor's Bequest`() = assertQuest("Relic Search: Inventor's Bequest")
+    fun `quest - Relic Search - Inventor's Bequest`() = assertQuest("Relic Search: Inventor's Bequest")
 
     @Test
-    fun `quest - More's Task Chapter Two: Solitude`() = assertQuest("More's Task Chapter Two: Solitude")
+    fun `quest - More's Task Chapter Two - Solitude`() = assertQuest("More's Task Chapter Two: Solitude")
 
     @Test
-    fun `quest - More's Task Chapter Three: Drifting`() = assertQuest("More's Task Chapter Three: Drifting")
+    fun `quest - More's Task Chapter Three - Drifting`() = assertQuest("More's Task Chapter Three: Drifting")
 
     @Test
     fun `quest - A Noble's Legacy`() = assertQuest("A Noble's Legacy")
@@ -67,13 +67,13 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - Skullduggery`() = assertQuest("Skullduggery")
 
     @Test
-    fun `quest - The Queen of Cuisine: Heart`() = assertQuest("The Queen of Cuisine: Heart")
+    fun `quest - The Queen of Cuisine - Heart`() = assertQuest("The Queen of Cuisine: Heart")
 
     @Test
-    fun `quest - More's Task Chapter Four: Turmoil`() = assertQuest("More's Task Chapter Four: Turmoil")
+    fun `quest - More's Task Chapter Four - Turmoil`() = assertQuest("More's Task Chapter Four: Turmoil")
 
     @Test
-    fun `quest - Relic Search: Dregs of Destiny`() = assertQuest("Relic Search: Dregs of Destiny")
+    fun `quest - Relic Search - Dregs of Destiny`() = assertQuest("Relic Search: Dregs of Destiny")
 
     @Test
     fun `quest - Soldier's Solace`() = assertQuest("Soldier's Solace")
@@ -91,7 +91,7 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - Obtain Sergeant Xanth's Key`() = assertQuest("Obtain Sergeant Xanth's Key")
 
     @Test
-    fun `quest - The Chalice vs. The Brew`() = assertQuest("The Chalice vs. The Brew")
+    fun `quest - The Chalice vs The Brew`() = assertQuest("The Chalice vs. The Brew")
 
     @Test
     fun `quest - Superior Scrimshaw`() = assertQuest("Superior Scrimshaw")
@@ -103,10 +103,10 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - Defeat the Coliseum Monster`() = assertQuest("Defeat the Coliseum Monster")
 
     @Test
-    fun `quest - Relic Search: Youth's Folly`() = assertQuest("Relic Search: Youth's Folly")
+    fun `quest - Relic Search - Youth's Folly`() = assertQuest("Relic Search: Youth's Folly")
 
     @Test
-    fun `quest - More's Task Chapter Five: Resolve`() = assertQuest("More's Task Chapter Five: Resolve")
+    fun `quest - More's Task Chapter Five - Resolve`() = assertQuest("More's Task Chapter Five: Resolve")
 
     @Test
     fun `quest - The Right to Rule`() = assertQuest("The Right to Rule")
@@ -130,16 +130,16 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - The Trial of Malnova`() = assertQuest("The Trial of Malnova")
 
     @Test
-    fun `quest - Relic Search: Engineer's Destiny`() = assertQuest("Relic Search: Engineer's Destiny")
+    fun `quest - Relic Search - Engineer's Destiny`() = assertQuest("Relic Search: Engineer's Destiny")
 
     @Test
-    fun `quest - More's Task Chapter Six: The End`() = assertQuest("More's Task Chapter Six: The End")
+    fun `quest - More's Task Chapter Six - The End`() = assertQuest("More's Task Chapter Six: The End")
 
     @Test
     fun `quest - Wayward Shepherd`() = assertQuest("Wayward Shepherd")
 
     @Test
-    fun `quest - Relic Search: Bitter Memories`() = assertQuest("Relic Search: Bitter Memories")
+    fun `quest - Relic Search - Bitter Memories`() = assertQuest("Relic Search: Bitter Memories")
 
     @Test
     fun `quest - The Fiend in the Frozen Forest`() = assertQuest("The Fiend in the Frozen Forest")
@@ -157,7 +157,7 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - A Rake's Last Wish`() = assertQuest("A Rake's Last Wish")
 
     @Test
-    fun `quest - The Queen of Cuisine: Soul`() = assertQuest("The Queen of Cuisine: Soul")
+    fun `quest - The Queen of Cuisine - Soul`() = assertQuest("The Queen of Cuisine: Soul")
 
     @Test
     fun `quest - The Edge of Glory`() = assertQuest("The Edge of Glory")
@@ -172,28 +172,28 @@ class MetaphorFullQuestCoverageAuditTest {
     fun `quest - The Cockatrice in the Clouds`() = assertQuest("The Cockatrice in the Clouds")
 
     @Test
-    fun `quest - Trial of the Dragon: Bygone Legacy`() = assertQuest("Trial of the Dragon: Bygone Legacy")
+    fun `quest - Trial of the Dragon - Bygone Legacy`() = assertQuest("Trial of the Dragon: Bygone Legacy")
 
     @Test
     fun `quest - Deliver Hot Spring Water`() = assertQuest("Deliver Hot Spring Water")
 
     @Test
-    fun `quest - Trial of the Dragon: Heroes' Rest`() = assertQuest("Trial of the Dragon: Heroes' Rest")
+    fun `quest - Trial of the Dragon - Heroes' Rest`() = assertQuest("Trial of the Dragon: Heroes' Rest")
 
     @Test
-    fun `quest - Trial of the Dragon: Mad Mischief`() = assertQuest("Trial of the Dragon: Mad Mischief")
+    fun `quest - Trial of the Dragon - Mad Mischief`() = assertQuest("Trial of the Dragon: Mad Mischief")
 
     @Test
     fun `quest - A Brother's Mercy`() = assertQuest("A Brother's Mercy")
 
     @Test
-    fun `quest - Relic Search: A Dream's Origin`() = assertQuest("Relic Search: A Dream's Origin")
+    fun `quest - Relic Search - A Dream's Origin`() = assertQuest("Relic Search: A Dream's Origin")
 
     @Test
     fun `quest - Petty Thief`() = assertQuest("Petty Thief")
 
     @Test
-    fun `quest - Trial of the Dragon: Essence of Power`() = assertQuest("Trial of the Dragon: Essence of Power")
+    fun `quest - Trial of the Dragon - Essence of Power`() = assertQuest("Trial of the Dragon: Essence of Power")
 
     @Test
     fun `quest - Become Champion of the Coliseum`() = assertQuest("Become Champion of the Coliseum")
