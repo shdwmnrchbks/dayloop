@@ -70,6 +70,15 @@ class MetaphorDeadlineAuditTest {
             assertEquals(dueDate, deadline.date, id)
             assertEquals(null, deadline.window, "$id: do not invent a universal start date")
         }
+
+        val charadrius = deadlines.getValue("metaphor.deadline.request.charadrius-keys")
+        assertEquals("request", charadrius.kind)
+        assertEquals("2100-08-12", charadrius.date)
+        assertEquals(null, charadrius.window)
+        assertTrue(charadrius.label.contains("Sergeant Xanth"))
+        assertTrue(charadrius.label.contains("Maintenance Chief Ceiba"))
+        assertTrue(charadrius.label.contains("Master Sergeant Glechom"))
+        assertTrue(charadrius.label.contains("either"), "The two corridor branches must not be presented as both required")
     }
 
     @Test
