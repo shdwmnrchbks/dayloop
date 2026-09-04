@@ -5,217 +5,107 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class MetaphorFullQuestCoverageAuditTest {
 
     @Test
-    fun `quest - More's Task - Foreword and Prologue`() = assertQuest("More's Task: Foreword and Prologue")
-
-    @Test
-    fun `quest - More's Task Chapter One - Ordeal`() = assertQuest("More's Task Chapter One: Ordeal")
-
-    @Test
-    fun `quest - Pagan's Dilemma`() = assertQuest("Pagan's Dilemma")
-
-    @Test
-    fun `quest - Help the Hushed Honeybee`() = assertQuest("Help the Hushed Honeybee")
-
-    @Test
-    fun `quest - A Friend in Need`() = assertQuest("A Friend in Need")
-
-    @Test
-    fun `quest - A Bullish Embargo`() = assertQuest("A Bullish Embargo")
-
-    @Test
-    fun `quest - Man's Not-So Best Friend`() = assertQuest("Man's Not-So Best Friend")
-
-    @Test
-    fun `quest - Promising Returns`() = assertQuest("Promising Returns")
-
-    @Test
-    fun `quest - Providing a Spark`() = assertQuest("Providing a Spark")
-
-    @Test
-    fun `quest - The Old Castle Town Kidnapper`() = assertQuest("The Old Castle Town Kidnapper")
-
-    @Test
-    fun `quest - A Dagger, a Ring, and a Rake`() = assertQuest("A Dagger, a Ring, and a Rake")
-
-    @Test
-    fun `quest - Hatching a Plan`() = assertQuest("Hatching a Plan")
-
-    @Test
-    fun `quest - The New King of the Imps`() = assertQuest("The New King of the Imps")
-
-    @Test
-    fun `quest - Relic Search - Inventor's Bequest`() = assertQuest("Relic Search: Inventor's Bequest")
-
-    @Test
-    fun `quest - More's Task Chapter Two - Solitude`() = assertQuest("More's Task Chapter Two: Solitude")
-
-    @Test
-    fun `quest - More's Task Chapter Three - Drifting`() = assertQuest("More's Task Chapter Three: Drifting")
-
-    @Test
-    fun `quest - A Noble's Legacy`() = assertQuest("A Noble's Legacy")
-
-    @Test
-    fun `quest - A Haunted Heirloom`() = assertQuest("A Haunted Heirloom")
-
-    @Test
-    fun `quest - Skullduggery`() = assertQuest("Skullduggery")
-
-    @Test
-    fun `quest - The Queen of Cuisine - Heart`() = assertQuest("The Queen of Cuisine: Heart")
-
-    @Test
-    fun `quest - More's Task Chapter Four - Turmoil`() = assertQuest("More's Task Chapter Four: Turmoil")
-
-    @Test
-    fun `quest - Relic Search - Dregs of Destiny`() = assertQuest("Relic Search: Dregs of Destiny")
-
-    @Test
-    fun `quest - Soldier's Solace`() = assertQuest("Soldier's Solace")
-
-    @Test
-    fun `quest - Deeds and Diversions`() = assertQuest("Deeds and Diversions")
-
-    @Test
-    fun `quest - Efflorescent Youth`() = assertQuest("Efflorescent Youth")
-
-    @Test
-    fun `quest - Dental Distress`() = assertQuest("Dental Distress")
-
-    @Test
-    fun `quest - Obtain Sergeant Xanth's Key`() = assertQuest("Obtain Sergeant Xanth's Key")
-
-    @Test
-    fun `quest - The Chalice vs The Brew`() = assertQuest("The Chalice vs. The Brew")
-
-    @Test
-    fun `quest - Superior Scrimshaw`() = assertQuest("Superior Scrimshaw")
-
-    @Test
-    fun `quest - Grieving Ghost of the Goblet`() = assertQuest("Grieving Ghost of the Goblet")
-
-    @Test
-    fun `quest - Defeat the Coliseum Monster`() = assertQuest("Defeat the Coliseum Monster")
-
-    @Test
-    fun `quest - Relic Search - Youth's Folly`() = assertQuest("Relic Search: Youth's Folly")
-
-    @Test
-    fun `quest - More's Task Chapter Five - Resolve`() = assertQuest("More's Task Chapter Five: Resolve")
-
-    @Test
-    fun `quest - The Right to Rule`() = assertQuest("The Right to Rule")
-
-    @Test
-    fun `quest - The Price of Hope`() = assertQuest("The Price of Hope")
-
-    @Test
-    fun `quest - Peak Curiosity`() = assertQuest("Peak Curiosity")
-
-    @Test
-    fun `quest - The Greater One-Eyed Scoundrel`() = assertQuest("The Greater One-Eyed Scoundrel")
-
-    @Test
-    fun `quest - A Guiding Gift`() = assertQuest("A Guiding Gift")
-
-    @Test
-    fun `quest - Save the Mourning Snakes`() = assertQuest("Save the Mourning Snakes")
-
-    @Test
-    fun `quest - The Trial of Malnova`() = assertQuest("The Trial of Malnova")
-
-    @Test
-    fun `quest - Relic Search - Engineer's Destiny`() = assertQuest("Relic Search: Engineer's Destiny")
-
-    @Test
-    fun `quest - More's Task Chapter Six - The End`() = assertQuest("More's Task Chapter Six: The End")
-
-    @Test
-    fun `quest - Wayward Shepherd`() = assertQuest("Wayward Shepherd")
-
-    @Test
-    fun `quest - Relic Search - Bitter Memories`() = assertQuest("Relic Search: Bitter Memories")
-
-    @Test
-    fun `quest - The Fiend in the Frozen Forest`() = assertQuest("The Fiend in the Frozen Forest")
-
-    @Test
-    fun `quest - Proof of Power`() = assertQuest("Proof of Power")
-
-    @Test
-    fun `quest - Warmth in Winter`() = assertQuest("Warmth in Winter")
-
-    @Test
-    fun `quest - Defeat Milo`() = assertQuest("Defeat Milo")
-
-    @Test
-    fun `quest - A Rake's Last Wish`() = assertQuest("A Rake's Last Wish")
-
-    @Test
-    fun `quest - The Queen of Cuisine - Soul`() = assertQuest("The Queen of Cuisine: Soul")
-
-    @Test
-    fun `quest - The Edge of Glory`() = assertQuest("The Edge of Glory")
-
-    @Test
-    fun `quest - The Incarnate in the Woods`() = assertQuest("The Incarnate in the Woods")
-
-    @Test
-    fun `quest - The Apostles of the Apocalypse`() = assertQuest("The Apostles of the Apocalypse")
-
-    @Test
-    fun `quest - The Cockatrice in the Clouds`() = assertQuest("The Cockatrice in the Clouds")
-
-    @Test
-    fun `quest - Trial of the Dragon - Bygone Legacy`() = assertQuest("Trial of the Dragon: Bygone Legacy")
-
-    @Test
-    fun `quest - Deliver Hot Spring Water`() = assertQuest("Deliver Hot Spring Water")
-
-    @Test
-    fun `quest - Trial of the Dragon - Heroes' Rest`() = assertQuest("Trial of the Dragon: Heroes' Rest")
-
-    @Test
-    fun `quest - Trial of the Dragon - Mad Mischief`() = assertQuest("Trial of the Dragon: Mad Mischief")
-
-    @Test
-    fun `quest - A Brother's Mercy`() = assertQuest("A Brother's Mercy")
-
-    @Test
-    fun `quest - Relic Search - A Dream's Origin`() = assertQuest("Relic Search: A Dream's Origin")
-
-    @Test
-    fun `quest - Petty Thief`() = assertQuest("Petty Thief")
-
-    @Test
-    fun `quest - Trial of the Dragon - Essence of Power`() = assertQuest("Trial of the Dragon: Essence of Power")
-
-    @Test
-    fun `quest - Become Champion of the Coliseum`() = assertQuest("Become Champion of the Coliseum")
-
-    @Test
-    fun `quest - one alternate Charadrius key quest`() {
+    fun `100 percent route exposes the 64 side quests needed for Help Anyone in Need`() {
         val routeText = routeText()
-        val alternates = listOf(
+        val requiredSideQuests = listOf(
+            "More's Task: Foreword and Prologue",
+            "More's Task Chapter One: Ordeal",
+            "Pagan's Dilemma",
+            "Help the Hushed Honeybee",
+            "A Friend in Need",
+            "A Bullish Embargo",
+            "Man's Not-So Best Friend",
+            "Promising Returns",
+            "Providing a Spark",
+            "The Old Castle Town Kidnapper",
+            "A Dagger, a Ring, and a Rake",
+            "Hatching a Plan",
+            "The New King of the Imps",
+            "Relic Search: Inventor's Bequest",
+            "More's Task Chapter Two: Solitude",
+            "More's Task Chapter Three: Drifting",
+            "A Noble's Legacy",
+            "A Haunted Heirloom",
+            "Skullduggery",
+            "The Queen of Cuisine: Heart",
+            "More's Task Chapter Four: Turmoil",
+            "Relic Search: Dregs of Destiny",
+            "Soldier's Solace",
+            "Deeds and Diversions",
+            "Efflorescent Youth",
+            "Dental Distress",
+            "Obtain Sergeant Xanth's Key",
+            "The Chalice vs. The Brew",
+            "Superior Scrimshaw",
+            "Grieving Ghost of the Goblet",
+            "Defeat the Coliseum Monster",
+            "Relic Search: Youth's Folly",
+            "More's Task Chapter Five: Resolve",
+            "The Right to Rule",
+            "The Price of Hope",
+            "Peak Curiosity",
+            "The Greater One-Eyed Scoundrel",
+            "A Guiding Gift",
+            "Save the Mourning Snakes",
+            "The Trial of Malnova",
+            "Relic Search: Engineer's Destiny",
+            "More's Task Chapter Six: The End",
+            "Wayward Shepherd",
+            "Relic Search: Bitter Memories",
+            "The Fiend in the Frozen Forest",
+            "Proof of Power",
+            "Warmth in Winter",
+            "Defeat Milo",
+            "A Rake's Last Wish",
+            "The Queen of Cuisine: Soul",
+            "The Edge of Glory",
+            "The Incarnate in the Woods",
+            "The Apostles of the Apocalypse",
+            "The Cockatrice in the Clouds",
+            "Trial of the Dragon: Bygone Legacy",
+            "Deliver Hot Spring Water",
+            "Trial of the Dragon: Heroes' Rest",
+            "Trial of the Dragon: Mad Mischief",
+            "A Brother's Mercy",
+            "Relic Search: A Dream's Origin",
+            "Petty Thief",
+            "Trial of the Dragon: Essence of Power",
+            "Become Champion of the Coliseum",
+        )
+        assertEquals(63, requiredSideQuests.size)
+
+        val missing = requiredSideQuests.filterNot { routeText.contains(it.normalized()) }
+        assertTrue(
+            missing.isEmpty(),
+            "The 100% route is missing required side-quest identities: ${missing.joinToString()}",
+        )
+
+        val alternateCharadriusKeys = listOf(
             "Obtain Maintenance Chief Ceiba's Key",
             "Obtain Master Sergeant Glechom's Key",
         )
         assertTrue(
-            alternates.any { routeText.contains(it.normalized()) },
-            "Missing both alternate Charadrius key quests",
+            alternateCharadriusKeys.any { routeText.contains(it.normalized()) },
+            "The route must expose at least one alternate Charadrius key quest",
         )
     }
 
-    private fun assertQuest(title: String) {
-        assertTrue(
-            routeText().contains(title.normalized()),
-            "Missing required side quest: $title",
-        )
+    @Test
+    fun `quest audit keeps corrected route semantics`() {
+        val routeText = routeText()
+        assertFalse(routeText.contains("relic search: inventor's request"))
+        assertFalse(routeText.contains("train with basilio on deck for bonus max hp (follower rank 5 for neuras)"))
+        assertTrue(routeText.contains("relic search: inventor's bequest"))
+        assertTrue(routeText.contains("relic search: engineer's destiny"))
+        assertTrue(routeText.contains("relic search: bitter memories"))
+        assertTrue(routeText.contains("relic search: a dream's origin"))
     }
 
     private fun routeText() = loadMetaphor().walkthroughs
