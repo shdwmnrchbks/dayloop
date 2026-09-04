@@ -89,10 +89,8 @@
       "title": "Archetype Adept",
       "description": "Master an Archetype.",
       "availableFrom": "2100-06-11",
-      "tracking": {
-        "type": "confirmation",
-        "prompt": "Confirm after any character masters an Archetype."
-      }
+      "expectedBy": "2100-09-30",
+      "tracking": { "type": "event", "event": "metaphor.event.archetype-adept" }
     },
     {
       "id": "metaphor.achievement.dark-truths",
@@ -114,10 +112,8 @@
       "title": "What's Yours is Mine",
       "description": "Steal an item from an enemy.",
       "availableFrom": "2100-07-04",
-      "tracking": {
-        "type": "confirmation",
-        "prompt": "Confirm after successfully stealing an item from an enemy."
-      }
+      "expectedBy": "2100-10-05",
+      "tracking": { "type": "event", "event": "metaphor.event.whats-yours-is-mine" }
     },
     {
       "id": "metaphor.achievement.stray-elements",
@@ -471,6 +467,8 @@
     { "id": "metaphor.event.calamity-averted", "date": "2100-06-12", "labelContains": "Clear the Catacombs and cathedral" },
     { "id": "metaphor.event.blessed-power", "date": "2100-06-15", "labelContains": "purify a relic" },
     { "id": "metaphor.event.first-bounty", "date": "2100-06-17", "labelContains": "Hunt the Maneater Manjula" },
+    { "id": "metaphor.event.archetype-adept", "date": "2100-09-30", "labelContains": "master any Elite Archetype" },
+    { "id": "metaphor.event.whats-yours-is-mine", "date": "2100-10-05", "labelContains": "Steal the Fortune God's Abacus" },
     { "id": "metaphor.event.dark-truths", "date": "2100-07-05", "labelContains": "Return to Kriegante Castle" },
     { "id": "metaphor.event.on-knifes-edge", "date": "2100-07-25", "labelContains": "Infiltrate Charadrius" },
     { "id": "metaphor.event.special-experiment", "date": "2100-10-13", "labelContains": "first experiment unlocks For Science" },
