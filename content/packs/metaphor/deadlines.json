@@ -98,7 +98,7 @@
     },
     {
       "id": "metaphor.deadline.request.dental-distress",
-      "label": "Dental Distress — timed request",
+      "label": "Dental Distress — timed request; completing it awards a missable Gold Beetle",
       "kind": "request",
       "window": { "start": "2100-07-23", "end": "2100-08-09" }
     },
@@ -115,6 +115,12 @@
       "window": { "start": "2100-08-19", "end": "2100-08-30" }
     },
     {
+      "id": "metaphor.deadline.missable.gold-beetle-border-fort",
+      "label": "Gold Beetle — Northern Border Fort one-way story area",
+      "kind": "missable",
+      "date": "2100-06-05"
+    },
+    {
       "id": "metaphor.deadline.missable.inn-cooking",
       "label": "Inn cooking evenings with Maria",
       "kind": "missable",
@@ -125,6 +131,12 @@
       "label": "Missable book from Julian (Brilehaven)",
       "kind": "missable",
       "window": { "start": "2100-07-23", "end": "2100-08-12" }
+    },
+    {
+      "id": "metaphor.deadline.missable.gold-beetle-eldan-sanctum",
+      "label": "Gold Beetle — Ancient Eldan Sanctum one-way story area",
+      "kind": "missable",
+      "date": "2100-09-24"
     }
   ]
 }
