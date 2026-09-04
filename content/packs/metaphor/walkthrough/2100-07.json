@@ -64,10 +64,10 @@
       "dayKind": "free",
       "steps": [
         { "label": "Set off for Man-Eater's Grotto; read 'Pride and Persuasion' (choice: scare them).", "slot": "afternoon", "activityRef": "metaphor.activity.book.pride-and-persuasion", "statGains": { "eloquence": 10 } },
-        { "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request'.", "slot": "afternoon" },
+        { "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request', then buy the Practical Pidgeon Parcel plus the planned Magla Pills and Orgo Sugar.", "slot": "afternoon" },
         { "label": "Turn in More's Task Chapter One: Ordeal (Follower rank 3).", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Turn in More's Task Chapter Two: Solitude with Merchant rank 15 already met (Follower rank 4); receive Chapter Three: Drifting.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Restock supplies and continue toward the bounty mark.", "slot": "afternoon" }
+        { "label": "Clear Man-Eater's Grotto; recover Neuras' lost relic in the first zone and the Gold Beetle just north of the lower trance crystal.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -75,7 +75,7 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Report to the Gloomy Youth and the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Report the Practical Pidgeon Parcel to the Gloomy Youth to finish 'Hatching a Plan', then report the Man-Eater bounty at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Catch up with Maria (Follower rank 3).", "slot": "afternoon" },
         { "label": "Deliver the lost relic to Neuras (Follower rank 2); take 'Relic Search: Dregs of Destiny'.", "slot": "night" }
       ]
@@ -141,7 +141,7 @@
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Warp to Grand Trad and clear the Mausoleum for the outstanding requests — take the left or right door first at three-door rooms.", "slot": "afternoon" }
+        { "label": "Warp to Grand Trad and clear the Mausoleum for the outstanding requests — take the left or right door first at three-door rooms, then hand the Mortaskulls to the Nervous Soldier to finish 'Skullduggery'.", "slot": "afternoon" }
       ]
     },
     {
@@ -149,7 +149,7 @@
       "weekday": "flamesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Return the necklace to the Resentful Noble, collect the Angry Man's potion, and help Heismay lay his son to rest (Follower rank 3).", "slot": "afternoon", "statGains": { "courage": 10 } },
+        { "label": "Return the necklace to the Resentful Noble to finish 'A Haunted Heirloom', collect the Angry Man's potion, and help Heismay lay his son to rest (Follower rank 3).", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Give the King's Rock speech — match the answer to your crowd.", "slot": "night", "statGains": { "eloquence": 10 } },
         { "label": "Eloquence reaches rank 3 (Urbane).", "slot": "night" }
       ]
@@ -190,18 +190,9 @@
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Arrive in Brilehaven and sweep the local Gold Beetles: the alley crates off Seabreeze Street and the dock ramp by the ferryman.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Big Bargain Day shopping at Merchants' Bazaar.", "slot": "afternoon" }
-      ]
-    },
-    {
-      "date": "2100-07-21",
-      "weekday": "flamesday",
-      "dayKind": "free",
-      "steps": [
-        { "label": "Quest warp-around: capital merchant for Strohl's inheritance, then deliver the flowers to Brilehaven's Kindly Boy.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
-        { "label": "Martira sweep: two Gold Beetles, Benevolent Bread delivery, and Bardon has something to discuss (Follower rank 2).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Hear the Elegant Performer at The Greatest Catch and take the Gambling Man's wager.", "slot": "night" }
+        { "label": "Arrive in Brilehaven and collect all five route Gold Beetles: two on Seabreeze Street, two around Merchants' Bazaar, and one on Arenafront Wharf.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Big Bargain Day shopping at Merchants' Bazaar; stock the planned Briny Salt, Fruit Cordial, Bluefin Tuna, and Mora Coney Meat.", "slot": "afternoon" },
+        { "label": "At Arenafront Wharf, make the route's first Gold Beetle exchanges with the Elderly Entomophile for Arcane Dragonblood and Venomward Charm.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -218,8 +209,11 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Brilehaven errand sweep: 'Soldier's Solace', Julian's missable book, 'Deeds and Diversions', 'Briny Threads' plus a Tail Bait, and the Brewer's request.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
+        { "label": "Brilehaven request sweep: take 'Soldier's Solace', 'Deeds and Diversions', 'The Chalice vs. The Brew', 'Efflorescent Youth', 'Dental Distress', 'Superior Scrimshaw', and the 'Grieving Ghost of the Goblet' bounty; give the Man in Pain a Medicinal Herb for Briny Threads and a Tail Bait.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
         { "label": "Get 'The Future of Magic' from Julian; this missable book remains obtainable through August 12.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" },
+        { "label": "Warp to Grand Trad: buy the Rainbow Flower, collect the newly appeared Gold Beetle at the fourth market stall south of the Herb-Seller, and identify Strohl's inheritance merchant.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Return to Brilehaven and give the Rainbow Flower to the Kindly Boy to finish 'Efflorescent Youth'.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
+        { "label": "Warp to Martira: collect the Gold Beetles in the MesmerEyes spice bag and by the Cattleracket Road hay bales, deliver Benevolent Bread to finish 'The Queen of Cuisine: Heart', then talk with Bardon (Follower rank 2).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
       ]
     },
@@ -277,7 +271,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart on the three-dungeon road trip toward the Tomb of Lament via Inundo; cook Coney Stew; lend Hulkenberg an ear (Follower rank 6).", "slot": "afternoon" },
-        { "label": "Inundo stop: Toothbrush of Hygienia, Mellow Milk, the Briny equipment set.", "slot": "afternoon" },
+        { "label": "Inundo stop: buy the Toothbrush of Hygienia for 'Dental Distress', plus the planned Mellow Milk and Briny equipment.", "slot": "afternoon" },
         { "label": "Campfire, then a heart-to-heart with Heismay (Follower rank 5).", "slot": "night" }
       ]
     },
