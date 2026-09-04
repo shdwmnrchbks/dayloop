@@ -1,0 +1,440 @@
+{
+  "achievements": [
+    {
+      "id": "metaphor.achievement.allies-united",
+      "title": "Allies United",
+      "description": "Traverse the Northern Border Fort.",
+      "availableFrom": "2100-06-05",
+      "expectedBy": "2100-06-05",
+      "tracking": { "type": "event", "event": "metaphor.event.allies-united" }
+    },
+    {
+      "id": "metaphor.achievement.stunning",
+      "title": "Stunning!",
+      "description": "Stun an enemy.",
+      "availableFrom": "2100-06-05",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after stunning any enemy on the field."
+      }
+    },
+    {
+      "id": "metaphor.achievement.shake-on-it",
+      "title": "Shake on It",
+      "description": "Obtain a Follower.",
+      "availableFrom": "2100-06-05",
+      "expectedBy": "2100-06-05",
+      "tracking": { "type": "event", "event": "metaphor.event.first-follower" }
+    },
+    {
+      "id": "metaphor.achievement.out-of-the-fire",
+      "title": "Out of the Fire",
+      "description": "Traverse the Nord Mines.",
+      "availableFrom": "2100-06-06",
+      "expectedBy": "2100-06-06",
+      "tracking": { "type": "event", "event": "metaphor.event.out-of-the-fire" }
+    },
+    {
+      "id": "metaphor.achievement.united-front",
+      "title": "United Front",
+      "description": "Use a Synthesis skill for the first time.",
+      "availableFrom": "2100-06-11",
+      "expectedBy": "2100-06-11",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after using any Synthesis skill for the first time."
+      }
+    },
+    {
+      "id": "metaphor.achievement.shrewd-shopper",
+      "title": "Shrewd Shopper",
+      "description": "Buy an item on discount.",
+      "availableFrom": "2100-06-15",
+      "expectedBy": "2100-06-15",
+      "tracking": { "type": "event", "event": "metaphor.event.discount-purchase" }
+    },
+    {
+      "id": "metaphor.achievement.calamity-averted",
+      "title": "Calamity Averted",
+      "description": "Traverse the Regalith Grand Cathedral.",
+      "availableFrom": "2100-06-12",
+      "expectedBy": "2100-06-12",
+      "tracking": { "type": "event", "event": "metaphor.event.calamity-averted" }
+    },
+    {
+      "id": "metaphor.achievement.no-mercy",
+      "title": "No Mercy",
+      "description": "End 50 battles without taking damage.",
+      "availableFrom": "2100-06-05",
+      "tracking": { "type": "counter", "target": 50, "unit": "battles" }
+    },
+    {
+      "id": "metaphor.achievement.blessed-power",
+      "title": "Blessed Power",
+      "description": "Purify a piece of equipment.",
+      "availableFrom": "2100-06-15",
+      "expectedBy": "2100-06-15",
+      "tracking": { "type": "event", "event": "metaphor.event.blessed-power" }
+    },
+    {
+      "id": "metaphor.achievement.monster-hunter",
+      "title": "Monster Hunter",
+      "description": "Subjugate a bounty.",
+      "availableFrom": "2100-06-17",
+      "expectedBy": "2100-06-17",
+      "tracking": { "type": "event", "event": "metaphor.event.first-bounty" }
+    },
+    {
+      "id": "metaphor.achievement.archetype-adept",
+      "title": "Archetype Adept",
+      "description": "Master an Archetype.",
+      "availableFrom": "2100-06-11",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after any character masters an Archetype."
+      }
+    },
+    {
+      "id": "metaphor.achievement.dark-truths",
+      "title": "Dark Truths",
+      "description": "Traverse Kriegante Castle.",
+      "availableFrom": "2100-07-05",
+      "expectedBy": "2100-07-05",
+      "tracking": { "type": "event", "event": "metaphor.event.dark-truths" }
+    },
+    {
+      "id": "metaphor.achievement.tactical-strike",
+      "title": "Tactical Strike",
+      "description": "Inflict ambush damage against stunned enemies 100 times.",
+      "availableFrom": "2100-06-05",
+      "tracking": { "type": "counter", "target": 100, "unit": "ambushes" }
+    },
+    {
+      "id": "metaphor.achievement.whats-yours-is-mine",
+      "title": "What's Yours is Mine",
+      "description": "Steal an item from an enemy.",
+      "availableFrom": "2100-07-04",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after successfully stealing an item from an enemy."
+      }
+    },
+    {
+      "id": "metaphor.achievement.stray-elements",
+      "title": "Stray Elements",
+      "description": "Defeat 10 Elmentas.",
+      "availableFrom": "2100-06-06",
+      "tracking": { "type": "counter", "target": 10, "unit": "Elmentas" }
+    },
+    {
+      "id": "metaphor.achievement.on-knifes-edge",
+      "title": "On Knife's Edge",
+      "description": "Traverse the Charadrius.",
+      "availableFrom": "2100-07-25",
+      "expectedBy": "2100-07-25",
+      "tracking": { "type": "event", "event": "metaphor.event.on-knifes-edge" }
+    },
+    {
+      "id": "metaphor.achievement.for-science",
+      "title": "For Science!",
+      "description": "Perform a Special Experiment.",
+      "availableFrom": "2100-07-25",
+      "expectedBy": "2100-10-13",
+      "tracking": { "type": "event", "event": "metaphor.event.special-experiment" }
+    },
+    {
+      "id": "metaphor.achievement.history-untold",
+      "title": "History Untold",
+      "description": "Traverse the Dragon Temple.",
+      "availableFrom": "2100-08-19",
+      "expectedBy": "2100-08-19",
+      "tracking": { "type": "event", "event": "metaphor.event.history-untold" }
+    },
+    {
+      "id": "metaphor.achievement.mission-accomplished",
+      "title": "Mission Accomplished",
+      "description": "Traverse the Montario Opera House.",
+      "availableFrom": "2100-09-10",
+      "expectedBy": "2100-09-10",
+      "tracking": { "type": "event", "event": "metaphor.event.mission-accomplished" }
+    },
+    {
+      "id": "metaphor.achievement.his-majesty",
+      "title": "His Majesty",
+      "description": "Study the Prince Archetype.",
+      "availableFrom": "2100-09-24",
+      "expectedBy": "2100-09-24",
+      "tracking": { "type": "event", "event": "metaphor.event.his-majesty" }
+    },
+    {
+      "id": "metaphor.achievement.globetrotter",
+      "title": "Globetrotter",
+      "description": "Visit all towns.",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm when the in-game Globetrotter achievement unlocks after visiting every town."
+      }
+    },
+    {
+      "id": "metaphor.achievement.skybound-hope",
+      "title": "Skybound Hope",
+      "description": "Traverse the Skybound Avatar.",
+      "availableFrom": "2100-09-26",
+      "expectedBy": "2100-10-16",
+      "tracking": { "type": "event", "event": "metaphor.event.skybound-hope" }
+    },
+    {
+      "id": "metaphor.achievement.vista-viewer",
+      "title": "Vista Viewer",
+      "description": "Collect all drawings of the journey.",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after collecting every Gauntlet Runner journey drawing."
+      }
+    },
+    {
+      "id": "metaphor.achievement.coronation-of-the-king",
+      "title": "Coronation of the King",
+      "description": "Witness the ending.",
+      "expectedBy": "2100-10-26",
+      "tracking": { "type": "event", "event": "metaphor.event.coronation" }
+    },
+    {
+      "id": "metaphor.achievement.hearts-as-one",
+      "title": "Hearts as One",
+      "description": "Max all Follower ranks.",
+      "expectedBy": "2100-10-05",
+      "missable": true,
+      "tracking": {
+        "type": "checklist",
+        "items": [
+          { "id": "gallica", "label": "Gallica — Rank 8" },
+          { "id": "strohl", "label": "Strohl — Rank 8" },
+          { "id": "hulkenberg", "label": "Hulkenberg — Rank 8" },
+          { "id": "heismay", "label": "Heismay — Rank 8" },
+          { "id": "junah", "label": "Junah — Rank 8" },
+          { "id": "eupha", "label": "Eupha — Rank 8" },
+          { "id": "basilio", "label": "Basilio — Rank 8" },
+          { "id": "neuras", "label": "Neuras — Rank 8" },
+          { "id": "maria", "label": "Maria — Rank 8" },
+          { "id": "catherina", "label": "Catherina — Rank 8" },
+          { "id": "alonzo", "label": "Alonzo — Rank 8" },
+          { "id": "bardon", "label": "Bardon — Rank 8" },
+          { "id": "brigitta", "label": "Brigitta — Rank 8" },
+          { "id": "more", "label": "More — Rank 8" }
+        ]
+      }
+    },
+    {
+      "id": "metaphor.achievement.entrusted",
+      "title": "Entrusted",
+      "description": "Overcome all the trials to defeat Louis.",
+      "availableFrom": "2100-09-26",
+      "expectedBy": "2100-10-12",
+      "tracking": { "type": "event", "event": "metaphor.event.entrusted" }
+    },
+    {
+      "id": "metaphor.achievement.worldly-wisdom",
+      "title": "Worldly Wisdom",
+      "description": "Unlock the entire map.",
+      "expectedBy": "2100-10-16",
+      "tracking": {
+        "type": "confirmation",
+        "date": "2100-10-16",
+        "prompt": "Confirm after the entire world map is unlocked."
+      }
+    },
+    {
+      "id": "metaphor.achievement.teamwork-makes-the-dream-work",
+      "title": "Teamwork Makes the Dream Work",
+      "description": "Use 50 different Synthesis skills.",
+      "availableFrom": "2100-06-11",
+      "tracking": { "type": "counter", "target": 50, "unit": "distinct Synthesis skills" }
+    },
+    {
+      "id": "metaphor.achievement.hey-listen",
+      "title": "Hey, Listen!",
+      "description": "Consult Gallica 100 times.",
+      "availableFrom": "2100-06-05",
+      "tracking": { "type": "counter", "target": 100, "unit": "consultations" }
+    },
+    {
+      "id": "metaphor.achievement.help-anyone-in-need",
+      "title": "Help Anyone in Need",
+      "description": "Complete all quests.",
+      "missable": true,
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after the achievement unlocks. The game requires completion credit for 75 of its 76 quests."
+      }
+    },
+    {
+      "id": "metaphor.achievement.coliseum-champion",
+      "title": "Coliseum Champion",
+      "description": "Win 30 consecutive Gold Class battles at the coliseum.",
+      "availableFrom": "2100-10-15",
+      "tracking": { "type": "counter", "target": 30, "unit": "consecutive wins" }
+    },
+    {
+      "id": "metaphor.achievement.money-is-power",
+      "title": "Money is Power",
+      "description": "Spend a total of 100,000 reeve using skills that consume money.",
+      "availableFrom": "2100-06-16",
+      "tracking": { "type": "counter", "target": 100000, "unit": "reeve" }
+    },
+    {
+      "id": "metaphor.achievement.at-your-own-risk",
+      "title": "At Your Own Risk",
+      "description": "Successfully challenge the test of courage at the highest difficulty.",
+      "availableFrom": "2100-07-01",
+      "expectedBy": "2100-08-09",
+      "tracking": { "type": "event", "event": "metaphor.event.at-your-own-risk" }
+    },
+    {
+      "id": "metaphor.achievement.bookworm",
+      "title": "Bookworm",
+      "description": "Finish reading all books.",
+      "availableFrom": "2100-07-23",
+      "expectedBy": "2100-09-21",
+      "missable": true,
+      "tracking": { "type": "event", "event": "metaphor.event.bookworm" }
+    },
+    {
+      "id": "metaphor.achievement.archetype-hero",
+      "title": "Archetype Hero",
+      "description": "Master all the Archetypes with the protagonist.",
+      "missable": true,
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after the protagonist has mastered every Archetype available in the playthrough."
+      }
+    },
+    {
+      "id": "metaphor.achievement.chef-in-training",
+      "title": "Chef in Training",
+      "description": "Help cook a meal at the inn with Maria.",
+      "availableFrom": "2100-06-12",
+      "expectedBy": "2100-09-03",
+      "missable": true,
+      "tracking": { "type": "event", "event": "metaphor.event.chef-in-training" }
+    },
+    {
+      "id": "metaphor.achievement.all-that-glitters",
+      "title": "All That Glitters",
+      "description": "Make all possible gold beetle item exchanges.",
+      "availableFrom": "2100-07-20",
+      "expectedBy": "2100-10-13",
+      "tracking": { "type": "event", "event": "metaphor.event.all-that-glitters" }
+    },
+    {
+      "id": "metaphor.achievement.king-of-cuisine",
+      "title": "King of Cuisine",
+      "description": "Make all recipes.",
+      "expectedBy": "2100-09-30",
+      "missable": true,
+      "tracking": { "type": "event", "event": "metaphor.event.king-of-cuisine" }
+    },
+    {
+      "id": "metaphor.achievement.summon-mask-time",
+      "title": "Summon Mask Time",
+      "description": "Create all summoning vessels and masks.",
+      "availableFrom": "2100-08-19",
+      "expectedBy": "2100-10-17",
+      "missable": true,
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after using Special Experiments to create every Masked Dancer mask and every Summoner vessel. Dayloop schedules a cleanup pass, but white-mask shop rotation and material drops make automatic completion unsafe."
+      }
+    },
+    {
+      "id": "metaphor.achievement.debate-me",
+      "title": "Debate Me",
+      "description": "Win debates against all candidates.",
+      "availableFrom": "2100-07-06",
+      "expectedBy": "2100-09-13",
+      "missable": true,
+      "tracking": {
+        "type": "allEvents",
+        "events": [
+          "metaphor.event.debate-loveless",
+          "metaphor.event.debate-lina",
+          "metaphor.event.debate-roger",
+          "metaphor.event.debate-jin",
+          "metaphor.event.debate-glodell",
+          "metaphor.event.debate-rudolf",
+          "metaphor.event.debate-milo",
+          "metaphor.event.debate-julian"
+        ]
+      }
+    },
+    {
+      "id": "metaphor.achievement.sword-surfer",
+      "title": "Sword Surfer",
+      "description": "Travel a significant distance by blade-riding.",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after Sword Surfer unlocks from cumulative blade-riding distance."
+      }
+    },
+    {
+      "id": "metaphor.achievement.star-shatterer",
+      "title": "Star Shatterer",
+      "description": "Defeat Destroyer Charadrius, wielder of true power.",
+      "availableFrom": "2100-10-26",
+      "expectedBy": "2100-10-26",
+      "missable": true,
+      "tracking": { "type": "event", "event": "metaphor.event.star-shatterer" }
+    },
+    {
+      "id": "metaphor.achievement.closing-the-book",
+      "title": "Closing the Book",
+      "description": "Defeat the redscale dragon from the Book of Apocalypse.",
+      "missable": true,
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "New Game+ only: on Easy difficulty or higher, defeat the Redscale Apocalypse Dragon from the Book of Apocalypse in Akademeia. Storyteller difficulty disables this fight."
+      }
+    },
+    {
+      "id": "metaphor.achievement.the-traveller",
+      "title": "The Traveller",
+      "description": "Acquire all achievements.",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after every other achievement has been acquired."
+      }
+    }
+  ],
+  "events": [
+    { "id": "metaphor.event.allies-united", "date": "2100-06-05", "labelContains": "Enter the fort with Strohl" },
+    { "id": "metaphor.event.first-follower", "date": "2100-06-05", "labelContains": "More makes contact" },
+    { "id": "metaphor.event.out-of-the-fire", "date": "2100-06-06", "labelContains": "Cross the Nord Mines" },
+    { "id": "metaphor.event.discount-purchase", "date": "2100-06-15", "labelContains": "Big Bargain Day" },
+    { "id": "metaphor.event.calamity-averted", "date": "2100-06-12", "labelContains": "Clear the Catacombs and cathedral" },
+    { "id": "metaphor.event.blessed-power", "date": "2100-06-15", "labelContains": "purify a relic" },
+    { "id": "metaphor.event.first-bounty", "date": "2100-06-17", "labelContains": "Hunt the Maneater Manjula" },
+    { "id": "metaphor.event.dark-truths", "date": "2100-07-05", "labelContains": "Return to Kriegante Castle" },
+    { "id": "metaphor.event.on-knifes-edge", "date": "2100-07-25", "labelContains": "Infiltrate Charadrius" },
+    { "id": "metaphor.event.special-experiment", "date": "2100-10-13", "labelContains": "first experiment unlocks For Science" },
+    { "id": "metaphor.event.history-untold", "date": "2100-08-19", "labelContains": "human-possessed dragon god falls" },
+    { "id": "metaphor.event.mission-accomplished", "date": "2100-09-10", "labelContains": "Attend the Opera House" },
+    { "id": "metaphor.event.his-majesty", "date": "2100-09-24", "labelContains": "His Majesty unlocks" },
+    { "id": "metaphor.event.skybound-hope", "date": "2100-10-16", "labelContains": "Skybound Hope unlocks" },
+    { "id": "metaphor.event.coronation", "date": "2100-10-26", "labelContains": "After the credits" },
+    { "id": "metaphor.event.entrusted", "date": "2100-10-12", "labelContains": "Entrusted unlocks" },
+    { "id": "metaphor.event.at-your-own-risk", "date": "2100-08-09", "labelContains": "Final bungee challenge" },
+    { "id": "metaphor.event.bookworm", "date": "2100-09-21", "labelContains": "Bookworm unlocks" },
+    { "id": "metaphor.event.chef-in-training", "date": "2100-09-03", "labelContains": "cooking lesson with Maria" },
+    { "id": "metaphor.event.all-that-glitters", "date": "2100-10-13", "labelContains": "All That Glitters unlocks" },
+    { "id": "metaphor.event.king-of-cuisine", "date": "2100-09-30", "labelContains": "King of Cuisine unlocks" },
+    { "id": "metaphor.event.debate-loveless", "date": "2100-07-06", "labelContains": "Debate Loveless" },
+    { "id": "metaphor.event.debate-lina", "date": "2100-07-12", "labelContains": "Debate Lina" },
+    { "id": "metaphor.event.debate-roger", "date": "2100-07-14", "labelContains": "Debate Roger" },
+    { "id": "metaphor.event.debate-jin", "date": "2100-07-23", "labelContains": "Debate Jin" },
+    { "id": "metaphor.event.debate-glodell", "date": "2100-07-24", "labelContains": "Debate Glodell" },
+    { "id": "metaphor.event.debate-rudolf", "date": "2100-07-26", "labelContains": "Debate Rudolf" },
+    { "id": "metaphor.event.debate-milo", "date": "2100-07-27", "labelContains": "Debate Milo" },
+    { "id": "metaphor.event.debate-julian", "date": "2100-09-13", "labelContains": "Debate Julian" },
+    { "id": "metaphor.event.star-shatterer", "date": "2100-10-26", "labelContains": "Star Shatterer unlocks" }
+  ]
+}
