@@ -26,8 +26,8 @@ android {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
         targetSdk = 35
-        versionCode = 29
-        versionName = "0.12.0-rc16"
+        versionCode = 30
+        versionName = "0.12.0-rc17"
     }
 
     signingConfigs {
