@@ -18,7 +18,7 @@
       "steps": [
         { "label": "Enter the fort with Strohl; sweep the map for the eight loot spots.", "slot": "night" },
         { "label": "A human attacks the party and a masked ally joins the mission.", "slot": "night", "spoiler": true },
-        { "label": "Grab the Gold Beetle behind the campfire, then rest.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Before resting at Mountain Forest Camp, grab the missable Gold Beetle just behind you near the campfire.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "More makes contact — Akademeia opens (Follower rank 1).", "slot": "night", "spoiler": true }
       ]
     },
@@ -45,7 +45,7 @@
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Switch to the Healer Archetype for More's Task, update gear on Sunshade Row, and pick up two Gold Beetles behind the shops.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Switch to the Healer Archetype for More's Task; on Sunshade Row grab one Gold Beetle behind the stairs near Chelonia Shieldworks and another from the Bag of Spices inside Comfort Concoctions.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Attend the royal funeral — the ceremony goes wrong and the cathedral mission begins.", "slot": "afternoon", "spoiler": true },
         { "label": "Hulkenberg joins the party (Follower rank 1); Gallica reaches rank 2.", "slot": "afternoon", "spoiler": true }
       ]
@@ -55,10 +55,11 @@
       "weekday": "watersday",
       "dayKind": "story",
       "steps": [
-        { "label": "Run the capital errand loop: Breath of Fresh Air delivery, Medicinal Herb handout, and the inn-help request.", "slot": "afternoon" },
-        { "label": "Clear the Catacombs and cathedral: rescue the hostages, collect both chest keys, and stop the Mage Captain first at the altar.", "slot": "afternoon" },
+        { "label": "Run the capital errand loop: complete 'Pagan's Dilemma' with Breath of Fresh Air, give the Man in Pain a Medicinal Herb, and accept 'Help the Hushed Honeybee'.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
+        { "label": "In the Catacombs, accept 'A Friend in Need', rescue the trapped hostages, and form Catherina's bond (Follower rank 1).", "slot": "afternoon" },
+        { "label": "Continue through the cathedral: collect both chest keys and stop the Mage Captain first at the altar.", "slot": "afternoon" },
         { "label": "Face Zorba on the Heavenly Staircase — keep summoned corpses under control while chipping his health.", "slot": "afternoon", "spoiler": true },
-        { "label": "Turn in More's Task at Akademeia to unlock skill inheritance anywhere.", "slot": "afternoon", "statGains": { "imagination": 10 } }
+        { "label": "Turn in More's Task: Foreword and Prologue at Akademeia (Follower rank 2) to unlock skill inheritance anywhere.", "slot": "afternoon", "statGains": { "imagination": 10 } }
       ]
     },
     {
@@ -78,7 +79,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Spend time with Hulkenberg (Follower rank 2).", "slot": "afternoon" },
-        { "label": "Report to the Young Nidia, then rest at the royal-capital bench.", "slot": "night", "statGains": { "wisdom": 16 } },
+        { "label": "Report 'Help the Hushed Honeybee' to the Young Nidia, then rest at the royal-capital bench.", "slot": "night", "statGains": { "wisdom": 16 } },
         { "label": "Wisdom reaches rank 2 (Informed).", "slot": "night" }
       ]
     },
@@ -89,7 +90,7 @@
       "steps": [
         { "label": "Big Bargain Day: update equipment, purify a relic at St. Fermis Church, and buy the cathedral cooking stock.", "slot": "afternoon" },
         { "label": "Take 'A Bullish Embargo' (needs Wisdom 2) and depart for Belega Corridor.", "slot": "afternoon" },
-        { "label": "Clear Belega Corridor — pick up 3 Stunning Arrows on B1 and the caged Gold Beetle near B3.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Clear Belega Corridor — pick up 3 Stunning Arrows on B1 and the caged Gold Beetle near the stairs down to B3 via the crawl space.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -202,7 +203,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Arrive in Martira; Bardon treats you to dinner and briefs the kidnapping case.", "slot": "night", "spoiler": true },
-        { "label": "Gold Beetles: tavern fireplace, guest-room cupboard, and the desk pitcher.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Gold Beetles: one in the tavern fireplace and one from drinking at the Guest Room desk water pitcher; the cupboard only contains a Medicinal Herb.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -221,7 +222,7 @@
         { "label": "Martira errands: stolen-memento chain, 'Hatching a Plan', the imp bounty, and informant info.", "slot": "afternoon" },
         { "label": "Discount Day at Stairstone Market — update equipment.", "slot": "afternoon" },
         { "label": "Depart for Imp's Den; train with Hulkenberg on deck (Follower rank 3).", "slot": "afternoon" },
-        { "label": "Clear Imp's Den — leave one goborn alive before focusing the Goborn King.", "slot": "afternoon" }
+        { "label": "Clear Imp's Den — collect the northwest Gold Beetle, then leave one goborn alive before focusing the Goborn King.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {

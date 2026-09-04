@@ -4,50 +4,50 @@
       "id": "metaphor.activity.book.new-world-travel-diary",
       "label": "Read 'New World Travel Diary'",
       "kind": "book",
-      "statGains": { "imagination": 10 },
-      "location": "Gauntlet Runner lounge"
+      "location": "Gauntlet Runner lounge",
+      "notes": "Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.book.pride-and-persuasion",
       "label": "Read 'Pride and Persuasion'",
       "kind": "book",
-      "location": "Gauntlet Runner lounge"
+      "location": "Gauntlet Runner lounge",
+      "notes": "Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.book.bygone-days",
       "label": "Read 'Bygone Days'",
       "kind": "book",
-      "statGains": { "tolerance": 10 },
-      "location": "Gauntlet Runner lounge"
+      "location": "Gauntlet Runner lounge",
+      "notes": "Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.book.the-future-of-magic",
       "label": "Read 'The Future of Magic'",
       "kind": "book",
-      "statGains": { "wisdom": 10 },
       "location": "Gauntlet Runner lounge",
-      "notes": "Missable: received from Julian at Brilehaven on 07/23 only."
+      "notes": "Missable: obtain it from Julian in Brilehaven between 07/23 and 08/12. The acquisition text may call it 'The Magical Future'; the bookshelf title is 'The Future of Magic'. Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.book.top-secret-poetry",
       "label": "Read 'Top Secret Poetry! Do Not Read!'",
       "kind": "book",
-      "statGains": { "courage": 11 },
-      "location": "Gauntlet Runner lounge"
+      "location": "Gauntlet Runner lounge",
+      "notes": "Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.book.how-to-walk-outside-the-island",
       "label": "Read 'How to Walk Outside the Island'",
       "kind": "book",
-      "statGains": { "tolerance": 13 },
-      "location": "Gauntlet Runner lounge"
+      "location": "Gauntlet Runner lounge",
+      "notes": "Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.book.literacy-workbook",
       "label": "Read 'Literacy Workbook'",
       "kind": "book",
-      "statGains": { "imagination": 13 },
-      "location": "Gauntlet Runner lounge"
+      "location": "Gauntlet Runner lounge",
+      "notes": "Reading gains vary by session because the final session includes a completion bonus; the dated walkthrough step carries the exact gain."
     },
     {
       "id": "metaphor.activity.coliseum.ranked-league",
@@ -55,21 +55,22 @@
       "kind": "other",
       "statGains": { "courage": 10 },
       "location": "Brilehaven",
-      "notes": "Rank battles pay Courage coins; blocked on Blight-weather days."
+      "notes": "Each ranked battle grants +4 Courage coins (10 internal points); blocked on Blight-weather days."
     },
     {
       "id": "metaphor.activity.coliseum.gauntlet-challenge",
       "label": "Varmareno Coliseum — Gauntlet Challenge (30 rounds)",
       "kind": "other",
       "statGains": { "courage": 10 },
-      "location": "Brilehaven"
+      "location": "Brilehaven",
+      "notes": "Clearing the 30-round Gold challenge grants +4 Courage coins (10 internal points)."
     },
     {
       "id": "metaphor.activity.cooking.inn",
       "label": "Help cook at the inn",
       "kind": "other",
       "location": "Hushed Honeybee Inn, Grand Trad",
-      "notes": "Evenings only; window closes 09/22 (Chef in Training achievement)."
+      "notes": "Evenings only; available from 06/29 through 09/22 (Chef in Training achievement)."
     },
     {
       "id": "metaphor.activity.cooking.runner",
@@ -88,7 +89,7 @@
       "id": "metaphor.activity.gold-beetles",
       "label": "Collect Gold Beetles",
       "kind": "other",
-      "notes": "50 in the world; 46 needed for every exchange (All That Glitters)."
+      "notes": "50 are obtainable in a playthrough; 46 are needed for every exchange (All That Glitters), so all 50 are not required."
     },
     {
       "id": "metaphor.activity.akademeia-study",
@@ -101,7 +102,7 @@
       "id": "metaphor.activity.podium-debates",
       "label": "Win a podium debate",
       "kind": "other",
-      "notes": "8 candidate debates across Martira, Brilehaven, and Altabury Heights."
+      "notes": "Eight time-sensitive candidate debates: Loveless 07/06-07/11 Flamesday; Lina 07/07-07/12 Watersday; Roger 07/09-07/14 Metalsday; Jin 07/23-08/08 Arboursday; Glodell 07/24-08/09 Metalsday; Rudolf 07/26-08/11 Flamesday; Milo 07/27-08/12 Watersday; Julian 09/13-10/24 Flamesday/Arboursday/Metalsday. Win all eight for Debate Me."
     },
     {
       "id": "metaphor.activity.bounty-requests",

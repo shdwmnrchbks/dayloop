@@ -25,7 +25,7 @@
       "dayKind": "free",
       "steps": [
         { "label": "Answer Maria's summons at the inn (Follower rank 8).", "slot": "afternoon" },
-        { "label": "Take the cooking lesson with Maria and Fabienne — follow each dish's cue.", "slot": "night", "activityRef": "metaphor.activity.cooking.inn" }
+        { "label": "Take the cooking lesson with Maria and Fabienne — follow each dish's cue.", "slot": "night", "activityRef": "metaphor.activity.cooking.inn", "statGains": { "tolerance": 8 } }
       ]
     },
     {
@@ -60,7 +60,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for Altabury Heights.", "slot": "afternoon" },
-        { "label": "Use the last Tail Bait on the deck's fishing rod before arrival.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
+        { "label": "Use the last Tail Bait on the deck's fishing rod before arrival.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
+        { "label": "At camp, start Eupha's 'How to Walk Outside the Island'.", "slot": "night", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 13 } }
       ]
     },
     {
@@ -70,7 +71,7 @@
       "steps": [
         { "label": "Continue 'How to Walk Outside the Island' (Eupha's book).", "slot": "afternoon", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 13 } },
         { "label": "Stop by Colerodio Cliff.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Reflect on the past with Eupha in the lounge.", "slot": "night", "statGains": { "imagination": 13 } }
+        { "label": "Reflect on the past with Eupha in the lounge.", "slot": "night", "statGains": { "imagination": 15 } }
       ]
     },
     {
@@ -81,7 +82,7 @@
         { "label": "Finish 'How to Walk Outside the Island'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.how-to-walk-outside-the-island", "statGains": { "tolerance": 26 } },
         { "label": "Tolerance reaches rank 5 (Saviour).", "slot": "afternoon" },
         { "label": "Pass the Murky Graveyard.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Two Gold Beetles along the Lunlumo Approach.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
+        { "label": "Collect all four Gold Beetles on the Lunlumo Approach and Blue Sky Bridge before sleeping at the inn.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -91,7 +92,8 @@
       "steps": [
         { "label": "Gold Beetle in the Skyward Tavern corner; take 'Village Trading: Altabury Heights' from the Informant.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Dia Franco Street shopping: Brocaded Koi from the Dedicated Butcher and the frayed goods for trading.", "slot": "afternoon" },
-        { "label": "Attend the Opera House — the production turns into a duel to the death.", "slot": "afternoon", "spoiler": true }
+        { "label": "Before the Opera House, collect the Gold Beetle at the Charadrius pier.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Attend the Opera House — the production turns into a duel to the death.", "slot": "night", "spoiler": true }
       ]
     },
     {
@@ -115,9 +117,11 @@
       "weekday": "arboursday",
       "dayKind": "story",
       "steps": [
-        { "label": "Ten days remain before the duel in Grand Trad — plan the candidate runner hunts.", "slot": "afternoon" },
-        { "label": "Tell Loveless where you'll settle it; take 'Warmth in Winter' from the Portly Man.", "slot": "afternoon" },
-        { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" }
+        { "label": "Ten days remain before the duel in Grand Trad — talk with Loveless to mark his runner, then take 'Warmth in Winter' from the Portly Man.", "slot": "afternoon" },
+        { "label": "Speak with Rudolf to mark his Gauntlet Runner, then take 'Proof of Power' from the Obsessive Soldier at Opera House Square.", "slot": "afternoon" },
+        { "label": "Give the Man in Pain a Medicinal Herb for Tainted Threads and a Tail Bait, then take the Icebeast Chimenzahn bounty 'The Fiend in the Frozen Forest' at the Recruitment Centre.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
+        { "label": "Help Eupha with Ovi and the others (Follower rank 6); receive 'Wayward Shepherd'.", "slot": "afternoon" },
+        { "label": "Meet Catherina at Lower Blue Sky Bridge (Follower rank 5).", "slot": "night" }
       ]
     },
     {
@@ -125,9 +129,11 @@
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Cook Amber Stew, then set off for Malva.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Cook Amber Stew, then set off for Malva — reaching this fifth town completes the route's Globetrotter town set.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Junah shows you something in the lounge (Follower rank 6).", "slot": "afternoon" },
-        { "label": "Loveless boards the runner — an easy fight after the Opera House.", "slot": "afternoon" }
+        { "label": "Loveless boards the runner — an easy fight after the Opera House.", "slot": "afternoon" },
+        { "label": "Accept 'Defeat Milo', return the Durable Spider Silk for 'Warmth in Winter', then speak with Milo near the Recruitment Centre.", "slot": "night", "statGains": { "tolerance": 10 } },
+        { "label": "Debate Julian at Upper Blue Sky Bridge (answer: the present day matters too).", "slot": "night", "activityRef": "metaphor.activity.podium-debates", "statGains": { "eloquence": 15, "imagination": 6 } }
       ]
     },
     {
@@ -137,7 +143,8 @@
       "steps": [
         { "label": "Cook Enchanted Pottage with the flour from Malva, then hunt Milo's runner.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Basilio introduces himself in the Engine Room Corridor (Follower rank 1).", "slot": "afternoon", "spoiler": true },
-        { "label": "Milo's duel: mirror his Mage Mirror turns and burst him down.", "slot": "afternoon" }
+        { "label": "Milo's duel: mirror his Mage Mirror turns and burst him down.", "slot": "afternoon" },
+        { "label": "Report Milo's defeat to Loveless, then help Catherina confront her worries (Follower rank 6).", "slot": "night" }
       ]
     },
     {
@@ -146,8 +153,9 @@
       "dayKind": "story",
       "steps": [
         { "label": "Cook Adamantine Honey Cake, then run down Rudolf's runner.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Start the 'Literacy Workbook' Basilio added (Follower rank 7 for Junah).", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } },
-        { "label": "Rudolf's duel: his team is physical-focused — raise defense and counter.", "slot": "afternoon" }
+        { "label": "Start the 'Literacy Workbook' Basilio added.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } },
+        { "label": "Rudolf's duel: his team is physical-focused — raise defense and counter.", "slot": "afternoon" },
+        { "label": "Return to the Gauntlet Runner and accompany Junah (Follower rank 7).", "slot": "night" }
       ]
     },
     {
@@ -164,8 +172,10 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Cook Cursed Loved Ballad (or pack Hex cleansers) and fly to Mt. Vulkano for Eupha's request.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Continue the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } }
+        { "label": "Cook Cursed Love Ballad (or pack Hex cleansers) and fly to Mt. Vulkano for Eupha's request.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
+        { "label": "Continue the 'Literacy Workbook'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.literacy-workbook", "statGains": { "imagination": 13 } },
+        { "label": "Imagination reaches rank 5 (Demiurgic).", "slot": "afternoon" },
+        { "label": "Clear Mt. Vulkano: recover its lost relic and Gold Beetle, take the crawl-space ladder route to the Rusty Greatsword for the future 'The Edge of Glory' request, and rescue the believers for Eupha.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "eloquence": 10 } }
       ]
     },
     {
@@ -175,7 +185,8 @@
       "steps": [
         { "label": "Fly to Everfrost Forest; cook Indestructible Honey Cake (save one for a request).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "All 20 recipes cooked — 'Sublime Spoonful' unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Chat with Basilio (Follower rank 3).", "slot": "afternoon" }
+        { "label": "Chat with Basilio (Follower rank 3), then stop at Solstice Crossing.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Clear Everfrost Forest; recover its lost relic and Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
       ]
     },
     {
@@ -184,7 +195,9 @@
       "dayKind": "free",
       "steps": [
         { "label": "Report the Icebeast hunt at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
-        { "label": "Head for Scoundrel's Hold; train with Basilio on deck for bonus max HP (Follower rank 5 for Neuras).", "slot": "afternoon" }
+        { "label": "Head for Scoundrel's Hold; train with Basilio on deck for bonus max HP.", "slot": "afternoon", "statGains": { "courage": 15 } },
+        { "label": "When prompted, stop at Ligno and check its equipment shop before continuing the journey.", "slot": "afternoon" },
+        { "label": "At camp, give Neuras one of the recovered lost relics (Follower rank 5).", "slot": "night" }
       ]
     },
     {
@@ -222,7 +235,8 @@
       "steps": [
         { "label": "Browse the upgraded Sunshade Row stock and grab a Soothing Sweetbun.", "slot": "afternoon" },
         { "label": "Take the stage at Regalith Grand Cathedral — Louis at full power reads your turns, so play around his predictions.", "slot": "afternoon", "spoiler": true },
-        { "label": "Gallica reaches Follower rank 8.", "slot": "afternoon" }
+        { "label": "In the Ancient Eldan Sanctum, collect the missable Gold Beetle east of the Plaza of Light before advancing into the one-way story sequence.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "spoiler": true },
+        { "label": "Gallica reaches Follower rank 8.", "slot": "night" }
       ]
     },
     {
@@ -239,7 +253,12 @@
       "dayKind": "free",
       "steps": [
         { "label": "Hand over the Rusty Greatsword for 'The Edge of Glory' — thirty days remain until the crowning.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Basilio's next step (Follower rank 5); catch up with Brigitta (Follower rank 8).", "slot": "afternoon" }
+        { "label": "At the Recruitment Centre, take the three new bounties: 'The Incarnate in the Woods', 'The Cockatrice in the Clouds', and 'The Apostles of the Apocalypse'.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
+        { "label": "Turn in an Indestructible Honey Cake for 'The Queen of Cuisine: Soul'.", "slot": "afternoon", "statGains": { "eloquence": 10 } },
+        { "label": "In Brilehaven, take 'Trial of the Dragon: Mad Mischief' from the Gabby Mustari at Angler's Inn Square.", "slot": "afternoon" },
+        { "label": "In Eht Ria, take 'Trial of the Dragon: Heroes' Rest' from Edeni.", "slot": "afternoon" },
+        { "label": "In Altabury Heights, take 'Trial of the Dragon: Bygone Legacy' from the Enraged Mustari and 'Deliver Hot Spring Water' from the Gentle Merchant.", "slot": "afternoon" },
+        { "label": "Meet Basilio and Vinca (Follower rank 5), then answer Brigitta's summons at night (Follower rank 8).", "slot": "night" }
       ]
     },
     {
@@ -265,7 +284,7 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Rest at the Lycaon Magic Association bench.", "slot": "afternoon", "statGains": { "wisdom": 13 } },
+        { "label": "Rest at the Lycaon Magic Association bench.", "slot": "afternoon", "statGains": { "wisdom": 16 } },
         { "label": "Deliver the final lost relic to Neuras (Follower rank 7); 'Petty Thief' arrives to recover the stolen ones.", "slot": "night" }
       ]
     },
@@ -275,8 +294,10 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for the Disgraced Ruins; cook the final recipe, Sublime Spoonful.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Plant seeds in the Plant Culture Chamber.", "slot": "afternoon" },
-        { "label": "More completes the Mystical Scrolls (Follower rank 8).", "slot": "night", "spoiler": true }
+        { "label": "Plant seeds in the Plant Culture Chamber, then stop at Malibelo Slope.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Wisdom reaches rank 5 (Sagacious).", "slot": "afternoon" },
+        { "label": "At the Disgraced Ruins, grab the Gold Beetle near the entrance and clear the bandit hideout.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "After mastering an Elite Archetype, report to More (Follower rank 8).", "slot": "afternoon", "spoiler": true }
       ]
     }
   ]
