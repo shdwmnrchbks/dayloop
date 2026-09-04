@@ -49,6 +49,10 @@ class MetaphorRouteResidualAuditTest {
         assertTrue(july23.any { "Rainbow Flower" in it.label && "Efflorescent Youth" in it.label && it.statGains["tolerance"] == 10 })
         assertTrue(july23.any { "MesmerEyes" in it.label && "hay bales" in it.label && "Bardon" in it.label })
 
+        val july25 = days.getValue("2100-07-25").steps
+        assertTrue(july25.any { "Sergeant Xanth" in it.label && "Maintenance Chief Ceiba" in it.label && "Master Sergeant Glechom" in it.label })
+        assertTrue(july25.any { "only one corridor branch is needed" in it.label && "Help Anyone in Need" in it.label })
+
         assertTrue(days.getValue("2100-07-15").steps.any { "Skullduggery" in it.label && "Mortaskulls" in it.label })
         assertTrue(days.getValue("2100-07-16").steps.any { "A Haunted Heirloom" in it.label && "necklace" in it.label })
     }
