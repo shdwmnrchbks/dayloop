@@ -83,8 +83,8 @@ class P5RMayRouteOrderAuditTest {
             may20.steps.single { "top 10" in it.label }.statGains,
         )
         assertTrue(may20.steps.any { "Tough Belt" in it.label })
-        val palaceCombat = may20.steps.single { "Third museum infiltration" in it.label }
-        assertTrue("not the final Madarame boss" in palaceCombat.label)
+        val palaceCombat = may20.steps.single { "third museum infiltration" in it.label }
+        assertTrue("not the final Madarame boss" in palaceCombat.tip.orEmpty())
 
         assertEquals(
             mapOf("kindness" to 5),
@@ -97,11 +97,11 @@ class P5RMayRouteOrderAuditTest {
         assertEquals(38, gutsThroughMay8, "the route reaches Royal Guts rank 3 before Maidwatch")
 
         assertTrue(days.getValue("2016-05-16").steps.any { "First infiltration" in it.label })
-        assertTrue(days.getValue("2016-05-19").steps.any { "Second infiltration" in it.label })
-        assertTrue(days.getValue("2016-05-20").steps.any { "Third museum infiltration" in it.label })
-        assertTrue(days.getValue("2016-05-23").steps.any { "Fourth infiltration" in it.label && "secure the Treasure route" in it.label })
+        assertTrue(days.getValue("2016-05-19").steps.any { "Second museum infiltration" in it.label })
+        assertTrue(days.getValue("2016-05-20").steps.any { "third museum infiltration" in it.label })
+        assertTrue(days.getValue("2016-05-23").steps.any { "fourth museum infiltration" in it.label && "secure the Treasure route" in it.label })
         assertTrue(days.getValue("2016-05-24").steps.any { "Calling Card" in it.label })
-        assertTrue(days.getValue("2016-05-25").steps.any { "Heist: steal the Treasure" in it.label })
+        assertTrue(days.getValue("2016-05-25").steps.any { "Heist: steal Madarame's Treasure" in it.label })
 
         assertTrue(days.getValue("2016-05-27").steps.any { "Maidwatch" in it.label })
         assertTrue(days.getValue("2016-05-28").steps.any { "Temperance reaches rank 1" in it.label })

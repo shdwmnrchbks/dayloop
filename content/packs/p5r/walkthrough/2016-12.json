@@ -206,12 +206,23 @@
           "slot": "afternoon"
         },
         {
-          "label": "Second cruise-ship infiltration — capture the Emperor's Amulet and grab all three Will Seeds",
+          "label": "Capture the Emperor's Amulet Treasure Demon during the second cruise-ship infiltration",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Boss fights: the two guardians, then Akechi (Robin Hood, then Loki) — Justice reaches rank 10",
+          "label": "Collect all three cruise-ship Will Seeds",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Defeat the two guardians, then Akechi's Robin Hood and Loki phases",
+          "tip": "Treat the Akechi sequence as consecutive fights: recover before advancing, keep buffs and debuffs active, and do not spend every resource on the first phase.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Complete the battle sequence to reach Justice rank 10",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -244,7 +255,8 @@
       "dayKind": "story",
       "steps": [
         {
-          "label": "Send the Calling Card and steal Shido's Heart — phase 1 is magic-only, phase 2 physical-only, then finish Shido solo by countering the spell order (fire, ice, elec, wind)",
+          "label": "Send the Calling Card and steal Shido's Heart",
+          "tip": "Use magic in the first phase and Physical damage in the second. During Joker's solo finish, counter Shido's spell order: Fire, Ice, Electric, then Wind.",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -620,7 +632,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Boss: Yaldabaoth, God of Control — debuff, buff, and kill each summoned weapon fast; guard on the charged final attack",
+          "label": "Defeat Yaldabaoth, God of Control",
+          "tip": "Maintain party buffs and boss debuffs, destroy each summoned weapon quickly, and guard when the final charged attack is telegraphed.",
           "spoiler": true,
           "slot": "afternoon"
         }

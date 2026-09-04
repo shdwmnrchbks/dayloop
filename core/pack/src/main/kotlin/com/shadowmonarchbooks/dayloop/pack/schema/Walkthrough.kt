@@ -35,4 +35,6 @@ data class Step(
     val statGains: Map<String, Int> = emptyMap(),
     /** Legacy authoring metadata; walkthrough steps are rendered directly in the app. */
     val spoiler: Boolean = false,
+    /** Optional contextual guidance opened from the task's pack-themed Tips action. */
+    val tip: String? = null,
 )

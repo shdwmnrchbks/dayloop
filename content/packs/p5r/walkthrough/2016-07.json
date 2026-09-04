@@ -703,7 +703,13 @@
           "slot": "afternoon"
         },
         {
-          "label": "Second infiltration — capture the Stone of Scone and grab all three Will Seeds",
+          "label": "Capture the Stone of Scone Treasure Demon during the second pyramid infiltration",
+          "tip": "In Royal, use Fire damage to knock Stone of Scone down, then negotiate to add it to the compendium before leaving the Palace.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Collect all three pyramid Will Seeds",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -730,7 +736,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Heist: steal the Treasure — equip physical-repelling accessories; guard through Rapid Ascend, then fire the ballista",
+          "label": "Heist: steal Futaba's Treasure",
+          "tip": "Equip Physical-repelling accessories, guard through Rapid Ascend, and use the ballista opportunity to bring the boss into attack range.",
           "spoiler": true,
           "slot": "afternoon"
         },

@@ -433,6 +433,19 @@ class PackLintTest {
     }
 
     @Test
+    fun `blank walkthrough tip fails`() {
+        val dir = tempDir()
+        val wt = Fixture.validWalkthroughApril().copy(
+            days = Fixture.validWalkthroughApril().days.map {
+                if (it.date == "2016-04-10") it.copy(steps = listOf(Step("Flip the sign", tip = "   "))) else it
+            }
+        )
+        Fixture.writePack(dir, walkthroughs = listOf(wt))
+        val errors = PackLint.runOn(dir).errorsIn("walkthrough")
+        assertTrue(errors.any { "tip must not be blank" in it.message }, errors.toString())
+    }
+
+    @Test
     fun `unknown activity reference fails`() {
         val dir = tempDir()
         val wt = Fixture.validWalkthroughApril().copy(

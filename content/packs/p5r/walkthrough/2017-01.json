@@ -24,7 +24,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Boss: Warped Abyss — Joker and Akechi only; avoid wind-weak Personas and stay above half HP",
+          "label": "Defeat the Warped Abyss with Joker and Akechi",
+          "tip": "Avoid equipping a Wind-weak Persona and keep Joker above half HP so an unlucky follow-up cannot end the two-person fight.",
           "spoiler": true,
           "slot": "afternoon"
         }
@@ -113,7 +114,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Bosses: Sumire Yoshizawa (Joker solo — physical-resistant Persona), then Cendrillon and the Synthetic Organism — break the heal combo with nuclear or ice",
+          "label": "Defeat Sumire Yoshizawa, then Cendrillon and the Synthetic Organism",
+          "tip": "Equip a Physical-resistant Persona for Joker's solo phase. In the group fight, use Nuclear or Ice damage to interrupt the healing combination before focusing Cendrillon.",
           "spoiler": true,
           "slot": "afternoon"
         }
@@ -161,7 +163,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Boss: The Shadowed One and Spear-Wielding General — the Elec wall keeps returning; break them with a Technical",
+          "label": "Defeat The Shadowed One and the Spear-Wielding General",
+          "tip": "Their Electric wall returns repeatedly. Apply an ailment and trigger Technical damage instead of wasting turns into the wall.",
           "spoiler": true,
           "slot": "afternoon"
         }
@@ -591,7 +594,8 @@
       "dayKind": "school",
       "steps": [
         {
-          "label": "After school: final laboratory infiltration — use Treasure Traps to find Orichalcum; this is the last visit for any palace-side objectives",
+          "label": "After school: use Treasure Traps to capture Orichalcum during the final laboratory infiltration",
+          "tip": "This is the route's last Palace visit. Finish every remaining Palace-only capture, Will Seed, chest, and Thieves Den objective before leaving.",
           "spoiler": true,
           "slot": "afternoon"
         },

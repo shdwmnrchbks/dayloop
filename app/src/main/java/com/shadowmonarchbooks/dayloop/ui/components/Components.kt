@@ -31,13 +31,16 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -61,6 +64,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.MoonFillBadge
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import kotlinx.coroutines.Dispatchers
@@ -330,6 +334,13 @@ fun StepRow(
     onOpenActivity: (() -> Unit)? = null,
 ) {
     val skin = LocalSkin.current
+    var showTip by remember(step.tip) { mutableStateOf(false) }
+    if (showTip) {
+        StepTipDialog(
+            tip = step.tip.orEmpty(),
+            onDismiss = { showTip = false },
+        )
+    }
     Row(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -402,9 +413,50 @@ fun StepRow(
                     )
                 }
             }
+            step.tip?.let {
+                Row(
+                    horizontalArrangement = Arrangement.End,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    SkinTextActionButton(
+                        text = "Tips",
+                        onClick = { showTip = true },
+                    )
+                }
+            }
         }
         MarkActions(selected = mark, onToggle = onToggleMark)
     }
+}
+
+/** Optional task guidance, kept out of the checklist until the player asks for it. */
+@Composable
+private fun StepTipDialog(tip: String, onDismiss: () -> Unit) {
+    val skin = LocalSkin.current
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        shape = skin.shapes.card,
+        containerColor = MaterialTheme.colorScheme.surface,
+        titleContentColor = MaterialTheme.colorScheme.primary,
+        textContentColor = MaterialTheme.colorScheme.onSurface,
+        title = {
+            Text(
+                text = if (skin.hasSkin) skin.cased("Tips", "display") else "Tips",
+                style = if (skin.hasSkin) {
+                    MaterialTheme.typography.displaySmall
+                } else {
+                    MaterialTheme.typography.titleLarge
+                },
+                fontWeight = FontWeight.Black,
+            )
+        },
+        text = {
+            Text(text = tip, style = MaterialTheme.typography.bodyLarge)
+        },
+        confirmButton = {
+            SkinTextActionButton(text = "Close", onClick = onDismiss)
+        },
+    )
 }
 
 /** One time-of-day group, preserving each task's original day index. */

@@ -98,7 +98,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Enter the unknown palace and defeat the guardian (exploit bless with Yoshizawa)",
+          "label": "Enter the unknown Palace and defeat its guardian",
+          "tip": "Use Yoshizawa's Bless attacks to exploit the guardian's weakness and drive the forced encounter forward.",
           "spoiler": true,
           "slot": "afternoon"
         }
@@ -118,7 +119,13 @@
           "slot": "afternoon"
         },
         {
-          "label": "Second spaceport infiltration — capture the Koh-i-Noor and grab all three Will Seeds",
+          "label": "Capture the Koh-i-Noor Treasure Demon during the second spaceport infiltration",
+          "tip": "In Royal, Koh-i-Noor is weak to Gun damage. Knock it down without killing it, then negotiate for its mask.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Collect all three spaceport Will Seeds",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -199,7 +206,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Heist: steal Okumura's Treasure — beat the 10-minute reach timer, then wear the robots down with AoE and Baton Passes; guard the Big Bang",
+          "label": "Heist: steal Okumura's Treasure",
+          "tip": "Clear the approach before the 10-minute timer expires. During the executive waves, chain weaknesses into Baton Passes and finish with strong multi-target attacks. Guard when Big Bang Order telegraphs the Big Bang attack.",
           "spoiler": true,
           "slot": "afternoon"
         },

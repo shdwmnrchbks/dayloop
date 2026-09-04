@@ -111,7 +111,12 @@
           "slot": "afternoon"
         },
         {
-          "label": "Second casino infiltration — buy the High Limit Card, leave with a Justice Persona",
+          "label": "Complete the second casino infiltration and buy the High Limit Card",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Leave the casino carrying a Justice Persona",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -617,7 +622,8 @@
       "dayKind": "story",
       "steps": [
         {
-          "label": "Heist: steal Sae's Treasure — call the cheat, break the glass lid, then unload everything on Leviathan Niijima",
+          "label": "Heist: steal Sae's Treasure",
+          "tip": "Expose the roulette trick, call for the cheat, and break the glass lid when prompted. Once Leviathan Niijima is vulnerable, use the party's strongest attacks before the next betting phase.",
           "spoiler": true,
           "slot": "afternoon"
         }

@@ -141,7 +141,24 @@
           "slot": "afternoon"
         },
         {
-          "label": "Third infiltration — capture Personas as you go",
+          "label": "Third castle infiltration — capture Personas by negotiating with Pixie in the tutorial",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Grind to ¥15,000 plus the cost of any missing crafting materials",
+          "tip": "You need 2 Tin Clasps and 2 Silk Yarns on April 18. Budget ¥2,050 for each missing Tin Clasp and ¥1,150 for each missing Silk Yarn. For example, if both Tin Clasps are missing, the target becomes ¥19,100. A Hold Up money demand can beat a normal victory against some small or high-level groups; against groups of three or more, defeating every Shadow may pay more.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Do not pass the room with three Shadows and one Treasure Chest until the grind is finished",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Farm the three Shadows, return to the entrance to save, and repeat as needed",
+          "tip": "Passing this room triggers the next story sequence and removes the opportunity to continue this grind. Finish both the yen target and material-drop check first.",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -208,7 +225,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Buy Silk Yarn and Tin Clasp at the Second-hand Shop (2 of each)",
+          "label": "Buy enough Silk Yarn and Tin Clasps at the Second-hand Shop to own 2 of each",
+          "tip": "Count any Palace drops before buying. Tin Clasps cost ¥2,050 each and Silk Yarn costs ¥1,150 each, so only purchase the shortfall.",
           "slot": "afternoon"
         },
         {
@@ -417,17 +435,38 @@
           "slot": "afternoon"
         },
         {
-          "label": "Infiltrate the castle — secure the route to the Treasure today",
+          "label": "Infiltrate the castle again — return through the painting and use the newly activated elevator",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Collect all three Will Seeds while inside",
+          "label": "Defeat the first Will Seed guardian",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Leave at level 9 with about 20000 yen",
+          "label": "Collect all three Will Seeds before leaving the castle",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Reach the Treasure and secure its infiltration route",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Farm until Joker is level 9 with at least ¥20,000",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Fuse Silky and Agathion into Berith",
+          "tip": "Berith is a Hierophant Persona and supports the upcoming Sojiro route. Silky appears in battle under the Shadow name Troublesome Maid.",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Leave the Palace carrying a Lovers Persona",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -487,7 +526,8 @@
       "dayKind": "story",
       "steps": [
         {
-          "label": "Heist: steal the Treasure (keep Tarunda up in the fight)",
+          "label": "Heist: steal the Treasure",
+          "tip": "Keep Tarunda active during the boss fight to reduce incoming damage.",
           "spoiler": true,
           "slot": "afternoon"
         },

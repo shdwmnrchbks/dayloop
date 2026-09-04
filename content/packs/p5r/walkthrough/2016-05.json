@@ -439,7 +439,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Second infiltration — reach the blockade, grab the Treasure Demon if it appears",
+          "label": "Second museum infiltration — reach the exterior blockade",
+          "tip": "Capture the Regent Treasure Demon if it appears; use its weakness rather than spending turns on normal damage.",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -482,7 +483,8 @@
           "slot": "afternoon"
         },
         {
-          "label": "Third museum infiltration — scripted Palace combat sequence; this is not the final Madarame boss",
+          "label": "Complete the scripted third museum infiltration",
+          "tip": "This Palace combat sequence is a story encounter, not the final Madarame boss. Follow the escape objective instead of treating it as the heist.",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -586,12 +588,22 @@
           "slot": "afternoon"
         },
         {
-          "label": "Fourth infiltration — secure the Treasure route, grab all Will Seeds",
+          "label": "Complete the fourth museum infiltration and secure the Treasure route",
           "spoiler": true,
           "slot": "afternoon"
         },
         {
-          "label": "Unlock the Persona sacrifice ritual; sacrifice for the Frei card",
+          "label": "Collect all three museum Will Seeds before leaving",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Unlock the Persona sacrifice ritual",
+          "spoiler": true,
+          "slot": "afternoon"
+        },
+        {
+          "label": "Use the sacrifice ritual to obtain the Frei skill card",
           "spoiler": true,
           "slot": "afternoon"
         },
@@ -645,7 +657,8 @@
       "dayKind": "story",
       "steps": [
         {
-          "label": "Heist: steal the Treasure (bring all four single-target elements)",
+          "label": "Heist: steal Madarame's Treasure",
+          "tip": "Bring access to single-target Fire, Ice, Electric, and Wind attacks. Targeting each painting component with its weakness is safer than relying on broad attacks that can heal another component.",
           "spoiler": true,
           "slot": "afternoon"
         },
