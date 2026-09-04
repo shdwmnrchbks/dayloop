@@ -99,7 +99,7 @@ class MetaphorQuestRouteAuditTest {
     fun `Disgraced Ruins route reaches Wisdom five and completes More chapter six`() {
         val september30 = day("2100-09-30")
         assertTrue(september30.steps.any {
-            it.label.contains("Malibelo Slope", ignoreCase = true) &&
+            it.label.contains("Malibelo Stope", ignoreCase = true) &&
                 it.statGains["wisdom"] == 10
         })
         assertTrue(september30.steps.any {

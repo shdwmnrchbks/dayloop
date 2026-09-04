@@ -1,7 +1,7 @@
 {
   "packId": "metaphor",
   "title": "Metaphor: ReFantazio",
-  "contentVersion": 7,
+  "contentVersion": 8,
   "pickerOrder": 2,
   "timeModel": "dayCounter",
   "calendar": {

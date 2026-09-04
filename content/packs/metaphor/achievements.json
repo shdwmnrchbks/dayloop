@@ -187,9 +187,24 @@
       "id": "metaphor.achievement.vista-viewer",
       "title": "Vista Viewer",
       "description": "Collect all drawings of the journey.",
+      "availableFrom": "2100-06-25",
+      "expectedBy": "2100-10-11",
       "tracking": {
-        "type": "confirmation",
-        "prompt": "Confirm after collecting every Gauntlet Runner journey drawing."
+        "type": "allEvents",
+        "events": [
+          "metaphor.event.drawing-tree-of-prophecy",
+          "metaphor.event.drawing-midnight-sunsands",
+          "metaphor.event.drawing-city-ruins",
+          "metaphor.event.drawing-peregrine-falls",
+          "metaphor.event.drawing-towering-seawall",
+          "metaphor.event.drawing-prismatic-sea",
+          "metaphor.event.drawing-sporico-cave",
+          "metaphor.event.drawing-colerodio-cliff",
+          "metaphor.event.drawing-murky-graveyard",
+          "metaphor.event.drawing-solstice-crossing",
+          "metaphor.event.drawing-malibelo-stope",
+          "metaphor.event.drawing-decaying-estate"
+        ]
       }
     },
     {
@@ -427,6 +442,18 @@
     { "id": "metaphor.event.chef-in-training", "date": "2100-09-03", "labelContains": "cooking lesson with Maria" },
     { "id": "metaphor.event.all-that-glitters", "date": "2100-10-13", "labelContains": "All That Glitters unlocks" },
     { "id": "metaphor.event.king-of-cuisine", "date": "2100-09-30", "labelContains": "King of Cuisine unlocks" },
+    { "id": "metaphor.event.drawing-tree-of-prophecy", "date": "2100-06-25", "labelContains": "Tree of Prophecy" },
+    { "id": "metaphor.event.drawing-midnight-sunsands", "date": "2100-07-02", "labelContains": "Midnight Sunsands" },
+    { "id": "metaphor.event.drawing-city-ruins", "date": "2100-07-18", "labelContains": "City Ruins" },
+    { "id": "metaphor.event.drawing-peregrine-falls", "date": "2100-07-30", "labelContains": "Peregrine Falls" },
+    { "id": "metaphor.event.drawing-towering-seawall", "date": "2100-08-15", "labelContains": "Towering Seawall" },
+    { "id": "metaphor.event.drawing-prismatic-sea", "date": "2100-08-22", "labelContains": "Prismatic Sea" },
+    { "id": "metaphor.event.drawing-sporico-cave", "date": "2100-08-26", "labelContains": "Sporico Cave" },
+    { "id": "metaphor.event.drawing-colerodio-cliff", "date": "2100-09-08", "labelContains": "Colerodio Cliff" },
+    { "id": "metaphor.event.drawing-murky-graveyard", "date": "2100-09-09", "labelContains": "Murky Graveyard" },
+    { "id": "metaphor.event.drawing-solstice-crossing", "date": "2100-09-19", "labelContains": "Solstice Crossing" },
+    { "id": "metaphor.event.drawing-malibelo-stope", "date": "2100-09-30", "labelContains": "Malibelo Stope Drawing" },
+    { "id": "metaphor.event.drawing-decaying-estate", "date": "2100-10-11", "labelContains": "Decaying Estate Drawing" },
     { "id": "metaphor.event.debate-loveless", "date": "2100-07-06", "labelContains": "Debate Loveless" },
     { "id": "metaphor.event.debate-lina", "date": "2100-07-12", "labelContains": "Debate Lina" },
     { "id": "metaphor.event.debate-roger", "date": "2100-07-14", "labelContains": "Debate Roger" },

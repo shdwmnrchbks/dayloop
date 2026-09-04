@@ -290,7 +290,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "Depart for the Disgraced Ruins; cook Sublime Spoonful, the 21st and final recipe — King of Cuisine unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
-        { "label": "Plant seeds in the Plant Culture Chamber, then stop at Malibelo Slope on the route.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
+        { "label": "Plant seeds in the Plant Culture Chamber, then stop at Malibelo Stope and receive the Malibelo Stope Drawing.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 5 (Sagacious).", "slot": "afternoon" },
         { "label": "At Disgraced Ruins, collect the Gold Beetle just west of the dungeon entrance; before the boss, master any Elite Archetype and turn in 'More's Task Chapter Six: The End' — More reaches Follower rank 8.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "imagination": 10 }, "spoiler": true }
       ]

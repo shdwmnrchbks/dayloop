@@ -100,7 +100,7 @@
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy; collect the Gold Beetle on the north side of 2F and defeat the Ziocropos on the way up for 'Proof of Power'.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "Set course for the Tower of Insolence for Trial of the Dragon: Bygone Legacy; the trip passes Decaying Estate and awards the Decaying Estate Drawing. At the tower, collect the Gold Beetle on the north side of 2F and defeat the Ziocropos on the way up for 'Proof of Power'.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Defeat the Devourer of Stars; Bygone Legacy completes and Trial of the Dragon: Essence of Power opens.", "slot": "afternoon", "spoiler": true },
         { "label": "At night, report the Ziocropos to the Obsessive Soldier to complete 'Proof of Power', then soak at the Blue Sky Bridge hot spring and collect water for the Gentle Merchant.", "slot": "night", "statGains": { "courage": 10 } }
       ]
