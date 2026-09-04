@@ -118,7 +118,9 @@
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Craft the Masked Dancer and Summoner masks and vessels — only the Talisman of the Divine waits at Skybound Avatar.", "slot": "afternoon" },
+        { "label": "Warp to Brilehaven's Arenafront Wharf and give the Elderly Entomophile at least 46 Gold Beetles for every exchange reward — All That Glitters unlocks.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        { "label": "At Akademeia, begin the final Special Experiment cleanup for every Masked Dancer mask and Summoner vessel — the first experiment unlocks For Science!.", "slot": "afternoon" },
+        { "label": "For missing materials, use the Wary Shopkeep's weekday-rotating Arcana White Masks in Brilehaven and Krozelli's purchasable talismans on Virga Island; do not assume Talisman of the Divine is Skybound-only.", "slot": "afternoon" },
         { "label": "Begin the coliseum grind in Brilehaven.", "slot": "afternoon" }
       ]
     },
@@ -127,7 +129,7 @@
       "weekday": "metalsday",
       "dayKind": "free",
       "steps": [
-        { "label": "Blight weather bars the coliseum today — do the unvisited side activities instead.", "slot": "afternoon" },
+        { "label": "Blight weather bars the coliseum today — use the free time for missing Special Experiment materials or other unvisited side activities.", "slot": "afternoon" },
         { "label": "Hear the Nostalgic Elder's story in Martira.", "slot": "afternoon" }
       ]
     },
@@ -155,6 +157,7 @@
       "dayKind": "story",
       "steps": [
         { "label": "The decisive battle is set for ten days from now — the rest is free time.", "slot": "afternoon" },
+        { "label": "Audit Special Experiments and craft every remaining Masked Dancer mask and Summoner vessel; Summon Mask Time unlocks only when the full craft list is complete.", "slot": "afternoon" },
         { "label": "Fishing for the Lord of the Lake and Queen's Honey Jar sets up the New Game+ super boss.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" }
       ]
     },
