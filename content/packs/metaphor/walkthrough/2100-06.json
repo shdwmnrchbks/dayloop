@@ -55,7 +55,7 @@
       "weekday": "watersday",
       "dayKind": "story",
       "steps": [
-        { "label": "Run the capital errand loop: Breath of Fresh Air delivery, Medicinal Herb handout, and the inn-help request.", "slot": "afternoon" },
+        { "label": "Run the capital errand loop: Breath of Fresh Air delivery, Medicinal Herb handout, and the inn-help request.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Clear the Catacombs and cathedral: rescue the hostages, collect both chest keys, and stop the Mage Captain first at the altar.", "slot": "afternoon" },
         { "label": "Face Zorba on the Heavenly Staircase — keep summoned corpses under control while chipping his health.", "slot": "afternoon", "spoiler": true },
         { "label": "Turn in More's Task at Akademeia to unlock skill inheritance anywhere.", "slot": "afternoon", "statGains": { "imagination": 10 } }
