@@ -1,0 +1,408 @@
+{
+  "achievements": [
+    {
+      "id": "metaphor.achievement.allies-united",
+      "title": "Allies United",
+      "description": "Traverse the Northern Border Fort.",
+      "availableFrom": "2100-06-05",
+      "expectedBy": "2100-06-05",
+      "iconMediaRef": "metaphor.media.achievement.allies-united",
+      "tracking": { "type": "storyDate", "date": "2100-06-05" }
+    },
+    {
+      "id": "metaphor.achievement.out-of-the-fire",
+      "title": "Out of the Fire",
+      "description": "Traverse the Nord Mines.",
+      "availableFrom": "2100-06-06",
+      "expectedBy": "2100-06-06",
+      "iconMediaRef": "metaphor.media.achievement.out-of-the-fire",
+      "tracking": { "type": "storyDate", "date": "2100-06-06" }
+    },
+    {
+      "id": "metaphor.achievement.calamity-averted",
+      "title": "Calamity Averted",
+      "description": "Traverse the Regalith Grand Cathedral.",
+      "expectedBy": "2100-06-12",
+      "iconMediaRef": "metaphor.media.achievement.calamity-averted",
+      "tracking": { "type": "event", "event": "metaphor.event.cathedral-cleared" }
+    },
+    {
+      "id": "metaphor.achievement.dark-truths",
+      "title": "Dark Truths",
+      "description": "Traverse Kriegante Castle.",
+      "expectedBy": "2100-07-05",
+      "iconMediaRef": "metaphor.media.achievement.dark-truths",
+      "tracking": { "type": "event", "event": "metaphor.event.kriegante-cleared" }
+    },
+    {
+      "id": "metaphor.achievement.on-knifes-edge",
+      "title": "On Knife's Edge",
+      "description": "Traverse the Charadrius.",
+      "expectedBy": "2100-07-25",
+      "iconMediaRef": "metaphor.media.achievement.on-knifes-edge",
+      "tracking": { "type": "event", "event": "metaphor.event.charadrius-cleared" }
+    },
+    {
+      "id": "metaphor.achievement.history-untold",
+      "title": "History Untold",
+      "description": "Traverse the Dragon Temple.",
+      "expectedBy": "2100-08-19",
+      "iconMediaRef": "metaphor.media.achievement.history-untold",
+      "tracking": { "type": "event", "event": "metaphor.event.dragon-temple-cleared" }
+    },
+    {
+      "id": "metaphor.achievement.mission-accomplished",
+      "title": "Mission Accomplished",
+      "description": "Traverse Montario Opera House.",
+      "availableFrom": "2100-09-10",
+      "expectedBy": "2100-09-10",
+      "iconMediaRef": "metaphor.media.achievement.mission-accomplished",
+      "tracking": { "type": "storyDate", "date": "2100-09-10" }
+    },
+    {
+      "id": "metaphor.achievement.his-majesty",
+      "title": "His Majesty",
+      "description": "Study the Prince Archetype.",
+      "availableFrom": "2100-09-24",
+      "expectedBy": "2100-09-24",
+      "iconMediaRef": "metaphor.media.achievement.his-majesty",
+      "tracking": { "type": "storyDate", "date": "2100-09-24" }
+    },
+    {
+      "id": "metaphor.achievement.skybound-hope",
+      "title": "Skybound Hope",
+      "description": "Traverse the Skybound Avatar.",
+      "expectedBy": "2100-10-16",
+      "iconMediaRef": "metaphor.media.achievement.skybound-hope",
+      "tracking": { "type": "event", "event": "metaphor.event.skybound-avatar-cleared" }
+    },
+    {
+      "id": "metaphor.achievement.coronation-of-the-king",
+      "title": "Coronation of the King",
+      "description": "Witness the ending.",
+      "availableFrom": "2100-10-26",
+      "expectedBy": "2100-10-26",
+      "iconMediaRef": "metaphor.media.achievement.coronation-of-the-king",
+      "tracking": { "type": "storyDate", "date": "2100-10-26" }
+    },
+    {
+      "id": "metaphor.achievement.the-traveller",
+      "title": "The Traveller",
+      "description": "Acquire all achievements.",
+      "iconMediaRef": "metaphor.media.achievement.the-traveller",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "Confirm after every other achievement has been earned. Closing the Book requires New Game+."
+      }
+    },
+    {
+      "id": "metaphor.achievement.stunning",
+      "title": "Stunning!",
+      "description": "Stun an enemy.",
+      "iconMediaRef": "metaphor.media.achievement.stunning",
+      "tracking": { "type": "confirmation", "prompt": "Confirm after stunning an enemy on the field." }
+    },
+    {
+      "id": "metaphor.achievement.united-front",
+      "title": "United Front",
+      "description": "Use a Synthesis skill for the first time.",
+      "iconMediaRef": "metaphor.media.achievement.united-front",
+      "tracking": { "type": "confirmation", "prompt": "Confirm after using any Synthesis skill in battle." }
+    },
+    {
+      "id": "metaphor.achievement.no-mercy",
+      "title": "No Mercy",
+      "description": "End 50 battles without taking damage.",
+      "iconMediaRef": "metaphor.media.achievement.no-mercy",
+      "tracking": { "type": "counter", "target": 50 }
+    },
+    {
+      "id": "metaphor.achievement.monster-hunter",
+      "title": "Monster Hunter",
+      "description": "Subjugate a bounty.",
+      "expectedBy": "2100-06-18",
+      "iconMediaRef": "metaphor.media.achievement.monster-hunter",
+      "tracking": { "type": "event", "event": "metaphor.event.first-bounty-turned-in" }
+    },
+    {
+      "id": "metaphor.achievement.archetype-adept",
+      "title": "Archetype Adept",
+      "description": "Master an Archetype.",
+      "iconMediaRef": "metaphor.media.achievement.archetype-adept",
+      "tracking": { "type": "confirmation", "prompt": "Confirm after raising any Archetype to its maximum rank." }
+    },
+    {
+      "id": "metaphor.achievement.tactical-strike",
+      "title": "Tactical Strike",
+      "description": "Inflict ambush damage against stunned enemies 100 times.",
+      "iconMediaRef": "metaphor.media.achievement.tactical-strike",
+      "tracking": { "type": "counter", "target": 100 }
+    },
+    {
+      "id": "metaphor.achievement.whats-yours-is-mine",
+      "title": "What's Yours is Mine",
+      "description": "Steal an item from an enemy.",
+      "iconMediaRef": "metaphor.media.achievement.whats-yours-is-mine",
+      "tracking": { "type": "confirmation", "prompt": "Confirm after successfully stealing an item from an enemy." }
+    },
+    {
+      "id": "metaphor.achievement.stray-elements",
+      "title": "Stray Elements",
+      "description": "Defeat 10 Elmentas.",
+      "iconMediaRef": "metaphor.media.achievement.stray-elements",
+      "tracking": { "type": "counter", "target": 10 }
+    },
+    {
+      "id": "metaphor.achievement.teamwork-makes-the-dream-work",
+      "title": "Teamwork Makes the Dream Work",
+      "description": "Use 50 different Synthesis skills.",
+      "iconMediaRef": "metaphor.media.achievement.teamwork-makes-the-dream-work",
+      "tracking": { "type": "counter", "target": 50 }
+    },
+    {
+      "id": "metaphor.achievement.money-is-power",
+      "title": "Money is Power",
+      "description": "Spend a total of 100,000 reeve using skills that consume money.",
+      "iconMediaRef": "metaphor.media.achievement.money-is-power",
+      "tracking": { "type": "counter", "target": 100000, "unit": "reeve" }
+    },
+    {
+      "id": "metaphor.achievement.shake-on-it",
+      "title": "Shake on It",
+      "description": "Obtain a Follower.",
+      "availableFrom": "2100-06-05",
+      "expectedBy": "2100-06-05",
+      "iconMediaRef": "metaphor.media.achievement.shake-on-it",
+      "tracking": { "type": "storyDate", "date": "2100-06-05" }
+    },
+    {
+      "id": "metaphor.achievement.shrewd-shopper",
+      "title": "Shrewd Shopper",
+      "description": "Buy an item on discount.",
+      "availableFrom": "2100-06-15",
+      "expectedBy": "2100-06-15",
+      "iconMediaRef": "metaphor.media.achievement.shrewd-shopper",
+      "tracking": { "type": "event", "event": "metaphor.event.first-discount-purchase" }
+    },
+    {
+      "id": "metaphor.achievement.blessed-power",
+      "title": "Blessed Power",
+      "description": "Purify a piece of equipment.",
+      "expectedBy": "2100-06-15",
+      "iconMediaRef": "metaphor.media.achievement.blessed-power",
+      "tracking": { "type": "event", "event": "metaphor.event.first-purification" }
+    },
+    {
+      "id": "metaphor.achievement.for-science",
+      "title": "For Science!",
+      "description": "Perform a Special Experiment.",
+      "iconMediaRef": "metaphor.media.achievement.for-science",
+      "tracking": { "type": "confirmation", "prompt": "Confirm after performing a Special Experiment in Akademeia." }
+    },
+    {
+      "id": "metaphor.achievement.globetrotter",
+      "title": "Globetrotter",
+      "description": "Visit all towns.",
+      "expectedBy": "2100-09-14",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.globetrotter",
+      "tracking": {
+        "type": "confirmation",
+        "date": "2100-09-14",
+        "prompt": "Confirm after reaching Malva if Ligno, Komero, Inundo, Silento, and Malva have all been visited."
+      }
+    },
+    {
+      "id": "metaphor.achievement.vista-viewer",
+      "title": "Vista Viewer",
+      "description": "Collect all drawings of the journey.",
+      "expectedBy": "2100-09-30",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.vista-viewer",
+      "tracking": { "type": "event", "event": "metaphor.event.final-vista" }
+    },
+    {
+      "id": "metaphor.achievement.hearts-as-one",
+      "title": "Hearts as One",
+      "description": "Max all Follower ranks.",
+      "expectedBy": "2100-10-05",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.hearts-as-one",
+      "tracking": { "type": "event", "event": "metaphor.event.all-followers-max" }
+    },
+    {
+      "id": "metaphor.achievement.hey-listen",
+      "title": "Hey, Listen!",
+      "description": "Consult Gallica 100 times.",
+      "iconMediaRef": "metaphor.media.achievement.hey-listen",
+      "tracking": { "type": "counter", "target": 100 }
+    },
+    {
+      "id": "metaphor.achievement.worldly-wisdom",
+      "title": "Worldly Wisdom",
+      "description": "Unlock the entire map.",
+      "expectedBy": "2100-10-16",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.worldly-wisdom",
+      "tracking": {
+        "type": "confirmation",
+        "date": "2100-10-16",
+        "prompt": "Confirm after clearing Skybound Avatar that the entire world map is unlocked. If it does not trigger, revisit any missing town, runner, side-dungeon, or street location."
+      }
+    },
+    {
+      "id": "metaphor.achievement.at-your-own-risk",
+      "title": "At Your Own Risk",
+      "description": "Successfully challenge the test of courage at the highest difficulty.",
+      "expectedBy": "2100-08-09",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.at-your-own-risk",
+      "tracking": { "type": "event", "event": "metaphor.event.final-courage-test" }
+    },
+    {
+      "id": "metaphor.achievement.chef-in-training",
+      "title": "Chef in Training",
+      "description": "Help cook a meal at the inn with Maria.",
+      "availableFrom": "2100-06-29",
+      "expectedBy": "2100-09-03",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.chef-in-training",
+      "tracking": { "type": "event", "event": "metaphor.event.maria-cooking" }
+    },
+    {
+      "id": "metaphor.achievement.help-anyone-in-need",
+      "title": "Help Anyone in Need",
+      "description": "Complete all quests.",
+      "expectedBy": "2100-10-26",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.help-anyone-in-need",
+      "tracking": {
+        "type": "confirmation",
+        "date": "2100-10-26",
+        "prompt": "Confirm after completing Save the Country if every operation, request, bounty, trial, and Follower-linked quest was completed in this playthrough. The achievement is awarded at story completion."
+      }
+    },
+    {
+      "id": "metaphor.achievement.bookworm",
+      "title": "Bookworm",
+      "description": "Finish reading all books.",
+      "expectedBy": "2100-09-21",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.bookworm",
+      "tracking": { "type": "event", "event": "metaphor.event.final-book" }
+    },
+    {
+      "id": "metaphor.achievement.all-that-glitters",
+      "title": "All That Glitters",
+      "description": "Make all possible gold beetle item exchanges.",
+      "expectedBy": "2100-10-01",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.all-that-glitters",
+      "tracking": { "type": "event", "event": "metaphor.event.all-beetle-exchanges" }
+    },
+    {
+      "id": "metaphor.achievement.king-of-cuisine",
+      "title": "King of Cuisine",
+      "description": "Make all recipes.",
+      "expectedBy": "2100-09-30",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.king-of-cuisine",
+      "tracking": { "type": "event", "event": "metaphor.event.final-recipe" }
+    },
+    {
+      "id": "metaphor.achievement.summon-mask-time",
+      "title": "Summon Mask Time",
+      "description": "Create all summoning vessels and masks.",
+      "expectedBy": "2100-10-17",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.summon-mask-time",
+      "tracking": {
+        "type": "confirmation",
+        "date": "2100-10-17",
+        "prompt": "Confirm after Skybound Avatar materials let you finish every Masked Dancer mask and Summoner vessel."
+      }
+    },
+    {
+      "id": "metaphor.achievement.sword-surfer",
+      "title": "Sword Surfer",
+      "description": "Travel a significant distance by blade-riding.",
+      "iconMediaRef": "metaphor.media.achievement.sword-surfer",
+      "tracking": { "type": "manual", "prompt": "This is cumulative and can unlock at different dates depending on blade-riding use." }
+    },
+    {
+      "id": "metaphor.achievement.debate-me",
+      "title": "Debate Me",
+      "description": "Win debates against all candidates.",
+      "expectedBy": "2100-09-14",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.debate-me",
+      "tracking": { "type": "event", "event": "metaphor.event.final-debate" }
+    },
+    {
+      "id": "metaphor.achievement.coliseum-champion",
+      "title": "Coliseum Champion",
+      "description": "Win 30 consecutive Gold Class battles at the coliseum.",
+      "expectedBy": "2100-10-15",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.coliseum-champion",
+      "tracking": { "type": "event", "event": "metaphor.event.gold-gauntlet" }
+    },
+    {
+      "id": "metaphor.achievement.archetype-hero",
+      "title": "Archetype Hero",
+      "description": "Master all the Archetypes with the protagonist.",
+      "iconMediaRef": "metaphor.media.achievement.archetype-hero",
+      "tracking": { "type": "confirmation", "prompt": "Confirm when the protagonist has mastered every Archetype. This may require additional late-game grinding beyond the scheduled route tasks." }
+    },
+    {
+      "id": "metaphor.achievement.entrusted",
+      "title": "Entrusted",
+      "description": "Overcome all trials to defeat Louis.",
+      "expectedBy": "2100-10-12",
+      "tracking": { "type": "event", "event": "metaphor.event.elegy-of-the-soul" }
+    },
+    {
+      "id": "metaphor.achievement.star-shatterer",
+      "title": "Star Shatterer",
+      "description": "Defeat Destroyer Charadrius, wielder of true power.",
+      "expectedBy": "2100-10-26",
+      "missable": true,
+      "iconMediaRef": "metaphor.media.achievement.star-shatterer",
+      "tracking": {
+        "type": "conditional",
+        "date": "2100-10-26",
+        "prompt": "Optional final-dungeon branch: leave all six Diabolus Human refights alive, then defeat the strongest Destroyer Charadrius. Use a separate save if you also want the normal completion route."
+      }
+    },
+    {
+      "id": "metaphor.achievement.closing-the-book",
+      "title": "Closing the Book",
+      "description": "Defeat the redscale dragon from the Book of Apocalypse.",
+      "iconMediaRef": "metaphor.media.achievement.closing-the-book",
+      "tracking": {
+        "type": "confirmation",
+        "prompt": "New Game+ only: defeat the Redscale Apocalypse Dragon from the Book of Apocalypse."
+      }
+    }
+  ],
+  "events": [
+    { "id": "metaphor.event.cathedral-cleared", "date": "2100-06-12", "labelContains": "Face Zorba" },
+    { "id": "metaphor.event.kriegante-cleared", "date": "2100-07-05", "labelContains": "settle the castle trials" },
+    { "id": "metaphor.event.charadrius-cleared", "date": "2100-07-25", "labelContains": "Infiltrate Charadrius" },
+    { "id": "metaphor.event.dragon-temple-cleared", "date": "2100-08-19", "labelContains": "Dragon Temple and Drakongrace" },
+    { "id": "metaphor.event.skybound-avatar-cleared", "date": "2100-10-16", "labelContains": "complete the Skybound Avatar operation" },
+    { "id": "metaphor.event.first-bounty-turned-in", "date": "2100-06-18", "labelContains": "Claim the bounty reward" },
+    { "id": "metaphor.event.first-discount-purchase", "date": "2100-06-15", "labelContains": "Big Bargain Day" },
+    { "id": "metaphor.event.first-purification", "date": "2100-06-15", "labelContains": "purify a relic" },
+    { "id": "metaphor.event.final-vista", "date": "2100-09-30", "labelContains": "Malibelo Slope" },
+    { "id": "metaphor.event.all-followers-max", "date": "2100-10-05", "labelContains": "all Followers are now rank 8" },
+    { "id": "metaphor.event.final-courage-test", "date": "2100-08-09", "labelContains": "Final bungee challenge" },
+    { "id": "metaphor.event.maria-cooking", "date": "2100-09-03", "labelContains": "cooking lesson with Maria and Fabienne" },
+    { "id": "metaphor.event.final-book", "date": "2100-09-21", "labelContains": "Finish the 'Literacy Workbook'" },
+    { "id": "metaphor.event.all-beetle-exchanges", "date": "2100-10-01", "labelContains": "all possible beetle exchanges" },
+    { "id": "metaphor.event.final-recipe", "date": "2100-09-30", "labelContains": "cook the final recipe" },
+    { "id": "metaphor.event.final-debate", "date": "2100-09-14", "labelContains": "Debate Julian" },
+    { "id": "metaphor.event.gold-gauntlet", "date": "2100-10-15", "labelContains": "clear all 30 rounds" },
+    { "id": "metaphor.event.elegy-of-the-soul", "date": "2100-10-12", "labelContains": "defeating the Elegy of the Soul" }
+  ]
+}
