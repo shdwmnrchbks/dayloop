@@ -98,12 +98,12 @@ fun SkinTopBar(
 ) {
     val skin = LocalSkin.current
     val colors = MaterialTheme.colorScheme
-    // Banner destinations use the same pack display face as date headers,
-    // scaled to toolbar metrics so longer active-tab names still fit.
+    // Chrome can declare its own menu face without changing display text on
+    // dates, buttons, cards, or transition moments.
     val bannerTitleStyle = MaterialTheme.typography.displaySmall.copy(
-        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-        lineHeight = MaterialTheme.typography.headlineMedium.lineHeight,
-    )
+        fontSize = MaterialTheme.typography.headlineLarge.fontSize,
+        lineHeight = MaterialTheme.typography.headlineLarge.lineHeight,
+    ).withSkinFont(skin.type.chrome)
     Column(modifier = Modifier.background(colors.surface)) {
         Spacer(
             modifier = Modifier
@@ -185,11 +185,11 @@ fun SkinTopBar(
                                 .border(1.dp, colors.background, skin.shapes.header),
                         ) {
                             Text(
-                                text = skin.cased(title, "display"),
+                                text = skin.cased(title, if (skin.type.chrome != null) "chrome" else "display"),
                                 style = bannerTitleStyle,
                                 color = colors.onPrimary,
                                 maxLines = 1,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
                             )
                         }
                     }

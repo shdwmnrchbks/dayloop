@@ -235,6 +235,8 @@ data class SkinShapes(
  */
 @Serializable
 data class SkinTypography(
+    /** App chrome — top-bar destination labels only. */
+    val chrome: SkinFont? = null,
     /** Hero/display type — big headers and moment text. */
     val display: SkinFont? = null,
     /** Titles — screen titles, card headings. */

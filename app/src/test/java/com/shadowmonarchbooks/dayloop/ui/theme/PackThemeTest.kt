@@ -135,6 +135,9 @@ class PackThemeTest {
         assertEquals("slash", theme.shapes?.header)
         assertEquals("cut", theme.shapes?.frame)
         assertEquals("slash", theme.motion, "p5r motion token")
+        val chrome = assertNotNull(theme.typography?.chrome, "p5r must declare a top-bar chrome font role")
+        assertEquals("art/fonts/menu.otf", chrome.file)
+        assertEquals("upper", chrome.case, "chrome case token")
         val display = assertNotNull(theme.typography?.display, "p5r must declare a display font role")
         assertEquals("art/fonts/display.ttf", display.file)
         assertEquals("upper", display.case, "display case token")
@@ -146,7 +149,7 @@ class PackThemeTest {
     }
 
     @Test
-    fun `p5r bundles its display font and license`() {
+    fun `p5r bundles its display and menu fonts`() {
         val root = contentPacksDir() ?: error("no content checkout")
         val dir = root.resolve("p5r")
         val font = dir.resolve("art/fonts/display.ttf")
@@ -156,6 +159,15 @@ class PackThemeTest {
         val head = Files.readAllBytes(font).take(4)
         // TTF magic 00 01 00 00 — a real TrueType file, not a stray download.
         assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
+        val menuFont = dir.resolve("art/fonts/menu.otf")
+        assertTrue(menuFont.isRegularFile(), "bundled top-bar menu font missing")
+        assertTrue(menuFont.fileSize() <= 2L * 1024 * 1024, "menu font exceeds the 2 MB cap")
+        assertTrue(menuFont.fileSize() > 10_000, "menu font suspiciously small — truncated copy?")
+        assertEquals(
+            listOf<Byte>(0, 1, 0, 0),
+            Files.readAllBytes(menuFont).take(4),
+            "menu.otf must start with valid sfnt magic",
+        )
         assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
     }
 

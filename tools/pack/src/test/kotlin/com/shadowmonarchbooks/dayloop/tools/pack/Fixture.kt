@@ -114,6 +114,7 @@ object Fixture {
             ),
             shapes = SkinShapes(card = "jagged", chip = "slash", header = "ribbon", frame = "cut"),
             typography = SkinTypography(
+                chrome = SkinFont(file = "art/fonts/chrome.otf", case = "upper"),
                 display = SkinFont(file = "art/fonts/display.ttf", case = "upper", italic = true, tracking = -0.02),
                 title = SkinFont(file = "art/fonts/title.ttf"),
                 body = null,
@@ -143,7 +144,7 @@ object Fixture {
             target.writeBytes(png)
         }
         theme.typography?.let { typography ->
-            listOfNotNull(typography.display, typography.title, typography.body).forEach { font ->
+            listOfNotNull(typography.chrome, typography.display, typography.title, typography.body).forEach { font ->
                 val target = dir.resolve(font.file)
                 Files.createDirectories(target.parent)
                 target.writeBytes(fakeFont)

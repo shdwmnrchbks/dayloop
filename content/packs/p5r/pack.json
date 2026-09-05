@@ -51,6 +51,10 @@
       "frame": "cut"
     },
     "typography": {
+      "chrome": {
+        "file": "art/fonts/menu.otf",
+        "case": "upper"
+      },
       "display": {
         "file": "art/fonts/display.ttf",
         "case": "upper",

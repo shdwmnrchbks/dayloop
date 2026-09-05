@@ -128,11 +128,12 @@ object SkinTokens {
     }
 
     /**
-     * The engine's text-style role a typography role governs: `display`
-     * covers the display roles, `title` the headline/title roles, `body` the
-     * body/label roles (the app maps these onto MaterialTheme.typography).
+     * The engine's text-style role a typography role governs: `chrome` is
+     * reserved for app-bar labels, `display` covers the display roles,
+     * `title` the headline/title roles, and `body` the body/label roles.
      */
     fun rolesOf(typography: SkinTypography, role: String): Boolean = when (role) {
+        "chrome" -> typography.chrome != null
         "display" -> typography.display != null
         "title" -> typography.title != null
         "body" -> typography.body != null
