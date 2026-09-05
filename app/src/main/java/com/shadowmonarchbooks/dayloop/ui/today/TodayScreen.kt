@@ -217,6 +217,7 @@ fun TodayScreen(
             // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
             SkinHeader(
                 formatDate(date, pack.calendar),
+                accentFont = true,
             )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.

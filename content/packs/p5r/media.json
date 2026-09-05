@@ -536,6 +536,178 @@
       "kind": "banner",
       "title": "Sae",
       "bonds": ["p5r.bond.judgement"]
+    },
+    {
+      "id": "p5r.media.tarot.fool",
+      "file": "images/tarot/Fool.png",
+      "kind": "backdrop",
+      "title": "Fool Tarot",
+      "bonds": ["p5r.bond.fool"]
+    },
+    {
+      "id": "p5r.media.tarot.chariot",
+      "file": "images/tarot/Chariot.png",
+      "kind": "backdrop",
+      "title": "Chariot Tarot",
+      "bonds": ["p5r.bond.chariot"]
+    },
+    {
+      "id": "p5r.media.tarot.magician",
+      "file": "images/tarot/Magician.png",
+      "kind": "backdrop",
+      "title": "Magician Tarot",
+      "bonds": ["p5r.bond.magician"]
+    },
+    {
+      "id": "p5r.media.tarot.lovers",
+      "file": "images/tarot/Lovers.png",
+      "kind": "backdrop",
+      "title": "Lovers Tarot",
+      "bonds": ["p5r.bond.lovers"]
+    },
+    {
+      "id": "p5r.media.tarot.death",
+      "file": "images/tarot/Death.png",
+      "kind": "backdrop",
+      "title": "Death Tarot",
+      "bonds": ["p5r.bond.death"]
+    },
+    {
+      "id": "p5r.media.tarot.hierophant",
+      "file": "images/tarot/Hierophant.png",
+      "kind": "backdrop",
+      "title": "Hierophant Tarot",
+      "bonds": ["p5r.bond.hierophant"]
+    },
+    {
+      "id": "p5r.media.tarot.moon",
+      "file": "images/tarot/Moon.png",
+      "kind": "backdrop",
+      "title": "Moon Tarot",
+      "bonds": ["p5r.bond.moon"]
+    },
+    {
+      "id": "p5r.media.tarot.councilor",
+      "file": "images/tarot/Councilor.png",
+      "kind": "backdrop",
+      "title": "Councilor Tarot",
+      "bonds": ["p5r.bond.councilor"]
+    },
+    {
+      "id": "p5r.media.tarot.strength",
+      "file": "images/tarot/Strength.png",
+      "kind": "backdrop",
+      "title": "Strength Tarot",
+      "bonds": ["p5r.bond.strength"]
+    },
+    {
+      "id": "p5r.media.tarot.sun",
+      "file": "images/tarot/Sun.png",
+      "kind": "backdrop",
+      "title": "Sun Tarot",
+      "bonds": ["p5r.bond.sun"]
+    },
+    {
+      "id": "p5r.media.tarot.temperance",
+      "file": "images/tarot/Temperance.png",
+      "kind": "backdrop",
+      "title": "Temperance Tarot",
+      "bonds": ["p5r.bond.temperance"]
+    },
+    {
+      "id": "p5r.media.tarot.faith",
+      "file": "images/tarot/Faith.png",
+      "kind": "backdrop",
+      "title": "Faith Tarot (Ranks 1–5)",
+      "bonds": ["p5r.bond.faith"],
+      "minBondRank": 1,
+      "maxBondRank": 5
+    },
+    {
+      "id": "p5r.media.tarot.faith-rank-6",
+      "file": "images/tarot/Faith_Rank_6.png",
+      "kind": "backdrop",
+      "title": "Faith Tarot (Ranks 6–10)",
+      "bonds": ["p5r.bond.faith"],
+      "minBondRank": 6,
+      "maxBondRank": 10
+    },
+    {
+      "id": "p5r.media.tarot.justice",
+      "file": "images/tarot/Justice.png",
+      "kind": "backdrop",
+      "title": "Justice Tarot",
+      "bonds": ["p5r.bond.justice"]
+    },
+    {
+      "id": "p5r.media.tarot.emperor",
+      "file": "images/tarot/Emperor.png",
+      "kind": "backdrop",
+      "title": "Emperor Tarot",
+      "bonds": ["p5r.bond.emperor"]
+    },
+    {
+      "id": "p5r.media.tarot.priestess",
+      "file": "images/tarot/Priestess.png",
+      "kind": "backdrop",
+      "title": "Priestess Tarot",
+      "bonds": ["p5r.bond.priestess"]
+    },
+    {
+      "id": "p5r.media.tarot.empress",
+      "file": "images/tarot/Empress.png",
+      "kind": "backdrop",
+      "title": "Empress Tarot",
+      "bonds": ["p5r.bond.empress"]
+    },
+    {
+      "id": "p5r.media.tarot.hermit",
+      "file": "images/tarot/Hermit.png",
+      "kind": "backdrop",
+      "title": "Hermit Tarot",
+      "bonds": ["p5r.bond.hermit"]
+    },
+    {
+      "id": "p5r.media.tarot.fortune",
+      "file": "images/tarot/Fortune.png",
+      "kind": "backdrop",
+      "title": "Fortune Tarot",
+      "bonds": ["p5r.bond.fortune"]
+    },
+    {
+      "id": "p5r.media.tarot.hanged-man",
+      "file": "images/tarot/Hanged_Man.png",
+      "kind": "backdrop",
+      "title": "Hanged Man Tarot",
+      "bonds": ["p5r.bond.hanged-man"]
+    },
+    {
+      "id": "p5r.media.tarot.devil",
+      "file": "images/tarot/Devil.png",
+      "kind": "backdrop",
+      "title": "Devil Tarot",
+      "bonds": ["p5r.bond.devil"]
+    },
+    {
+      "id": "p5r.media.tarot.tower",
+      "file": "images/tarot/Tower.png",
+      "kind": "backdrop",
+      "title": "Tower Tarot",
+      "bonds": ["p5r.bond.tower"]
+    },
+    {
+      "id": "p5r.media.tarot.star",
+      "file": "images/tarot/Star.png",
+      "kind": "backdrop",
+      "title": "Star Tarot",
+      "bonds": ["p5r.bond.star"]
+    },
+    {
+      "id": "p5r.media.tarot.judgement",
+      "file": "images/tarot/Judgement.png",
+      "kind": "backdrop",
+      "title": "Judgement Tarot",
+      "bonds": ["p5r.bond.judgement"]
     }
   ]
 }

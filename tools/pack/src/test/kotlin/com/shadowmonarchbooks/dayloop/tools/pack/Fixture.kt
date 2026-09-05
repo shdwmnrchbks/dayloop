@@ -15,6 +15,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.SkinFont
@@ -91,6 +92,10 @@ object Fixture {
         dir.resolve("deadlines.json").writeText(PackLoader.json.encodeToString(deadlines))
     }
 
+    fun writeMedia(dir: Path, media: MediaFile) {
+        dir.resolve("media.json").writeText(PackLoader.json.encodeToString(media))
+    }
+
     // ---- Skin DSL fixture (docs/ROADMAP-v3.md Phase 12) ----
 
     /** 1×1 transparent PNG — a real decodable image for decor/art slots. */
@@ -114,7 +119,7 @@ object Fixture {
             ),
             shapes = SkinShapes(card = "jagged", chip = "slash", header = "ribbon", frame = "cut"),
             typography = SkinTypography(
-                chrome = SkinFont(file = "art/fonts/chrome.otf", case = "upper"),
+                accent = SkinFont(file = "art/fonts/accent.otf", case = "upper"),
                 display = SkinFont(file = "art/fonts/display.ttf", case = "upper", italic = true, tracking = -0.02),
                 title = SkinFont(file = "art/fonts/title.ttf"),
                 body = null,
@@ -144,7 +149,7 @@ object Fixture {
             target.writeBytes(png)
         }
         theme.typography?.let { typography ->
-            listOfNotNull(typography.chrome, typography.display, typography.title, typography.body).forEach { font ->
+            listOfNotNull(typography.accent, typography.display, typography.title, typography.body).forEach { font ->
                 val target = dir.resolve(font.file)
                 Files.createDirectories(target.parent)
                 target.writeBytes(fakeFont)

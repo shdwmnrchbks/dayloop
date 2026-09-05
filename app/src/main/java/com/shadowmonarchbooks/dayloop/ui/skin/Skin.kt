@@ -78,7 +78,7 @@ data class SkinFontStyle(
 
 /** Resolved typography roles; null families keep the engine type. */
 data class SkinType(
-    val chrome: SkinFontStyle?,
+    val accent: SkinFontStyle?,
     val display: SkinFontStyle?,
     val title: SkinFontStyle?,
     val body: SkinFontStyle?,
@@ -115,7 +115,7 @@ data class SkinSpec(
     /** Text transform for a typography role (the case token applied to rendered text). */
     fun cased(text: String, role: String): String {
         val case = when (role) {
-            "chrome" -> type.chrome?.case
+            "accent" -> type.accent?.case
             "display" -> type.display?.case
             "title" -> type.title?.case
             else -> type.body?.case
@@ -124,13 +124,13 @@ data class SkinSpec(
     }
 
     internal fun withFamilies(
-        chrome: FontFamily?,
+        accent: FontFamily?,
         display: FontFamily?,
         title: FontFamily?,
         body: FontFamily?,
     ): SkinSpec = copy(
         type = SkinType(
-            chrome = type.chrome?.copy(family = chrome ?: type.chrome.family),
+            accent = type.accent?.copy(family = accent ?: type.accent.family),
             display = type.display?.copy(family = display ?: type.display.family),
             title = type.title?.copy(family = title ?: type.title.family),
             body = type.body?.copy(family = body ?: type.body.family),
@@ -148,7 +148,7 @@ data class SkinSpec(
                 frame = RoundedCornerShape(12.dp),
             ),
             shapeTokens = emptyMap(),
-            type = SkinType(chrome = null, display = null, title = null, body = null),
+            type = SkinType(accent = null, display = null, title = null, body = null),
             decor = SkinDecor(art = emptyMap(), painter = null),
             motion = null,
             hasSkin = false,
@@ -170,11 +170,11 @@ fun rememberSkin(theme: PackTheme?, packSlug: String?): SkinSpec {
     val context = LocalContext.current
     val density = LocalDensity.current
     val base = remember(theme, packSlug, density) { resolveSkinBase(theme, packSlug, density) }
-    val chrome = rememberPackFontFamily(theme?.typography?.chrome?.let { assetPathOf(packSlug, it.file) })
+    val accent = rememberPackFontFamily(theme?.typography?.accent?.let { assetPathOf(packSlug, it.file) })
     val display = rememberPackFontFamily(theme?.typography?.display?.let { assetPathOf(packSlug, it.file) })
     val title = rememberPackFontFamily(theme?.typography?.title?.let { assetPathOf(packSlug, it.file) })
     val body = rememberPackFontFamily(theme?.typography?.body?.let { assetPathOf(packSlug, it.file) })
-    return remember(base, chrome, display, title, body) { base.withFamilies(chrome, display, title, body) }
+    return remember(base, accent, display, title, body) { base.withFamilies(accent, display, title, body) }
 }
 
 private fun assetPathOf(packSlug: String?, file: String): String =
@@ -214,7 +214,7 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Densi
         SkinFontStyle(family = null, italic = it.italic, trackingEm = it.tracking, case = it.case)
     }
     val type = SkinType(
-        chrome = styleOf(theme.typography?.chrome),
+        accent = styleOf(theme.typography?.accent),
         display = styleOf(theme.typography?.display),
         title = styleOf(theme.typography?.title),
         body = styleOf(theme.typography?.body),
@@ -231,7 +231,7 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Densi
     val hasSkin = theme.shapes != null ||
         theme.motion != null ||
         theme.decor.isNotEmpty() ||
-        type.chrome != null || type.display != null || type.title != null || type.body != null
+        type.accent != null || type.display != null || type.title != null || type.body != null
 
     return SkinSpec(
         motif = motif,

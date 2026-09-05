@@ -228,15 +228,16 @@ data class SkinShapes(
 )
 
 /**
- * Pack-bundled font roles (docs/ROADMAP-v3.md Phase 12). Each role overrides
- * the matching Material typography roles for the whole app; null roles keep
- * the engine type. Files live under the pack dir (conventionally
- * `art/fonts/`), linted for existence, extension and size.
+ * Pack-bundled font roles (docs/ROADMAP-v3.md Phase 12). Broad roles override
+ * matching Material typography throughout the app; the accent role is
+ * opt-in at selected surfaces. Null roles keep the engine type. Files live
+ * under the pack dir (conventionally `art/fonts/`), linted for existence,
+ * extension and size.
  */
 @Serializable
 data class SkinTypography(
-    /** App chrome — top-bar destination labels only. */
-    val chrome: SkinFont? = null,
+    /** Selective accent text — special dates and celebratory moments. */
+    val accent: SkinFont? = null,
     /** Hero/display type — big headers and moment text. */
     val display: SkinFont? = null,
     /** Titles — screen titles, card headings. */

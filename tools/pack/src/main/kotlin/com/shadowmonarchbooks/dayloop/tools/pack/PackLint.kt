@@ -5,6 +5,7 @@ import com.shadowmonarchbooks.dayloop.pack.GameCalendar
 import com.shadowmonarchbooks.dayloop.pack.LintIssue
 import com.shadowmonarchbooks.dayloop.pack.PackLoader
 import com.shadowmonarchbooks.dayloop.pack.schema.BondRankGte
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.pack.schema.SkinFont
@@ -59,7 +60,7 @@ object PackLint {
     private val ART_EXTENSIONS = setOf("png", "jpg", "jpeg", "webp")
     /** Media may also ship GIFs (decoded as stills by the app today). */
     private val MEDIA_EXTENSIONS = ART_EXTENSIONS + "gif"
-    private val MEDIA_KINDS = com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds.ALL
+    private val MEDIA_KINDS = MediaKinds.ALL
 
     fun run(packDir: Path, writeBaseline: Boolean): List<LintIssue> {
         val issues = mutableListOf<LintIssue>()
@@ -425,7 +426,7 @@ object PackLint {
                         )
                     }
                 }
-                checkFont("chrome", typography.chrome)
+                checkFont("accent", typography.accent)
                 checkFont("display", typography.display)
                 checkFont("title", typography.title)
                 checkFont("body", typography.body)
@@ -501,13 +502,30 @@ object PackLint {
                         issues += err(loc, "media '${item.id}' references unknown bond '$b'")
                     }
                 }
+                val minBondRank = item.minBondRank
+                val maxBondRank = item.maxBondRank
+                if ((minBondRank != null || maxBondRank != null) && item.kind != MediaKinds.BACKDROP) {
+                    issues += err(loc, "media '${item.id}' bond-rank bounds are only valid for backdrop media")
+                }
+                if ((minBondRank != null || maxBondRank != null) && item.bonds.size != 1) {
+                    issues += err(loc, "media '${item.id}' bond-rank bounds require exactly one bond anchor")
+                }
+                minBondRank?.let { rank ->
+                    if (rank < 1) issues += err(loc, "media '${item.id}' minBondRank must be positive")
+                }
+                maxBondRank?.let { rank ->
+                    if (rank < 1) issues += err(loc, "media '${item.id}' maxBondRank must be positive")
+                }
+                if (minBondRank != null && maxBondRank != null && maxBondRank < minBondRank) {
+                    issues += err(loc, "media '${item.id}' maxBondRank must be greater than or equal to minBondRank")
+                }
             }
             // Every bundled graphic must be declared exactly once.
             val imagesDir = packDir.resolve("images")
             if (imagesDir.isDirectory()) {
-                Files.list(imagesDir).use { stream ->
+                Files.walk(imagesDir).use { stream ->
                     stream.filter { it.isRegularFile() }.sorted().forEach { file ->
-                        val rel = "images/${file.fileName}"
+                        val rel = packDir.relativize(file).joinToString("/") { it.toString() }
                         val ext = file.fileName.toString().substringAfterLast('.').lowercase()
                         if (ext !in MEDIA_EXTENSIONS) {
                             issues += err("images/", "'$rel' is not an image the app can decode ($MEDIA_EXTENSIONS); remove it or declare it in media.json")

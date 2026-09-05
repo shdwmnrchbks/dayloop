@@ -30,16 +30,20 @@ class P5RMediaCatalogAuditTest {
         val media = p5r.media?.media.orEmpty()
         val trophyArt = media.filter { it.kind == MediaKinds.ACHIEVEMENT }
         val confidantBackgrounds = media.filter { it.kind == MediaKinds.BANNER }
+        val tarotBackdrops = media.filter { it.kind == MediaKinds.BACKDROP }
         val guideGraphics = media.filter {
-            it.kind != MediaKinds.ACHIEVEMENT && it.kind != MediaKinds.BANNER
+            it.kind != MediaKinds.ACHIEVEMENT &&
+                it.kind != MediaKinds.BANNER &&
+                it.kind != MediaKinds.BACKDROP
         }
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
         val achievementIconRefs = p5r.achievements?.achievements.orEmpty()
             .mapNotNullTo(linkedSetOf()) { it.iconMediaRef }
 
-        assertEquals(77, media.size)
+        assertEquals(101, media.size)
         assertEquals(53, trophyArt.size, "every Royal trophy has its official Steam achievement image")
         assertEquals(23, confidantBackgrounds.size, "the supplied Confidants artwork contributes 23 backgrounds")
+        assertEquals(24, tarotBackdrops.size, "all supplied Confidant tarot variants are declared")
         assertEquals(
             setOf("p5r.media.month-opener"),
             guideGraphics.mapTo(linkedSetOf()) { it.id },
@@ -60,6 +64,23 @@ class P5RMediaCatalogAuditTest {
             assertTrue(item.months.isEmpty(), "${item.id}: Confidant art must not masquerade as month art")
             assertTrue(item.dates.isEmpty(), "${item.id}: Confidant art must not masquerade as date art")
         }
+
+        assertEquals(23, tarotBackdrops.flatMap { it.bonds }.distinct().size)
+        tarotBackdrops.forEach { item ->
+            assertEquals(1, item.bonds.size, "${item.id}: each tarot backdrop must target one Confidant")
+            assertTrue(item.file.startsWith("images/tarot/"), "${item.id}: unexpected tarot asset path")
+            assertTrue(item.months.isEmpty(), "${item.id}: tarot art must not masquerade as month art")
+            assertTrue(item.dates.isEmpty(), "${item.id}: tarot art must not masquerade as date art")
+        }
+        val faithBackdrops = tarotBackdrops.filter { it.bonds == listOf("p5r.bond.faith") }
+        assertEquals(2, faithBackdrops.size)
+        assertEquals(
+            setOf(1 to 5, 6 to 10),
+            faithBackdrops.mapTo(linkedSetOf()) {
+                requireNotNull(it.minBondRank) to requireNotNull(it.maxBondRank)
+            },
+            "Faith must switch tarot artwork after rank 5",
+        )
 
         guideGraphics.forEach { item ->
             assertTrue(

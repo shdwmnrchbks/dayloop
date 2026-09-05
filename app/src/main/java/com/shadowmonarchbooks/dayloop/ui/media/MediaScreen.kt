@@ -173,6 +173,7 @@ private fun kindLabel(kind: String, count: Int, pack: LoadedPack): String {
         MediaKinds.DAY -> "Day markers"
         MediaKinds.PORTRAIT -> "Portraits"
         MediaKinds.BANNER -> "Banners"
+        MediaKinds.BACKDROP -> "Backdrops"
         MediaKinds.GUIDE -> "Guide art"
         else -> kind.replaceFirstChar { it.uppercase() }
     }

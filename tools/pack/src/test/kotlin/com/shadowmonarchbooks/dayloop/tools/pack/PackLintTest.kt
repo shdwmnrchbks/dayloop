@@ -15,6 +15,9 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
 import com.shadowmonarchbooks.dayloop.pack.schema.RankStep
@@ -599,5 +602,65 @@ class PackLintTest {
         Fixture.writePack(dir, pack = Fixture.validPack().copy(labels = labels))
         val errors = PackLint.runOn(dir).errorsIn("pack.json")
         assertTrue(errors.any { "labels.deadlineKinds['palace'] needs a non-blank display label" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `bond backdrop rank bounds require one bond and an ascending positive range`() {
+        val dir = tempDir()
+        Fixture.writePack(dir)
+        val image = dir.resolve("images/tarot/bad.png")
+        Files.createDirectories(image.parent)
+        image.writeBytes(byteArrayOf(1))
+        Fixture.writeMedia(
+            dir,
+            MediaFile(
+                listOf(
+                    MediaItem(
+                        id = "t1.media.bad-backdrop",
+                        file = "images/tarot/bad.png",
+                        kind = MediaKinds.BACKDROP,
+                        title = "Bad backdrop",
+                        minBondRank = 6,
+                        maxBondRank = 0,
+                    ),
+                ),
+            ),
+        )
+
+        val errors = PackLint.runOn(dir).errorsIn("media.json")
+        assertTrue(errors.any { "rank bounds require exactly one bond anchor" in it.message }, errors.toString())
+        assertTrue(errors.any { "maxBondRank must be positive" in it.message }, errors.toString())
+        assertTrue(errors.any { "maxBondRank must be greater than or equal" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `bond rank bounds reject non-backdrop media`() {
+        val dir = tempDir()
+        Fixture.writePack(dir)
+        Fixture.writeBonds(
+            dir,
+            BondsFile(listOf(Bond(id = "t1.bond.hero", label = "Hero", ranks = listOf(RankStep(1))))),
+        )
+        val image = dir.resolve("images/portrait.png")
+        Files.createDirectories(image.parent)
+        image.writeBytes(byteArrayOf(1))
+        Fixture.writeMedia(
+            dir,
+            MediaFile(
+                listOf(
+                    MediaItem(
+                        id = "t1.media.portrait",
+                        file = "images/portrait.png",
+                        kind = MediaKinds.PORTRAIT,
+                        title = "Portrait",
+                        bonds = listOf("t1.bond.hero"),
+                        minBondRank = 1,
+                    ),
+                ),
+            ),
+        )
+
+        val errors = PackLint.runOn(dir).errorsIn("media.json")
+        assertTrue(errors.any { "only valid for backdrop media" in it.message }, errors.toString())
     }
 }

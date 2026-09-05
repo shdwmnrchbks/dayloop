@@ -31,19 +31,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.BiasAlignment
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.describeCondition
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.statLabels
-import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
@@ -217,7 +219,7 @@ private fun ConfidantFaceStrip(
     }
 }
 
-/** Bond detail: route date, availability, gates, location, and anchored character art. */
+/** Bond detail: route date, availability, gates, location, and anchored artwork. */
 @Composable
 fun BondDetailScreen(
     bondId: String,
@@ -239,6 +241,7 @@ fun BondDetailScreen(
     val portraits = bondMedia.filter { it.kind == MediaKinds.PORTRAIT }
     val completedRank = completedBondRank(bond, days, marks)
     val highestRank = bond.ranks.maxOfOrNull { it.rank } ?: 0
+    val backdrop = selectBondBackdrop(bondMedia, completedRank)
 
     Box(modifier = Modifier.fillMaxSize()) {
         background?.let { art ->
@@ -253,6 +256,23 @@ fun BondDetailScreen(
                         .fillMaxWidth(0.76f)
                         .fillMaxHeight(0.58f)
                         .alpha(0.58f),
+                )
+            }
+        }
+
+        backdrop?.let { art ->
+            rememberAssetImage(pack.assetOf(art))?.let { bitmap ->
+                Image(
+                    bitmap = bitmap,
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    alignment = Alignment.TopEnd,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .fillMaxWidth(0.42f)
+                        .fillMaxHeight(0.42f)
+                        .graphicsLayer { rotationZ = -30f }
+                        .alpha(0.62f),
                 )
             }
         }
@@ -330,7 +350,6 @@ fun BondDetailScreen(
         }
 
         bond.ranks.sortedBy { it.rank }.forEach { step ->
-            val completed = step.rank <= completedRank
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -380,13 +399,6 @@ fun BondDetailScreen(
                     )
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    if (completed) {
-                        SkinTag(
-                            text = "Complete",
-                            container = MaterialTheme.colorScheme.primary,
-                            content = MaterialTheme.colorScheme.onPrimary,
-                        )
-                    }
                     step.scheduledFor?.let {
                         SkinTag(
                             text = "Route · ${formatDate(it, pack.calendar)}",
@@ -427,3 +439,13 @@ fun BondDetailScreen(
     }
     }
 }
+
+/** Selects rank-aware artwork without coupling the engine to a particular pack or motif. */
+internal fun selectBondBackdrop(media: List<MediaItem>, completedRank: Int): MediaItem? =
+    media.firstOrNull { item ->
+        val minBondRank = item.minBondRank
+        val maxBondRank = item.maxBondRank
+        item.kind == MediaKinds.BACKDROP &&
+            (minBondRank == null || completedRank >= minBondRank) &&
+            (maxBondRank == null || completedRank <= maxBondRank)
+    }

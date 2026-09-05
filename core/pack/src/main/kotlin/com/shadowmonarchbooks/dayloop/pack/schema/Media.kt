@@ -22,8 +22,8 @@ data class MediaItem(
     val file: String,
     /**
      * Closed-set kind the engine serves by (achievement / month / section /
-     * day / portrait / banner / guide). Kinds map to serving surfaces —
-     * never to game names.
+     * day / portrait / banner / backdrop / guide). Kinds map to serving
+     * surfaces — never to game names.
      */
     val kind: String,
     /** Pack-supplied display title. */
@@ -35,6 +35,10 @@ data class MediaItem(
     val dates: List<String> = emptyList(),
     /** Bond ids this artwork belongs to (rendered on bond detail). */
     val bonds: List<String> = emptyList(),
+    /** Optional inclusive lower bond-rank bound for rank-aware bond artwork. */
+    val minBondRank: Int? = null,
+    /** Optional inclusive upper bond-rank bound for rank-aware bond artwork. */
+    val maxBondRank: Int? = null,
 )
 
 /** Serving-surface kind helpers shared by the store, lint, and UI. */
@@ -45,9 +49,10 @@ object MediaKinds {
     const val DAY = "day"
     const val PORTRAIT = "portrait"
     const val BANNER = "banner"
+    const val BACKDROP = "backdrop"
     const val GUIDE = "guide"
 
-    val ALL = setOf(ACHIEVEMENT, MONTH, SECTION, DAY, PORTRAIT, BANNER, GUIDE)
+    val ALL = setOf(ACHIEVEMENT, MONTH, SECTION, DAY, PORTRAIT, BANNER, BACKDROP, GUIDE)
 
     /** True when the item carries no anchor at all (gallery-only). */
     fun isUnanchored(item: MediaItem): Boolean =
