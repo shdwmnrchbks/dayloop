@@ -45,6 +45,9 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 internal val slashAchievementPanelColor = Color.Black.copy(alpha = 0.75f)
 
+internal fun Modifier.achievementEntryDecor(slashPanel: Boolean): Modifier =
+    if (slashPanel) this else skinDecor("panel")
+
 /**
  * Profile-scoped achievement tracker.
  *
@@ -228,7 +231,7 @@ private fun RuleAchievementRow(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.skinDecor("panel").padding(10.dp),
+            modifier = Modifier.achievementEntryDecor(slashPanel).padding(10.dp),
         ) {
             if (icon != null) {
                 MediaImage(
@@ -630,7 +633,7 @@ private fun LegacyAchievementRow(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.skinDecor("panel").padding(10.dp),
+            modifier = Modifier.achievementEntryDecor(slashPanel).padding(10.dp),
         ) {
             MediaImage(
                 assetPath = pack.assetOf(item),

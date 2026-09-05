@@ -23,7 +23,6 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopUiState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinCheckboxIndicator
-import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 internal data class MonthlyAchievementRow(
     val id: String,
@@ -194,7 +193,9 @@ private fun AchievementChecklistRows(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    modifier = Modifier.skinDecor("panel").padding(horizontal = 8.dp, vertical = 6.dp),
+                    modifier = Modifier
+                        .achievementEntryDecor(slashPanel)
+                        .padding(horizontal = 8.dp, vertical = 6.dp),
                 ) {
                     row.media?.let { media ->
                         MediaImage(
