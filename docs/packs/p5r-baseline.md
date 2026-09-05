@@ -17,8 +17,8 @@ made. P5R changes now require an explicit request and focused review.
 | Answers | 68 sheets: 12 exam days and 56 class questions |
 | Achievements | 53 definitions; route-observable completions are task-derived |
 | Mementos Requests | 33 definitions and 33 exact completion-task anchors |
-| Declared media | 74 items |
-| Pack version | `p5r @ contentVersion 13` |
+| Declared media | 101 items: 53 achievement icons, 23 character backgrounds, 24 tarot variants, and 1 month opener |
+| Pack version | `p5r @ contentVersion 14` |
 
 All route-selected dates remain distinct from universal availability facts.
 Existing task order and IDs are save data: additions are appended or migrated,
@@ -39,6 +39,8 @@ never inserted in a way that silently reassigns a saved mark.
 - Confidant ranks, achievements, and Mementos Requests derive completion from
   their relevant checked route tasks. Multi-step setup does not complete a
   request; only its exact completion anchor does.
+- Confidant detail pages layer an Arcana tarot backdrop at the top-right;
+  Faith changes from its rank 1–5 card to its rank 6–10 card at rank 6.
 - Achievement progress keeps only its two counter lines pinned while its longer
   explanation scrolls with the list.
 - Calendar navigation retains the month the user browsed when a Day page is

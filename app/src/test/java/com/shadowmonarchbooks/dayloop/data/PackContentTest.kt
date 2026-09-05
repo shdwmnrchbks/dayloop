@@ -196,7 +196,7 @@ class PackContentTest {
         val activities = p5r.activities?.activities.orEmpty()
         val byId = activities.associateBy { it.id }
 
-        assertEquals(13, pack.contentVersion)
+        assertEquals(14, pack.contentVersion)
 
         val statBooks = activities.filter { it.id.startsWith("p5r.activity.book.") && it.statGains.isNotEmpty() }
         assertTrue(statBooks.isNotEmpty())
@@ -432,8 +432,10 @@ class PackContentTest {
             val images = dir.resolve("images")
             if (!images.isDirectory()) return@forEach
             val declared = loaded.media?.media?.map { it.file }?.toSet().orEmpty()
-            val bundled = Files.list(images).use { stream ->
-                stream.map { "images/${it.name}" }.toList()
+            val bundled = Files.walk(images).use { stream ->
+                stream.filter { Files.isRegularFile(it) }
+                    .map { dir.relativize(it).joinToString("/") { part -> part.toString() } }
+                    .toList()
             }
             assertTrue(bundled.isNotEmpty(), "$slug ships no images but has an images/ dir")
             bundled.forEach { file ->
@@ -477,7 +479,7 @@ class PackContentTest {
         loadPacks().forEach { (slug, _, loaded) ->
             counts[slug] = loaded.media?.media?.size ?: 0
         }
-        assertTrue((counts["p5r"] ?: 0) >= 74, "p5r must declare its 74 bundled graphics, found ${counts["p5r"]}")
+        assertTrue((counts["p5r"] ?: 0) >= 101, "p5r must declare its 101 bundled graphics, found ${counts["p5r"]}")
         assertTrue((counts["p3r"] ?: 0) >= 16, "p3r must declare its 16 guide graphics, found ${counts["p3r"]}")
         assertTrue((counts["metaphor"] ?: 0) >= 47, "metaphor must declare its 47 guide graphics, found ${counts["metaphor"]}")
     }

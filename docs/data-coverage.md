@@ -54,7 +54,7 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `theme.motif` | Closed-set decorative family (`masks`/`moon`/`crown`) → skin painter/family defaults across app surfaces; Phase 17b maps the same generic family into Glance-safe widget treatments and cold-start uses the resolved skin | Served |
 | `theme.art` | Named art slots: `card` → onboarding cover, `icon` → Settings tiles, `launcherBadge` → optional Dayloop-owned dynamic launcher-shortcut decoration, and optional paired `today-day`/`today-night` → Today scene crossfade. Every declared file is packlint-validated; unknown valid slots may ride along for future surfaces | Served for known slots |
 | `theme.shapes` | Closed-set card/chip/header/frame silhouettes consumed by Compose skin primitives and skin-aware app chrome; Phase 17b also resolves generic shape families into widget angular/framed treatment | Served |
-| `theme.typography` | Bundled display/title/body font roles + case/italic/tracking consumed by the app theme; invalid/missing declarations fail packlint and unreadable runtime fonts fall back to engine type | Served when declared |
+| `theme.typography` | Bundled accent/display/title/body font roles + case/italic/tracking consumed by selected surfaces and the app theme; invalid/missing declarations fail packlint and unreadable runtime fonts fall back to engine type | Served when declared |
 | `theme.decor` | Header/panel/divider decoration art consumed by skin surfaces; `StartupShell` uses the resolved panel decoration, with motif procedural painters as fallback | Served when declared |
 | `theme.motion` | Closed-set navigation/reveal motion grammar and skin feedback selection; `slash` also selects the generic angular app-chrome treatment. remove-animations disables transitions, not static styling. Widget/launcher surfaces intentionally do not consume app-only motion | Served |
 | `theme.sfx` | Named sound moments (`tap`/`advance`/`complete`, closed set) → SkinFx playback on mark-toggle/End-Day/perfect-day, only while the user enables "Skin sounds" in Settings; never on the widget. packlint validates slot, .ogg extension, and the ≤100 KB per-file budget. Optional — no bundled pack ships audio yet (v0.11.0 lands the engine capability; files need an OGG encoder to author) | Served when declared |
@@ -69,12 +69,13 @@ documented in `docs/preview-fixtures.md` and are debug-only, not pack schema.
 |---|---|---|
 | `item.id` | Media gallery keys, navigation identity, packlint uniqueness | Served (identity; no direct user-facing print) |
 | `item.file` | Decoded to the pack asset path on Day (date anchors), Calendar (pack-selected date markers), Bond detail (bond anchors), Media gallery | Served |
-| `item.kind` | Gallery grouping + which surfaces attempt to serve the item (closed set: achievement/month/section/day/portrait/banner/guide) | Served |
+| `item.kind` | Gallery grouping + which surfaces attempt to serve the item (closed set: achievement/month/section/day/portrait/banner/backdrop/guide) | Served |
+| `item.minBondRank`, `item.maxBondRank` | Optional inclusive rank window for bond-anchored backdrop selection | Served |
 | `item.title` | Media chip labels, month achievements strip, gallery rows | Served |
 | `item.caption` | Media gallery rows | Served |
 | `item.months` | Calendar header art/markers + month achievements strip; gallery anchor text | Served |
 | `item.dates` | Day-page media strip; gallery anchor text | Served |
-| `item.bonds` | Bond-detail portrait; gallery anchor text (resolved to the pack's bond label) | Served |
+| `item.bonds` | Bond-detail portrait/backdrop; gallery anchor text (resolved to the pack's bond label) | Served |
 
 Enforcement: packlint fails on any `images/` file not declared exactly once
 (no orphaned art), on declarations whose file is missing/undecodable, on

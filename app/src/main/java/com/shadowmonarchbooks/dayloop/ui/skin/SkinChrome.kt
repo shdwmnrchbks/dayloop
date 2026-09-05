@@ -98,12 +98,12 @@ fun SkinTopBar(
 ) {
     val skin = LocalSkin.current
     val colors = MaterialTheme.colorScheme
-    // Chrome can declare its own menu face without changing display text on
-    // dates, buttons, cards, or transition moments.
+    // Top-bar destinations use the pack display face. Selective accent fonts
+    // are reserved for date and moment treatments rather than app chrome.
     val bannerTitleStyle = MaterialTheme.typography.displaySmall.copy(
         fontSize = MaterialTheme.typography.headlineLarge.fontSize,
         lineHeight = MaterialTheme.typography.headlineLarge.lineHeight,
-    ).withSkinFont(skin.type.chrome)
+    )
     Column(modifier = Modifier.background(colors.surface)) {
         Spacer(
             modifier = Modifier
@@ -185,11 +185,11 @@ fun SkinTopBar(
                                 .border(1.dp, colors.background, skin.shapes.header),
                         ) {
                             Text(
-                                text = skin.cased(title, if (skin.type.chrome != null) "chrome" else "display"),
+                                text = skin.cased(title, "display"),
                                 style = bannerTitleStyle,
                                 color = colors.onPrimary,
                                 maxLines = 1,
-                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                                modifier = Modifier.padding(start = 16.dp, end = 4.dp, top = 1.dp, bottom = 1.dp),
                             )
                         }
                     }

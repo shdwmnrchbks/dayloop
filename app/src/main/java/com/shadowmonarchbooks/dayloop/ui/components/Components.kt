@@ -79,6 +79,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.withSkinFont
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.math.hypot
@@ -158,7 +159,11 @@ fun SkinTag(text: String, container: Color, content: Color, modifier: Modifier =
  * engine headline look unchanged.
  */
 @Composable
-fun SkinHeader(text: String, modifier: Modifier = Modifier) {
+fun SkinHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+    accentFont: Boolean = false,
+) {
     val skin = LocalSkin.current
     if (!skin.hasSkin) {
         Text(text = text, style = MaterialTheme.typography.headlineSmall, modifier = modifier)
@@ -184,8 +189,10 @@ fun SkinHeader(text: String, modifier: Modifier = Modifier) {
                 Spacer(Modifier.width(8.dp))
             }
             Text(
-                text = skin.cased(text, "display"),
-                style = MaterialTheme.typography.displaySmall,
+                text = skin.cased(text, if (accentFont) "accent" else "display"),
+                style = MaterialTheme.typography.displaySmall.withSkinFont(
+                    if (accentFont) skin.type.accent else null,
+                ),
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
         }

@@ -2,6 +2,8 @@ package com.shadowmonarchbooks.dayloop.ui.bonds
 
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
+import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import com.shadowmonarchbooks.dayloop.pack.schema.RankStep
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.progress.StepKey
@@ -50,5 +52,33 @@ class BondProgressTest {
                 ),
             ),
         )
+    }
+
+    @Test
+    fun `rank-aware bond backdrop switches at rank six`() {
+        val media = listOf(
+            MediaItem(
+                id = "p5r.media.tarot.faith",
+                file = "images/tarot/Faith.png",
+                kind = MediaKinds.BACKDROP,
+                title = "Faith Tarot",
+                bonds = listOf("p5r.bond.faith"),
+                minBondRank = 1,
+                maxBondRank = 5,
+            ),
+            MediaItem(
+                id = "p5r.media.tarot.faith-rank-6",
+                file = "images/tarot/Faith_Rank_6.png",
+                kind = MediaKinds.BACKDROP,
+                title = "Faith Tarot (Ranks 6–10)",
+                bonds = listOf("p5r.bond.faith"),
+                minBondRank = 6,
+                maxBondRank = 10,
+            ),
+        )
+
+        assertEquals(null, selectBondBackdrop(media, completedRank = 0))
+        assertEquals("p5r.media.tarot.faith", selectBondBackdrop(media, completedRank = 5)?.id)
+        assertEquals("p5r.media.tarot.faith-rank-6", selectBondBackdrop(media, completedRank = 6)?.id)
     }
 }

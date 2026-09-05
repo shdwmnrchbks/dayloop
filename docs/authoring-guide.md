@@ -144,9 +144,10 @@ engine look.
   silhouette), `seal` (a wax-stamp disc; as a chip it renders a small seal
   beside the label — tags, never text containers, and containers fall back
   to the card silhouette). Slots: `card`, `chip`, `header`, `frame`.
-- **Typography roles**: `display` covers the display styles, `title` the
-  headline/title styles, `body` the body/label styles. Fonts are bundled
-  under the pack dir (conventionally `art/fonts/`, ttf/otf, ≤ 2 MB each) and
+- **Typography roles**: `accent` is an opt-in face for selected emphasis such
+  as dates and completion moments; `display` covers the display styles,
+  `title` the headline/title styles, and `body` the body/label styles. Fonts
+  are bundled under the pack dir (conventionally `art/fonts/`, ttf/otf, ≤ 2 MB each) and
   load from assets; `case: "upper"` transforms rendered text, `italic`
   slants, `tracking` adds letter spacing in em (−0.05 … 0.30 — negative
   tracking is valid for condensed display type). A missing font file fails
@@ -223,16 +224,20 @@ must point at an existing file — orphaned or unresolvable art fails lint, so
 
 - `id` — immutable, prefixed `<pack>.media.`, lowercase slug after the prefix.
 - `kind` — closed set: `achievement` | `month` | `section` | `day` |
-  `portrait` | `banner` | `guide`. The kind decides which surfaces try to
+  `portrait` | `banner` | `backdrop` | `guide`. The kind decides which surfaces try to
   serve it; it never names a game.
 - `title` — required, pack-supplied display text (e.g. the achievement name).
 - Anchors are optional and combine: `months` (YYYY-MM keys of the pack's
   calendar), `dates` (ISO dates), `bonds` (bond ids). Unanchored items are
   gallery-only. Anchors are lint-checked: months must be calendar months,
   dates must be calendar dates, bonds must exist in confidants.json.
+- Bond-anchored `backdrop` art may declare inclusive `minBondRank` and
+  `maxBondRank` bounds. Rank bounds require exactly one bond anchor and allow
+  the detail page to swap artwork as that bond progresses.
 - Serving today: date anchors render on the Day page, month anchors decorate
   the Calendar header and a month "achievements" strip, bond anchors render a
-  portrait on Bond detail; everything is browsable in Settings → Pack media.
+  portrait or backdrop on Bond detail; everything is browsable in Settings →
+  Pack media.
 - GIFs decode as still first frames today; animated rendering is a Phase 18
   work item (ROADMAP-v3).
 - Keep captions in our own words; captions quoting a guide verbatim are
