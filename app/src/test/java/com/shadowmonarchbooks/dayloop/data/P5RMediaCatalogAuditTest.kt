@@ -34,10 +34,11 @@ class P5RMediaCatalogAuditTest {
             it.kind != MediaKinds.ACHIEVEMENT && it.kind != MediaKinds.BANNER
         }
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
-        val achievementIds = p5r.achievements?.achievements.orEmpty().mapTo(linkedSetOf()) { it.id }
+        val achievementIconRefs = p5r.achievements?.achievements.orEmpty()
+            .mapNotNullTo(linkedSetOf()) { it.iconMediaRef }
 
-        assertEquals(74, media.size)
-        assertEquals(50, trophyArt.size, "the imported P5R guide archive contributes 50 trophy images")
+        assertEquals(77, media.size)
+        assertEquals(53, trophyArt.size, "every Royal trophy has its official Steam achievement image")
         assertEquals(23, confidantBackgrounds.size, "the supplied Confidants artwork contributes 23 backgrounds")
         assertEquals(
             setOf("p5r.media.month-opener"),
@@ -48,8 +49,8 @@ class P5RMediaCatalogAuditTest {
         assertEquals(0, guideGraphics.count { it.kind == MediaKinds.SECTION })
         assertEquals(49, trophyArt.count { it.months.isNotEmpty() })
         assertTrue(
-            trophyArt.all { it.id in achievementIds },
-            "every monthly trophy image must resolve to persisted achievement progress",
+            trophyArt.all { it.id in achievementIconRefs },
+            "every trophy image must resolve from an achievement icon reference",
         )
 
         assertEquals(23, confidantBackgrounds.flatMap { it.bonds }.distinct().size)

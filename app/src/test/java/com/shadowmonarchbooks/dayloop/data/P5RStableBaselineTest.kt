@@ -52,6 +52,6 @@ class P5RStableBaselineTest {
         val requests = requireNotNull(loaded.mementosRequests)
         assertEquals(33, requests.requests.size)
         assertEquals(33, requests.events.size)
-        assertEquals(74, requireNotNull(loaded.media).media.size)
+        assertEquals(77, requireNotNull(loaded.media).media.size)
     }
 }

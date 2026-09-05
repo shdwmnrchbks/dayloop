@@ -359,6 +359,24 @@
       "months": ["2016-06"]
     },
     {
+      "id": "p5r.media.achievement.its-showtime",
+      "file": "images/achievement_its_showtime.png",
+      "kind": "achievement",
+      "title": "It's Showtime!"
+    },
+    {
+      "id": "p5r.media.achievement.accident-prone",
+      "file": "images/achievement_accident_prone.png",
+      "kind": "achievement",
+      "title": "Accident-Prone"
+    },
+    {
+      "id": "p5r.media.achievement.master-of-akihabara",
+      "file": "images/achievement_master_of_akihabara.png",
+      "kind": "achievement",
+      "title": "Master of Akihabara"
+    },
+    {
       "id": "p5r.media.confidant.igor",
       "file": "images/confidant_igor.png",
       "kind": "banner",
