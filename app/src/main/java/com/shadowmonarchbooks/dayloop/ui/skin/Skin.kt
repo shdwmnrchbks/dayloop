@@ -78,6 +78,7 @@ data class SkinFontStyle(
 
 /** Resolved typography roles; null families keep the engine type. */
 data class SkinType(
+    val chrome: SkinFontStyle?,
     val display: SkinFontStyle?,
     val title: SkinFontStyle?,
     val body: SkinFontStyle?,
@@ -114,6 +115,7 @@ data class SkinSpec(
     /** Text transform for a typography role (the case token applied to rendered text). */
     fun cased(text: String, role: String): String {
         val case = when (role) {
+            "chrome" -> type.chrome?.case
             "display" -> type.display?.case
             "title" -> type.title?.case
             else -> type.body?.case
@@ -121,8 +123,14 @@ data class SkinSpec(
         return if (case == "upper") text.uppercase() else text
     }
 
-    internal fun withFamilies(display: FontFamily?, title: FontFamily?, body: FontFamily?): SkinSpec = copy(
+    internal fun withFamilies(
+        chrome: FontFamily?,
+        display: FontFamily?,
+        title: FontFamily?,
+        body: FontFamily?,
+    ): SkinSpec = copy(
         type = SkinType(
+            chrome = type.chrome?.copy(family = chrome ?: type.chrome.family),
             display = type.display?.copy(family = display ?: type.display.family),
             title = type.title?.copy(family = title ?: type.title.family),
             body = type.body?.copy(family = body ?: type.body.family),
@@ -140,7 +148,7 @@ data class SkinSpec(
                 frame = RoundedCornerShape(12.dp),
             ),
             shapeTokens = emptyMap(),
-            type = SkinType(display = null, title = null, body = null),
+            type = SkinType(chrome = null, display = null, title = null, body = null),
             decor = SkinDecor(art = emptyMap(), painter = null),
             motion = null,
             hasSkin = false,
@@ -162,10 +170,11 @@ fun rememberSkin(theme: PackTheme?, packSlug: String?): SkinSpec {
     val context = LocalContext.current
     val density = LocalDensity.current
     val base = remember(theme, packSlug, density) { resolveSkinBase(theme, packSlug, density) }
+    val chrome = rememberPackFontFamily(theme?.typography?.chrome?.let { assetPathOf(packSlug, it.file) })
     val display = rememberPackFontFamily(theme?.typography?.display?.let { assetPathOf(packSlug, it.file) })
     val title = rememberPackFontFamily(theme?.typography?.title?.let { assetPathOf(packSlug, it.file) })
     val body = rememberPackFontFamily(theme?.typography?.body?.let { assetPathOf(packSlug, it.file) })
-    return remember(base, display, title, body) { base.withFamilies(display, title, body) }
+    return remember(base, chrome, display, title, body) { base.withFamilies(chrome, display, title, body) }
 }
 
 private fun assetPathOf(packSlug: String?, file: String): String =
@@ -205,6 +214,7 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Densi
         SkinFontStyle(family = null, italic = it.italic, trackingEm = it.tracking, case = it.case)
     }
     val type = SkinType(
+        chrome = styleOf(theme.typography?.chrome),
         display = styleOf(theme.typography?.display),
         title = styleOf(theme.typography?.title),
         body = styleOf(theme.typography?.body),
@@ -221,7 +231,7 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Densi
     val hasSkin = theme.shapes != null ||
         theme.motion != null ||
         theme.decor.isNotEmpty() ||
-        type.display != null || type.title != null || type.body != null
+        type.chrome != null || type.display != null || type.title != null || type.body != null
 
     return SkinSpec(
         motif = motif,
@@ -415,35 +425,36 @@ internal fun sealRim(size: Size, density: Density): List<Offset> {
 
 // ---- Typography ----
 
-/** Overrides the Material roles each declared font role governs. */
+/** Applies one resolved pack-font role to an individual text style. */
+internal fun TextStyle.withSkinFont(font: SkinFontStyle?): TextStyle {
+    // A role without a loaded family (no font declared, or the file failed
+    // to load) keeps the engine type entirely.
+    if (font == null || font.family == null) return this
+    return copy(
+        fontFamily = font.family,
+        fontStyle = if (font.italic) FontStyle.Italic else fontStyle,
+        letterSpacing = font.trackingEm?.let { (fontSize.value * it).sp } ?: letterSpacing,
+    )
+}
+
+/** Overrides the Material roles each broad declared font role governs. */
 fun skinTypography(base: androidx.compose.material3.Typography, type: SkinType): androidx.compose.material3.Typography {
-    fun TextStyle.skin(font: SkinFontStyle?): TextStyle {
-        // A role without a loaded family (no font declared, or the file
-        // failed to load) keeps the engine type entirely — tuning never
-        // applies to a font the pack didn't ship.
-        if (font == null || font.family == null) return this
-        return copy(
-            fontFamily = font.family,
-            fontStyle = if (font.italic) FontStyle.Italic else fontStyle,
-            letterSpacing = font.trackingEm?.let { (fontSize.value * it).sp } ?: letterSpacing,
-        )
-    }
     return base.copy(
-        displayLarge = base.displayLarge.skin(type.display),
-        displayMedium = base.displayMedium.skin(type.display),
-        displaySmall = base.displaySmall.skin(type.display),
-        headlineLarge = base.headlineLarge.skin(type.title),
-        headlineMedium = base.headlineMedium.skin(type.title),
-        headlineSmall = base.headlineSmall.skin(type.title),
-        titleLarge = base.titleLarge.skin(type.title),
-        titleMedium = base.titleMedium.skin(type.title),
-        titleSmall = base.titleSmall.skin(type.title),
-        bodyLarge = base.bodyLarge.skin(type.body),
-        bodyMedium = base.bodyMedium.skin(type.body),
-        bodySmall = base.bodySmall.skin(type.body),
-        labelLarge = base.labelLarge.skin(type.body),
-        labelMedium = base.labelMedium.skin(type.body),
-        labelSmall = base.labelSmall.skin(type.body),
+        displayLarge = base.displayLarge.withSkinFont(type.display),
+        displayMedium = base.displayMedium.withSkinFont(type.display),
+        displaySmall = base.displaySmall.withSkinFont(type.display),
+        headlineLarge = base.headlineLarge.withSkinFont(type.title),
+        headlineMedium = base.headlineMedium.withSkinFont(type.title),
+        headlineSmall = base.headlineSmall.withSkinFont(type.title),
+        titleLarge = base.titleLarge.withSkinFont(type.title),
+        titleMedium = base.titleMedium.withSkinFont(type.title),
+        titleSmall = base.titleSmall.withSkinFont(type.title),
+        bodyLarge = base.bodyLarge.withSkinFont(type.body),
+        bodyMedium = base.bodyMedium.withSkinFont(type.body),
+        bodySmall = base.bodySmall.withSkinFont(type.body),
+        labelLarge = base.labelLarge.withSkinFont(type.body),
+        labelMedium = base.labelMedium.withSkinFont(type.body),
+        labelSmall = base.labelSmall.withSkinFont(type.body),
     )
 }
 

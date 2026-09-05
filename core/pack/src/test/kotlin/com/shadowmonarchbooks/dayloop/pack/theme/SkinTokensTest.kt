@@ -95,7 +95,11 @@ class SkinTokensTest {
 
     @Test
     fun `role coverage follows declared roles`() {
-        val typography = SkinTypography(display = SkinFont(file = "d.ttf"))
+        val typography = SkinTypography(
+            chrome = SkinFont(file = "c.otf"),
+            display = SkinFont(file = "d.ttf"),
+        )
+        assertTrue(SkinTokens.rolesOf(typography, "chrome"))
         assertTrue(SkinTokens.rolesOf(typography, "display"))
         assertTrue(!SkinTokens.rolesOf(typography, "title"))
         assertTrue(!SkinTokens.rolesOf(SkinTypography(), "body"))

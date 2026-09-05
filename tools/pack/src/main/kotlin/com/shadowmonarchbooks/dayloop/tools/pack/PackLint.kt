@@ -425,6 +425,7 @@ object PackLint {
                         )
                     }
                 }
+                checkFont("chrome", typography.chrome)
                 checkFont("display", typography.display)
                 checkFont("title", typography.title)
                 checkFont("body", typography.body)

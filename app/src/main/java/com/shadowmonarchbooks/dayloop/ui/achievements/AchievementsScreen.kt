@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.achievements
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -217,24 +218,21 @@ private fun RuleAchievementRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.skinDecor("panel").padding(10.dp),
         ) {
-            Surface(
-                shape = skin.shapes.chip,
-                color = MaterialTheme.colorScheme.surface,
-                modifier = Modifier.size(56.dp),
-            ) {
-                if (icon != null) {
-                    MediaImage(
-                        assetPath = pack.assetOf(icon),
-                        title = achievement.title,
-                        size = 56.dp,
-                        modifier = Modifier.padding(5.dp),
-                    )
-                } else {
+            if (icon != null) {
+                MediaImage(
+                    assetPath = pack.assetOf(icon),
+                    title = achievement.title,
+                    size = 56.dp,
+                )
+            } else {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.size(56.dp),
+                ) {
                     Text(
                         text = "★",
                         style = MaterialTheme.typography.headlineMedium,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 10.dp),
                     )
                 }
             }
@@ -613,17 +611,11 @@ private fun LegacyAchievementRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.skinDecor("panel").padding(10.dp),
         ) {
-            Surface(
-                shape = skin.shapes.chip,
-                color = MaterialTheme.colorScheme.surface,
-            ) {
-                MediaImage(
-                    assetPath = pack.assetOf(item),
-                    title = item.title,
-                    size = 56.dp,
-                    modifier = Modifier.padding(5.dp),
-                )
-            }
+            MediaImage(
+                assetPath = pack.assetOf(item),
+                title = item.title,
+                size = 56.dp,
+            )
             Column(Modifier.weight(1f)) {
                 Text(
                     text = item.title,
