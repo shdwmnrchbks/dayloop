@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -309,6 +310,19 @@ fun TodayScreen(
                 onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
                 statLabels = pack.pack.statLabels(),
                 activityLabels = pack.activities.mapValues { it.value.label },
+                modifier = if (dayScene != null || nightScene != null) {
+                    Modifier
+                        .fillMaxWidth()
+                        .background(Color.Black.copy(alpha = 0.82f), skin.shapes.card)
+                        .border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.9f),
+                            shape = skin.shapes.card,
+                        )
+                        .padding(horizontal = 14.dp, vertical = 12.dp)
+                } else {
+                    Modifier.fillMaxWidth()
+                },
                 slotLabels = pack.pack.slotLabels(),
                 onOpenActivity = onOpenActivity,
             )
