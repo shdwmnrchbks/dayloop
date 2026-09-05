@@ -1,10 +1,16 @@
 package com.shadowmonarchbooks.dayloop.ui.mementos
 
+import androidx.compose.ui.graphics.Color
 import com.shadowmonarchbooks.dayloop.pack.schema.MementosRequestDefinition
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class MementosRequestProgressTest {
+
+    @Test
+    fun `slash mementos request panels are fifty percent black`() {
+        assertEquals(Color.Black.copy(alpha = 0.5f), slashMementosRequestPanelColor)
+    }
 
     @Test
     fun `only completion events count and receipt dates control availability`() {

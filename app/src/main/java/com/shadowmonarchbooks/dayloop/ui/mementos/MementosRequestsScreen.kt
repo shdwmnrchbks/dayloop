@@ -1,8 +1,10 @@
 package com.shadowmonarchbooks.dayloop.ui.mementos
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +21,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
@@ -28,8 +32,11 @@ import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.achievements.completedAchievementEvents
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
+import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+
+internal val slashMementosRequestPanelColor = Color.Black.copy(alpha = 0.5f)
 
 internal data class MementosRequestCounts(
     val completed: Int,
@@ -89,22 +96,34 @@ fun MementosRequestsScreen(
             }.thenBy(MementosRequestDefinition::expectedBy),
         )
     }
+    val background = rememberAssetImage(pack.artAsset("mementos-background"))
 
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-    ) {
-        stickyHeader(key = "request-summary") {
-            RequestSummary(counts, requests.size)
-        }
-        items(rows, key = MementosRequestDefinition::id) { request ->
-            RequestRow(
-                pack = pack,
-                request = request,
-                currentDate = currentDate,
-                completed = request.completionEvent in completedEvents,
-                onOpenDay = onOpenDay,
+    Box(modifier = Modifier.fillMaxSize()) {
+        background?.let { bitmap ->
+            Image(
+                bitmap = bitmap,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize(),
             )
+        }
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.fillMaxSize().padding(16.dp),
+        ) {
+            stickyHeader(key = "request-summary") {
+                RequestSummary(counts, requests.size)
+            }
+            items(rows, key = MementosRequestDefinition::id) { request ->
+                RequestRow(
+                    pack = pack,
+                    request = request,
+                    currentDate = currentDate,
+                    completed = request.completionEvent in completedEvents,
+                    onOpenDay = onOpenDay,
+                )
+            }
         }
     }
 }
@@ -140,6 +159,7 @@ private fun RequestRow(
 ) {
     val available = currentDate >= request.receivedOn
     val skin = LocalSkin.current
+    val slashPanel = skin.hasSkin && skin.motion == "slash"
     val status = when {
         completed -> "COMPLETED"
         available -> "AVAILABLE"
@@ -147,15 +167,20 @@ private fun RequestRow(
     }
     Surface(
         shape = skin.shapes.card,
-        color = if (completed) MaterialTheme.colorScheme.secondaryContainer
-        else MaterialTheme.colorScheme.surfaceVariant,
+        color = when {
+            slashPanel -> slashMementosRequestPanelColor
+            completed -> MaterialTheme.colorScheme.secondaryContainer
+            else -> MaterialTheme.colorScheme.surfaceVariant
+        },
+        contentColor = if (slashPanel) Color.White else MaterialTheme.colorScheme.onSurface,
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onOpenDay(if (available) request.expectedBy else request.receivedOn) },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp),
-            modifier = Modifier.skinDecor("panel").padding(horizontal = 14.dp, vertical = 12.dp),
+            modifier = (if (slashPanel) Modifier else Modifier.skinDecor("panel"))
+                .padding(horizontal = 14.dp, vertical = 12.dp),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
