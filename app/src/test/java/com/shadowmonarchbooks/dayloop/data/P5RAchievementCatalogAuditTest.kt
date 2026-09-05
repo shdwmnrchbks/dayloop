@@ -37,14 +37,15 @@ class P5RAchievementCatalogAuditTest {
         val trophyMediaIds = media
             .filter { it.kind == MediaKinds.ACHIEVEMENT }
             .mapTo(linkedSetOf()) { it.id }
+        val legacyTrophyIds = trophyMediaIds.filterTo(linkedSetOf()) { it in byId }
         val packDef = p5r.pack ?: return
         val calendar = GameCalendar.of(packDef.calendar) ?: return
 
         assertEquals(53, achievements.size)
         assertEquals(53, byId.size, "Royal trophy ids must be unique")
         assertEquals(53, trophyMediaIds.size, "every Royal trophy should have its official Steam icon")
-        assertTrue(byId.keys.containsAll(trophyMediaIds), "media trophy ids must remain achievement ids so existing checked state survives")
-        trophyMediaIds.forEach { id ->
+        assertEquals(50, legacyTrophyIds.size, "existing media-backed trophy ids must remain stable for saved progress")
+        legacyTrophyIds.forEach { id ->
             assertEquals(
                 mediaById.getValue(id).title,
                 byId.getValue(id).title,
@@ -53,14 +54,15 @@ class P5RAchievementCatalogAuditTest {
         }
 
         val achievementsPreviouslyMissingArt = mapOf(
-            "p5r.achievement.its-showtime" to "It's Showtime!",
-            "p5r.achievement.accident-prone" to "Accident-Prone",
-            "p5r.achievement.master-of-akihabara" to "Master of Akihabara",
+            "p5r.achievement.its-showtime" to ("It's Showtime!" to "p5r.media.achievement.its-showtime"),
+            "p5r.achievement.accident-prone" to ("Accident-Prone" to "p5r.media.achievement.accident-prone"),
+            "p5r.achievement.master-of-akihabara" to ("Master of Akihabara" to "p5r.media.achievement.master-of-akihabara"),
         )
-        achievementsPreviouslyMissingArt.forEach { (id, title) ->
+        achievementsPreviouslyMissingArt.forEach { (id, identity) ->
+            val (title, mediaRef) = identity
             val achievement = byId.getValue(id)
             assertEquals(title, achievement.title)
-            assertEquals(id, achievement.iconMediaRef, "$title should resolve its official Steam icon")
+            assertEquals(mediaRef, achievement.iconMediaRef, "$title should resolve its official Steam icon")
         }
 
         assertEquals("2016-06-21", byId.getValue("p5r.achievement.its-showtime").availableFrom)
@@ -81,7 +83,7 @@ class P5RAchievementCatalogAuditTest {
             }
             achievement.iconMediaRef?.let { ref ->
                 assertTrue(ref in mediaById, "${achievement.title}: iconMediaRef '$ref' does not resolve")
-                assertEquals(achievement.id, ref, "legacy trophy ids and icon refs should stay aligned for progress compatibility")
+                assertEquals(achievement.title, mediaById.getValue(ref).title, "icon refs must preserve the visible trophy identity")
             }
         }
 
