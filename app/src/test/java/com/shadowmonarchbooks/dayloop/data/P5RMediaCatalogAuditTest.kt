@@ -75,11 +75,11 @@ class P5RMediaCatalogAuditTest {
         val faithBackdrops = tarotBackdrops.filter { it.bonds == listOf("p5r.bond.faith") }
         assertEquals(2, faithBackdrops.size)
         assertEquals(
-            setOf(1 to 5, 6 to 10),
+            setOf(0 to 5, 6 to 10),
             faithBackdrops.mapTo(linkedSetOf()) {
                 requireNotNull(it.minBondRank) to requireNotNull(it.maxBondRank)
             },
-            "Faith must switch tarot artwork after rank 5",
+            "Faith must show its base tarot before progression and switch after rank 5",
         )
 
         guideGraphics.forEach { item ->

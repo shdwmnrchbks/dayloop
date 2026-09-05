@@ -61,9 +61,9 @@ class BondProgressTest {
                 id = "p5r.media.tarot.faith",
                 file = "images/tarot/Faith.png",
                 kind = MediaKinds.BACKDROP,
-                title = "Faith Tarot",
+                title = "Faith Tarot (Ranks 0–5)",
                 bonds = listOf("p5r.bond.faith"),
-                minBondRank = 1,
+                minBondRank = 0,
                 maxBondRank = 5,
             ),
             MediaItem(
@@ -77,7 +77,7 @@ class BondProgressTest {
             ),
         )
 
-        assertEquals(null, selectBondBackdrop(media, completedRank = 0))
+        assertEquals("p5r.media.tarot.faith", selectBondBackdrop(media, completedRank = 0)?.id)
         assertEquals("p5r.media.tarot.faith", selectBondBackdrop(media, completedRank = 5)?.id)
         assertEquals("p5r.media.tarot.faith-rank-6", selectBondBackdrop(media, completedRank = 6)?.id)
     }

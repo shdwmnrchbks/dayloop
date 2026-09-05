@@ -213,11 +213,12 @@ fun TodayScreen(
                     dateBottomPx = coordinates.positionInParent().y.toInt() + coordinates.size.height
                 },
         ) {
-            // Skinned packs render the date as a ribbon header in display type
-            // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
+            // Today keeps the pack's selected date face without placing it on
+            // the standard section-header panel.
             SkinHeader(
                 formatDate(date, pack.calendar),
                 accentFont = true,
+                showPanel = false,
             )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.

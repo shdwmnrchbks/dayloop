@@ -511,10 +511,10 @@ object PackLint {
                     issues += err(loc, "media '${item.id}' bond-rank bounds require exactly one bond anchor")
                 }
                 minBondRank?.let { rank ->
-                    if (rank < 1) issues += err(loc, "media '${item.id}' minBondRank must be positive")
+                    if (rank < 0) issues += err(loc, "media '${item.id}' minBondRank must be non-negative")
                 }
                 maxBondRank?.let { rank ->
-                    if (rank < 1) issues += err(loc, "media '${item.id}' maxBondRank must be positive")
+                    if (rank < 0) issues += err(loc, "media '${item.id}' maxBondRank must be non-negative")
                 }
                 if (minBondRank != null && maxBondRank != null && maxBondRank < minBondRank) {
                     issues += err(loc, "media '${item.id}' maxBondRank must be greater than or equal to minBondRank")

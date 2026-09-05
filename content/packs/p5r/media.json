@@ -618,9 +618,9 @@
       "id": "p5r.media.tarot.faith",
       "file": "images/tarot/Faith.png",
       "kind": "backdrop",
-      "title": "Faith Tarot (Ranks 1–5)",
+      "title": "Faith Tarot (Ranks 0–5)",
       "bonds": ["p5r.bond.faith"],
-      "minBondRank": 1,
+      "minBondRank": 0,
       "maxBondRank": 5
     },
     {

@@ -605,7 +605,7 @@ class PackLintTest {
     }
 
     @Test
-    fun `bond backdrop rank bounds require one bond and an ascending positive range`() {
+    fun `bond backdrop rank bounds require one bond and an ascending non-negative range`() {
         val dir = tempDir()
         Fixture.writePack(dir)
         val image = dir.resolve("images/tarot/bad.png")
@@ -621,7 +621,7 @@ class PackLintTest {
                         kind = MediaKinds.BACKDROP,
                         title = "Bad backdrop",
                         minBondRank = 6,
-                        maxBondRank = 0,
+                        maxBondRank = -1,
                     ),
                 ),
             ),
@@ -629,7 +629,7 @@ class PackLintTest {
 
         val errors = PackLint.runOn(dir).errorsIn("media.json")
         assertTrue(errors.any { "rank bounds require exactly one bond anchor" in it.message }, errors.toString())
-        assertTrue(errors.any { "maxBondRank must be positive" in it.message }, errors.toString())
+        assertTrue(errors.any { "maxBondRank must be non-negative" in it.message }, errors.toString())
         assertTrue(errors.any { "maxBondRank must be greater than or equal" in it.message }, errors.toString())
     }
 

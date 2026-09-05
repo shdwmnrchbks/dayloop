@@ -40,7 +40,7 @@ never inserted in a way that silently reassigns a saved mark.
   their relevant checked route tasks. Multi-step setup does not complete a
   request; only its exact completion anchor does.
 - Confidant detail pages layer an Arcana tarot backdrop at the top-right;
-  Faith changes from its rank 1–5 card to its rank 6–10 card at rank 6.
+  Faith changes from its rank 0–5 card to its rank 6–10 card at rank 6.
 - Achievement progress keeps only its two counter lines pinned while its longer
   explanation scrolls with the list.
 - Calendar navigation retains the month the user browsed when a Day page is

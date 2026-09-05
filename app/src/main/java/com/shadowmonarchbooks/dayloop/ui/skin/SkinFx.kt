@@ -519,15 +519,12 @@ private fun PerfectDayCard(onDismiss: () -> Unit) {
                     }
                     Column {
                         Text(
-                            text = skin.cased(
-                                "Perfect day",
-                                if (skin.type.accent != null) "accent" else "display",
-                            ),
-                            style = (if (slash) {
+                            text = skin.cased("Perfect day", "display"),
+                            style = if (slash) {
                                 MaterialTheme.typography.displaySmall
                             } else {
                                 MaterialTheme.typography.titleLarge
-                            }).withSkinFont(skin.type.accent),
+                            },
                             fontWeight = FontWeight.Black,
                             color = when {
                                 slash -> Color.Black
