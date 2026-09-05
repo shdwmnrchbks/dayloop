@@ -77,8 +77,8 @@ Kotlin contains no game names and no per-game colors.
     "card": "art/card.jpg",
     "icon": "art/icon.png",
     "launcherBadge": "art/launcher-badge.png",
-    "today-day": "art/today-day.jpeg",
-    "today-night": "art/today-night.jpeg"
+    "today-day": "art/today-day.png",
+    "today-night": "art/today-night.png"
   }
 }
 ```

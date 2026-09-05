@@ -15,10 +15,10 @@ This audit tracks the eight visual and settings changes requested after rc6. The
 
 ## Asset provenance and serving
 
-The two user-supplied JPEGs are stored verbatim as `content/packs/p5r/art/today-day.jpeg` and `today-night.jpeg`. SHA-256 checksums:
+The two user-supplied PNGs are stored verbatim as `content/packs/p5r/art/today-day.png` and `today-night.png`. SHA-256 checksums:
 
-- Day: `f4abf4183728a6b2ddc4d2eb474d5449ac60d9e07c3b7ad919b89ef307d8c3fa`
-- Night: `fa7b856ff0bee3a04f95a23d5690e39445c95455c0599e10b9f14b8d4e08aaef`
+- Day: `7cdfd7bc2fa2336ed1058e21a5bdee7094a23485afbf30c8f056fa7b3e9d5ed1`
+- Night: `21d21ddb9e8ae32352df118a624b82aef415261c84a3810575098d68a5fa5d31`
 
 Both are declared in `pack.json`, so packlint validates that the installed content includes them. P5R content version advances to 10 and the app version advances to `0.12.0-rc7` (`versionCode 20`).
 

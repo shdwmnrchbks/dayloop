@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -92,6 +93,7 @@ fun SkinTopBar(
     canGoBack: Boolean,
     onBack: () -> Unit,
     onOpenSearch: () -> Unit,
+    settingsEnabled: Boolean = true,
     onOpenSettings: () -> Unit,
 ) {
     val skin = LocalSkin.current
@@ -127,7 +129,10 @@ fun SkinTopBar(
                     IconButton(onClick = onOpenSearch) {
                         Icon(Icons.Filled.Search, contentDescription = "Search")
                     }
-                    IconButton(onClick = onOpenSettings) {
+                    IconButton(
+                        onClick = onOpenSettings,
+                        enabled = settingsEnabled,
+                    ) {
                         Icon(Icons.Filled.Settings, contentDescription = "Settings")
                     }
                 },
@@ -191,8 +196,15 @@ fun SkinTopBar(
                     IconButton(onClick = onOpenSearch) {
                         Icon(Icons.Filled.Search, contentDescription = "Search", tint = colors.onBackground)
                     }
-                    IconButton(onClick = onOpenSettings) {
-                        Icon(Icons.Filled.Settings, contentDescription = "Settings", tint = colors.onBackground)
+                    IconButton(
+                        onClick = onOpenSettings,
+                        enabled = settingsEnabled,
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = colors.onBackground,
+                            disabledContentColor = colors.onBackground.copy(alpha = 0.38f),
+                        ),
+                    ) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
                     }
                 }
             }
@@ -219,7 +231,9 @@ fun SkinBottomBar(
             items.forEach { item ->
                 NavigationBarItem(
                     selected = selectedRoute == item.route,
-                    onClick = { onSelect(item.route) },
+                    onClick = {
+                        if (selectedRoute != item.route) onSelect(item.route)
+                    },
                     icon = { Icon(item.icon, contentDescription = item.label) },
                     label = null,
                     alwaysShowLabel = false,
@@ -258,7 +272,9 @@ fun SkinBottomBar(
                     modifier = Modifier
                         .weight(1f)
                         .heightIn(min = 54.dp)
-                        .clickable { onSelect(item.route) }
+                        .clickable {
+                            if (!selected) onSelect(item.route)
+                        }
                         .padding(horizontal = 2.dp, vertical = 5.dp),
                 ) {
                     if (selected) {

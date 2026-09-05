@@ -62,6 +62,10 @@ import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 /** Every top-level destination stays registered, whatever the active pack ships. */
 internal val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "answers", "mementos")
 
+/** Prevent a top-level control from reloading the destination already on screen. */
+internal fun shouldNavigate(currentRoute: String?, destination: String): Boolean =
+    currentRoute != destination
+
 /**
  * Tabs the active pack earns. Achievements is a first-class tracker for every
  * pack; packs without achievement data show an explicit empty state rather
@@ -147,7 +151,12 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         canGoBack = route != null && route !in TopLevelRoutes,
                         onBack = { nav.popBackStack() },
                         onOpenSearch = { nav.navigate("search") { launchSingleTop = true } },
-                        onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
+                        settingsEnabled = shouldNavigate(route, "settings"),
+                        onOpenSettings = {
+                            if (shouldNavigate(route, "settings")) {
+                                nav.navigate("settings") { launchSingleTop = true }
+                            }
+                        },
                     )
                 }
             },
@@ -157,7 +166,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         items = tabs,
                         selectedRoute = route,
                         onSelect = { destination ->
-                            nav.navigate(destination) { launchSingleTop = true }
+                            if (shouldNavigate(route, destination)) {
+                                nav.navigate(destination) { launchSingleTop = true }
+                            }
                         },
                     )
                 }

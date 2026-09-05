@@ -36,4 +36,11 @@ class NavigationContractTest {
         assertEquals(1, routes.count { it == "mementos" })
         assertFalse("answers" in routes)
     }
+
+    @Test
+    fun `top-level controls ignore the destination already on screen`() {
+        assertFalse(shouldNavigate("settings", "settings"))
+        assertFalse(shouldNavigate("today", "today"))
+        assertEquals(true, shouldNavigate("today", "calendar"))
+    }
 }
