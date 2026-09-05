@@ -46,10 +46,14 @@ class TaskGroupingTest {
     }
 
     @Test
-    fun `artwork task panels cycle through varied silhouettes`() {
+    fun `artwork task panels vary skew and chamfer count without jagged edges`() {
         assertEquals(
-            listOf("cut", "slash", "ribbon", "jagged", "cut"),
-            (0..4).map(::artworkTaskPanelShapeToken),
+            listOf(7, -12, 4, -8, 11, -5, 7),
+            (0..6).map { artworkTaskPanelSpec(it).skewDp },
+        )
+        assertEquals(
+            listOf(2, 1, 3, 4, 0, 3),
+            (0..5).map { artworkTaskPanelSpec(it).chamferedCorners.countOneBits() },
         )
     }
 }

@@ -101,8 +101,8 @@ fun SkinTopBar(
     // Banner destinations use the same pack display face as date headers,
     // scaled to toolbar metrics so longer active-tab names still fit.
     val bannerTitleStyle = MaterialTheme.typography.displaySmall.copy(
-        fontSize = MaterialTheme.typography.titleLarge.fontSize,
-        lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+        lineHeight = MaterialTheme.typography.headlineMedium.lineHeight,
     )
     Column(modifier = Modifier.background(colors.surface)) {
         Spacer(
