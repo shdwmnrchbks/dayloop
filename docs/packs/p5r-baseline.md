@@ -43,8 +43,8 @@ never inserted in a way that silently reassigns a saved mark.
   Faith changes from its rank 0–5 card to its rank 6–10 card at rank 6.
 - Achievement progress keeps only its two counter lines pinned while its longer
   explanation scrolls with the list.
-- Achievement entries use translucent 75%-black panels so their artwork and
-  text remain legible over the P5R presentation.
+- Achievement entries use plain translucent 75%-black panels, without panel
+  decoration, so their artwork and text remain legible over the P5R presentation.
 - Calendar navigation retains the month the user browsed when a Day page is
   opened and then closed.
 
