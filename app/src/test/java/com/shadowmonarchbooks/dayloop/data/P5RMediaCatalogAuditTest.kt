@@ -36,8 +36,8 @@ class P5RMediaCatalogAuditTest {
         val authoredMonths = p5r.walkthroughs.mapTo(linkedSetOf()) { it.month }
         val achievementIds = p5r.achievements?.achievements.orEmpty().mapTo(linkedSetOf()) { it.id }
 
-        assertEquals(74, media.size)
-        assertEquals(50, trophyArt.size, "the imported P5R guide archive contributes 50 trophy images")
+        assertEquals(77, media.size)
+        assertEquals(53, trophyArt.size, "every Royal trophy has its official Steam achievement image")
         assertEquals(23, confidantBackgrounds.size, "the supplied Confidants artwork contributes 23 backgrounds")
         assertEquals(
             setOf("p5r.media.month-opener"),

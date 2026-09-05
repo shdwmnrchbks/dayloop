@@ -10,7 +10,6 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class P5RAchievementCatalogAuditTest {
@@ -35,7 +34,7 @@ class P5RAchievementCatalogAuditTest {
         val byId = achievements.associateBy { it.id }
         val media = p5r.media?.media.orEmpty()
         val mediaById = media.associateBy { it.id }
-        val legacyTrophyIds = media
+        val trophyMediaIds = media
             .filter { it.kind == MediaKinds.ACHIEVEMENT }
             .mapTo(linkedSetOf()) { it.id }
         val packDef = p5r.pack ?: return
@@ -43,9 +42,9 @@ class P5RAchievementCatalogAuditTest {
 
         assertEquals(53, achievements.size)
         assertEquals(53, byId.size, "Royal trophy ids must be unique")
-        assertEquals(50, legacyTrophyIds.size, "the imported guide art covers 50 of Royal's 53 trophies")
-        assertTrue(byId.keys.containsAll(legacyTrophyIds), "legacy media trophy ids must remain achievement ids so existing checked state survives")
-        legacyTrophyIds.forEach { id ->
+        assertEquals(53, trophyMediaIds.size, "every Royal trophy should have its official Steam icon")
+        assertTrue(byId.keys.containsAll(trophyMediaIds), "media trophy ids must remain achievement ids so existing checked state survives")
+        trophyMediaIds.forEach { id ->
             assertEquals(
                 mediaById.getValue(id).title,
                 byId.getValue(id).title,
@@ -53,15 +52,15 @@ class P5RAchievementCatalogAuditTest {
             )
         }
 
-        val addedWithoutGuideArt = mapOf(
+        val achievementsPreviouslyMissingArt = mapOf(
             "p5r.achievement.its-showtime" to "It's Showtime!",
             "p5r.achievement.accident-prone" to "Accident-Prone",
             "p5r.achievement.master-of-akihabara" to "Master of Akihabara",
         )
-        addedWithoutGuideArt.forEach { (id, title) ->
+        achievementsPreviouslyMissingArt.forEach { (id, title) ->
             val achievement = byId.getValue(id)
             assertEquals(title, achievement.title)
-            assertNull(achievement.iconMediaRef, "$title should use the built-in no-image fallback until matching art is bundled")
+            assertEquals(id, achievement.iconMediaRef, "$title should resolve its official Steam icon")
         }
 
         assertEquals("2016-06-21", byId.getValue("p5r.achievement.its-showtime").availableFrom)
@@ -103,8 +102,8 @@ class P5RAchievementCatalogAuditTest {
             "ordinary media anchors should keep their neutral placement label",
         )
 
-        assertEquals(50, achievements.count { it.iconMediaRef != null })
-        assertEquals(3, achievements.count { it.iconMediaRef == null })
+        assertEquals(53, achievements.count { it.iconMediaRef != null })
+        assertEquals(0, achievements.count { it.iconMediaRef == null })
         assertTrue(p5r.achievements?.events.orEmpty().size >= 40)
     }
 }
