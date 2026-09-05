@@ -217,8 +217,10 @@ fun TodayScreen(
             // the standard section-header panel.
             SkinHeader(
                 formatDate(date, pack.calendar),
+                modifier = Modifier.weight(1f),
                 accentFont = true,
                 showPanel = false,
+                hero = true,
             )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
@@ -227,16 +229,20 @@ fun TodayScreen(
                     MediaImage(assetPath = pack.assetOf(marker), title = marker.title, size = 30.dp)
                 }
             }
-            DayKindChip(day?.dayKind ?: "rest")
-            Spacer(modifier = Modifier.weight(1f))
-            state.activeProfile?.let { profile ->
-                Text(
-                    text = profile.name,
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.secondary,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(2.dp),
+            ) {
+                DayKindChip(day?.dayKind ?: "rest")
+                state.activeProfile?.let { profile ->
+                    Text(
+                        text = profile.name,
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.secondary,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
             }
         }
 
