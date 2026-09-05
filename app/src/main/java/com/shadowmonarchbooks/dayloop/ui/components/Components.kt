@@ -24,6 +24,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -45,9 +46,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
@@ -60,6 +63,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
@@ -74,10 +78,10 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
-import com.shadowmonarchbooks.dayloop.ui.skin.shapeFor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlin.math.hypot
 
 /** Vocabulary-free day-kind chip, step rows, and deadline banner. */
 
@@ -332,10 +336,68 @@ private fun MarkButton(
  * immediately. Time-slot labels are rendered once by [TasksList], while a
  * tappable activity reference remains inline with its task.
  */
-private val ArtworkTaskPanelShapes = listOf("cut", "slash", "ribbon", "jagged")
+internal data class ArtworkTaskPanelSpec(
+    val skewDp: Int,
+    val chamferedCorners: Int,
+)
 
-internal fun artworkTaskPanelShapeToken(index: Int): String =
-    ArtworkTaskPanelShapes[index % ArtworkTaskPanelShapes.size]
+private val ArtworkTaskPanelSpecs = listOf(
+    ArtworkTaskPanelSpec(skewDp = 7, chamferedCorners = 0b1001),
+    ArtworkTaskPanelSpec(skewDp = -12, chamferedCorners = 0b0010),
+    ArtworkTaskPanelSpec(skewDp = 4, chamferedCorners = 0b1011),
+    ArtworkTaskPanelSpec(skewDp = -8, chamferedCorners = 0b1111),
+    ArtworkTaskPanelSpec(skewDp = 11, chamferedCorners = 0b0000),
+    ArtworkTaskPanelSpec(skewDp = -5, chamferedCorners = 0b1101),
+)
+
+internal fun artworkTaskPanelSpec(index: Int): ArtworkTaskPanelSpec =
+    ArtworkTaskPanelSpecs[index % ArtworkTaskPanelSpecs.size]
+
+private fun artworkTaskPanelShape(spec: ArtworkTaskPanelSpec, density: Density): Shape =
+    GenericShape { size, _ ->
+        val skew = with(density) { kotlin.math.abs(spec.skewDp).dp.toPx() }
+            .coerceAtMost(size.width * 0.09f)
+        val corners = if (spec.skewDp >= 0) {
+            listOf(
+                Offset(skew, 0f),
+                Offset(size.width, 0f),
+                Offset(size.width - skew, size.height),
+                Offset(0f, size.height),
+            )
+        } else {
+            listOf(
+                Offset(0f, 0f),
+                Offset(size.width - skew, 0f),
+                Offset(size.width, size.height),
+                Offset(skew, size.height),
+            )
+        }
+        val chamfer = with(density) { 10.dp.toPx() }.coerceAtMost(size.height * 0.22f)
+        val pathPoints = buildList {
+            corners.forEachIndexed { cornerIndex, corner ->
+                if (spec.chamferedCorners and (1 shl cornerIndex) == 0) {
+                    add(corner)
+                } else {
+                    val previous = corners[(cornerIndex + corners.lastIndex) % corners.size]
+                    val next = corners[(cornerIndex + 1) % corners.size]
+                    fun toward(point: Offset): Offset {
+                        val dx = point.x - corner.x
+                        val dy = point.y - corner.y
+                        val distance = hypot(dx, dy).coerceAtLeast(1f)
+                        return Offset(
+                            corner.x + dx / distance * chamfer,
+                            corner.y + dy / distance * chamfer,
+                        )
+                    }
+                    add(toward(previous))
+                    add(toward(next))
+                }
+            }
+        }
+        moveTo(pathPoints.first().x, pathPoints.first().y)
+        pathPoints.drop(1).forEach { lineTo(it.x, it.y) }
+        close()
+    }
 
 @Composable
 fun StepRow(
@@ -350,9 +412,9 @@ fun StepRow(
 ) {
     val skin = LocalSkin.current
     val density = LocalDensity.current
-    val panelVariant = index % 4
+    val panelVariant = index % ArtworkTaskPanelSpecs.size
     val panelShape = remember(panelVariant, density) {
-        shapeFor(artworkTaskPanelShapeToken(index), density)
+        artworkTaskPanelShape(artworkTaskPanelSpec(index), density)
     }
     val panelInsets = when (panelVariant) {
         0 -> 0.dp to 8.dp

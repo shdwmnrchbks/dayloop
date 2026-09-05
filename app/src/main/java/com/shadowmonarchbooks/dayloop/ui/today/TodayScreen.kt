@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -216,7 +217,6 @@ fun TodayScreen(
             // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
             SkinHeader(
                 formatDate(date, pack.calendar),
-                modifier = Modifier.weight(1f, fill = false),
             )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
@@ -226,6 +226,7 @@ fun TodayScreen(
                 }
             }
             DayKindChip(day?.dayKind ?: "rest")
+            Spacer(modifier = Modifier.weight(1f))
             state.activeProfile?.let { profile ->
                 Text(
                     text = profile.name,
@@ -298,12 +299,13 @@ fun TodayScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                SkinSectionHeader("Tasks", modifier = Modifier.weight(1f, fill = false))
+                SkinSectionHeader("Tasks")
                 SkinTextActionButton(
                     text = "Check all",
                     onClick = { vm.markAllDone(date, day.steps.size) },
                     enabled = !allTasksDone,
                 )
+                Spacer(modifier = Modifier.weight(1f))
                 DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
             }
             TasksList(
