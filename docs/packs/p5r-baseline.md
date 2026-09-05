@@ -45,6 +45,8 @@ never inserted in a way that silently reassigns a saved mark.
   explanation scrolls with the list.
 - Achievement entries use plain translucent 75%-black panels, without panel
   decoration, so their artwork and text remain legible over the P5R presentation.
+- Mementos Requests uses pack-authored background artwork with plain translucent
+  50%-black request panels so the artwork remains visible behind each entry.
 - Calendar navigation retains the month the user browsed when a Day page is
   opened and then closed.
 
