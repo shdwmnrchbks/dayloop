@@ -44,4 +44,12 @@ class TaskGroupingTest {
         assertEquals(listOf("afternoon", "afternoon", "evening"), groups.map { it.slotId })
         assertEquals(listOf(0, 1, 2), groups.flatMap { group -> group.tasks.map { it.index } })
     }
+
+    @Test
+    fun `artwork task panels cycle through varied silhouettes`() {
+        assertEquals(
+            listOf("cut", "slash", "ribbon", "jagged", "cut"),
+            (0..4).map(::artworkTaskPanelShapeToken),
+        )
+    }
 }

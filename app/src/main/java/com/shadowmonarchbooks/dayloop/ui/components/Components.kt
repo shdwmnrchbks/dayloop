@@ -52,6 +52,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -73,6 +74,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberMarkFeedback
+import com.shadowmonarchbooks.dayloop.ui.skin.shapeFor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -330,6 +332,11 @@ private fun MarkButton(
  * immediately. Time-slot labels are rendered once by [TasksList], while a
  * tappable activity reference remains inline with its task.
  */
+private val ArtworkTaskPanelShapes = listOf("cut", "slash", "ribbon", "jagged")
+
+internal fun artworkTaskPanelShapeToken(index: Int): String =
+    ArtworkTaskPanelShapes[index % ArtworkTaskPanelShapes.size]
+
 @Composable
 fun StepRow(
     index: Int,
@@ -339,8 +346,20 @@ fun StepRow(
     statLabels: Map<String, String>,
     activityLabel: String?,
     onOpenActivity: (() -> Unit)? = null,
+    artworkBackdrop: Boolean = false,
 ) {
     val skin = LocalSkin.current
+    val density = LocalDensity.current
+    val panelVariant = index % 4
+    val panelShape = remember(panelVariant, density) {
+        shapeFor(artworkTaskPanelShapeToken(index), density)
+    }
+    val panelInsets = when (panelVariant) {
+        0 -> 0.dp to 8.dp
+        1 -> 7.dp to 0.dp
+        2 -> 3.dp to 11.dp
+        else -> 10.dp to 4.dp
+    }
     var showTip by remember(step.tip) { mutableStateOf(false) }
     if (showTip) {
         StepTipDialog(
@@ -351,7 +370,18 @@ fun StepRow(
     Row(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .then(
+                if (artworkBackdrop) {
+                    Modifier
+                        .padding(start = panelInsets.first, end = panelInsets.second)
+                        .background(Color.Black.copy(alpha = 0.5f), panelShape)
+                        .padding(horizontal = 12.dp, vertical = 10.dp)
+                } else {
+                    Modifier
+                },
+            ),
     ) {
         Text(
             text = "${index + 1}.",
@@ -516,6 +546,7 @@ fun TasksList(
     modifier: Modifier = Modifier,
     slotLabels: Map<String, String> = emptyMap(),
     onOpenActivity: ((String) -> Unit)? = null,
+    artworkBackdrop: Boolean = false,
 ) {
     if (steps.isEmpty()) {
         Text(
@@ -550,6 +581,7 @@ fun TasksList(
                         onOpenActivity = step.activityRef?.let { ref ->
                             onOpenActivity?.let { open -> { open(ref) } }
                         },
+                        artworkBackdrop = artworkBackdrop,
                     )
                 }
             }

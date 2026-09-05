@@ -4,7 +4,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.collectAsState
 import com.shadowmonarchbooks.dayloop.data.formatDate
@@ -203,21 +203,14 @@ fun TodayScreen(
                 .verticalScroll(scrollState)
                 .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 100.dp),
         ) {
-        state.activeProfile?.let { profile ->
-            val routeSuffix = if (pack.routes.size > 1) " · ${pack.routeLabel(state.activeRouteId)}" else ""
-            Text(
-                text = profile.name + routeSuffix,
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.secondary,
-            )
-        }
-
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.onGloballyPositioned { coordinates ->
-                dateBottomPx = coordinates.positionInParent().y.toInt() + coordinates.size.height
-            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { coordinates ->
+                    dateBottomPx = coordinates.positionInParent().y.toInt() + coordinates.size.height
+                },
         ) {
             // Skinned packs render the date as a ribbon header in display type
             // (docs/ROADMAP-v3.md Phase 13); the engine look keeps headline text.
@@ -233,6 +226,15 @@ fun TodayScreen(
                 }
             }
             DayKindChip(day?.dayKind ?: "rest")
+            state.activeProfile?.let { profile ->
+                Text(
+                    text = profile.name,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.secondary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
         }
 
         // Crown-language packs (docs/ROADMAP-v3.md Phase 15): the dayCounter's
@@ -291,7 +293,6 @@ fun TodayScreen(
         }
 
         if (day != null) {
-            DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -303,6 +304,7 @@ fun TodayScreen(
                     onClick = { vm.markAllDone(date, day.steps.size) },
                     enabled = !allTasksDone,
                 )
+                DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
             }
             TasksList(
                 steps = day.steps,
@@ -310,21 +312,10 @@ fun TodayScreen(
                 onToggleMark = { index, mark -> vm.toggleMark(date, index, mark) },
                 statLabels = pack.pack.statLabels(),
                 activityLabels = pack.activities.mapValues { it.value.label },
-                modifier = if (dayScene != null || nightScene != null) {
-                    Modifier
-                        .fillMaxWidth()
-                        .background(Color.Black.copy(alpha = 0.82f), skin.shapes.card)
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.9f),
-                            shape = skin.shapes.card,
-                        )
-                        .padding(horizontal = 14.dp, vertical = 12.dp)
-                } else {
-                    Modifier.fillMaxWidth()
-                },
+                modifier = Modifier.fillMaxWidth(),
                 slotLabels = pack.pack.slotLabels(),
                 onOpenActivity = onOpenActivity,
+                artworkBackdrop = dayScene != null || nightScene != null,
             )
             if (showDatedAchievements) {
                 SkinSectionHeader("Achievements")
