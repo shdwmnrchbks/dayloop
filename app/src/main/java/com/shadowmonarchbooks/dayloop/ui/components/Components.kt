@@ -156,13 +156,15 @@ fun SkinTag(text: String, container: Color, content: Color, modifier: Modifier =
  * header silhouette carrying display type on the accent container. Packs
  * whose header token is `diamond` get a soft band with a diamond cap (Phase
  * 14) — never a text-clipping rhombus. Packs without skin tokens keep the
- * engine headline look unchanged.
+ * engine headline look unchanged. Callers may suppress the panel while
+ * retaining the selected display treatment.
  */
 @Composable
 fun SkinHeader(
     text: String,
     modifier: Modifier = Modifier,
     accentFont: Boolean = false,
+    showPanel: Boolean = true,
 ) {
     val skin = LocalSkin.current
     if (!skin.hasSkin) {
@@ -172,7 +174,7 @@ fun SkinHeader(
     val capped = skin.shapeTokens["header"] == "diamond"
     Surface(
         shape = if (capped) SkinSpec.Engine.shapes.header else skin.shapes.header,
-        color = MaterialTheme.colorScheme.primaryContainer,
+        color = if (showPanel) MaterialTheme.colorScheme.primaryContainer else Color.Transparent,
         modifier = modifier,
     ) {
         Row(
@@ -193,7 +195,11 @@ fun SkinHeader(
                 style = MaterialTheme.typography.displaySmall.withSkinFont(
                     if (accentFont) skin.type.accent else null,
                 ),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = if (showPanel) {
+                    MaterialTheme.colorScheme.onPrimaryContainer
+                } else {
+                    MaterialTheme.colorScheme.onBackground
+                },
             )
         }
     }
