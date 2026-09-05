@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
@@ -173,14 +174,20 @@ private fun AchievementChecklistRows(
     if (rows.isEmpty()) return
 
     val skin = LocalSkin.current
+    val slashPanel = skin.hasSkin && skin.motion == "slash"
     Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = modifier.fillMaxWidth()) {
         rows.forEach { row ->
             Surface(
                 shape = skin.shapes.card,
-                color = if (row.checked) {
-                    MaterialTheme.colorScheme.secondaryContainer
-                } else {
-                    MaterialTheme.colorScheme.surfaceVariant
+                color = when {
+                    slashPanel -> slashAchievementPanelColor
+                    row.checked -> MaterialTheme.colorScheme.secondaryContainer
+                    else -> MaterialTheme.colorScheme.surfaceVariant
+                },
+                contentColor = when {
+                    slashPanel -> Color.White
+                    row.checked -> MaterialTheme.colorScheme.onSecondaryContainer
+                    else -> MaterialTheme.colorScheme.onSurfaceVariant
                 },
                 modifier = Modifier.fillMaxWidth(),
             ) {

@@ -1,5 +1,6 @@
 package com.shadowmonarchbooks.dayloop.ui.achievements
 
+import androidx.compose.ui.graphics.Color
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
 import kotlin.test.Test
@@ -8,6 +9,11 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class AchievementProgressTest {
+
+    @Test
+    fun `slash achievement panels are seventy five percent black`() {
+        assertEquals(Color.Black.copy(alpha = 0.75f), slashAchievementPanelColor)
+    }
 
     @Test
     fun `only the two compact progress lines belong to the pinned summary`() {

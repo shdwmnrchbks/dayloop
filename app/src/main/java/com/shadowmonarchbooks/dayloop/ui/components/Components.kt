@@ -165,6 +165,7 @@ fun SkinHeader(
     modifier: Modifier = Modifier,
     accentFont: Boolean = false,
     showPanel: Boolean = true,
+    hero: Boolean = false,
 ) {
     val skin = LocalSkin.current
     if (!skin.hasSkin) {
@@ -179,7 +180,12 @@ fun SkinHeader(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(start = if (capped) 12.dp else 14.dp, end = 14.dp, top = 4.dp, bottom = 4.dp),
+            modifier = Modifier.padding(
+                start = if (capped) 12.dp else 14.dp,
+                end = 14.dp,
+                top = if (hero) 1.dp else 4.dp,
+                bottom = if (hero) 1.dp else 4.dp,
+            ),
         ) {
             if (capped) {
                 Box(
@@ -192,7 +198,11 @@ fun SkinHeader(
             }
             Text(
                 text = skin.cased(text, if (accentFont) "accent" else "display"),
-                style = MaterialTheme.typography.displaySmall.withSkinFont(
+                style = (if (hero) {
+                    MaterialTheme.typography.displayMedium
+                } else {
+                    MaterialTheme.typography.displaySmall
+                }).withSkinFont(
                     if (accentFont) skin.type.accent else null,
                 ),
                 color = if (showPanel) {

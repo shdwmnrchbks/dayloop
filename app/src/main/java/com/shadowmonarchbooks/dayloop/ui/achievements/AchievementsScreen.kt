@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -41,6 +42,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinCheckboxIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+
+internal val slashAchievementPanelColor = Color.Black.copy(alpha = 0.75f)
 
 /**
  * Profile-scoped achievement tracker.
@@ -206,11 +209,20 @@ private fun RuleAchievementRow(
         selectedChoice = row.selectedChoice,
     )
     val skin = LocalSkin.current
+    val slashPanel = skin.hasSkin && skin.motion == "slash"
 
     Surface(
         shape = skin.shapes.card,
-        color = if (earned) MaterialTheme.colorScheme.secondaryContainer
-        else MaterialTheme.colorScheme.surfaceVariant,
+        color = when {
+            slashPanel -> slashAchievementPanelColor
+            earned -> MaterialTheme.colorScheme.secondaryContainer
+            else -> MaterialTheme.colorScheme.surfaceVariant
+        },
+        contentColor = when {
+            slashPanel -> Color.White
+            earned -> MaterialTheme.colorScheme.onSecondaryContainer
+            else -> MaterialTheme.colorScheme.onSurfaceVariant
+        },
         modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
@@ -600,10 +612,19 @@ private fun LegacyAchievementRow(
         else -> "Upcoming · ${achievementAnchorLabel(item)}"
     }
     val skin = LocalSkin.current
+    val slashPanel = skin.hasSkin && skin.motion == "slash"
     Surface(
         shape = skin.shapes.card,
-        color = if (earned) MaterialTheme.colorScheme.secondaryContainer
-        else MaterialTheme.colorScheme.surfaceVariant,
+        color = when {
+            slashPanel -> slashAchievementPanelColor
+            earned -> MaterialTheme.colorScheme.secondaryContainer
+            else -> MaterialTheme.colorScheme.surfaceVariant
+        },
+        contentColor = when {
+            slashPanel -> Color.White
+            earned -> MaterialTheme.colorScheme.onSecondaryContainer
+            else -> MaterialTheme.colorScheme.onSurfaceVariant
+        },
         modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
